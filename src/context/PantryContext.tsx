@@ -1,6 +1,9 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo } from "react";
 import type { PantryCategory, PantryItem, StorageLocation, Unit } from "@/types";
 import { pantryItems as seedPantryItems } from "@/data/pantry";
+import { AppBlank } from "@/components/AppBlank";
+import { isPantryItems } from "@/lib/persistedShapes";
+import { usePersistedState } from "@/lib/usePersistedState";
 import { addOrMergeItem, addPantryItem as addPantryItemAction, removePantryItem as removePantryItemAction } from "@/lib/inventoryActions";
 
 export interface NewPantryItemInput {
@@ -48,20 +51,20 @@ const PantryContext = createContext<PantryContextValue | undefined>(undefined);
  * `useState` and wires the two callers (the Pantry tab's manual-add
  * form, and Shopping's purchase flow) into it.
  *
- * It lives in memory for this session — wiring it to AsyncStorage (or
- * Supabase, per the original stack) so it survives an app restart is
- * the natural next step once this is running on a device.
+ * It is saved on the device (see `usePersistedState`), so it survives an
+ * app restart. The seed pantry is only used the very first time, or if
+ * what's stored can't be read.
  */
 export function PantryProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<PantryItem[]>(seedPantryItems);
+  const [items, setItems, hydrated] = usePersistedState<PantryItem[]>("mise.pantry.v1", seedPantryItems, isPantryItems);
 
   const addItem = useCallback((input: NewPantryItemInput) => {
     setItems((prev) => addPantryItemAction(prev, input).items);
-  }, []);
+  }, [setItems]);
 
   const removeItem = useCallback((id: string) => {
     setItems((prev) => removePantryItemAction(prev, id));
-  }, []);
+  }, [setItems]);
 
   const receiveFromShopping = useCallback((input: ReceiveFromShoppingInput) => {
     setItems(
@@ -78,12 +81,14 @@ export function PantryProvider({ children }: { children: React.ReactNode }) {
           source: "shopping",
         }).items
     );
-  }, []);
+  }, [setItems]);
 
   const value = useMemo(
     () => ({ items, addItem, removeItem, receiveFromShopping }),
     [items, addItem, removeItem, receiveFromShopping]
   );
+
+  if (!hydrated) return <AppBlank />;
 
   return <PantryContext.Provider value={value}>{children}</PantryContext.Provider>;
 }

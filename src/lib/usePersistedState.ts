@@ -22,7 +22,9 @@ export function usePersistedState<T>(
   const [state, setState] = useState<T>(seed);
   const [hydrated, setHydrated] = useState(false);
   const isValidRef = useRef(isValid);
-  isValidRef.current = isValid;
+  useEffect(() => {
+    isValidRef.current = isValid;
+  });
 
   useEffect(() => {
     let cancelled = false;

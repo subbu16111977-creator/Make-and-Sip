@@ -39,9 +39,17 @@ on iOS, Android and the web.
 - `src/lib/pantryMatch.ts` — the pantry-to-recipe matching logic. Nothing is
   hard-coded; "have 5 of 6" is always computed.
 
-**Not saved yet:** Pantry, Shopping, Saved and Equipment live in memory, so
-they reset to the starting data whenever the app restarts. Saving to the
-device is the next planned piece of work.
+**Saved on the device:** Pantry, Shopping, Saved and Equipment are stored
+locally with AsyncStorage (plain, unencrypted key-value storage; not for
+secrets) under the keys `mise.pantry.v1`, `mise.shopping.v1`,
+`mise.saved.v1` and `mise.equipment.v1`, and come back after a restart. The
+starting pantry is only used the first time, or if stored data is missing or
+unreadable. There is no cloud sync or account yet, so data stays on that one
+device/browser. The code is in `src/lib/usePersistedState.ts`,
+`src/lib/storage.ts` and `src/lib/persistedShapes.ts`.
+
+Note that the starting pantry's expiry dates are fixed when it is first saved,
+so those demo items will show as expiring or expired as real days pass.
 
 ## Running it
 
@@ -66,6 +74,5 @@ needs a person to look at each photo next to its title.
 
 ## Next
 
-Persistence (save data on the device), cleaner Shopping item names and
-optional-ingredient handling, a recipe-image review, then collections and
+Cleaner Shopping item names and optional-ingredient handling, a recipe-image review, then collections and
 guest mode. See `PROJECT_HANDOFF.md` for the full picture.

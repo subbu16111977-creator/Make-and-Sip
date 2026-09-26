@@ -1,5 +1,8 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo } from "react";
 import type { EquipmentTag } from "@/types";
+import { AppBlank } from "@/components/AppBlank";
+import { isEquipmentTags } from "@/lib/persistedShapes";
+import { usePersistedState } from "@/lib/usePersistedState";
 
 interface EquipmentContextValue {
   owned: EquipmentTag[];
@@ -25,15 +28,17 @@ const SEED_OWNED: EquipmentTag[] = ["Oven", "Microwave", "Blender"];
  * hasRequiredEquipment in lib/pantryMatch.
  */
 export function EquipmentProvider({ children }: { children: React.ReactNode }) {
-  const [owned, setOwned] = useState<EquipmentTag[]>(SEED_OWNED);
+  const [owned, setOwned, hydrated] = usePersistedState<EquipmentTag[]>("mise.equipment.v1", SEED_OWNED, isEquipmentTags);
 
   const isOwned = useCallback((tag: EquipmentTag) => owned.includes(tag), [owned]);
 
   const toggleEquipment = useCallback((tag: EquipmentTag) => {
     setOwned((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
-  }, []);
+  }, [setOwned]);
 
   const value = useMemo(() => ({ owned, isOwned, toggleEquipment }), [owned, isOwned, toggleEquipment]);
+
+  if (!hydrated) return <AppBlank />;
 
   return <EquipmentContext.Provider value={value}>{children}</EquipmentContext.Provider>;
 }

@@ -1,6 +1,9 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo } from "react";
 import type { PantryCategory, RecipeIngredient, ShoppingItem, Unit } from "@/types";
 import { usePantry } from "@/context/PantryContext";
+import { AppBlank } from "@/components/AppBlank";
+import { isShoppingItems } from "@/lib/persistedShapes";
+import { usePersistedState } from "@/lib/usePersistedState";
 import { normalizeIngredient, resolveIngredientById } from "@/lib/ingredientNormalize";
 import {
   addMissingIngredientsFromRecipe,
@@ -49,7 +52,7 @@ const ShoppingContext = createContext<ShoppingContextValue | undefined>(undefine
  * always remove it from the Pantry tab directly if that's what they want.
  */
 export function ShoppingProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<ShoppingItem[]>([]);
+  const [items, setItems, hydrated] = usePersistedState<ShoppingItem[]>("mise.shopping.v1", [], isShoppingItems);
   const pantry = usePantry();
 
   const addItem = useCallback((input: NewShoppingItemInput) => {
@@ -72,7 +75,7 @@ export function ShoppingProvider({ children }: { children: React.ReactNode }) {
       };
       return [newItem, ...prev];
     });
-  }, []);
+  }, [setItems]);
 
   const addMissingFromRecipe = useCallback((recipeId: string, recipeTitle: string, missing: RecipeIngredient[]) => {
     let added = 0;
@@ -82,7 +85,7 @@ export function ShoppingProvider({ children }: { children: React.ReactNode }) {
       return result.items;
     });
     return added;
-  }, []);
+  }, [setItems]);
 
   const toggleChecked = useCallback(
     (id: string) => {
@@ -114,21 +117,23 @@ export function ShoppingProvider({ children }: { children: React.ReactNode }) {
         category: target.category,
       });
     },
-    [items, pantry]
+    [items, pantry, setItems]
   );
 
   const removeItem = useCallback((id: string) => {
     setItems((prev) => prev.filter((item) => item.id !== id));
-  }, []);
+  }, [setItems]);
 
   const clearChecked = useCallback(() => {
     setItems((prev) => prev.filter((item) => !item.checked));
-  }, []);
+  }, [setItems]);
 
   const value = useMemo(
     () => ({ items, addItem, addMissingFromRecipe, toggleChecked, removeItem, clearChecked }),
     [items, addItem, addMissingFromRecipe, toggleChecked, removeItem, clearChecked]
   );
+
+  if (!hydrated) return <AppBlank />;
 
   return <ShoppingContext.Provider value={value}>{children}</ShoppingContext.Provider>;
 }
