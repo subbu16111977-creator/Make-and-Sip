@@ -57,6 +57,11 @@ export interface ShoppingItem {
   amount: string;
   category: PantryCategory;
   checked: boolean;
+  /**
+   * True once this item's purchase has been merged into Pantry. Unchecking never reverses that, so
+   * checking the item a second time must not merge it in again (which would double the quantity).
+   */
+  addedToPantry?: boolean;
   /** Recipe title this item was auto-added from, if any — for provenance ("from Chicken Biryani"). */
   fromRecipe?: string;
   /**

@@ -73,7 +73,7 @@ export default function DiscoverScreen() {
         ListHeaderComponent={
           <View>
             <View style={styles.header}>
-              <Text style={styles.eyebrow}>{recipes.length} dishes</Text>
+              <Text style={styles.eyebrow}>{equipmentReady.length} {equipmentReady.length === 1 ? "dish" : "dishes"}</Text>
               <Text style={styles.headline}>Discover</Text>
               <Text style={styles.subhead}>Ranked by what&apos;s in your pantry, filtered by what you&apos;re craving.</Text>
             </View>

@@ -107,6 +107,50 @@ describe("Test 9 — marking chicken purchased updates Shopping AND Pantry atomi
   });
 });
 
+describe("Regression — check, uncheck, check again must not double the pantry quantity", () => {
+  function buyOnce() {
+    const shopping = addMissingIngredientsFromRecipe([], CHICKEN_RECIPE.id, CHICKEN_RECIPE.title, [
+      CHICKEN_INGREDIENT,
+    ]).items;
+    return markShoppingItemPurchased(shopping, [], shopping[0].id);
+  }
+
+  it("re-checking after an uncheck leaves the pantry exactly as it was after the first purchase", () => {
+    const first = buyOnce();
+    expect(first.pantryItems.length).toBe(1);
+    const quantityAfterFirstCheck = first.pantryItems[0].quantity;
+    const id = first.shoppingItems[0].id;
+
+    // Uncheck: Pantry untouched.
+    const unchecked = unmarkShoppingItemPurchased(first.shoppingItems, id);
+    expect(unchecked[0].checked).toBe(false);
+
+    // Check again: item is ticked, but Pantry must not gain another copy of it.
+    const second = markShoppingItemPurchased(unchecked, first.pantryItems, id);
+    expect(second.shoppingItems[0].checked).toBe(true);
+    expect(second.pantryItems.length).toBe(1);
+    expect(second.pantryItems[0].quantity).toBe(quantityAfterFirstCheck);
+    expect(second.pantryItems).toEqual(first.pantryItems);
+  });
+
+  it("stays at the first-purchase quantity however many times it is toggled", () => {
+    const first = buyOnce();
+    const id = first.shoppingItems[0].id;
+    let shopping = first.shoppingItems;
+    let pantry = first.pantryItems;
+
+    for (let i = 0; i < 3; i++) {
+      shopping = unmarkShoppingItemPurchased(shopping, id);
+      const next = markShoppingItemPurchased(shopping, pantry, id);
+      shopping = next.shoppingItems;
+      pantry = next.pantryItems;
+    }
+
+    expect(pantry.length).toBe(1);
+    expect(pantry[0].quantity).toBe(first.pantryItems[0].quantity);
+  });
+});
+
 describe("Test 10 — unchecking a purchased item never silently deletes pantry data", () => {
   it("unmarking purchased leaves Pantry untouched", () => {
     let pantry: PantryItem[] = [];

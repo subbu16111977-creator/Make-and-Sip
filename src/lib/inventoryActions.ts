@@ -250,7 +250,18 @@ export function markShoppingItemPurchased(
   const item = shoppingItems.find((i) => i.id === shoppingItemId);
   if (!item || item.checked) return { shoppingItems, pantryItems };
 
-  const nextShopping = shoppingItems.map((i) => (i.id === shoppingItemId ? { ...i, checked: true } : i));
+  // Re-checking an item that was already purchased once (checked, then unchecked): its quantity is
+  // already in Pantry — unchecking never removes it — so just tick it again, don't merge it twice.
+  if (item.addedToPantry) {
+    return {
+      shoppingItems: shoppingItems.map((i) => (i.id === shoppingItemId ? { ...i, checked: true } : i)),
+      pantryItems,
+    };
+  }
+
+  const nextShopping = shoppingItems.map((i) =>
+    i.id === shoppingItemId ? { ...i, checked: true, addedToPantry: true } : i
+  );
 
   const registryEntry = resolveIngredientById(item.ingredientId);
   const { items: nextPantry } = addOrMergeItem(pantryItems, {

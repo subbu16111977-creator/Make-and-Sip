@@ -100,7 +100,12 @@ export function ShoppingProvider({ children }: { children: React.ReactNode }) {
       // (Discover, Pantry, Shopping) re-renders in the same pass. No
       // in-between moment where Shopping shows "purchased" but Pantry
       // hasn't caught up.
-      setItems((prev) => prev.map((item) => (item.id === id ? { ...item, checked: true } : item)));
+      setItems((prev) => prev.map((item) => (item.id === id ? { ...item, checked: true, addedToPantry: true } : item)));
+
+      // Only transfer the first time. If this item was checked before and then unchecked, its
+      // quantity is already in Pantry (unchecking never removes it), so re-checking must not add it again.
+      if (target.addedToPantry) return;
+
       pantry.receiveFromShopping({
         ingredientId: target.ingredientId,
         displayName: resolveIngredientById(target.ingredientId)?.displayName ?? target.name,

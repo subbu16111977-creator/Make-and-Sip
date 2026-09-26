@@ -4,59 +4,68 @@ A pantry-and-recipe app built to feel like a premium cookbook, not a
 generic template. Answers one question: *what can I cook with what I
 already have?*
 
-## What's built in this pass
+Built with Expo (SDK 57), React Native, TypeScript and Expo Router. It runs
+on iOS, Android and the web.
 
-Per the staged brief, this pass ships the **design system + app
-shell + Home screen only**:
+## What's built
 
-1. **Design tokens** — `src/theme/` (colors, typography, spacing,
-   radii, shadows). Warm cream/parchment surfaces, restrained burnt
-   orange, Fraunces serif for editorial moments, Inter for everything
-   functional.
-2. **App shell** — Expo Router, five-tab bottom navigation with
-   hand-drawn line icons (`src/components/icons.tsx`), a custom tab
-   bar (`src/app/(tabs)/_layout.tsx`).
-3. **Home screen** (`src/app/(tabs)/index.tsx`) — greeting header, a
-   full-bleed hero recipe (chosen by a real matching algorithm that
-   favors recipes using soon-to-expire ingredients), a horizontal
-   "Use these first" ingredient rail, a "You have enough for…" recipe
-   rail, and a pantry summary card.
-4. **Loading / empty / error states** — `src/components/States.tsx`,
-   wired into Home for real (a skeleton shows on mount; an empty
-   state shows if the pantry has zero items).
-5. Pantry, Discover, Shopping, and Saved are honest "next up"
-   placeholders (`src/components/ComingSoon.tsx`) — not faked
-   functionality, just a clear signal of what's staged next.
+- **Home** (`src/app/(tabs)/index.tsx`) — a hero recipe chosen by the
+  matching algorithm (favouring dishes that use soon-to-expire
+  ingredients), a "Use these first" rail, and a "You have enough for…" rail.
+- **Discover** (`src/app/(tabs)/discover.tsx`) — every recipe ranked by how
+  much of it your pantry already covers, with search and Taste, Cuisine and
+  Diet filters. Recipes that need equipment you haven't ticked in
+  Pantry > Equipment are hidden, and the header shows how many dishes are
+  currently available.
+- **Pantry** (`src/app/(tabs)/pantry.tsx`) — add and remove ingredients
+  (with storage location and expiry), plus an Equipment checklist.
+- **Shopping** (`src/app/(tabs)/shopping.tsx`) — add items by hand or send
+  a recipe's missing ingredients to the list. Checking an item off moves it
+  into Pantry, and Discover re-ranks straight away.
+- **Recipe detail** (`src/app/recipe/[id].tsx`) — have/missing ingredients,
+  method, save, and "add missing items to Shopping".
+- **Saved** (`src/app/(tabs)/saved.tsx`) — recipes you've bookmarked.
 
 ## Data
 
-`src/data/pantry.ts` and `src/data/recipes.ts` hold realistic seed
-content — 41 pantry ingredients across all nine storage categories,
-and 14 recipes with real, hand-picked editorial food photography
-(licensed Unsplash images, verified and reviewed frame-by-frame, not
-random stock). `src/lib/pantryMatch.ts` has the actual
-pantry-to-recipe matching logic (no hardcoded "have 5 of 6" labels —
-it's computed).
+- `src/data/recipes.ts` — 99 recipes. Each has an `image` URL (Unsplash,
+  loaded over the network). Three recipes currently have a blank image and
+  show a "Photo coming soon" placeholder rather than a wrong photo.
+- `src/data/pantry.ts` — 46 starting pantry ingredients across nine
+  categories.
+- `src/data/ingredients.ts` — the shared ingredient dictionary. Recipes,
+  Pantry and Shopping all resolve to it, which is how "chicken" in your
+  pantry counts toward a recipe that needs chicken thighs.
+- `src/lib/pantryMatch.ts` — the pantry-to-recipe matching logic. Nothing is
+  hard-coded; "have 5 of 6" is always computed.
+
+**Not saved yet:** Pantry, Shopping, Saved and Equipment live in memory, so
+they reset to the starting data whenever the app restarts. Saving to the
+device is the next planned piece of work.
 
 ## Running it
 
 ```bash
 npm install
-npx expo start        # then press i / a / w, or scan the QR code
+npx expo start        # then press i / a / w, or scan the QR code with Expo Go
 ```
 
-To sanity-check the design without a simulator, export the static web
-build and open it in a browser:
+For the browser, `npx expo start --web` opens it at http://localhost:8081.
+
+## Checks
 
 ```bash
-npx expo export -p web --output-dir dist
-npx serve dist
+npx tsc --noEmit                      # type check
+npm test                              # unit tests (matching, ingredients, inventory actions)
+npx expo lint                         # lint
+node scripts/check-recipe-images.js   # flags missing, broken or duplicate recipe image URLs
 ```
 
-`npx tsc --noEmit` is clean.
+The image script cannot tell whether a photo shows the right dish; that still
+needs a person to look at each photo next to its title.
 
-## Next stages
+## Next
 
-Pantry (add-ingredient flow), Discover, recipe detail, Shopping list,
-Saved/collections, local persistence, guest mode — in that order, per
-the original brief's implementation sequence.
+Persistence (save data on the device), cleaner Shopping item names and
+optional-ingredient handling, a recipe-image review, then collections and
+guest mode. See `PROJECT_HANDOFF.md` for the full picture.
