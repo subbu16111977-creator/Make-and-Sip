@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useMemo } from "react";
 import type { PantryCategory, RecipeIngredient, ShoppingItem, Unit } from "@/types";
 import { usePantry } from "@/context/PantryContext";
+import type { ShortfallRequest } from "@/lib/pantryMatch";
 import { AppBlank } from "@/components/AppBlank";
 import { isShoppingItems } from "@/lib/persistedShapes";
 import { usePersistedState } from "@/lib/usePersistedState";
@@ -23,7 +24,12 @@ interface ShoppingContextValue {
   items: ShoppingItem[];
   addItem: (input: NewShoppingItemInput) => void;
   /** Adds every not-yet-listed ingredient from `missing`, tagged with the recipe it came from. Dedupes by ingredient identity, not text. */
-  addMissingFromRecipe: (recipeId: string, recipeTitle: string, missing: RecipeIngredient[]) => number;
+  addMissingFromRecipe: (
+    recipeId: string,
+    recipeTitle: string,
+    missing: RecipeIngredient[],
+    shortfalls?: ShortfallRequest[]
+  ) => number;
   /** Checks/unchecks an item. Checking it also transfers it into Pantry (via PantryContext.receiveFromShopping) in the same action — see the module doc below for why unchecking doesn't reverse that. */
   toggleChecked: (id: string) => void;
   removeItem: (id: string) => void;
@@ -77,15 +83,18 @@ export function ShoppingProvider({ children }: { children: React.ReactNode }) {
     });
   }, [setItems]);
 
-  const addMissingFromRecipe = useCallback((recipeId: string, recipeTitle: string, missing: RecipeIngredient[]) => {
-    let added = 0;
-    setItems((prev) => {
-      const result = addMissingIngredientsFromRecipe(prev, recipeId, recipeTitle, missing);
-      added = result.addedCount;
-      return result.items;
-    });
-    return added;
-  }, [setItems]);
+  const addMissingFromRecipe = useCallback(
+    (recipeId: string, recipeTitle: string, missing: RecipeIngredient[], shortfalls: ShortfallRequest[] = []) => {
+      let added = 0;
+      setItems((prev) => {
+        const result = addMissingIngredientsFromRecipe(prev, recipeId, recipeTitle, missing, shortfalls);
+        added = result.addedCount;
+        return result.items;
+      });
+      return added;
+    },
+    [setItems]
+  );
 
   const toggleChecked = useCallback(
     (id: string) => {

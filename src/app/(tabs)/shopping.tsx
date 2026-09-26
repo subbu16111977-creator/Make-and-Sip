@@ -57,6 +57,8 @@ function ShoppingRow({
         </Text>
         <Text style={styles.rowMeta}>
           {item.amount}
+          {item.shortfall ? <Text style={styles.rowTopUpTag}> · top up</Text> : null}
+          {item.optional ? <Text style={styles.rowOptionalTag}> · optional</Text> : null}
           {item.fromRecipe ? ` · from ${item.fromRecipe}` : ""}
         </Text>
         {item.checked && (
@@ -316,6 +318,12 @@ const styles = StyleSheet.create({
   rowMeta: {
     ...typeScale.caption,
     color: colors.espressoMuted,
+  },
+  rowOptionalTag: {
+    color: colors.espressoFaint,
+  },
+  rowTopUpTag: {
+    color: colors.mustard,
   },
   rowAddedToPantry: {
     ...typeScale.caption,

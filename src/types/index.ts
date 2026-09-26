@@ -62,6 +62,10 @@ export interface ShoppingItem {
    * checking the item a second time must not merge it in again (which would double the quantity).
    */
   addedToPantry?: boolean;
+  /** True when every recipe that asked for this item lists it as optional. */
+  optional?: boolean;
+  /** True for a "top up": the pantry already has some, and this is just the amount still short. */
+  shortfall?: boolean;
   /** Recipe title this item was auto-added from, if any — for provenance ("from Chicken Biryani"). */
   fromRecipe?: string;
   /**

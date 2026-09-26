@@ -207,6 +207,76 @@ export function getRecipeAvailability(recipe: Recipe, pantryItems: PantryItem[])
   };
 }
 
+// ---------------------------------------------------------------------------
+// Shopping plan — what "add missing ingredients" should send to Shopping.
+// Read-only view over the matching above; it never changes how matching works.
+// ---------------------------------------------------------------------------
+
+/** A quantity still needed for an ingredient the pantry already has some of. */
+export interface ShortfallRequest {
+  ingredient: RecipeIngredient;
+  /**
+   * The pantry item's ingredient (which may be a more generic one than the recipe's, e.g. "chicken" for
+   * "chicken thigh"). The top-up is filed under this so buying it merges into that same pantry item.
+   */
+  ingredientId: string;
+  quantity: number;
+  /** In the unit the pantry item itself uses, so buying it merges straight into that pantry item. */
+  unit: string;
+}
+
+/**
+ * How much more of an already-stocked ingredient is needed, expressed in the
+ * pantry item's own unit (the pantry only merges quantities in matching units,
+ * so a "0.15 lb" top-up against a pantry tracked in grams would never close the gap).
+ * Null when the ingredient isn't short, or the units can't be compared.
+ */
+export function getShortfallRequest(recipeIngredient: RecipeIngredient, pantryItems: PantryItem[]): ShortfallRequest | null {
+  const match = getIngredientMatch(recipeIngredient, pantryItems);
+  if (match.status !== "quantity_insufficient" || !match.pantryItemId) return null;
+  const pantryItem = pantryItems.find((p) => p.id === match.pantryItemId);
+  if (!pantryItem || pantryItem.quantity <= 0) return null;
+
+  const parsed = normalizeIngredient(`${recipeIngredient.amount} ${recipeIngredient.label}`);
+  if (parsed.quantity === null || !parsed.unit) return null;
+
+  let short: number | null = null;
+  const required = comparableAmount(parsed.quantity, parsed.unit);
+  const have = comparableAmount(pantryItem.quantity, pantryItem.unit);
+  if (required && have && required.base === have.base) {
+    short = (required.amount - have.amount) / (have.amount / pantryItem.quantity);
+  } else if (parsed.unit.toLowerCase() === pantryItem.unit.toLowerCase()) {
+    short = parsed.quantity - pantryItem.quantity;
+  }
+  if (short === null || short <= 0) return null;
+
+  // Round up so the top-up always covers the gap.
+  const quantity = pantryItem.unit === "g" || pantryItem.unit === "ml" ? Math.ceil(short) : Math.ceil(short * 100) / 100;
+  return { ingredient: recipeIngredient, ingredientId: pantryItem.ingredientId, quantity, unit: pantryItem.unit };
+}
+
+export interface ShoppingPlan {
+  /** Required ingredients not in the pantry at all. */
+  required: RecipeIngredient[];
+  /** Optional ingredients not in the pantry — left out of "add missing" unless the user asks. */
+  optional: RecipeIngredient[];
+  /** Required ingredients the pantry has some of, but not enough. */
+  shortfalls: ShortfallRequest[];
+}
+
+export function getShoppingPlan(recipe: Recipe, pantryItems: PantryItem[]): ShoppingPlan {
+  const plan: ShoppingPlan = { required: [], optional: [], shortfalls: [] };
+  for (const m of getRecipeAvailability(recipe, pantryItems).ingredients) {
+    if (m.status === "missing") plan.required.push(m.recipeIngredient);
+    else if (m.status === "optional_missing") plan.optional.push(m.recipeIngredient);
+    else if (m.status === "quantity_insufficient" && !m.recipeIngredient.optional) {
+      const shortfall = getShortfallRequest(m.recipeIngredient, pantryItems);
+      if (shortfall) plan.shortfalls.push(shortfall);
+    }
+  }
+  return plan;
+}
+
 /** True when `owned` covers every appliance `recipe` needs (an empty requirement list always passes). */
 export function hasRequiredEquipment(owned: EquipmentTag[], recipe: Recipe): boolean {
   return recipe.equipment.every((tag) => owned.includes(tag));

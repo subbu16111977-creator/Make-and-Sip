@@ -1,5 +1,6 @@
 import type { PantryCategory, PantryItem, PantryItemSource, RecipeIngredient, ShoppingItem, StorageLocation, Unit } from "@/types";
 import { normalizeIngredient, resolveIngredientById } from "@/lib/ingredientNormalize";
+import type { ShortfallRequest } from "@/lib/pantryMatch";
 
 /**
  * Central, framework-free inventory actions — the "actions/services"
@@ -182,43 +183,74 @@ export interface AddMissingResult {
  * ingredientId — never by the recipe's raw display text. An ingredient
  * already on the list (from this recipe or another) gets this recipe
  * added to its `sourceRecipeIds` instead of a duplicate row.
+ *
+ * Items are named with the ingredient's standard name ("Vegetable Oil"), not the
+ * recipe's full sentence, and carry `optional` when the recipe lists them as optional.
+ * `shortfalls` are "top ups": ingredients the pantry has some of, added as just the amount still short.
  */
 export function addMissingIngredientsFromRecipe(
   shoppingItems: ShoppingItem[],
   recipeId: string,
   recipeTitle: string,
-  missing: RecipeIngredient[]
+  missing: RecipeIngredient[],
+  shortfalls: ShortfallRequest[] = []
 ): AddMissingResult {
   let items = [...shoppingItems];
   let addedCount = 0;
 
-  for (const ingredient of missing) {
-    const ingredientId = ingredient.pantryId;
+  const requests = [
+    ...missing.map((ingredient) => ({ ingredient, shortfall: null as ShortfallRequest | null })),
+    ...shortfalls.map((shortfall) => ({ ingredient: shortfall.ingredient, shortfall })),
+  ];
+
+  for (const { ingredient, shortfall } of requests) {
+    // A top-up is filed under the pantry item's own ingredient, so buying it merges into that item.
+    const ingredientId = shortfall ? shortfall.ingredientId : ingredient.pantryId;
     const existingIndex = items.findIndex((i) => i.ingredientId === ingredientId && !i.checked);
 
     if (existingIndex >= 0) {
       const existing = items[existingIndex];
-      if (!existing.sourceRecipeIds.includes(recipeId)) {
-        items[existingIndex] = { ...existing, sourceRecipeIds: [...existing.sourceRecipeIds, recipeId] };
-      }
+      items[existingIndex] = {
+        ...existing,
+        sourceRecipeIds: existing.sourceRecipeIds.includes(recipeId)
+          ? existing.sourceRecipeIds
+          : [...existing.sourceRecipeIds, recipeId],
+        // Once any recipe needs it as a required item, it stops being "optional".
+        optional: existing.optional && ingredient.optional ? true : undefined,
+      };
       continue;
     }
 
-    const parsed = normalizeIngredient(`${ingredient.amount} ${ingredient.label}`);
     const registryEntry = resolveIngredientById(ingredientId);
+    const name = registryEntry?.displayName ?? ingredient.label;
     const existingIds = new Set(items.map((i) => i.id));
 
+    let amount = ingredient.amount;
+    let requestedQuantity: number | null;
+    let requestedUnit: string | null;
+    if (shortfall) {
+      amount = `${shortfall.quantity} ${shortfall.unit}`;
+      requestedQuantity = shortfall.quantity;
+      requestedUnit = shortfall.unit;
+    } else {
+      const parsed = normalizeIngredient(`${ingredient.amount} ${ingredient.label}`);
+      requestedQuantity = parsed.quantity;
+      requestedUnit = parsed.unit;
+    }
+
     const newItem: ShoppingItem = {
-      id: freshId(existingIds, slugify(ingredient.label)),
-      name: ingredient.label,
-      amount: ingredient.amount,
+      id: freshId(existingIds, slugify(name)),
+      name,
+      amount,
       category: registryEntry?.category ?? guessCategory(ingredient.label),
       checked: false,
       fromRecipe: recipeTitle,
       ingredientId,
-      requestedQuantity: parsed.quantity,
-      requestedUnit: parsed.unit,
+      requestedQuantity,
+      requestedUnit,
       sourceRecipeIds: [recipeId],
+      ...(ingredient.optional && !shortfall ? { optional: true } : {}),
+      ...(shortfall ? { shortfall: true } : {}),
     };
     items = [newItem, ...items];
     addedCount += 1;

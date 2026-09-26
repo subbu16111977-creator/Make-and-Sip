@@ -9,7 +9,7 @@ import { usePantry } from "@/context/PantryContext";
 import { useSaved } from "@/context/SavedContext";
 import { useShopping } from "@/context/ShoppingContext";
 import { useEquipment } from "@/context/EquipmentContext";
-import { getRecipeAvailability, matchRecipe } from "@/lib/pantryMatch";
+import { getRecipeAvailability, getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
 import { MatchBadge } from "@/components/MatchBadge";
 import { RecipeImage } from "@/components/RecipeImage";
 import { ChevronLeftIcon, CheckIcon, ClockIcon, SavedIcon, ShoppingIcon } from "@/components/icons";
@@ -50,12 +50,19 @@ export default function RecipeDetailScreen() {
     [availability]
   );
 
+  // What "Add to Shopping" sends: required missing items plus top-ups for anything the pantry is short on.
+  // Optional ingredients are held back and offered separately.
+  const plan = useMemo(() => (recipe ? getShoppingPlan(recipe, pantryItems) : null), [recipe, pantryItems]);
+
   const [justAdded, setJustAdded] = useState(false);
+  const [justAddedOptional, setJustAddedOptional] = useState(false);
   const addedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const addedOptionalTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     return () => {
       if (addedTimer.current) clearTimeout(addedTimer.current);
+      if (addedOptionalTimer.current) clearTimeout(addedOptionalTimer.current);
     };
   }, []);
 
@@ -85,12 +92,23 @@ export default function RecipeDetailScreen() {
     { label: recipe.yield ? "Yield" : "Servings", value: recipe.yield ?? String(recipe.servings) },
   ];
 
+  const toBuyCount = plan ? plan.required.length + plan.shortfalls.length : 0;
+  const optionalCount = plan ? plan.optional.length : 0;
+
   function handleAddMissing() {
-    if (!match) return;
-    addMissingFromRecipe(recipeId, recipeTitle, match.missing);
+    if (!plan) return;
+    addMissingFromRecipe(recipeId, recipeTitle, plan.required, plan.shortfalls);
     setJustAdded(true);
     if (addedTimer.current) clearTimeout(addedTimer.current);
     addedTimer.current = setTimeout(() => setJustAdded(false), 1600);
+  }
+
+  function handleAddOptional() {
+    if (!plan) return;
+    addMissingFromRecipe(recipeId, recipeTitle, plan.optional);
+    setJustAddedOptional(true);
+    if (addedOptionalTimer.current) clearTimeout(addedOptionalTimer.current);
+    addedOptionalTimer.current = setTimeout(() => setJustAddedOptional(false), 1600);
   }
 
   return (
@@ -146,10 +164,14 @@ export default function RecipeDetailScreen() {
             ))}
           </View>
 
-          {match.missing.length > 0 && (
+          {toBuyCount > 0 && (
             <Pressable
               onPress={handleAddMissing}
-              style={[styles.addMissingButton, justAdded && styles.addMissingButtonDone]}
+              style={[
+                styles.addMissingButton,
+                optionalCount > 0 && styles.addMissingButtonWithLink,
+                justAdded && styles.addMissingButtonDone,
+              ]}
             >
               {justAdded ? (
                 <CheckIcon size={16} color={colors.cream} strokeWidth={2.4} />
@@ -159,7 +181,16 @@ export default function RecipeDetailScreen() {
               <Text style={styles.addMissingButtonText}>
                 {justAdded
                   ? "Added to your Shopping list"
-                  : `Add ${match.missing.length} missing ${match.missing.length === 1 ? "item" : "items"} to Shopping`}
+                  : `Add ${toBuyCount} ${toBuyCount === 1 ? "item" : "items"} to Shopping`}
+              </Text>
+            </Pressable>
+          )}
+          {optionalCount > 0 && (
+            <Pressable onPress={handleAddOptional} hitSlop={8} style={styles.optionalLink}>
+              <Text style={styles.optionalLinkText}>
+                {justAddedOptional
+                  ? "Optional items added"
+                  : `Also add ${optionalCount} optional ${optionalCount === 1 ? "item" : "items"}`}
               </Text>
             </Pressable>
           )}
@@ -377,6 +408,17 @@ const styles = StyleSheet.create({
   },
   addMissingButtonDone: {
     backgroundColor: colors.sageOlive,
+  },
+  addMissingButtonWithLink: {
+    marginBottom: spacing.md,
+  },
+  optionalLink: {
+    alignSelf: "center",
+    marginBottom: spacing["2xl"],
+  },
+  optionalLinkText: {
+    ...typeScale.label,
+    color: colors.burntOrange,
   },
   addMissingButtonText: {
     ...typeScale.button,

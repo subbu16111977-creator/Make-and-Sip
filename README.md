@@ -74,5 +74,5 @@ needs a person to look at each photo next to its title.
 
 ## Next
 
-Cleaner Shopping item names and optional-ingredient handling, a recipe-image review, then collections and
+A recipe-image review, then collections and
 guest mode. See `PROJECT_HANDOFF.md` for the full picture.
