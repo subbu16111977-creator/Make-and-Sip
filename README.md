@@ -28,9 +28,13 @@ on iOS, Android and the web.
 
 ## Data
 
-- `src/data/recipes.ts` — 99 recipes. Each has an `image` URL (Unsplash,
-  loaded over the network). Three recipes currently have a blank image and
-  show a "Photo coming soon" placeholder rather than a wrong photo.
+- `src/data/recipes.ts` — 98 recipes. Each has an `image` URL (Unsplash,
+  loaded over the network), visually checked against its title, description
+  and ingredients (2026-09-27 audit). Five recipes have a deliberately blank
+  image and show a "Photo coming soon" placeholder instead — no correctly
+  cuisined photo could be found for them without misrepresenting the dish:
+  `chicken-65`, `bengali-crab-curry`, `goan-crab-curry`,
+  `malabar-crab-roast`, `mirchi-ka-salan`.
 - `src/data/pantry.ts` — 46 starting pantry ingredients across nine
   categories.
 - `src/data/ingredients.ts` — the shared ingredient dictionary. Recipes,
@@ -69,10 +73,17 @@ npx expo lint                         # lint
 node scripts/check-recipe-images.js   # flags missing, broken or duplicate recipe image URLs
 ```
 
-The image script cannot tell whether a photo shows the right dish; that still
-needs a person to look at each photo next to its title.
+`npm test` includes `src/data/recipeImages.test.ts`, which checks (on every
+run, including CI) that every recipe's image is either a trusted Unsplash URL
+or one of the five deliberately-blank ids above, and that no two recipes
+share a photo. Neither that test nor `check-recipe-images.js` can tell
+whether a photo shows the *right* dish — that took a manual visual review
+(2026-09-27) of all 98 photos against each recipe's title, description and
+ingredients, and needs re-doing by a person (or a vision-capable pass)
+whenever recipes or images change again.
 
 ## Next
 
-A recipe-image review, then collections and
-guest mode. See `PROJECT_HANDOFF.md` for the full picture.
+Finding real photos for the 5 dishes with no verified image (a stock
+library beyond Unsplash, or your own photos), then collections and guest
+mode. See `PROJECT_HANDOFF.md` for the full picture.
