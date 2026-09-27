@@ -3138,7 +3138,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$",
-    image: "https://images.unsplash.com/photo-1714383611436-7272fa987320?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1642821372787-a18060c5a982?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "cauliflower", label: "Cauliflower, cut into bite-sized florets", amount: "1 medium head (about 1.5 lb / 700 g)" },
       { pantryId: "potato", label: "Potatoes, peeled and cut into 1-inch cubes", amount: "3 medium" },
@@ -3222,7 +3223,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$",
-    image: "https://images.unsplash.com/photo-1591940597372-bd266c6eb29e?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1788601988466-9f361c34c6cb?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "kidney-beans", label: "Dried kidney beans (rajma), soaked overnight, or 3 cans drained", amount: "1 1/2 cups (300 g)" },
       { pantryId: "vegetable-oil", label: "Neutral oil", amount: "3 tablespoons" },
@@ -3263,7 +3265,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$$",
-    image: "https://images.unsplash.com/photo-1587040690786-b091531837a2?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1642821369314-100fece91d3c?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "coriander-powder", label: "Coriander seeds, coarsely crushed (or ground coriander)", amount: "1 tablespoon" },
       { pantryId: "dried-red-chili", label: "Dried red chilies, coarsely crushed", amount: "3" },
@@ -3431,7 +3434,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$",
-    image: "https://images.unsplash.com/photo-1620894586257-d40704a83c96?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1755090154755-006e02ea26b9?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "carrot", label: "Carrots, cut into 2-inch batons", amount: "2 medium" },
       { pantryId: "green-beans", label: "Green beans, cut into 2-inch pieces", amount: "1 cup (100 g)" },
@@ -3564,7 +3568,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$",
-    image: "https://images.unsplash.com/photo-1630409349197-b733a524b24e?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1630409349416-24884761a307?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "rice", label: "Short-grain rice, rinsed", amount: "1 cup (200 g)" },
       { pantryId: "red-lentils", label: "Yellow moong dal (split, husked), rinsed", amount: "1/3 cup (65 g)" },
