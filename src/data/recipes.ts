@@ -2109,7 +2109,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$$",
-    image: "https://images.unsplash.com/photo-1620894580123-466ad3a0ca06?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1654863404432-cac67587e25d?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "fish", label: "Firm white fish steaks (rohu, catfish, or cod), cut into 2-inch pieces", amount: "1 1/2 lb (700 g)" },
       { pantryId: "turmeric", label: "Ground turmeric, divided", amount: "1 1/2 teaspoons" },
@@ -2147,7 +2148,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 4,
     budget: "$$",
-    image: "https://images.unsplash.com/photo-1766556403793-04cd52cbf678?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1765360024320-b2ab819c6f75?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "fish", label: "Firm white fish fillets (basa or cod), cut into 2-inch chunks", amount: "1 1/2 lb (700 g)" },
       { pantryId: "lemon", label: "Lemon, juiced, divided", amount: "1" },
@@ -2225,7 +2227,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$$",
-    image: "https://images.unsplash.com/photo-1728505306900-57057e355baa?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1680359870402-5cc2954e50c6?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "fish", label: "Firm white fish fillets (halibut, cod, or swordfish), cut into 1 1/2-inch cubes", amount: "1 1/2 lb (700 g)" },
       { pantryId: "greek-yogurt", label: "Thick plain yogurt", amount: "1/2 cup (120 g)" },
@@ -2429,7 +2432,7 @@ export const recipes: Recipe[] = [
     difficulty: "Advanced",
     servings: 4,
     budget: "$$$",
-    image: "https://images.unsplash.com/photo-1655740242887-32105fab0601?auto=format&fit=crop&w=1600&q=80",
+    image: "",
     ingredients: [
       { pantryId: "crab", label: "Whole crabs, cleaned and cut into quarters, claws cracked", amount: "2 lb (900 g)" },
       { pantryId: "coconut", label: "Fresh or shredded coconut", amount: "1 cup (90 g)" },
