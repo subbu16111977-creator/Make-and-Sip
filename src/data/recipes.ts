@@ -2552,7 +2552,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$$",
-    image: "https://images.unsplash.com/photo-1631515242808-497c3fbd3972?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1781332145637-5e14298f3f26?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "prawns", label: "Medium prawns, peeled and deveined", amount: "1 1/2 lb (700 g)" },
       { pantryId: "dried-red-chili", label: "Dried Kashmiri red chilies, stemmed and soaked in hot water 10 minutes", amount: "5" },
@@ -2592,7 +2593,8 @@ export const recipes: Recipe[] = [
     difficulty: "Advanced",
     servings: 4,
     budget: "$$$",
-    image: "https://images.unsplash.com/photo-1644677867331-03f28942e35c?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1736680056325-ba2ade6250a3?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "prawns", label: "Large prawns, peeled and deveined, tails on", amount: "1 1/2 lb (700 g)" },
       { pantryId: "greek-yogurt", label: "Plain yogurt", amount: "1/3 cup (80 g)" },
@@ -2849,7 +2851,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 4,
     budget: "$",
-    image: "https://images.unsplash.com/photo-1536304575888-ccb70eeef59b?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1589647363585-f4a7d3877b10?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "spinach", label: "Fresh spinach, tough stems removed", amount: "1 lb (450 g)" },
       { pantryId: "green-chili", label: "Green chilies", amount: "2" },
@@ -3048,7 +3051,8 @@ export const recipes: Recipe[] = [
     difficulty: "Advanced",
     servings: 4,
     budget: "$$",
-    image: "https://images.unsplash.com/photo-1789990642036-e10c2df4fc81?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1645432524571-0e469b22e43f?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "gram-flour", label: "Gram flour (besan), for the muthiya dumplings", amount: "1 cup (120 g)" },
       { pantryId: "fenugreek-leaves", label: "Fresh fenugreek leaves, chopped", amount: "1 cup (30 g)" },
