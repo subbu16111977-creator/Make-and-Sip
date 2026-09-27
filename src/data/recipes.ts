@@ -1211,7 +1211,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 4,
     budget: "$",
-    image: "https://images.unsplash.com/photo-1603496987351-f84a3ba5ec85?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "chicken", label: "Bone-in chicken pieces, skin removed", amount: "2 lb (1 kg)" },
       { pantryId: "lemon", label: "Lemon, juiced", amount: "1", optional: true },
@@ -1259,7 +1260,7 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 4,
     budget: "$",
-    image: "https://images.unsplash.com/photo-1647724394693-2c93af726785?auto=format&fit=crop&w=1600&q=80",
+    image: "",
     ingredients: [
       { pantryId: "chicken-breast", label: "Boneless, skinless chicken breast, cut into 1-inch cubes", amount: "1 1/4 lb (600 g)" },
       { pantryId: "greek-yogurt", label: "Plain yogurt", amount: "2 tablespoons" },
@@ -1581,7 +1582,8 @@ export const recipes: Recipe[] = [
     difficulty: "Advanced",
     servings: 4,
     budget: "$$$",
-    image: "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "mutton", label: "Bone-in mutton curry cut", amount: "2 lb (900 g)" },
       { pantryId: "greek-yogurt", label: "Plain yogurt, whisked smooth", amount: "1 cup (240 g)" },
@@ -1673,7 +1675,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$$",
-    image: "https://images.unsplash.com/photo-1673960616288-0cb46f318a68?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "mutton", label: "Minced mutton (keema)", amount: "1 1/4 lb (600 g)" },
       { pantryId: "vegetable-oil", label: "Neutral oil", amount: "3 tablespoons" },
