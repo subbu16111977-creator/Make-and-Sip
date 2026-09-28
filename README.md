@@ -28,18 +28,17 @@ on iOS, Android and the web.
 
 ## Data
 
-- `src/data/recipes.ts` — 98 recipes. Each has an `image`: an Unsplash URL
-  (loaded over the network) or `local:<recipe-id>`, a photo bundled in
-  `assets/recipes/` and registered in `src/data/localRecipeImages.ts`. All were
-  visually checked against title, description and ingredients (2026-09-27
-  audit). Five use supplied local photos: `aloo-gobi` (credited to Sharmis
-  Passions — the photo carries that blog's watermark, so confirm you have
-  permission), and `malabar-crab-roast`, `bengali-crab-curry`,
-  `goan-crab-curry`, `mirchi-ka-salan` (credited as supplied by the app
-  owner — confirm you hold the rights). A blank `image` would show a "Photo
-  coming soon" placeholder; none are blank now. Known imperfect matches:
-  `dal-makhani` (lighter than the traditional near-black), `rasam` (thicker
-  than classic).
+- `src/data/recipes.ts` — 94 recipes. Each has an `image`: an Unsplash URL
+  (loaded over the network), or `local:<recipe-id>` for a photo bundled in
+  `assets/recipes/` and registered in `src/data/localRecipeImages.ts` (none
+  are used right now). All were visually checked against title, description
+  and ingredients (2026-09-27 audit). Four dishes (Aloo Gobi, Bengali Crab
+  Curry, Goan Crab Curry, Mirchi ka Salan) were removed rather than shown
+  with a wrong or unlicensed photo; they can return once a properly licensed
+  photo exists (see git tag `checkpoint-user-photos`). A blank `image` would
+  show a "Photo coming soon" placeholder; none are blank now. Known
+  imperfect matches: `dal-makhani` (lighter than the traditional near-black),
+  `rasam` (thicker than classic).
 - `src/data/pantry.ts` — 46 starting pantry ingredients across nine
   categories.
 - `src/data/ingredients.ts` — the shared ingredient dictionary. Recipes,
@@ -83,11 +82,10 @@ run, including CI) that every recipe's image is either a trusted Unsplash URL,
 a bundled local photo that exists on disk, or a deliberately-blank id (currently none), and that no two recipes
 share a photo. Neither that test nor `check-recipe-images.js` can tell
 whether a photo shows the *right* dish — that took a manual visual review
-(2026-09-27) of all 98 photos against each recipe's title, description and
+(2026-09-27) of all 94 photos against each recipe's title, description and
 ingredients, and needs re-doing by a person (or a vision-capable pass)
 whenever recipes or images change again.
 
 ## Next
 
-Confirm photo rights for the supplied images, then collections and guest
-mode. See `PROJECT_HANDOFF.md` for the full picture.
+Collections and guest mode. See `PROJECT_HANDOFF.md` for the full picture.

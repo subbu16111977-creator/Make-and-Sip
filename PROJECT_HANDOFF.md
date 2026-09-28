@@ -77,7 +77,7 @@ Found by reading the code. **(not verified in a running app)**
 ## 7. The recipe-image issue
 
 - Every recipe has an `image:` URL pointing at Unsplash (`images.unsplash.com/...`). 96 of 99 load (HTTP OK, checked today), no two recipes share a photo.
-- **3 recipes are deliberately blank** and show "Photo coming soon": `bengali-crab-curry`, `malabar-crab-roast`, `mirchi-ka-salan`. Their earlier photos were judged wrong for the dish and removed.
+- **Photos (updated):** no recipes are blank now. Four dishes (aloo-gobi, bengali-crab-curry, goan-crab-curry, mirchi-ka-salan) were removed because no licensed photo was available. 94 recipes remain.
 - **The script cannot tell if a photo matches its dish.** It only checks missing/broken/duplicate. Whether each of the 96 photos actually shows the right dish was decided by a visual review in Cowork, and the record of that review (`/audit/*.json`) isn't in the project. Treat "photos are correct" as **unverified** until re-reviewed.
 - **Risk:** photos are hotlinked, so if Unsplash removes one, that recipe silently breaks. Downloading photos into the app (or your own storage) would remove the risk.
 - Only 1 recipe records an attribution.
