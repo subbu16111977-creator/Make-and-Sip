@@ -19,13 +19,7 @@ import { recipes } from "./recipes";
 // Every recipe intentionally missing a verified photo shows the app's
 // neutral fallback instead of a wrong one — tracked here so the list
 // only changes on purpose, not by accident.
-const EXPECTED_MISSING_PHOTO = new Set([
-  "chicken-65",
-  "bengali-crab-curry",
-  "goan-crab-curry",
-  "malabar-crab-roast",
-  "mirchi-ka-salan",
-]);
+const EXPECTED_MISSING_PHOTO = new Set(["bengali-crab-curry", "goan-crab-curry", "mirchi-ka-salan"]);
 
 const TRUSTED_IMAGE_HOST = "https://images.unsplash.com/";
 

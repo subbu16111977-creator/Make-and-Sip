@@ -1260,7 +1260,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 4,
     budget: "$",
-    image: "",
+    image: "https://images.unsplash.com/photo-1649348947106-a19f9003ff47?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "chicken-breast", label: "Boneless, skinless chicken breast, cut into 1-inch cubes", amount: "1 1/4 lb (600 g)" },
       { pantryId: "greek-yogurt", label: "Plain yogurt", amount: "2 tablespoons" },
@@ -2227,7 +2228,7 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$$",
-    image: "https://images.unsplash.com/photo-1680359870402-5cc2954e50c6?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1602694241790-52a8a88d5d5c?auto=format&fit=crop&w=1600&q=80",
     imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "fish", label: "Firm white fish fillets (halibut, cod, or swordfish), cut into 1 1/2-inch cubes", amount: "1 1/2 lb (700 g)" },
@@ -2472,7 +2473,8 @@ export const recipes: Recipe[] = [
     difficulty: "Advanced",
     servings: 4,
     budget: "$$$",
-    image: "",
+    image: "https://images.unsplash.com/photo-1645060810880-1ddb9211b4cd?auto=format&fit=crop&w=1600&q=80",
+    imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "crab", label: "Whole crabs, cleaned and cut into quarters, claws cracked", amount: "2 lb (900 g)" },
       { pantryId: "turmeric", label: "Ground turmeric", amount: "1/2 teaspoon" },
@@ -2593,7 +2595,7 @@ export const recipes: Recipe[] = [
     difficulty: "Advanced",
     servings: 4,
     budget: "$$$",
-    image: "https://images.unsplash.com/photo-1736680056325-ba2ade6250a3?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1562967915-6ba607ff7d05?auto=format&fit=crop&w=1600&q=80",
     imageAttribution: "Unsplash",
     ingredients: [
       { pantryId: "prawns", label: "Large prawns, peeled and deveined, tails on", amount: "1 1/2 lb (700 g)" },

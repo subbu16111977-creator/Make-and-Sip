@@ -30,11 +30,13 @@ on iOS, Android and the web.
 
 - `src/data/recipes.ts` — 98 recipes. Each has an `image` URL (Unsplash,
   loaded over the network), visually checked against its title, description
-  and ingredients (2026-09-27 audit). Five recipes have a deliberately blank
+  and ingredients (2026-09-27 audit). Three recipes have a deliberately blank
   image and show a "Photo coming soon" placeholder instead — no correctly
   cuisined photo could be found for them without misrepresenting the dish:
-  `chicken-65`, `bengali-crab-curry`, `goan-crab-curry`,
-  `malabar-crab-roast`, `mirchi-ka-salan`.
+  `bengali-crab-curry`, `goan-crab-curry`, `mirchi-ka-salan`. Known
+  imperfect matches (kept because nothing better exists on Unsplash):
+  `aloo-gobi` (potato visible, cauliflower not), `dal-makhani` (lighter than
+  the traditional near-black), `rasam` (thicker than classic).
 - `src/data/pantry.ts` — 46 starting pantry ingredients across nine
   categories.
 - `src/data/ingredients.ts` — the shared ingredient dictionary. Recipes,
@@ -75,7 +77,7 @@ node scripts/check-recipe-images.js   # flags missing, broken or duplicate recip
 
 `npm test` includes `src/data/recipeImages.test.ts`, which checks (on every
 run, including CI) that every recipe's image is either a trusted Unsplash URL
-or one of the five deliberately-blank ids above, and that no two recipes
+or one of the three deliberately-blank ids above, and that no two recipes
 share a photo. Neither that test nor `check-recipe-images.js` can tell
 whether a photo shows the *right* dish — that took a manual visual review
 (2026-09-27) of all 98 photos against each recipe's title, description and
@@ -84,6 +86,6 @@ whenever recipes or images change again.
 
 ## Next
 
-Finding real photos for the 5 dishes with no verified image (a stock
+Finding real photos for the 3 dishes with no verified image (a stock
 library beyond Unsplash, or your own photos), then collections and guest
 mode. See `PROJECT_HANDOFF.md` for the full picture.
