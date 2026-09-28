@@ -28,11 +28,11 @@ on iOS, Android and the web.
 
 ## Data
 
-- `src/data/recipes.ts` — 94 recipes. Each has an `image`: an Unsplash URL
+- `src/data/recipes.ts` — 93 recipes. Each has an `image`: an Unsplash URL
   (loaded over the network), or `local:<recipe-id>` for a photo bundled in
   `assets/recipes/` and registered in `src/data/localRecipeImages.ts` (none
   are used right now). All were visually checked against title, description
-  and ingredients (2026-09-27 audit). Four dishes (Aloo Gobi, Bengali Crab
+  and ingredients (2026-09-27 audit). Five dishes (Aloo Gobi, Malabar Crab Roast, Bengali Crab
   Curry, Goan Crab Curry, Mirchi ka Salan) were removed rather than shown
   with a wrong or unlicensed photo; they can return once a properly licensed
   photo exists (see git tag `checkpoint-user-photos`). A blank `image` would
@@ -82,7 +82,7 @@ run, including CI) that every recipe's image is either a trusted Unsplash URL,
 a bundled local photo that exists on disk, or a deliberately-blank id (currently none), and that no two recipes
 share a photo. Neither that test nor `check-recipe-images.js` can tell
 whether a photo shows the *right* dish — that took a manual visual review
-(2026-09-27) of all 94 photos against each recipe's title, description and
+(2026-09-27) of all 93 photos against each recipe's title, description and
 ingredients, and needs re-doing by a person (or a vision-capable pass)
 whenever recipes or images change again.
 
