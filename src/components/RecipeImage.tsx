@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Image, type ImageContentFit } from "expo-image";
 import { colors, radii, spacing, type as typeScale } from "@/theme";
 import { AlertPlateIcon } from "./icons";
+import { LOCAL_IMAGE_PREFIX, localRecipeImages } from "@/data/localRecipeImages";
 
 interface RecipeImageProps {
   /** Recipe image URL. An empty string (or "needs_review"/"missing" imageStatus) shows the neutral fallback instead. */
@@ -36,7 +37,11 @@ export function RecipeImage({ uri, title, style, contentFit = "cover", transitio
     );
   }
 
-  return <Image source={{ uri }} style={style} contentFit={contentFit} transition={transition} />;
+  // "local:<id>" points at a photo bundled in assets/recipes/.
+  const localSource = uri.startsWith(LOCAL_IMAGE_PREFIX) ? localRecipeImages[uri.slice(LOCAL_IMAGE_PREFIX.length)] : undefined;
+  if (uri.startsWith(LOCAL_IMAGE_PREFIX) && localSource === undefined) return <RecipeImage title={title} style={style} />;
+
+  return <Image source={localSource ?? { uri }} style={style} contentFit={contentFit} transition={transition} />;
 }
 
 const styles = StyleSheet.create({

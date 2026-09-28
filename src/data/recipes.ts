@@ -2394,7 +2394,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 4,
     budget: "$$$",
-    image: "",
+    image: "local:bengali-crab-curry",
+    imageAttribution: "Photo supplied by the app owner",
     ingredients: [
       { pantryId: "crab", label: "Whole crabs, cleaned and cut into quarters, claws cracked", amount: "2 lb (900 g)" },
       { pantryId: "mustard-seeds", label: "Mustard seeds, divided", amount: "2 tablespoons" },
@@ -2433,7 +2434,8 @@ export const recipes: Recipe[] = [
     difficulty: "Advanced",
     servings: 4,
     budget: "$$$",
-    image: "",
+    image: "local:goan-crab-curry",
+    imageAttribution: "Photo supplied by the app owner",
     ingredients: [
       { pantryId: "crab", label: "Whole crabs, cleaned and cut into quarters, claws cracked", amount: "2 lb (900 g)" },
       { pantryId: "coconut", label: "Fresh or shredded coconut", amount: "1 cup (90 g)" },
@@ -2473,8 +2475,8 @@ export const recipes: Recipe[] = [
     difficulty: "Advanced",
     servings: 4,
     budget: "$$$",
-    image: "https://images.unsplash.com/photo-1645060810880-1ddb9211b4cd?auto=format&fit=crop&w=1600&q=80",
-    imageAttribution: "Unsplash",
+    image: "local:malabar-crab-roast",
+    imageAttribution: "Photo supplied by the app owner",
     ingredients: [
       { pantryId: "crab", label: "Whole crabs, cleaned and cut into quarters, claws cracked", amount: "2 lb (900 g)" },
       { pantryId: "turmeric", label: "Ground turmeric", amount: "1/2 teaspoon" },
@@ -3140,8 +3142,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$",
-    image: "https://images.unsplash.com/photo-1642821372787-a18060c5a982?auto=format&fit=crop&w=1600&q=80",
-    imageAttribution: "Unsplash",
+    image: "local:aloo-gobi",
+    imageAttribution: "Sharmis Passions",
     ingredients: [
       { pantryId: "cauliflower", label: "Cauliflower, cut into bite-sized florets", amount: "1 medium head (about 1.5 lb / 700 g)" },
       { pantryId: "potato", label: "Potatoes, peeled and cut into 1-inch cubes", amount: "3 medium" },
@@ -3857,7 +3859,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 4,
     budget: "$",
-    image: "",
+    image: "local:mirchi-ka-salan",
+    imageAttribution: "Photo supplied by the app owner",
     ingredients: [
       { pantryId: "green-chili", label: "Large mild green chilies (banana peppers or shishito work well), slit lengthwise", amount: "12" },
       { pantryId: "peanuts", label: "Raw peanuts", amount: "1/3 cup (45 g)" },

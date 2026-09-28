@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { recipes } from "./recipes";
 
 /**
@@ -19,15 +21,21 @@ import { recipes } from "./recipes";
 // Every recipe intentionally missing a verified photo shows the app's
 // neutral fallback instead of a wrong one — tracked here so the list
 // only changes on purpose, not by accident.
-const EXPECTED_MISSING_PHOTO = new Set(["bengali-crab-curry", "goan-crab-curry", "mirchi-ka-salan"]);
+const EXPECTED_MISSING_PHOTO = new Set<string>([]);
 
 const TRUSTED_IMAGE_HOST = "https://images.unsplash.com/";
+const LOCAL_PREFIX = "local:";
 
 describe("recipe images — structural validity", () => {
   it("every recipe has an image field of the expected shape (a trusted URL, or deliberately blank)", () => {
     for (const recipe of recipes) {
       expect(typeof recipe.image, `${recipe.id} is missing an image field`).toBe("string");
       if (recipe.image === "") continue;
+      if (recipe.image.startsWith(LOCAL_PREFIX)) {
+        const file = join(__dirname, "../../assets/recipes", `${recipe.image.slice(LOCAL_PREFIX.length)}.jpg`);
+        expect(existsSync(file), `${recipe.id} points at a missing local photo (${file})`).toBe(true);
+        continue;
+      }
       expect(
         recipe.image.startsWith(TRUSTED_IMAGE_HOST),
         `${recipe.id} image is not from the trusted host (${recipe.image})`
