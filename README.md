@@ -28,9 +28,11 @@ on iOS, Android and the web.
 
 ## Data
 
-- `src/data/recipes.ts` — 118 recipes: 93 Indian-and-other-cuisine recipes
-  from the original build, plus 25 researched American-cuisine recipes added
-  2026-09-29 (Southern/soul food, Creole/Cajun, Texas & regional BBQ, New
+- `src/data/recipes.ts` — 124 recipes: 93 Indian-and-other-cuisine recipes
+  from the original build, plus 31 researched American-cuisine recipes added
+  2026-09-29/30 (25 from the first batches, plus 6 burgers and fried-chicken
+  varieties — cheeseburger, smashburger, Nashville hot chicken, Buffalo
+  wings, crispy fried chicken sandwich, grilled chicken burger) (Southern/soul food, Creole/Cajun, Texas & regional BBQ, New
   England, Midwestern, Native American, American comfort food and desserts
   — see git tag `checkpoint-american-cuisine-complete`). Every recipe has a
   verified `image`: a trusted Unsplash or Pexels URL (loaded over the
