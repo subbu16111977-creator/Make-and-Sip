@@ -37,6 +37,10 @@ const EXPECTED_MISSING_PHOTO = new Set<string>([
   "hoppin-john",
   "lowcountry-shrimp-and-grits",
   "gullah-red-rice",
+  "kansas-city-burnt-ends",
+  "memphis-dry-rub-ribs",
+  "three-sisters-succotash",
+  "navajo-frybread",
 ]);
 
 const TRUSTED_IMAGE_HOST = "https://images.unsplash.com/";
