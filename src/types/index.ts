@@ -157,5 +157,10 @@ export interface Recipe {
   /** Specialty appliances this dish needs, beyond a basic stovetop. Empty = always makeable, equipment-wise. */
   equipment: EquipmentTag[];
   steps: string[];
+  /** Cultural/historical context and any other free-text detail that doesn't fit a structured field. */
   notes?: string;
+  /** Name of the reference used when researching this recipe (a culinary institution, museum, publication, etc.) — informational, not shown as a link target unless sourceUrl is also set. */
+  sourceName?: string;
+  /** URL for sourceName, when the reference has a stable one. */
+  sourceUrl?: string;
 }

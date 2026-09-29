@@ -21,7 +21,12 @@ import { recipes } from "./recipes";
 // Every recipe intentionally missing a verified photo shows the app's
 // neutral fallback instead of a wrong one — tracked here so the list
 // only changes on purpose, not by accident.
-const EXPECTED_MISSING_PHOTO = new Set<string>([]);
+const EXPECTED_MISSING_PHOTO = new Set<string>([
+  "collard-greens",
+  "chicken-and-waffles",
+  "jambalaya",
+  "crawfish-etouffee",
+]);
 
 const TRUSTED_IMAGE_HOST = "https://images.unsplash.com/";
 const LOCAL_PREFIX = "local:";
