@@ -77,7 +77,7 @@ Found by reading the code. **(not verified in a running app)**
 ## 7. The recipe-image issue
 
 - Every recipe has an `image:` URL pointing at Unsplash (`images.unsplash.com/...`). 96 of 99 load (HTTP OK, checked today), no two recipes share a photo.
-- **Photos (updated):** no recipes are blank now. Five dishes (aloo-gobi, malabar-crab-roast, bengali-crab-curry, goan-crab-curry, mirchi-ka-salan) were removed because no licensed photo was available. 93 recipes remain.
+- **Photos (updated):** Five dishes (aloo-gobi, malabar-crab-roast, bengali-crab-curry, goan-crab-curry, mirchi-ka-salan) were removed because no licensed photo was available, leaving 93. A 40-dish American cuisine addition (2026-09-29, see git tag `checkpoint-american-cuisine-complete`) brought the total to 133. 21 of those 40 American dishes have a verified photo; the other 19 show "Photo coming soon" (tracked in `recipeImages.test.ts`'s `EXPECTED_MISSING_PHOTO`) because no confident, correctly-matching, free photo was found on Unsplash — see each batch's commit message for the specific candidates that were rejected and why.
 - **The script cannot tell if a photo matches its dish.** It only checks missing/broken/duplicate. Whether each of the 96 photos actually shows the right dish was decided by a visual review in Cowork, and the record of that review (`/audit/*.json`) isn't in the project. Treat "photos are correct" as **unverified** until re-reviewed.
 - **Risk:** photos are hotlinked, so if Unsplash removes one, that recipe silently breaks. Downloading photos into the app (or your own storage) would remove the risk.
 - Only 1 recipe records an attribution.

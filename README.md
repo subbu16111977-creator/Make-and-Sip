@@ -28,17 +28,27 @@ on iOS, Android and the web.
 
 ## Data
 
-- `src/data/recipes.ts` — 93 recipes. Each has an `image`: an Unsplash URL
-  (loaded over the network), or `local:<recipe-id>` for a photo bundled in
-  `assets/recipes/` and registered in `src/data/localRecipeImages.ts` (none
-  are used right now). All were visually checked against title, description
-  and ingredients (2026-09-27 audit). Five dishes (Aloo Gobi, Malabar Crab Roast, Bengali Crab
-  Curry, Goan Crab Curry, Mirchi ka Salan) were removed rather than shown
-  with a wrong or unlicensed photo; they can return once a properly licensed
-  photo exists (see git tag `checkpoint-user-photos`). A blank `image` would
-  show a "Photo coming soon" placeholder; none are blank now. Known
-  imperfect matches: `dal-makhani` (lighter than the traditional near-black),
-  `rasam` (thicker than classic).
+- `src/data/recipes.ts` — 133 recipes: 93 Indian-and-other-cuisine recipes
+  from the original build, plus 40 researched American-cuisine recipes added
+  2026-09-29 (Southern/soul food, Creole/Cajun, Texas & regional BBQ, New
+  England, Midwestern, Pennsylvania Dutch, Lowcountry/Gullah Geechee, Native
+  American, American comfort food and desserts — see git tag
+  `checkpoint-american-cuisine-complete`). Each recipe has an `image`: an
+  Unsplash URL (loaded over the network), or `local:<recipe-id>` for a photo
+  bundled in `assets/recipes/` and registered in
+  `src/data/localRecipeImages.ts` (none are used right now). American
+  recipes also carry `sourceName`/`sourceUrl`, pointing at the culinary
+  institution, museum or publication used to research them.
+  Five older dishes (Aloo Gobi, Malabar Crab Roast, Bengali Crab Curry, Goan
+  Crab Curry, Mirchi ka Salan) were removed rather than shown with a wrong
+  or unlicensed photo; they can return once a properly licensed photo
+  exists (see git tag `checkpoint-user-photos`). Of the 40 new American
+  dishes, only 21 have a verified photo so far — the other 19 show the
+  "Photo coming soon" placeholder because no confident, correctly-matching,
+  free (non-Unsplash+) photo could be found; see each batch's commit
+  message for exactly which candidates were rejected and why. Known
+  imperfect matches on the older dishes: `dal-makhani` (lighter than the
+  traditional near-black), `rasam` (thicker than classic).
 - `src/data/pantry.ts` — 46 starting pantry ingredients across nine
   categories.
 - `src/data/ingredients.ts` — the shared ingredient dictionary. Recipes,
@@ -79,13 +89,17 @@ node scripts/check-recipe-images.js   # flags missing, broken or duplicate recip
 
 `npm test` includes `src/data/recipeImages.test.ts`, which checks (on every
 run, including CI) that every recipe's image is either a trusted Unsplash URL,
-a bundled local photo that exists on disk, or a deliberately-blank id (currently none), and that no two recipes
-share a photo. Neither that test nor `check-recipe-images.js` can tell
-whether a photo shows the *right* dish — that took a manual visual review
-(2026-09-27) of all 93 photos against each recipe's title, description and
-ingredients, and needs re-doing by a person (or a vision-capable pass)
-whenever recipes or images change again.
+a bundled local photo that exists on disk, or one of the deliberately-blank
+ids tracked in `EXPECTED_MISSING_PHOTO` (19 of the new American dishes), and
+that no two recipes share a photo. Neither that test nor
+`check-recipe-images.js` can tell whether a photo shows the *right* dish —
+that took a manual visual review (2026-09-27 for the original 93, 2026-09-29
+for the 40 American additions) of every photo against its recipe's title,
+description and ingredients, and needs re-doing by a person (or a
+vision-capable pass) whenever recipes or images change again.
 
 ## Next
 
-Collections and guest mode. See `PROJECT_HANDOFF.md` for the full picture.
+Finding real photos for the 19 American dishes still showing "Photo coming
+soon" (see the batch commit messages for what was tried and rejected), then
+collections and guest mode. See `PROJECT_HANDOFF.md` for the full picture.
