@@ -64,7 +64,7 @@ export const recipes: Recipe[] = [
     title: "Sesame Tofu Grain Bowl",
     description:
       "Crisp-edged tofu, quick-pickled cabbage, and a sesame dressing worth doubling.",
-    cuisine: "Japanese-inspired",
+    cuisine: "Japanese",
     dietTags: ["Vegan", "Dairy-Free"],
     tasteTags: ["Fresh & Light", "Herby"],
     timeMinutes: 25,
@@ -428,7 +428,7 @@ export const recipes: Recipe[] = [
     title: "Avocado Sesame Bowl",
     description:
       "Ten minutes, mostly assembly — avocado, chili, and toasted sesame over noodles.",
-    cuisine: "Asian-inspired",
+    cuisine: "South East Asian",
     dietTags: ["Vegan"],
     tasteTags: ["Fresh & Light", "Spicy"],
     timeMinutes: 15,
@@ -691,7 +691,7 @@ export const recipes: Recipe[] = [
     title: "Ginger Beef Stir-Fry",
     description:
       "High heat, five minutes, done — beef strips and broccoli in a glossy ginger-soy sauce.",
-    cuisine: "Chinese-inspired",
+    cuisine: "Chinese",
     dietTags: ["Dairy-Free"],
     tasteTags: ["Spicy", "Smoky"],
     timeMinutes: 20,
@@ -837,7 +837,7 @@ export const recipes: Recipe[] = [
     title: "Miso-Glazed Salmon",
     description:
       "Three ingredients in the glaze, five minutes under the broiler — sticky, salty-sweet, done.",
-    cuisine: "Japanese-inspired",
+    cuisine: "Japanese",
     dietTags: ["Pescatarian", "Dairy-Free"],
     tasteTags: ["Rich & Indulgent", "Smoky"],
     timeMinutes: 20,
