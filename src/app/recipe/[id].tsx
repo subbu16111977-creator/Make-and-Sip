@@ -218,11 +218,11 @@ export default function RecipeDetailScreen() {
           {match.have.length > 0 && (
             <View style={styles.ingredientGroup}>
               <Text style={styles.ingredientGroupLabel}>On hand · {match.have.length}</Text>
-              {match.have.map((ing) => {
+              {match.have.map((ing, i) => {
                 const m = matchByPantryId.get(ing.pantryId);
                 const shortfall = m?.status === "quantity_insufficient" ? m.missingQuantity : null;
                 return (
-                  <View key={ing.pantryId} style={styles.ingredientRow}>
+                  <View key={`${ing.pantryId}-${i}`} style={styles.ingredientRow}>
                     <View
                       style={[
                         styles.ingredientMark,
@@ -248,8 +248,8 @@ export default function RecipeDetailScreen() {
           {match.missing.length > 0 && (
             <View style={styles.ingredientGroup}>
               <Text style={styles.ingredientGroupLabel}>To buy · {match.missing.length}</Text>
-              {match.missing.map((ing) => (
-                <View key={ing.pantryId} style={styles.ingredientRow}>
+              {match.missing.map((ing, i) => (
+                <View key={`${ing.pantryId}-${i}`} style={styles.ingredientRow}>
                   <View style={[styles.ingredientMark, styles.ingredientMarkMissing]} />
                   <Text style={styles.ingredientLabel}>
                     {ing.label}
