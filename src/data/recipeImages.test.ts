@@ -31,6 +31,12 @@ const EXPECTED_MISSING_PHOTO = new Set<string>([
   "tater-tot-hotdish",
   "wisconsin-beer-cheese-soup",
   "cincinnati-chili",
+  "pa-dutch-chicken-pot-pie",
+  "shoofly-pie",
+  "scrapple",
+  "hoppin-john",
+  "lowcountry-shrimp-and-grits",
+  "gullah-red-rice",
 ]);
 
 const TRUSTED_IMAGE_HOST = "https://images.unsplash.com/";
