@@ -24,7 +24,7 @@ export const recipes: Recipe[] = [
     title: "Weeknight Red Curry",
     description:
       "A fast, fragrant curry built for a Tuesday — coconut milk, curry paste, and whatever's about to turn in the fridge.",
-    cuisine: "Thai",
+    cuisine: "South East Asian",
     dietTags: ["Dairy-Free"],
     tasteTags: ["Spicy", "Comforting"],
     timeMinutes: 30,
@@ -184,7 +184,7 @@ export const recipes: Recipe[] = [
     title: "One-Pan Shrimp & Herb Rice",
     description:
       "A loose, weeknight take on paella — one pan, sweet shrimp, and a hit of lemon at the end.",
-    cuisine: "Spanish-inspired",
+    cuisine: "Spanish",
     dietTags: ["Pescatarian", "Dairy-Free"],
     tasteTags: ["Smoky", "Comforting"],
     timeMinutes: 35,
@@ -565,7 +565,7 @@ export const recipes: Recipe[] = [
     title: "Loaded Black Bean Tacos",
     description:
       "Smashed black beans, quick pickled onion, and whatever's crisp — done in fifteen minutes flat.",
-    cuisine: "Mexican-inspired",
+    cuisine: "Mexican",
     dietTags: ["Vegetarian"],
     tasteTags: ["Spicy", "Tangy"],
     timeMinutes: 15,
