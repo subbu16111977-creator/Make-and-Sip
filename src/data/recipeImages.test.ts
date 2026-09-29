@@ -23,10 +23,8 @@ import { recipes } from "./recipes";
 // only changes on purpose, not by accident.
 const EXPECTED_MISSING_PHOTO = new Set<string>([
   "collard-greens",
-  "chicken-and-waffles",
   "jambalaya",
   "crawfish-etouffee",
-  "boston-baked-beans",
   "boston-cream-pie",
   "tater-tot-hotdish",
   "wisconsin-beer-cheese-soup",
@@ -38,18 +36,12 @@ const EXPECTED_MISSING_PHOTO = new Set<string>([
   "lowcountry-shrimp-and-grits",
   "gullah-red-rice",
   "kansas-city-burnt-ends",
-  "memphis-dry-rub-ribs",
-  "three-sisters-succotash",
   "navajo-frybread",
-  "classic-meatloaf",
-  "baked-mac-and-cheese",
-  "chicken-fried-steak",
-  "key-lime-pie",
-  "new-york-cheesecake",
-  "red-velvet-cake",
 ]);
 
-const TRUSTED_IMAGE_HOST = "https://images.unsplash.com/";
+// Photo hosts whose license permits free commercial use without needing
+// per-photo attribution tracking beyond `imageAttribution` on the recipe.
+const TRUSTED_IMAGE_HOSTS = ["https://images.unsplash.com/", "https://images.pexels.com/"];
 const LOCAL_PREFIX = "local:";
 
 describe("recipe images — structural validity", () => {
@@ -63,8 +55,8 @@ describe("recipe images — structural validity", () => {
         continue;
       }
       expect(
-        recipe.image.startsWith(TRUSTED_IMAGE_HOST),
-        `${recipe.id} image is not from the trusted host (${recipe.image})`
+        TRUSTED_IMAGE_HOSTS.some((host) => recipe.image.startsWith(host)),
+        `${recipe.id} image is not from a trusted host (${recipe.image})`
       ).toBe(true);
     }
   });

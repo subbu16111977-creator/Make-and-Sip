@@ -4107,7 +4107,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 4,
     budget: "$$",
-    image: "",
+    image: "https://images.pexels.com/photos/31706937/pexels-photo-31706937.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAttribution: "Pexels",
     ingredients: [
       { pantryId: "chicken-thigh", label: "Boneless, skinless chicken thighs", amount: "1 1/2 lb (680 g)" },
       { pantryId: "buttermilk", label: "Buttermilk", amount: "1 1/2 cups (360 ml)" },
@@ -4456,7 +4457,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 8,
     budget: "$",
-    image: "",
+    image: "https://images.pexels.com/photos/30146171/pexels-photo-30146171.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAttribution: "Pexels",
     ingredients: [
       { pantryId: "navy-beans", label: "Dried navy beans, soaked overnight and drained", amount: "1 lb (450 g)" },
       { pantryId: "salt-pork", label: "Salt pork, diced (or thick-cut bacon)", amount: "6 oz (170 g)" },
@@ -5046,7 +5048,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 4,
     budget: "$$",
-    image: "",
+    image: "https://images.pexels.com/photos/34495394/pexels-photo-34495394.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAttribution: "Pexels",
     ingredients: [
       { pantryId: "pork-ribs", label: "St. Louis-style or baby back pork ribs", amount: "2 racks (about 5–6 lb / 2.3–2.7 kg)" },
       { pantryId: "paprika", label: "Paprika", amount: "3 tablespoons" },
@@ -5129,7 +5132,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$",
-    image: "",
+    image: "https://images.pexels.com/photos/878014/pexels-photo-878014.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAttribution: "Pexels",
     ingredients: [
       { pantryId: "vegetable-oil", label: "Neutral oil or butter", amount: "2 tablespoons" },
       { pantryId: "onion", label: "Onion, diced", amount: "1 small" },
@@ -5249,7 +5253,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 6,
     budget: "$",
-    image: "",
+    image: "https://images.pexels.com/photos/31779548/pexels-photo-31779548.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAttribution: "Pexels",
     ingredients: [
       { pantryId: "ground-beef", label: "Ground beef" , amount: "2 lb (900 g)" },
       { pantryId: "breadcrumbs", label: "Breadcrumbs" , amount: "3/4 cup (85 g)" },
@@ -5291,7 +5296,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 6,
     budget: "$",
-    image: "",
+    image: "https://images.pexels.com/photos/34363091/pexels-photo-34363091.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAttribution: "Pexels",
     ingredients: [
       { pantryId: "pasta", label: "Elbow macaroni" , amount: "1 lb (450 g)" },
       { pantryId: "butter", label: "Unsalted butter, divided" , amount: "5 tablespoons (70 g)" },
@@ -5330,7 +5336,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 4,
     budget: "$$",
-    image: "",
+    image: "https://images.pexels.com/photos/19264408/pexels-photo-19264408.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAttribution: "Pexels",
     ingredients: [
       { pantryId: "cube-steak", label: "Cube steak (tenderized beef round steak)" , amount: "4 (about 6 oz / 170 g each)" },
       { pantryId: "all-purpose-flour", label: "All-purpose flour, divided" , amount: "2 cups (250 g)" },
@@ -5408,7 +5415,8 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 8,
     budget: "$",
-    image: "",
+    image: "https://images.pexels.com/photos/11504359/pexels-photo-11504359.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAttribution: "Pexels",
     ingredients: [
       { pantryId: "graham-crackers", label: "Graham cracker crumbs" , amount: "1 1/2 cups (150 g)" },
       { pantryId: "butter", label: "Unsalted butter, melted" , amount: "6 tablespoons (85 g)" },
@@ -5486,7 +5494,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 12,
     budget: "$$",
-    image: "",
+    image: "https://images.pexels.com/photos/26797657/pexels-photo-26797657.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAttribution: "Pexels",
     ingredients: [
       { pantryId: "graham-crackers", label: "Graham cracker crumbs" , amount: "1 1/2 cups (150 g)" },
       { pantryId: "butter", label: "Unsalted butter, melted" , amount: "6 tablespoons (85 g)" },
@@ -5528,7 +5537,8 @@ export const recipes: Recipe[] = [
     difficulty: "Medium",
     servings: 12,
     budget: "$$",
-    image: "",
+    image: "https://images.pexels.com/photos/38774006/pexels-photo-38774006.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAttribution: "Pexels",
     ingredients: [
       { pantryId: "all-purpose-flour", label: "All-purpose flour" , amount: "2 1/2 cups (315 g)" },
       { pantryId: "cocoa-powder", label: "Unsweetened cocoa powder" , amount: "2 tablespoons" },
