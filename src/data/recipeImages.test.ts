@@ -21,23 +21,7 @@ import { recipes } from "./recipes";
 // Every recipe intentionally missing a verified photo shows the app's
 // neutral fallback instead of a wrong one — tracked here so the list
 // only changes on purpose, not by accident.
-const EXPECTED_MISSING_PHOTO = new Set<string>([
-  "collard-greens",
-  "jambalaya",
-  "crawfish-etouffee",
-  "boston-cream-pie",
-  "tater-tot-hotdish",
-  "wisconsin-beer-cheese-soup",
-  "cincinnati-chili",
-  "pa-dutch-chicken-pot-pie",
-  "shoofly-pie",
-  "scrapple",
-  "hoppin-john",
-  "lowcountry-shrimp-and-grits",
-  "gullah-red-rice",
-  "kansas-city-burnt-ends",
-  "navajo-frybread",
-]);
+const EXPECTED_MISSING_PHOTO = new Set<string>([]);
 
 // Photo hosts whose license permits free commercial use without needing
 // per-photo attribution tracking beyond `imageAttribution` on the recipe.
