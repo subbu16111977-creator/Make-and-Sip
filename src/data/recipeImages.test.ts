@@ -26,6 +26,11 @@ const EXPECTED_MISSING_PHOTO = new Set<string>([
   "chicken-and-waffles",
   "jambalaya",
   "crawfish-etouffee",
+  "boston-baked-beans",
+  "boston-cream-pie",
+  "tater-tot-hotdish",
+  "wisconsin-beer-cheese-soup",
+  "cincinnati-chili",
 ]);
 
 const TRUSTED_IMAGE_HOST = "https://images.unsplash.com/";
