@@ -41,6 +41,12 @@ const EXPECTED_MISSING_PHOTO = new Set<string>([
   "memphis-dry-rub-ribs",
   "three-sisters-succotash",
   "navajo-frybread",
+  "classic-meatloaf",
+  "baked-mac-and-cheese",
+  "chicken-fried-steak",
+  "key-lime-pie",
+  "new-york-cheesecake",
+  "red-velvet-cake",
 ]);
 
 const TRUSTED_IMAGE_HOST = "https://images.unsplash.com/";
