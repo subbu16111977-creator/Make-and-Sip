@@ -2125,4 +2125,20 @@ export const ingredientRegistry: IngredientEntity[] = [
     category: "Vegetables",
     synonyms: ["asparagus", "asparagus spears"],
   },
+  {
+    id: "cannoli-shells",
+    canonicalName: "cannoli_shells",
+    baseIngredient: "cannoli_shells",
+    displayName: "Cannoli Shells",
+    category: "Pantry Staples",
+    synonyms: ["cannoli shells", "cannoli tubes"],
+  },
+  {
+    id: "chocolate-chips",
+    canonicalName: "chocolate_chips",
+    baseIngredient: "chocolate_chips",
+    displayName: "Mini Chocolate Chips",
+    category: "Pantry Staples",
+    synonyms: ["mini chocolate chips", "chocolate chips"],
+  },
 ];

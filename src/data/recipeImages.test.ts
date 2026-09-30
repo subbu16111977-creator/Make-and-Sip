@@ -26,6 +26,7 @@ const EXPECTED_MISSING_PHOTO = new Set<string>([
   "stromboli",
   "linguine-alle-vongole",
   "fusilli-primavera",
+  "osso-buco",
 ]);
 
 // Photo hosts whose license permits free commercial use without needing
