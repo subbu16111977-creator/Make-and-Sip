@@ -2117,4 +2117,12 @@ export const ingredientRegistry: IngredientEntity[] = [
     category: "Dairy",
     synonyms: ["ricotta salata", "salted ricotta"],
   },
+  {
+    id: "asparagus",
+    canonicalName: "asparagus",
+    baseIngredient: "asparagus",
+    displayName: "Asparagus",
+    category: "Vegetables",
+    synonyms: ["asparagus", "asparagus spears"],
+  },
 ];

@@ -21,7 +21,12 @@ import { recipes } from "./recipes";
 // Every recipe intentionally missing a verified photo shows the app's
 // neutral fallback instead of a wrong one — tracked here so the list
 // only changes on purpose, not by accident.
-const EXPECTED_MISSING_PHOTO = new Set<string>(["chicken-alfredo-pizza", "stromboli", "linguine-alle-vongole"]);
+const EXPECTED_MISSING_PHOTO = new Set<string>([
+  "chicken-alfredo-pizza",
+  "stromboli",
+  "linguine-alle-vongole",
+  "fusilli-primavera",
+]);
 
 // Photo hosts whose license permits free commercial use without needing
 // per-photo attribution tracking beyond `imageAttribution` on the recipe.
