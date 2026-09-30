@@ -1996,4 +1996,12 @@ export const ingredientRegistry: IngredientEntity[] = [
     category: "Vegetables",
     synonyms: ["zucchini", "courgette"],
   },
+  {
+    id: "rosemary",
+    canonicalName: "rosemary",
+    baseIngredient: "rosemary",
+    displayName: "Rosemary",
+    category: "Spices",
+    synonyms: ["rosemary", "fresh rosemary", "dried rosemary"],
+  },
 ];
