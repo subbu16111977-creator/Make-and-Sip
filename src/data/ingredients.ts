@@ -2004,4 +2004,12 @@ export const ingredientRegistry: IngredientEntity[] = [
     category: "Spices",
     synonyms: ["rosemary", "fresh rosemary", "dried rosemary"],
   },
+  {
+    id: "truffle-oil",
+    canonicalName: "truffle_oil",
+    baseIngredient: "truffle_oil",
+    displayName: "Truffle Oil",
+    category: "Pantry Staples",
+    synonyms: ["truffle oil", "black truffle oil", "white truffle oil"],
+  },
 ];
