@@ -2349,4 +2349,12 @@ export const ingredientRegistry: IngredientEntity[] = [
     category: "Pantry Staples",
     synonyms: ["dark soy sauce", "thick soy sauce"],
   },
+  {
+    id: "black-bean-sauce",
+    canonicalName: "black_bean_sauce",
+    baseIngredient: "black_bean_sauce",
+    displayName: "Fermented Black Bean Sauce",
+    category: "Pantry Staples",
+    synonyms: ["black bean sauce", "fermented black bean sauce", "douchi"],
+  },
 ];
