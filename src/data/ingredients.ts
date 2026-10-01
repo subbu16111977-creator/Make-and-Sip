@@ -2501,4 +2501,12 @@ export const ingredientRegistry: IngredientEntity[] = [
     category: "Fruit",
     synonyms: ["dates", "medjool dates", "pitted dates"],
   },
+  {
+    id: "red-wine",
+    canonicalName: "red_wine",
+    baseIngredient: "red_wine",
+    displayName: "Red Wine",
+    category: "Pantry Staples",
+    synonyms: ["red wine", "dry red wine"],
+  },
 ];
