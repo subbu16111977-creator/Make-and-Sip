@@ -2509,4 +2509,12 @@ export const ingredientRegistry: IngredientEntity[] = [
     category: "Pantry Staples",
     synonyms: ["red wine", "dry red wine"],
   },
+  {
+    id: "water",
+    canonicalName: "water",
+    baseIngredient: "water",
+    displayName: "Water",
+    category: "Pantry Staples",
+    synonyms: ["water", "warm water", "cold water", "lukewarm water"],
+  },
 ];
