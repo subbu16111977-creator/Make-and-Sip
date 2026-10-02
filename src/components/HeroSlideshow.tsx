@@ -4,9 +4,11 @@ import { colors, spacing, layout } from "@/theme";
 import type { EquipmentTag, PantryItem } from "@/types";
 import { RecipeHero, useHeroWidth } from "./RecipeHero";
 import { hasRequiredEquipment, missingEquipment, type SlideshowMatch } from "@/lib/pantryMatch";
+import { glidePosition, rewindDuration } from "@/lib/glide";
 
 const GAP = spacing.md;
 const AUTO_ADVANCE_MS = 5500;
+
 
 interface HeroSlideshowProps {
   matches: SlideshowMatch[];
@@ -44,14 +46,48 @@ export function HeroSlideshow({ matches, ownedEquipment, expiring, onOpen }: Her
   const [index, setIndex] = useState(0);
   const indexRef = useRef(0);
   const userTouched = useRef(false);
+  const offsetX = useRef(0);
+  const rafId = useRef<number | null>(null);
+
+  const stopAnimation = useCallback(() => {
+    if (rafId.current !== null) cancelAnimationFrame(rafId.current);
+    rafId.current = null;
+  }, []);
+
+  /** Our own eased scroll, so the long trip back to slide 1 glides instead of whipping past every slide. */
+  const glideTo = useCallback(
+    (toX: number, duration: number) => {
+      stopAnimation();
+      const fromX = offsetX.current;
+      const start = Date.now();
+      const tick = () => {
+        const elapsed = Date.now() - start;
+        const x = glidePosition(fromX, toX, elapsed, duration);
+        offsetX.current = x;
+        scrollRef.current?.scrollTo({ x, animated: false });
+        rafId.current = elapsed < duration ? requestAnimationFrame(tick) : null;
+      };
+      rafId.current = requestAnimationFrame(tick);
+    },
+    [stopAnimation]
+  );
+
+  useEffect(() => stopAnimation, [stopAnimation]);
 
   const goTo = useCallback(
     (i: number, animated = true) => {
+      const rewinding = animated && i < indexRef.current;
+      const slidesToCross = Math.abs(offsetX.current - i * step) / step;
       indexRef.current = i;
       setIndex(i);
-      scrollRef.current?.scrollTo({ x: i * step, animated });
+      if (rewinding) {
+        glideTo(i * step, rewindDuration(slidesToCross));
+      } else {
+        stopAnimation();
+        scrollRef.current?.scrollTo({ x: i * step, animated });
+      }
     },
-    [step]
+    [step, glideTo, stopAnimation]
   );
 
   useEffect(() => {
@@ -103,6 +139,10 @@ export function HeroSlideshow({ matches, ownedEquipment, expiring, onOpen }: Her
         decelerationRate="fast"
         onScrollBeginDrag={() => {
           userTouched.current = true;
+          stopAnimation();
+        }}
+        onScroll={(e) => {
+          offsetX.current = e.nativeEvent.contentOffset.x;
         }}
         onMomentumScrollEnd={onScrollEnd}
         onScrollEndDrag={onScrollEnd}
