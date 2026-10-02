@@ -2587,4 +2587,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "tequila", canonicalName: "tequila", baseIngredient: "tequila", displayName: "Tequila", category: "Pantry Staples", synonyms: ["tequila", "blanco tequila", "silver tequila", "reposado tequila"] },
   { id: "orange-liqueur", canonicalName: "orange_liqueur", baseIngredient: "orange_liqueur", displayName: "Orange Liqueur", category: "Pantry Staples", synonyms: ["orange liqueur", "triple sec", "cointreau", "curacao"] },
   { id: "hibiscus-flowers", canonicalName: "hibiscus_flowers", baseIngredient: "hibiscus_flowers", displayName: "Dried Hibiscus Flowers", category: "Pantry Staples", synonyms: ["dried hibiscus flowers", "hibiscus flowers", "flor de jamaica", "jamaica flowers"] },
+  { id: "apple", canonicalName: "apple", baseIngredient: "apple", displayName: "Apple", category: "Fruit", synonyms: ["apple", "apples", "green apple"] },
+  { id: "peach", canonicalName: "peach", baseIngredient: "peach", displayName: "Peach", category: "Fruit", synonyms: ["peach", "peaches", "yellow peach"] },
+  { id: "bolillo-rolls", canonicalName: "bolillo_rolls", baseIngredient: "bolillo_rolls", displayName: "Bolillo Rolls", category: "Grains", synonyms: ["bolillo", "bolillo rolls", "telera rolls", "crusty white rolls"] },
 ];
