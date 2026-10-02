@@ -14,7 +14,7 @@ interface RecipeRailProps {
   onOpen: (recipeId: string) => void;
 }
 
-function missingNote(match: RecipeMatch): string {
+export function missingNote(match: RecipeMatch): string {
   const required = match.missing.filter((i) => !i.optional);
   if (required.length > 2) return `Missing ${required.length} ingredients`;
   const names = required.map((i) => resolveIngredientById(i.pantryId)?.displayName ?? i.label);

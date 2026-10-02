@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { View, Text, StyleSheet, ScrollView, Pressable, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { SectionHeader } from "@/components/SectionHeader";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
-import { RecipeRail } from "@/components/RecipeRail";
+import { RecipeSection } from "@/components/RecipeSection";
 import { ExpiringIngredientCard } from "@/components/ExpiringIngredientCard";
 import { HomeLoadingState, EmptyState } from "@/components/States";
 import { StarterStaples } from "@/components/StarterStaples";
@@ -25,9 +25,12 @@ import {
   pickQuickRecipes,
   pickReadyToCook,
   pickSlideshowMatches,
+  QUICK_MINUTES,
 } from "@/lib/pantryMatch";
-import type { DiscoverView } from "@/lib/discoverView";
+
 import { ChevronRightIcon } from "@/components/icons";
+
+type SectionKey = "can-make" | "almost-there" | "quick";
 
 /** New random order every time the app is opened (module load), stable while the app stays open. */
 const SESSION_SEED = Math.floor(Math.random() * 2 ** 31);
@@ -62,18 +65,49 @@ export default function HomeScreen() {
   // Every dish, including ones needing gear you lack, remains in Discover.
   const canMake = useMemo(() => pickReadyToCook(pantryItems, recipes, ownedEquipment), [pantryItems, ownedEquipment]);
   const almostThere = useMemo(() => pickAlmostThere(pantryItems, recipes, ownedEquipment), [pantryItems, ownedEquipment]);
-  const quick = useMemo(
+  const quickAll = useMemo(
     () =>
       pickQuickRecipes(
         recipes.filter((r) => isQuickRecipe(r, ownedEquipment)),
-        SESSION_SEED
+        SESSION_SEED,
+        QUICK_MINUTES,
+        recipes.length
       ).map((r) => matchRecipe(pantryItems, r)),
     [pantryItems, ownedEquipment]
   );
 
-  const openRecipe = (id: string) => router.push({ pathname: "/recipe/[id]", params: { id } });
-  // `t` changes on every tap so Discover re-applies the view even if it was already open on it.
-  const seeAll = (view: DiscoverView) => router.push({ pathname: "/discover", params: { view, t: String(Date.now()) } });
+  const openRecipe = useCallback((id: string) => router.push({ pathname: "/recipe/[id]", params: { id } }), [router]);
+
+  // "See all" opens the section's full list right here on the page. One section is open at a
+  // time; its dishes load in pages as the user scrolls down.
+  const PAGE = 12;
+  const [expanded, setExpanded] = useState<SectionKey | null>(null);
+  const [visible, setVisible] = useState(PAGE);
+  const scrollRef = useRef<ScrollView>(null);
+  const sectionY = useRef<Record<string, number>>({});
+  const gridBox = useRef({ y: 0, height: 0 });
+
+  const lists: Record<SectionKey, number> = { "can-make": canMake.length, "almost-there": almostThere.length, quick: quickAll.length };
+
+  const toggleSection = (key: SectionKey) => {
+    const opening = expanded !== key;
+    setExpanded(opening ? key : null);
+    setVisible(PAGE);
+    // Opening brings the section's heading to the top; collapsing returns to it, so a long
+    // scroll through the full list doesn't strand you far below.
+    setTimeout(() => scrollRef.current?.scrollTo({ y: Math.max(0, (sectionY.current[key] ?? 0) - 12), animated: opening }), 60);
+  };
+
+  const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (!expanded) return;
+    const { contentOffset, layoutMeasurement } = e.nativeEvent;
+    const viewportBottom = contentOffset.y + layoutMeasurement.height;
+    const gridBottom = (sectionY.current[expanded] ?? 0) + gridBox.current.y + gridBox.current.height;
+    if (viewportBottom > gridBottom - 600) {
+      setVisible((v) => (v < lists[expanded] ? Math.min(lists[expanded], v + PAGE) : v));
+    }
+  };
+
   const unlock = useMemo(() => bestEquipmentUnlock(ownedEquipment, [...EQUIPMENT_TAGS], recipes), [ownedEquipment]);
   const cuisines = useMemo(() => cuisineSummaries(recipes), []);
   const toBuy = useMemo(() => shoppingItems.filter((i) => !i.checked).length, [shoppingItems]);
@@ -101,7 +135,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <Screen>
+    <Screen scrollRef={scrollRef} onScroll={onScroll} scrollEventThrottle={64}>
       <View style={styles.header}>
         <Text style={styles.greeting}>{greeting}, Subbu.</Text>
         <Text style={styles.headline}>Let&apos;s make something delicious.</Text>
@@ -148,26 +182,37 @@ export default function HomeScreen() {
       )}
 
       {canMake.length > 0 && (
-        <View style={styles.section}>
-          <SectionHeader
+        <View style={styles.section} onLayout={(e) => (sectionY.current["can-make"] = e.nativeEvent.layout.y)}>
+          <RecipeSection
             eyebrow="Ready when you are"
             title="What you can make"
             subtitle={`${canMake.length} ${canMake.length === 1 ? "dish" : "dishes"} with every ingredient and every tool you need.`}
-            onPressAction={() => seeAll("can-make")}
+            matches={canMake}
+            ownedEquipment={ownedEquipment}
+            expanded={expanded === "can-make"}
+            visibleCount={visible}
+            onToggle={() => toggleSection("can-make")}
+            onOpen={openRecipe}
+            onGridLayout={(y, height) => (gridBox.current = { y, height })}
           />
-          <RecipeRail matches={canMake} ownedEquipment={ownedEquipment} onOpen={openRecipe} />
         </View>
       )}
 
       {almostThere.length > 0 && (
-        <View style={styles.section}>
-          <SectionHeader
+        <View style={styles.section} onLayout={(e) => (sectionY.current["almost-there"] = e.nativeEvent.layout.y)}>
+          <RecipeSection
             eyebrow="Just a few more"
             title="Almost there"
             subtitle="You have an ingredient and all the tools. Tap the bag to add what's missing to Shopping."
-            onPressAction={() => seeAll("almost-there")}
+            matches={almostThere}
+            ownedEquipment={ownedEquipment}
+            showMissingNote
+            expanded={expanded === "almost-there"}
+            visibleCount={visible}
+            onToggle={() => toggleSection("almost-there")}
+            onOpen={openRecipe}
+            onGridLayout={(y, height) => (gridBox.current = { y, height })}
           />
-          <RecipeRail matches={almostThere} ownedEquipment={ownedEquipment} showMissingNote onOpen={openRecipe} />
         </View>
       )}
 
@@ -190,15 +235,23 @@ export default function HomeScreen() {
         </View>
       )}
 
-      {quick.length > 0 && (
-        <View style={[styles.section, unlock ? styles.sectionAfterCard : null]}>
-          <SectionHeader
+      {quickAll.length > 0 && (
+        <View
+          style={[styles.section, unlock ? styles.sectionAfterCard : null]}
+          onLayout={(e) => (sectionY.current.quick = e.nativeEvent.layout.y)}
+        >
+          <RecipeSection
             eyebrow="In a hurry"
             title="Quick and easy"
-            subtitle="Ready in 20 minutes or less."
-            onPressAction={() => seeAll("quick")}
+            subtitle={`${quickAll.length} dishes ready in 20 minutes or less.`}
+            matches={quickAll}
+            ownedEquipment={ownedEquipment}
+            expanded={expanded === "quick"}
+            visibleCount={visible}
+            onToggle={() => toggleSection("quick")}
+            onOpen={openRecipe}
+            onGridLayout={(y, height) => (gridBox.current = { y, height })}
           />
-          <RecipeRail matches={quick} ownedEquipment={ownedEquipment} onOpen={openRecipe} />
         </View>
       )}
 
@@ -211,7 +264,7 @@ export default function HomeScreen() {
               cuisine={c.cuisine}
               count={c.count}
               image={c.image}
-              onPress={() => router.push({ pathname: "/discover", params: { cuisine: c.cuisine } })}
+              onPress={() => router.push({ pathname: "/discover", params: { cuisine: c.cuisine, t: String(Date.now()) } })}
             />
           ))}
         </ScrollView>

@@ -1,33 +1,4 @@
-import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
-import { isAlmostThere, isCanMake, isQuickRecipe, type RecipeMatch } from "./pantryMatch";
-
-/** Which slice of the catalogue Discover is showing. "all" is the full list. */
-export type DiscoverView = "all" | "can-make" | "almost-there" | "quick";
-
-export const VIEW_LABELS: Record<DiscoverView, string> = {
-  all: "All dishes",
-  "can-make": "What you can make",
-  "almost-there": "Almost there",
-  quick: "Quick and easy",
-};
-
-export function isDiscoverView(value: unknown): value is DiscoverView {
-  return value === "all" || value === "can-make" || value === "almost-there" || value === "quick";
-}
-
-/** Whether a dish belongs to a view, using the same definitions as the Home sections. */
-export function matchesView(m: RecipeMatch, view: DiscoverView, ownedEquipment: EquipmentTag[]): boolean {
-  switch (view) {
-    case "can-make":
-      return isCanMake(m, ownedEquipment);
-    case "almost-there":
-      return isAlmostThere(m, ownedEquipment);
-    case "quick":
-      return isQuickRecipe(m.recipe, ownedEquipment);
-    default:
-      return true;
-  }
-}
+import type { Recipe, RecipeIngredient } from "@/types";
 
 /** How Discover can arrange the list. "best" keeps the pantry-match ranking. */
 export type DiscoverSort = "best" | "quickest" | "easiest" | "fewest-to-buy" | "az";

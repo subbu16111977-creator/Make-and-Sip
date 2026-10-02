@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { View, Text, StyleSheet, TextInput, ScrollView, FlatList, Pressable, useWindowDimensions } from "react-native";
+import { View, Text, StyleSheet, TextInput, ScrollView, FlatList, useWindowDimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { colors, spacing, radii, type as typeScale, layout } from "@/theme";
@@ -9,16 +9,8 @@ import { SearchIcon } from "@/components/icons";
 import { usePantry } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { recipes } from "@/data/recipes";
-import { isCanMake, missingEquipment, rankRecipesForDiscover } from "@/lib/pantryMatch";
-import {
-  SORT_OPTIONS,
-  VIEW_LABELS,
-  isDiscoverView,
-  matchesView,
-  sortDiscover,
-  type DiscoverSort,
-  type DiscoverView,
-} from "@/lib/discoverView";
+import { missingEquipment, rankRecipesForDiscover } from "@/lib/pantryMatch";
+import { SORT_OPTIONS, sortDiscover, type DiscoverSort } from "@/lib/discoverView";
 import type { DietTag, TasteTag } from "@/types";
 
 const TASTES: TasteTag[] = ["Spicy", "Comforting", "Fresh & Light", "Rich & Indulgent", "Tangy", "Smoky", "Sweet", "Herby"];
@@ -31,24 +23,17 @@ export default function DiscoverScreen() {
   const { width: screenWidth } = useWindowDimensions();
   const [query, setQuery] = useState("");
   const [selectedTastes, setSelectedTastes] = useState<TasteTag[]>([]);
-  const params = useLocalSearchParams<{ cuisine?: string; view?: string; t?: string }>();
+  const params = useLocalSearchParams<{ cuisine?: string; t?: string }>();
   const [selectedCuisine, setSelectedCuisine] = useState<string | null>(params.cuisine ?? null);
-  const [view, setView] = useState<DiscoverView>(isDiscoverView(params.view) ? params.view : "all");
   const [sort, setSort] = useState<DiscoverSort>("best");
 
-  // Arriving from Home (a cuisine tile or a section's "See all") applies that
-  // choice. Home adds a changing `t` so tapping the same link twice still applies.
-  const paramKey = `${params.t ?? ""}|${params.cuisine ?? ""}|${params.view ?? ""}`;
+  // Arriving from a Home cuisine tile applies that cuisine. Home adds a changing `t`
+  // so tapping the same tile again still re-applies it.
+  const paramKey = `${params.t ?? ""}|${params.cuisine ?? ""}`;
   const [appliedParamKey, setAppliedParamKey] = useState(paramKey);
   if (paramKey !== appliedParamKey) {
     setAppliedParamKey(paramKey);
-    if (params.cuisine) {
-      setSelectedCuisine(params.cuisine);
-      setView("all");
-    } else if (isDiscoverView(params.view)) {
-      setView(params.view);
-      setSelectedCuisine(null);
-    }
+    if (params.cuisine) setSelectedCuisine(params.cuisine);
   }
   const [selectedDiets, setSelectedDiets] = useState<DietTag[]>([]);
 
@@ -68,16 +53,10 @@ export default function DiscoverScreen() {
     [pantryItems, selectedTastes, ownedEquipment]
   );
 
-  const canMakeCount = useMemo(
-    () => ranked.filter((m) => isCanMake(m, ownedEquipment)).length,
-    [ranked, ownedEquipment]
-  );
-
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     const kept = ranked.filter((m) => {
       const { recipe } = m;
-      if (!matchesView(m, view, ownedEquipment)) return false;
       if (q && !recipe.title.toLowerCase().includes(q) && !recipe.description.toLowerCase().includes(q)) {
         return false;
       }
@@ -86,7 +65,7 @@ export default function DiscoverScreen() {
       return true;
     });
     return sortDiscover(kept, sort);
-  }, [ranked, query, selectedCuisine, selectedDiets, view, sort, ownedEquipment]);
+  }, [ranked, query, selectedCuisine, selectedDiets, sort]);
 
   const cardGap = spacing.md;
   const cardWidth = (screenWidth - layout.screenPadding * 2 - cardGap) / 2;
@@ -118,29 +97,6 @@ export default function DiscoverScreen() {
                 style={styles.searchInput}
               />
             </View>
-
-            <View style={styles.canMakeRow}>
-              <Pressable
-                onPress={() => setView(view === "can-make" ? "all" : "can-make")}
-                style={[styles.canMakeButton, view === "can-make" && styles.canMakeButtonActive]}
-              >
-                <Text style={[styles.canMakeText, view === "can-make" && styles.canMakeTextActive]}>
-                  {view === "can-make" ? "✓ " : ""}What I can make · {canMakeCount}
-                </Text>
-              </Pressable>
-              <Text style={styles.canMakeHint}>Dishes you have every ingredient and tool for</Text>
-            </View>
-
-            {view !== "all" && view !== "can-make" && (
-              <View style={styles.viewBanner}>
-                <Text style={styles.viewBannerText}>
-                  Showing <Text style={styles.viewBannerStrong}>{VIEW_LABELS[view]}</Text>
-                </Text>
-                <Pressable onPress={() => setView("all")} hitSlop={8}>
-                  <Text style={styles.viewBannerClear}>Show all dishes</Text>
-                </Pressable>
-              </View>
-            )}
 
             <Text style={styles.filterLabel}>Sort by</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chipRow}>
@@ -198,14 +154,8 @@ export default function DiscoverScreen() {
         ItemSeparatorComponent={() => <View style={{ height: spacing.xl }} />}
         ListEmptyComponent={
           <View style={styles.emptyWrap}>
-            <Text style={styles.emptyTitle}>{view === "can-make" || view === "almost-there" ? "Nothing here yet" : "Nothing matches yet"}</Text>
-            <Text style={styles.emptyBody}>
-              {view === "can-make"
-                ? "You don't have every ingredient and tool for any dish yet. Add more to your pantry, tick your equipment, or see what's almost there."
-                : view === "almost-there"
-                  ? "No dish has an ingredient you own and the tools it needs. Add a few staples to your pantry."
-                  : "Try clearing a filter or searching something broader."}
-            </Text>
+            <Text style={styles.emptyTitle}>Nothing matches yet</Text>
+            <Text style={styles.emptyBody}>Try clearing a filter or searching something broader.</Text>
           </View>
         }
       />
@@ -260,59 +210,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.espresso,
     padding: 0,
-  },
-  canMakeRow: {
-    marginHorizontal: layout.screenPadding,
-    marginBottom: spacing.lg,
-    gap: 6,
-  },
-  canMakeButton: {
-    alignSelf: "flex-start",
-    paddingVertical: 10,
-    paddingHorizontal: spacing.xl,
-    borderRadius: radii.pill,
-    borderWidth: 1,
-    borderColor: colors.burntOrange,
-    backgroundColor: colors.paper,
-  },
-  canMakeButtonActive: {
-    backgroundColor: colors.burntOrange,
-  },
-  canMakeText: {
-    ...typeScale.label,
-    color: colors.burntOrange,
-  },
-  canMakeTextActive: {
-    color: colors.cream,
-  },
-  canMakeHint: {
-    ...typeScale.caption,
-    color: colors.espressoMuted,
-  },
-  viewBanner: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginHorizontal: layout.screenPadding,
-    marginBottom: spacing.lg,
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.lg,
-    borderRadius: radii.md,
-    backgroundColor: colors.paper,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: colors.hairline,
-  },
-  viewBannerText: {
-    ...typeScale.bodySmall,
-    color: colors.espressoMuted,
-  },
-  viewBannerStrong: {
-    color: colors.espresso,
-    fontWeight: "600",
-  },
-  viewBannerClear: {
-    ...typeScale.label,
-    color: colors.burntOrange,
   },
   filterLabel: {
     ...typeScale.label,

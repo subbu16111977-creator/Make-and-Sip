@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { matchesView, sortDiscover } from "./discoverView";
+import { sortDiscover } from "./discoverView";
 import { getIngredientMatch, getRecipeAvailability, matchRecipe, pickSlideshowMatches, pickReadyToCook, pickAlmostThere, pickQuickRecipes, bestEquipmentUnlock, cuisineSummaries } from "./pantryMatch";
 import type { PantryItem, Recipe, RecipeIngredient } from "@/types";
 import { recipes } from "@/data/recipes";
@@ -241,25 +241,10 @@ describe("Home section helpers", () => {
   });
 });
 
-describe("Discover views and sorting", () => {
+describe("Discover sorting", () => {
   const mk = (id: string, ids: string[], extra: Partial<Recipe> = {}): Recipe =>
     ({ id, title: id, cuisine: "X", image: "", timeMinutes: 30, difficulty: "Easy", equipment: [], ingredients: ids.map((p) => recipeIngredient({ pantryId: p })), ...extra }) as unknown as Recipe;
   const have = (...ids: string[]) => ids.map((ingredientId) => pantryItem({ id: ingredientId, ingredientId, name: ingredientId }));
-
-  it("matchesView agrees with the Home sections", () => {
-    const pantry = have("a", "b");
-    const can = matchRecipe(pantry, mk("can", ["a", "b"]));
-    const almost = matchRecipe(pantry, mk("almost", ["a", "z"]));
-    const gear = matchRecipe(pantry, mk("gear", ["a", "b"], { equipment: ["Oven"] }));
-    const quick = matchRecipe(pantry, mk("q", ["z"], { timeMinutes: 10 }));
-    expect(matchesView(can, "can-make", [])).toBe(true);
-    expect(matchesView(almost, "can-make", [])).toBe(false);
-    expect(matchesView(almost, "almost-there", [])).toBe(true);
-    expect(matchesView(gear, "can-make", [])).toBe(false);
-    expect(matchesView(gear, "can-make", ["Oven"])).toBe(true);
-    expect(matchesView(quick, "quick", [])).toBe(true);
-    expect(matchesView(can, "all", [])).toBe(true);
-  });
 
   it("sortDiscover orders by the chosen key and keeps ties stable", () => {
     const pantry = have("a");

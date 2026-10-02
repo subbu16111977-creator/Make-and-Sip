@@ -7,9 +7,11 @@ interface ScreenProps extends ScrollViewProps {
   children: React.ReactNode;
   /** Skip the ScrollView and render a plain flex container (for screens managing their own scroll). */
   noScroll?: boolean;
+  /** Lets the screen scroll itself, e.g. to bring an expanded section into view. */
+  scrollRef?: React.Ref<ScrollView>;
 }
 
-export function Screen({ children, noScroll, contentContainerStyle, ...rest }: ScreenProps) {
+export function Screen({ children, noScroll, scrollRef, contentContainerStyle, ...rest }: ScreenProps) {
   if (noScroll) {
     return (
       <SafeAreaView style={styles.safeArea} edges={["top"]}>
@@ -21,6 +23,7 @@ export function Screen({ children, noScroll, contentContainerStyle, ...rest }: S
   return (
     <SafeAreaView style={styles.safeArea} edges={["top"]}>
       <ScrollView
+        ref={scrollRef}
         style={styles.flex}
         contentContainerStyle={[styles.content, contentContainerStyle]}
         showsVerticalScrollIndicator={false}
