@@ -7,6 +7,8 @@ import { MatchBadge } from "./MatchBadge";
 import { RecipeImage } from "./RecipeImage";
 import { useSaved } from "@/context/SavedContext";
 import { useShopping } from "@/context/ShoppingContext";
+import { useEquipment } from "@/context/EquipmentContext";
+import { canMakeRecipe } from "@/lib/pantryMatch";
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -27,6 +29,8 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
   const { isSaved, toggleSaved } = useSaved();
   const { addMissingFromRecipe } = useShopping();
   const saved = isSaved(recipe.id);
+  const { owned: ownedEquipment } = useEquipment();
+  const canMake = canMakeRecipe(recipe, haveCount, missing, ownedEquipment);
   const [justAdded, setJustAdded] = useState(false);
   const addedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -47,6 +51,13 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
     <Pressable onPress={onPress} style={[styles.wrap, { width }]}>
       <View style={[styles.imageWrap, { height: width * 1.15 }]}>
         <RecipeImage uri={recipe.image} title={recipe.title} style={StyleSheet.absoluteFill} />
+
+        {canMake && (
+          <View style={styles.canMakeBadge}>
+            <CheckIcon size={11} color={colors.white} strokeWidth={2.6} />
+            <Text style={styles.canMakeText}>Can make</Text>
+          </View>
+        )}
 
         <Pressable
           onPress={() => toggleSaved(recipe.id)}
@@ -117,6 +128,23 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(11, 10, 8, 0.55)",
     alignItems: "center",
     justifyContent: "center",
+  },
+  canMakeBadge: {
+    position: "absolute",
+    top: spacing.sm,
+    left: spacing.sm,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+    height: 26,
+    paddingHorizontal: spacing.sm,
+    borderRadius: 13,
+    backgroundColor: colors.deepOlive,
+  },
+  canMakeText: {
+    ...typeScale.caption,
+    color: colors.white,
+    fontWeight: "600",
   },
   saveButton: {
     right: spacing.sm,

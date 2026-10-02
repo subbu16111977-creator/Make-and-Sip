@@ -17,6 +17,8 @@ interface RecipeHeroProps {
   usingUpLabel?: string;
   /** Label on the small chip at the top of the card. Defaults to "Cook tonight". */
   eyebrow?: string;
+  /** Adds a tick before the eyebrow when the dish can be made right now. */
+  canMake?: boolean;
   /** Appliances the recipe needs that the user hasn't ticked in Pantry > Equipment. */
   missingEquipment?: EquipmentTag[];
   onPress?: () => void;
@@ -40,6 +42,7 @@ export function RecipeHero({
   missing = [],
   usingUpLabel,
   eyebrow = "Cook tonight",
+  canMake = false,
   missingEquipment = [],
   onPress,
 }: RecipeHeroProps) {
@@ -77,6 +80,7 @@ export function RecipeHero({
 
         <View style={styles.topRow}>
           <View style={styles.eyebrowChip}>
+            {canMake && <CheckIcon size={11} color={colors.deepOlive} strokeWidth={2.6} />}
             <Text style={styles.eyebrowChipText}>{eyebrow}</Text>
           </View>
           <View style={styles.topRowActions}>
@@ -168,6 +172,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     borderRadius: radii.sm,
     alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
   },
   eyebrowChipText: {
     ...typeScale.eyebrow,

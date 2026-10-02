@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { sortDiscover } from "./discoverView";
-import { getIngredientMatch, getRecipeAvailability, matchRecipe, pickSlideshowMatches, pickReadyToCook, pickAlmostThere, pickQuickRecipes, bestEquipmentUnlock, cuisineSummaries } from "./pantryMatch";
+import { getIngredientMatch, getRecipeAvailability, matchRecipe, pickSlideshowMatches, pickReadyToCook, pickAlmostThere, pickQuickRecipes, canMakeRecipe, bestEquipmentUnlock, cuisineSummaries } from "./pantryMatch";
 import type { PantryItem, Recipe, RecipeIngredient } from "@/types";
 import { recipes } from "@/data/recipes";
 import { pantryItems as seedPantry } from "@/data/pantry";
@@ -193,6 +193,21 @@ describe("pickSlideshowMatches", () => {
 
   it("returns nothing when no dish shares any ingredient with the pantry", () => {
     expect(pickSlideshowMatches(have("caviar"), [mk("a", ["tomato"])], 1)).toEqual([]);
+  });
+});
+
+describe("canMakeRecipe", () => {
+  const recipe = { id: "r", equipment: ["Oven"], ingredients: [] } as unknown as Recipe;
+  const req = recipeIngredient({ pantryId: "a" });
+  const opt = recipeIngredient({ pantryId: "b", optional: true });
+
+  it("is true with all required ingredients and gear, even when optional ones are missing", () => {
+    expect(canMakeRecipe(recipe, 1, [opt], ["Oven"])).toBe(true);
+  });
+  it("is false when a required ingredient is missing, gear is missing, or nothing is on hand", () => {
+    expect(canMakeRecipe(recipe, 1, [req], ["Oven"])).toBe(false);
+    expect(canMakeRecipe(recipe, 1, [], [])).toBe(false);
+    expect(canMakeRecipe(recipe, 0, [], ["Oven"])).toBe(false);
   });
 });
 

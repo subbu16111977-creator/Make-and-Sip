@@ -119,6 +119,7 @@ export function HeroSlideshow({ matches, ownedEquipment, expiring, onOpen }: Her
             totalCount={m.recipe.ingredients.length}
             missing={m.missing}
             eyebrow={slideEyebrow(m, ownedEquipment)}
+            canMake={slideEyebrow(m, ownedEquipment) === "Ready to cook"}
             usingUpLabel={usingUpLabel(expiring, m)}
             missingEquipment={missingEquipment(ownedEquipment, m.recipe)}
             onPress={() => onOpen(m.recipe.id)}

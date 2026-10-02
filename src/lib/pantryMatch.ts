@@ -463,9 +463,22 @@ const requiredMissing = (m: RecipeMatch) => m.missing.filter((i) => !i.optional)
 /** Dishes ready in this many minutes or fewer count as "quick". */
 export const QUICK_MINUTES = 20;
 
-/** Every required ingredient is on hand, at least one ingredient is on hand, and every needed appliance is owned. */
+/**
+ * A dish can be made when every required ingredient is on hand, at least one
+ * ingredient is on hand, and every needed appliance is owned. Optional
+ * ingredients never matter — with or without them, the dish can be made.
+ */
+export function canMakeRecipe(
+  recipe: Recipe,
+  haveCount: number,
+  missing: RecipeIngredient[],
+  ownedEquipment: EquipmentTag[]
+): boolean {
+  return haveCount > 0 && !missing.some((i) => !i.optional) && hasRequiredEquipment(ownedEquipment, recipe);
+}
+
 export function isCanMake(m: RecipeMatch, ownedEquipment: EquipmentTag[]): boolean {
-  return m.have.length > 0 && requiredMissing(m).length === 0 && hasRequiredEquipment(ownedEquipment, m.recipe);
+  return canMakeRecipe(m.recipe, m.have.length, m.missing, ownedEquipment);
 }
 
 /** At least one ingredient is on hand, something required is still missing, and every needed appliance is owned. */
