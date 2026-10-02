@@ -2590,4 +2590,5 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "apple", canonicalName: "apple", baseIngredient: "apple", displayName: "Apple", category: "Fruit", synonyms: ["apple", "apples", "green apple"] },
   { id: "peach", canonicalName: "peach", baseIngredient: "peach", displayName: "Peach", category: "Fruit", synonyms: ["peach", "peaches", "yellow peach"] },
   { id: "bolillo-rolls", canonicalName: "bolillo_rolls", baseIngredient: "bolillo_rolls", displayName: "Bolillo Rolls", category: "Grains", synonyms: ["bolillo", "bolillo rolls", "telera rolls", "crusty white rolls"] },
+  { id: "tomato-juice", canonicalName: "tomato_juice", baseIngredient: "tomato_juice", displayName: "Tomato Juice", category: "Pantry Staples", synonyms: ["tomato juice", "clamato", "clamato juice", "vegetable juice"] },
 ];
