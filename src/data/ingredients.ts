@@ -2584,4 +2584,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "white-vinegar", canonicalName: "white_vinegar", baseIngredient: "white_vinegar", displayName: "White Vinegar", category: "Pantry Staples", synonyms: ["white vinegar", "distilled white vinegar"] },
   { id: "hominy", canonicalName: "hominy", baseIngredient: "hominy", displayName: "Hominy", category: "Pantry Staples", synonyms: ["hominy", "canned hominy", "white hominy", "mote"] },
   { id: "habanero-chili", canonicalName: "habanero_chili", baseIngredient: "habanero_chili", displayName: "Habanero Chili", category: "Vegetables", synonyms: ["habanero", "habanero chili", "habanero pepper", "habaneros"] },
+  { id: "tequila", canonicalName: "tequila", baseIngredient: "tequila", displayName: "Tequila", category: "Pantry Staples", synonyms: ["tequila", "blanco tequila", "silver tequila", "reposado tequila"] },
+  { id: "orange-liqueur", canonicalName: "orange_liqueur", baseIngredient: "orange_liqueur", displayName: "Orange Liqueur", category: "Pantry Staples", synonyms: ["orange liqueur", "triple sec", "cointreau", "curacao"] },
+  { id: "hibiscus-flowers", canonicalName: "hibiscus_flowers", baseIngredient: "hibiscus_flowers", displayName: "Dried Hibiscus Flowers", category: "Pantry Staples", synonyms: ["dried hibiscus flowers", "hibiscus flowers", "flor de jamaica", "jamaica flowers"] },
 ];
