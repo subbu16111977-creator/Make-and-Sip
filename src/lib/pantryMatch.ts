@@ -457,3 +457,84 @@ export function pickSlideshowMatches(
     (a, b) => seededUnit(seed, `order:${a.recipe.id}`) - seededUnit(seed, `order:${b.recipe.id}`)
   );
 }
+
+const requiredMissing = (m: RecipeMatch) => m.missing.filter((i) => !i.optional);
+
+/** Dishes the user can make right now: nothing required left to buy, and all needed gear owned. */
+export function pickReadyToCook(
+  pantry: PantryItem[],
+  recipes: Recipe[],
+  ownedEquipment: EquipmentTag[]
+): RecipeMatch[] {
+  return recipes
+    .filter((r) => hasRequiredEquipment(ownedEquipment, r))
+    .map((r) => matchRecipe(pantry, r))
+    .filter((m) => m.have.length > 0 && requiredMissing(m).length === 0)
+    .sort((a, b) => a.recipe.timeMinutes - b.recipe.timeMinutes);
+}
+
+/** Dishes where the user already has at least one ingredient and only 1–`maxMissing` required ones are left to buy. */
+export function pickAlmostThere(
+  pantry: PantryItem[],
+  recipes: Recipe[],
+  maxMissing = 2,
+  limit = 10
+): RecipeMatch[] {
+  return recipes
+    .map((r) => matchRecipe(pantry, r))
+    .filter((m) => m.have.length > 0)
+    .filter((m) => {
+      const n = requiredMissing(m).length;
+      return n >= 1 && n <= maxMissing;
+    })
+    .sort(
+      (a, b) =>
+        requiredMissing(a).length - requiredMissing(b).length ||
+        b.ratio - a.ratio ||
+        a.recipe.timeMinutes - b.recipe.timeMinutes
+    )
+    .slice(0, limit);
+}
+
+/** Dishes ready in `maxMinutes` or less, in a random order that is stable for a given seed. */
+export function pickQuickRecipes(recipes: Recipe[], seed: number, maxMinutes = 20, limit = 10): Recipe[] {
+  return recipes
+    .filter((r) => r.timeMinutes <= maxMinutes)
+    .sort((a, b) => seededUnit(seed, `quick:${a.id}`) - seededUnit(seed, `quick:${b.id}`))
+    .slice(0, limit);
+}
+
+/** The appliance not yet owned whose purchase would newly unlock the most dishes, or null if none unlocks anything. */
+export function bestEquipmentUnlock(
+  owned: EquipmentTag[],
+  candidates: EquipmentTag[],
+  allRecipes: Recipe[]
+): { tag: EquipmentTag; count: number } | null {
+  let best: { tag: EquipmentTag; count: number } | null = null;
+  for (const tag of candidates) {
+    if (owned.includes(tag)) continue;
+    const count = recipesUnlockedByAdding(owned, tag, allRecipes).length;
+    if (count > 0 && (!best || count > best.count)) best = { tag, count };
+  }
+  return best;
+}
+
+export interface CuisineSummary {
+  cuisine: string;
+  count: number;
+  /** A representative photo (first dish in the cuisine that has one). */
+  image: string;
+}
+
+export function cuisineSummaries(recipes: Recipe[]): CuisineSummary[] {
+  const map = new Map<string, CuisineSummary>();
+  for (const r of recipes) {
+    const cur = map.get(r.cuisine);
+    if (!cur) map.set(r.cuisine, { cuisine: r.cuisine, count: 1, image: r.image });
+    else {
+      cur.count += 1;
+      if (!cur.image && r.image) cur.image = r.image;
+    }
+  }
+  return [...map.values()].sort((a, b) => b.count - a.count || a.cuisine.localeCompare(b.cuisine));
+}

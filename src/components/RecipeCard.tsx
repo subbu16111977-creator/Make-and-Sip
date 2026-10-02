@@ -16,12 +16,14 @@ interface RecipeCardProps {
   missing?: RecipeIngredient[];
   /** Appliances the recipe needs that the user hasn't ticked in Pantry > Equipment. */
   missingEquipment?: EquipmentTag[];
+  /** Optional one-line note under the meta row, e.g. "Missing cilantro". */
+  note?: string;
   onPress?: () => void;
   width?: number;
 }
 
 /** Portrait card used in the "You have enough for…" rail and Discover's grid. */
-export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missingEquipment = [], onPress, width = 216 }: RecipeCardProps) {
+export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missingEquipment = [], note, onPress, width = 216 }: RecipeCardProps) {
   const { isSaved, toggleSaved } = useSaved();
   const { addMissingFromRecipe } = useShopping();
   const saved = isSaved(recipe.id);
@@ -77,6 +79,11 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
         <View style={styles.metaDot} />
         <Text style={styles.metaText}>{recipe.difficulty}</Text>
       </View>
+      {note ? (
+        <Text style={styles.noteText} numberOfLines={2}>
+          {note}
+        </Text>
+      ) : null}
       {missingEquipment.length > 0 && (
         <Text style={styles.needsText} numberOfLines={2}>
           Needs {missingEquipment.map((t) => t.toLowerCase()).join(", ")}
@@ -129,6 +136,10 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   metaText: {
+    ...typeScale.caption,
+    color: colors.espressoMuted,
+  },
+  noteText: {
     ...typeScale.caption,
     color: colors.espressoMuted,
   },

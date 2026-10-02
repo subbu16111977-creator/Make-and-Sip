@@ -3,7 +3,7 @@ import { View, ScrollView, StyleSheet, Pressable, type NativeSyntheticEvent, typ
 import { colors, spacing, layout } from "@/theme";
 import type { EquipmentTag, PantryItem } from "@/types";
 import { RecipeHero, useHeroWidth } from "./RecipeHero";
-import { missingEquipment, type SlideshowMatch } from "@/lib/pantryMatch";
+import { hasRequiredEquipment, missingEquipment, type SlideshowMatch } from "@/lib/pantryMatch";
 
 const GAP = spacing.md;
 const AUTO_ADVANCE_MS = 5500;
@@ -24,6 +24,12 @@ function usingUpLabel(expiring: PantryItem[], match: SlideshowMatch): string | u
   if (names.length === 0) return undefined;
   if (names.length === 1) return `Uses ${names[0]}, before it turns`;
   return `Uses ${names.join(" and ")}, before they turn`;
+}
+
+/** "Ready to cook" only when ingredients AND equipment are covered; otherwise be honest about what's short. */
+function slideEyebrow(m: SlideshowMatch, owned: EquipmentTag[]): string {
+  if (!m.complete) return "Cook tonight";
+  return hasRequiredEquipment(owned, m.recipe) ? "Ready to cook" : "You have the ingredients";
 }
 
 /**
@@ -76,7 +82,7 @@ export function HeroSlideshow({ matches, ownedEquipment, expiring, onOpen }: Her
             haveCount={m.have.length}
             totalCount={m.recipe.ingredients.length}
             missing={m.missing}
-            eyebrow={m.complete ? "You have it all" : "Cook tonight"}
+            eyebrow={slideEyebrow(m, ownedEquipment)}
             usingUpLabel={usingUpLabel(expiring, m)}
             missingEquipment={missingEquipment(ownedEquipment, m.recipe)}
             onPress={() => onOpen(m.recipe.id)}

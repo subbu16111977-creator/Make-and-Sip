@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView, FlatList, useWindowDimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { colors, spacing, radii, type as typeScale, layout } from "@/theme";
 import { Chip } from "@/components/Chip";
 import { RecipeCard } from "@/components/RecipeCard";
@@ -22,7 +22,15 @@ export default function DiscoverScreen() {
   const { width: screenWidth } = useWindowDimensions();
   const [query, setQuery] = useState("");
   const [selectedTastes, setSelectedTastes] = useState<TasteTag[]>([]);
-  const [selectedCuisine, setSelectedCuisine] = useState<string | null>(null);
+  const params = useLocalSearchParams<{ cuisine?: string }>();
+  const [selectedCuisine, setSelectedCuisine] = useState<string | null>(params.cuisine ?? null);
+
+  // Arriving from a Home cuisine tile (or tapping a different one) sets the filter.
+  const [appliedCuisineParam, setAppliedCuisineParam] = useState(params.cuisine);
+  if (params.cuisine !== appliedCuisineParam) {
+    setAppliedCuisineParam(params.cuisine);
+    if (params.cuisine) setSelectedCuisine(params.cuisine);
+  }
   const [selectedDiets, setSelectedDiets] = useState<DietTag[]>([]);
 
   const cuisines = useMemo(() => Array.from(new Set(recipes.map((r) => r.cuisine))).sort(), []);

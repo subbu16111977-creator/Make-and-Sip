@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getIngredientMatch, getRecipeAvailability, matchRecipe, pickSlideshowMatches } from "./pantryMatch";
+import { getIngredientMatch, getRecipeAvailability, matchRecipe, pickSlideshowMatches, pickReadyToCook, pickAlmostThere, pickQuickRecipes, bestEquipmentUnlock, cuisineSummaries } from "./pantryMatch";
 import type { PantryItem, Recipe, RecipeIngredient } from "@/types";
 import { recipes } from "@/data/recipes";
 import { pantryItems as seedPantry } from "@/data/pantry";
@@ -192,5 +192,42 @@ describe("pickSlideshowMatches", () => {
 
   it("returns nothing when no dish shares any ingredient with the pantry", () => {
     expect(pickSlideshowMatches(have("caviar"), [mk("a", ["tomato"])], 1)).toEqual([]);
+  });
+});
+
+describe("Home section helpers", () => {
+  const mk = (id: string, ids: string[], extra: Partial<Recipe> = {}): Recipe =>
+    ({ id, title: id, cuisine: "X", image: "", timeMinutes: 30, equipment: [], ingredients: ids.map((p) => recipeIngredient({ pantryId: p })), ...extra }) as unknown as Recipe;
+  const have = (...ids: string[]) => ids.map((ingredientId) => pantryItem({ id: ingredientId, ingredientId, name: ingredientId }));
+
+  it("pickReadyToCook needs every required ingredient and all equipment", () => {
+    const pantry = have("a", "b");
+    const recipes = [mk("ok", ["a", "b"]), mk("gear", ["a", "b"], { equipment: ["Oven"] }), mk("short", ["a", "c"])];
+    expect(pickReadyToCook(pantry, recipes, []).map((m) => m.recipe.id)).toEqual(["ok"]);
+    expect(pickReadyToCook(pantry, recipes, ["Oven"]).map((m) => m.recipe.id).sort()).toEqual(["gear", "ok"]);
+  });
+
+  it("pickAlmostThere keeps dishes missing 1-2 required ingredients, fewest missing first", () => {
+    const pantry = have("a");
+    const recipes = [mk("two", ["a", "b", "c"]), mk("one", ["a", "b"]), mk("three", ["a", "b", "c", "d"]), mk("none", ["x", "y"]), mk("done", ["a"])];
+    expect(pickAlmostThere(pantry, recipes).map((m) => m.recipe.id)).toEqual(["one", "two"]);
+  });
+
+  it("pickQuickRecipes only returns short dishes and is stable per seed", () => {
+    const recipes = [mk("q1", [], { timeMinutes: 10 }), mk("q2", [], { timeMinutes: 20 }), mk("slow", [], { timeMinutes: 60 })];
+    const out = pickQuickRecipes(recipes, 5).map((r) => r.id);
+    expect(out.sort()).toEqual(["q1", "q2"]);
+    expect(pickQuickRecipes(recipes, 5).map((r) => r.id)).toEqual(pickQuickRecipes(recipes, 5).map((r) => r.id));
+  });
+
+  it("bestEquipmentUnlock picks the appliance that unlocks the most dishes", () => {
+    const recipes = [mk("a", [], { equipment: ["Air Fryer"] }), mk("b", [], { equipment: ["Air Fryer"] }), mk("c", [], { equipment: ["Grill"] }), mk("d", [], { equipment: ["Oven", "Grill"] })];
+    expect(bestEquipmentUnlock(["Oven"], ["Air Fryer", "Grill", "Oven"], recipes)).toEqual({ tag: "Air Fryer", count: 2 });
+    expect(bestEquipmentUnlock(["Oven", "Air Fryer", "Grill"], ["Air Fryer", "Grill"], recipes)).toBeNull();
+  });
+
+  it("cuisineSummaries counts dishes and picks a photo", () => {
+    const recipes = [mk("a", [], { cuisine: "Thai", image: "" }), mk("b", [], { cuisine: "Thai", image: "img" }), mk("c", [], { cuisine: "Mexican", image: "m" })];
+    expect(cuisineSummaries(recipes)).toEqual([{ cuisine: "Thai", count: 2, image: "img" }, { cuisine: "Mexican", count: 1, image: "m" }]);
   });
 });

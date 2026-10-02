@@ -12,10 +12,12 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import { useLocalSearchParams } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Chip } from "@/components/Chip";
 import { Button } from "@/components/Button";
 import { EmptyState } from "@/components/States";
+import { StarterStaples } from "@/components/StarterStaples";
 import { UnlockCelebration } from "@/components/UnlockCelebration";
 import { colors, spacing, radii, type as typeScale, layout, shadows } from "@/theme";
 import { usePantry, type NewPantryItemInput } from "@/context/PantryContext";
@@ -128,7 +130,15 @@ function EquipmentRow({
 export default function PantryScreen() {
   const { items, addItem, removeItem } = usePantry();
   const { owned, isOwned, toggleEquipment } = useEquipment();
-  const [segment, setSegment] = useState<Segment>("ingredients");
+  const params = useLocalSearchParams<{ segment?: string }>();
+  const [segment, setSegment] = useState<Segment>(params.segment === "equipment" ? "equipment" : "ingredients");
+
+  // A Home link can open this tab straight on Equipment.
+  const [appliedSegmentParam, setAppliedSegmentParam] = useState(params.segment);
+  if (params.segment !== appliedSegmentParam) {
+    setAppliedSegmentParam(params.segment);
+    if (params.segment === "equipment") setSegment("equipment");
+  }
   const [modalOpen, setModalOpen] = useState(false);
   const [celebration, setCelebration] = useState<{ visible: boolean; count: number }>({ visible: false, count: 0 });
 
@@ -221,12 +231,15 @@ export default function PantryScreen() {
 
       {segment === "ingredients" ? (
         items.length === 0 ? (
-          <EmptyState
-            title="Your pantry's empty"
-            body="Add a few ingredients and Home and Discover will start suggesting what to cook with what you have."
-            actionLabel="Add your first ingredient"
-            onPressAction={() => setModalOpen(true)}
-          />
+          <ScrollView keyboardShouldPersistTaps="handled">
+            <EmptyState
+              title="Your pantry's empty"
+              body="Add a few ingredients and Home and Discover will start suggesting what to cook with what you have."
+              actionLabel="Add your first ingredient"
+              onPressAction={() => setModalOpen(true)}
+            />
+            <StarterStaples />
+          </ScrollView>
         ) : (
           <SectionList
             sections={sections}
@@ -248,8 +261,8 @@ export default function PantryScreen() {
           contentContainerStyle={styles.listContent}
           ListHeaderComponent={
             <Text style={styles.equipmentIntro}>
-              Recipes that need gear you don&apos;t have are hidden from Home and Discover until you check it off
-              here — add one and see what opens up.
+              Tick what you own. Dishes that need gear you don&apos;t have stay in Discover marked &quot;Needs …&quot;, and
+              Home leaves them out of its picks until you check it off here.
             </Text>
           }
           renderItem={({ item }) => (

@@ -10,7 +10,7 @@ import type { EquipmentTag, PantryItem, ShoppingItem } from "@/types";
  * combine items; they are not a full schema.
  */
 
-const EQUIPMENT_TAGS: readonly EquipmentTag[] = [
+export const EQUIPMENT_TAGS: readonly EquipmentTag[] = [
   "Oven",
   "Microwave",
   "Blender",
