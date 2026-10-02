@@ -9,7 +9,7 @@ import { SearchIcon } from "@/components/icons";
 import { usePantry } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { recipes } from "@/data/recipes";
-import { hasRequiredEquipment, rankRecipesForDiscover } from "@/lib/pantryMatch";
+import { missingEquipment, rankRecipesForDiscover } from "@/lib/pantryMatch";
 import type { DietTag, TasteTag } from "@/types";
 
 const TASTES: TasteTag[] = ["Spicy", "Comforting", "Fresh & Light", "Rich & Indulgent", "Tangy", "Smoky", "Sweet", "Herby"];
@@ -34,16 +34,11 @@ export default function DiscoverScreen() {
     setSelectedDiets((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));
   }
 
-  // Same hard equipment filter as Home: a dish needing gear you haven't
-  // checked off in Pantry > Equipment doesn't appear here at all.
-  const equipmentReady = useMemo(
-    () => recipes.filter((r) => hasRequiredEquipment(ownedEquipment, r)),
-    [ownedEquipment]
-  );
-
+  // Every dish is listed. Gear the user hasn't ticked in Pantry > Equipment
+  // is shown on the card as "Needs …" and ranks the dish lower, never hides it.
   const ranked = useMemo(
-    () => rankRecipesForDiscover(pantryItems, equipmentReady, selectedTastes),
-    [pantryItems, equipmentReady, selectedTastes]
+    () => rankRecipesForDiscover(pantryItems, recipes, selectedTastes, ownedEquipment),
+    [pantryItems, selectedTastes, ownedEquipment]
   );
 
   const filtered = useMemo(() => {
@@ -73,7 +68,7 @@ export default function DiscoverScreen() {
         ListHeaderComponent={
           <View>
             <View style={styles.header}>
-              <Text style={styles.eyebrow}>{equipmentReady.length} {equipmentReady.length === 1 ? "dish" : "dishes"}</Text>
+              <Text style={styles.eyebrow}>{recipes.length} {recipes.length === 1 ? "dish" : "dishes"}</Text>
               <Text style={styles.headline}>Discover</Text>
               <Text style={styles.subhead}>Ranked by what&apos;s in your pantry, filtered by what you&apos;re craving.</Text>
             </View>
@@ -130,6 +125,7 @@ export default function DiscoverScreen() {
             haveCount={item.have.length}
             totalCount={item.recipe.ingredients.length}
             missing={item.missing}
+            missingEquipment={missingEquipment(ownedEquipment, item.recipe)}
             width={cardWidth}
             onPress={() => router.push({ pathname: "/recipe/[id]", params: { id: item.recipe.id } })}
           />

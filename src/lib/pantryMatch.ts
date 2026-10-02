@@ -383,12 +383,14 @@ export function pickHeroMatch(
  * hits. This is the honest, rule-based version of "matches your taste"
  * — no history, no ML, just pantry overlap plus preferences the user
  * set themselves. Weighted 65/35 so a dish you can actually make still
- * outranks a taste-perfect one you can't.
+ * outranks a taste-perfect one you can't. When `ownedEquipment` is given,
+ * dishes needing gear the user lacks are ranked lower, never hidden.
  */
 export function rankRecipesForDiscover(
   pantry: PantryItem[],
   recipes: Recipe[],
-  selectedTastes: TasteTag[] = []
+  selectedTastes: TasteTag[] = [],
+  ownedEquipment?: EquipmentTag[]
 ): (RecipeMatch & { tasteScore: number; score: number })[] {
   return recipes
     .map((recipe) => {
@@ -397,7 +399,9 @@ export function rankRecipesForDiscover(
         selectedTastes.length === 0
           ? 1
           : recipe.tasteTags.filter((t) => selectedTastes.includes(t)).length / selectedTastes.length;
-      const score = match.ratio * 0.65 + tasteScore * 0.35;
+      // Dishes needing gear the user lacks stay visible but sink below ones they can cook now.
+      const gearPenalty = ownedEquipment && !hasRequiredEquipment(ownedEquipment, recipe) ? 0.15 : 0;
+      const score = match.ratio * 0.65 + tasteScore * 0.35 - gearPenalty;
       return { ...match, tasteScore, score };
     })
     .sort((a, b) => b.score - a.score || a.recipe.timeMinutes - b.recipe.timeMinutes);

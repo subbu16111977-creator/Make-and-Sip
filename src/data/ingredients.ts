@@ -1348,7 +1348,7 @@ export const ingredientRegistry: IngredientEntity[] = [
     baseIngredient: "mini_marshmallows",
     displayName: "Mini Marshmallows",
     category: "Pantry Staples",
-    synonyms: ["mini marshmallows", "miniature marshmallows", "marshmallows"],
+    synonyms: ["mini marshmallows", "miniature marshmallows"],
   },
   {
     id: "beef-broth",

@@ -23,6 +23,22 @@ describe("ingredient registry integrity", () => {
     expect([...unresolved]).toEqual([]);
   });
 
+  it("no two registry entries claim the same synonym, and ids are unique", () => {
+    const owner = new Map<string, string>();
+    const clashes: string[] = [];
+    for (const entity of ingredientRegistry) {
+      for (const raw of entity.synonyms) {
+        const key = raw.trim().toLowerCase();
+        const prev = owner.get(key);
+        if (prev && prev !== entity.id) clashes.push(`"${key}" -> ${prev} / ${entity.id}`);
+        owner.set(key, entity.id);
+      }
+    }
+    expect(clashes).toEqual([]);
+    const ids = ingredientRegistry.map((e) => e.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
   it("every seed pantry item's ingredientId resolves to a registry entry", () => {
     const unresolved = pantryItems.filter((p) => !resolveIngredientById(p.ingredientId)).map((p) => p.id);
     expect(unresolved).toEqual([]);

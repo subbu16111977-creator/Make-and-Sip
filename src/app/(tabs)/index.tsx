@@ -35,8 +35,9 @@ export default function HomeScreen() {
     return () => clearTimeout(t);
   }, []);
 
-  // Recipes needing gear that isn't checked off in Pantry > Equipment don't
-  // surface as recommendations at all — a hard filter, not a soft badge.
+  // Home only recommends what you can cook now, so dishes needing gear you
+  // haven't ticked are left out of these rails. They all remain in Discover,
+  // flagged with the equipment they need.
   const equipmentReady = useMemo(
     () => recipes.filter((r) => hasRequiredEquipment(ownedEquipment, r)),
     [ownedEquipment]

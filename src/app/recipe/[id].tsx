@@ -206,7 +206,7 @@ export default function RecipeDetailScreen() {
                       {owned && <CheckIcon size={10} color={colors.cream} strokeWidth={2.8} />}
                     </View>
                     <Text style={styles.ingredientLabel}>{tag}</Text>
-                    {!owned && <Text style={styles.equipmentMissingTag}>not checked off in Pantry</Text>}
+                    {!owned && <Text style={styles.equipmentMissingTag}>missing — you&apos;ll need to get this</Text>}
                   </View>
                 );
               })}

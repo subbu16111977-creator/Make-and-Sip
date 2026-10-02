@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors, radii, spacing, type as typeScale, shadows } from "@/theme";
-import type { Recipe, RecipeIngredient } from "@/types";
+import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, SavedIcon, ShoppingIcon, CheckIcon } from "./icons";
 import { MatchBadge } from "./MatchBadge";
 import { RecipeImage } from "./RecipeImage";
@@ -14,12 +14,14 @@ interface RecipeCardProps {
   totalCount: number;
   /** Ingredients still missing from the pantry — shows an "add to shopping" action when non-empty. */
   missing?: RecipeIngredient[];
+  /** Appliances the recipe needs that the user hasn't ticked in Pantry > Equipment. */
+  missingEquipment?: EquipmentTag[];
   onPress?: () => void;
   width?: number;
 }
 
 /** Portrait card used in the "You have enough for…" rail and Discover's grid. */
-export function RecipeCard({ recipe, haveCount, totalCount, missing = [], onPress, width = 216 }: RecipeCardProps) {
+export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missingEquipment = [], onPress, width = 216 }: RecipeCardProps) {
   const { isSaved, toggleSaved } = useSaved();
   const { addMissingFromRecipe } = useShopping();
   const saved = isSaved(recipe.id);
@@ -75,6 +77,11 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], onPres
         <View style={styles.metaDot} />
         <Text style={styles.metaText}>{recipe.difficulty}</Text>
       </View>
+      {missingEquipment.length > 0 && (
+        <Text style={styles.needsText} numberOfLines={2}>
+          Needs {missingEquipment.map((t) => t.toLowerCase()).join(", ")}
+        </Text>
+      )}
     </Pressable>
   );
 }
@@ -124,6 +131,10 @@ const styles = StyleSheet.create({
   metaText: {
     ...typeScale.caption,
     color: colors.espressoMuted,
+  },
+  needsText: {
+    ...typeScale.caption,
+    color: colors.burntOrange,
   },
   metaDot: {
     width: 2.5,
