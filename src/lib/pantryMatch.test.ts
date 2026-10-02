@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { matchesView, sortDiscover } from "./discoverView";
 import { getIngredientMatch, getRecipeAvailability, matchRecipe, pickSlideshowMatches, pickReadyToCook, pickAlmostThere, pickQuickRecipes, bestEquipmentUnlock, cuisineSummaries } from "./pantryMatch";
 import type { PantryItem, Recipe, RecipeIngredient } from "@/types";
 import { recipes } from "@/data/recipes";
@@ -207,10 +208,18 @@ describe("Home section helpers", () => {
     expect(pickReadyToCook(pantry, recipes, ["Oven"]).map((m) => m.recipe.id).sort()).toEqual(["gear", "ok"]);
   });
 
-  it("pickAlmostThere keeps dishes missing 1-2 required ingredients, fewest missing first", () => {
+  it("pickAlmostThere needs >=1 ingredient on hand, something still missing, and all equipment owned; closest first", () => {
     const pantry = have("a");
-    const recipes = [mk("two", ["a", "b", "c"]), mk("one", ["a", "b"]), mk("three", ["a", "b", "c", "d"]), mk("none", ["x", "y"]), mk("done", ["a"])];
-    expect(pickAlmostThere(pantry, recipes).map((m) => m.recipe.id)).toEqual(["one", "two"]);
+    const recipes = [
+      mk("two", ["a", "b", "c"]),
+      mk("one", ["a", "b"]),
+      mk("many", ["a", "b", "c", "d", "e"]),
+      mk("none", ["x", "y"]),
+      mk("done", ["a"]),
+      mk("gear", ["a", "b"], { equipment: ["Oven"] }),
+    ];
+    expect(pickAlmostThere(pantry, recipes, []).map((m) => m.recipe.id)).toEqual(["one", "two", "many"]);
+    expect(pickAlmostThere(pantry, recipes, ["Oven"]).map((m) => m.recipe.id)).toContain("gear");
   });
 
   it("pickQuickRecipes only returns short dishes and is stable per seed", () => {
@@ -229,5 +238,40 @@ describe("Home section helpers", () => {
   it("cuisineSummaries counts dishes and picks a photo", () => {
     const recipes = [mk("a", [], { cuisine: "Thai", image: "" }), mk("b", [], { cuisine: "Thai", image: "img" }), mk("c", [], { cuisine: "Mexican", image: "m" })];
     expect(cuisineSummaries(recipes)).toEqual([{ cuisine: "Thai", count: 2, image: "img" }, { cuisine: "Mexican", count: 1, image: "m" }]);
+  });
+});
+
+describe("Discover views and sorting", () => {
+  const mk = (id: string, ids: string[], extra: Partial<Recipe> = {}): Recipe =>
+    ({ id, title: id, cuisine: "X", image: "", timeMinutes: 30, difficulty: "Easy", equipment: [], ingredients: ids.map((p) => recipeIngredient({ pantryId: p })), ...extra }) as unknown as Recipe;
+  const have = (...ids: string[]) => ids.map((ingredientId) => pantryItem({ id: ingredientId, ingredientId, name: ingredientId }));
+
+  it("matchesView agrees with the Home sections", () => {
+    const pantry = have("a", "b");
+    const can = matchRecipe(pantry, mk("can", ["a", "b"]));
+    const almost = matchRecipe(pantry, mk("almost", ["a", "z"]));
+    const gear = matchRecipe(pantry, mk("gear", ["a", "b"], { equipment: ["Oven"] }));
+    const quick = matchRecipe(pantry, mk("q", ["z"], { timeMinutes: 10 }));
+    expect(matchesView(can, "can-make", [])).toBe(true);
+    expect(matchesView(almost, "can-make", [])).toBe(false);
+    expect(matchesView(almost, "almost-there", [])).toBe(true);
+    expect(matchesView(gear, "can-make", [])).toBe(false);
+    expect(matchesView(gear, "can-make", ["Oven"])).toBe(true);
+    expect(matchesView(quick, "quick", [])).toBe(true);
+    expect(matchesView(can, "all", [])).toBe(true);
+  });
+
+  it("sortDiscover orders by the chosen key and keeps ties stable", () => {
+    const pantry = have("a");
+    const ms = [
+      matchRecipe(pantry, mk("b-slow", ["a"], { timeMinutes: 60, difficulty: "Advanced" })),
+      matchRecipe(pantry, mk("a-fast", ["a", "x"], { timeMinutes: 10, difficulty: "Easy" })),
+      matchRecipe(pantry, mk("c-mid", ["a", "x", "y"], { timeMinutes: 30, difficulty: "Medium" })),
+    ];
+    expect(sortDiscover(ms, "best").map((m) => m.recipe.id)).toEqual(["b-slow", "a-fast", "c-mid"]);
+    expect(sortDiscover(ms, "quickest").map((m) => m.recipe.id)).toEqual(["a-fast", "c-mid", "b-slow"]);
+    expect(sortDiscover(ms, "easiest").map((m) => m.recipe.id)).toEqual(["a-fast", "c-mid", "b-slow"]);
+    expect(sortDiscover(ms, "fewest-to-buy").map((m) => m.recipe.id)).toEqual(["b-slow", "a-fast", "c-mid"]);
+    expect(sortDiscover(ms, "az").map((m) => m.recipe.id)).toEqual(["a-fast", "b-slow", "c-mid"]);
   });
 });

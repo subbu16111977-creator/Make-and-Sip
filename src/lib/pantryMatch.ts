@@ -460,44 +460,54 @@ export function pickSlideshowMatches(
 
 const requiredMissing = (m: RecipeMatch) => m.missing.filter((i) => !i.optional);
 
-/** Dishes the user can make right now: nothing required left to buy, and all needed gear owned. */
+/** Dishes ready in this many minutes or fewer count as "quick". */
+export const QUICK_MINUTES = 20;
+
+/** Every required ingredient is on hand, at least one ingredient is on hand, and every needed appliance is owned. */
+export function isCanMake(m: RecipeMatch, ownedEquipment: EquipmentTag[]): boolean {
+  return m.have.length > 0 && requiredMissing(m).length === 0 && hasRequiredEquipment(ownedEquipment, m.recipe);
+}
+
+/** At least one ingredient is on hand, something required is still missing, and every needed appliance is owned. */
+export function isAlmostThere(m: RecipeMatch, ownedEquipment: EquipmentTag[]): boolean {
+  return m.have.length > 0 && requiredMissing(m).length > 0 && hasRequiredEquipment(ownedEquipment, m.recipe);
+}
+
+/** Quick to make, and cookable with the appliances the user owns. */
+export function isQuickRecipe(recipe: Recipe, ownedEquipment: EquipmentTag[]): boolean {
+  return recipe.timeMinutes <= QUICK_MINUTES && hasRequiredEquipment(ownedEquipment, recipe);
+}
+
+/** Everything the user can make right now (all ingredients and all appliances), quickest first. */
 export function pickReadyToCook(
   pantry: PantryItem[],
   recipes: Recipe[],
   ownedEquipment: EquipmentTag[]
 ): RecipeMatch[] {
   return recipes
-    .filter((r) => hasRequiredEquipment(ownedEquipment, r))
     .map((r) => matchRecipe(pantry, r))
-    .filter((m) => m.have.length > 0 && requiredMissing(m).length === 0)
+    .filter((m) => isCanMake(m, ownedEquipment))
     .sort((a, b) => a.recipe.timeMinutes - b.recipe.timeMinutes);
 }
 
-/** Dishes where the user already has at least one ingredient and only 1–`maxMissing` required ones are left to buy. */
-export function pickAlmostThere(
-  pantry: PantryItem[],
-  recipes: Recipe[],
-  maxMissing = 2,
-  limit = 10
-): RecipeMatch[] {
+/**
+ * Dishes the user has at least one ingredient for and all the appliances
+ * for, but is still short of something. Closest to done first.
+ */
+export function pickAlmostThere(pantry: PantryItem[], recipes: Recipe[], ownedEquipment: EquipmentTag[]): RecipeMatch[] {
   return recipes
     .map((r) => matchRecipe(pantry, r))
-    .filter((m) => m.have.length > 0)
-    .filter((m) => {
-      const n = requiredMissing(m).length;
-      return n >= 1 && n <= maxMissing;
-    })
+    .filter((m) => isAlmostThere(m, ownedEquipment))
     .sort(
       (a, b) =>
         requiredMissing(a).length - requiredMissing(b).length ||
         b.ratio - a.ratio ||
         a.recipe.timeMinutes - b.recipe.timeMinutes
-    )
-    .slice(0, limit);
+    );
 }
 
 /** Dishes ready in `maxMinutes` or less, in a random order that is stable for a given seed. */
-export function pickQuickRecipes(recipes: Recipe[], seed: number, maxMinutes = 20, limit = 10): Recipe[] {
+export function pickQuickRecipes(recipes: Recipe[], seed: number, maxMinutes = QUICK_MINUTES, limit = 10): Recipe[] {
   return recipes
     .filter((r) => r.timeMinutes <= maxMinutes)
     .sort((a, b) => seededUnit(seed, `quick:${a.id}`) - seededUnit(seed, `quick:${b.id}`))

@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { SectionHeader } from "@/components/SectionHeader";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
-import { RecipeCard } from "@/components/RecipeCard";
+import { RecipeRail } from "@/components/RecipeRail";
 import { ExpiringIngredientCard } from "@/components/ExpiringIngredientCard";
 import { HomeLoadingState, EmptyState } from "@/components/States";
 import { StarterStaples } from "@/components/StarterStaples";
@@ -14,20 +14,19 @@ import { recipes } from "@/data/recipes";
 import { usePantry } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { useShopping } from "@/context/ShoppingContext";
-import { resolveIngredientById } from "@/lib/ingredientNormalize";
 import { EQUIPMENT_TAGS } from "@/lib/persistedShapes";
 import {
   bestEquipmentUnlock,
   cuisineSummaries,
   getExpiringSoon,
-  hasRequiredEquipment,
+  isQuickRecipe,
   matchRecipe,
-  missingEquipment,
   pickAlmostThere,
   pickQuickRecipes,
   pickReadyToCook,
   pickSlideshowMatches,
 } from "@/lib/pantryMatch";
+import type { DiscoverView } from "@/lib/discoverView";
 import { ChevronRightIcon } from "@/components/icons";
 
 /** New random order every time the app is opened (module load), stable while the app stays open. */
@@ -61,21 +60,20 @@ export default function HomeScreen() {
 
   // The rails below only recommend what is cookable with the gear you own.
   // Every dish, including ones needing gear you lack, remains in Discover.
-  const readyToCook = useMemo(
-    () => pickReadyToCook(pantryItems, recipes, ownedEquipment).slice(0, 8),
-    [pantryItems, ownedEquipment]
-  );
-  const almostThere = useMemo(() => pickAlmostThere(pantryItems, recipes, 2, 10), [pantryItems]);
+  const canMake = useMemo(() => pickReadyToCook(pantryItems, recipes, ownedEquipment), [pantryItems, ownedEquipment]);
+  const almostThere = useMemo(() => pickAlmostThere(pantryItems, recipes, ownedEquipment), [pantryItems, ownedEquipment]);
   const quick = useMemo(
     () =>
       pickQuickRecipes(
-        recipes.filter((r) => hasRequiredEquipment(ownedEquipment, r)),
-        SESSION_SEED,
-        20,
-        10
+        recipes.filter((r) => isQuickRecipe(r, ownedEquipment)),
+        SESSION_SEED
       ).map((r) => matchRecipe(pantryItems, r)),
     [pantryItems, ownedEquipment]
   );
+
+  const openRecipe = (id: string) => router.push({ pathname: "/recipe/[id]", params: { id } });
+  // `t` changes on every tap so Discover re-applies the view even if it was already open on it.
+  const seeAll = (view: DiscoverView) => router.push({ pathname: "/discover", params: { view, t: String(Date.now()) } });
   const unlock = useMemo(() => bestEquipmentUnlock(ownedEquipment, [...EQUIPMENT_TAGS], recipes), [ownedEquipment]);
   const cuisines = useMemo(() => cuisineSummaries(recipes), []);
   const toBuy = useMemo(() => shoppingItems.filter((i) => !i.checked).length, [shoppingItems]);
@@ -149,26 +147,15 @@ export default function HomeScreen() {
         </View>
       )}
 
-      {readyToCook.length > 0 && (
+      {canMake.length > 0 && (
         <View style={styles.section}>
           <SectionHeader
             eyebrow="Ready when you are"
-            title="You have enough for…"
-            subtitle="Every ingredient and every tool, nothing left to buy."
-            onPressAction={() => router.push("/discover")}
+            title="What you can make"
+            subtitle={`${canMake.length} ${canMake.length === 1 ? "dish" : "dishes"} with every ingredient and every tool you need.`}
+            onPressAction={() => seeAll("can-make")}
           />
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.railContent}>
-            {readyToCook.map((match) => (
-              <RecipeCard
-                key={match.recipe.id}
-                recipe={match.recipe}
-                haveCount={match.have.length}
-                totalCount={match.recipe.ingredients.length}
-                missing={match.missing}
-                onPress={() => router.push({ pathname: "/recipe/[id]", params: { id: match.recipe.id } })}
-              />
-            ))}
-          </ScrollView>
+          <RecipeRail matches={canMake} ownedEquipment={ownedEquipment} onOpen={openRecipe} />
         </View>
       )}
 
@@ -177,28 +164,10 @@ export default function HomeScreen() {
           <SectionHeader
             eyebrow="Just a few more"
             title="Almost there"
-            subtitle="One or two ingredients away — tap the bag to add them to Shopping."
-            onPressAction={() => router.push("/discover")}
+            subtitle="You have an ingredient and all the tools. Tap the bag to add what's missing to Shopping."
+            onPressAction={() => seeAll("almost-there")}
           />
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.railContent}>
-            {almostThere.map((match) => {
-              const names = match.missing
-                .filter((i) => !i.optional)
-                .map((i) => resolveIngredientById(i.pantryId)?.displayName ?? i.label);
-              return (
-                <RecipeCard
-                  key={match.recipe.id}
-                  recipe={match.recipe}
-                  haveCount={match.have.length}
-                  totalCount={match.recipe.ingredients.length}
-                  missing={match.missing}
-                  missingEquipment={missingEquipment(ownedEquipment, match.recipe)}
-                  note={`Missing ${names.join(" + ")}`}
-                  onPress={() => router.push({ pathname: "/recipe/[id]", params: { id: match.recipe.id } })}
-                />
-              );
-            })}
-          </ScrollView>
+          <RecipeRail matches={almostThere} ownedEquipment={ownedEquipment} showMissingNote onOpen={openRecipe} />
         </View>
       )}
 
@@ -227,20 +196,9 @@ export default function HomeScreen() {
             eyebrow="In a hurry"
             title="Quick and easy"
             subtitle="Ready in 20 minutes or less."
-            onPressAction={() => router.push("/discover")}
+            onPressAction={() => seeAll("quick")}
           />
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.railContent}>
-            {quick.map((match) => (
-              <RecipeCard
-                key={match.recipe.id}
-                recipe={match.recipe}
-                haveCount={match.have.length}
-                totalCount={match.recipe.ingredients.length}
-                missing={match.missing}
-                onPress={() => router.push({ pathname: "/recipe/[id]", params: { id: match.recipe.id } })}
-              />
-            ))}
-          </ScrollView>
+          <RecipeRail matches={quick} ownedEquipment={ownedEquipment} onOpen={openRecipe} />
         </View>
       )}
 
