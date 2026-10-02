@@ -7,7 +7,7 @@ export const SORT_OPTIONS: { key: DiscoverSort; label: string }[] = [
   { key: "best", label: "Best match" },
   { key: "quickest", label: "Quickest" },
   { key: "easiest", label: "Easiest" },
-  { key: "fewest-to-buy", label: "Fewest missing" },
+  { key: "fewest-to-buy", label: "Fewest ingredients to buy" },
   { key: "az", label: "A–Z" },
 ];
 
