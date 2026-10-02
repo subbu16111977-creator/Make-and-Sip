@@ -55,8 +55,7 @@ on iOS, Android and the web.
   they're wanted back once a photo exists. Known imperfect matches on the
   older dishes: `dal-makhani` (lighter than the traditional near-black),
   `rasam` (thicker than classic).
-- `src/data/pantry.ts` — 46 starting pantry ingredients across nine
-  categories.
+- `src/data/pantry.ts` — a sample pantry of 46 ingredients, used by tests only. A new user starts with an empty pantry and no equipment ticked.
 - `src/data/ingredients.ts` — the shared ingredient dictionary. Recipes,
   Pantry and Shopping all resolve to it, which is how "chicken" in your
   pantry counts toward a recipe that needs chicken thighs.
@@ -66,14 +65,10 @@ on iOS, Android and the web.
 **Saved on the device:** Pantry, Shopping, Saved and Equipment are stored
 locally with AsyncStorage (plain, unencrypted key-value storage; not for
 secrets) under the keys `mise.pantry.v1`, `mise.shopping.v1`,
-`mise.saved.v1` and `mise.equipment.v1`, and come back after a restart. The
-starting pantry is only used the first time, or if stored data is missing or
-unreadable. There is no cloud sync or account yet, so data stays on that one
+`mise.saved.v1` and `mise.equipment.v1`, and come back after a restart. A new
+user starts with an empty pantry and no equipment, and adds them manually. There is no cloud sync or account yet, so data stays on that one
 device/browser. The code is in `src/lib/usePersistedState.ts`,
 `src/lib/storage.ts` and `src/lib/persistedShapes.ts`.
-
-Note that the starting pantry's expiry dates are fixed when it is first saved,
-so those demo items will show as expiring or expired as real days pass.
 
 ## Running it
 

@@ -12,14 +12,8 @@ interface EquipmentContextValue {
 
 const EquipmentContext = createContext<EquipmentContextValue | undefined>(undefined);
 
-/**
- * Common basics start checked — most kitchens have an oven, a
- * microwave, a blender — while specialty gear (air fryer, stand
- * mixer, pressure cooker...) starts unchecked. That split is what
- * gives the "add equipment, unlock dishes" moment something real to
- * do from day one, instead of everything already being available.
- */
-const SEED_OWNED: EquipmentTag[] = ["Oven", "Microwave", "Blender"];
+/** A new user owns no equipment until they tick it in Pantry > Equipment. */
+const SEED_OWNED: EquipmentTag[] = [];
 
 /**
  * Live "what's in my kitchen" state for appliances, separate from

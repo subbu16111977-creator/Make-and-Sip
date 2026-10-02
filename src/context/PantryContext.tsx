@@ -1,6 +1,5 @@
 import React, { createContext, useCallback, useContext, useMemo } from "react";
 import type { PantryCategory, PantryItem, StorageLocation, Unit } from "@/types";
-import { pantryItems as seedPantryItems } from "@/data/pantry";
 import { AppBlank } from "@/components/AppBlank";
 import { isPantryItems } from "@/lib/persistedShapes";
 import { usePersistedState } from "@/lib/usePersistedState";
@@ -52,11 +51,11 @@ const PantryContext = createContext<PantryContextValue | undefined>(undefined);
  * form, and Shopping's purchase flow) into it.
  *
  * It is saved on the device (see `usePersistedState`), so it survives an
- * app restart. The seed pantry is only used the very first time, or if
- * what's stored can't be read.
+ * app restart. A new user starts with an empty pantry and adds items
+ * themselves; it is also empty if what's stored can't be read.
  */
 export function PantryProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems, hydrated] = usePersistedState<PantryItem[]>("mise.pantry.v1", seedPantryItems, isPantryItems);
+  const [items, setItems, hydrated] = usePersistedState<PantryItem[]>("mise.pantry.v1", [], isPantryItems);
 
   const addItem = useCallback((input: NewPantryItemInput) => {
     setItems((prev) => addPantryItemAction(prev, input).items);
