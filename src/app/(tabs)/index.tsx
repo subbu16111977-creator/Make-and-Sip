@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { SectionHeader } from "@/components/SectionHeader";
-import { RecipeHero } from "@/components/RecipeHero";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { RecipeCard } from "@/components/RecipeCard";
 import { ExpiringIngredientCard } from "@/components/ExpiringIngredientCard";
 import { HomeLoadingState, EmptyState } from "@/components/States";
@@ -11,8 +11,11 @@ import { colors, spacing, type as typeScale, layout } from "@/theme";
 import { recipes } from "@/data/recipes";
 import { usePantry } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
-import { getExpiringSoon, hasRequiredEquipment, pickHeroMatch, rankRecipesByPantryMatch } from "@/lib/pantryMatch";
+import { getExpiringSoon, hasRequiredEquipment, pickSlideshowMatches, rankRecipesByPantryMatch } from "@/lib/pantryMatch";
 import { ChevronRightIcon } from "@/components/icons";
+
+/** New random order every time the app is opened (module load), stable while the app stays open. */
+const SESSION_SEED = Math.floor(Math.random() * 2 ** 31);
 
 function useGreeting() {
   return useMemo(() => {
@@ -44,21 +47,11 @@ export default function HomeScreen() {
   );
 
   const expiringSoon = useMemo(() => getExpiringSoon(pantryItems, 4), [pantryItems]);
-  const heroMatch = useMemo(() => pickHeroMatch(pantryItems, equipmentReady, 0.6), [pantryItems, equipmentReady]);
-  const ranked = useMemo(
-    () => rankRecipesByPantryMatch(pantryItems, equipmentReady).filter((m) => m.recipe.id !== heroMatch.recipe.id),
-    [pantryItems, equipmentReady, heroMatch.recipe.id]
-  );
+  const slideshow = useMemo(() => pickSlideshowMatches(pantryItems, recipes, SESSION_SEED), [pantryItems]);
+  const ranked = useMemo(() => rankRecipesByPantryMatch(pantryItems, equipmentReady), [pantryItems, equipmentReady]);
   const readyToCook = useMemo(() => ranked.filter((m) => m.ratio >= 0.75).slice(0, 8), [ranked]);
 
   const categoryCount = useMemo(() => new Set(pantryItems.map((i) => i.category)).size, [pantryItems]);
-
-  const usingUpLabel = useMemo(() => {
-    const names = heroMatch.expiringUsed.slice(0, 2).map((i) => i.name.toLowerCase());
-    if (names.length === 0) return undefined;
-    if (names.length === 1) return `Uses ${names[0]}, before it turns`;
-    return `Uses ${names.join(" and ")}, before they turn`;
-  }, [heroMatch.expiringUsed]);
 
   if (loading) {
     return (
@@ -94,14 +87,19 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.heroSection}>
-        <RecipeHero
-          recipe={heroMatch.recipe}
-          haveCount={heroMatch.have.length}
-          totalCount={heroMatch.recipe.ingredients.length}
-          missing={heroMatch.missing}
-          usingUpLabel={usingUpLabel}
-          onPress={() => router.push({ pathname: "/recipe/[id]", params: { id: heroMatch.recipe.id } })}
-        />
+        {slideshow.length > 0 ? (
+          <HeroSlideshow
+            matches={slideshow}
+            ownedEquipment={ownedEquipment}
+            expiring={expiringSoon}
+            onOpen={(id) => router.push({ pathname: "/recipe/[id]", params: { id } })}
+          />
+        ) : (
+          <Pressable style={styles.noMatchCard} onPress={() => router.push("/discover")}>
+            <Text style={styles.noMatchTitle}>Nothing in the app uses your ingredients yet</Text>
+            <Text style={styles.noMatchBody}>Add a few staples to your pantry, or browse every dish in Discover.</Text>
+          </Pressable>
+        )}
       </View>
 
       {expiringSoon.length > 0 && (
@@ -192,6 +190,23 @@ const styles = StyleSheet.create({
   },
   heroSection: {
     marginBottom: layout.sectionGap,
+  },
+  noMatchCard: {
+    marginHorizontal: layout.screenPadding,
+    backgroundColor: colors.paper,
+    borderRadius: 16,
+    padding: spacing.xl,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.hairline,
+    gap: 4,
+  },
+  noMatchTitle: {
+    ...typeScale.titleSmall,
+    color: colors.espresso,
+  },
+  noMatchBody: {
+    ...typeScale.bodySmall,
+    color: colors.espressoMuted,
   },
   section: {
     marginBottom: layout.sectionGap,

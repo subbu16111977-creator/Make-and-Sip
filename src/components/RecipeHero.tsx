@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, useWindowDimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors, radii, spacing, type as typeScale, layout, shadows } from "@/theme";
-import type { Recipe, RecipeIngredient } from "@/types";
+import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, LeafIcon, SavedIcon, ShoppingIcon, CheckIcon } from "./icons";
 import { MatchBadge } from "./MatchBadge";
 import { RecipeImage } from "./RecipeImage";
@@ -15,7 +15,17 @@ interface RecipeHeroProps {
   totalCount: number;
   missing?: RecipeIngredient[];
   usingUpLabel?: string;
+  /** Label on the small chip at the top of the card. Defaults to "Cook tonight". */
+  eyebrow?: string;
+  /** Appliances the recipe needs that the user hasn't ticked in Pantry > Equipment. */
+  missingEquipment?: EquipmentTag[];
   onPress?: () => void;
+}
+
+/** Width of a hero card — shared with the slideshow so slides page exactly one card at a time. */
+export function useHeroWidth(): number {
+  const { width } = useWindowDimensions();
+  return Math.min(width - layout.screenPadding * 2, layout.maxContentWidth);
 }
 
 /**
@@ -23,9 +33,17 @@ interface RecipeHeroProps {
  * with the recipe title set in serif over a gradient, the way a
  * cookbook opens a chapter.
  */
-export function RecipeHero({ recipe, haveCount, totalCount, missing = [], usingUpLabel, onPress }: RecipeHeroProps) {
-  const { width } = useWindowDimensions();
-  const cardWidth = Math.min(width - layout.screenPadding * 2, layout.maxContentWidth);
+export function RecipeHero({
+  recipe,
+  haveCount,
+  totalCount,
+  missing = [],
+  usingUpLabel,
+  eyebrow = "Cook tonight",
+  missingEquipment = [],
+  onPress,
+}: RecipeHeroProps) {
+  const cardWidth = useHeroWidth();
   const height = Math.round(cardWidth * 1.15);
 
   const { isSaved, toggleSaved } = useSaved();
@@ -59,7 +77,7 @@ export function RecipeHero({ recipe, haveCount, totalCount, missing = [], usingU
 
         <View style={styles.topRow}>
           <View style={styles.eyebrowChip}>
-            <Text style={styles.eyebrowChipText}>Cook tonight</Text>
+            <Text style={styles.eyebrowChipText}>{eyebrow}</Text>
           </View>
           <View style={styles.topRowActions}>
             {missing.length > 0 && (
@@ -103,6 +121,9 @@ export function RecipeHero({ recipe, haveCount, totalCount, missing = [], usingU
 
           <View style={styles.badgeRow}>
             <MatchBadge haveCount={haveCount} totalCount={totalCount} tone="dark" />
+            {missingEquipment.length > 0 && (
+              <Text style={styles.needsText}>Needs {missingEquipment.map((t) => t.toLowerCase()).join(", ")}</Text>
+            )}
           </View>
         </View>
       </Pressable>
@@ -210,5 +231,14 @@ const styles = StyleSheet.create({
   },
   badgeRow: {
     marginTop: 6,
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
+    gap: spacing.sm,
+  },
+  needsText: {
+    ...typeScale.meta,
+    color: colors.white,
+    opacity: 0.92,
   },
 });

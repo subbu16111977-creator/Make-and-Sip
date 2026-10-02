@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getIngredientMatch, getRecipeAvailability, matchRecipe } from "./pantryMatch";
+import { getIngredientMatch, getRecipeAvailability, matchRecipe, pickSlideshowMatches } from "./pantryMatch";
 import type { PantryItem, Recipe, RecipeIngredient } from "@/types";
 import { recipes } from "@/data/recipes";
 import { pantryItems as seedPantry } from "@/data/pantry";
@@ -137,5 +137,60 @@ describe("getRecipeAvailability + matchRecipe against the real 24-recipe library
     const availability = getRecipeAvailability(recipe, seedPantry);
     expect(match.have.length).toBe(availability.matchedCount);
     expect(match.have.length + match.missing.length).toBe(recipe.ingredients.length);
+  });
+});
+
+describe("pickSlideshowMatches", () => {
+  const mk = (id: string, pantryIds: string[], optional: string[] = []): Recipe =>
+    ({
+      id,
+      title: id,
+      ingredients: [
+        ...pantryIds.map((p) => recipeIngredient({ pantryId: p })),
+        ...optional.map((p) => recipeIngredient({ pantryId: p, optional: true })),
+      ],
+    }) as unknown as Recipe;
+  const have = (...ids: string[]) => ids.map((ingredientId) => pantryItem({ id: ingredientId, ingredientId, name: ingredientId }));
+
+  it("only includes dishes with at least one ingredient on hand", () => {
+    const pantry = have("tomato");
+    const out = pickSlideshowMatches(pantry, [mk("a", ["tomato", "onion"]), mk("b", ["chicken", "garlic"])], 1);
+    expect(out.map((m) => m.recipe.id)).toEqual(["a"]);
+  });
+
+  it("always includes every dish the user has all ingredients for, even beyond the target size", () => {
+    const pantry = have("tomato", "onion");
+    const complete = Array.from({ length: 12 }, (_, i) => mk(`full-${i}`, ["tomato", "onion"]));
+    const partial = Array.from({ length: 5 }, (_, i) => mk(`part-${i}`, ["tomato", "garlic"]));
+    const out = pickSlideshowMatches(pantry, [...complete, ...partial], 7, 8);
+    const ids = out.map((m) => m.recipe.id);
+    for (const c of complete) expect(ids).toContain(c.id);
+    expect(out.filter((m) => m.complete)).toHaveLength(12);
+  });
+
+  it("treats a dish as complete when only optional ingredients are missing", () => {
+    const pantry = have("tomato");
+    const out = pickSlideshowMatches(pantry, [mk("a", ["tomato"], ["basil"])], 1);
+    expect(out[0].complete).toBe(true);
+  });
+
+  it("fills remaining slots up to the target with partial matches", () => {
+    const pantry = have("tomato");
+    const many = Array.from({ length: 20 }, (_, i) => mk(`p-${i}`, ["tomato", `x-${i}`]));
+    expect(pickSlideshowMatches(pantry, many, 3, 8)).toHaveLength(8);
+  });
+
+  it("is deterministic for a seed and changes order for a different seed", () => {
+    const pantry = have("tomato");
+    const many = Array.from({ length: 20 }, (_, i) => mk(`p-${i}`, ["tomato", `x-${i}`]));
+    const a = pickSlideshowMatches(pantry, many, 11).map((m) => m.recipe.id);
+    const b = pickSlideshowMatches(pantry, many, 11).map((m) => m.recipe.id);
+    const c = pickSlideshowMatches(pantry, many, 12345).map((m) => m.recipe.id);
+    expect(a).toEqual(b);
+    expect(c).not.toEqual(a);
+  });
+
+  it("returns nothing when no dish shares any ingredient with the pantry", () => {
+    expect(pickSlideshowMatches(have("caviar"), [mk("a", ["tomato"])], 1)).toEqual([]);
   });
 });

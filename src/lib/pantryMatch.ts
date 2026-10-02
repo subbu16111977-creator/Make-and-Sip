@@ -406,3 +406,54 @@ export function rankRecipesForDiscover(
     })
     .sort((a, b) => b.score - a.score || a.recipe.timeMinutes - b.recipe.timeMinutes);
 }
+
+/** Deterministic 0..1 value for (seed, key) — lets a session reshuffle once without reshuffling again on every pantry edit. */
+export function seededUnit(seed: number, key: string): number {
+  let h = 2166136261 ^ seed;
+  for (let i = 0; i < key.length; i++) {
+    h ^= key.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  h ^= h >>> 15;
+  h = Math.imul(h, 2246822519);
+  h ^= h >>> 13;
+  return (h >>> 0) / 4294967296;
+}
+
+export interface SlideshowMatch extends RecipeMatch {
+  /** True when every non-optional ingredient is already in the pantry. */
+  complete: boolean;
+}
+
+/**
+ * The Home slideshow. Rules:
+ *  - a dish appears only if the user has at least one of its ingredients;
+ *  - a dish the user has every required ingredient for ALWAYS appears;
+ *  - the remaining slots (up to `targetSize` in total) go to partial matches,
+ *    favouring better matches but chosen at random;
+ *  - order is shuffled by `seed`, so pass a new seed each time the app opens.
+ */
+export function pickSlideshowMatches(
+  pantry: PantryItem[],
+  recipes: Recipe[],
+  seed: number,
+  targetSize = 8
+): SlideshowMatch[] {
+  const matches: SlideshowMatch[] = recipes
+    .map((recipe) => matchRecipe(pantry, recipe))
+    .filter((m) => m.have.length > 0)
+    .map((m) => ({ ...m, complete: !m.missing.some((i) => !i.optional) }));
+
+  const complete = matches.filter((m) => m.complete);
+  const slots = Math.max(0, targetSize - complete.length);
+  const partial = matches
+    .filter((m) => !m.complete)
+    .map((m) => ({ m, pick: m.ratio * 0.6 + seededUnit(seed, `pick:${m.recipe.id}`) * 0.4 }))
+    .sort((a, b) => b.pick - a.pick)
+    .slice(0, slots)
+    .map((x) => x.m);
+
+  return [...complete, ...partial].sort(
+    (a, b) => seededUnit(seed, `order:${a.recipe.id}`) - seededUnit(seed, `order:${b.recipe.id}`)
+  );
+}
