@@ -15817,7 +15817,7 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$",
-    image: "https://images.pexels.com/photos/38681149/pexels-photo-38681149.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    image: "https://images.pexels.com/photos/38681146/pexels-photo-38681146.jpeg?auto=compress&cs=tinysrgb&w=1600",
     ingredients: [
       { pantryId: "olives", label: "Large pitted green olives (manzanilla or gordal)", amount: "12" },
       { pantryId: "anchovies", label: "Good-quality anchovy fillets in oil", amount: "6 fillets (halved lengthwise)" },
@@ -15920,7 +15920,7 @@ export const recipes: Recipe[] = [
     difficulty: "Easy",
     servings: 4,
     budget: "$$",
-    image: "https://images.pexels.com/photos/5602610/pexels-photo-5602610.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    image: "https://images.pexels.com/photos/5602720/pexels-photo-5602720.jpeg?auto=compress&cs=tinysrgb&w=1600",
     ingredients: [
       { pantryId: "sourdough-bread", label: "Rustic bread, sliced 1/2-inch thick", amount: "4 slices" },
       { pantryId: "garlic", label: "Garlic clove, halved", amount: "1" },
