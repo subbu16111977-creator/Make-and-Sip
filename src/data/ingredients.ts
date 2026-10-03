@@ -2604,4 +2604,6 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "fava-beans", canonicalName: "fava_beans", baseIngredient: "fava_beans", displayName: "Fava (Broad) Beans", category: "Pantry Staples", synonyms: ["fava beans", "broad beans", "habas", "shelled fava beans", "frozen fava beans"] },
   { id: "manchego", canonicalName: "manchego", baseIngredient: "manchego", displayName: "Manchego Cheese", category: "Dairy", synonyms: ["manchego", "manchego cheese", "queso manchego", "aged manchego"] },
   { id: "quince-paste", canonicalName: "quince_paste", baseIngredient: "quince_paste", displayName: "Quince Paste (Membrillo)", category: "Pantry Staples", synonyms: ["quince paste", "membrillo", "dulce de membrillo", "quince jelly", "quince cheese"] },
+  { id: "melon", canonicalName: "melon", baseIngredient: "melon", displayName: "Melon (Cantaloupe)", category: "Fruit", synonyms: ["melon", "cantaloupe", "honeydew", "piel de sapo melon", "galia melon"] },
+  { id: "baguette", canonicalName: "baguette", baseIngredient: "baguette", displayName: "Baguette / Crusty Roll", category: "Grains", synonyms: ["baguette", "crusty roll", "bocadillo roll", "barra de pan", "ciabatta roll", "ciabatta"] },
 ];
