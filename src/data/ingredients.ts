@@ -2594,4 +2594,9 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "padron-peppers", canonicalName: "padron_peppers", baseIngredient: "padron_peppers", displayName: "Padrón Peppers", category: "Vegetables", synonyms: ["padron peppers", "pimientos de padron", "shishito peppers"] },
   { id: "sherry-vinegar", canonicalName: "sherry_vinegar", baseIngredient: "sherry_vinegar", displayName: "Sherry Vinegar", category: "Pantry Staples", synonyms: ["sherry vinegar", "vinagre de jerez"] },
   { id: "tomato-paste", canonicalName: "tomato_paste", baseIngredient: "tomato_paste", displayName: "Tomato Paste", category: "Pantry Staples", synonyms: ["tomato paste", "tomato puree concentrate"] },
+  { id: "rabbit", canonicalName: "rabbit", baseIngredient: "rabbit", displayName: "Rabbit", category: "Meat & Seafood", synonyms: ["rabbit", "rabbit pieces", "conejo"] },
+  { id: "fideo-noodles", canonicalName: "fideo_noodles", baseIngredient: "fideo_noodles", displayName: "Fideo Noodles", category: "Grains", synonyms: ["fideo", "fideos", "fideo noodles", "thin vermicelli", "angel hair pasta, broken"] },
+  { id: "fish-stock", canonicalName: "fish_stock", baseIngredient: "fish_stock", displayName: "Fish Stock", category: "Pantry Staples", synonyms: ["fish stock", "seafood stock", "fish broth", "fumet"] },
+  { id: "squid-ink", canonicalName: "squid_ink", baseIngredient: "squid_ink", displayName: "Squid Ink", category: "Pantry Staples", synonyms: ["squid ink", "cuttlefish ink", "tinta de calamar"] },
+  { id: "sardines", canonicalName: "sardines", baseIngredient: "sardines", displayName: "Fresh Sardines", category: "Meat & Seafood", synonyms: ["sardines", "fresh sardines", "sardinas"] },
 ];
