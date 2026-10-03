@@ -2588,4 +2588,10 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "peach", canonicalName: "peach", baseIngredient: "peach", displayName: "Peach", category: "Fruit", synonyms: ["peach", "peaches", "yellow peach"] },
   { id: "bolillo-rolls", canonicalName: "bolillo_rolls", baseIngredient: "bolillo_rolls", displayName: "Bolillo Rolls", category: "Grains", synonyms: ["bolillo", "bolillo rolls", "telera rolls", "crusty white rolls"] },
   { id: "tomato-juice", canonicalName: "tomato_juice", baseIngredient: "tomato_juice", displayName: "Tomato Juice", category: "Pantry Staples", synonyms: ["tomato juice", "clamato", "clamato juice", "vegetable juice"] },
+  { id: "jamon-serrano", canonicalName: "jamon_serrano", baseIngredient: "jamon_serrano", displayName: "Jamón Serrano", category: "Meat & Seafood", synonyms: ["jamon serrano", "serrano ham", "jamon iberico", "iberico ham", "cured spanish ham"] },
+  { id: "tuna-canned", canonicalName: "tuna_canned", baseIngredient: "tuna_canned", displayName: "Canned Tuna", category: "Pantry Staples", synonyms: ["canned tuna", "tuna in olive oil", "tuna", "bonito del norte"] },
+  { id: "roasted-red-peppers", canonicalName: "roasted_red_peppers", baseIngredient: "roasted_red_peppers", displayName: "Roasted Red Peppers", category: "Pantry Staples", synonyms: ["roasted red peppers", "piquillo peppers", "jarred roasted peppers", "pimientos del piquillo"] },
+  { id: "padron-peppers", canonicalName: "padron_peppers", baseIngredient: "padron_peppers", displayName: "Padrón Peppers", category: "Vegetables", synonyms: ["padron peppers", "pimientos de padron", "shishito peppers"] },
+  { id: "sherry-vinegar", canonicalName: "sherry_vinegar", baseIngredient: "sherry_vinegar", displayName: "Sherry Vinegar", category: "Pantry Staples", synonyms: ["sherry vinegar", "vinagre de jerez"] },
+  { id: "tomato-paste", canonicalName: "tomato_paste", baseIngredient: "tomato_paste", displayName: "Tomato Paste", category: "Pantry Staples", synonyms: ["tomato paste", "tomato puree concentrate"] },
 ];
