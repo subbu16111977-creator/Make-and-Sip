@@ -2602,4 +2602,6 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "spanish-chorizo", canonicalName: "spanish_chorizo", baseIngredient: "spanish_chorizo", displayName: "Spanish Chorizo (cured)", category: "Meat & Seafood", synonyms: ["spanish chorizo", "cured chorizo", "chorizo sarta", "dry-cured chorizo", "semi-cured chorizo"] },
   { id: "oxtail", canonicalName: "oxtail", baseIngredient: "oxtail", displayName: "Oxtail", category: "Meat & Seafood", synonyms: ["oxtail", "oxtails", "ox tail", "rabo de toro"] },
   { id: "fava-beans", canonicalName: "fava_beans", baseIngredient: "fava_beans", displayName: "Fava (Broad) Beans", category: "Pantry Staples", synonyms: ["fava beans", "broad beans", "habas", "shelled fava beans", "frozen fava beans"] },
+  { id: "manchego", canonicalName: "manchego", baseIngredient: "manchego", displayName: "Manchego Cheese", category: "Dairy", synonyms: ["manchego", "manchego cheese", "queso manchego", "aged manchego"] },
+  { id: "quince-paste", canonicalName: "quince_paste", baseIngredient: "quince_paste", displayName: "Quince Paste (Membrillo)", category: "Pantry Staples", synonyms: ["quince paste", "membrillo", "dulce de membrillo", "quince jelly", "quince cheese"] },
 ];
