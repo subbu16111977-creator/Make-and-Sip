@@ -1,0 +1,12 @@
+[build]
+  command = "npx expo export --platform web"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Recipe pages are a single dynamic route in the static export.
+[[redirects]]
+  from = "/recipe/*"
+  to = "/recipe/[id].html"
+  status = 200
