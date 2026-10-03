@@ -2599,4 +2599,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "fish-stock", canonicalName: "fish_stock", baseIngredient: "fish_stock", displayName: "Fish Stock", category: "Pantry Staples", synonyms: ["fish stock", "seafood stock", "fish broth", "fumet"] },
   { id: "squid-ink", canonicalName: "squid_ink", baseIngredient: "squid_ink", displayName: "Squid Ink", category: "Pantry Staples", synonyms: ["squid ink", "cuttlefish ink", "tinta de calamar"] },
   { id: "sardines", canonicalName: "sardines", baseIngredient: "sardines", displayName: "Fresh Sardines", category: "Meat & Seafood", synonyms: ["sardines", "fresh sardines", "sardinas"] },
+  { id: "spanish-chorizo", canonicalName: "spanish_chorizo", baseIngredient: "spanish_chorizo", displayName: "Spanish Chorizo (cured)", category: "Meat & Seafood", synonyms: ["spanish chorizo", "cured chorizo", "chorizo sarta", "dry-cured chorizo", "semi-cured chorizo"] },
+  { id: "oxtail", canonicalName: "oxtail", baseIngredient: "oxtail", displayName: "Oxtail", category: "Meat & Seafood", synonyms: ["oxtail", "oxtails", "ox tail", "rabo de toro"] },
+  { id: "fava-beans", canonicalName: "fava_beans", baseIngredient: "fava_beans", displayName: "Fava (Broad) Beans", category: "Pantry Staples", synonyms: ["fava beans", "broad beans", "habas", "shelled fava beans", "frozen fava beans"] },
 ];
