@@ -19736,9 +19736,9 @@ export const recipes: Recipe[] = [
   },
   {
     id: "seolleongtang",
-    title: "Seolleongtang (Korean Ox Bone Soup)",
+    title: "Gomtang (Korean Beef Bone Soup)",
     description:
-      "A milky, gentle broth from long-simmered beef bones and brisket, served with thin noodles, scallions, and salt at the table.",
+      "A rich, gentle broth from long-simmered beef bones and brisket, served with thin noodles, scallions, and salt at the table. Simmer even longer and it turns milky white, which is seolleongtang.",
     cuisine: "Korean",
     dietTags: ["Non-Vegetarian", "Dairy-Free"],
     tasteTags: ["Comforting"],
@@ -19772,7 +19772,7 @@ export const recipes: Recipe[] = [
       "Cook the noodles, divide among bowls with sliced brisket, ladle over the hot broth, and add scallions. Serve with salt, pepper, and rice.",
     ],
     notes:
-      "The milky color comes from collagen and marrow released during long, rolling simmering. Season at the table: the broth is intentionally unsalted so you can adjust to taste. Leftover broth freezes well.",
+      "Gomtang is simmered until the broth is rich and pale; a longer, rolling simmer (8+ hours) with more bones gives the milky white version called seolleongtang. Season at the table: the broth is intentionally unsalted so you can adjust to taste. Leftover broth freezes well.",
     sourceName: "Maangchi",
     sourceUrl: "https://www.maangchi.com/",
   },
