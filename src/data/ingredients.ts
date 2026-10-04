@@ -2640,4 +2640,5 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "dried-anchovies", canonicalName: "dried_anchovies", baseIngredient: "dried_anchovies", displayName: "Dried Anchovies (Ikan Bilis)", category: "Pantry Staples", synonyms: ["dried anchovies", "ikan bilis", "dried ikan bilis", "dried small anchovies"] },
   { id: "curry-powder", canonicalName: "curry_powder", baseIngredient: "curry_powder", displayName: "Curry Powder", category: "Spices", synonyms: ["curry powder", "madras curry powder", "meat curry powder"] },
   { id: "water-spinach", canonicalName: "water_spinach", baseIngredient: "water_spinach", displayName: "Water Spinach (Kangkung)", category: "Vegetables", synonyms: ["water spinach", "kangkung", "morning glory", "ong choy", "swamp cabbage"] },
+  { id: "wood-ear-mushrooms", canonicalName: "wood_ear_mushrooms", baseIngredient: "wood_ear_mushrooms", displayName: "Wood Ear Mushrooms", category: "Vegetables", synonyms: ["wood ear mushrooms", "wood ear", "cloud ear mushrooms", "black fungus", "dried wood ear"] },
 ];
