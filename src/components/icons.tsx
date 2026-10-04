@@ -226,3 +226,14 @@ export function SlidersIcon({ size = 18, color = defaults.color, strokeWidth = 1
     </Svg>
   );
 }
+
+export function RefreshIcon({ size = 16, color = defaults.color, strokeWidth = 1.7 }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path d="M20 11A8 8 0 0 0 5.6 6.3L4 8" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M4 4V8H8" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M4 13A8 8 0 0 0 18.4 17.7L20 16" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M20 20V16H16" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+}

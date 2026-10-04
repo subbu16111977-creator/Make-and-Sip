@@ -95,6 +95,9 @@ export function UnlockCelebration({ visible, count, onDismiss }: UnlockCelebrati
           <Text style={styles.body}>
             You&apos;ve unlocked {count} new {count === 1 ? "dish" : "dishes"}!!
           </Text>
+          <Text style={styles.note}>
+            They&apos;ll show up on Home once you have their ingredients. In Discover they no longer say &quot;Needs&quot; your new appliance.
+          </Text>
           <Button label="Nice!" onPress={onDismiss} fullWidth style={styles.button} />
         </View>
       </View>
@@ -135,6 +138,12 @@ const styles = StyleSheet.create({
   headline: {
     ...typeScale.headline,
     color: colors.espresso,
+  },
+  note: {
+    ...typeScale.caption,
+    color: colors.espressoFaint,
+    textAlign: "center",
+    marginBottom: 6,
   },
   body: {
     ...typeScale.body,

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable, RefreshControl, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -11,6 +11,7 @@ import { StarterStaples } from "@/components/StarterStaples";
 import { CuisineTile } from "@/components/CuisineTile";
 import { colors, spacing, type as typeScale, layout } from "@/theme";
 import { recipes } from "@/data/recipes";
+import { RefreshButton } from "@/components/RefreshButton";
 import { usePantry } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { useShopping } from "@/context/ShoppingContext";
@@ -44,7 +45,17 @@ function useGreeting() {
   }, []);
 }
 
+/**
+ * Home is keyed on a counter so "Refresh" remounts it: every list is recomputed from the
+ * current pantry and equipment and the featured picks are reshuffled with a new seed.
+ */
 export default function HomeScreen() {
+  const [run, setRun] = useState({ key: 0, seed: SESSION_SEED });
+  const onRefresh = () => setRun((r) => ({ key: r.key + 1, seed: Math.floor(Math.random() * 2 ** 31) }));
+  return <HomeContent key={run.key} seed={run.seed} onRefresh={onRefresh} />;
+}
+
+function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void }) {
   const router = useRouter();
   const greeting = useGreeting();
   const { items: pantryItems } = usePantry();
@@ -59,7 +70,7 @@ export default function HomeScreen() {
   const { items: shoppingItems } = useShopping();
 
   const expiringSoon = useMemo(() => getExpiringSoon(pantryItems, 4), [pantryItems]);
-  const slideshow = useMemo(() => pickSlideshowMatches(pantryItems, recipes, SESSION_SEED), [pantryItems]);
+  const slideshow = useMemo(() => pickSlideshowMatches(pantryItems, recipes, seed), [pantryItems, seed]);
 
   // The rails below only recommend what is cookable with the gear you own.
   // Every dish, including ones needing gear you lack, remains in Discover.
@@ -69,11 +80,11 @@ export default function HomeScreen() {
     () =>
       pickQuickRecipes(
         recipes.filter((r) => isQuickRecipe(r, ownedEquipment)),
-        SESSION_SEED,
+        seed,
         QUICK_MINUTES,
         recipes.length
       ).map((r) => matchRecipe(pantryItems, r)),
-    [pantryItems, ownedEquipment]
+    [pantryItems, ownedEquipment, seed]
   );
 
   const openRecipe = useCallback((id: string) => router.push({ pathname: "/recipe/[id]", params: { id } }), [router]);
@@ -135,7 +146,12 @@ export default function HomeScreen() {
   }
 
   return (
-    <Screen scrollRef={scrollRef} onScroll={onScroll} scrollEventThrottle={64}>
+    <Screen
+      scrollRef={scrollRef}
+      onScroll={onScroll}
+      scrollEventThrottle={64}
+      refreshControl={<RefreshControl refreshing={false} onRefresh={onRefresh} />}
+    >
       <View style={styles.header}>
         <Text style={styles.greeting}>{greeting}, Subbu.</Text>
         <Text style={styles.headline}>Let&apos;s make something delicious.</Text>
@@ -144,6 +160,9 @@ export default function HomeScreen() {
             {pantryItems.length} {pantryItems.length === 1 ? "ingredient" : "ingredients"} on hand · {expiringSoon.length} to use up soon
           </Text>
         </Pressable>
+        <View style={styles.refreshRow}>
+          <RefreshButton onPress={onRefresh} />
+        </View>
       </View>
 
       <View style={styles.heroSection}>
@@ -227,7 +246,7 @@ export default function HomeScreen() {
                 Got {/^[aeiou]/i.test(unlock.tag) ? "an" : "a"} {unlock.tag.toLowerCase()}?
               </Text>
               <Text style={styles.pantrySummaryBody}>
-                Tick it in Equipment to unlock {unlock.count} more {unlock.count === 1 ? "dish" : "dishes"}.
+                Tick it in Equipment to make {unlock.count} more {unlock.count === 1 ? "dish" : "dishes"} — they show up here once you have their ingredients.
               </Text>
             </View>
             <ChevronRightIcon size={18} color={colors.espresso} strokeWidth={1.6} />
@@ -289,6 +308,9 @@ const styles = StyleSheet.create({
   emptyWrap: {
     flexGrow: 1,
     justifyContent: "center",
+  },
+  refreshRow: {
+    marginTop: spacing.sm,
   },
   header: {
     paddingHorizontal: layout.screenPadding,

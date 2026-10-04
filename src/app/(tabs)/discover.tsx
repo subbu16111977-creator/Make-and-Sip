@@ -6,6 +6,7 @@ import { colors, spacing, radii, type as typeScale, layout } from "@/theme";
 import { Chip } from "@/components/Chip";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchIcon } from "@/components/icons";
+import { RefreshButton } from "@/components/RefreshButton";
 import { usePantry } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { recipes } from "@/data/recipes";
@@ -39,6 +40,11 @@ export default function DiscoverScreen() {
 
   const cuisines = useMemo(() => Array.from(new Set(recipes.map((r) => r.cuisine))).sort(), []);
 
+  // Refresh re-ranks every dish against the current pantry and equipment (keeps your filters).
+  const [refreshTick, setRefreshTick] = useState(0);
+  const [pulling, setPulling] = useState(false);
+  const refresh = () => setRefreshTick((t) => t + 1);
+
   function toggleTaste(t: TasteTag) {
     setSelectedTastes((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]));
   }
@@ -49,8 +55,11 @@ export default function DiscoverScreen() {
   // Every dish is listed. Gear the user hasn't ticked in Pantry > Equipment
   // is shown on the card as "Needs …" and ranks the dish lower, never hides it.
   const ranked = useMemo(
-    () => rankRecipesForDiscover(pantryItems, recipes, selectedTastes, ownedEquipment),
-    [pantryItems, selectedTastes, ownedEquipment]
+    () => {
+      void refreshTick; // re-rank on demand when the Refresh button bumps this
+      return rankRecipesForDiscover(pantryItems, recipes, selectedTastes, ownedEquipment);
+    },
+    [pantryItems, selectedTastes, ownedEquipment, refreshTick]
   );
 
   const filtered = useMemo(() => {
@@ -79,12 +88,21 @@ export default function DiscoverScreen() {
         columnWrapperStyle={{ gap: cardGap, paddingHorizontal: layout.screenPadding }}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
+        refreshing={pulling}
+        onRefresh={() => {
+          setPulling(true);
+          refresh();
+          setTimeout(() => setPulling(false), 600);
+        }}
         ListHeaderComponent={
           <View>
             <View style={styles.header}>
               <Text style={styles.eyebrow}>{filtered.length} {filtered.length === 1 ? "dish" : "dishes"}</Text>
               <Text style={styles.headline}>Discover</Text>
               <Text style={styles.subhead}>Ranked by what&apos;s in your pantry, filtered by what you&apos;re craving.</Text>
+              <View style={styles.refreshRow}>
+                <RefreshButton onPress={refresh} />
+              </View>
             </View>
 
             <View style={styles.searchWrap}>
@@ -170,6 +188,9 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingBottom: layout.sectionGap,
+  },
+  refreshRow: {
+    marginTop: spacing.sm,
   },
   header: {
     paddingHorizontal: layout.screenPadding,
