@@ -2621,4 +2621,10 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "yellow-curry-paste", canonicalName: "yellow_curry_paste", baseIngredient: "yellow_curry_paste", displayName: "Thai Yellow Curry Paste", category: "Pantry Staples", synonyms: ["yellow curry paste", "thai yellow curry paste"] },
   { id: "shrimp-paste", canonicalName: "shrimp_paste", baseIngredient: "shrimp_paste", displayName: "Shrimp Paste", category: "Pantry Staples", synonyms: ["shrimp paste", "belacan", "terasi", "kapi", "fermented shrimp paste"] },
   { id: "dried-shrimp", canonicalName: "dried_shrimp", baseIngredient: "dried_shrimp", displayName: "Dried Shrimp", category: "Meat & Seafood", synonyms: ["dried shrimp", "dried prawns", "udang kering"] },
+  { id: "rice-paper", canonicalName: "rice_paper", baseIngredient: "rice_paper", displayName: "Rice Paper Wrappers", category: "Pantry Staples", synonyms: ["rice paper", "rice paper wrappers", "banh trang", "spring roll wrappers rice"] },
+  { id: "rice-vermicelli", canonicalName: "rice_vermicelli", baseIngredient: "rice_vermicelli", displayName: "Rice Vermicelli", category: "Grains", synonyms: ["rice vermicelli", "bun noodles", "rice sticks", "vermicelli rice noodles", "bihun"] },
+  { id: "beef-bones", canonicalName: "beef_bones", baseIngredient: "beef_bones", displayName: "Beef Bones", category: "Meat & Seafood", synonyms: ["beef bones", "beef marrow bones", "beef knuckle bones", "oxtail bones"] },
+  { id: "daikon", canonicalName: "daikon", baseIngredient: "daikon", displayName: "Daikon Radish", category: "Vegetables", synonyms: ["daikon", "daikon radish", "white radish", "mooli"] },
+  { id: "liver-pate", canonicalName: "liver_pate", baseIngredient: "liver_pate", displayName: "Liver Pâté", category: "Pantry Staples", synonyms: ["pate", "liver pate", "p\u00e2t\u00e9", "chicken liver pate"] },
+  { id: "coconut-water", canonicalName: "coconut_water", baseIngredient: "coconut_water", displayName: "Coconut Water", category: "Pantry Staples", synonyms: ["coconut water", "young coconut water", "nuoc dua"] },
 ];
