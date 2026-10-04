@@ -2680,4 +2680,5 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "kashkaval", canonicalName: "kashkaval", baseIngredient: "kashkaval", displayName: "Kashar (Kashkaval) Cheese", category: "Dairy", synonyms: ["kashar cheese", "kashkaval", "ka\u015far", "melting white cheese"] },
   { id: "pickled-turnips", canonicalName: "pickled_turnips", baseIngredient: "pickled_turnips", displayName: "Pickled Turnips", category: "Pantry Staples", synonyms: ["pickled turnips", "pink pickled turnips", "torshi lift"] },
   { id: "yellow-split-peas", canonicalName: "yellow_split_peas", baseIngredient: "yellow_split_peas", displayName: "Yellow Split Peas", category: "Pulses", synonyms: ["yellow split peas", "split peas", "lapeh", "chana dal split"] },
+  { id: "leek", canonicalName: "leek", baseIngredient: "leek", displayName: "Leek", category: "Vegetables", synonyms: ["leek", "leeks"] },
 ];
