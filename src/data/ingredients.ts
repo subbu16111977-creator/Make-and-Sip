@@ -2627,4 +2627,11 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "daikon", canonicalName: "daikon", baseIngredient: "daikon", displayName: "Daikon Radish", category: "Vegetables", synonyms: ["daikon", "daikon radish", "white radish", "mooli"] },
   { id: "liver-pate", canonicalName: "liver_pate", baseIngredient: "liver_pate", displayName: "Liver Pâté", category: "Pantry Staples", synonyms: ["pate", "liver pate", "p\u00e2t\u00e9", "chicken liver pate"] },
   { id: "coconut-water", canonicalName: "coconut_water", baseIngredient: "coconut_water", displayName: "Coconut Water", category: "Pantry Staples", synonyms: ["coconut water", "young coconut water", "nuoc dua"] },
+  { id: "kecap-manis", canonicalName: "kecap_manis", baseIngredient: "kecap_manis", displayName: "Kecap Manis (Sweet Soy Sauce)", category: "Pantry Staples", synonyms: ["kecap manis", "sweet soy sauce", "indonesian sweet soy sauce", "ketjap manis"] },
+  { id: "sambal-oelek", canonicalName: "sambal_oelek", baseIngredient: "sambal_oelek", displayName: "Sambal Oelek (Chili Paste)", category: "Pantry Staples", synonyms: ["sambal oelek", "sambal ulek", "ground fresh chili paste", "chili paste sambal"] },
+  { id: "candlenuts", canonicalName: "candlenuts", baseIngredient: "candlenuts", displayName: "Candlenuts", category: "Pantry Staples", synonyms: ["candlenuts", "candlenut", "kemiri", "macadamia nuts"] },
+  { id: "tempeh", canonicalName: "tempeh", baseIngredient: "tempeh", displayName: "Tempeh", category: "Pantry Staples", synonyms: ["tempeh", "tempe", "fried tempeh"] },
+  { id: "fried-shallots", canonicalName: "fried_shallots", baseIngredient: "fried_shallots", displayName: "Crispy Fried Shallots", category: "Pantry Staples", synonyms: ["fried shallots", "crispy fried shallots", "bawang goreng", "crispy shallots"] },
+  { id: "tapioca-starch", canonicalName: "tapioca_starch", baseIngredient: "tapioca_starch", displayName: "Tapioca Starch", category: "Pantry Staples", synonyms: ["tapioca starch", "tapioca flour", "sago flour", "tepung tapioka"] },
+  { id: "banh-canh-noodles", canonicalName: "banh_canh_noodles", baseIngredient: "banh_canh_noodles", displayName: "Bánh Canh Noodles", category: "Grains", synonyms: ["banh canh noodles", "banh canh", "thick tapioca noodles", "udon-style rice noodles"] },
 ];
