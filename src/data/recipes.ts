@@ -2222,6 +2222,7 @@ export const recipes: Recipe[] = [
       { pantryId: "green-chili", label: "Green chilies, slit", amount: "3" },
       { pantryId: "coriander-powder", label: "Ground coriander", amount: "1 tablespoon" },
       { pantryId: "tamarind", label: "Tamarind pulp, soaked in 3 tablespoons hot water and strained", amount: "1 tablespoon" },
+      { pantryId: "banana-leaves", label: "Banana leaves, for wrapping", amount: "2 large pieces" },
     ],
     equipment: [],
     steps: [
@@ -2520,6 +2521,7 @@ export const recipes: Recipe[] = [
       { pantryId: "turmeric", label: "Ground turmeric", amount: "1/4 teaspoon" },
       { pantryId: "vegetable-oil", label: "Neutral oil, for basting", amount: "2 tablespoons" },
       { pantryId: "chaat-masala", label: "Chaat masala, for finishing", amount: "1/2 teaspoon" },
+      { pantryId: "red-onion", label: "Onion, sliced, to serve", amount: "1 small", optional: true },
     ],
     equipment: ["Grill"],
     steps: [
@@ -2745,6 +2747,7 @@ export const recipes: Recipe[] = [
       { pantryId: "baking-powder", label: "Baking powder", amount: "1/2 teaspoon" },
       { pantryId: "baking-soda", label: "Baking soda", amount: "1/4 teaspoon" },
       { pantryId: "sugar", label: "Sugar", amount: "1 teaspoon" },
+      { pantryId: "lemon", label: "Lemon wedges, to serve", amount: "1 lemon", optional: true },
     ],
     equipment: [],
     steps: [
@@ -3282,6 +3285,7 @@ export const recipes: Recipe[] = [
       { pantryId: "curry-leaves", label: "Fresh curry leaves", amount: "2 sprigs" },
       { pantryId: "asafoetida", label: "Asafoetida (hing)", amount: "1/4 teaspoon" },
       { pantryId: "peanuts", label: "Raw peanuts", amount: "1/4 cup (35 g)", optional: true },
+      { pantryId: "greek-yogurt", label: "Yogurt, to serve", amount: "1/2 cup (120 g)", optional: true },
     ],
     equipment: ["Pressure Cooker"],
     steps: [
@@ -3569,6 +3573,7 @@ export const recipes: Recipe[] = [
       { pantryId: "red-onion", label: "Onion, finely chopped", amount: "1 medium" },
       { pantryId: "tomato", label: "Tomato, finely chopped", amount: "1 medium" },
       { pantryId: "red-chili-powder", label: "Red chili powder", amount: "1/2 teaspoon" },
+      { pantryId: "flatbread", label: "Flatbread (or makki di roti), to serve", amount: "4", optional: true },
     ],
     equipment: ["Blender"],
     steps: [
@@ -4362,6 +4367,7 @@ export const recipes: Recipe[] = [
       { pantryId: "garlic", label: "Garlic powder (or finely minced fresh garlic)", amount: "1 tablespoon" },
       { pantryId: "cayenne-pepper", label: "Cayenne pepper", amount: "1 teaspoon" },
       { pantryId: "dry-mustard", label: "Dry mustard powder", amount: "1 teaspoon" },
+      { pantryId: "hot-sauce", label: "Hot sauce, to serve", amount: "to taste", optional: true },
     ],
     equipment: ["Grill"],
     steps: [
@@ -7729,6 +7735,7 @@ export const recipes: Recipe[] = [
       { pantryId: "fine-salt", label: "Salt, to taste", amount: "to taste" },
       { pantryId: "dumpling-wrappers", label: "Round dumpling wrappers" , amount: "30" },
       { pantryId: "vegetable-oil", label: "Vegetable oil, for pan-frying", amount: "2 tablespoons", optional: true },
+      { pantryId: "black-vinegar", label: "Black vinegar, for dipping", amount: "2 tablespoons", optional: true },
     ],
     equipment: [],
     steps: [
@@ -7862,6 +7869,7 @@ export const recipes: Recipe[] = [
       { pantryId: "white-pepper", label: "White pepper" , amount: "1/4 teaspoon" },
       { pantryId: "all-purpose-flour", label: "All-purpose flour" , amount: "2 cups (250 g)" },
       { pantryId: "fine-salt", label: "Salt" , amount: "1/4 teaspoon" },
+      { pantryId: "black-vinegar", label: "Black vinegar, for dipping", amount: "1/4 cup (60 ml)", optional: true },
     ],
     equipment: [],
     steps: [
@@ -7950,6 +7958,7 @@ export const recipes: Recipe[] = [
       { pantryId: "white-pepper", label: "White pepper" , amount: "1/4 teaspoon" },
       { pantryId: "dumpling-wrappers", label: "Round dumpling wrappers" , amount: "30" },
       { pantryId: "vegetable-oil", label: "Vegetable oil, for pan-frying" , amount: "3 tablespoons" },
+      { pantryId: "black-vinegar", label: "Black vinegar, for dipping", amount: "2 tablespoons", optional: true },
     ],
     equipment: [],
     steps: [
@@ -9848,6 +9857,9 @@ export const recipes: Recipe[] = [
       { pantryId: "all-purpose-flour", label: "All-purpose flour (or chickpea flour)" , amount: "2 tablespoons" },
       { pantryId: "fine-salt", label: "Salt" , amount: "1 1/2 teaspoons" },
       { pantryId: "vegetable-oil", label: "Neutral oil, for deep-frying" , amount: "4 cups (950 ml)" },
+      { pantryId: "tahini", label: "Tahini sauce, to serve", amount: "1/2 cup (120 g)", optional: true },
+      { pantryId: "tomato", label: "Tomatoes, sliced, to serve", amount: "2", optional: true },
+      { pantryId: "pickles", label: "Pickles, to serve", amount: "1/4 cup (40 g)", optional: true },
     ],
     equipment: ["Food Processor"],
     steps: [
@@ -9888,6 +9900,7 @@ export const recipes: Recipe[] = [
       { pantryId: "lemon", label: "Lemons, juiced" , amount: "2" },
       { pantryId: "olive-oil", label: "Extra-virgin olive oil" , amount: "1/3 cup (80 ml)" },
       { pantryId: "fine-salt", label: "Salt and black pepper, to taste", amount: "to taste" },
+      { pantryId: "lettuce", label: "Crisp lettuce or cabbage leaves, to serve", amount: "1 small head", optional: true },
     ],
     equipment: [],
     steps: [
@@ -10167,6 +10180,7 @@ export const recipes: Recipe[] = [
       { pantryId: "lemon", label: "Lemon, juiced" , amount: "1" },
       { pantryId: "fine-salt", label: "Salt and black pepper, to taste", amount: "to taste" },
       { pantryId: "bell-pepper", label: "Bell peppers, cut into 1 1/2-inch squares", amount: "2", optional: true },
+      { pantryId: "flatbread", label: "Flatbread, to serve", amount: "4", optional: true },
     ],
     equipment: ["Grill"],
     steps: [
@@ -10252,6 +10266,8 @@ export const recipes: Recipe[] = [
       { pantryId: "paprika", label: "Paprika" , amount: "1 teaspoon" },
       { pantryId: "cayenne-pepper", label: "Cayenne pepper", amount: "1/4 teaspoon", optional: true },
       { pantryId: "fine-salt", label: "Salt and black pepper, to taste", amount: "to taste" },
+      { pantryId: "flatbread", label: "Flatbread, to serve", amount: "4", optional: true },
+      { pantryId: "greek-yogurt", label: "Yogurt sauce, to serve", amount: "1/2 cup (120 g)", optional: true },
     ],
     equipment: ["Grill"],
     steps: [
@@ -10408,6 +10424,7 @@ export const recipes: Recipe[] = [
       { pantryId: "paprika", label: "Paprika" , amount: "1 teaspoon" },
       { pantryId: "cumin-powder", label: "Ground cumin" , amount: "1/2 teaspoon" },
       { pantryId: "fine-salt", label: "Salt and black pepper, to taste", amount: "to taste" },
+      { pantryId: "flatbread", label: "Flatbread, to serve", amount: "4", optional: true },
     ],
     equipment: ["Grill"],
     steps: [
@@ -10572,6 +10589,7 @@ export const recipes: Recipe[] = [
       { pantryId: "eggs", label: "Eggs" , amount: "6" },
       { pantryId: "feta", label: "Feta, crumbled, for serving", amount: "1/3 cup (50 g)", optional: true },
       { pantryId: "parsley", label: "Fresh parsley or cilantro, chopped, for serving" , amount: "2 tablespoons" },
+      { pantryId: "sourdough-bread", label: "Crusty bread, for scooping", amount: "4 slices", optional: true },
     ],
     equipment: [],
     steps: [
@@ -10616,6 +10634,7 @@ export const recipes: Recipe[] = [
       { pantryId: "olives", label: "Green olives" , amount: "1 cup (150 g)" },
       { pantryId: "cilantro", label: "Fresh cilantro, chopped, for serving" , amount: "2 tablespoons" },
       { pantryId: "fine-salt", label: "Salt and black pepper, to taste", amount: "to taste" },
+      { pantryId: "couscous", label: "Couscous, to serve", amount: "1 1/2 cups (280 g) dry", optional: true },
     ],
     equipment: [],
     steps: [
@@ -10660,6 +10679,7 @@ export const recipes: Recipe[] = [
       { pantryId: "honey", label: "Honey" , amount: "2 tablespoons" },
       { pantryId: "almonds", label: "Almonds, toasted, for garnish" , amount: "1/3 cup (45 g)" },
       { pantryId: "fine-salt", label: "Salt and black pepper, to taste", amount: "to taste" },
+      { pantryId: "couscous", label: "Couscous, to serve", amount: "1 1/2 cups (280 g) dry", optional: true },
     ],
     equipment: [],
     steps: [
@@ -10700,6 +10720,7 @@ export const recipes: Recipe[] = [
       { pantryId: "bay-leaves", label: "Bay leaves" , amount: "2" },
       { pantryId: "ground-cloves", label: "Whole cloves" , amount: "4" },
       { pantryId: "fine-salt", label: "Salt and black pepper, to taste", amount: "to taste" },
+      { pantryId: "sourdough-bread", label: "Crusty bread, to serve", amount: "4 slices", optional: true },
     ],
     equipment: [],
     steps: [
@@ -11648,6 +11669,7 @@ export const recipes: Recipe[] = [
       { pantryId: "lime", label: "Lime, juiced", amount: "1" },
       { pantryId: "fine-salt", label: "Kosher salt", amount: "3/4 teaspoon" },
       { pantryId: "tomato", label: "Ripe tomato, seeded and diced", amount: "1/2 medium", optional: true },
+      { pantryId: "tortilla-chips", label: "Tortilla chips, to serve", amount: "1 bag (about 200 g)", optional: true },
     ],
     equipment: [],
     steps: [
@@ -14084,6 +14106,7 @@ export const recipes: Recipe[] = [
       { pantryId: "avocado", label: "Avocados, diced", amount: "2" },
       { pantryId: "chili-powder", label: "Chile-lime seasoning (Tajín) or chili powder, for the rim", amount: "1 tablespoon" },
       { pantryId: "fine-salt", label: "Salt", amount: "1 teaspoon" },
+      { pantryId: "tostada-shells", label: "Tostadas or saltine crackers, to serve", amount: "8", optional: true },
     ],
     equipment: [],
     steps: [
@@ -14124,6 +14147,7 @@ export const recipes: Recipe[] = [
       { pantryId: "baking-powder", label: "Baking powder", amount: "1 tablespoon" },
       { pantryId: "vanilla-extract", label: "Vanilla extract", amount: "2 teaspoons" },
       { pantryId: "fine-salt", label: "Salt", amount: "1/4 teaspoon" },
+      { pantryId: "mexican-crema", label: "Mexican crema, to serve", amount: "1/4 cup (60 ml)", optional: true },
     ],
     equipment: ["Oven", "Blender"],
     steps: [
@@ -16092,6 +16116,7 @@ export const recipes: Recipe[] = [
       { pantryId: "fish-sauce", label: "Fish sauce", amount: "1 1/2 tablespoons" },
       { pantryId: "lime", label: "Fresh lime juice", amount: "2 1/2 tablespoons (about 1 1/2 limes)" },
       { pantryId: "peanuts", label: "Roasted peanuts", amount: "2 tablespoons" },
+      { pantryId: "sticky-rice", label: "Sticky rice, to serve", amount: "2 cups cooked", optional: true },
     ],
     equipment: [],
     steps: [
@@ -16942,6 +16967,7 @@ export const recipes: Recipe[] = [
       { pantryId: "fish-sauce", label: "Fish sauce (for the dipping sauce)", amount: "3 tablespoons" },
       { pantryId: "sugar", label: "Sugar (for the dipping sauce)", amount: "3 tablespoons" },
       { pantryId: "lime", label: "Lime juice (for the dipping sauce)", amount: "3 tablespoons" },
+      { pantryId: "garlic", label: "Garlic clove, minced (for the dipping sauce)", amount: "1", optional: true },
     ],
     equipment: [],
     steps: [
@@ -17125,6 +17151,7 @@ export const recipes: Recipe[] = [
       { pantryId: "tamarind", label: "Tamarind paste", amount: "1 teaspoon" },
       { pantryId: "lime", label: "Lime juice", amount: "1 tablespoon" },
       { pantryId: "fine-salt", label: "Salt", amount: "1 teaspoon" },
+      { pantryId: "jasmine-rice", label: "Steamed rice or lontong, to serve", amount: "2 cups cooked", optional: true },
     ],
     equipment: [],
     steps: [
@@ -17259,6 +17286,7 @@ export const recipes: Recipe[] = [
       { pantryId: "sambal-oelek", label: "Sambal oelek", amount: "1 to 2 teaspoons" },
       { pantryId: "eggs", label: "Eggs, fried", amount: "2" },
       { pantryId: "fried-shallots", label: "Crispy fried shallots, to garnish", amount: "2 tablespoons" },
+      { pantryId: "cucumber", label: "Cucumber slices, to serve", amount: "1/2 cucumber", optional: true },
     ],
     equipment: [],
     steps: [
@@ -17524,6 +17552,7 @@ export const recipes: Recipe[] = [
       { pantryId: "fine-salt", label: "Salt", amount: "1 1/2 tablespoons" },
       { pantryId: "vegetable-oil", label: "Oil", amount: "3 tablespoons" },
       { pantryId: "banana-leaves", label: "Banana leaves, to wrap (or foil)", amount: "2", optional: true },
+      { pantryId: "green-beans", label: "Long beans, for the sambal matah side", amount: "8 oz (225 g)", optional: true },
     ],
     equipment: ["Oven"],
     steps: [
@@ -17571,6 +17600,7 @@ export const recipes: Recipe[] = [
       { pantryId: "eggs", label: "Hard-boiled eggs, halved", amount: "4" },
       { pantryId: "fried-shallots", label: "Crispy fried shallots", amount: "2 tablespoons" },
       { pantryId: "fine-salt", label: "Salt", amount: "1 teaspoon" },
+      { pantryId: "banana-leaves", label: "Banana leaf (or oiled plastic wrap), for rolling the lontong", amount: "1 large piece", optional: true },
     ],
     equipment: [],
     steps: [
@@ -17852,6 +17882,7 @@ export const recipes: Recipe[] = [
       { pantryId: "kecap-manis", label: "Kecap manis", amount: "1 tablespoon" },
       { pantryId: "soy-sauce", label: "Soy sauce", amount: "1 tablespoon" },
       { pantryId: "lime", label: "Lime wedges, to serve", amount: "2" },
+      { pantryId: "cucumber", label: "Cucumber, sliced, to serve", amount: "1/2 cucumber", optional: true },
     ],
     equipment: [],
     steps: [
@@ -17900,6 +17931,7 @@ export const recipes: Recipe[] = [
       { pantryId: "peanuts", label: "Roasted peanuts, ground", amount: "1 cup (150 g)" },
       { pantryId: "tamarind", label: "Tamarind paste", amount: "1 tablespoon" },
       { pantryId: "cucumber", label: "Cucumber chunks and red onion wedges, to serve", amount: "1 cucumber, 1 onion" },
+      { pantryId: "jasmine-rice", label: "Steamed rice or ketupat, to serve", amount: "2 cups cooked", optional: true },
     ],
     equipment: [],
     steps: [
@@ -18477,6 +18509,7 @@ export const recipes: Recipe[] = [
       { pantryId: "rice-vinegar", label: "Rice or white vinegar (for the dip)", amount: "1/2 cup (120 ml)" },
       { pantryId: "thai-chili", label: "Red chilies, minced (for the dip)", amount: "2" },
       { pantryId: "cornstarch", label: "Cornstarch slurry to seal", amount: "1 tablespoon + 2 tablespoons water" },
+      { pantryId: "lettuce", label: "Lettuce leaves, to serve", amount: "1 small head", optional: true },
     ],
     equipment: [],
     steps: [
@@ -19221,6 +19254,7 @@ export const recipes: Recipe[] = [
       { pantryId: "black-pepper", label: "Black pepper", amount: "1 teaspoon" },
       { pantryId: "scallion", label: "Scallions, sliced", amount: "3" },
       { pantryId: "sesame-seeds", label: "Toasted sesame seeds", amount: "1 tablespoon" },
+      { pantryId: "lettuce", label: "Lettuce leaves, for wrapping", amount: "1 head", optional: true },
     ],
     equipment: [],
     steps: [
@@ -20136,6 +20170,7 @@ export const recipes: Recipe[] = [
       { pantryId: "garlic", label: "Garlic cloves, minced (glaze)", amount: "4" },
       { pantryId: "rice-vinegar", label: "Rice vinegar (glaze)", amount: "1 tablespoon" },
       { pantryId: "sesame-seeds", label: "Toasted sesame seeds and chopped peanuts, to garnish", amount: "1 tablespoon" },
+      { pantryId: "radish", label: "Pickled radish, to serve", amount: "1 cup (150 g)", optional: true },
     ],
     equipment: [],
     steps: [
@@ -20884,6 +20919,8 @@ export const recipes: Recipe[] = [
       { pantryId: "onion", label: "Onions, cut in 1 1/2-inch wedges", amount: "2" },
       { pantryId: "bell-pepper", label: "Bell peppers, cut in 1 1/2-inch squares", amount: "2" },
       { pantryId: "pita-bread", label: "Warm pita, to serve", amount: "4" },
+      { pantryId: "tahini", label: "Tahini sauce, to serve", amount: "1/4 cup (60 g)", optional: true },
+      { pantryId: "greek-yogurt", label: "Yogurt, to serve", amount: "1/2 cup (120 g)", optional: true },
     ],
     equipment: [],
     steps: [
@@ -21140,6 +21177,7 @@ export const recipes: Recipe[] = [
       { pantryId: "potato", label: "French fries, to serve", amount: "1 lb (450 g)" },
       { pantryId: "pita-bread", label: "Pita, to serve", amount: "4" },
       { pantryId: "lemon", label: "Lemon wedges", amount: "1" },
+      { pantryId: "garlic", label: "Garlic sauce (toum), to serve", amount: "1/4 cup (60 g)", optional: true },
     ],
     equipment: [],
     steps: [
@@ -21275,6 +21313,8 @@ export const recipes: Recipe[] = [
       { pantryId: "tomato", label: "Tomatoes, charred", amount: "4" },
       { pantryId: "red-onion", label: "Red onion wedges, sumac and parsley, to serve", amount: "1" },
       { pantryId: "lemon", label: "Lemon wedges", amount: "1" },
+      { pantryId: "tahini", label: "Tahini sauce, to serve", amount: "1/4 cup (60 g)", optional: true },
+      { pantryId: "greek-yogurt", label: "Yogurt, to serve", amount: "1/2 cup (120 g)", optional: true },
     ],
     equipment: [],
     steps: [
@@ -22105,6 +22145,7 @@ export const recipes: Recipe[] = [
       { pantryId: "pita-bread", label: "Pita, toasted and broken (for fattoush) plus extra to serve", amount: "5" },
       { pantryId: "sumac", label: "Sumac", amount: "1 tablespoon" },
       { pantryId: "tahini", label: "Tahini sauce and garlic sauce, to serve", amount: "1 cup" },
+      { pantryId: "lemon", label: "Lemon juice (for the salad)", amount: "2 tablespoons" },
     ],
     equipment: [],
     steps: [
@@ -22459,6 +22500,7 @@ export const recipes: Recipe[] = [
       { pantryId: "black-pepper", label: "Black pepper", amount: "1/2 teaspoon" },
       { pantryId: "butter", label: "Butter, melted, for brushing", amount: "3 tablespoons" },
       { pantryId: "eggs", label: "Egg yolk, for the wash (optional)", amount: "1", optional: true },
+      { pantryId: "lemon", label: "Lemon wedges, to serve", amount: "1 lemon", optional: true },
     ],
     equipment: ["Oven"],
     steps: [
@@ -22546,6 +22588,7 @@ export const recipes: Recipe[] = [
       { pantryId: "olive-oil", label: "Olive oil, for the filling", amount: "2 tablespoons" },
       { pantryId: "vegetable-oil", label: "Oil, for deep frying", amount: "4 cups (950 ml)" },
       { pantryId: "greek-yogurt", label: "Yogurt, to serve", amount: "1 cup" },
+      { pantryId: "lemon", label: "Lemon wedges, to serve", amount: "1 lemon", optional: true },
     ],
     equipment: ["Food Processor"],
     steps: [
@@ -24558,6 +24601,7 @@ export const recipes: Recipe[] = [
       { pantryId: "nori", label: "Nori sheets", amount: "4" },
       { pantryId: "scallion", label: "Scallions, sliced", amount: "3" },
       { pantryId: "sesame-oil", label: "Sesame oil", amount: "1 tsp" },
+      { pantryId: "sugar", label: "Sugar (for the chashu braise)", amount: "2 tbsp" },
     ],
     equipment: [],
     steps: [
@@ -25363,6 +25407,7 @@ export const recipes: Recipe[] = [
       { pantryId: "mayonnaise", label: "Mayonnaise", amount: "4 tbsp" },
       { pantryId: "pickles", label: "Chopped pickles", amount: "1 tbsp" },
       { pantryId: "lemon", label: "Lemon juice", amount: "1 tsp" },
+      { pantryId: "cabbage", label: "Shredded cabbage, to serve", amount: "1 cup (70 g)", optional: true },
     ],
     equipment: [],
     steps: [
