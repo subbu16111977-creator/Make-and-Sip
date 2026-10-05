@@ -96,6 +96,22 @@ export function SavedIcon({
   );
 }
 
+/** A head-and-shoulders outline — Profile tab. */
+export function ProfileIcon({ size = defaults.size, color = defaults.color, strokeWidth = defaults.strokeWidth }: IconProps) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Circle cx={12} cy={8.5} r={3.5} stroke={color} strokeWidth={strokeWidth} />
+      <Path
+        d="M5 20C5.6 16.4 8.4 14.5 12 14.5C15.6 14.5 18.4 16.4 19 20"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
 export function ClockIcon({ size = 16, color = defaults.color, strokeWidth = 1.6 }: IconProps) {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">

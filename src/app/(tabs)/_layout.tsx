@@ -3,7 +3,7 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, spacing, type as typeScale, shadows } from "@/theme";
-import { HomeIcon, PantryIcon, DiscoverIcon, ShoppingIcon, SavedIcon, type IconProps } from "@/components/icons";
+import { HomeIcon, PantryIcon, DiscoverIcon, ShoppingIcon, SavedIcon, ProfileIcon, type IconProps } from "@/components/icons";
 
 const TAB_META: Record<string, { label: string; Icon: React.ComponentType<IconProps> }> = {
   index: { label: "Home", Icon: HomeIcon },
@@ -11,6 +11,7 @@ const TAB_META: Record<string, { label: string; Icon: React.ComponentType<IconPr
   discover: { label: "Discover", Icon: DiscoverIcon },
   shopping: { label: "Shopping", Icon: ShoppingIcon },
   saved: { label: "Saved", Icon: SavedIcon },
+  profile: { label: "Profile", Icon: ProfileIcon },
 };
 
 /**
@@ -64,6 +65,7 @@ export default function TabsLayout() {
       <Tabs.Screen name="discover" options={{ title: "Discover" }} />
       <Tabs.Screen name="shopping" options={{ title: "Shopping" }} />
       <Tabs.Screen name="saved" options={{ title: "Saved" }} />
+      <Tabs.Screen name="profile" options={{ title: "Profile" }} />
     </Tabs>
   );
 }
