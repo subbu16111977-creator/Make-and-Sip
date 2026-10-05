@@ -8,6 +8,8 @@ interface EquipmentContextValue {
   owned: EquipmentTag[];
   isOwned: (tag: EquipmentTag) => boolean;
   toggleEquipment: (tag: EquipmentTag) => void;
+  /** Clears owned equipment. Only used by Settings > Reset local app data. */
+  reset: () => void;
 }
 
 const EquipmentContext = createContext<EquipmentContextValue | undefined>(undefined);
@@ -30,7 +32,9 @@ export function EquipmentProvider({ children }: { children: React.ReactNode }) {
     setOwned((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
   }, [setOwned]);
 
-  const value = useMemo(() => ({ owned, isOwned, toggleEquipment }), [owned, isOwned, toggleEquipment]);
+  const reset = useCallback(() => setOwned([]), [setOwned]);
+
+  const value = useMemo(() => ({ owned, isOwned, toggleEquipment, reset }), [owned, isOwned, toggleEquipment, reset]);
 
   if (!hydrated) return <AppBlank />;
 

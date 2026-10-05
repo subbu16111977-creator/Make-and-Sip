@@ -1,0 +1,107 @@
+import { describe, expect, it } from "vitest";
+import { emptyProfile, type LocalProfile } from "./profile";
+import {
+  INTRO_STEPS,
+  TUTORIAL_STEPS,
+  clampIndex,
+  getPhase,
+  markIntroDone,
+  markTutorialCompleted,
+  markTutorialSkipped,
+  pickTutorialRecipe,
+} from "./introFlow";
+import { ALL_STORAGE_KEYS, STORAGE_KEYS } from "./appData";
+import { recipes } from "@/data/recipes";
+import type { PantryItem } from "@/types";
+
+const fresh = () => emptyProfile();
+
+describe("first launch", () => {
+  it("shows the introduction first", () => {
+    expect(getPhase(fresh(), null)).toBe("intro");
+  });
+  it("opens the tutorial after the introduction is completed", () => {
+    expect(getPhase(markIntroDone(fresh()), null)).toBe("tutorial");
+  });
+  it("opens the tutorial even when the introduction (and profile setup) is skipped", () => {
+    const skipped = markIntroDone(fresh());
+    expect(skipped.displayName).toBeUndefined();
+    expect(getPhase(skipped, null)).toBe("tutorial");
+  });
+  it("opens the main app after the tutorial is completed", () => {
+    expect(getPhase(markTutorialCompleted(markIntroDone(fresh())), null)).toBe("main");
+  });
+  it("opens the main app after the tutorial is skipped", () => {
+    expect(getPhase(markTutorialSkipped(markIntroDone(fresh())), null)).toBe("main");
+  });
+  it("does not show the introduction or tutorial again once finished (reload)", () => {
+    const done = JSON.parse(JSON.stringify(markTutorialCompleted(markIntroDone(fresh())))) as LocalProfile;
+    expect(getPhase(done, null)).toBe("main");
+  });
+});
+
+describe("replays from Settings", () => {
+  const done = markTutorialCompleted(markIntroDone(fresh()));
+  it("replays the introduction", () => {
+    expect(getPhase(done, "intro")).toBe("intro");
+  });
+  it("replays the tutorial", () => {
+    expect(getPhase(done, "tutorial")).toBe("tutorial");
+  });
+  it("returns to the main app when the replay ends", () => {
+    expect(getPhase(done, null)).toBe("main");
+  });
+  it("does not change stored flags (the flag helpers are no-ops on a finished profile)", () => {
+    expect(markIntroDone(done)).toBe(done);
+    expect(markTutorialSkipped(done)).toBe(done);
+  });
+});
+
+describe("flow only produces profile flags", () => {
+  it("does not mutate the profile it is given", () => {
+    const p = fresh();
+    const snap = JSON.stringify(p);
+    markIntroDone(p);
+    markTutorialCompleted(p);
+    markTutorialSkipped(p);
+    expect(JSON.stringify(p)).toBe(snap);
+  });
+  it("keeps the profile in its own storage key, separate from pantry, shopping, saved and equipment", () => {
+    expect(new Set(ALL_STORAGE_KEYS).size).toBe(ALL_STORAGE_KEYS.length);
+    expect(STORAGE_KEYS.profile).not.toBe(STORAGE_KEYS.pantry);
+    expect(STORAGE_KEYS.profile).not.toBe(STORAGE_KEYS.shopping);
+    expect(STORAGE_KEYS.profile).not.toBe(STORAGE_KEYS.saved);
+    expect(STORAGE_KEYS.profile).not.toBe(STORAGE_KEYS.equipment);
+  });
+  it("keeps the existing storage keys unchanged", () => {
+    expect(STORAGE_KEYS.pantry).toBe("mise.pantry.v1");
+    expect(STORAGE_KEYS.shopping).toBe("mise.shopping.v1");
+    expect(STORAGE_KEYS.saved).toBe("mise.saved.v1");
+    expect(STORAGE_KEYS.equipment).toBe("mise.equipment.v1");
+  });
+});
+
+describe("tutorial", () => {
+  it("has five steps, each skippable and described", () => {
+    expect(TUTORIAL_STEPS).toHaveLength(5);
+    for (const s of TUTORIAL_STEPS) {
+      expect(s.title.length).toBeGreaterThan(0);
+      expect(s.body.length).toBeGreaterThan(0);
+    }
+  });
+  it("has five intro screens", () => {
+    expect(INTRO_STEPS).toHaveLength(5);
+  });
+  it("clamps step indexes", () => {
+    expect(clampIndex(-3, 5)).toBe(0);
+    expect(clampIndex(9, 5)).toBe(4);
+  });
+  it("picks an example dish without changing pantry or equipment", () => {
+    const pantry: PantryItem[] = [];
+    const owned: never[] = [];
+    const before = JSON.stringify({ pantry, owned });
+    const picked = pickTutorialRecipe(recipes, pantry, owned);
+    expect(picked).toBeDefined();
+    expect(JSON.stringify({ pantry, owned })).toBe(before);
+  });
+});

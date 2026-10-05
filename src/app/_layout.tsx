@@ -11,6 +11,8 @@ import { PantryProvider } from "@/context/PantryContext";
 import { ShoppingProvider } from "@/context/ShoppingContext";
 import { SavedProvider } from "@/context/SavedContext";
 import { EquipmentProvider } from "@/context/EquipmentContext";
+import { ProfileProvider } from "@/context/ProfileContext";
+import { FirstLaunchGate } from "@/components/FirstLaunchGate";
 
 SplashScreen.preventAutoHideAsync().catch(() => {
   // no-op — safe to ignore if already hidden
@@ -39,13 +41,16 @@ export default function RootLayout() {
         <EquipmentProvider>
           <ShoppingProvider>
             <SavedProvider>
+              <ProfileProvider>
               <View style={styles.root} onLayout={onLayoutRootView}>
                 <StatusBar style="light" />
                 <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.cream } }}>
                   <Stack.Screen name="(tabs)" />
                   <Stack.Screen name="recipe/[id]" options={{ animation: "slide_from_right" }} />
                 </Stack>
+                <FirstLaunchGate />
               </View>
+              </ProfileProvider>
             </SavedProvider>
           </ShoppingProvider>
         </EquipmentProvider>

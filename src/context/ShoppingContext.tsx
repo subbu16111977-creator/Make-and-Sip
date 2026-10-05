@@ -34,6 +34,8 @@ interface ShoppingContextValue {
   toggleChecked: (id: string) => void;
   removeItem: (id: string) => void;
   clearChecked: () => void;
+  /** Clears the whole list. Only used by Settings > Reset local app data. */
+  reset: () => void;
 }
 
 const ShoppingContext = createContext<ShoppingContextValue | undefined>(undefined);
@@ -137,9 +139,11 @@ export function ShoppingProvider({ children }: { children: React.ReactNode }) {
     setItems((prev) => prev.filter((item) => !item.checked));
   }, [setItems]);
 
+  const reset = useCallback(() => setItems([]), [setItems]);
+
   const value = useMemo(
-    () => ({ items, addItem, addMissingFromRecipe, toggleChecked, removeItem, clearChecked }),
-    [items, addItem, addMissingFromRecipe, toggleChecked, removeItem, clearChecked]
+    () => ({ items, addItem, addMissingFromRecipe, toggleChecked, removeItem, clearChecked, reset }),
+    [items, addItem, addMissingFromRecipe, toggleChecked, removeItem, clearChecked, reset]
   );
 
   if (!hydrated) return <AppBlank />;

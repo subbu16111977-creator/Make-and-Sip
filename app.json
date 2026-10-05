@@ -37,7 +37,15 @@
           "imageWidth": 140
         }
       ],
-      "expo-image"
+      "expo-image",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Mise uses your photo library only when you choose a profile photo. The photo stays on this device.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

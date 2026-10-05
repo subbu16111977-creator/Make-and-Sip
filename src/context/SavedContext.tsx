@@ -7,6 +7,8 @@ interface SavedContextValue {
   savedIds: string[];
   isSaved: (recipeId: string) => boolean;
   toggleSaved: (recipeId: string) => void;
+  /** Clears every saved recipe. Only used by Settings > Reset local app data. */
+  reset: () => void;
 }
 
 const SavedContext = createContext<SavedContextValue | undefined>(undefined);
@@ -21,7 +23,9 @@ export function SavedProvider({ children }: { children: React.ReactNode }) {
     setSavedIds((prev) => (prev.includes(recipeId) ? prev.filter((id) => id !== recipeId) : [recipeId, ...prev]));
   }, [setSavedIds]);
 
-  const value = useMemo(() => ({ savedIds, isSaved, toggleSaved }), [savedIds, isSaved, toggleSaved]);
+  const reset = useCallback(() => setSavedIds([]), [setSavedIds]);
+
+  const value = useMemo(() => ({ savedIds, isSaved, toggleSaved, reset }), [savedIds, isSaved, toggleSaved, reset]);
 
   if (!hydrated) return <AppBlank />;
 

@@ -27,6 +27,8 @@ interface PantryContextValue {
   items: PantryItem[];
   addItem: (input: NewPantryItemInput) => void;
   removeItem: (id: string) => void;
+  /** Clears every pantry item. Only used by Settings > Reset local app data. */
+  reset: () => void;
   /**
    * Called by Shopping when a purchase is checked off. Goes through the
    * same identity-aware merge logic as a manual add (dedup by
@@ -82,9 +84,11 @@ export function PantryProvider({ children }: { children: React.ReactNode }) {
     );
   }, [setItems]);
 
+  const reset = useCallback(() => setItems([]), [setItems]);
+
   const value = useMemo(
-    () => ({ items, addItem, removeItem, receiveFromShopping }),
-    [items, addItem, removeItem, receiveFromShopping]
+    () => ({ items, addItem, removeItem, receiveFromShopping, reset }),
+    [items, addItem, removeItem, receiveFromShopping, reset]
   );
 
   if (!hydrated) return <AppBlank />;
