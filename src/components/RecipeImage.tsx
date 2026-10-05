@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Image, type ImageContentFit } from "expo-image";
-import { colors, radii, spacing, type as typeScale } from "@/theme";
+import { colors, spacing, type as typeScale } from "@/theme";
 import { AlertPlateIcon } from "./icons";
 import { LOCAL_IMAGE_PREFIX, localRecipeImages } from "@/data/localRecipeImages";
 
