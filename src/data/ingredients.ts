@@ -202,7 +202,7 @@ export const ingredientRegistry: IngredientEntity[] = [
     baseIngredient: "tomato",
     displayName: "Cherry tomatoes",
     category: "Vegetables",
-    synonyms: ["cherry tomato", "cherry tomatoes", "crushed tomatoes"],
+    synonyms: ["cherry tomato", "cherry tomatoes"],
   },
   {
     id: "chia-seeds",
@@ -2705,4 +2705,8 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "pickled-ginger", canonicalName: "pickled_ginger", baseIngredient: "pickled_ginger", displayName: "Pickled Ginger (Gari)", category: "Pantry Staples", synonyms: ["pickled ginger", "sushi ginger", "gari", "beni shoga"] },
   { id: "mentsuyu", canonicalName: "mentsuyu", baseIngredient: "mentsuyu", displayName: "Mentsuyu (Noodle Sauce)", category: "Pantry Staples", synonyms: ["mentsuyu", "tsuyu", "noodle soup base"] },
   { id: "edamame", canonicalName: "edamame", baseIngredient: "edamame", displayName: "Edamame", category: "Frozen", synonyms: ["edamame", "edamame in pods", "shelled edamame"] },
+  { id: "crushed-tomatoes", canonicalName: "crushed_tomatoes", baseIngredient: "crushed_tomatoes", displayName: "Crushed Tomatoes (Canned)", category: "Pantry Staples", synonyms: ["crushed tomatoes", "canned tomatoes", "canned crushed tomatoes", "diced tomatoes", "passata"] },
+  { id: "dried-oregano", canonicalName: "dried_oregano", baseIngredient: "dried_oregano", displayName: "Dried Oregano", category: "Spices", synonyms: ["oregano", "dried oregano"] },
+  { id: "adzuki-beans", canonicalName: "adzuki_beans", baseIngredient: "adzuki_beans", displayName: "Adzuki Beans", category: "Pulses", synonyms: ["adzuki beans", "azuki beans", "red adzuki beans"] },
+  { id: "moong-dal", canonicalName: "moong_dal", baseIngredient: "moong_dal", displayName: "Moong Dal (Split Mung Beans)", category: "Pulses", synonyms: ["moong dal", "yellow moong dal", "split mung beans", "mung dal"] },
 ];
