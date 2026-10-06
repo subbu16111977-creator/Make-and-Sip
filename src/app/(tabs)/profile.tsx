@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, useWindowDimensions } from "react-native";
+import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Avatar } from "@/components/Avatar";
 import { Button } from "@/components/Button";
+import { RecipeCard } from "@/components/RecipeCard";
 import { ProfileForm, LOCAL_NOTE } from "@/components/ProfileForm";
 import { colors, layout, radii, spacing, type as typeScale } from "@/theme";
 import { useProfile } from "@/context/ProfileContext";
@@ -10,6 +12,10 @@ import { usePantry } from "@/context/PantryContext";
 import { useShopping } from "@/context/ShoppingContext";
 import { useSaved } from "@/context/SavedContext";
 import { useEquipment } from "@/context/EquipmentContext";
+import { useFavorites } from "@/context/FavoritesContext";
+import { recipes } from "@/data/recipes";
+import { favoriteRecipes } from "@/lib/favorites";
+import { matchRecipe, missingEquipment } from "@/lib/pantryMatch";
 import { draftFromProfile, hasErrors, photoView, validateDraft, type ProfileDraft } from "@/lib/profile";
 
 export default function ProfileScreen() {
@@ -18,6 +24,14 @@ export default function ProfileScreen() {
   const shopping = useShopping();
   const saved = useSaved();
   const equipment = useEquipment();
+  const favorites = useFavorites();
+  const router = useRouter();
+  const { width: screenWidth } = useWindowDimensions();
+
+  // Same card size and grid as Discover.
+  const cardGap = spacing.md;
+  const cardWidth = (screenWidth - layout.screenPadding * 2 - cardGap) / 2;
+  const favoriteMatches = favoriteRecipes(favorites.favoriteIds, recipes).map((r) => matchRecipe(pantry.items, r));
 
   const [draft, setDraft] = useState<ProfileDraft>(() => draftFromProfile(profile));
   const [showErrors, setShowErrors] = useState(false);
@@ -46,6 +60,7 @@ export default function ProfileScreen() {
     shopping.reset();
     saved.reset();
     equipment.reset();
+    favorites.reset();
     resetProfile();
     setDraft(draftFromProfile({ ...profile, displayName: undefined, profilePhotoUri: undefined, favoriteCuisines: [], customCuisines: [], favoriteFlavors: [], customFlavors: [] }));
     setConfirmingReset(false);
@@ -65,7 +80,35 @@ export default function ProfileScreen() {
         </View>
       </View>
 
+      <View style={styles.favoritesSection}>
+        <View style={styles.favoritesHead}>
+          <Text style={styles.sectionTitle}>Favourite dishes</Text>
+          <Text style={styles.sub}>
+            {favoriteMatches.length} {favoriteMatches.length === 1 ? "dish" : "dishes"}
+          </Text>
+        </View>
+        {favoriteMatches.length === 0 ? (
+          <Text style={styles.sub}>Tap the heart on any dish in Discover, Home or a recipe to keep it here.</Text>
+        ) : (
+          <View style={[styles.favoritesGrid, { columnGap: cardGap }]}>
+            {favoriteMatches.map((m) => (
+              <RecipeCard
+                key={m.recipe.id}
+                recipe={m.recipe}
+                haveCount={m.have.length}
+                totalCount={m.recipe.ingredients.length}
+                missing={m.missing}
+                missingEquipment={missingEquipment(equipment.owned, m.recipe)}
+                width={cardWidth}
+                onPress={() => router.push({ pathname: "/recipe/[id]", params: { id: m.recipe.id } })}
+              />
+            ))}
+          </View>
+        )}
+      </View>
+
       <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Your profile</Text>
         <ProfileForm profile={profile} draft={draft} onChange={change} errors={errors} />
         <Button label={justSaved ? "Saved on this device" : "Save profile"} onPress={save} fullWidth />
       </View>
@@ -116,6 +159,9 @@ const styles = StyleSheet.create({
   name: { ...typeScale.headline, fontSize: 22, color: colors.espresso },
   sub: { ...typeScale.bodySmall, color: colors.espressoMuted },
   section: { paddingHorizontal: layout.screenPadding, paddingTop: spacing.xl, gap: spacing.md, maxWidth: layout.maxContentWidth, width: "100%", alignSelf: "center" },
+  favoritesSection: { paddingTop: spacing.xl, gap: spacing.md },
+  favoritesHead: { paddingHorizontal: layout.screenPadding, flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },
+  favoritesGrid: { flexDirection: "row", flexWrap: "wrap", rowGap: spacing.xl, paddingHorizontal: layout.screenPadding },
   sectionTitle: { ...typeScale.headline, fontSize: 20, color: colors.espresso },
   row: { paddingVertical: 14, paddingHorizontal: spacing.lg, borderRadius: radii.lg, backgroundColor: colors.paper, borderWidth: StyleSheet.hairlineWidth, borderColor: colors.hairline },
   rowText: { ...typeScale.label, fontSize: 15, color: colors.espresso },

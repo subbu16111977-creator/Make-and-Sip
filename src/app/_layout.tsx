@@ -12,6 +12,7 @@ import { ShoppingProvider } from "@/context/ShoppingContext";
 import { SavedProvider } from "@/context/SavedContext";
 import { EquipmentProvider } from "@/context/EquipmentContext";
 import { ProfileProvider } from "@/context/ProfileContext";
+import { FavoritesProvider } from "@/context/FavoritesContext";
 import { FirstLaunchGate } from "@/components/FirstLaunchGate";
 
 SplashScreen.preventAutoHideAsync().catch(() => {
@@ -41,6 +42,7 @@ export default function RootLayout() {
         <EquipmentProvider>
           <ShoppingProvider>
             <SavedProvider>
+              <FavoritesProvider>
               <ProfileProvider>
               <View style={styles.root} onLayout={onLayoutRootView}>
                 <StatusBar style="light" />
@@ -51,6 +53,7 @@ export default function RootLayout() {
                 <FirstLaunchGate />
               </View>
               </ProfileProvider>
+              </FavoritesProvider>
             </SavedProvider>
           </ShoppingProvider>
         </EquipmentProvider>

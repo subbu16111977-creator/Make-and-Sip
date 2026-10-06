@@ -96,6 +96,27 @@ export function SavedIcon({
   );
 }
 
+/** A heart — marks a favourite dish. */
+export function HeartIcon({
+  size = defaults.size,
+  color = defaults.color,
+  strokeWidth = defaults.strokeWidth,
+  filled = false,
+}: IconProps & { filled?: boolean }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M12 20.5C12 20.5 3.5 15.2 3.5 9.2C3.5 6.6 5.5 4.8 7.8 4.8C9.6 4.8 11.2 5.8 12 7.4C12.8 5.8 14.4 4.8 16.2 4.8C18.5 4.8 20.5 6.6 20.5 9.2C20.5 15.2 12 20.5 12 20.5Z"
+        stroke={color}
+        fill={filled ? color : "none"}
+        strokeWidth={strokeWidth}
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+    </Svg>
+  );
+}
+
 /** A head-and-shoulders outline — Profile tab. */
 export function ProfileIcon({ size = defaults.size, color = defaults.color, strokeWidth = defaults.strokeWidth }: IconProps) {
   return (

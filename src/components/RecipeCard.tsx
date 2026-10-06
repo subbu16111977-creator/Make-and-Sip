@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors, radii, spacing, type as typeScale, shadows } from "@/theme";
 import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
-import { ClockIcon, SavedIcon, ShoppingIcon, CheckIcon } from "./icons";
+import { ClockIcon, SavedIcon, ShoppingIcon, CheckIcon, HeartIcon } from "./icons";
 import { MatchBadge } from "./MatchBadge";
 import { RecipeImage } from "./RecipeImage";
 import { useSaved } from "@/context/SavedContext";
+import { useFavorites } from "@/context/FavoritesContext";
 import { useShopping } from "@/context/ShoppingContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { canMakeRecipe } from "@/lib/pantryMatch";
@@ -29,6 +30,8 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
   const { isSaved, toggleSaved } = useSaved();
   const { addMissingFromRecipe } = useShopping();
   const saved = isSaved(recipe.id);
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const favorite = isFavorite(recipe.id);
   const { owned: ownedEquipment } = useEquipment();
   const canMake = canMakeRecipe(recipe, haveCount, missing, ownedEquipment);
   const [justAdded, setJustAdded] = useState(false);
@@ -76,6 +79,17 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
             )}
           </Pressable>
         )}
+
+        <Pressable
+          onPress={() => toggleFavorite(recipe.id)}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityLabel={favorite ? `Remove ${recipe.title} from favourites` : `Add ${recipe.title} to favourites`}
+          accessibilityState={{ selected: favorite }}
+          style={styles.heartButton}
+        >
+          <HeartIcon size={14} color={favorite ? colors.tomato : colors.white} strokeWidth={1.8} filled={favorite} />
+        </Pressable>
 
         <View style={styles.badgeOverlay}>
           <MatchBadge haveCount={haveCount} totalCount={totalCount} tone="dark" />
@@ -148,6 +162,17 @@ const styles = StyleSheet.create({
   },
   saveButton: {
     right: spacing.sm,
+  },
+  heartButton: {
+    position: "absolute",
+    bottom: spacing.sm,
+    right: spacing.sm,
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    backgroundColor: "rgba(11, 10, 8, 0.55)",
+    alignItems: "center",
+    justifyContent: "center",
   },
   cartButton: {
     right: spacing.sm + 32,

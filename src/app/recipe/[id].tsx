@@ -7,12 +7,13 @@ import { colors, radii, spacing, type as typeScale, layout, shadows } from "@/th
 import { recipes } from "@/data/recipes";
 import { usePantry } from "@/context/PantryContext";
 import { useSaved } from "@/context/SavedContext";
+import { useFavorites } from "@/context/FavoritesContext";
 import { useShopping } from "@/context/ShoppingContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { getRecipeAvailability, getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
 import { MatchBadge } from "@/components/MatchBadge";
 import { RecipeImage } from "@/components/RecipeImage";
-import { ChevronLeftIcon, CheckIcon, ClockIcon, SavedIcon, ShoppingIcon } from "@/components/icons";
+import { ChevronLeftIcon, CheckIcon, ClockIcon, HeartIcon, SavedIcon, ShoppingIcon } from "@/components/icons";
 
 /** "95" -> "1 hr 35 min", "45" -> "45 min", "0" -> "—" */
 function formatMinutes(total: number): string {
@@ -36,6 +37,7 @@ export default function RecipeDetailScreen() {
   const { width: screenWidth } = useWindowDimensions();
   const { items: pantryItems } = usePantry();
   const { isSaved, toggleSaved } = useSaved();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const { addMissingFromRecipe } = useShopping();
   const { isOwned: isEquipmentOwned } = useEquipment();
 
@@ -126,9 +128,20 @@ export default function RecipeDetailScreen() {
             <Pressable onPress={() => router.back()} hitSlop={8} style={styles.iconButton}>
               <ChevronLeftIcon size={18} color={colors.white} strokeWidth={2.1} />
             </Pressable>
-            <Pressable onPress={() => toggleSaved(recipeId)} hitSlop={8} style={styles.iconButton}>
-              <SavedIcon size={17} color={colors.white} strokeWidth={1.8} filled={saved} />
-            </Pressable>
+            <View style={styles.heroActions}>
+              <Pressable
+                onPress={() => toggleFavorite(recipeId)}
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel={isFavorite(recipeId) ? "Remove from favourites" : "Add to favourites"}
+                style={styles.iconButton}
+              >
+                <HeartIcon size={17} color={isFavorite(recipeId) ? colors.tomato : colors.white} strokeWidth={1.8} filled={isFavorite(recipeId)} />
+              </Pressable>
+              <Pressable onPress={() => toggleSaved(recipeId)} hitSlop={8} accessibilityRole="button" accessibilityLabel={saved ? "Remove from saved" : "Save dish"} style={styles.iconButton}>
+                <SavedIcon size={17} color={colors.white} strokeWidth={1.8} filled={saved} />
+              </Pressable>
+            </View>
           </View>
 
           <View style={styles.heroContent}>
@@ -302,6 +315,10 @@ const styles = StyleSheet.create({
     right: spacing.lg,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  heroActions: {
+    flexDirection: "row",
+    gap: spacing.sm,
   },
   iconButton: {
     width: 36,
