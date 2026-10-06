@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Modal, View, Text, StyleSheet, Animated, Easing, useWindowDimensions } from "react-native";
+import { Modal, View, Text, StyleSheet, Animated, Easing } from "react-native";
+import { useAppDimensions } from "@/lib/useAppDimensions";
 import { colors, radii, spacing, type as typeScale, shadows } from "@/theme";
 import { Button } from "./Button";
 
@@ -75,7 +76,7 @@ function ConfettiParticle({ seed, width }: { seed: number; width: number }) {
  * Animated, no extra dependency) plus a count of what opened up.
  */
 export function UnlockCelebration({ visible, count, onDismiss }: UnlockCelebrationProps) {
-  const { width } = useWindowDimensions();
+  const { width } = useAppDimensions();
   const particles = useMemo(() => Array.from({ length: PARTICLE_COUNT }, (_, i) => i), []);
 
   if (!visible) return null;

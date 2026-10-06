@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
+import { MAX_APP_WIDTH } from "@/lib/useAppDimensions";
 import { Stack } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -44,6 +45,7 @@ export default function RootLayout() {
             <SavedProvider>
               <FavoritesProvider>
               <ProfileProvider>
+              <View style={styles.page}>
               <View style={styles.root} onLayout={onLayoutRootView}>
                 <StatusBar style="light" />
                 <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.cream } }}>
@@ -51,6 +53,7 @@ export default function RootLayout() {
                   <Stack.Screen name="recipe/[id]" options={{ animation: "slide_from_right" }} />
                 </Stack>
                 <FirstLaunchGate />
+              </View>
               </View>
               </ProfileProvider>
               </FavoritesProvider>
@@ -63,9 +66,19 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
+  // On the web the app is a centred phone-width column; on a phone this is a no-op.
+  page: {
+    flex: 1,
+    backgroundColor: Platform.OS === "web" ? "#0B0A08" : colors.cream,
+    alignItems: "center",
+  },
   root: {
     flex: 1,
+    width: "100%",
+    maxWidth: MAX_APP_WIDTH,
     backgroundColor: colors.cream,
+    overflow: "hidden",
+    ...(Platform.OS === "web" ? { borderLeftWidth: StyleSheet.hairlineWidth, borderRightWidth: StyleSheet.hairlineWidth, borderColor: colors.hairlineStrong } : null),
   },
   blank: {
     flex: 1,

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Pressable, useWindowDimensions } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { useAppDimensions } from "@/lib/useAppDimensions";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors, radii, spacing, type as typeScale, layout, shadows } from "@/theme";
 import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
@@ -26,7 +27,7 @@ interface RecipeHeroProps {
 
 /** Width of a hero card — shared with the slideshow so slides page exactly one card at a time. */
 export function useHeroWidth(): number {
-  const { width } = useWindowDimensions();
+  const { width } = useAppDimensions();
   return Math.min(width - layout.screenPadding * 2, layout.maxContentWidth);
 }
 

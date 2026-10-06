@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform, useWindowDimensions } from "react-native";
+import { View, Text, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
+import { useAppDimensions } from "@/lib/useAppDimensions";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "./Button";
 import { Logo } from "./Logo";
@@ -22,7 +23,7 @@ function Badge({ Icon }: { Icon: React.ComponentType<IconProps> }) {
 }
 
 function Welcome() {
-  const { width } = useWindowDimensions();
+  const { width } = useAppDimensions();
   const side = Math.min(width - layout.screenPadding * 2, 300);
   return (
     <View style={[styles.logoFrame, { width: side, height: side }]}>

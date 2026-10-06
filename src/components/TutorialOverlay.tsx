@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, Pressable, StyleSheet, Animated, useWindowDimensions } from "react-native";
+import { View, Text, Pressable, StyleSheet, Animated } from "react-native";
+import { useAppDimensions } from "@/lib/useAppDimensions";
 import { useRouter, useRootNavigationState } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, radii, spacing, type as typeScale } from "@/theme";
@@ -20,15 +21,22 @@ interface Box {
 /** A glowing white outline drawn around the real control a step is about. It never blocks taps. */
 function Spotlight({ targetId }: { targetId: (typeof TUTORIAL_STEPS)[number]["target"] }) {
   const [box, setBox] = useState<Box | null>(null);
+  const layerRef = useRef<View>(null);
   const [pulse] = useState(() => new Animated.Value(0));
 
   useEffect(() => {
     const measure = () => {
       const node = getTutorialTarget(targetId)?.current;
-      if (!node) return setBox((prev) => (prev ? null : prev));
-      node.measureInWindow((x, y, w, h) => {
-        if (!(w > 0 && h > 0)) return setBox((prev) => (prev ? null : prev));
-        setBox((prev) => (prev && prev.x === x && prev.y === y && prev.w === w && prev.h === h ? prev : { x, y, w, h }));
+      const layer = layerRef.current;
+      if (!node || !layer) return setBox((prev) => (prev ? null : prev));
+      // The app can be a centred column on wide screens, so position the outline relative to this layer, not the window.
+      layer.measureInWindow((ox, oy) => {
+        node.measureInWindow((wx, wy, w, h) => {
+          if (!(w > 0 && h > 0)) return setBox((prev) => (prev ? null : prev));
+          const x = wx - ox;
+          const y = wy - oy;
+          setBox((prev) => (prev && prev.x === x && prev.y === y && prev.w === w && prev.h === h ? prev : { x, y, w, h }));
+        });
       });
     };
     measure();
@@ -48,12 +56,13 @@ function Spotlight({ targetId }: { targetId: (typeof TUTORIAL_STEPS)[number]["ta
     return () => loop.stop();
   }, [pulse]);
 
-  if (!box) return null;
   const pad = 5;
   const glow = pulse.interpolate({ inputRange: [0, 1], outputRange: [0.15, 0.55] });
   const spread = pulse.interpolate({ inputRange: [0, 1], outputRange: [0, 5] });
   return (
-    <View pointerEvents="none" style={styles.spotLayer}>
+    <View ref={layerRef} collapsable={false} pointerEvents="none" style={styles.spotLayer}>
+      {box ? (
+      <>
       <Animated.View
         style={[
           styles.spotGlow,
@@ -61,6 +70,8 @@ function Spotlight({ targetId }: { targetId: (typeof TUTORIAL_STEPS)[number]["ta
         ]}
       />
       <View style={[styles.spotRing, { left: box.x - pad, top: box.y - pad, width: box.w + pad * 2, height: box.h + pad * 2 }]} />
+      </>
+      ) : null}
     </View>
   );
 }
@@ -75,7 +86,7 @@ export function TutorialOverlay() {
   const router = useRouter();
   const navState = useRootNavigationState();
   const insets = useSafeAreaInsets();
-  const { height: windowHeight } = useWindowDimensions();
+  const { height: windowHeight } = useAppDimensions();
   const { finishTutorial, skipTutorial } = useProfile();
   const { items } = usePantry();
   const { owned } = useEquipment();

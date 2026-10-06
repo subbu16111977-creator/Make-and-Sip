@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable, useWindowDimensions } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { useAppDimensions } from "@/lib/useAppDimensions";
 import { colors, spacing, layout, radii, type as typeScale } from "@/theme";
 import type { EquipmentTag } from "@/types";
 import { SectionHeader } from "./SectionHeader";
@@ -49,7 +50,7 @@ export function RecipeSection({
   onOpen,
   onGridLayout,
 }: RecipeSectionProps) {
-  const { width } = useWindowDimensions();
+  const { width } = useAppDimensions();
   const contentWidth = Math.min(width, layout.maxContentWidth) - layout.screenPadding * 2;
   const columns = Math.max(2, Math.floor((contentWidth + GAP) / (MIN_CARD + GAP)));
   const cardWidth = (contentWidth - GAP * (columns - 1)) / columns;

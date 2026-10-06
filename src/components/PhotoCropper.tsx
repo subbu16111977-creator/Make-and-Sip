@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, Image, Modal, Pressable, PanResponder, Platform, StyleSheet, useWindowDimensions } from "react-native";
+import { View, Text, Image, Modal, Pressable, PanResponder, Platform, StyleSheet } from "react-native";
+import { useAppDimensions } from "@/lib/useAppDimensions";
 import { colors, radii, spacing, type as typeScale } from "@/theme";
 import { DEFAULT_CROP, MAX_ZOOM, MIN_ZOOM, clampCrop, layoutFor, withDrag, withZoom, type PhotoCrop } from "@/lib/photoCrop";
 
@@ -35,7 +36,7 @@ export function PhotoCropper(props: PhotoCropperProps) {
 }
 
 function CropperBody({ visible, uri, aspect, initialCrop, onCancel, onDone }: PhotoCropperProps) {
-  const { width } = useWindowDimensions();
+  const { width } = useAppDimensions();
   const side = Math.min(width - spacing["2xl"] * 2, 320);
   const [crop, setCrop] = useState<PhotoCrop>(() => clampCrop(initialCrop, aspect));
   const cropRef = useRef(crop);

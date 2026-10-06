@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
-import { View, Text, StyleSheet, FlatList, useWindowDimensions } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import { useAppDimensions } from "@/lib/useAppDimensions";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { colors, spacing, type as typeScale, layout } from "@/theme";
@@ -14,7 +15,7 @@ export default function SavedScreen() {
   const router = useRouter();
   const { savedIds } = useSaved();
   const { items: pantryItems } = usePantry();
-  const { width: screenWidth } = useWindowDimensions();
+  const { width: screenWidth } = useAppDimensions();
 
   const saved = useMemo(() => {
     const savedRecipes = savedIds

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { View, Text, StyleSheet, TextInput, ScrollView, FlatList, useWindowDimensions } from "react-native";
+import { View, Text, StyleSheet, TextInput, ScrollView, FlatList } from "react-native";
+import { useAppDimensions } from "@/lib/useAppDimensions";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { colors, spacing, radii, type as typeScale, layout } from "@/theme";
@@ -22,7 +23,7 @@ export default function DiscoverScreen() {
   const router = useRouter();
   const { items: pantryItems } = usePantry();
   const { owned: ownedEquipment } = useEquipment();
-  const { width: screenWidth } = useWindowDimensions();
+  const { width: screenWidth } = useAppDimensions();
   const [query, setQuery] = useState("");
   const [selectedTastes, setSelectedTastes] = useState<TasteTag[]>([]);
   const params = useLocalSearchParams<{ cuisine?: string; t?: string }>();
