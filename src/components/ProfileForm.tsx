@@ -26,6 +26,8 @@ interface ProfileFormProps {
   /** Takes an updater so rapid taps never overwrite each other with a stale copy of the draft. */
   onChange: (update: (draft: ProfileDraft) => ProfileDraft) => void;
   errors: DraftErrors;
+  /** Extra content shown directly under the cuisines question (used by the Profile tab for Favourite dishes). */
+  afterCuisines?: React.ReactNode;
 }
 
 export const PREFERENCES_NOTE =
@@ -33,7 +35,7 @@ export const PREFERENCES_NOTE =
 export const LOCAL_NOTE = "Your profile and preferences are stored only on this device.";
 
 /** The optional local profile fields, shared by the first-launch flow and Settings. Nothing here is required. */
-export function ProfileForm({ profile, draft, onChange, errors }: ProfileFormProps) {
+export function ProfileForm({ profile, draft, onChange, errors, afterCuisines }: ProfileFormProps) {
   const [photoError, setPhotoError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [cropping, setCropping] = useState(false);
@@ -151,6 +153,8 @@ export function ProfileForm({ profile, draft, onChange, errors }: ProfileFormPro
           {errors.cuisine ? <Text style={styles.error}>{errors.cuisine}</Text> : null}
         </View>
       ) : null}
+
+      {afterCuisines}
 
       <Text style={styles.question}>What kinds of flavours do you enjoy?</Text>
       <Text style={styles.helper}>Choose as many as you like.</Text>

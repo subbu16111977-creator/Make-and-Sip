@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { View, Text, Pressable, StyleSheet, useWindowDimensions } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { View, Text, Pressable, StyleSheet, type ScrollView, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Avatar } from "@/components/Avatar";
 import { Button } from "@/components/Button";
-import { RecipeCard } from "@/components/RecipeCard";
+import { RecipeSection } from "@/components/RecipeSection";
+import { SectionHeader } from "@/components/SectionHeader";
 import { ProfileForm, LOCAL_NOTE } from "@/components/ProfileForm";
 import { colors, layout, radii, spacing, type as typeScale } from "@/theme";
 import { useProfile } from "@/context/ProfileContext";
@@ -15,7 +16,8 @@ import { useEquipment } from "@/context/EquipmentContext";
 import { useFavorites } from "@/context/FavoritesContext";
 import { recipes } from "@/data/recipes";
 import { favoriteRecipes } from "@/lib/favorites";
-import { matchRecipe, missingEquipment } from "@/lib/pantryMatch";
+import { matchRecipe } from "@/lib/pantryMatch";
+import { registerScrollBy, useTutorialTarget } from "@/lib/tutorialTargets";
 import { draftFromProfile, hasErrors, photoView, validateDraft, type ProfileDraft } from "@/lib/profile";
 
 export default function ProfileScreen() {
@@ -26,11 +28,17 @@ export default function ProfileScreen() {
   const equipment = useEquipment();
   const favorites = useFavorites();
   const router = useRouter();
-  const { width: screenWidth } = useWindowDimensions();
+  const favoritesTarget = useTutorialTarget("profile-favorites");
+  const scrollRef = useRef<ScrollView>(null);
+  const scrollY = useRef(0);
+  const [favoritesExpanded, setFavoritesExpanded] = useState(false);
 
-  // Same card size and grid as Discover.
-  const cardGap = spacing.md;
-  const cardWidth = (screenWidth - layout.screenPadding * 2 - cardGap) / 2;
+  // Lets the tutorial scroll this screen to show the Favourites section.
+  useEffect(
+    () => registerScrollBy((dy) => scrollRef.current?.scrollTo({ y: Math.max(0, scrollY.current + dy), animated: true })),
+    []
+  );
+
   const favoriteMatches = favoriteRecipes(favorites.favoriteIds, recipes).map((r) => matchRecipe(pantry.items, r));
 
   const [draft, setDraft] = useState<ProfileDraft>(() => draftFromProfile(profile));
@@ -67,7 +75,14 @@ export default function ProfileScreen() {
   }
 
   return (
-    <Screen keyboardShouldPersistTaps="handled">
+    <Screen
+      keyboardShouldPersistTaps="handled"
+      scrollRef={scrollRef}
+      scrollEventThrottle={64}
+      onScroll={(e: NativeSyntheticEvent<NativeScrollEvent>) => {
+        scrollY.current = e.nativeEvent.contentOffset.y;
+      }}
+    >
       <View style={styles.header}>
         <Text style={styles.eyebrow}>Your kitchen</Text>
         <Text style={styles.headline}>Profile &amp; Settings</Text>
@@ -80,36 +95,38 @@ export default function ProfileScreen() {
         </View>
       </View>
 
-      <View style={styles.favoritesSection}>
-        <View style={styles.favoritesHead}>
-          <Text style={styles.sectionTitle}>Favourite dishes</Text>
-          <Text style={styles.sub}>
-            {favoriteMatches.length} {favoriteMatches.length === 1 ? "dish" : "dishes"}
-          </Text>
-        </View>
-        {favoriteMatches.length === 0 ? (
-          <Text style={styles.sub}>Tap the heart on any dish in Discover, Home or a recipe to keep it here.</Text>
-        ) : (
-          <View style={[styles.favoritesGrid, { columnGap: cardGap }]}>
-            {favoriteMatches.map((m) => (
-              <RecipeCard
-                key={m.recipe.id}
-                recipe={m.recipe}
-                haveCount={m.have.length}
-                totalCount={m.recipe.ingredients.length}
-                missing={m.missing}
-                missingEquipment={missingEquipment(equipment.owned, m.recipe)}
-                width={cardWidth}
-                onPress={() => router.push({ pathname: "/recipe/[id]", params: { id: m.recipe.id } })}
-              />
-            ))}
-          </View>
-        )}
-      </View>
-
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Your profile</Text>
-        <ProfileForm profile={profile} draft={draft} onChange={change} errors={errors} />
+        <ProfileForm
+          profile={profile}
+          draft={draft}
+          onChange={change}
+          errors={errors}
+          afterCuisines={
+            <View ref={favoritesTarget} collapsable={false} style={styles.favoritesSlot}>
+              {favoriteMatches.length === 0 ? (
+                <>
+                  <SectionHeader eyebrow="Your favourites" title="Favourite dishes" subtitle="Tap the heart on any dish to keep it here." />
+                </>
+              ) : (
+                <RecipeSection
+                  eyebrow="Your favourites"
+                  title="Favourite dishes"
+                  subtitle={`${favoriteMatches.length} ${favoriteMatches.length === 1 ? "dish" : "dishes"} you've hearted.`}
+                  matches={favoriteMatches}
+                  ownedEquipment={equipment.owned}
+                  seeAllLabel="View all"
+                  hideActionWhenFits
+                  expanded={favoritesExpanded}
+                  visibleCount={favoriteMatches.length}
+                  onToggle={() => setFavoritesExpanded((v) => !v)}
+                  onOpen={(id) => router.push({ pathname: "/recipe/[id]", params: { id } })}
+                  onGridLayout={() => {}}
+                />
+              )}
+            </View>
+          }
+        />
         <Button label={justSaved ? "Saved on this device" : "Save profile"} onPress={save} fullWidth />
       </View>
 
@@ -159,9 +176,8 @@ const styles = StyleSheet.create({
   name: { ...typeScale.headline, fontSize: 22, color: colors.espresso },
   sub: { ...typeScale.bodySmall, color: colors.espressoMuted },
   section: { paddingHorizontal: layout.screenPadding, paddingTop: spacing.xl, gap: spacing.md, maxWidth: layout.maxContentWidth, width: "100%", alignSelf: "center" },
-  favoritesSection: { paddingTop: spacing.xl, gap: spacing.md },
-  favoritesHead: { paddingHorizontal: layout.screenPadding, flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },
-  favoritesGrid: { flexDirection: "row", flexWrap: "wrap", rowGap: spacing.xl, paddingHorizontal: layout.screenPadding },
+  // Cancels the form's side padding so the row can run edge to edge, like on Home.
+  favoritesSlot: { marginHorizontal: -layout.screenPadding, marginTop: spacing.xl },
   sectionTitle: { ...typeScale.headline, fontSize: 20, color: colors.espresso },
   row: { paddingVertical: 14, paddingHorizontal: spacing.lg, borderRadius: radii.lg, backgroundColor: colors.paper, borderWidth: StyleSheet.hairlineWidth, borderColor: colors.hairline },
   rowText: { ...typeScale.label, fontSize: 15, color: colors.espresso },

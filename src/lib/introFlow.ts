@@ -43,7 +43,7 @@ export function clampIndex(index: number, length: number): number {
   return Math.min(Math.max(index, 0), Math.max(length - 1, 0));
 }
 
-export type TutorialTarget = "pantry" | "equipment" | "discover" | "recipe-shopping" | "recipe-save";
+export type TutorialTarget = "pantry" | "equipment" | "discover" | "recipe-shopping" | "recipe-save" | "recipe-favorite" | "profile-favorites";
 
 export interface TutorialStep {
   id: TutorialTarget;
@@ -96,6 +96,22 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
     body: "Save dishes you want to find again later.",
     hint: "Tap the glowing bookmark. Tap it again to remove it.",
     target: "recipe-save",
+    placement: "bottom",
+  },
+  {
+    id: "recipe-favorite",
+    title: "Favourite a dish",
+    body: "Tap the heart on any dish you love to make it a favourite. Favourites are kept separately from Saved.",
+    hint: "Tap the glowing heart. You'll find hearts on every dish card too. Tap again to remove it.",
+    target: "recipe-heart",
+    placement: "bottom",
+  },
+  {
+    id: "profile-favorites",
+    title: "See your favourites",
+    body: "All your favourite dishes are collected on your Profile tab, under your favourite cuisines. Tap View all to see every one.",
+    hint: "Your hearted dishes appear in the glowing section.",
+    target: "profile-favorites",
     placement: "bottom",
   },
 ];

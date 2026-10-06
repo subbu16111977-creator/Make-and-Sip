@@ -82,15 +82,15 @@ describe("flow only produces profile flags", () => {
 });
 
 describe("tutorial", () => {
-  it("has five steps, each skippable and described", () => {
-    expect(TUTORIAL_STEPS).toHaveLength(5);
+  it("has seven steps, each described", () => {
+    expect(TUTORIAL_STEPS).toHaveLength(7);
     for (const s of TUTORIAL_STEPS) {
       expect(s.title.length).toBeGreaterThan(0);
       expect(s.body.length).toBeGreaterThan(0);
     }
   });
   it("gives every step a real control to outline, in the right order", () => {
-    expect(TUTORIAL_STEPS.map((s) => s.target)).toEqual(["pantry-add", "equipment-first-row", "discover-first-card", "recipe-add-shopping", "recipe-save"]);
+    expect(TUTORIAL_STEPS.map((s) => s.target)).toEqual(["pantry-add", "equipment-first-row", "discover-first-card", "recipe-add-shopping", "recipe-save", "recipe-heart", "profile-favorites"]);
   });
   it("says that the outlined control glows, and never claims to press it for the user", () => {
     for (const s of TUTORIAL_STEPS) {
@@ -101,6 +101,13 @@ describe("tutorial", () => {
   it("keeps the explanation card clear of the outlined control (top for the + button and the shopping button)", () => {
     expect(TUTORIAL_STEPS.find((s) => s.id === "pantry")?.placement).toBe("top");
     expect(TUTORIAL_STEPS.find((s) => s.id === "recipe-shopping")?.placement).toBe("top");
+  });
+  it("teaches favouriting a dish and then where to find favourites on the Profile tab", () => {
+    const ids = TUTORIAL_STEPS.map((s) => s.id);
+    expect(ids.slice(-2)).toEqual(["recipe-favorite", "profile-favorites"]);
+    const last = TUTORIAL_STEPS[TUTORIAL_STEPS.length - 1];
+    expect(last.body.toLowerCase()).toContain("view all");
+    expect(last.body.toLowerCase()).toContain("profile");
   });
   it("has five intro screens", () => {
     expect(INTRO_STEPS).toHaveLength(5);

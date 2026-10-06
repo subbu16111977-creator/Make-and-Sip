@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, Pressable, StyleSheet, Animated } from "react-native";
+import { View, Text, Pressable, StyleSheet, Animated, useWindowDimensions } from "react-native";
 import { useRouter, useRootNavigationState } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, radii, spacing, type as typeScale } from "@/theme";
@@ -8,7 +8,7 @@ import { usePantry } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { useProfile } from "@/context/ProfileContext";
 import { TUTORIAL_STEPS, pickTutorialRecipe } from "@/lib/introFlow";
-import { getTutorialTarget } from "@/lib/tutorialTargets";
+import { getTutorialTarget, scrollScreenBy } from "@/lib/tutorialTargets";
 
 interface Box {
   x: number;
@@ -75,6 +75,7 @@ export function TutorialOverlay() {
   const router = useRouter();
   const navState = useRootNavigationState();
   const insets = useSafeAreaInsets();
+  const { height: windowHeight } = useWindowDimensions();
   const { finishTutorial, skipTutorial } = useProfile();
   const { items } = usePantry();
   const { owned } = useEquipment();
@@ -103,14 +104,31 @@ export function TutorialOverlay() {
         if (onRecipe.current) router.dismissTo("/discover");
         else router.navigate("/discover");
         onRecipe.current = false;
-      } else if (step.id === "recipe-shopping" && exampleId && !onRecipe.current) {
+      } else if ((step.id === "recipe-shopping" || step.id === "recipe-save" || step.id === "recipe-favorite") && exampleId && !onRecipe.current) {
+        // Also covers coming Back from the Profile step.
         router.push({ pathname: "/recipe/[id]", params: { id: exampleId } });
         onRecipe.current = true;
+      } else if (step.id === "profile-favorites") {
+        if (onRecipe.current) router.dismissTo("/profile");
+        else router.navigate("/profile");
+        onRecipe.current = false;
       }
     } catch (error) {
       console.warn("[tutorial] could not move to the step's screen", error);
     }
   }, [index, ready]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // The favourites section sits partway down the Profile tab, so scroll it into view.
+  useEffect(() => {
+    if (!ready || step.id !== "profile-favorites") return;
+    const bring = () => {
+      getTutorialTarget("profile-favorites")?.current?.measureInWindow((_x, y, _w, h) => {
+        if (h > 0 && (y > windowHeight * 0.45 || y < 60)) scrollScreenBy(y - 110);
+      });
+    };
+    const timers = [setTimeout(bring, 700), setTimeout(bring, 1500)];
+    return () => timers.forEach(clearTimeout);
+  }, [index, ready, step.id, windowHeight]);
 
   function leaveToHome() {
     try {

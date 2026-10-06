@@ -41,6 +41,7 @@ export default function RecipeDetailScreen() {
   const { isFavorite, toggleFavorite } = useFavorites();
   const addShoppingTarget = useTutorialTarget("recipe-add-shopping");
   const saveTarget = useTutorialTarget("recipe-save");
+  const heartTarget = useTutorialTarget("recipe-heart");
   const { addMissingFromRecipe } = useShopping();
   const { isOwned: isEquipmentOwned } = useEquipment();
 
@@ -133,6 +134,7 @@ export default function RecipeDetailScreen() {
             </Pressable>
             <View style={styles.heroActions}>
               <Pressable
+                ref={heartTarget}
                 onPress={() => toggleFavorite(recipeId)}
                 hitSlop={8}
                 accessibilityRole="button"

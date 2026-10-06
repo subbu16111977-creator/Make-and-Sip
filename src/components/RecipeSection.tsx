@@ -9,6 +9,8 @@ import { missingEquipment, type RecipeMatch } from "@/lib/pantryMatch";
 
 const GAP = spacing.md;
 const MIN_CARD = 190;
+/** Width of a card in the horizontal row (RecipeCard's default). */
+const RAIL_CARD = 216;
 
 interface RecipeSectionProps {
   eyebrow: string;
@@ -17,6 +19,10 @@ interface RecipeSectionProps {
   matches: RecipeMatch[];
   ownedEquipment: EquipmentTag[];
   showMissingNote?: boolean;
+  /** Label of the button that opens the full list. Defaults to "See all". */
+  seeAllLabel?: string;
+  /** Hide the button when every dish already fits in the row, so there is nothing more to see. */
+  hideActionWhenFits?: boolean;
   /** When true the horizontal row becomes a vertical grid of every dish, right here on the page. */
   expanded: boolean;
   /** How many dishes of the grid are rendered so far; the parent raises it as the user scrolls. */
@@ -35,6 +41,8 @@ export function RecipeSection({
   matches,
   ownedEquipment,
   showMissingNote,
+  seeAllLabel = "See all",
+  hideActionWhenFits,
   expanded,
   visibleCount,
   onToggle,
@@ -45,6 +53,8 @@ export function RecipeSection({
   const contentWidth = Math.min(width, layout.maxContentWidth) - layout.screenPadding * 2;
   const columns = Math.max(2, Math.floor((contentWidth + GAP) / (MIN_CARD + GAP)));
   const cardWidth = (contentWidth - GAP * (columns - 1)) / columns;
+  const fitInRow = Math.max(1, Math.floor((contentWidth + GAP) / (RAIL_CARD + GAP)));
+  const showAction = expanded || !hideActionWhenFits || matches.length > fitInRow;
 
   return (
     <View>
@@ -52,8 +62,8 @@ export function RecipeSection({
         eyebrow={eyebrow}
         title={title}
         subtitle={subtitle}
-        actionLabel={expanded ? "Show less" : "See all"}
-        onPressAction={onToggle}
+        actionLabel={expanded ? "Show less" : seeAllLabel}
+        onPressAction={showAction ? onToggle : undefined}
       />
       {expanded ? (
         <View onLayout={(e) => onGridLayout(e.nativeEvent.layout.y, e.nativeEvent.layout.height)}>
