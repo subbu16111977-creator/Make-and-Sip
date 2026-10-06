@@ -27,11 +27,14 @@ import {
   pickReadyToCook,
   pickSlideshowMatches,
   QUICK_MINUTES,
+  rankRecipesForDiscover,
 } from "@/lib/pantryMatch";
 
 import { ChevronRightIcon } from "@/components/icons";
+import { useProfile } from "@/context/ProfileContext";
+import { bestForYou, flavorsFromOtherCuisines, hasPreferences, newFlavorsInLikedCuisines, preferencesFrom } from "@/lib/forYou";
 
-type SectionKey = "can-make" | "almost-there" | "quick";
+type SectionKey = "can-make" | "almost-there" | "quick" | "for-you" | "other-cuisines" | "new-flavors";
 
 /** New random order every time the app is opened (module load), stable while the app stays open. */
 const SESSION_SEED = Math.floor(Math.random() * 2 ** 31);
@@ -60,6 +63,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
   const greeting = useGreeting();
   const { items: pantryItems } = usePantry();
   const { owned: ownedEquipment } = useEquipment();
+  const { profile } = useProfile();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -87,6 +91,14 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
     [pantryItems, ownedEquipment, seed]
   );
 
+  // Picked from the cuisines and flavours chosen in the profile. These look at every dish (gear
+  // the user lacks is shown on the card as "Needs …"), ranked the same way Discover ranks them.
+  const preferences = useMemo(() => preferencesFrom(profile), [profile]);
+  const allRanked = useMemo(() => rankRecipesForDiscover(pantryItems, recipes, [], ownedEquipment), [pantryItems, ownedEquipment]);
+  const forYou = useMemo(() => bestForYou(allRanked, preferences), [allRanked, preferences]);
+  const otherCuisines = useMemo(() => flavorsFromOtherCuisines(allRanked, preferences), [allRanked, preferences]);
+  const newFlavors = useMemo(() => newFlavorsInLikedCuisines(allRanked, preferences), [allRanked, preferences]);
+
   const openRecipe = useCallback((id: string) => router.push({ pathname: "/recipe/[id]", params: { id } }), [router]);
 
   // "See all" opens the section's full list right here on the page. One section is open at a
@@ -98,7 +110,14 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
   const sectionY = useRef<Record<string, number>>({});
   const gridBox = useRef({ y: 0, height: 0 });
 
-  const lists: Record<SectionKey, number> = { "can-make": canMake.length, "almost-there": almostThere.length, quick: quickAll.length };
+  const lists: Record<SectionKey, number> = {
+    "can-make": canMake.length,
+    "almost-there": almostThere.length,
+    quick: quickAll.length,
+    "for-you": forYou.length,
+    "other-cuisines": otherCuisines.length,
+    "new-flavors": newFlavors.length,
+  };
 
   const toggleSection = (key: SectionKey) => {
     const opening = expanded !== key;
@@ -123,6 +142,58 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
   const cuisines = useMemo(() => cuisineSummaries(recipes), []);
   const toBuy = useMemo(() => shoppingItems.filter((i) => !i.checked).length, [shoppingItems]);
 
+  const prefSection = (key: SectionKey, eyebrow: string, title: string, subtitle: string, matches: typeof forYou) =>
+    matches.length > 0 ? (
+      <View key={key} style={styles.section} onLayout={(e) => (sectionY.current[key] = e.nativeEvent.layout.y)}>
+        <RecipeSection
+          eyebrow={eyebrow}
+          title={title}
+          subtitle={subtitle}
+          matches={matches}
+          ownedEquipment={ownedEquipment}
+          expanded={expanded === key}
+          visibleCount={visible}
+          onToggle={() => toggleSection(key)}
+          onOpen={openRecipe}
+          onGridLayout={(y, height) => (gridBox.current = { y, height })}
+        />
+      </View>
+    ) : null;
+
+  const bestForYouSection = prefSection(
+    "for-you",
+    "Picked for you",
+    "Best for you",
+    `${forYou.length} ${forYou.length === 1 ? "dish" : "dishes"} matching the cuisines and flavours you picked.`,
+    forYou
+  );
+  const otherCuisinesSection = prefSection(
+    "other-cuisines",
+    "Same flavours, new places",
+    "Flavours from other cuisines you may like",
+    "Dishes with the flavours you enjoy, from cuisines you haven't picked.",
+    otherCuisines
+  );
+  const newFlavorsSection = prefSection(
+    "new-flavors",
+    "Branch out",
+    "New flavours from cuisines you love",
+    "Dishes from your favourite cuisines with flavours you haven't picked.",
+    newFlavors
+  );
+  // Until the user picks cuisines or flavours in Profile there is nothing to base these on.
+  const preferenceNudge = !hasPreferences(preferences) ? (
+    <View style={styles.pantrySummaryWrap}>
+      <Pressable style={styles.pantrySummary} onPress={() => router.push("/profile")} accessibilityRole="button" accessibilityLabel="Choose your cuisines and flavours in Profile">
+        <View style={styles.pantrySummaryText}>
+          <Text style={styles.pantrySummaryTitle}>Get dishes picked for you</Text>
+          <Text style={styles.pantrySummaryBody}>Choose the cuisines and flavours you enjoy in Profile and we’ll recommend dishes to match.</Text>
+        </View>
+        <ChevronRightIcon size={18} color={colors.espresso} strokeWidth={1.6} />
+      </Pressable>
+    </View>
+  ) : null;
+
   if (loading) {
     return (
       <Screen>
@@ -133,7 +204,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
 
   if (pantryItems.length === 0) {
     return (
-      <Screen contentContainerStyle={styles.emptyWrap}>
+      <Screen contentContainerStyle={styles.emptyWrap} scrollRef={scrollRef} onScroll={onScroll} scrollEventThrottle={64}>
         <EmptyState
           title="Your pantry's empty"
           body="Add a few ingredients and we'll start suggesting what to cook with what you already have."
@@ -141,6 +212,10 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
           onPressAction={() => router.push("/pantry")}
         />
         <StarterStaples />
+        {preferenceNudge}
+        {bestForYouSection}
+        {otherCuisinesSection}
+        {newFlavorsSection}
       </Screen>
     );
   }
@@ -180,6 +255,9 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
           </Pressable>
         )}
       </View>
+
+      {preferenceNudge}
+      {bestForYouSection}
 
       {expiringSoon.length > 0 && (
         <View style={styles.section}>
@@ -273,6 +351,9 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
           />
         </View>
       )}
+
+      {otherCuisinesSection}
+      {newFlavorsSection}
 
       <View style={styles.section}>
         <SectionHeader eyebrow="Explore" title="Browse by cuisine" subtitle="Every dish, grouped by where it comes from." />

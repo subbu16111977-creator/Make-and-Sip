@@ -1,11 +1,13 @@
 import React, { useMemo, useState } from "react";
-import { View, Text, StyleSheet, TextInput, ScrollView, FlatList } from "react-native";
+import { View, Text, StyleSheet, TextInput, ScrollView, FlatList, Pressable } from "react-native";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { colors, spacing, radii, type as typeScale, layout } from "@/theme";
 import { Chip } from "@/components/Chip";
 import { RecipeCard } from "@/components/RecipeCard";
+import { useProfile } from "@/context/ProfileContext";
+import { hasPreferences, preferencesFrom, sortByForYou } from "@/lib/forYou";
 import { useTutorialTarget } from "@/lib/tutorialTargets";
 import { SearchIcon } from "@/components/icons";
 import { RefreshButton } from "@/components/RefreshButton";
@@ -23,6 +25,8 @@ export default function DiscoverScreen() {
   const router = useRouter();
   const { items: pantryItems } = usePantry();
   const { owned: ownedEquipment } = useEquipment();
+  const { profile } = useProfile();
+  const preferences = useMemo(() => preferencesFrom(profile), [profile]);
   const { width: screenWidth } = useAppDimensions();
   const [query, setQuery] = useState("");
   const [selectedTastes, setSelectedTastes] = useState<TasteTag[]>([]);
@@ -75,8 +79,8 @@ export default function DiscoverScreen() {
       if (selectedDiets.length > 0 && !selectedDiets.every((d) => recipe.dietTags.includes(d))) return false;
       return true;
     });
-    return sortDiscover(kept, sort);
-  }, [ranked, query, selectedCuisine, selectedDiets, sort]);
+    return sort === "for-you" ? sortByForYou(kept, preferences) : sortDiscover(kept, sort);
+  }, [ranked, query, selectedCuisine, selectedDiets, sort, preferences]);
 
   const firstCardTarget = useTutorialTarget("discover-first-card");
   const cardGap = spacing.md;
@@ -125,6 +129,14 @@ export default function DiscoverScreen() {
                 <Chip key={o.key} label={o.label} selected={sort === o.key} onPress={() => setSort(o.key)} />
               ))}
             </ScrollView>
+
+            {sort === "for-you" && !hasPreferences(preferences) ? (
+              <Pressable onPress={() => router.push("/profile")} style={styles.forYouNote} accessibilityRole="button" accessibilityLabel="Choose your cuisines and flavours in Profile">
+                <Text style={styles.forYouNoteText}>
+                  Pick the cuisines and flavours you enjoy in Profile and Best for you will put your favourites first. Tap to choose.
+                </Text>
+              </Pressable>
+            ) : null}
 
             <Text style={styles.filterLabel}>Taste</Text>
             <ScrollView
@@ -186,6 +198,16 @@ export default function DiscoverScreen() {
 }
 
 const styles = StyleSheet.create({
+  forYouNote: {
+    marginHorizontal: layout.screenPadding,
+    marginTop: spacing.sm,
+    padding: spacing.md,
+    borderRadius: radii.lg,
+    backgroundColor: colors.paper,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.hairline,
+  },
+  forYouNoteText: { ...typeScale.bodySmall, color: colors.espressoMuted },
   safeArea: {
     flex: 1,
     backgroundColor: colors.cream,

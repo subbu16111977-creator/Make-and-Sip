@@ -31,7 +31,7 @@ interface ProfileFormProps {
 }
 
 export const PREFERENCES_NOTE =
-  "These preferences are saved to your profile. They will help personalize your experience as the app grows.";
+  "These choices are saved to your profile and shape your recommendations: Best for you in Discover and the picks on Home.";
 export const LOCAL_NOTE = "Your profile and preferences are stored only on this device.";
 
 /** The optional local profile fields, shared by the first-launch flow and Settings. Nothing here is required. */
