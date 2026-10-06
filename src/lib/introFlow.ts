@@ -1,6 +1,7 @@
 import type { LocalProfile } from "@/lib/profile";
 import type { PantryItem, Recipe, EquipmentTag } from "@/types";
 import { hasRequiredEquipment, matchRecipe } from "@/lib/pantryMatch";
+import type { TutorialTargetId } from "@/lib/tutorialTargets";
 
 /**
  * The first-launch flow as plain logic: which screen to show, and what the
@@ -50,6 +51,8 @@ export interface TutorialStep {
   body: string;
   /** Short pointer to the real control, shown under the body. */
   hint: string;
+  /** The real control the tutorial outlines with a glowing white border. */
+  target: TutorialTargetId;
   /** Whether the card sits at the top or bottom of the screen so it never covers the control being explained. */
   placement: "top" | "bottom";
 }
@@ -59,35 +62,40 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
     id: "pantry",
     title: "Add ingredients",
     body: "Add the ingredients you already have at home. You can include quantities and categories to keep your pantry accurate.",
-    hint: "Tap the + button on this screen to add something when you’re ready.",
-    placement: "bottom",
+    hint: "Tap the glowing + button to add an ingredient when you’re ready.",
+    target: "pantry-add",
+    placement: "top",
   },
   {
     id: "equipment",
     title: "Add equipment",
     body: "Choose the equipment you have so the app can show dishes that fit your kitchen.",
-    hint: "Tick appliances in this Equipment list. Nothing is changed unless you tick it.",
+    hint: "Tap an appliance, like the glowing one, to tick it. Nothing is changed unless you tap.",
+    target: "equipment-first-row",
     placement: "bottom",
   },
   {
     id: "discover",
     title: "See what you can make",
     body: "Discover dishes you can make with your ingredients and equipment, plus dishes that are close when only a few ingredients are missing.",
-    hint: "Use the Taste, Cuisine and Diet filters to narrow what you see.",
-    placement: "bottom",
+    hint: "Tap the glowing dish to see what you have and what’s missing. The filters above narrow by taste, cuisine and diet.",
+    target: "discover-first-card",
+    placement: "top",
   },
   {
     id: "recipe-shopping",
     title: "Use Shopping",
     body: "When you plan to make a dish, add its missing ingredients to Shopping so you know what to buy.",
-    hint: "This is an example dish. Tap \"Add to Shopping\" only if you want those items on your list.",
+    hint: "This is an example dish. Tap the glowing button only if you want those items on your list.",
+    target: "recipe-add-shopping",
     placement: "top",
   },
   {
     id: "recipe-save",
     title: "Save a dish",
     body: "Save dishes you want to find again later.",
-    hint: "Tap the bookmark at the top right of the dish. Tap it again to remove it.",
+    hint: "Tap the glowing bookmark. Tap it again to remove it.",
+    target: "recipe-save",
     placement: "bottom",
   },
 ];

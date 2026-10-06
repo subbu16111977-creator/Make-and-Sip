@@ -22,6 +22,7 @@ import { UnlockCelebration } from "@/components/UnlockCelebration";
 import { colors, spacing, radii, type as typeScale, layout, shadows } from "@/theme";
 import { usePantry, type NewPantryItemInput } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
+import { useTutorialTarget } from "@/lib/tutorialTargets";
 import { daysUntil, recipesUnlockedByAdding } from "@/lib/pantryMatch";
 import { recipes } from "@/data/recipes";
 import { PlusIcon, CloseIcon, TrashIcon, PantryIcon, CheckIcon } from "@/components/icons";
@@ -108,14 +109,17 @@ function EquipmentRow({
   helper,
   owned,
   onToggle,
+  targetRef,
 }: {
   tag: EquipmentTag;
   helper: string;
   owned: boolean;
   onToggle: () => void;
+  /** Lets the tutorial outline this row. */
+  targetRef?: React.Ref<View>;
 }) {
   return (
-    <Pressable style={styles.equipmentRow} onPress={onToggle}>
+    <Pressable ref={targetRef} style={styles.equipmentRow} onPress={onToggle}>
       <View style={styles.equipmentRowBody}>
         <Text style={styles.equipmentName}>{tag}</Text>
         <Text style={styles.equipmentHelper}>{helper}</Text>
@@ -138,7 +142,10 @@ export default function PantryScreen() {
   if (params.segment !== appliedSegmentParam) {
     setAppliedSegmentParam(params.segment);
     if (params.segment === "equipment") setSegment("equipment");
+    else if (params.segment === "ingredients") setSegment("ingredients");
   }
+  const addTarget = useTutorialTarget("pantry-add");
+  const equipmentRowTarget = useTutorialTarget("equipment-first-row");
   const [modalOpen, setModalOpen] = useState(false);
   const [celebration, setCelebration] = useState<{ visible: boolean; count: number }>({ visible: false, count: 0 });
 
@@ -265,8 +272,9 @@ export default function PantryScreen() {
               Home leaves them out of its picks until you check it off here.
             </Text>
           }
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <EquipmentRow
+              targetRef={index === 0 ? equipmentRowTarget : undefined}
               tag={item.tag}
               helper={item.helper}
               owned={isOwned(item.tag)}
@@ -277,7 +285,7 @@ export default function PantryScreen() {
       )}
 
       {segment === "ingredients" && (
-        <Pressable style={styles.fab} onPress={() => setModalOpen(true)} hitSlop={6}>
+        <Pressable ref={addTarget} style={styles.fab} onPress={() => setModalOpen(true)} hitSlop={6}>
           <PlusIcon size={22} color={colors.cream} strokeWidth={2} />
         </Pressable>
       )}

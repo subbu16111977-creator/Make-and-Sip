@@ -8,6 +8,7 @@ import { recipes } from "@/data/recipes";
 import { usePantry } from "@/context/PantryContext";
 import { useSaved } from "@/context/SavedContext";
 import { useFavorites } from "@/context/FavoritesContext";
+import { useTutorialTarget } from "@/lib/tutorialTargets";
 import { useShopping } from "@/context/ShoppingContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { getRecipeAvailability, getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
@@ -38,6 +39,8 @@ export default function RecipeDetailScreen() {
   const { items: pantryItems } = usePantry();
   const { isSaved, toggleSaved } = useSaved();
   const { isFavorite, toggleFavorite } = useFavorites();
+  const addShoppingTarget = useTutorialTarget("recipe-add-shopping");
+  const saveTarget = useTutorialTarget("recipe-save");
   const { addMissingFromRecipe } = useShopping();
   const { isOwned: isEquipmentOwned } = useEquipment();
 
@@ -138,7 +141,7 @@ export default function RecipeDetailScreen() {
               >
                 <HeartIcon size={17} color={isFavorite(recipeId) ? colors.tomato : colors.white} strokeWidth={1.8} filled={isFavorite(recipeId)} />
               </Pressable>
-              <Pressable onPress={() => toggleSaved(recipeId)} hitSlop={8} accessibilityRole="button" accessibilityLabel={saved ? "Remove from saved" : "Save dish"} style={styles.iconButton}>
+              <Pressable ref={saveTarget} onPress={() => toggleSaved(recipeId)} hitSlop={8} accessibilityRole="button" accessibilityLabel={saved ? "Remove from saved" : "Save dish"} style={styles.iconButton}>
                 <SavedIcon size={17} color={colors.white} strokeWidth={1.8} filled={saved} />
               </Pressable>
             </View>
@@ -179,6 +182,7 @@ export default function RecipeDetailScreen() {
 
           {toBuyCount > 0 && (
             <Pressable
+              ref={addShoppingTarget}
               onPress={handleAddMissing}
               style={[
                 styles.addMissingButton,

@@ -23,10 +23,12 @@ interface RecipeCardProps {
   note?: string;
   onPress?: () => void;
   width?: number;
+  /** Lets the tutorial outline this card. */
+  targetRef?: React.Ref<View>;
 }
 
 /** Portrait card used in the "You have enough for…" rail and Discover's grid. */
-export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missingEquipment = [], note, onPress, width = 216 }: RecipeCardProps) {
+export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missingEquipment = [], note, onPress, width = 216, targetRef }: RecipeCardProps) {
   const { isSaved, toggleSaved } = useSaved();
   const { addMissingFromRecipe } = useShopping();
   const saved = isSaved(recipe.id);
@@ -51,7 +53,7 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
   }
 
   return (
-    <Pressable onPress={onPress} style={[styles.wrap, { width }]}>
+    <Pressable ref={targetRef} onPress={onPress} style={[styles.wrap, { width }]}>
       <View style={[styles.imageWrap, { height: width * 1.15 }]}>
         <RecipeImage uri={recipe.image} title={recipe.title} style={StyleSheet.absoluteFill} />
 

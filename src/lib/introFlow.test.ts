@@ -89,6 +89,19 @@ describe("tutorial", () => {
       expect(s.body.length).toBeGreaterThan(0);
     }
   });
+  it("gives every step a real control to outline, in the right order", () => {
+    expect(TUTORIAL_STEPS.map((s) => s.target)).toEqual(["pantry-add", "equipment-first-row", "discover-first-card", "recipe-add-shopping", "recipe-save"]);
+  });
+  it("says that the outlined control glows, and never claims to press it for the user", () => {
+    for (const s of TUTORIAL_STEPS) {
+      expect(s.hint.toLowerCase()).toContain("glow");
+      expect(s.hint.toLowerCase()).not.toMatch(/we(’| wi)ll (add|tick|save)/);
+    }
+  });
+  it("keeps the explanation card clear of the outlined control (top for the + button and the shopping button)", () => {
+    expect(TUTORIAL_STEPS.find((s) => s.id === "pantry")?.placement).toBe("top");
+    expect(TUTORIAL_STEPS.find((s) => s.id === "recipe-shopping")?.placement).toBe("top");
+  });
   it("has five intro screens", () => {
     expect(INTRO_STEPS).toHaveLength(5);
   });

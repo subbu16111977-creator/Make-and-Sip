@@ -5,6 +5,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { colors, spacing, radii, type as typeScale, layout } from "@/theme";
 import { Chip } from "@/components/Chip";
 import { RecipeCard } from "@/components/RecipeCard";
+import { useTutorialTarget } from "@/lib/tutorialTargets";
 import { SearchIcon } from "@/components/icons";
 import { RefreshButton } from "@/components/RefreshButton";
 import { usePantry } from "@/context/PantryContext";
@@ -76,6 +77,7 @@ export default function DiscoverScreen() {
     return sortDiscover(kept, sort);
   }, [ranked, query, selectedCuisine, selectedDiets, sort]);
 
+  const firstCardTarget = useTutorialTarget("discover-first-card");
   const cardGap = spacing.md;
   const cardWidth = (screenWidth - layout.screenPadding * 2 - cardGap) / 2;
 
@@ -158,8 +160,9 @@ export default function DiscoverScreen() {
             </ScrollView>
           </View>
         }
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <RecipeCard
+            targetRef={index === 0 ? firstCardTarget : undefined}
             recipe={item.recipe}
             haveCount={item.have.length}
             totalCount={item.recipe.ingredients.length}

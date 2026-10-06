@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, Animated } from "react-native";
 import { useRouter, useRootNavigationState } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, radii, spacing, type as typeScale } from "@/theme";
@@ -8,6 +8,62 @@ import { usePantry } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { useProfile } from "@/context/ProfileContext";
 import { TUTORIAL_STEPS, pickTutorialRecipe } from "@/lib/introFlow";
+import { getTutorialTarget } from "@/lib/tutorialTargets";
+
+interface Box {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+/** A glowing white outline drawn around the real control a step is about. It never blocks taps. */
+function Spotlight({ targetId }: { targetId: (typeof TUTORIAL_STEPS)[number]["target"] }) {
+  const [box, setBox] = useState<Box | null>(null);
+  const [pulse] = useState(() => new Animated.Value(0));
+
+  useEffect(() => {
+    const measure = () => {
+      const node = getTutorialTarget(targetId)?.current;
+      if (!node) return setBox((prev) => (prev ? null : prev));
+      node.measureInWindow((x, y, w, h) => {
+        if (!(w > 0 && h > 0)) return setBox((prev) => (prev ? null : prev));
+        setBox((prev) => (prev && prev.x === x && prev.y === y && prev.w === w && prev.h === h ? prev : { x, y, w, h }));
+      });
+    };
+    measure();
+    // Keep following the control if the screen scrolls, resizes or finishes loading.
+    const timer = setInterval(measure, 250);
+    return () => clearInterval(timer);
+  }, [targetId]);
+
+  useEffect(() => {
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulse, { toValue: 1, duration: 900, useNativeDriver: false }),
+        Animated.timing(pulse, { toValue: 0, duration: 900, useNativeDriver: false }),
+      ])
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [pulse]);
+
+  if (!box) return null;
+  const pad = 5;
+  const glow = pulse.interpolate({ inputRange: [0, 1], outputRange: [0.15, 0.55] });
+  const spread = pulse.interpolate({ inputRange: [0, 1], outputRange: [0, 5] });
+  return (
+    <View pointerEvents="none" style={styles.spotLayer}>
+      <Animated.View
+        style={[
+          styles.spotGlow,
+          { left: box.x - pad - 5, top: box.y - pad - 5, width: box.w + (pad + 5) * 2, height: box.h + (pad + 5) * 2, opacity: glow, transform: [{ scale: spread.interpolate({ inputRange: [0, 5], outputRange: [1, 1.04] }) }] },
+        ]}
+      />
+      <View style={[styles.spotRing, { left: box.x - pad, top: box.y - pad, width: box.w + pad * 2, height: box.h + pad * 2 }]} />
+    </View>
+  );
+}
 
 /**
  * A short guided tour that floats over the real app. It moves between the real
@@ -35,8 +91,9 @@ export function TutorialOverlay() {
     if (!ready) return;
     try {
       if (step.id === "pantry") {
-        if (onRecipe.current) router.dismissTo("/pantry");
-        else router.navigate("/pantry");
+        // Always show the ingredients list, even when coming back from Equipment.
+        if (onRecipe.current) router.dismissTo({ pathname: "/pantry", params: { segment: "ingredients" } });
+        else router.navigate({ pathname: "/pantry", params: { segment: "ingredients" } });
         onRecipe.current = false;
       } else if (step.id === "equipment") {
         if (onRecipe.current) router.dismissTo({ pathname: "/pantry", params: { segment: "equipment" } });
@@ -77,6 +134,7 @@ export function TutorialOverlay() {
 
   return (
     <View style={[styles.layer, { pointerEvents: "box-none" }]}>
+      <Spotlight key={step.id} targetId={step.target} />
       <View
         style={[styles.card, pos]}
         accessible={false}
@@ -131,6 +189,9 @@ export function TutorialOverlay() {
 
 const styles = StyleSheet.create({
   layer: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 90 },
+  spotLayer: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0 },
+  spotRing: { position: "absolute", borderRadius: radii.lg, borderWidth: 2.5, borderColor: "#FFFFFF" },
+  spotGlow: { position: "absolute", borderRadius: radii.xl, borderWidth: 6, borderColor: "#FFFFFF" },
   card: {
     position: "absolute",
     left: spacing.lg,
