@@ -3,6 +3,7 @@ import { recipes } from "@/data/recipes";
 import { CUISINE_OPTIONS, FLAVOR_OPTIONS, emptyProfile, type LocalProfile } from "./profile";
 import {
   FLAVOR_TO_TASTE,
+  HOME_SECTION_LIMIT,
   bestForYou,
   cuisineMatches,
   flavorMatchCount,
@@ -123,5 +124,60 @@ describe("the two Home sections", () => {
     const list = flavorsFromOtherCuisines(items, p);
     const counts = list.map((m) => flavorMatchCount(p, m.recipe));
     expect([...counts].sort((a, b) => b - a)).toEqual(counts);
+  });
+});
+
+describe("40-dish limit and variety", () => {
+  const p = preferencesFrom(profile({ favoriteCuisines: ["Japanese", "Mexican"], favoriteFlavors: ["Spicy", "Smoky", "Fresh and light"] }));
+  const sections = (seed: number) => ({
+    best: bestForYou(items, p, { seed, limit: HOME_SECTION_LIMIT }),
+    other: flavorsFromOtherCuisines(items, p, { seed, limit: HOME_SECTION_LIMIT }),
+    fresh: newFlavorsInLikedCuisines(items, p, { seed, limit: HOME_SECTION_LIMIT }),
+  });
+
+  it("limits each Home section to 40 dishes", () => {
+    expect(HOME_SECTION_LIMIT).toBe(40);
+    const s = sections(1);
+    for (const list of [s.best, s.other, s.fresh]) {
+      expect(list.length).toBeLessThanOrEqual(40);
+      expect(new Set(list.map((m) => m.recipe.id)).size).toBe(list.length);
+    }
+    // each pool is bigger than 40, so the limit really bites
+    expect(bestForYou(items, p).length).toBeGreaterThan(40);
+    expect(flavorsFromOtherCuisines(items, p).length).toBeGreaterThan(40);
+    expect(s.best).toHaveLength(40);
+    expect(s.other).toHaveLength(40);
+  });
+  it("is the same for the same seed (stable while the app stays open)", () => {
+    const a = sections(7);
+    const b = sections(7);
+    expect(a.best.map((m) => m.recipe.id)).toEqual(b.best.map((m) => m.recipe.id));
+    expect(a.other.map((m) => m.recipe.id)).toEqual(b.other.map((m) => m.recipe.id));
+  });
+  it("differs between seeds (a new mix when the app is opened or refreshed)", () => {
+    const a = sections(1);
+    const b = sections(2);
+    expect(a.best.map((m) => m.recipe.id)).not.toEqual(b.best.map((m) => m.recipe.id));
+    expect(a.other.map((m) => m.recipe.id)).not.toEqual(b.other.map((m) => m.recipe.id));
+    expect(a.fresh.map((m) => m.recipe.id)).not.toEqual(b.fresh.map((m) => m.recipe.id));
+    // different dishes, not only a different order, so the content changes too
+    expect(new Set(a.best.map((m) => m.recipe.id))).not.toEqual(new Set(b.best.map((m) => m.recipe.id)));
+  });
+  it("still puts the strongest matches first and keeps the ones that matter in the 40", () => {
+    for (const seed of [1, 2, 3]) {
+      const { best } = sections(seed);
+      const scores = best.map((m) => forYouScore(p, m.recipe));
+      expect([...scores].sort((x, y) => y - x)).toEqual(scores);
+      const everyScore = bestForYou(items, p).map((m) => forYouScore(p, m.recipe));
+      expect(scores[0]).toBe(everyScore[0]); // the very best score is always represented
+    }
+  });
+  it("without a seed or limit nothing changes (Discover's full list)", () => {
+    expect(bestForYou(items, p).map((m) => m.recipe.id)).toEqual(sortByForYou(items.filter((m) => forYouScore(p, m.recipe) > 0), p).map((m) => m.recipe.id));
+  });
+  it("the sections stay separate whatever the seed", () => {
+    const s = sections(9);
+    const a = ids(s.other);
+    for (const id of ids(s.fresh)) expect(a.has(id)).toBe(false);
   });
 });

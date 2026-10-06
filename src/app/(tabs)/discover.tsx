@@ -18,6 +18,9 @@ import { missingEquipment, rankRecipesForDiscover } from "@/lib/pantryMatch";
 import { SORT_OPTIONS, sortDiscover, type DiscoverSort } from "@/lib/discoverView";
 import type { DietTag, TasteTag } from "@/types";
 
+/** New value every time the app is opened (module load), so Best for you varies between sessions. */
+const SESSION_SEED = Math.floor(Math.random() * 2 ** 31);
+
 const TASTES: TasteTag[] = ["Spicy", "Comforting", "Fresh & Light", "Rich & Indulgent", "Tangy", "Smoky", "Sweet", "Herby"];
 const DIETS: DietTag[] = ["Vegetarian", "Vegan", "Pescatarian", "Gluten-Free", "Dairy-Free"];
 
@@ -79,8 +82,9 @@ export default function DiscoverScreen() {
       if (selectedDiets.length > 0 && !selectedDiets.every((d) => recipe.dietTags.includes(d))) return false;
       return true;
     });
-    return sort === "for-you" ? sortByForYou(kept, preferences) : sortDiscover(kept, sort);
-  }, [ranked, query, selectedCuisine, selectedDiets, sort, preferences]);
+    // Best for you reshuffles equally good matches each time the app is opened or Refresh is pressed.
+    return sort === "for-you" ? sortByForYou(kept, preferences, { seed: SESSION_SEED + refreshTick }) : sortDiscover(kept, sort);
+  }, [ranked, query, selectedCuisine, selectedDiets, sort, preferences, refreshTick]);
 
   const firstCardTarget = useTutorialTarget("discover-first-card");
   const cardGap = spacing.md;

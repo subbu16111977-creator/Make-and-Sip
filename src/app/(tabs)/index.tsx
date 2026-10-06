@@ -32,7 +32,7 @@ import {
 
 import { ChevronRightIcon } from "@/components/icons";
 import { useProfile } from "@/context/ProfileContext";
-import { bestForYou, flavorsFromOtherCuisines, hasPreferences, newFlavorsInLikedCuisines, preferencesFrom } from "@/lib/forYou";
+import { HOME_SECTION_LIMIT, bestForYou, flavorsFromOtherCuisines, hasPreferences, newFlavorsInLikedCuisines, preferencesFrom } from "@/lib/forYou";
 
 type SectionKey = "can-make" | "almost-there" | "quick" | "for-you" | "other-cuisines" | "new-flavors";
 
@@ -95,9 +95,12 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
   // the user lacks is shown on the card as "Needs …"), ranked the same way Discover ranks them.
   const preferences = useMemo(() => preferencesFrom(profile), [profile]);
   const allRanked = useMemo(() => rankRecipesForDiscover(pantryItems, recipes, [], ownedEquipment), [pantryItems, ownedEquipment]);
-  const forYou = useMemo(() => bestForYou(allRanked, preferences), [allRanked, preferences]);
-  const otherCuisines = useMemo(() => flavorsFromOtherCuisines(allRanked, preferences), [allRanked, preferences]);
-  const newFlavors = useMemo(() => newFlavorsInLikedCuisines(allRanked, preferences), [allRanked, preferences]);
+  // Each section shows at most 40 dishes. The seed changes every time the app is opened and on
+  // Refresh, so equally good matches reshuffle and some dishes are different each time.
+  const variety = useMemo(() => ({ seed, limit: HOME_SECTION_LIMIT }), [seed]);
+  const forYou = useMemo(() => bestForYou(allRanked, preferences, variety), [allRanked, preferences, variety]);
+  const otherCuisines = useMemo(() => flavorsFromOtherCuisines(allRanked, preferences, variety), [allRanked, preferences, variety]);
+  const newFlavors = useMemo(() => newFlavorsInLikedCuisines(allRanked, preferences, variety), [allRanked, preferences, variety]);
 
   const openRecipe = useCallback((id: string) => router.push({ pathname: "/recipe/[id]", params: { id } }), [router]);
 
@@ -164,7 +167,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
     "for-you",
     "Picked for you",
     "Best for you",
-    `${forYou.length} ${forYou.length === 1 ? "dish" : "dishes"} matching the cuisines and flavours you picked.`,
+    `${forYou.length} ${forYou.length === 1 ? "dish" : "dishes"} chosen from the cuisines and flavours you picked. A fresh mix each time.`,
     forYou
   );
   const otherCuisinesSection = prefSection(
