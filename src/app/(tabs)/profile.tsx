@@ -10,7 +10,7 @@ import { usePantry } from "@/context/PantryContext";
 import { useShopping } from "@/context/ShoppingContext";
 import { useSaved } from "@/context/SavedContext";
 import { useEquipment } from "@/context/EquipmentContext";
-import { draftFromProfile, hasErrors, validateDraft, type ProfileDraft } from "@/lib/profile";
+import { draftFromProfile, hasErrors, photoView, validateDraft, type ProfileDraft } from "@/lib/profile";
 
 export default function ProfileScreen() {
   const { profile, saveDraft, startReplay, resetProfile } = useProfile();
@@ -25,7 +25,7 @@ export default function ProfileScreen() {
   const [confirmingReset, setConfirmingReset] = useState(false);
 
   const errors = showErrors ? validateDraft(draft) : {};
-  const shownPhoto = draft.photoUri === null ? undefined : draft.photoUri ?? profile.profilePhotoUri;
+  const view = photoView(profile, draft);
 
   function change(update: (d: ProfileDraft) => ProfileDraft) {
     setDraft(update);
@@ -36,7 +36,7 @@ export default function ProfileScreen() {
     if (hasErrors(validateDraft(draft))) return setShowErrors(true);
     saveDraft(draft);
     // The photo is now stored on the profile, so the draft goes back to "leave as is".
-    setDraft((d) => ({ ...d, photoUri: undefined }));
+    setDraft((d) => ({ ...d, photoUri: undefined, photoAspect: undefined, photoCrop: undefined }));
     setShowErrors(false);
     setJustSaved(true);
   }
@@ -57,7 +57,7 @@ export default function ProfileScreen() {
         <Text style={styles.eyebrow}>Your kitchen</Text>
         <Text style={styles.headline}>Profile &amp; Settings</Text>
         <View style={styles.identity}>
-          <Avatar uri={shownPhoto} name={draft.displayName} size={64} />
+          <Avatar uri={view.uri} aspect={view.aspect} crop={view.crop} name={draft.displayName} size={64} />
           <View style={styles.identityText}>
             <Text style={styles.name}>{profile.displayName ?? "Your profile"}</Text>
             <Text style={styles.sub}>{LOCAL_NOTE}</Text>

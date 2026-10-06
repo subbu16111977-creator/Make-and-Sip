@@ -9,6 +9,7 @@ import {
   draftFromProfile,
   emptyProfile,
   hasErrors,
+  photoView,
   initialsFor,
   isLocalProfile,
   normalizeName,
@@ -167,5 +168,58 @@ describe("stored profile validation", () => {
     for (const bad of [null, undefined, 5, "x", [], {}, { favoriteCuisines: "Indian" }, { ...emptyProfile(), onboardingCompleted: "yes" }, { ...emptyProfile(), customFlavors: [1] }]) {
       expect(isLocalProfile(bad)).toBe(false);
     }
+  });
+});
+
+describe("profile photo crop", () => {
+  const withPhoto: LocalProfile = {
+    ...emptyProfile(),
+    profilePhotoUri: "file:///p.jpg",
+    profilePhotoAspect: 1.5,
+    profilePhotoCrop: { zoom: 2, x: 0.1, y: 0 },
+  };
+  it("stores the crop with a newly chosen photo, defaulting to a centred crop", () => {
+    const d = blankDraft();
+    d.photoUri = "file:///new.jpg";
+    d.photoAspect = 0.75;
+    const next = applyDraft(emptyProfile(), d);
+    expect(next.profilePhotoAspect).toBe(0.75);
+    expect(next.profilePhotoCrop).toEqual({ zoom: 1, x: 0, y: 0 });
+  });
+  it("saves an adjusted crop without touching the photo", () => {
+    const d = draftFromProfile(withPhoto);
+    d.photoCrop = { zoom: 3, x: -0.2, y: 0.1 };
+    const next = applyDraft(withPhoto, d);
+    expect(next.profilePhotoUri).toBe("file:///p.jpg");
+    expect(next.profilePhotoCrop).toEqual({ zoom: 3, x: -0.2, y: 0.1 });
+  });
+  it("keeps the stored crop when the draft doesn't change it", () => {
+    expect(applyDraft(withPhoto, draftFromProfile(withPhoto)).profilePhotoCrop).toEqual({ zoom: 2, x: 0.1, y: 0 });
+  });
+  it("removing the photo removes its crop and shape too", () => {
+    const d = draftFromProfile(withPhoto);
+    d.photoUri = null;
+    const next = applyDraft(withPhoto, d);
+    expect(next.profilePhotoUri).toBeUndefined();
+    expect(next.profilePhotoAspect).toBeUndefined();
+    expect(next.profilePhotoCrop).toBeUndefined();
+  });
+  it("shows the draft's photo, else the stored one", () => {
+    expect(photoView(withPhoto, draftFromProfile(withPhoto)).uri).toBe("file:///p.jpg");
+    const d = draftFromProfile(withPhoto);
+    d.photoUri = null;
+    expect(photoView(withPhoto, d).uri).toBeUndefined();
+  });
+  it("accepts older profiles without crop fields and rejects bad crop data", () => {
+    expect(isLocalProfile({ ...emptyProfile(), profilePhotoUri: "x" })).toBe(true);
+    expect(isLocalProfile({ ...withPhoto, profilePhotoCrop: { zoom: "big" } })).toBe(false);
+    expect(isLocalProfile({ ...withPhoto, profilePhotoAspect: -2 })).toBe(false);
+  });
+  it("does not mutate the existing profile", () => {
+    const snap = JSON.stringify(withPhoto);
+    const d = draftFromProfile(withPhoto);
+    d.photoCrop = { zoom: 4, x: 0, y: 0 };
+    applyDraft(withPhoto, d);
+    expect(JSON.stringify(withPhoto)).toBe(snap);
   });
 });

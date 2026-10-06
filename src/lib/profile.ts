@@ -8,6 +8,8 @@
  * profile only; they do not currently change recommendations.
  */
 
+import { DEFAULT_CROP, isPhotoCrop, type PhotoCrop } from "@/lib/photoCrop";
+
 /** The exact cuisine choices shown to the user. */
 export const CUISINE_OPTIONS = [
   "Indian",
@@ -48,6 +50,10 @@ export const CUSTOM_ENTRIES_MAX = 10;
 export interface LocalProfile {
   /** Local file/data URI of the chosen photo; absent when none is set. */
   profilePhotoUri?: string;
+  /** The photo's width / height, so the crop can be drawn correctly. */
+  profilePhotoAspect?: number;
+  /** How the photo is positioned and zoomed inside the round avatar. */
+  profilePhotoCrop?: PhotoCrop;
   displayName?: string;
   /** Selected labels from CUISINE_OPTIONS (may include "Others"). */
   favoriteCuisines: string[];
@@ -84,6 +90,8 @@ export function isLocalProfile(value: unknown): value is LocalProfile {
   const p = value as Record<string, unknown>;
   return (
     (p.profilePhotoUri === undefined || typeof p.profilePhotoUri === "string") &&
+    (p.profilePhotoAspect === undefined || (typeof p.profilePhotoAspect === "number" && Number.isFinite(p.profilePhotoAspect) && p.profilePhotoAspect > 0)) &&
+    (p.profilePhotoCrop === undefined || isPhotoCrop(p.profilePhotoCrop)) &&
     (p.displayName === undefined || typeof p.displayName === "string") &&
     isStringArray(p.favoriteCuisines) &&
     isStringArray(p.customCuisines) &&
@@ -136,6 +144,10 @@ export interface ProfileDraft {
   displayName: string;
   /** undefined = leave the stored photo alone; null = remove it; string = new photo. */
   photoUri: string | null | undefined;
+  /** Width / height of a newly chosen photo. */
+  photoAspect?: number;
+  /** undefined = leave the stored crop alone. */
+  photoCrop?: PhotoCrop;
   cuisines: string[];
   customCuisineText: string;
   flavors: string[];
@@ -193,8 +205,18 @@ export function applyDraft(profile: LocalProfile, draft: ProfileDraft): LocalPro
     favoriteFlavors: [...draft.flavors],
     customFlavors: draft.flavors.includes(FLAVOR_OTHER) ? parseCustomList(draft.customFlavorText) : [],
   };
-  if (draft.photoUri === null) delete next.profilePhotoUri;
-  else if (typeof draft.photoUri === "string") next.profilePhotoUri = draft.photoUri;
+  if (draft.photoUri === null) {
+    delete next.profilePhotoUri;
+    delete next.profilePhotoAspect;
+    delete next.profilePhotoCrop;
+  } else if (typeof draft.photoUri === "string") {
+    next.profilePhotoUri = draft.photoUri;
+    if (draft.photoAspect !== undefined) next.profilePhotoAspect = draft.photoAspect;
+    else delete next.profilePhotoAspect;
+    next.profilePhotoCrop = draft.photoCrop ?? { ...DEFAULT_CROP };
+  } else if (draft.photoCrop !== undefined) {
+    next.profilePhotoCrop = draft.photoCrop;
+  }
   if (next.displayName === undefined) delete next.displayName;
   return next;
 }
@@ -207,4 +229,23 @@ export function initialsFor(name: string | undefined): string {
   const first = Array.from(parts[0])[0] ?? "";
   const last = parts.length > 1 ? Array.from(parts[parts.length - 1])[0] ?? "" : "";
   return (first + last).toUpperCase();
+}
+
+export interface PhotoView {
+  uri?: string;
+  aspect?: number;
+  crop: PhotoCrop;
+}
+
+/** What photo (and crop) to show right now: the draft's change if there is one, otherwise the stored profile's. */
+export function photoView(profile: LocalProfile, draft: ProfileDraft): PhotoView {
+  if (draft.photoUri === null) return { uri: undefined, aspect: undefined, crop: { ...DEFAULT_CROP } };
+  if (typeof draft.photoUri === "string") {
+    return { uri: draft.photoUri, aspect: draft.photoAspect, crop: draft.photoCrop ?? { ...DEFAULT_CROP } };
+  }
+  return {
+    uri: profile.profilePhotoUri,
+    aspect: profile.profilePhotoAspect,
+    crop: draft.photoCrop ?? profile.profilePhotoCrop ?? { ...DEFAULT_CROP },
+  };
 }

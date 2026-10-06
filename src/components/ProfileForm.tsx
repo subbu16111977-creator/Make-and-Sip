@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 import { Avatar } from "./Avatar";
+import { PhotoCropper } from "./PhotoCropper";
 import { Chip } from "./Chip";
 import { colors, radii, spacing, type as typeScale } from "@/theme";
 import {
@@ -11,9 +12,11 @@ import {
   NAME_MAX_LENGTH,
   toggleOption,
   type DraftErrors,
+  photoView,
   type LocalProfile,
   type ProfileDraft,
 } from "@/lib/profile";
+import { DEFAULT_CROP } from "@/lib/photoCrop";
 import { chooseProfilePhoto } from "@/lib/profilePhoto";
 
 interface ProfileFormProps {
@@ -33,15 +36,20 @@ export const LOCAL_NOTE = "Your profile and preferences are stored only on this 
 export function ProfileForm({ profile, draft, onChange, errors }: ProfileFormProps) {
   const [photoError, setPhotoError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [cropping, setCropping] = useState(false);
 
-  const shownPhoto = draft.photoUri === null ? undefined : draft.photoUri ?? profile.profilePhotoUri;
+  const view = photoView(profile, draft);
+  const shownPhoto = view.uri;
 
   async function pickPhoto() {
     setPhotoError(null);
     setBusy(true);
     try {
-      const uri = await chooseProfilePhoto();
-      if (uri) onChange((d) => ({ ...d, photoUri: uri }));
+      const photo = await chooseProfilePhoto();
+      if (photo) {
+        onChange((d) => ({ ...d, photoUri: photo.uri, photoAspect: photo.aspect, photoCrop: { ...DEFAULT_CROP } }));
+        setCropping(true);
+      }
     } catch (error) {
       console.warn("[profile] photo selection failed", error);
       setPhotoError("We couldn't use that photo. Please try another, or skip the photo.");
@@ -53,7 +61,7 @@ export function ProfileForm({ profile, draft, onChange, errors }: ProfileFormPro
   return (
     <View style={styles.wrap}>
       <View style={styles.photoRow}>
-        <Avatar uri={shownPhoto} name={draft.displayName} size={84} />
+        <Avatar uri={shownPhoto} aspect={view.aspect} crop={view.crop} name={draft.displayName} size={84} />
         <View style={styles.photoActions}>
           <Pressable
             onPress={pickPhoto}
@@ -64,9 +72,19 @@ export function ProfileForm({ profile, draft, onChange, errors }: ProfileFormPro
           >
             <Text style={styles.smallButtonText}>{shownPhoto ? "Change photo" : "Add a photo"}</Text>
           </Pressable>
+          {shownPhoto && view.aspect ? (
+            <Pressable
+              onPress={() => setCropping(true)}
+              accessibilityRole="button"
+              accessibilityLabel="Adjust profile photo position and zoom"
+              style={({ pressed }) => [styles.linkButton, pressed && styles.pressed]}
+            >
+              <Text style={styles.linkText}>Adjust photo</Text>
+            </Pressable>
+          ) : null}
           {shownPhoto ? (
             <Pressable
-              onPress={() => onChange((d) => ({ ...d, photoUri: null }))}
+              onPress={() => onChange((d) => ({ ...d, photoUri: null, photoAspect: undefined, photoCrop: undefined }))}
               accessibilityRole="button"
               accessibilityLabel="Remove profile photo"
               style={({ pressed }) => [styles.linkButton, pressed && styles.pressed]}
@@ -79,6 +97,19 @@ export function ProfileForm({ profile, draft, onChange, errors }: ProfileFormPro
         </View>
       </View>
       {photoError ? <Text style={styles.error}>{photoError}</Text> : null}
+      {shownPhoto && view.aspect ? (
+        <PhotoCropper
+          visible={cropping}
+          uri={shownPhoto}
+          aspect={view.aspect}
+          initialCrop={view.crop}
+          onCancel={() => setCropping(false)}
+          onDone={(crop) => {
+            onChange((d) => ({ ...d, photoCrop: crop }));
+            setCropping(false);
+          }}
+        />
+      ) : null}
 
       <Text style={styles.label}>Your name</Text>
       <TextInput

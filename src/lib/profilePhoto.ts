@@ -7,20 +7,27 @@ import { File, Paths } from "expo-file-system";
  * opens only when this is called (from a tap) — nothing is requested at launch.
  *
  * The photo never leaves the device: on phones it is copied into the app's own
- * documents folder; on the web it is shrunk to a small data URL that is stored
- * with the profile. Returns the new URI, `null` if the user cancelled, or
- * throws a readable error.
+ * documents folder; on the web it is shrunk to a data URL stored with the
+ * profile. Returns the photo, `null` if the user cancelled, or throws.
  */
-export async function chooseProfilePhoto(): Promise<string | null> {
+export interface ChosenPhoto {
+  uri: string;
+  /** Width / height of the stored photo. */
+  aspect: number;
+}
+
+export async function chooseProfilePhoto(): Promise<ChosenPhoto | null> {
+  // The app's own crop screen does the cropping, so the picker returns the whole photo.
   const result = await ImagePicker.launchImageLibraryAsync({
     mediaTypes: ["images"],
-    allowsEditing: true,
-    aspect: [1, 1],
-    quality: 0.6,
+    allowsEditing: false,
+    quality: 0.8,
   });
   if (result.canceled || !result.assets?.[0]?.uri) return null;
-  const picked = result.assets[0].uri;
-  return Platform.OS === "web" ? shrinkForWeb(picked) : copyToDocuments(picked);
+  const asset = result.assets[0];
+  if (Platform.OS === "web") return shrinkForWeb(asset.uri);
+  const aspect = asset.width && asset.height ? asset.width / asset.height : 1;
+  return { uri: await copyToDocuments(asset.uri), aspect };
 }
 
 async function copyToDocuments(uri: string): Promise<string> {
@@ -35,20 +42,21 @@ async function copyToDocuments(uri: string): Promise<string> {
   }
 }
 
-/** Draws the image onto a 256px canvas and returns a small JPEG data URL (web only). */
-function shrinkForWeb(uri: string): Promise<string> {
+/** Shrinks the image to at most 900px on its long side (keeping its shape) and returns a JPEG data URL (web only). */
+function shrinkForWeb(uri: string): Promise<ChosenPhoto> {
   return new Promise((resolve, reject) => {
     const img = new (globalThis as any).Image() as HTMLImageElement;
     img.onload = () => {
-      const size = 256;
-      const side = Math.min(img.width, img.height);
+      const scale = Math.min(1, 900 / Math.max(img.width, img.height));
+      const w = Math.max(1, Math.round(img.width * scale));
+      const h = Math.max(1, Math.round(img.height * scale));
       const canvas = document.createElement("canvas");
-      canvas.width = size;
-      canvas.height = size;
+      canvas.width = w;
+      canvas.height = h;
       const ctx = canvas.getContext("2d");
       if (!ctx) return reject(new Error("Could not process the photo."));
-      ctx.drawImage(img, (img.width - side) / 2, (img.height - side) / 2, side, side, 0, 0, size, size);
-      resolve(canvas.toDataURL("image/jpeg", 0.8));
+      ctx.drawImage(img, 0, 0, w, h);
+      resolve({ uri: canvas.toDataURL("image/jpeg", 0.82), aspect: w / h });
     };
     img.onerror = () => reject(new Error("Could not read that photo."));
     img.src = uri;
