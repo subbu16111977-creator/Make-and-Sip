@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform, useWindowDimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "./Button";
-import { LogoMark } from "./Logo";
+import { Logo } from "./Logo";
 import { Chip } from "./Chip";
 import { ProfileForm } from "./ProfileForm";
 import { DiscoverIcon, SavedIcon, ShoppingIcon, ChevronLeftIcon, type IconProps } from "./icons";
@@ -25,9 +25,8 @@ function Welcome() {
   const { width } = useWindowDimensions();
   const side = Math.min(width - layout.screenPadding * 2, 300);
   return (
-    <View style={[styles.logoFrame, { width: side, height: side }]} accessible accessibilityRole="image" accessibilityLabel="Mise logo">
-      <LogoMark size={side * 0.56} />
-      <Text style={styles.wordmark}>Mise</Text>
+    <View style={[styles.logoFrame, { width: side, height: side }]}>
+      <Logo variant="full" height={side * 0.68} />
     </View>
   );
 }
@@ -283,7 +282,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: spacing.sm,
   },
-  wordmark: { ...typeScale.display, fontSize: 40, lineHeight: 46, color: colors.burntOrange, textAlign: "center", letterSpacing: 1 },
   badge: {
     width: 52,
     height: 52,
