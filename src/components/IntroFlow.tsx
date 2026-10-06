@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
+import { View, Text, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform, useWindowDimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "./Button";
+import { LogoMark } from "./Logo";
 import { Chip } from "./Chip";
 import { ProfileForm } from "./ProfileForm";
-import { DiscoverIcon, PantryIcon, SavedIcon, ShoppingIcon, ChevronLeftIcon, type IconProps } from "./icons";
+import { DiscoverIcon, SavedIcon, ShoppingIcon, ChevronLeftIcon, type IconProps } from "./icons";
 import { colors, layout, radii, spacing, type as typeScale } from "@/theme";
 import { useEquipment } from "@/context/EquipmentContext";
 import { useProfile } from "@/context/ProfileContext";
@@ -21,15 +22,12 @@ function Badge({ Icon }: { Icon: React.ComponentType<IconProps> }) {
 }
 
 function Welcome() {
+  const { width } = useWindowDimensions();
+  const side = Math.min(width - layout.screenPadding * 2, 300);
   return (
-    <View style={styles.visualCard} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <View style={[styles.logoFrame, { width: side, height: side }]} accessible accessibilityRole="image" accessibilityLabel="Mise logo">
+      <LogoMark size={side * 0.56} />
       <Text style={styles.wordmark}>Mise</Text>
-      <View style={styles.badgeRow}>
-        <Badge Icon={PantryIcon} />
-        <Badge Icon={DiscoverIcon} />
-        <Badge Icon={ShoppingIcon} />
-        <Badge Icon={SavedIcon} />
-      </View>
     </View>
   );
 }
@@ -275,8 +273,17 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: colors.hairline,
   },
-  wordmark: { ...typeScale.display, fontSize: 44, lineHeight: 50, color: colors.burntOrange, textAlign: "center" },
-  badgeRow: { flexDirection: "row", justifyContent: "center", gap: spacing.md },
+  logoFrame: {
+    alignSelf: "center",
+    backgroundColor: colors.paper,
+    borderRadius: radii["2xl"],
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.hairlineStrong,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: spacing.sm,
+  },
+  wordmark: { ...typeScale.display, fontSize: 40, lineHeight: 46, color: colors.burntOrange, textAlign: "center", letterSpacing: 1 },
   badge: {
     width: 52,
     height: 52,
