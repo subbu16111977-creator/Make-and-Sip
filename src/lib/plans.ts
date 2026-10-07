@@ -66,15 +66,33 @@ export function priceLine(plan: Plan): string {
   return `${formatPrice(plan.price)} / ${plan.period}`;
 }
 
-/** The big button's label. */
-export function ctaLabel(plan: Plan): string {
-  if (hasTrial(plan)) return `Start ${plan.trialDays}-day free trial`;
-  return `Get lifetime access · ${formatPrice(plan.price)}`;
+/** The big button's label. `withTrial` = the user is starting the free trial rather than paying straight away. */
+export function ctaLabel(plan: Plan, withTrial: boolean): string {
+  if (withTrial && hasTrial(plan)) return `Start ${plan.trialDays}-day free trial`;
+  if (plan.period === "once") return `Get lifetime access · ${formatPrice(plan.price)}`;
+  return `Subscribe · ${priceLine(plan)}`;
 }
 
 /** What the user will be charged and when — shown right under the button, as the stores require. */
-export function chargeNotice(plan: Plan): string {
+export function chargeNotice(plan: Plan, withTrial: boolean): string {
   if (plan.period === "once") return `One payment of ${formatPrice(plan.price)}. No subscription, no renewals.`;
   const unit = plan.period === "year" ? "year" : "month";
-  return `${plan.trialDays} days free, then ${formatPrice(plan.price)} per ${unit}. Renews automatically until you cancel.`;
+  if (withTrial && hasTrial(plan)) {
+    return `${plan.trialDays} days free, then ${formatPrice(plan.price)} per ${unit}. Renews automatically until you cancel.`;
+  }
+  return `You'll be charged ${formatPrice(plan.price)} today, then every ${unit}. Renews automatically until you cancel.`;
 }
+
+/** The "7-day free trial" section on the paywall: what it is, and that a charge follows. */
+export function trialDescription(then: Plan): string {
+  const unit = then.period === "year" ? "year" : "month";
+  return (
+    `Try everything in Mise Premium free for ${TRIAL_DAYS} days. ` +
+    `After the ${TRIAL_DAYS} days, a charge of ${formatPrice(then.price)} per ${unit} is added automatically, ` +
+    `unless you cancel before the trial ends.`
+  );
+}
+
+/** One free trial per person, shared by every plan. Shown when someone has already had it. */
+export const TRIAL_USED_NOTICE = `You've already used your ${TRIAL_DAYS}-day free trial. It can only be used once, across all plans.`;
+export const TRIAL_ONCE_NOTE = `One free trial per person, shared by Monthly and Yearly.`;

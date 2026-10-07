@@ -38,7 +38,7 @@ function Row({ label, value }: { label: string; value: string }) {
  */
 export default function SubscriptionScreen() {
   const router = useRouter();
-  const { subscription, cancelSubscription, resumeSubscription, reset } = useSubscription();
+  const { subscription, cancelSubscription, resumeSubscription, endSubscription } = useSubscription();
   const [confirming, setConfirming] = useState(false);
   const now = new Date();
 
@@ -174,7 +174,7 @@ export default function SubscriptionScreen() {
 
           <Pressable
             onPress={() => {
-              reset();
+              endSubscription();
               router.back();
             }}
             accessibilityRole="button"

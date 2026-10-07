@@ -2,8 +2,12 @@ import { describe, expect, it } from "vitest";
 import {
   REMINDER_DAYS_BEFORE,
   REMINDER_HOUR,
+  NEW_ACCOUNT,
   addMonths,
   cancel,
+  choosePlan,
+  endPlan,
+  trialAvailable,
   currentTermEnd,
   formatDate,
   isSubscription,
@@ -183,7 +187,85 @@ describe("storage", () => {
   it("keeps the subscription in its own storage key, included in 'Reset local app data'", async () => {
     const { STORAGE_KEYS, ALL_STORAGE_KEYS } = await import("./appData");
     expect(STORAGE_KEYS.subscription).toBe("mise.subscription.v1");
+    expect(STORAGE_KEYS.trialUsed).toBe("mise.trialUsed.v1");
+    expect(ALL_STORAGE_KEYS).toContain(STORAGE_KEYS.trialUsed);
     expect(ALL_STORAGE_KEYS).toContain(STORAGE_KEYS.subscription);
     expect(new Set(ALL_STORAGE_KEYS).size).toBe(ALL_STORAGE_KEYS.length);
+  });
+});
+
+describe("one free trial per person (no loophole)", () => {
+  const t0 = at(2026, 10, 7);
+
+  it("the first plan can start on the trial", () => {
+    const a = choosePlan(NEW_ACCOUNT, "yearly", true, t0);
+    expect(a.subscription?.trial).toBe(true);
+    expect(a.trialUsed).toBe(true);
+  });
+  it("choosing to pay straight away never uses the trial up", () => {
+    const a = choosePlan(NEW_ACCOUNT, "yearly", false, t0);
+    expect(a.subscription?.trial).toBe(false);
+    expect(a.trialUsed).toBe(false);
+    expect(trialAvailable(NEW_ACCOUNT)).toBe(true);
+  });
+  it("lifetime has no trial and does not use it up", () => {
+    const a = choosePlan(NEW_ACCOUNT, "lifetime", true, t0);
+    expect(a.subscription?.trial).toBe(false);
+    expect(a.trialUsed).toBe(false);
+  });
+  it("cancelling, ending the plan and signing up again does NOT give a second trial", () => {
+    let a = choosePlan(NEW_ACCOUNT, "yearly", true, t0);
+    a = { ...a, subscription: cancel(a.subscription!, at(2026, 10, 9)) };
+    a = endPlan(a);
+    expect(a.subscription).toBeNull();
+    expect(a.trialUsed).toBe(true);
+    expect(trialAvailable(a)).toBe(false);
+    const again = choosePlan(a, "yearly", true, at(2026, 10, 20));
+    expect(again.subscription?.trial).toBe(false);
+  });
+  it("trying the other plan type (yearly trial, then monthly) does NOT give another trial", () => {
+    let a = choosePlan(NEW_ACCOUNT, "yearly", true, t0);
+    a = endPlan(a);
+    const monthly = choosePlan(a, "monthly", true, at(2026, 10, 8));
+    expect(monthly.subscription?.trial).toBe(false);
+    expect(monthly.subscription?.planId).toBe("monthly");
+    expect(statusOf(monthly.subscription!, at(2026, 10, 8))).toBe("active");
+  });
+  it("switching plan during the trial keeps the original trial dates (no restart, no extension)", () => {
+    const a = choosePlan(NEW_ACCOUNT, "yearly", true, t0);
+    const switched = choosePlan(a, "monthly", true, at(2026, 10, 10));
+    expect(switched.subscription?.planId).toBe("monthly");
+    expect(switched.subscription?.startedAt).toBe(a.subscription?.startedAt);
+    expect(statusOf(switched.subscription!, at(2026, 10, 10))).toBe("trial");
+    const end = trialEndsAt(switched.subscription!)!;
+    expect([end.getMonth() + 1, end.getDate()]).toEqual([10, 14]);
+    expect(switched.trialUsed).toBe(true);
+  });
+  it("after the trial has run out, switching plan starts paying, never a new trial", () => {
+    const a = choosePlan(NEW_ACCOUNT, "yearly", true, t0);
+    const later = choosePlan(a, "monthly", true, at(2026, 11, 1));
+    expect(later.subscription?.trial).toBe(false);
+  });
+  it("a trial-less, paid-up person can still never claim a trial later via a trial request on a paid plan", () => {
+    let a = choosePlan(NEW_ACCOUNT, "monthly", false, t0); // paid straight away
+    a = endPlan(a);
+    // the trial was never used, so it is still genuinely available once
+    expect(choosePlan(a, "yearly", true, at(2026, 11, 1)).subscription?.trial).toBe(true);
+  });
+  it("only one trial can ever happen in a whole run of sign-ups", () => {
+    let a = NEW_ACCOUNT;
+    let trials = 0;
+    const plans = ["yearly", "monthly", "yearly", "monthly", "yearly"] as const;
+    plans.forEach((planId, i) => {
+      a = choosePlan(a, planId, true, at(2026, 10, 7 + i * 20));
+      if (a.subscription?.trial) trials++;
+      a = endPlan(a);
+    });
+    expect(trials).toBe(1);
+  });
+  it("does not mutate the account it is given", () => {
+    const snap = JSON.stringify(NEW_ACCOUNT);
+    choosePlan(NEW_ACCOUNT, "yearly", true, t0);
+    expect(JSON.stringify(NEW_ACCOUNT)).toBe(snap);
   });
 });

@@ -11,6 +11,7 @@ export const STORAGE_KEYS = {
   profile: "mise.profile.v1",
   favorites: "mise.favorites.v1",
   subscription: "mise.subscription.v1",
+  trialUsed: "mise.trialUsed.v1",
 } as const;
 
 export const ALL_STORAGE_KEYS: readonly string[] = Object.values(STORAGE_KEYS);

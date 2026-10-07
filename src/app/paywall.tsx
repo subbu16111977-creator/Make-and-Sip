@@ -8,19 +8,22 @@ import { colors, layout, radii, spacing, type as typeScale } from "@/theme";
 import { recipes } from "@/data/recipes";
 import { useSubscription } from "@/context/SubscriptionContext";
 import {
-  DEFAULT_PLAN,
   PLANS,
+  TRIAL_DAYS,
+  TRIAL_ONCE_NOTE,
+  TRIAL_USED_NOTICE,
   chargeNotice,
   ctaLabel,
   formatPrice,
   getPlan,
-  hasTrial,
   perMonth,
   priceLine,
+  trialDescription,
   yearlySavingsPercent,
   type Plan,
   type PlanId,
 } from "@/lib/plans";
+import { formatDate, statusOf, trialEndsAt } from "@/lib/subscription";
 
 const PREVIEW_NOTICE = "Test mode: this simulates a plan on this device. Real purchases get connected before launch, and nothing is charged.";
 
@@ -44,7 +47,7 @@ function PlanCard({ plan, selected, onSelect }: { plan: Plan; selected: boolean;
       onPress={onSelect}
       accessibilityRole="radio"
       accessibilityState={{ selected }}
-      accessibilityLabel={`${plan.title}, ${priceLine(plan)}${hasTrial(plan) ? `, ${plan.trialDays} day free trial` : ""}`}
+      accessibilityLabel={`${plan.title}, ${priceLine(plan)}`}
       style={[styles.plan, selected && styles.planSelected]}
     >
       {badge ? (
@@ -56,12 +59,80 @@ function PlanCard({ plan, selected, onSelect }: { plan: Plan; selected: boolean;
       <View style={styles.planText}>
         <Text style={styles.planTitle}>{plan.title}</Text>
         <Text style={styles.planSub}>{planSubtitle(plan)}</Text>
-        {hasTrial(plan) ? <Text style={styles.planTrial}>{plan.trialDays} days free</Text> : null}
+        {plan.period !== "once" ? <Text style={styles.planTrial}>Charged today</Text> : null}
       </View>
       <View style={styles.planPriceCol}>
         <Text style={styles.planPrice}>{formatPrice(plan.price)}</Text>
         <Text style={styles.planPer}>{plan.period === "once" ? "one time" : `per ${plan.period}`}</Text>
       </View>
+    </Pressable>
+  );
+}
+
+type Choice = "trial" | PlanId;
+
+/** The "7-day free trial" section: what it is, what happens after, and which plan it turns into. */
+function TrialCard({
+  selected,
+  available,
+  then,
+  onThen,
+  onSelect,
+}: {
+  selected: boolean;
+  available: boolean;
+  then: PlanId;
+  onThen: (id: PlanId) => void;
+  onSelect: () => void;
+}) {
+  const thenPlan = getPlan(then);
+  return (
+    <Pressable
+      onPress={available ? onSelect : undefined}
+      disabled={!available}
+      accessibilityRole="radio"
+      accessibilityState={{ selected: selected && available, disabled: !available }}
+      accessibilityLabel={`${TRIAL_DAYS}-day free trial. ${available ? trialDescription(thenPlan) : TRIAL_USED_NOTICE}`}
+      style={[styles.plan, styles.trialCard, selected && available && styles.planSelected, !available && styles.trialOff]}
+    >
+      <View style={[styles.badge, !available && styles.badgeMuted]}>
+        <Text style={[styles.badgeText, !available && styles.badgeTextMuted]}>{available ? "TRY IT FIRST" : "ALREADY USED"}</Text>
+      </View>
+      <View style={styles.trialHead}>
+        <View style={[styles.radio, selected && available && styles.radioSelected]}>{selected && available ? <View style={styles.radioDot} /> : null}</View>
+        <Text style={styles.trialTitle}>{TRIAL_DAYS}-day free trial</Text>
+        <Text style={styles.trialFree}>{available ? "Free" : ""}</Text>
+      </View>
+      <Text style={styles.trialDesc}>{available ? trialDescription(thenPlan) : TRIAL_USED_NOTICE}</Text>
+      {available ? (
+        <View style={styles.thenRow}>
+          <Text style={styles.thenLabel}>After the trial, bill me</Text>
+          <View style={styles.thenChips}>
+            {(["yearly", "monthly"] as const).map((id) => {
+              const p = getPlan(id);
+              const on = then === id;
+              return (
+                <Pressable
+                  key={id}
+                  onPress={() => {
+                    onThen(id);
+                    onSelect();
+                  }}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: on }}
+                  accessibilityLabel={`After the trial, bill ${priceLine(p)}`}
+                  style={[styles.thenChip, on && styles.thenChipOn]}
+                >
+                  <Text style={[styles.thenChipText, on && styles.thenChipTextOn]}>
+                    {p.title} · {priceLine(p)}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+          <Text style={styles.trialOnce}>{TRIAL_ONCE_NOTE}</Text>
+        </View>
+      ) : null}
     </Pressable>
   );
 }
@@ -73,10 +144,25 @@ function PlanCard({ plan, selected, onSelect }: { plan: Plan; selected: boolean;
  */
 export default function PaywallScreen() {
   const router = useRouter();
-  const [selected, setSelected] = useState<PlanId>(DEFAULT_PLAN);
+  const { subscription, trialAvailable, startTestSubscription } = useSubscription();
+  const [choice, setChoice] = useState<Choice>(trialAvailable ? "trial" : "yearly");
+  const [thenPlan, setThenPlan] = useState<PlanId>("yearly");
   const [notice, setNotice] = useState<string | null>(null);
-  const { startTestSubscription } = useSubscription();
-  const plan = getPlan(selected);
+
+  // The trial can't be chosen once it has been used (or if there is already a plan).
+  const activeChoice: Choice = choice === "trial" && !trialAvailable ? "yearly" : choice;
+  const withTrial = activeChoice === "trial";
+  const planId: PlanId = withTrial ? thenPlan : (activeChoice as PlanId);
+  const plan = getPlan(planId);
+
+  // Switching while already in the free trial keeps that trial (it doesn't restart).
+  const inTrial = subscription ? statusOf(subscription, new Date()) === "trial" : false;
+  const keepsTrial = inTrial && !withTrial && planId !== "lifetime";
+  const trialEnd = subscription ? trialEndsAt(subscription) : null;
+  const buttonLabel = keepsTrial ? `Switch to ${plan.title}` : ctaLabel(plan, withTrial);
+  const chargeLine = keepsTrial
+    ? `Your free trial continues until ${trialEnd ? formatDate(trialEnd) : "it ends"}. Then ${formatPrice(plan.price)} per ${plan.period}, renewing automatically until you cancel.`
+    : chargeNotice(plan, withTrial);
 
   const cuisineCount = useMemo(() => new Set(recipes.map((r) => r.cuisine)).size, []);
   const benefits = [
@@ -101,7 +187,32 @@ export default function PaywallScreen() {
           <Text style={styles.title} accessibilityRole="header">
             Cook with what you have
           </Text>
-          <Text style={styles.sub}>Try everything free for {getPlan("yearly").trialDays} days. Cancel anytime.</Text>
+          <Text style={styles.sub}>{trialAvailable ? `Try everything free for ${TRIAL_DAYS} days. Cancel anytime.` : "Choose the plan that suits you."}</Text>
+        </View>
+
+        <View accessibilityRole="radiogroup" style={styles.plans}>
+          <TrialCard
+            selected={activeChoice === "trial"}
+            available={trialAvailable}
+            then={thenPlan}
+            onThen={setThenPlan}
+            onSelect={() => {
+              setChoice("trial");
+              setNotice(null);
+            }}
+          />
+          {PLANS.map((p) => (
+            <PlanCard
+              key={p.id}
+              plan={p}
+              selected={activeChoice === p.id}
+              onSelect={() => {
+                setChoice(p.id);
+                setNotice(null);
+              }}
+            />
+          ))}
+          <Text style={styles.cancel}>{plan.period === "once" ? "Your purchase is tied to your App Store or Google Play account." : cancelText()}</Text>
         </View>
 
         <View style={styles.benefits}>
@@ -115,36 +226,23 @@ export default function PaywallScreen() {
           ))}
         </View>
 
-        <View accessibilityRole="radiogroup" style={styles.plans}>
-          {PLANS.map((p) => (
-            <PlanCard
-              key={p.id}
-              plan={p}
-              selected={selected === p.id}
-              onSelect={() => {
-                setSelected(p.id);
-                setNotice(null);
-              }}
-            />
-          ))}
-          <Text style={styles.cancel}>{plan.period === "once" ? "Your purchase is tied to your App Store or Google Play account." : cancelText()}</Text>
-        </View>
+        <Text style={styles.testTag}>{PREVIEW_NOTICE}</Text>
       </ScrollView>
 
       <View style={styles.footer}>
-        {notice ? <Text style={styles.notice}>{notice}</Text> : <Text style={styles.testTag}>{PREVIEW_NOTICE}</Text>}
+        {notice ? <Text style={styles.notice}>{notice}</Text> : null}
         <Pressable
           onPress={async () => {
-            await startTestSubscription(selected);
+            await startTestSubscription(planId, withTrial);
             router.replace("/subscription");
           }}
           accessibilityRole="button"
-          accessibilityLabel={ctaLabel(plan)}
+          accessibilityLabel={buttonLabel}
           style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]}
         >
-          <Text style={styles.ctaText}>{ctaLabel(plan)}</Text>
+          <Text style={styles.ctaText}>{buttonLabel}</Text>
         </Pressable>
-        <Text style={styles.charge}>{chargeNotice(plan)}</Text>
+        <Text style={styles.charge}>{chargeLine}</Text>
         <View style={styles.links}>
           <Pressable onPress={() => setNotice(PREVIEW_NOTICE)} accessibilityRole="button" accessibilityLabel="Restore purchases">
             <Text style={styles.link}>Restore purchases</Text>
@@ -200,6 +298,20 @@ const styles = StyleSheet.create({
   planTitle: { ...typeScale.label, fontSize: 16, color: colors.espresso },
   planSub: { ...typeScale.bodySmall, color: colors.espressoMuted },
   planTrial: { ...typeScale.caption, color: colors.sageOlive, fontWeight: "600" },
+  trialCard: { flexDirection: "column", alignItems: "stretch", gap: spacing.sm },
+  trialOff: { opacity: 0.6 },
+  trialHead: { flexDirection: "row", alignItems: "center", gap: spacing.md },
+  trialTitle: { ...typeScale.label, fontSize: 16, color: colors.espresso, flex: 1 },
+  trialFree: { ...typeScale.headline, fontSize: 18, lineHeight: 22, color: colors.sageOlive },
+  trialDesc: { ...typeScale.bodySmall, color: colors.espressoMuted },
+  thenRow: { gap: spacing.xs, marginTop: spacing.xs },
+  thenLabel: { ...typeScale.caption, color: colors.espressoFaint },
+  thenChips: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm },
+  thenChip: { paddingVertical: 8, paddingHorizontal: spacing.md, borderRadius: radii.pill, borderWidth: 1, borderColor: colors.hairlineStrong },
+  thenChipOn: { borderColor: colors.burntOrange, backgroundColor: colors.burntOrange },
+  thenChipText: { ...typeScale.caption, color: colors.espresso },
+  thenChipTextOn: { color: colors.cream, fontWeight: "700" },
+  trialOnce: { ...typeScale.caption, color: colors.espressoFaint },
   planPriceCol: { alignItems: "flex-end" },
   planPrice: { ...typeScale.headline, fontSize: 20, lineHeight: 24, color: colors.espresso },
   planPer: { ...typeScale.caption, color: colors.espressoMuted },

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_PLAN, PLANS, TRIAL_DAYS, chargeNotice, ctaLabel, formatPrice, getPlan, hasTrial, isSubscription, perMonth, priceLine, yearlySavingsPercent } from "./plans";
+import { DEFAULT_PLAN, PLANS, TRIAL_DAYS, TRIAL_ONCE_NOTE, TRIAL_USED_NOTICE, trialDescription, chargeNotice, ctaLabel, formatPrice, getPlan, hasTrial, isSubscription, perMonth, priceLine, yearlySavingsPercent } from "./plans";
 
 describe("Mise Premium plans", () => {
   it("has exactly monthly, yearly and lifetime, with the agreed prices", () => {
@@ -39,14 +39,29 @@ describe("Mise Premium plans", () => {
     expect(priceLine(getPlan("lifetime"))).toBe("$99.99 one time");
   });
   it("labels the button by what the user is really buying", () => {
-    expect(ctaLabel(getPlan("yearly"))).toBe("Start 7-day free trial");
-    expect(ctaLabel(getPlan("monthly"))).toBe("Start 7-day free trial");
-    expect(ctaLabel(getPlan("lifetime"))).toBe("Get lifetime access · $99.99");
+    expect(ctaLabel(getPlan("yearly"), true)).toBe("Start 7-day free trial");
+    expect(ctaLabel(getPlan("monthly"), true)).toBe("Start 7-day free trial");
+    expect(ctaLabel(getPlan("yearly"), false)).toBe("Subscribe · $29.99 / year");
+    expect(ctaLabel(getPlan("monthly"), false)).toBe("Subscribe · $4.99 / month");
+    expect(ctaLabel(getPlan("lifetime"), false)).toBe("Get lifetime access · $99.99");
+    expect(ctaLabel(getPlan("lifetime"), true)).toBe("Get lifetime access · $99.99"); // lifetime never has a trial
   });
   it("always tells the user what is charged, and when", () => {
-    expect(chargeNotice(getPlan("yearly"))).toBe("7 days free, then $29.99 per year. Renews automatically until you cancel.");
-    expect(chargeNotice(getPlan("monthly"))).toBe("7 days free, then $4.99 per month. Renews automatically until you cancel.");
-    expect(chargeNotice(getPlan("lifetime"))).toBe("One payment of $99.99. No subscription, no renewals.");
+    expect(chargeNotice(getPlan("yearly"), true)).toBe("7 days free, then $29.99 per year. Renews automatically until you cancel.");
+    expect(chargeNotice(getPlan("monthly"), true)).toBe("7 days free, then $4.99 per month. Renews automatically until you cancel.");
+    expect(chargeNotice(getPlan("yearly"), false)).toBe("You'll be charged $29.99 today, then every year. Renews automatically until you cancel.");
+    expect(chargeNotice(getPlan("lifetime"), true)).toBe("One payment of $99.99. No subscription, no renewals.");
+  });
+  it("the trial section explains it and says a charge is added after the 7 days", () => {
+    const yearly = trialDescription(getPlan("yearly"));
+    expect(yearly).toContain("free for 7 days");
+    expect(yearly).toContain("After the 7 days, a charge of $29.99 per year is added");
+    expect(yearly).toContain("unless you cancel before the trial ends");
+    expect(trialDescription(getPlan("monthly"))).toContain("$4.99 per month");
+  });
+  it("says the trial can only be used once", () => {
+    expect(TRIAL_USED_NOTICE).toContain("only be used once");
+    expect(TRIAL_ONCE_NOTE).toContain("One free trial per person");
   });
   it("rejects an unknown plan", () => {
     expect(() => getPlan("weekly" as never)).toThrow();

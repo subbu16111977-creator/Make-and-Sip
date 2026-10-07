@@ -240,8 +240,49 @@ export function upcomingReminders(sub: Subscription, now: Date): Reminder[] {
   return out.sort((a, b) => a.at.getTime() - b.at.getTime());
 }
 
-/** A fresh subscription starting now. A plan with a trial starts on the trial. */
-export function startSubscription(planId: PlanId, now: Date): Subscription {
-  const plan = getPlan(planId);
-  return { planId, startedAt: now.toISOString(), trial: plan.trialDays > 0 };
+/** A fresh subscription starting now. It begins on the free trial only if `withTrial` is true and the plan allows one. */
+export function startSubscription(planId: PlanId, now: Date, withTrial: boolean = getPlan(planId).trialDays > 0): Subscription {
+  return { planId, startedAt: now.toISOString(), trial: withTrial && getPlan(planId).trialDays > 0 };
+}
+
+// ---------------------------------------------------------------------------
+// One free trial per person
+// ---------------------------------------------------------------------------
+
+/**
+ * Everything the app remembers about a person's plan: their current subscription and whether the
+ * free trial has ever been used. The trial flag is set the moment a trial begins and is NOT cleared
+ * by cancelling, ending a plan or switching plans, so the trial cannot be started again on another plan.
+ *
+ * (In the live app the App Store and Google Play enforce this per Apple ID / Google account. This
+ * mirrors that rule for the test mode.)
+ */
+export interface Account {
+  subscription: Subscription | null;
+  trialUsed: boolean;
+}
+
+export const NEW_ACCOUNT: Account = { subscription: null, trialUsed: false };
+
+/** True when the person may still start the free trial. */
+export function trialAvailable(account: Account): boolean {
+  return !account.trialUsed && !account.subscription;
+}
+
+/**
+ * Chooses a plan. The trial only applies the first time and never again; picking another plan
+ * while still in the trial keeps the original trial (it doesn't restart or extend).
+ */
+export function choosePlan(account: Account, planId: PlanId, wantsTrial: boolean, now: Date): Account {
+  const current = account.subscription;
+  if (current && statusOf(current, now) === "trial" && planId !== "lifetime") {
+    return { ...account, subscription: { ...current, planId, cancelledEndsAt: undefined } };
+  }
+  const trial = wantsTrial && !account.trialUsed && getPlan(planId).trialDays > 0;
+  return { subscription: startSubscription(planId, now, trial), trialUsed: account.trialUsed || trial };
+}
+
+/** Removes the current plan. The trial stays used. */
+export function endPlan(account: Account): Account {
+  return { ...account, subscription: null };
 }

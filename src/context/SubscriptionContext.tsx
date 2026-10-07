@@ -3,29 +3,38 @@ import { AppBlank } from "@/components/AppBlank";
 import { STORAGE_KEYS } from "@/lib/appData";
 import type { PlanId } from "@/lib/plans";
 import { ensureReminderPermission, syncReminders } from "@/lib/reminders";
-import { cancel, isSubscription, resume, startSubscription, type Subscription } from "@/lib/subscription";
+import { cancel, choosePlan, endPlan, isSubscription, resume, trialAvailable, type Account, type Subscription } from "@/lib/subscription";
 import { usePersistedState } from "@/lib/usePersistedState";
 
 interface SubscriptionContextValue {
   /** The current plan, or null when there isn't one. */
   subscription: Subscription | null;
+  /** True once the 7-day free trial has been used. It can only be used once, across all plans. */
+  trialUsed: boolean;
+  /** True when the person can still start the free trial right now. */
+  trialAvailable: boolean;
   /**
-   * TEST MODE: starts a plan on this device without any real purchase or charge. Real store
-   * purchases will replace this before launch.
+   * TEST MODE: picks a plan on this device without any real purchase or charge. `withTrial` asks for
+   * the free trial, which is only granted the first time. Real store purchases replace this before launch.
    */
-  startTestSubscription: (planId: PlanId) => Promise<void>;
+  startTestSubscription: (planId: PlanId, withTrial: boolean) => Promise<void>;
   cancelSubscription: () => void;
   resumeSubscription: () => void;
-  /** Removes the (test) subscription. Also used by Settings > Reset local app data. */
+  /** Removes the current (test) plan but remembers that the trial was used. */
+  endSubscription: () => void;
+  /** Clears everything, including the "trial used" memory. Only for Settings > Reset local app data (test mode). */
   reset: () => void;
 }
 
 const SubscriptionContext = createContext<SubscriptionContextValue | undefined>(undefined);
 
 const isStoredSubscription = (v: unknown): v is Subscription | null => v === null || isSubscription(v);
+const isBoolean = (v: unknown): v is boolean => typeof v === "boolean";
 
 export function SubscriptionProvider({ children }: { children: React.ReactNode }) {
-  const [subscription, setSubscription, hydrated] = usePersistedState<Subscription | null>(STORAGE_KEYS.subscription, null, isStoredSubscription);
+  const [subscription, setSubscription, subHydrated] = usePersistedState<Subscription | null>(STORAGE_KEYS.subscription, null, isStoredSubscription);
+  const [trialUsed, setTrialUsed, trialHydrated] = usePersistedState<boolean>(STORAGE_KEYS.trialUsed, false, isBoolean);
+  const hydrated = subHydrated && trialHydrated;
 
   // Keep the scheduled reminders matching the plan: on start, change, and each time the app opens
   // (so a renewing plan always has its next reminders lined up).
@@ -34,19 +43,27 @@ export function SubscriptionProvider({ children }: { children: React.ReactNode }
   }, [subscription, hydrated]);
 
   const startTestSubscription = useCallback(
-    async (planId: PlanId) => {
+    async (planId: PlanId, withTrial: boolean) => {
       await ensureReminderPermission(); // asked now, because the user just chose a plan
-      setSubscription(startSubscription(planId, new Date()));
+      const account: Account = { subscription, trialUsed };
+      const next = choosePlan(account, planId, withTrial, new Date());
+      setSubscription(next.subscription);
+      setTrialUsed(next.trialUsed);
     },
-    [setSubscription]
+    [subscription, trialUsed, setSubscription, setTrialUsed]
   );
   const cancelSubscription = useCallback(() => setSubscription((s) => (s ? cancel(s, new Date()) : s)), [setSubscription]);
   const resumeSubscription = useCallback(() => setSubscription((s) => (s ? resume(s, new Date()) : s)), [setSubscription]);
-  const reset = useCallback(() => setSubscription(null), [setSubscription]);
+  const endSubscription = useCallback(() => setSubscription(endPlan({ subscription, trialUsed }).subscription), [subscription, trialUsed, setSubscription]);
+  const reset = useCallback(() => {
+    setSubscription(null);
+    setTrialUsed(false);
+  }, [setSubscription, setTrialUsed]);
 
+  const available = trialAvailable({ subscription, trialUsed });
   const value = useMemo(
-    () => ({ subscription, startTestSubscription, cancelSubscription, resumeSubscription, reset }),
-    [subscription, startTestSubscription, cancelSubscription, resumeSubscription, reset]
+    () => ({ subscription, trialUsed, trialAvailable: available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, reset }),
+    [subscription, trialUsed, available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, reset]
   );
 
   if (!hydrated) return <AppBlank />;
