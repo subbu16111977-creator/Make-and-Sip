@@ -10,6 +10,7 @@ export const STORAGE_KEYS = {
   equipment: "mise.equipment.v1",
   profile: "mise.profile.v1",
   favorites: "mise.favorites.v1",
+  subscription: "mise.subscription.v1",
 } as const;
 
 export const ALL_STORAGE_KEYS: readonly string[] = Object.values(STORAGE_KEYS);

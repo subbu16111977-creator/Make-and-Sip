@@ -1,9 +1,12 @@
 import React from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, Easing } from "react-native";
 import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, spacing, type as typeScale, shadows } from "@/theme";
 import { HomeIcon, PantryIcon, DiscoverIcon, ShoppingIcon, SavedIcon, ProfileIcon, type IconProps } from "@/components/icons";
+
+/** A soft cross-fade when switching tabs. */
+const TAB_FADE = { animation: "timing" as const, config: { duration: 220, easing: Easing.out(Easing.cubic) } };
 
 const TAB_META: Record<string, { label: string; Icon: React.ComponentType<IconProps> }> = {
   index: { label: "Home", Icon: HomeIcon },
@@ -59,7 +62,7 @@ function MiseTabBar({ state, navigation }: MiseTabBarProps) {
 
 export default function TabsLayout() {
   return (
-    <Tabs tabBar={(props) => <MiseTabBar {...props} />} screenOptions={{ headerShown: false }}>
+    <Tabs tabBar={(props) => <MiseTabBar {...props} />} screenOptions={{ headerShown: false, animation: "fade", transitionSpec: TAB_FADE, sceneStyle: { backgroundColor: colors.cream } }}>
       <Tabs.Screen name="index" options={{ title: "Home" }} />
       <Tabs.Screen name="pantry" options={{ title: "Pantry" }} />
       <Tabs.Screen name="discover" options={{ title: "Discover" }} />

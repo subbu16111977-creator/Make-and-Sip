@@ -38,6 +38,7 @@
         }
       ],
       "expo-image",
+      "expo-notifications",
       [
         "expo-image-picker",
         {

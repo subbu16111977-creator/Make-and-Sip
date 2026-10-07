@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { View, StyleSheet, Platform } from "react-native";
 import { MAX_APP_WIDTH } from "@/lib/useAppDimensions";
-import { Stack } from "expo-router";
+import { Stack } from "expo-router/js-stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
@@ -14,6 +14,7 @@ import { SavedProvider } from "@/context/SavedContext";
 import { EquipmentProvider } from "@/context/EquipmentContext";
 import { ProfileProvider } from "@/context/ProfileContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
+import { SubscriptionProvider } from "@/context/SubscriptionContext";
 import { FirstLaunchGate } from "@/components/FirstLaunchGate";
 
 SplashScreen.preventAutoHideAsync().catch(() => {
@@ -44,19 +45,22 @@ export default function RootLayout() {
           <ShoppingProvider>
             <SavedProvider>
               <FavoritesProvider>
+              <SubscriptionProvider>
               <ProfileProvider>
               <View style={styles.page}>
               <View style={styles.root} onLayout={onLayoutRootView}>
                 <StatusBar style="light" />
-                <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.cream } }}>
+                <Stack screenOptions={{ headerShown: false, animation: "slide_from_right", cardStyle: { backgroundColor: colors.cream } }}>
                   <Stack.Screen name="(tabs)" />
                   <Stack.Screen name="recipe/[id]" options={{ animation: "slide_from_right" }} />
                   <Stack.Screen name="paywall" options={{ animation: "slide_from_bottom" }} />
+                  <Stack.Screen name="subscription" options={{ animation: "slide_from_right" }} />
                 </Stack>
                 <FirstLaunchGate />
               </View>
               </View>
               </ProfileProvider>
+              </SubscriptionProvider>
               </FavoritesProvider>
             </SavedProvider>
           </ShoppingProvider>

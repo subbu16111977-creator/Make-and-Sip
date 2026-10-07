@@ -14,6 +14,8 @@ import { useShopping } from "@/context/ShoppingContext";
 import { useSaved } from "@/context/SavedContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { useFavorites } from "@/context/FavoritesContext";
+import { useSubscription } from "@/context/SubscriptionContext";
+import { summarize } from "@/lib/subscription";
 import { recipes } from "@/data/recipes";
 import { favoriteRecipes } from "@/lib/favorites";
 import { matchRecipe } from "@/lib/pantryMatch";
@@ -27,6 +29,8 @@ export default function ProfileScreen() {
   const saved = useSaved();
   const equipment = useEquipment();
   const favorites = useFavorites();
+  const subscriptionCtx = useSubscription();
+  const planSummary = subscriptionCtx.subscription ? summarize(subscriptionCtx.subscription, new Date()) : null;
   const router = useRouter();
   const favoritesTarget = useTutorialTarget("profile-favorites");
   const scrollRef = useRef<ScrollView>(null);
@@ -69,6 +73,7 @@ export default function ProfileScreen() {
     saved.reset();
     equipment.reset();
     favorites.reset();
+    subscriptionCtx.reset();
     resetProfile();
     setDraft(draftFromProfile({ ...profile, displayName: undefined, profilePhotoUri: undefined, favoriteCuisines: [], customCuisines: [], favoriteFlavors: [], customFlavors: [] }));
     setConfirmingReset(false);
@@ -132,9 +137,18 @@ export default function ProfileScreen() {
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Mise Premium</Text>
-        <Pressable onPress={() => router.push("/paywall")} accessibilityRole="button" accessibilityLabel="See Mise Premium plans" style={styles.row}>
-          <Text style={styles.rowText}>See plans and pricing</Text>
-        </Pressable>
+        {planSummary ? (
+          <Pressable onPress={() => router.push("/subscription")} accessibilityRole="button" accessibilityLabel="Open your subscription" style={styles.row}>
+            <Text style={styles.rowText}>
+              {planSummary.planName} · {planSummary.badge}
+            </Text>
+            <Text style={styles.sub}>{planSummary.headline}</Text>
+          </Pressable>
+        ) : (
+          <Pressable onPress={() => router.push("/paywall")} accessibilityRole="button" accessibilityLabel="See Mise Premium plans" style={styles.row}>
+            <Text style={styles.rowText}>See plans and pricing</Text>
+          </Pressable>
+        )}
       </View>
 
       <View style={styles.section}>

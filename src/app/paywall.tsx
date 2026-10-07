@@ -6,6 +6,7 @@ import { Logo } from "@/components/Logo";
 import { CheckIcon, CloseIcon } from "@/components/icons";
 import { colors, layout, radii, spacing, type as typeScale } from "@/theme";
 import { recipes } from "@/data/recipes";
+import { useSubscription } from "@/context/SubscriptionContext";
 import {
   DEFAULT_PLAN,
   PLANS,
@@ -21,7 +22,7 @@ import {
   type PlanId,
 } from "@/lib/plans";
 
-const PREVIEW_NOTICE = "This is a preview of the page. Purchases aren’t connected yet, so nothing will be charged.";
+const PREVIEW_NOTICE = "Test mode: this simulates a plan on this device. Real purchases get connected before launch, and nothing is charged.";
 
 function cancelText(): string {
   if (Platform.OS === "ios") return "Cancel anytime in your Apple ID settings.";
@@ -74,6 +75,7 @@ export default function PaywallScreen() {
   const router = useRouter();
   const [selected, setSelected] = useState<PlanId>(DEFAULT_PLAN);
   const [notice, setNotice] = useState<string | null>(null);
+  const { startTestSubscription } = useSubscription();
   const plan = getPlan(selected);
 
   const cuisineCount = useMemo(() => new Set(recipes.map((r) => r.cuisine)).size, []);
@@ -130,9 +132,12 @@ export default function PaywallScreen() {
       </ScrollView>
 
       <View style={styles.footer}>
-        {notice ? <Text style={styles.notice}>{notice}</Text> : null}
+        {notice ? <Text style={styles.notice}>{notice}</Text> : <Text style={styles.testTag}>{PREVIEW_NOTICE}</Text>}
         <Pressable
-          onPress={() => setNotice(PREVIEW_NOTICE)}
+          onPress={async () => {
+            await startTestSubscription(selected);
+            router.replace("/subscription");
+          }}
           accessibilityRole="button"
           accessibilityLabel={ctaLabel(plan)}
           style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]}
@@ -210,6 +215,7 @@ const styles = StyleSheet.create({
     maxWidth: layout.maxContentWidth,
     alignSelf: "center",
   },
+  testTag: { ...typeScale.caption, color: colors.espressoFaint, textAlign: "center" },
   notice: { ...typeScale.bodySmall, color: colors.burntOrange, textAlign: "center" },
   cta: { backgroundColor: colors.burntOrange, borderRadius: radii.lg, paddingVertical: 16, alignItems: "center" },
   ctaPressed: { opacity: 0.85 },
