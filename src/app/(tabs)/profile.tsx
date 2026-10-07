@@ -73,7 +73,6 @@ export default function ProfileScreen() {
     saved.reset();
     equipment.reset();
     favorites.reset();
-    subscriptionCtx.reset();
     resetProfile();
     setDraft(draftFromProfile({ ...profile, displayName: undefined, profilePhotoUri: undefined, favoriteCuisines: [], customCuisines: [], favoriteFlavors: [], customFlavors: [] }));
     setConfirmingReset(false);
@@ -164,11 +163,11 @@ export default function ProfileScreen() {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Local data</Text>
         <Text style={styles.sub}>
-          Your pantry, equipment, shopping list, saved dishes and profile are all stored on this device only. Resetting clears every one of them.
+          Your pantry, equipment, shopping list, saved dishes, favourites and profile are all stored on this device only. Resetting clears every one of them, and never touches your subscription.
         </Text>
         {confirmingReset ? (
           <View style={styles.confirm}>
-            <Text style={styles.confirmText}>This permanently deletes your pantry, equipment, shopping list, saved dishes and profile on this device. It can’t be undone.</Text>
+            <Text style={styles.confirmText}>This permanently deletes your pantry, equipment, shopping list, saved dishes, favourites and profile on this device. It can’t be undone. Your subscription isn’t affected.</Text>
             <View style={styles.confirmButtons}>
               <Pressable onPress={() => setConfirmingReset(false)} accessibilityRole="button" accessibilityLabel="Cancel reset" style={styles.cancel}>
                 <Text style={styles.cancelText}>Cancel</Text>

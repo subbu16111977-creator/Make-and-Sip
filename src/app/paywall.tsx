@@ -144,7 +144,7 @@ function TrialCard({
  */
 export default function PaywallScreen() {
   const router = useRouter();
-  const { subscription, trialAvailable, startTestSubscription } = useSubscription();
+  const { subscription, trialAvailable, startTestSubscription, resetTestState } = useSubscription();
   const [choice, setChoice] = useState<Choice>(trialAvailable ? "trial" : "yearly");
   const [thenPlan, setThenPlan] = useState<PlanId>("yearly");
   const [notice, setNotice] = useState<string | null>(null);
@@ -227,6 +227,18 @@ export default function PaywallScreen() {
         </View>
 
         <Text style={styles.testTag}>{PREVIEW_NOTICE}</Text>
+        {/* TEST MODE ONLY — remove before launch. Lets the trial be tried again while developing. */}
+        <Pressable
+          onPress={() => {
+            resetTestState();
+            setChoice("trial");
+          }}
+          accessibilityRole="button"
+          accessibilityLabel="Test mode only: reset the free trial and plan"
+          style={styles.testReset}
+        >
+          <Text style={styles.testResetText}>Test mode only: reset free trial and plan</Text>
+        </Pressable>
       </ScrollView>
 
       <View style={styles.footer}>
@@ -327,6 +339,8 @@ const styles = StyleSheet.create({
     maxWidth: layout.maxContentWidth,
     alignSelf: "center",
   },
+  testReset: { alignSelf: "center", paddingVertical: 6 },
+  testResetText: { ...typeScale.caption, color: colors.espressoFaint, textDecorationLine: "underline" },
   testTag: { ...typeScale.caption, color: colors.espressoFaint, textAlign: "center" },
   notice: { ...typeScale.bodySmall, color: colors.burntOrange, textAlign: "center" },
   cta: { backgroundColor: colors.burntOrange, borderRadius: radii.lg, paddingVertical: 16, alignItems: "center" },

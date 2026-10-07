@@ -183,6 +183,19 @@ describe("stored subscription validation", () => {
   });
 });
 
+describe("resetting local data never touches purchases", () => {
+  it("keeps the plan and the trial memory out of what Reset clears", async () => {
+    const { RESET_KEYS, PURCHASE_KEYS, STORAGE_KEYS } = await import("./appData");
+    expect(RESET_KEYS).not.toContain(STORAGE_KEYS.subscription);
+    expect(RESET_KEYS).not.toContain(STORAGE_KEYS.trialUsed);
+    expect([...PURCHASE_KEYS].sort()).toEqual([STORAGE_KEYS.subscription, STORAGE_KEYS.trialUsed].sort());
+    // and it still clears the user's own data
+    for (const k of [STORAGE_KEYS.pantry, STORAGE_KEYS.shopping, STORAGE_KEYS.saved, STORAGE_KEYS.equipment, STORAGE_KEYS.profile, STORAGE_KEYS.favorites]) {
+      expect(RESET_KEYS).toContain(k);
+    }
+  });
+});
+
 describe("storage", () => {
   it("keeps the subscription in its own storage key, included in 'Reset local app data'", async () => {
     const { STORAGE_KEYS, ALL_STORAGE_KEYS } = await import("./appData");

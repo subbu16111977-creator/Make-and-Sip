@@ -22,8 +22,11 @@ interface SubscriptionContextValue {
   resumeSubscription: () => void;
   /** Removes the current (test) plan but remembers that the trial was used. */
   endSubscription: () => void;
-  /** Clears everything, including the "trial used" memory. Only for Settings > Reset local app data (test mode). */
-  reset: () => void;
+  /**
+   * TEST MODE ONLY — remove before launch. Clears the test plan AND the "trial used" memory so the trial can be
+   * tried again while developing. It is deliberately NOT part of "Reset local app data".
+   */
+  resetTestState: () => void;
 }
 
 const SubscriptionContext = createContext<SubscriptionContextValue | undefined>(undefined);
@@ -55,15 +58,15 @@ export function SubscriptionProvider({ children }: { children: React.ReactNode }
   const cancelSubscription = useCallback(() => setSubscription((s) => (s ? cancel(s, new Date()) : s)), [setSubscription]);
   const resumeSubscription = useCallback(() => setSubscription((s) => (s ? resume(s, new Date()) : s)), [setSubscription]);
   const endSubscription = useCallback(() => setSubscription(endPlan({ subscription, trialUsed }).subscription), [subscription, trialUsed, setSubscription]);
-  const reset = useCallback(() => {
+  const resetTestState = useCallback(() => {
     setSubscription(null);
     setTrialUsed(false);
   }, [setSubscription, setTrialUsed]);
 
   const available = trialAvailable({ subscription, trialUsed });
   const value = useMemo(
-    () => ({ subscription, trialUsed, trialAvailable: available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, reset }),
-    [subscription, trialUsed, available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, reset]
+    () => ({ subscription, trialUsed, trialAvailable: available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, resetTestState }),
+    [subscription, trialUsed, available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, resetTestState]
   );
 
   if (!hydrated) return <AppBlank />;
