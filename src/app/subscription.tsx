@@ -14,6 +14,7 @@ const BADGE_COLOR: Record<SubscriptionStatus, string> = {
   cancelled: colors.tomato,
   expired: colors.espressoFaint,
   lifetime: colors.burntOrange,
+  billing_issue: colors.tomato,
 };
 
 function formatReminderTime(d: Date): string {
@@ -38,7 +39,7 @@ function Row({ label, value }: { label: string; value: string }) {
  */
 export default function SubscriptionScreen() {
   const router = useRouter();
-  const { subscription, cancelSubscription, resumeSubscription, endSubscription } = useSubscription();
+  const { subscription, cancelSubscription, resumeSubscription, endSubscription, simulateFailedPayment, simulateFixedPayment } = useSubscription();
   const [confirming, setConfirming] = useState(false);
   const now = new Date();
 
@@ -75,8 +76,9 @@ export default function SubscriptionScreen() {
   const plan = getPlan(subscription.planId);
   const status = summary.status;
   const ends = summary.date;
-  const dateLabel = status === "trial" ? "Trial ends" : status === "active" ? "Renews on" : status === "cancelled" ? "Access ends" : "Ended on";
+  const dateLabel = status === "trial" ? "Trial ends" : status === "active" ? "Renews on" : status === "cancelled" ? "Access ends" : status === "billing_issue" ? "Access until" : "Ended on";
   const canChange = status !== "lifetime";
+  const noun = status === "trial" ? "turns into a charge" : status === "active" ? "renews" : "ends";
 
   return (
     <SafeAreaView style={styles.safe} edges={["top", "bottom"]}>
@@ -110,7 +112,7 @@ export default function SubscriptionScreen() {
         {reminders.length > 0 ? (
           <View style={styles.card}>
             <Text style={styles.eyebrow}>REMINDERS</Text>
-            <Text style={styles.cardTitle}>We’ll remind you 3, 2 and 1 days before it {status === "trial" ? "turns into a charge" : status === "cancelled" ? "ends" : "renews"}</Text>
+            <Text style={styles.cardTitle}>We’ll remind you 3, 2 and 1 days before it {noun}</Text>
             {reminders.map((r) => (
               <View key={r.at.getTime()} style={styles.reminder}>
                 <Text style={styles.reminderWhen}>{formatReminderTime(r.at)}</Text>
@@ -169,6 +171,17 @@ export default function SubscriptionScreen() {
           {status === "expired" ? (
             <Pressable onPress={() => router.push("/paywall")} accessibilityRole="button" accessibilityLabel="See plans" style={styles.primary}>
               <Text style={styles.primaryText}>See plans</Text>
+            </Pressable>
+          ) : null}
+
+          {/* TEST MODE ONLY — remove before launch. */}
+          {status === "billing_issue" ? (
+            <Pressable onPress={simulateFixedPayment} accessibilityRole="button" accessibilityLabel="Test mode only: payment fixed" style={styles.testLink}>
+              <Text style={styles.testLinkText}>Test mode only: payment fixed</Text>
+            </Pressable>
+          ) : status === "trial" || status === "active" ? (
+            <Pressable onPress={simulateFailedPayment} accessibilityRole="button" accessibilityLabel="Test mode only: simulate a failed payment" style={styles.testLink}>
+              <Text style={styles.testLinkText}>Test mode only: simulate a failed payment</Text>
             </Pressable>
           ) : null}
 

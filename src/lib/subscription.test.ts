@@ -2,8 +2,13 @@ import { describe, expect, it } from "vitest";
 import {
   REMINDER_DAYS_BEFORE,
   REMINDER_HOUR,
+  GRACE_DAYS,
   NEW_ACCOUNT,
   addMonths,
+  failPayment,
+  fixPayment,
+  hasAccess,
+  graceEnd,
   cancel,
   choosePlan,
   endPlan,
@@ -312,3 +317,78 @@ function addDaysLocal(d: Date, n: number): Date {
   x.setDate(x.getDate() + n);
   return x;
 }
+
+describe("access (what the app is locked behind)", () => {
+  const start = at(2026, 10, 7);
+  it("no plan means no access", () => {
+    expect(hasAccess(null, start)).toBe(false);
+  });
+  it("trial, active, lifetime all have access", () => {
+    expect(hasAccess(startSubscription("yearly", start), at(2026, 10, 9))).toBe(true);
+    expect(hasAccess(startSubscription("monthly", start), at(2026, 12, 1))).toBe(true);
+    expect(hasAccess(startSubscription("lifetime", start), at(2040, 1, 1))).toBe(true);
+  });
+  it("a cancelled plan keeps access until its end date, then loses it", () => {
+    const sub = cancel(startSubscription("monthly", start), at(2026, 11, 1));
+    expect(hasAccess(sub, at(2026, 11, 13, 12))).toBe(true);
+    expect(hasAccess(sub, at(2026, 11, 14, 23))).toBe(false);
+  });
+  it("turning off auto-renew mid-trial: access until the trial ends, nothing is charged", () => {
+    const sub = cancel(startSubscription("yearly", start), at(2026, 10, 8));
+    expect(statusOf(sub, at(2026, 10, 13))).toBe("cancelled");
+    expect(hasAccess(sub, at(2026, 10, 13))).toBe(true);
+    expect(hasAccess(sub, at(2026, 10, 15))).toBe(false);
+  });
+});
+
+describe("a failed renewal payment", () => {
+  const base = startSubscription("monthly", at(2026, 10, 7));
+  const failedAt = at(2026, 11, 14, 12); // the first renewal fails
+  it("starts a 7-day grace period with full access", () => {
+    expect(GRACE_DAYS).toBe(7);
+    const sub = failPayment(base, failedAt);
+    expect(statusOf(sub, at(2026, 11, 16))).toBe("billing_issue");
+    expect(hasAccess(sub, at(2026, 11, 16))).toBe(true);
+    const end = graceEnd(sub)!;
+    expect([end.getMonth() + 1, end.getDate()]).toEqual([11, 21]);
+  });
+  it("ends access after the grace period if it isn't fixed", () => {
+    const sub = failPayment(base, failedAt);
+    expect(statusOf(sub, at(2026, 11, 22))).toBe("expired");
+    expect(hasAccess(sub, at(2026, 11, 22))).toBe(false);
+  });
+  it("is fixed by updating the payment method during the grace period", () => {
+    const sub = failPayment(base, failedAt);
+    const fixed = fixPayment(sub, at(2026, 11, 17));
+    expect(fixed.billingFailedAt).toBeUndefined();
+    expect(statusOf(fixed, at(2026, 11, 17))).toBe("active");
+    // too late once the grace period is over
+    expect(fixPayment(sub, at(2026, 11, 25)).billingFailedAt).toBeDefined();
+  });
+  it("tells the person what happened and by when", () => {
+    const s = summarize(failPayment(base, failedAt), at(2026, 11, 16));
+    expect(s.badge).toBe("Payment issue");
+    expect(s.headline).toBe(`We couldn't charge your payment method. You still have access until ${formatDate(at(2026, 11, 21, 12))}.`);
+    expect(s.detail).toContain("Update your payment method");
+  });
+  it("reminds 3, 2 and 1 days before access ends", () => {
+    const sub = failPayment(base, failedAt);
+    const r = upcomingReminders(sub, at(2026, 11, 14, 13));
+    expect(r).toHaveLength(3);
+    expect(r.map((x) => x.at.getDate())).toEqual([18, 19, 20]);
+    expect(r[0].title).toBe("Your Mise Premium access ends in 3 days");
+    expect(r[0].body).toContain("couldn't charge your payment method");
+  });
+  it("cannot happen to lifetime or a cancelled plan, and can't be cancelled while failing", () => {
+    const life = startSubscription("lifetime", at(2026, 10, 7));
+    expect(failPayment(life, failedAt)).toBe(life);
+    const cancelled = cancel(base, at(2026, 11, 1));
+    expect(failPayment(cancelled, failedAt)).toBe(cancelled);
+    const failing = failPayment(base, failedAt);
+    expect(cancel(failing, at(2026, 11, 15))).toBe(failing);
+  });
+  it("validates in storage", () => {
+    expect(isSubscription({ ...base, billingFailedAt: failedAt.toISOString() })).toBe(true);
+    expect(isSubscription({ ...base, billingFailedAt: "nope" })).toBe(false);
+  });
+});

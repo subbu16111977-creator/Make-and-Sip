@@ -17,16 +17,21 @@ export interface Subscription {
   trial: boolean;
   /** ISO time access ends, set when the user cancels. Absent while the plan is set to continue. */
   cancelledEndsAt?: string;
+  /** ISO time a renewal payment failed. While set the plan is in a short grace period. */
+  billingFailedAt?: string;
 }
 
-export type SubscriptionStatus = "trial" | "active" | "cancelled" | "expired" | "lifetime";
+export type SubscriptionStatus = "trial" | "active" | "cancelled" | "expired" | "lifetime" | "billing_issue";
+
+/** Days of access a person keeps after a renewal payment fails, while the store retries the card. */
+export const GRACE_DAYS = 7;
 
 export function isSubscription(value: unknown): value is Subscription {
   if (typeof value !== "object" || value === null || Array.isArray(value)) return false;
   const s = value as Record<string, unknown>;
   const planOk = s.planId === "monthly" || s.planId === "yearly" || s.planId === "lifetime";
   const date = (v: unknown) => typeof v === "string" && !Number.isNaN(Date.parse(v));
-  return planOk && date(s.startedAt) && typeof s.trial === "boolean" && (s.cancelledEndsAt === undefined || date(s.cancelledEndsAt));
+  return planOk && date(s.startedAt) && typeof s.trial === "boolean" && (s.cancelledEndsAt === undefined || date(s.cancelledEndsAt)) && (s.billingFailedAt === undefined || date(s.billingFailedAt));
 }
 
 // ---------------------------------------------------------------------------
@@ -84,13 +89,20 @@ export function termEnds(sub: Subscription, until: Date): Date[] {
 /** The end of the current term: where a trial turns into a charge, the next renewal, or — once cancelled — where access ends. */
 export function currentTermEnd(sub: Subscription, now: Date): Date | null {
   if (sub.planId === "lifetime") return null;
+  if (sub.billingFailedAt) return graceEnd(sub);
   if (sub.cancelledEndsAt) return new Date(sub.cancelledEndsAt);
   const horizon = addMonths(now, 24);
   return termEnds(sub, horizon).find((d) => d > now) ?? null;
 }
 
+/** When access stops if a failed payment is not fixed. */
+export function graceEnd(sub: Subscription): Date | null {
+  return sub.billingFailedAt ? addDays(new Date(sub.billingFailedAt), GRACE_DAYS) : null;
+}
+
 export function statusOf(sub: Subscription, now: Date): SubscriptionStatus {
   if (sub.planId === "lifetime") return "lifetime";
+  if (sub.billingFailedAt) return now < (graceEnd(sub) as Date) ? "billing_issue" : "expired";
   if (sub.cancelledEndsAt) return new Date(sub.cancelledEndsAt) > now ? "cancelled" : "expired";
   const trialEnd = trialEndsAt(sub);
   return trialEnd && now < trialEnd ? "trial" : "active";
@@ -98,7 +110,7 @@ export function statusOf(sub: Subscription, now: Date): SubscriptionStatus {
 
 /** The subscription after the user cancels: it keeps working until the end of what they've already got. */
 export function cancel(sub: Subscription, now: Date): Subscription {
-  if (sub.planId === "lifetime" || sub.cancelledEndsAt) return sub;
+  if (sub.planId === "lifetime" || sub.cancelledEndsAt || sub.billingFailedAt) return sub;
   const ends = currentTermEnd(sub, now);
   return ends ? { ...sub, cancelledEndsAt: ends.toISOString() } : sub;
 }
@@ -109,6 +121,25 @@ export function resume(sub: Subscription, now: Date): Subscription {
   const { cancelledEndsAt: _removed, ...rest } = sub;
   void _removed;
   return rest;
+}
+
+/** A renewal payment failed (the store could not charge the card). Not possible for lifetime or a cancelled plan. */
+export function failPayment(sub: Subscription, now: Date): Subscription {
+  if (sub.planId === "lifetime" || sub.cancelledEndsAt || sub.billingFailedAt) return sub;
+  return { ...sub, billingFailedAt: now.toISOString() };
+}
+
+/** The person fixed their payment method and the charge went through: back to a normal plan. */
+export function fixPayment(sub: Subscription, now: Date): Subscription {
+  if (!sub.billingFailedAt || statusOf(sub, now) === "expired") return sub;
+  const { billingFailedAt: _removed, ...rest } = sub;
+  void _removed;
+  return rest;
+}
+
+/** Whether the person may use the app: any plan that hasn't ended (trial, active, cancelled but not yet over, in a payment grace period, lifetime). */
+export function hasAccess(sub: Subscription | null, now: Date): boolean {
+  return sub !== null && statusOf(sub, now) !== "expired";
 }
 
 export interface Summary {
@@ -151,6 +182,15 @@ export function summarize(sub: Subscription, now: Date): Summary {
         date: end,
         headline: `Your subscription renews on ${end ? formatDate(end) : ""}.`,
         detail: `${price} per ${unit}.`,
+      };
+    case "billing_issue":
+      return {
+        status,
+        planName: plan.title,
+        badge: "Payment issue",
+        date: end,
+        headline: `We couldn't charge your payment method. You still have access until ${end ? formatDate(end) : ""}.`,
+        detail: "Update your payment method in your App Store or Google Play settings to keep Mise Premium.",
       };
     case "cancelled":
       return {
@@ -201,6 +241,12 @@ function reminderText(sub: Subscription, termEnd: Date, daysBefore: number): { t
   const price = formatPrice(plan.price);
   const unit = plan.period === "year" ? "year" : "month";
   const when = formatDate(termEnd);
+  if (sub.billingFailedAt) {
+    return {
+      title: `Your Mise Premium access ends in ${dayWord(daysBefore)}`,
+      body: `We couldn't charge your payment method. Update it before ${when} to keep your plan.`,
+    };
+  }
   if (sub.cancelledEndsAt) {
     return {
       title: `Your Mise Premium ends in ${dayWord(daysBefore)}`,
@@ -228,7 +274,7 @@ function reminderText(sub: Subscription, termEnd: Date, daysBefore: number): { t
 export function upcomingReminders(sub: Subscription, now: Date): Reminder[] {
   if (sub.planId === "lifetime") return [];
   const horizon = addMonths(now, 13);
-  const ends = sub.cancelledEndsAt ? [new Date(sub.cancelledEndsAt)] : termEnds(sub, horizon);
+  const ends = sub.billingFailedAt ? [graceEnd(sub) as Date] : sub.cancelledEndsAt ? [new Date(sub.cancelledEndsAt)] : termEnds(sub, horizon);
   const out: Reminder[] = [];
   for (const termEnd of ends) {
     for (const daysBefore of REMINDER_DAYS_BEFORE) {

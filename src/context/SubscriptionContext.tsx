@@ -1,14 +1,20 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AppBlank } from "@/components/AppBlank";
 import { STORAGE_KEYS } from "@/lib/appData";
 import type { PlanId } from "@/lib/plans";
 import { ensureReminderPermission, syncReminders } from "@/lib/reminders";
-import { cancel, choosePlan, endPlan, isSubscription, resume, trialAvailable, type Account, type Subscription } from "@/lib/subscription";
+import { cancel, choosePlan, endPlan, failPayment, fixPayment, hasAccess, isSubscription, resume, trialAvailable, type Account, type Subscription } from "@/lib/subscription";
 import { usePersistedState } from "@/lib/usePersistedState";
 
 interface SubscriptionContextValue {
   /** The current plan, or null when there isn't one. */
   subscription: Subscription | null;
+  /** Whether the person may use the app right now (a plan that hasn't ended). There is no free plan. */
+  hasAccess: boolean;
+  /** TEST MODE ONLY — remove before launch. Pretends the next renewal payment failed. */
+  simulateFailedPayment: () => void;
+  /** TEST MODE ONLY — remove before launch. Pretends the person fixed their payment method. */
+  simulateFixedPayment: () => void;
   /** True once the 7-day free trial has been used. It can only be used once, across all plans. */
   trialUsed: boolean;
   /** True when the person can still start the free trial right now. */
@@ -39,6 +45,13 @@ export function SubscriptionProvider({ children }: { children: React.ReactNode }
   const [trialUsed, setTrialUsed, trialHydrated] = usePersistedState<boolean>(STORAGE_KEYS.trialUsed, false, isBoolean);
   const hydrated = subHydrated && trialHydrated;
 
+  // Re-check every minute so access ends on time even if the app stays open.
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 60_000);
+    return () => clearInterval(t);
+  }, []);
+
   // Keep the scheduled reminders matching the plan: on start, change, and each time the app opens
   // (so a renewing plan always has its next reminders lined up).
   useEffect(() => {
@@ -63,10 +76,14 @@ export function SubscriptionProvider({ children }: { children: React.ReactNode }
     setTrialUsed(false);
   }, [setSubscription, setTrialUsed]);
 
+  const simulateFailedPayment = useCallback(() => setSubscription((s) => (s ? failPayment(s, new Date()) : s)), [setSubscription]);
+  const simulateFixedPayment = useCallback(() => setSubscription((s) => (s ? fixPayment(s, new Date()) : s)), [setSubscription]);
+
   const available = trialAvailable({ subscription, trialUsed });
+  const access = hasAccess(subscription, now);
   const value = useMemo(
-    () => ({ subscription, trialUsed, trialAvailable: available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, resetTestState }),
-    [subscription, trialUsed, available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, resetTestState]
+    () => ({ subscription, trialUsed, hasAccess: access, simulateFailedPayment, simulateFixedPayment, trialAvailable: available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, resetTestState }),
+    [subscription, trialUsed, access, simulateFailedPayment, simulateFixedPayment, available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, resetTestState]
   );
 
   if (!hydrated) return <AppBlank />;
