@@ -66,14 +66,14 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
 
         <Pressable
           onPress={() => toggleSaved(recipe.id)}
-          hitSlop={8}
+          hitSlop={11}
           style={[styles.iconButton, styles.saveButton]}
         >
           <SavedIcon size={14} color={colors.white} strokeWidth={1.8} filled={saved} />
         </Pressable>
 
         {missing.length > 0 && (
-          <Pressable onPress={handleAddMissing} hitSlop={8} style={[styles.iconButton, styles.cartButton]}>
+          <Pressable onPress={handleAddMissing} hitSlop={11} style={[styles.iconButton, styles.cartButton]}>
             {justAdded ? (
               <CheckIcon size={13} color={colors.white} strokeWidth={2.2} />
             ) : (
@@ -84,7 +84,7 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
 
         <Pressable
           onPress={() => toggleFavorite(recipe.id)}
-          hitSlop={8}
+          hitSlop={11}
           accessibilityRole="button"
           accessibilityLabel={favorite ? `Remove ${recipe.title} from favourites` : `Add ${recipe.title} to favourites`}
           accessibilityState={{ selected: favorite }}

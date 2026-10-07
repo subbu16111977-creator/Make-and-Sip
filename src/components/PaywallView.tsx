@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import { Logo } from "@/components/Logo";
 import { CheckIcon, CloseIcon } from "@/components/icons";
 import { colors, layout, radii, spacing, type as typeScale } from "@/theme";
+import { useAppDimensions } from "@/lib/useAppDimensions";
 import { recipes } from "@/data/recipes";
 import { useSubscription } from "@/context/SubscriptionContext";
 import {
@@ -144,11 +145,14 @@ function TrialCard({
  */
 export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
   const router = useRouter();
+  const { height: screenHeight } = useAppDimensions();
+  const compact = screenHeight < 700; // short phones: tighter header so the plans stay in view
   const { subscription, trialAvailable, hasAccess, startTestSubscription, resetTestState } = useSubscription();
   const lapsed = subscription && !hasAccess ? summarize(subscription, new Date()) : null;
   const [choice, setChoice] = useState<Choice>(trialAvailable ? "trial" : "yearly");
   const [thenPlan, setThenPlan] = useState<PlanId>("yearly");
   const [notice, setNotice] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
   // The trial can't be chosen once it has been used (or if there is already a plan).
   const activeChoice: Choice = choice === "trial" && !trialAvailable ? "yearly" : choice;
@@ -193,10 +197,10 @@ export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
           </View>
         ) : null}
 
-        <View style={styles.hero}>
-          <Logo variant="mark" height={52} />
+        <View style={[styles.hero, compact && styles.heroCompact]}>
+          <Logo variant="mark" height={compact ? 36 : 52} />
           <Text style={styles.eyebrow}>MISE PREMIUM</Text>
-          <Text style={styles.title} accessibilityRole="header">
+          <Text style={[styles.title, compact && styles.titleCompact]} accessibilityRole="header">
             Cook with what you have
           </Text>
           <Text style={styles.sub}>{trialAvailable ? `Try everything free for ${TRIAL_DAYS} days. Cancel anytime.` : "Choose the plan that suits you."}</Text>
@@ -257,12 +261,20 @@ export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
         {notice ? <Text style={styles.notice}>{notice}</Text> : null}
         <Pressable
           onPress={async () => {
-            await startTestSubscription(planId, withTrial);
-            if (dismissible) router.replace("/subscription");
+            if (busy) return; // a second tap while the first is still going through must do nothing
+            setBusy(true);
+            try {
+              await startTestSubscription(planId, withTrial);
+              if (dismissible) router.replace("/subscription");
+            } finally {
+              setBusy(false);
+            }
           }}
+          disabled={busy}
           accessibilityRole="button"
+          accessibilityState={{ busy, disabled: busy }}
           accessibilityLabel={buttonLabel}
-          style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]}
+          style={({ pressed }) => [styles.cta, (pressed || busy) && styles.ctaPressed]}
         >
           <Text style={styles.ctaText}>{buttonLabel}</Text>
         </Pressable>
@@ -289,9 +301,11 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.cream },
   flex: { flex: 1 },
   topBar: { flexDirection: "row", justifyContent: "flex-start", paddingHorizontal: layout.screenPadding, paddingTop: spacing.sm },
-  closeSpace: { width: 36, height: 36 },
-  close: { width: 36, height: 36, borderRadius: 18, alignItems: "center", justifyContent: "center", backgroundColor: colors.paper, borderWidth: StyleSheet.hairlineWidth, borderColor: colors.hairlineStrong },
+  closeSpace: { width: 44, height: 44 },
+  close: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center", backgroundColor: colors.paper, borderWidth: StyleSheet.hairlineWidth, borderColor: colors.hairlineStrong },
   content: { paddingHorizontal: layout.screenPadding, paddingBottom: spacing.lg, paddingTop: spacing.xs, gap: spacing.lg, width: "100%", maxWidth: layout.maxContentWidth, alignSelf: "center" },
+  heroCompact: { gap: 2 },
+  titleCompact: { fontSize: 22, lineHeight: 27 },
   hero: { alignItems: "center", gap: 6, paddingTop: 0 },
   eyebrow: { ...typeScale.eyebrow, color: colors.burntOrange, marginTop: spacing.sm },
   title: { ...typeScale.display, fontSize: 26, lineHeight: 32, color: colors.espresso, textAlign: "center" },
@@ -314,7 +328,7 @@ const styles = StyleSheet.create({
   planSelected: { borderColor: colors.burntOrange, backgroundColor: colors.parchment },
   badge: { position: "absolute", top: -10, left: spacing.lg, paddingVertical: 3, paddingHorizontal: spacing.sm, borderRadius: radii.pill, backgroundColor: colors.burntOrange },
   badgeMuted: { backgroundColor: colors.parchment, borderWidth: StyleSheet.hairlineWidth, borderColor: colors.hairlineStrong },
-  badgeText: { ...typeScale.caption, fontSize: 10, fontWeight: "700", letterSpacing: 0.6, color: colors.cream },
+  badgeText: { ...typeScale.caption, fontSize: 11, fontWeight: "700", letterSpacing: 0.5, color: colors.cream },
   badgeTextMuted: { color: colors.espressoMuted },
   radio: { width: 22, height: 22, borderRadius: 11, borderWidth: 2, borderColor: colors.hairlineStrong, alignItems: "center", justifyContent: "center" },
   radioSelected: { borderColor: colors.burntOrange },
@@ -332,7 +346,7 @@ const styles = StyleSheet.create({
   thenRow: { gap: spacing.xs, marginTop: spacing.xs },
   thenLabel: { ...typeScale.caption, color: colors.espressoFaint },
   thenChips: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm },
-  thenChip: { paddingVertical: 8, paddingHorizontal: spacing.md, borderRadius: radii.pill, borderWidth: 1, borderColor: colors.hairlineStrong },
+  thenChip: { minHeight: 44, justifyContent: "center", paddingVertical: 8, paddingHorizontal: spacing.md, borderRadius: radii.pill, borderWidth: 1, borderColor: colors.hairlineStrong },
   thenChipOn: { borderColor: colors.burntOrange, backgroundColor: colors.burntOrange },
   thenChipText: { ...typeScale.caption, color: colors.espresso },
   thenChipTextOn: { color: colors.cream, fontWeight: "700" },
@@ -344,7 +358,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: layout.screenPadding,
     paddingTop: spacing.md,
     paddingBottom: spacing.sm,
-    gap: spacing.sm,
+    gap: spacing.xs,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: colors.hairline,
     backgroundColor: colors.cream,
@@ -364,7 +378,7 @@ const styles = StyleSheet.create({
   ctaText: { ...typeScale.button, fontSize: 16, color: colors.cream },
   charge: { ...typeScale.caption, color: colors.espresso, textAlign: "center" },
   cancel: { ...typeScale.caption, color: colors.espressoMuted, textAlign: "center", marginTop: spacing.xs },
-  links: { flexDirection: "row", justifyContent: "center", alignItems: "center", gap: spacing.sm, paddingTop: 2 },
-  link: { ...typeScale.caption, color: colors.espressoMuted, textDecorationLine: "underline" },
+  links: { flexDirection: "row", justifyContent: "center", alignItems: "center", gap: spacing.xs, paddingTop: 0, marginBottom: -spacing.sm },
+  link: { ...typeScale.caption, fontSize: 12, color: colors.espressoMuted, textDecorationLine: "underline", paddingVertical: 14, paddingHorizontal: 4 },
   linkDot: { ...typeScale.caption, color: colors.espressoFaint },
 });

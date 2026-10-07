@@ -1,3 +1,4 @@
+import { AppState } from "react-native";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AppBlank } from "@/components/AppBlank";
 import { STORAGE_KEYS } from "@/lib/appData";
@@ -49,7 +50,14 @@ export function SubscriptionProvider({ children }: { children: React.ReactNode }
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
     const t = setInterval(() => setNow(new Date()), 60_000);
-    return () => clearInterval(t);
+    // Phones pause timers in the background, so also re-check the moment the app comes back.
+    const sub = AppState.addEventListener("change", (state) => {
+      if (state === "active") setNow(new Date());
+    });
+    return () => {
+      clearInterval(t);
+      sub.remove();
+    };
   }, []);
 
   // Keep the scheduled reminders matching the plan: on start, change, and each time the app opens

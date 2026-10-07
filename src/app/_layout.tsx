@@ -15,7 +15,7 @@ import { EquipmentProvider } from "@/context/EquipmentContext";
 import { ProfileProvider } from "@/context/ProfileContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import { SubscriptionProvider } from "@/context/SubscriptionContext";
-import { FirstLaunchGate } from "@/components/FirstLaunchGate";
+import { FirstLaunchGate, LockAware } from "@/components/FirstLaunchGate";
 
 SplashScreen.preventAutoHideAsync().catch(() => {
   // no-op — safe to ignore if already hidden
@@ -50,12 +50,14 @@ export default function RootLayout() {
               <View style={styles.page}>
               <View style={styles.root} onLayout={onLayoutRootView}>
                 <StatusBar style="light" />
+                <LockAware>
                 <Stack screenOptions={{ headerShown: false, animation: "slide_from_right", cardStyle: { backgroundColor: colors.cream } }}>
                   <Stack.Screen name="(tabs)" />
                   <Stack.Screen name="recipe/[id]" options={{ animation: "slide_from_right" }} />
                   <Stack.Screen name="paywall" options={{ animation: "slide_from_bottom" }} />
                   <Stack.Screen name="subscription" options={{ animation: "slide_from_right" }} />
                 </Stack>
+                </LockAware>
                 <FirstLaunchGate />
               </View>
               </View>

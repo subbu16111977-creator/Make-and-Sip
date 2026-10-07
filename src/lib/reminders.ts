@@ -8,9 +8,33 @@ import { upcomingReminders, type Subscription } from "@/lib/subscription";
  * problem can never break the app.
  */
 const ID_PREFIX = "mise-sub-";
+/** Android needs a notification channel (and, from Android 13, one must exist before permission can be requested). */
+const CHANNEL_ID = "subscription-reminders";
 
 async function load() {
   return import("expo-notifications");
+}
+
+async function ensureChannel(Notifications: Awaited<ReturnType<typeof load>>): Promise<void> {
+  if (Platform.OS !== "android") return;
+  await Notifications.setNotificationChannelAsync(CHANNEL_ID, {
+    name: "Subscription reminders",
+    importance: Notifications.AndroidImportance.DEFAULT,
+  });
+}
+
+export type ReminderPermission = "granted" | "denied" | "unavailable";
+
+/** Whether reminders can actually reach the person. "unavailable" on the web, where they can't be sent. */
+export async function reminderPermission(): Promise<ReminderPermission> {
+  if (Platform.OS === "web") return "unavailable";
+  try {
+    const Notifications = await load();
+    const current = await Notifications.getPermissionsAsync();
+    return current.granted ? "granted" : "denied";
+  } catch {
+    return "unavailable";
+  }
 }
 
 /** Asks for notification permission (only called when the user starts a plan). Returns whether it was granted. */
@@ -18,6 +42,7 @@ export async function ensureReminderPermission(): Promise<boolean> {
   if (Platform.OS === "web") return false;
   try {
     const Notifications = await load();
+    await ensureChannel(Notifications);
     const current = await Notifications.getPermissionsAsync();
     if (current.granted) return true;
     if (!current.canAskAgain) return false;
@@ -39,6 +64,7 @@ export async function syncReminders(subscription: Subscription | null, now: Date
     if (!subscription) return;
     const permission = await Notifications.getPermissionsAsync();
     if (!permission.granted) return;
+    await ensureChannel(Notifications);
     Notifications.setNotificationHandler({
       handleNotification: async () => ({ shouldShowBanner: true, shouldShowList: true, shouldPlaySound: false, shouldSetBadge: false }),
     });
@@ -46,7 +72,7 @@ export async function syncReminders(subscription: Subscription | null, now: Date
       await Notifications.scheduleNotificationAsync({
         identifier: `${ID_PREFIX}${r.at.getTime()}`,
         content: { title: r.title, body: r.body },
-        trigger: { type: Notifications.SchedulableTriggerInputTypes.DATE, date: r.at },
+        trigger: { type: Notifications.SchedulableTriggerInputTypes.DATE, date: r.at, channelId: CHANNEL_ID },
       });
     }
   } catch (error) {

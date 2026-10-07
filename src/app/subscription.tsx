@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { View, Text, Pressable, ScrollView, StyleSheet, Platform } from "react-native";
+import React, { useEffect, useMemo, useState } from "react";
+import { View, Text, Pressable, ScrollView, StyleSheet, Platform, Linking } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { ChevronLeftIcon } from "@/components/icons";
@@ -7,6 +7,7 @@ import { colors, layout, radii, spacing, type as typeScale } from "@/theme";
 import { useSubscription } from "@/context/SubscriptionContext";
 import { getPlan, formatPrice, priceLine } from "@/lib/plans";
 import { formatDate, summarize, upcomingReminders, type SubscriptionStatus } from "@/lib/subscription";
+import { reminderPermission, type ReminderPermission } from "@/lib/reminders";
 
 const BADGE_COLOR: Record<SubscriptionStatus, string> = {
   trial: colors.burntOrange,
@@ -41,7 +42,10 @@ export default function SubscriptionScreen() {
   const router = useRouter();
   const { subscription, cancelSubscription, resumeSubscription, endSubscription, simulateFailedPayment, simulateFixedPayment } = useSubscription();
   const [confirming, setConfirming] = useState(false);
-  const now = new Date();
+  const [permission, setPermission] = useState<ReminderPermission>("unavailable");
+  useEffect(() => {
+    void reminderPermission().then(setPermission);
+  }, []);
 
   const summary = useMemo(() => (subscription ? summarize(subscription, new Date()) : null), [subscription]);
   const reminders = useMemo(() => (subscription ? upcomingReminders(subscription, new Date()).slice(0, 3) : []), [subscription]);
@@ -119,9 +123,15 @@ export default function SubscriptionScreen() {
                 <Text style={styles.reminderText}>{r.title}</Text>
               </View>
             ))}
-            <Text style={styles.footnote}>
-              {Platform.OS === "web" ? "Reminders are delivered as notifications on iPhone and Android." : "Reminders arrive as notifications at 9:00 AM. Make sure notifications are allowed for Mise."}
-            </Text>
+            {permission === "denied" ? (
+              <Pressable onPress={() => void Linking.openSettings()} accessibilityRole="button" accessibilityLabel="Open settings to allow notifications" style={styles.permWarn}>
+                <Text style={styles.permWarnText}>Notifications are turned off for Mise, so these reminders can’t reach you. Tap to open settings and turn them on.</Text>
+              </Pressable>
+            ) : (
+              <Text style={styles.footnote}>
+                {Platform.OS === "web" ? "Reminders are delivered as notifications on iPhone and Android." : "Reminders arrive as notifications at 9:00 AM."}
+              </Text>
+            )}
           </View>
         ) : null}
 
@@ -197,7 +207,6 @@ export default function SubscriptionScreen() {
             <Text style={styles.testLinkText}>End test subscription</Text>
           </Pressable>
         </View>
-        <Text style={styles.nowNote}>Today is {formatDate(now)}.</Text>
       </ScrollView>
     </SafeAreaView>
   );
@@ -207,7 +216,7 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.cream },
   flex: { flex: 1 },
   topBar: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: layout.screenPadding, paddingTop: spacing.sm, paddingBottom: spacing.sm },
-  back: { width: 36, height: 36, borderRadius: 18, alignItems: "center", justifyContent: "center" },
+  back: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center" },
   topTitle: { ...typeScale.headline, fontSize: 20, color: colors.espresso },
   content: { paddingHorizontal: layout.screenPadding, paddingBottom: spacing["2xl"], gap: spacing.lg, width: "100%", maxWidth: layout.maxContentWidth, alignSelf: "center" },
   testBanner: { padding: spacing.md, borderRadius: radii.lg, backgroundColor: colors.paper, borderWidth: StyleSheet.hairlineWidth, borderColor: colors.burntOrange },
@@ -229,6 +238,8 @@ const styles = StyleSheet.create({
   reminder: { paddingVertical: 8, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.hairline, gap: 2 },
   reminderWhen: { ...typeScale.caption, color: colors.burntOrange },
   reminderText: { ...typeScale.bodySmall, color: colors.espresso },
+  permWarn: { marginTop: spacing.xs, padding: spacing.md, borderRadius: radii.lg, borderWidth: 1, borderColor: colors.tomato },
+  permWarnText: { ...typeScale.caption, color: colors.espresso },
   footnote: { ...typeScale.caption, color: colors.espressoMuted, marginTop: spacing.xs },
   actions: { gap: spacing.md },
   primary: { backgroundColor: colors.burntOrange, borderRadius: radii.lg, paddingVertical: 15, alignItems: "center" },
@@ -244,7 +255,6 @@ const styles = StyleSheet.create({
   dangerText: { ...typeScale.button, color: colors.white },
   testLink: { alignItems: "center", paddingVertical: 8 },
   testLinkText: { ...typeScale.caption, color: colors.espressoFaint, textDecorationLine: "underline" },
-  nowNote: { ...typeScale.caption, color: colors.espressoFaint, textAlign: "center" },
   empty: { flex: 1, alignItems: "center", justifyContent: "center", paddingHorizontal: layout.screenPadding + spacing.lg, gap: spacing.md },
   emptyTitle: { ...typeScale.headline, color: colors.espresso },
   emptyBody: { ...typeScale.body, color: colors.espressoMuted, textAlign: "center" },
