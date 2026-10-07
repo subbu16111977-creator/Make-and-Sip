@@ -131,6 +131,13 @@ export default function ProfileScreen() {
       </View>
 
       <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Mise Premium</Text>
+        <Pressable onPress={() => router.push("/paywall")} accessibilityRole="button" accessibilityLabel="See Mise Premium plans" style={styles.row}>
+          <Text style={styles.rowText}>See plans and pricing</Text>
+        </Pressable>
+      </View>
+
+      <View style={styles.section}>
         <Text style={styles.sectionTitle}>Guides</Text>
         <Pressable onPress={() => startReplay("intro")} accessibilityRole="button" accessibilityLabel="Replay the introduction" style={styles.row}>
           <Text style={styles.rowText}>Replay the introduction</Text>

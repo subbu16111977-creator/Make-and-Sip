@@ -51,6 +51,7 @@ export default function RootLayout() {
                 <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.cream } }}>
                   <Stack.Screen name="(tabs)" />
                   <Stack.Screen name="recipe/[id]" options={{ animation: "slide_from_right" }} />
+                  <Stack.Screen name="paywall" options={{ animation: "slide_from_bottom" }} />
                 </Stack>
                 <FirstLaunchGate />
               </View>
