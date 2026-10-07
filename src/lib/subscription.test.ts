@@ -282,3 +282,33 @@ describe("one free trial per person (no loophole)", () => {
     expect(JSON.stringify(NEW_ACCOUNT)).toBe(snap);
   });
 });
+
+describe("letting a plan lapse and coming back", () => {
+  it("resubscribing a day after it ended starts a fresh paid period from that day, with no new trial", () => {
+    const start = at(2026, 10, 7);
+    let a = choosePlan(NEW_ACCOUNT, "monthly", true, start); // trial -> first charge 14 Oct
+    a = { ...a, subscription: cancel(a.subscription!, at(2026, 11, 20)) }; // cancelled; access ends 14 Dec
+    const endsOn = new Date(a.subscription!.cancelledEndsAt!);
+    expect(statusOf(a.subscription!, addDaysLocal(endsOn, 1))).toBe("expired");
+    const backDay = addDaysLocal(endsOn, 1);
+    const back = choosePlan(a, "monthly", true, backDay);
+    expect(back.subscription?.trial).toBe(false);
+    expect(statusOf(back.subscription!, backDay)).toBe("active");
+    expect(back.subscription?.cancelledEndsAt).toBeUndefined();
+    // the new period runs from the day they came back, not from the old date
+    const next = currentTermEnd(back.subscription!, backDay)!;
+    expect(next.getDate()).toBe(backDay.getDate());
+    expect(next.getMonth()).toBe((backDay.getMonth() + 1) % 12);
+  });
+  it("a plan that is left to renew keeps renewing on the same date with no action from the user", () => {
+    const sub = startSubscription("monthly", at(2026, 10, 7));
+    expect(statusOf(sub, at(2026, 12, 1))).toBe("active");
+    expect(currentTermEnd(sub, at(2026, 12, 1))!.getDate()).toBe(14);
+  });
+});
+
+function addDaysLocal(d: Date, n: number): Date {
+  const x = new Date(d);
+  x.setDate(x.getDate() + n);
+  return x;
+}
