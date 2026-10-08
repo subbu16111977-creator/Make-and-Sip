@@ -2,7 +2,7 @@ import { addDays, addMonths, type Subscription } from "@/lib/subscription";
 import { TRIAL_DAYS, type PlanId } from "@/lib/plans";
 
 /** The name of the RevenueCat entitlement that unlocks the app. Must match the dashboard. */
-export const ENTITLEMENT_ID = "premium";
+export const ENTITLEMENT_ID = "mise_premium";
 
 /** The few fields of RevenueCat's entitlement info that the app reads (a subset, so this stays plain, testable logic). */
 export interface StoreEntitlement {
