@@ -1,7 +1,8 @@
-import { AppState } from "react-native";
+import { AppState, Linking } from "react-native";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AppBlank } from "@/components/AppBlank";
 import { STORAGE_KEYS } from "@/lib/appData";
+import { billingLive, fetchStoreState, purchasePlan, restorePurchases, watchStoreState, type StoreState } from "@/lib/billing";
 import type { PlanId } from "@/lib/plans";
 import { ensureReminderPermission, syncReminders } from "@/lib/reminders";
 import { cancel, choosePlan, endPlan, failPayment, fixPayment, hasAccess, isSubscription, resume, trialAvailable, type Account, type Subscription } from "@/lib/subscription";
@@ -25,6 +26,14 @@ interface SubscriptionContextValue {
    * the free trial, which is only granted the first time. Real store purchases replace this before launch.
    */
   startTestSubscription: (planId: PlanId, withTrial: boolean) => Promise<void>;
+  /** True when real Google Play purchases are connected (a phone build with a RevenueCat key); false = local test mode. */
+  billingLive: boolean;
+  /** Real purchase: opens the store's payment sheet. Resolves with an error message to show, or null on success/cancel. */
+  purchase: (planId: PlanId) => Promise<string | null>;
+  /** Asks the store for the person's existing purchases (new phone, reinstall). Resolves with a message to show. */
+  restore: () => Promise<string>;
+  /** Opens the store's own subscription page, where a real plan is cancelled or resumed. */
+  manageInStore: () => void;
   cancelSubscription: () => void;
   resumeSubscription: () => void;
   /** Removes the current (test) plan but remembers that the trial was used. */
@@ -60,6 +69,50 @@ export function SubscriptionProvider({ children }: { children: React.ReactNode }
     };
   }, []);
 
+  // With real purchases, the store is the source of truth: read it at start and whenever it changes.
+  const applyStore = useCallback(
+    (state: StoreState) => {
+      setSubscription(state.subscription);
+      if (state.everPurchased) setTrialUsed(true);
+    },
+    [setSubscription, setTrialUsed]
+  );
+  useEffect(() => {
+    if (!billingLive || !hydrated) return;
+    // If the store can't be reached (offline), keep what's saved on the device.
+    fetchStoreState().then(applyStore, () => {});
+    const stop = watchStoreState(applyStore);
+    const sub = AppState.addEventListener("change", (state) => {
+      if (state === "active") fetchStoreState().then(applyStore, () => {});
+    });
+    return () => {
+      stop();
+      sub.remove();
+    };
+  }, [hydrated, applyStore]);
+
+  const purchase = useCallback(
+    async (planId: PlanId) => {
+      const result = await purchasePlan(planId);
+      if (result.ok) {
+        applyStore(result.state);
+        await ensureReminderPermission();
+        return null;
+      }
+      return result.cancelled ? null : result.message;
+    },
+    [applyStore]
+  );
+  const restore = useCallback(async () => {
+    const result = await restorePurchases();
+    if (!result.ok) return result.message;
+    applyStore(result.state);
+    return result.state.subscription ? "Your plan has been restored." : "No previous purchases were found for this Google account.";
+  }, [applyStore]);
+  const manageInStore = useCallback(() => {
+    void Linking.openURL("https://play.google.com/store/account/subscriptions");
+  }, []);
+
   // Keep the scheduled reminders matching the plan: on start, change, and each time the app opens
   // (so a renewing plan always has its next reminders lined up).
   useEffect(() => {
@@ -90,8 +143,8 @@ export function SubscriptionProvider({ children }: { children: React.ReactNode }
   const available = trialAvailable({ subscription, trialUsed });
   const access = hasAccess(subscription, now);
   const value = useMemo(
-    () => ({ subscription, trialUsed, hasAccess: access, simulateFailedPayment, simulateFixedPayment, trialAvailable: available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, resetTestState }),
-    [subscription, trialUsed, access, simulateFailedPayment, simulateFixedPayment, available, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, resetTestState]
+    () => ({ subscription, trialUsed, hasAccess: access, simulateFailedPayment, simulateFixedPayment, trialAvailable: available, billingLive, purchase, restore, manageInStore, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, resetTestState }),
+    [subscription, trialUsed, access, simulateFailedPayment, simulateFixedPayment, available, purchase, restore, manageInStore, startTestSubscription, cancelSubscription, resumeSubscription, endSubscription, resetTestState]
   );
 
   if (!hydrated) return <AppBlank />;

@@ -40,7 +40,7 @@ function Row({ label, value }: { label: string; value: string }) {
  */
 export default function SubscriptionScreen() {
   const router = useRouter();
-  const { subscription, cancelSubscription, resumeSubscription, endSubscription, simulateFailedPayment, simulateFixedPayment } = useSubscription();
+  const { subscription, cancelSubscription, resumeSubscription, endSubscription, simulateFailedPayment, simulateFixedPayment, billingLive, manageInStore } = useSubscription();
   const [confirming, setConfirming] = useState(false);
   const [permission, setPermission] = useState<ReminderPermission>("unavailable");
   useEffect(() => {
@@ -88,9 +88,11 @@ export default function SubscriptionScreen() {
     <SafeAreaView style={styles.safe} edges={["top", "bottom"]}>
       {header}
       <ScrollView style={styles.flex} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <View style={styles.testBanner}>
-          <Text style={styles.testBannerText}>Test mode: this plan is simulated on this device only. Nothing is charged.</Text>
-        </View>
+        {billingLive ? null : (
+          <View style={styles.testBanner}>
+            <Text style={styles.testBannerText}>Test mode: this plan is simulated on this device only. Nothing is charged.</Text>
+          </View>
+        )}
 
         <View style={styles.card}>
           <View style={styles.cardHead}>
@@ -143,7 +145,7 @@ export default function SubscriptionScreen() {
           ) : null}
 
           {status === "cancelled" ? (
-            <Pressable onPress={resumeSubscription} accessibilityRole="button" accessibilityLabel="Resume subscription" style={styles.primary}>
+            <Pressable onPress={billingLive ? manageInStore : resumeSubscription} accessibilityRole="button" accessibilityLabel="Resume subscription" style={styles.primary}>
               <Text style={styles.primaryText}>Resume subscription</Text>
             </Pressable>
           ) : status === "trial" || status === "active" ? (
@@ -160,7 +162,8 @@ export default function SubscriptionScreen() {
                   </Pressable>
                   <Pressable
                     onPress={() => {
-                      cancelSubscription();
+                      if (billingLive) manageInStore();
+                      else cancelSubscription();
                       setConfirming(false);
                     }}
                     accessibilityRole="button"
@@ -184,6 +187,8 @@ export default function SubscriptionScreen() {
             </Pressable>
           ) : null}
 
+          {billingLive ? null : (
+            <>
           {/* TEST MODE ONLY — remove before launch. */}
           {status === "billing_issue" ? (
             <Pressable onPress={simulateFixedPayment} accessibilityRole="button" accessibilityLabel="Test mode only: payment fixed" style={styles.testLink}>
@@ -206,6 +211,8 @@ export default function SubscriptionScreen() {
           >
             <Text style={styles.testLinkText}>End test subscription</Text>
           </Pressable>
+            </>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

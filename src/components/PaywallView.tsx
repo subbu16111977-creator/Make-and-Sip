@@ -147,7 +147,7 @@ export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
   const router = useRouter();
   const { height: screenHeight } = useAppDimensions();
   const compact = screenHeight < 700; // short phones: tighter header so the plans stay in view
-  const { subscription, trialAvailable, hasAccess, startTestSubscription, resetTestState } = useSubscription();
+  const { subscription, trialAvailable, hasAccess, startTestSubscription, resetTestState, billingLive, purchase, restore } = useSubscription();
   const lapsed = subscription && !hasAccess ? summarize(subscription, new Date()) : null;
   const [choice, setChoice] = useState<Choice>(trialAvailable ? "trial" : "yearly");
   const [thenPlan, setThenPlan] = useState<PlanId>("yearly");
@@ -242,6 +242,8 @@ export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
           ))}
         </View>
 
+        {billingLive ? null : (
+          <>
         <Text style={styles.testTag}>{PREVIEW_NOTICE}</Text>
         {/* TEST MODE ONLY — remove before launch. Lets the trial be tried again while developing. */}
         <Pressable
@@ -255,6 +257,8 @@ export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
         >
           <Text style={styles.testResetText}>Test mode only: reset free trial and plan</Text>
         </Pressable>
+          </>
+        )}
       </ScrollView>
 
       <View style={styles.footer}>
@@ -264,8 +268,14 @@ export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
             if (busy) return; // a second tap while the first is still going through must do nothing
             setBusy(true);
             try {
-              await startTestSubscription(planId, withTrial);
-              if (dismissible) router.replace("/subscription");
+              if (billingLive) {
+                const error = await purchase(planId);
+                setNotice(error ?? "");
+                if (!error && dismissible) router.replace("/subscription");
+              } else {
+                await startTestSubscription(planId, withTrial);
+                if (dismissible) router.replace("/subscription");
+              }
             } finally {
               setBusy(false);
             }
@@ -280,7 +290,7 @@ export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
         </Pressable>
         <Text style={styles.charge}>{chargeLine}</Text>
         <View style={styles.links}>
-          <Pressable onPress={() => setNotice(PREVIEW_NOTICE)} accessibilityRole="button" accessibilityLabel="Restore purchases">
+          <Pressable onPress={async () => setNotice(billingLive ? await restore() : PREVIEW_NOTICE)} accessibilityRole="button" accessibilityLabel="Restore purchases">
             <Text style={styles.link}>Restore purchases</Text>
           </Pressable>
           <Text style={styles.linkDot}>·</Text>
