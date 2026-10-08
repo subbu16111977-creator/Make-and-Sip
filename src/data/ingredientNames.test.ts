@@ -70,10 +70,18 @@ describe("family names", () => {
     expect(id("fennel")).toBe("fennel-seeds");
     expect(id("spelt")).toBe("spelt");
   });
-  it("bread and toast cover loaf breads but not flatbreads", () => {
-    expect(id("toast")).toBe("bread");
-    expect(resolveIngredientById("sourdough-bread")?.baseIngredient).toBe("bread");
-    expect(resolveIngredientById("white-bread")?.baseIngredient).toBe("bread");
-    expect(resolveIngredientById("pita-bread")?.baseIngredient).not.toBe("bread");
+  it("sliced bread / toast and bread loaf / sub rolls are separate", () => {
+    expect(id("bread")).toBe("sliced-bread");
+    expect(id("toast")).toBe("sliced-bread");
+    expect(id("bread loaf")).toBe("bread-loaf");
+    expect(id("sub rolls")).toBe("bread-loaf");
+    expect(resolveIngredientById("white-bread")?.baseIngredient).toBe("sliced_bread");
+    expect(resolveIngredientById("sourdough-bread")?.baseIngredient).toBe("sliced_bread");
+    expect(resolveIngredientById("hoagie-roll")?.baseIngredient).toBe("bread_loaf");
+    expect(resolveIngredientById("baguette")?.baseIngredient).toBe("bread_loaf");
+    expect(resolveIngredientById("sliced-bread")?.baseIngredient).not.toBe(resolveIngredientById("bread-loaf")?.baseIngredient);
+    for (const flat of ["pita-bread", "flatbread", "lavash-bread", "burger-buns"]) {
+      expect(["sliced_bread", "bread_loaf"]).not.toContain(resolveIngredientById(flat)?.baseIngredient);
+    }
   });
 });

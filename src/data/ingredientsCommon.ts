@@ -25,7 +25,8 @@ export const commonIngredients: IngredientEntity[] = [
   e("steak", "Steak", "Meat & Seafood", ["steak", "beef steak", "steaks"]),
   e("cheese", "Cheese", "Dairy", ["cheese", "grated cheese", "shredded cheese", "sliced cheese"]),
   e("noodles", "Noodles", "Grains", ["noodles", "noodle"]),
-  e("bread", "Bread", "Grains", ["bread", "bread slices", "sliced bread", "loaf of bread", "toast", "toast bread", "slices of bread"]),
+  e("sliced-bread", "Sliced Bread / Toast", "Grains", ["bread", "bread slices", "sliced bread", "toast", "toast bread", "slices of bread", "square bread", "loaf of sliced bread", "toasting bread"]),
+  e("bread-loaf", "Bread Loaf / Sub Rolls", "Grains", ["bread loaf", "loaf", "loaf of bread", "crusty loaf", "sub rolls", "sub bun", "sub buns", "submarine rolls", "submarine bun", "long rolls", "long roll", "footlong roll", "footlong buns"]),
   e("vinegar", "Vinegar", "Pantry Staples", ["vinegar"]),
   e("wine", "Wine", "Pantry Staples", ["wine", "cooking wine"]),
   e("lentils", "Lentils", "Pulses", ["lentils", "lentil"]),
@@ -210,11 +211,13 @@ export const extraSynonyms: Record<string, string[]> = {
 
 /**
  * Cuts and kinds that share their plain name as a base, like chicken breast and thigh share "chicken":
- * owning "beef" covers a dish that asks for ground beef, "bread" covers sourdough or sandwich bread. Flatbreads
- * (pita, naan, lavash) are deliberately not part of "bread".
+ * owning "beef" covers a dish that asks for ground beef. Bread comes in two separate families: sliced bread / toast
+ * (square sandwich-style loaves) and bread loaf / sub rolls (baguette, hoagie, bolillo). Flatbreads (pita, naan,
+ * lavash) and burger buns belong to neither.
  */
 export const BASE_GROUPS: Record<string, string[]> = {
   beef: ["ground-beef", "beef-brisket", "beef-chuck", "beef-sirloin", "beef-strips", "beef-short-ribs", "ribeye-steak", "skirt-steak", "cube-steak", "steak", "burger-patties"],
   pork: ["ground-pork", "pork-shoulder", "pork-ribs", "pork-belly", "pork-loin"],
-  bread: ["white-bread", "sourdough-bread", "rye-bread", "brioche", "baguette"],
+  sliced_bread: ["white-bread", "sourdough-bread", "rye-bread", "brioche"],
+  bread_loaf: ["hoagie-roll", "baguette", "bolillo-rolls"],
 };
