@@ -337,6 +337,10 @@ export default function RecipeDetailScreen() {
             ))}
           </View>
 
+          <Text style={styles.safetyNote}>
+            Check every ingredient for allergens and your own dietary needs, and cook meat, poultry, eggs and seafood thoroughly. Diet tags are a guide and may be incomplete.
+          </Text>
+
           {recipe.notes ? (
             <View style={styles.notesWrap}>
               <Text style={styles.notesLabel}>Cook&apos;s note</Text>
@@ -599,6 +603,12 @@ const styles = StyleSheet.create({
     ...typeScale.body,
     color: colors.espresso,
     flex: 1,
+  },
+  safetyNote: {
+    ...typeScale.caption,
+    color: colors.espressoFaint,
+    marginTop: spacing.lg,
+    marginBottom: spacing.sm,
   },
   notesWrap: {
     backgroundColor: colors.paper,
