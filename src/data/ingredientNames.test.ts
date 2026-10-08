@@ -54,3 +54,26 @@ describe("every dish can be cooked from names typed into the pantry", () => {
     expect(stuck).toEqual([]);
   });
 });
+
+describe("family names", () => {
+  const id = (t: string) => normalizeIngredient(t).ingredientId;
+  it("plain patties are beef; other patties keep their own kind", () => {
+    expect(id("patties")).toBe("burger-patties");
+    expect(id("patty")).toBe("burger-patties");
+    expect(id("chicken patty")).toBe("chicken-patties");
+    expect(id("veggie patties")).toBe("veggie-patties");
+    expect(resolveIngredientById("burger-patties")?.baseIngredient).toBe("beef");
+  });
+  it("chilli powder, fennel and spelt are recognised", () => {
+    expect(id("chilli powder")).toBe("chili-powder");
+    expect(id("red chilli powder")).toBe("red-chili-powder");
+    expect(id("fennel")).toBe("fennel-seeds");
+    expect(id("spelt")).toBe("spelt");
+  });
+  it("bread and toast cover loaf breads but not flatbreads", () => {
+    expect(id("toast")).toBe("bread");
+    expect(resolveIngredientById("sourdough-bread")?.baseIngredient).toBe("bread");
+    expect(resolveIngredientById("white-bread")?.baseIngredient).toBe("bread");
+    expect(resolveIngredientById("pita-bread")?.baseIngredient).not.toBe("bread");
+  });
+});

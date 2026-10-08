@@ -25,7 +25,7 @@ export const commonIngredients: IngredientEntity[] = [
   e("steak", "Steak", "Meat & Seafood", ["steak", "beef steak", "steaks"]),
   e("cheese", "Cheese", "Dairy", ["cheese", "grated cheese", "shredded cheese", "sliced cheese"]),
   e("noodles", "Noodles", "Grains", ["noodles", "noodle"]),
-  e("bread", "Bread", "Grains", ["bread", "bread slices", "sandwich bread", "loaf of bread"]),
+  e("bread", "Bread", "Grains", ["bread", "bread slices", "sliced bread", "loaf of bread", "toast", "toast bread", "slices of bread"]),
   e("vinegar", "Vinegar", "Pantry Staples", ["vinegar"]),
   e("wine", "Wine", "Pantry Staples", ["wine", "cooking wine"]),
   e("lentils", "Lentils", "Pulses", ["lentils", "lentil"]),
@@ -59,6 +59,7 @@ export const commonIngredients: IngredientEntity[] = [
   e("swiss-cheese", "Swiss Cheese", "Dairy", ["swiss cheese", "emmental", "emmentaler"]),
   e("goat-cheese", "Goat Cheese", "Dairy", ["goat cheese", "goats cheese", "chevre"]),
   e("gruyere", "Gruyère", "Dairy", ["gruyere", "gruyere cheese"]),
+  e("spelt", "Spelt", "Grains", ["spelt", "spelt flour", "spelt grain", "spelt wheat", "dinkel"]),
   e("cottage-cheese", "Cottage Cheese", "Dairy", ["cottage cheese"]),
   e("margarine", "Margarine", "Dairy", ["margarine", "vegan butter"]),
   e("almond-milk", "Almond Milk", "Dairy", ["almond milk"]),
@@ -79,7 +80,9 @@ export const commonIngredients: IngredientEntity[] = [
   e("scallops", "Scallops", "Meat & Seafood", ["scallops", "sea scallops"]),
   e("oysters", "Oysters", "Meat & Seafood", ["oysters", "fresh oysters"]),
   e("meatballs", "Meatballs", "Frozen", ["meatballs", "frozen meatballs"]),
-  e("burger-patties", "Burger Patties", "Frozen", ["burger patty", "burger patties", "hamburger patties", "veggie burger", "veggie patties"]),
+  e("burger-patties", "Beef Patties", "Meat & Seafood", ["patties", "patty", "burger patty", "burger patties", "beef patty", "beef patties", "hamburger patties", "hamburger patty"], "beef"),
+  e("chicken-patties", "Chicken Patties", "Meat & Seafood", ["chicken patty", "chicken patties"], "chicken"),
+  e("veggie-patties", "Veggie Patties", "Frozen", ["veggie burger", "veggie burgers", "veggie patty", "veggie patties", "vegetable patties", "plant based patties"]),
   e("chicken-nuggets", "Chicken Nuggets", "Frozen", ["nuggets", "chicken nuggets"]),
   e("french-fries", "French Fries", "Frozen", ["french fries", "fries", "frozen fries", "chips frozen"]),
   e("hash-browns", "Hash Browns", "Frozen", ["hash browns", "hashbrowns", "frozen hash browns"]),
@@ -198,10 +201,20 @@ export const extraSynonyms: Record<string, string[]> = {
   ladyfingers: ["ladyfinger cookies", "savoiardi", "sponge fingers"],
   "sourdough-bread": ["sourdough", "sourdough loaf"],
   tortillas: ["wraps", "flour wraps", "tortilla wraps"],
+  "chili-powder": ["chilli powder", "chile powder", "chilli powder"],
+  "red-chili-powder": ["red chilli powder", "lal mirch powder", "kashmiri chili powder", "kashmiri chilli powder"],
+  "fennel-seeds": ["fennel", "fennel seed", "saunf seeds"],
   "chicken-wings": ["wings", "chicken wing", "buffalo wings"],
   amchur: ["dried mango powder", "mango powder"],
 };
 
-/** Beef and pork cuts that share their plain name as a base, like chicken breast and thigh share "chicken". */
-export const BEEF_CUTS = ["ground-beef", "beef-brisket", "beef-chuck", "beef-sirloin", "beef-strips", "beef-short-ribs", "ribeye-steak", "skirt-steak", "cube-steak", "steak"];
-export const PORK_CUTS = ["ground-pork", "pork-shoulder", "pork-ribs", "pork-belly", "pork-loin"];
+/**
+ * Cuts and kinds that share their plain name as a base, like chicken breast and thigh share "chicken":
+ * owning "beef" covers a dish that asks for ground beef, "bread" covers sourdough or sandwich bread. Flatbreads
+ * (pita, naan, lavash) are deliberately not part of "bread".
+ */
+export const BASE_GROUPS: Record<string, string[]> = {
+  beef: ["ground-beef", "beef-brisket", "beef-chuck", "beef-sirloin", "beef-strips", "beef-short-ribs", "ribeye-steak", "skirt-steak", "cube-steak", "steak", "burger-patties"],
+  pork: ["ground-pork", "pork-shoulder", "pork-ribs", "pork-belly", "pork-loin"],
+  bread: ["white-bread", "sourdough-bread", "rye-bread", "brioche", "baguette"],
+};

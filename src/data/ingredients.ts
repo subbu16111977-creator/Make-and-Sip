@@ -17,7 +17,7 @@ import type { PantryCategory } from "@/types";
  * first at lookup time so multi-word synonyms are tried before their
  * component words (see `resolveSynonym` in ingredientNormalize.ts).
  */
-import { BEEF_CUTS, PORK_CUTS, commonIngredients, extraSynonyms } from "@/data/ingredientsCommon";
+import { BASE_GROUPS, commonIngredients, extraSynonyms } from "@/data/ingredientsCommon";
 
 export interface IngredientEntity {
   id: string;
@@ -2753,13 +2753,11 @@ for (const [id, names] of Object.entries(extraSynonyms)) {
 const additions = commonIngredients
   .filter((entity) => !byIdBase.has(entity.id))
   .map((entity) => ({ ...entity, synonyms: claim(entity.synonyms) }));
-for (const id of BEEF_CUTS) {
-  const entity = byIdBase.get(id) ?? additions.find((a) => a.id === id);
-  if (entity) entity.baseIngredient = "beef";
-}
-for (const id of PORK_CUTS) {
-  const entity = byIdBase.get(id);
-  if (entity) entity.baseIngredient = "pork";
+for (const [base, ids] of Object.entries(BASE_GROUPS)) {
+  for (const id of ids) {
+    const entity = byIdBase.get(id) ?? additions.find((a) => a.id === id);
+    if (entity) entity.baseIngredient = base;
+  }
 }
 
 export const ingredientRegistry: IngredientEntity[] = [...baseRegistry, ...additions];
