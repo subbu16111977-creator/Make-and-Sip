@@ -17,6 +17,8 @@ import type { PantryCategory } from "@/types";
  * first at lookup time so multi-word synonyms are tried before their
  * component words (see `resolveSynonym` in ingredientNormalize.ts).
  */
+import { BEEF_CUTS, PORK_CUTS, commonIngredients, extraSynonyms } from "@/data/ingredientsCommon";
+
 export interface IngredientEntity {
   id: string;
   canonicalName: string;
@@ -27,7 +29,7 @@ export interface IngredientEntity {
   synonyms: string[];
 }
 
-export const ingredientRegistry: IngredientEntity[] = [
+const baseRegistry: IngredientEntity[] = [
   {
     id: "all-purpose-flour",
     canonicalName: "all_purpose_flour",
@@ -1616,7 +1618,7 @@ export const ingredientRegistry: IngredientEntity[] = [
     baseIngredient: "hoagie_roll",
     displayName: "Hoagie Roll",
     category: "Grains",
-    synonyms: ["hoagie roll", "sub roll", "italian roll"],
+    synonyms: ["hoagie roll", "sub roll", "italian roll", "hot dog buns", "hot dog bun", "hotdog buns", "hot dog rolls"],
   },
   {
     id: "graham-crackers",
@@ -1705,7 +1707,7 @@ export const ingredientRegistry: IngredientEntity[] = [
     baseIngredient: "burger_buns",
     displayName: "Burger Buns",
     category: "Grains",
-    synonyms: ["burger buns", "hamburger buns", "brioche buns"],
+    synonyms: ["burger buns", "hamburger buns", "brioche buns", "buns", "bun", "burger bun", "hamburger bun", "brioche bun", "sesame buns", "sesame seed buns", "sesame bun", "burger rolls", "hamburger rolls"],
   },
   {
     id: "american-cheese",
@@ -2728,3 +2730,36 @@ export const ingredientRegistry: IngredientEntity[] = [
   { id: "taco-shells", canonicalName: "taco_shells", baseIngredient: "taco_shells", displayName: "Hard Taco Shells", category: "Grains", synonyms: ["taco shells", "hard taco shells", "crunchy taco shells"] },
   { id: "mandarin-pancakes", canonicalName: "mandarin_pancakes", baseIngredient: "mandarin_pancakes", displayName: "Mandarin Pancakes", category: "Grains", synonyms: ["mandarin pancakes", "peking duck pancakes", "duck pancakes"] },
 ];
+
+// Everyday names and plain family names (beef, oil, cheese …) live in their own file; they are folded in here so
+// the registry stays one list. A name is only added when no other ingredient already claims it.
+const claimed = new Set<string>();
+const fold = (t: string) => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[’'`]/g, "").replace(/[-_/]+/g, " ").replace(/\s+/g, " ").trim();
+for (const entity of baseRegistry) for (const syn of entity.synonyms) claimed.add(fold(syn));
+
+const claim = (names: string[]): string[] =>
+  names.filter((n) => {
+    const key = fold(n);
+    if (claimed.has(key)) return false;
+    claimed.add(key);
+    return true;
+  });
+
+const byIdBase = new Map(baseRegistry.map((entity) => [entity.id, entity]));
+for (const [id, names] of Object.entries(extraSynonyms)) {
+  const entity = byIdBase.get(id);
+  if (entity) entity.synonyms = [...entity.synonyms, ...claim(names)];
+}
+const additions = commonIngredients
+  .filter((entity) => !byIdBase.has(entity.id))
+  .map((entity) => ({ ...entity, synonyms: claim(entity.synonyms) }));
+for (const id of BEEF_CUTS) {
+  const entity = byIdBase.get(id) ?? additions.find((a) => a.id === id);
+  if (entity) entity.baseIngredient = "beef";
+}
+for (const id of PORK_CUTS) {
+  const entity = byIdBase.get(id);
+  if (entity) entity.baseIngredient = "pork";
+}
+
+export const ingredientRegistry: IngredientEntity[] = [...baseRegistry, ...additions];

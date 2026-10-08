@@ -130,14 +130,83 @@ interface SynonymEntry {
 
 const byId = new Map<string, IngredientEntity>(ingredientRegistry.map((e) => [e.id, e]));
 
+/**
+ * Lower-cases and flattens a name so spelling variants meet: accents ("jalapeño", "Padrón", "pâté"), hyphens
+ * ("five-spice"), apostrophes ("bird's eye") and extra spaces all disappear.
+ */
+export function foldName(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’'`]/g, "")
+    .replace(/[-_/]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** The plural/singular spellings of a phrase's last word ("egg" ⇄ "eggs", "tomato" ⇄ "tomatoes", "berry" ⇄ "berries"). */
+function numberVariants(phrase: string): string[] {
+  const words = phrase.split(" ");
+  const w = words[words.length - 1];
+  const out = new Set<string>();
+  if (w.length >= 3) {
+    if (w.endsWith("leaves")) out.add(`${w.slice(0, -6)}leaf`);
+    else if (w.endsWith("leaf")) out.add(`${w.slice(0, -4)}leaves`);
+    else if (w.endsWith("ies") && w.length > 4) out.add(`${w.slice(0, -3)}y`);
+    else if (/(ches|shes|sses|xes|oes)$/.test(w)) out.add(w.slice(0, -2));
+    else if (w.endsWith("s") && !w.endsWith("ss")) out.add(w.slice(0, -1));
+    else if (/[^aeiou]y$/.test(w)) out.add(`${w.slice(0, -1)}ies`);
+    else if (/(ch|sh|s|x|o)$/.test(w)) out.add(`${w}es`);
+    else out.add(`${w}s`);
+    if (!w.endsWith("s")) out.add(`${w}s`);
+  }
+  return [...out].map((v) => [...words.slice(0, -1), v].join(" "));
+}
+
 const exactPhraseIndex = new Map<string, IngredientEntity>();
 const synonymList: SynonymEntry[] = [];
+
+/** "Dried Fenugreek Leaves (Kasuri Methi)" -> ["dried fenugreek leaves kasuri methi", "dried fenugreek leaves", "kasuri methi"]. */
+function nameForms(name: string): string[] {
+  const forms = [foldName(name)];
+  const m = name.match(/^(.*?)\(([^)]*)\)(.*)$/);
+  if (m) forms.push(foldName(`${m[1]} ${m[3]}`), foldName(m[2]));
+  return forms.filter(Boolean);
+}
+
+// An ingredient's own display name always belongs to it, even where another entry lists the same words as a synonym.
+const ownNames = new Set<string>();
+for (const entity of ingredientRegistry) {
+  for (const form of nameForms(entity.displayName)) {
+    if (!ownNames.has(form)) {
+      ownNames.add(form);
+      exactPhraseIndex.set(form, entity);
+    }
+  }
+}
 for (const entity of ingredientRegistry) {
   for (const raw of entity.synonyms) {
-    const phrase = raw.toLowerCase().trim();
+    const phrase = foldName(raw);
     if (!phrase) continue;
-    exactPhraseIndex.set(phrase, entity);
-    synonymList.push({ phrase, wordCount: phrase.split(/\s+/).length, entity });
+    if (!ownNames.has(phrase)) exactPhraseIndex.set(phrase, entity);
+    synonymList.push({ phrase, wordCount: phrase.split(" ").length, entity });
+  }
+}
+for (const entity of ingredientRegistry) {
+  for (const form of nameForms(entity.displayName)) {
+    if (!synonymList.some((x) => x.phrase === form && x.entity === entity)) synonymList.push({ phrase: form, wordCount: form.split(" ").length, entity });
+  }
+}
+// Plural/singular spellings of every name also resolve, unless another ingredient already owns that spelling.
+for (const entity of ingredientRegistry) {
+  for (const raw of entity.synonyms) {
+    for (const variant of numberVariants(foldName(raw))) {
+      if (variant && !exactPhraseIndex.has(variant)) {
+        exactPhraseIndex.set(variant, entity);
+        synonymList.push({ phrase: variant, wordCount: variant.split(" ").length, entity });
+      }
+    }
   }
 }
 // Longest phrase (by word count, then char length) first.
@@ -177,7 +246,7 @@ interface SynonymResolution {
 
 /** Resolves a cleaned ingredient-name phrase to a registry entity. Exported for reuse/testing. */
 export function resolveSynonym(phrase: string): SynonymResolution {
-  const cleaned = phrase.toLowerCase().trim();
+  const cleaned = foldName(phrase);
   if (!cleaned) return { entity: null, confidence: 0, ambiguous: false };
 
   // 1. Exact full-phrase match.
@@ -369,12 +438,12 @@ export function parseAmount(amountText: string): { quantity: number | null; unit
 export function normalizeIngredient(rawText: string): NormalizedIngredient {
   const text = rawText.trim();
   const { quantity, unit, rest } = parseLeadingQuantity(text);
-  const { namePhrase, form, preparation } = segmentNameAndPrep(rest);
+  const { namePhrase, form, preparation } = segmentNameAndPrep(rest.replace(/\([^)]*\)/g, " ").replace(/\s+/g, " ").trim() || rest);
 
   // Try the cleaned name phrase, then fall back to the raw remainder (in
   // case noise/form stripping was too aggressive for an unusual phrase).
   // A phrase that is itself a registered name ("whole wheat flour") wins over its noise-stripped form ("wheat flour").
-  const wholePhrase = exactPhraseIndex.get(rest.trim().toLowerCase());
+  const wholePhrase = exactPhraseIndex.get(foldName(rest));
   let resolution: SynonymResolution = wholePhrase ? { entity: wholePhrase, confidence: 1, ambiguous: false } : resolveSynonym(namePhrase);
   if (!resolution.entity && namePhrase !== rest.trim()) {
     resolution = resolveSynonym(rest.split(",")[0]);

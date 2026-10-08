@@ -3,7 +3,7 @@ import type { PantryCategory, PantryItem, StorageLocation, Unit } from "@/types"
 import { AppBlank } from "@/components/AppBlank";
 import { isPantryItems } from "@/lib/persistedShapes";
 import { usePersistedState } from "@/lib/usePersistedState";
-import { addOrMergeItem, addPantryItem as addPantryItemAction, removePantryItem as removePantryItemAction } from "@/lib/inventoryActions";
+import { addOrMergeItem, addPantryItem as addPantryItemAction, removePantryItem as removePantryItemAction, reresolvePantry } from "@/lib/inventoryActions";
 
 export interface NewPantryItemInput {
   name: string;
@@ -57,20 +57,22 @@ const PantryContext = createContext<PantryContextValue | undefined>(undefined);
  * themselves; it is also empty if what's stored can't be read.
  */
 export function PantryProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems, hydrated] = usePersistedState<PantryItem[]>("mise.pantry.v1", [], isPantryItems);
+  const [storedItems, setItems, hydrated] = usePersistedState<PantryItem[]>("mise.pantry.v1", [], isPantryItems);
+  // Items saved before the app knew their name get their real identity (see reresolvePantry); it is saved the next time the pantry changes.
+  const items = useMemo(() => reresolvePantry(storedItems), [storedItems]);
 
   const addItem = useCallback((input: NewPantryItemInput) => {
-    setItems((prev) => addPantryItemAction(prev, input).items);
+    setItems((prev) => addPantryItemAction(reresolvePantry(prev), input).items);
   }, [setItems]);
 
   const removeItem = useCallback((id: string) => {
-    setItems((prev) => removePantryItemAction(prev, id));
+    setItems((prev) => removePantryItemAction(reresolvePantry(prev), id));
   }, [setItems]);
 
   const receiveFromShopping = useCallback((input: ReceiveFromShoppingInput) => {
     setItems(
       (prev) =>
-        addOrMergeItem(prev, {
+        addOrMergeItem(reresolvePantry(prev), {
           ingredientId: input.ingredientId,
           displayName: input.displayName,
           quantity: input.quantity,

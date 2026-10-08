@@ -4,6 +4,7 @@ import {
   addPantryItem,
   markShoppingItemPurchased,
   removePantryItem,
+  reresolvePantry,
   unmarkShoppingItemPurchased,
 } from "./inventoryActions";
 import { getIngredientMatch, getRecipeAvailability } from "./pantryMatch";
@@ -226,5 +227,22 @@ describe("Test 12 — removing a pantry item flips the recipe back to missing", 
 
     pantry = removePantryItem(pantry, pantry[0].id);
     expect(getRecipeAvailability(CHICKEN_RECIPE, pantry).missingCount).toBe(1);
+  });
+});
+
+describe("reresolvePantry", () => {
+  const stale = { id: "p1", name: "Buns", category: "Pantry Staples", quantity: 6, unit: "pcs", quantityKnown: true, location: "Fridge", purchaseDate: "2026-10-01", expiryDate: "2026-10-15", ingredientId: "buns-unknown", source: "manual" } as const;
+  it("gives an old unrecognised item its real identity", () => {
+    const out = reresolvePantry([{ ...stale }]);
+    expect(out[0].ingredientId).toBe("burger-buns");
+    expect(out[0].quantity).toBe(6);
+  });
+  it("leaves recognised items and unknown names alone, and returns the same array when nothing changes", () => {
+    const items = [{ ...stale, ingredientId: "burger-buns" }, { ...stale, id: "p2", name: "Zorblax", ingredientId: "zorblax" }];
+    expect(reresolvePantry(items as never)).toBe(items);
+  });
+  it("does not create a second item with the same identity", () => {
+    const items = [{ ...stale, ingredientId: "burger-buns" }, { ...stale, id: "p3" }];
+    expect(reresolvePantry(items as never)[1].ingredientId).toBe("buns-unknown");
   });
 });

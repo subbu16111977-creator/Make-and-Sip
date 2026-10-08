@@ -194,3 +194,10 @@ describe("Home's ready-to-cook list uses amounts", () => {
     expect(pickReadyToCook([item("chicken-breast", 100, "g")], [r], [])).toHaveLength(0);
   });
 });
+
+describe("everyday bread names", () => {
+  it("recognises plain 'buns' and hot dog buns", () => {
+    for (const t of ["buns", "Buns", "bun", "burger buns", "sesame buns"]) expect(normalizeIngredient(t).ingredientId).toBe("burger-buns");
+    expect(normalizeIngredient("hot dog buns").ingredientId).toBe("hoagie-roll");
+  });
+});

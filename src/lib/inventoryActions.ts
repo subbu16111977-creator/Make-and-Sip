@@ -331,3 +331,23 @@ export function unmarkShoppingItemPurchased(shoppingItems: ShoppingItem[], shopp
 export function removePantryItem(items: PantryItem[], id: string): PantryItem[] {
   return items.filter((item) => item.id !== id);
 }
+
+/**
+ * Items typed before the app knew a name (e.g. "Buns") were saved with a made-up identity, so no dish ever matched
+ * them. When the registry later learns the name, this gives such items their real identity. Items that already
+ * have a real identity are never touched, and an item is left alone if another item already holds that identity.
+ * Returns the same array when nothing changed.
+ */
+export function reresolvePantry(items: PantryItem[]): PantryItem[] {
+  let changed = false;
+  const taken = new Set(items.map((i) => i.ingredientId));
+  const out = items.map((item) => {
+    if (resolveIngredientById(item.ingredientId)) return item;
+    const found = normalizeIngredient(item.name).ingredientId;
+    if (!found || taken.has(found)) return item;
+    taken.add(found);
+    changed = true;
+    return { ...item, ingredientId: found };
+  });
+  return changed ? out : items;
+}
