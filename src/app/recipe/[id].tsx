@@ -14,6 +14,7 @@ import { useShopping } from "@/context/ShoppingContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
 import { useCookability } from "@/lib/useCookability";
+import { scaledRecipe } from "@/lib/cookability";
 import { CookabilityBadge } from "@/components/CookabilityBadge";
 import { RecipeImage } from "@/components/RecipeImage";
 import { ChevronLeftIcon, CheckIcon, ClockIcon, HeartIcon, SavedIcon, ShoppingIcon } from "@/components/icons";
@@ -55,14 +56,9 @@ export default function RecipeDetailScreen() {
   const cookability = useCookability(recipe, servings);
   const cookByIngredient = useMemo(() => new Map((cookability?.ingredients ?? []).map((c) => [c.ingredient, c])), [cookability]);
 
-  // What "Add to Shopping" sends: required missing items plus top-ups for anything the pantry is short on.
-  // Optional ingredients are held back and offered separately. Top-ups are only sent for amounts still short
-  // at the chosen number of servings.
-  const plan = useMemo(() => {
-    if (!recipe) return null;
-    const base = getShoppingPlan(recipe, pantryItems);
-    return { ...base, shortfalls: base.shortfalls.filter((sf) => cookByIngredient.get(sf.ingredient)?.match === "insufficient") };
-  }, [recipe, pantryItems, cookByIngredient]);
+  // What "Add to Shopping" sends: required missing items plus top-ups for anything the pantry is short on,
+  // for the chosen number of servings. Optional ingredients are held back and offered separately.
+  const plan = useMemo(() => (recipe ? getShoppingPlan(scaledRecipe(recipe, servings), pantryItems) : null), [recipe, servings, pantryItems]);
 
   const [justAdded, setJustAdded] = useState(false);
   const [justAddedOptional, setJustAddedOptional] = useState(false);

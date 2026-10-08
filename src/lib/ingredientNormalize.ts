@@ -242,7 +242,7 @@ interface QuantityParse {
 const UNICODE_FRACTIONS: Record<string, string> = { "¼": "1/4", "½": "1/2", "¾": "3/4", "⅓": "1/3", "⅔": "2/3", "⅛": "1/8", "⅜": "3/8", "⅝": "5/8", "⅞": "7/8" };
 
 /** "1½ cups" -> "1 1/2 cups", "¼ tsp" -> "1/4 tsp" — recipe text uses the single-character fractions. */
-function expandUnicodeFractions(text: string): string {
+export function expandUnicodeFractions(text: string): string {
   return text.replace(/(\d)?\s*([¼½¾⅓⅔⅛⅜⅝⅞])/g, (_m, whole: string | undefined, f: string) => `${whole ? `${whole} ` : ""}${UNICODE_FRACTIONS[f]}`);
 }
 

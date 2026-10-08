@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { COOKABILITY, computeCookability, ingredientCookability, ingredientWeight } from "@/lib/cookability";
+import { COOKABILITY, computeCookability, ingredientCookability, ingredientWeight, scaleAmountText, scaledRecipe } from "@/lib/cookability";
+import { getShoppingPlan, pickReadyToCook } from "@/lib/pantryMatch";
 import { normalizeIngredient, parseAmount } from "@/lib/ingredientNormalize";
 import { recipes } from "@/data/recipes";
 import type { PantryItem, Recipe, RecipeIngredient } from "@/types";
@@ -165,5 +166,31 @@ describe("every real dish", () => {
     const pantry = r.ingredients.map((i) => item(i.pantryId, 100000, "g"));
     const c = computeCookability(r, pantry, r.equipment);
     expect(c.requiredMissing).toBe(0);
+  });
+});
+
+describe("scaling for the shopping list", () => {
+  it("scales the leading number and keeps the unit", () => {
+    expect(scaleAmountText("500 g", 0.5)).toBe("250 g");
+    expect(scaleAmountText("1 1/2 cups (300 g)", 2)).toBe("3 cups");
+    expect(scaleAmountText("½ tsp", 2)).toBe("1 tsp");
+    expect(scaleAmountText("2-3 cloves", 2)).toBe("4-6 cloves");
+    expect(scaleAmountText("a pinch", 2)).toBe("a pinch");
+    expect(scaleAmountText("500 g", 1)).toBe("500 g");
+  });
+  it("tops up only what is short for the chosen servings", () => {
+    const r = dish([ing("chicken-breast", "500 g")], { servings: 4 });
+    const pantry = [item("chicken-breast", 250, "g")];
+    expect(getShoppingPlan(scaledRecipe(r, 4), pantry).shortfalls[0]?.quantity).toBe(250);
+    expect(getShoppingPlan(scaledRecipe(r, 2), pantry).shortfalls).toHaveLength(0);
+    expect(r.ingredients[0].amount).toBe("500 g");
+  });
+});
+
+describe("Home's ready-to-cook list uses amounts", () => {
+  it("leaves out a dish whose amount is short", () => {
+    const r = dish([ing("chicken-breast", "500 g")]);
+    expect(pickReadyToCook([item("chicken-breast", 1, "kg")], [r], [])).toHaveLength(1);
+    expect(pickReadyToCook([item("chicken-breast", 100, "g")], [r], [])).toHaveLength(0);
   });
 });

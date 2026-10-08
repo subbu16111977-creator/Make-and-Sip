@@ -24,5 +24,4 @@ Code: `src/lib/cookability.ts` (all thresholds in `COOKABILITY`), tests in `src/
 - **Low match** — score < 40.
 
 ## Known limits
-- "Add to Shopping" uses the recipe's own amounts; only top-ups that are still short at the chosen servings are sent.
-- Home's "Ready to cook" rails still use the older name-based check; cards and the dish page use Cookability.
+- "Add to Shopping" scales the recipe's amounts to the chosen servings (a bracketed note like "(about 4 thighs)" is dropped when scaled).

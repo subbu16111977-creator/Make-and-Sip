@@ -1,5 +1,6 @@
 import type { EquipmentTag, PantryItem, Recipe, RecipeIngredient, TasteTag } from "@/types";
 import { normalizeIngredient, resolveIngredientById } from "@/lib/ingredientNormalize";
+import { computeCookability } from "@/lib/cookability";
 
 export interface RecipeMatch {
   recipe: Recipe;
@@ -499,32 +500,37 @@ export function isQuickRecipe(recipe: Recipe, ownedEquipment: EquipmentTag[]): b
   return recipe.timeMinutes <= QUICK_MINUTES && hasRequiredEquipment(ownedEquipment, recipe);
 }
 
-/** Everything the user can make right now (all ingredients and all appliances), quickest first. */
+/**
+ * Everything the user can make right now, quickest first: nothing required is missing, short or in doubt
+ * (amounts included — see Cookability), and every needed appliance is owned.
+ */
 export function pickReadyToCook(
   pantry: PantryItem[],
   recipes: Recipe[],
   ownedEquipment: EquipmentTag[]
 ): RecipeMatch[] {
   return recipes
-    .map((r) => matchRecipe(pantry, r))
-    .filter((m) => isCanMake(m, ownedEquipment))
+    .map((r) => ({ m: matchRecipe(pantry, r), c: computeCookability(r, pantry, ownedEquipment) }))
+    .filter(({ m, c }) => c.category === "ready" && m.have.length > 0)
+    .map(({ m }) => m)
     .sort((a, b) => a.recipe.timeMinutes - b.recipe.timeMinutes);
 }
 
 /**
  * Dishes the user has at least one ingredient for and all the appliances
- * for, but is still short of something. Closest to done first.
+ * for, but is still short of something (a missing ingredient or not enough of one). Closest to done first.
  */
 export function pickAlmostThere(pantry: PantryItem[], recipes: Recipe[], ownedEquipment: EquipmentTag[]): RecipeMatch[] {
   return recipes
-    .map((r) => matchRecipe(pantry, r))
-    .filter((m) => isAlmostThere(m, ownedEquipment))
+    .map((r) => ({ m: matchRecipe(pantry, r), c: computeCookability(r, pantry, ownedEquipment) }))
+    .filter(({ m, c }) => m.have.length > 0 && c.category !== "ready" && hasRequiredEquipment(ownedEquipment, m.recipe))
     .sort(
       (a, b) =>
-        requiredMissing(a).length - requiredMissing(b).length ||
-        b.ratio - a.ratio ||
-        a.recipe.timeMinutes - b.recipe.timeMinutes
-    );
+        a.c.requiredMissing + a.c.requiredInsufficient + a.c.requiredAmbiguous - (b.c.requiredMissing + b.c.requiredInsufficient + b.c.requiredAmbiguous) ||
+        b.c.percent - a.c.percent ||
+        a.m.recipe.timeMinutes - b.m.recipe.timeMinutes
+    )
+    .map(({ m }) => m);
 }
 
 /** Dishes ready in `maxMinutes` or less, in a random order that is stable for a given seed. */

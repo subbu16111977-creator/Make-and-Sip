@@ -1,5 +1,5 @@
 import type { EquipmentTag, PantryItem, Recipe, RecipeIngredient } from "@/types";
-import { parseAmount, resolveIngredientById } from "@/lib/ingredientNormalize";
+import { expandUnicodeFractions, parseAmount, resolveIngredientById } from "@/lib/ingredientNormalize";
 
 /**
  * Cookability Score — "can I actually cook this, with what I own, for this many people?"
@@ -374,4 +374,45 @@ export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEq
     ingredients: all,
     summary,
   };
+}
+
+// ---------------------------------------------------------------------------
+// Scaling a recipe to other servings (used for the shopping list)
+// ---------------------------------------------------------------------------
+
+const NUM = "\\d+\\s+\\d+\\/\\d+|\\d+\\/\\d+|\\d+(?:\\.\\d+)?";
+const LEADING_AMOUNT = new RegExp(`^(\\s*)(${NUM})(?:(\\s*(?:to|-)\\s*)(${NUM}))?`, "i");
+
+function numberOf(token: string): number {
+  const mixed = token.match(/^(\d+)\s+(\d+)\/(\d+)$/);
+  if (mixed) return Number(mixed[1]) + Number(mixed[2]) / Number(mixed[3]);
+  const frac = token.match(/^(\d+)\/(\d+)$/);
+  if (frac) return Number(frac[1]) / Number(frac[2]);
+  return Number(token);
+}
+
+function formatScaled(n: number): string {
+  return String(Math.round(n * 100) / 100);
+}
+
+/**
+ * "500 g" at half the servings -> "250 g". Only the leading number is scaled, and a bracketed note such as
+ * "(about 4 thighs)" is dropped when scaling, because it would no longer be true. Text with no leading number
+ * ("a pinch", "to taste") is returned unchanged.
+ */
+export function scaleAmountText(amount: string, factor: number): string {
+  if (factor === 1) return amount;
+  const text = expandUnicodeFractions(amount);
+  const m = LEADING_AMOUNT.exec(text);
+  if (!m) return amount;
+  const scaled = formatScaled(numberOf(m[2].trim()) * factor) + (m[4] ? `${m[3]}${formatScaled(numberOf(m[4].trim()) * factor)}` : "");
+  const rest = text.slice(m[0].length).replace(/\s*\([^)]*\)/g, "");
+  return `${m[1]}${scaled}${rest}`;
+}
+
+/** A copy of the recipe with every ingredient amount scaled to `servings` — for shopping, never for display or saving. */
+export function scaledRecipe(recipe: Recipe, servings: number): Recipe {
+  const factor = recipe.servings > 0 ? servings / recipe.servings : 1;
+  if (factor === 1) return recipe;
+  return { ...recipe, ingredients: recipe.ingredients.map((i) => ({ ...i, amount: scaleAmountText(i.amount, factor) })) };
 }
