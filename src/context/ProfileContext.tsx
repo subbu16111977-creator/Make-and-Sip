@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { AppBlank } from "@/components/AppBlank";
 import { STORAGE_KEYS } from "@/lib/appData";
-import { getPhase, markIntroDone, markTutorialCompleted, markTutorialSkipped, type Phase, type Replay } from "@/lib/introFlow";
+import { getPhase, markIntroDone, markTermsAccepted, markTutorialCompleted, markTutorialSkipped, type Phase, type Replay } from "@/lib/introFlow";
 import { applyDraft, emptyProfile, isLocalProfile, type LocalProfile, type ProfileDraft } from "@/lib/profile";
 import { discardStoredPhoto } from "@/lib/profilePhoto";
 import { usePersistedState } from "@/lib/usePersistedState";
@@ -14,6 +14,8 @@ interface ProfileContextValue {
   saveDraft: (draft: ProfileDraft) => void;
   /** Ends the introduction (finished or skipped). First time round, this moves on to the tutorial. */
   finishIntro: () => void;
+  /** The person agreed to the Terms of Use and Privacy Policy; moves on to the tutorial. */
+  acceptTerms: () => void;
   finishTutorial: () => void;
   skipTutorial: () => void;
   startReplay: (which: "intro" | "tutorial") => void;
@@ -49,6 +51,8 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     setReplay(null);
   }, [setProfile]);
 
+  const acceptTerms = useCallback(() => setProfile((prev) => markTermsAccepted(prev)), [setProfile]);
+
   const finishTutorial = useCallback(() => {
     setProfile((prev) => markTutorialCompleted(prev));
     setReplay(null);
@@ -68,8 +72,8 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
   }, [profile.profilePhotoUri, setProfile]);
 
   const value = useMemo(
-    () => ({ profile, phase, replay, saveDraft, finishIntro, finishTutorial, skipTutorial, startReplay, resetProfile }),
-    [profile, phase, replay, saveDraft, finishIntro, finishTutorial, skipTutorial, startReplay, resetProfile]
+    () => ({ profile, phase, replay, saveDraft, finishIntro, acceptTerms, finishTutorial, skipTutorial, startReplay, resetProfile }),
+    [profile, phase, replay, saveDraft, finishIntro, acceptTerms, finishTutorial, skipTutorial, startReplay, resetProfile]
   );
 
   if (!hydrated) return <AppBlank />;

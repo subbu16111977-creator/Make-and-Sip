@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { View, StyleSheet, BackHandler, Platform } from "react-native";
 import { IntroFlow } from "./IntroFlow";
+import { AgreementScreen } from "./AgreementScreen";
 import { TutorialOverlay } from "./TutorialOverlay";
 import { PaywallView } from "./PaywallView";
 import { useProfile } from "@/context/ProfileContext";
@@ -58,6 +59,7 @@ export function FirstLaunchGate() {
   }, [locked]);
 
   if (phase === "intro") return <IntroFlow />;
+  if (phase === "agreement") return <AgreementScreen />;
   if (phase === "tutorial") return <TutorialOverlay />;
   // There is no free plan: without a plan that hasn't ended, the paywall covers the app and can't be closed.
   // Everything the person saved stays on the device underneath.

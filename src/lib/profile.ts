@@ -66,6 +66,8 @@ export interface LocalProfile {
   onboardingCompleted: boolean;
   tutorialCompleted: boolean;
   tutorialSkipped: boolean;
+  /** The version of the Terms of Use and Privacy Policy the person agreed to; absent until they do. */
+  termsAcceptedVersion?: string;
 }
 
 export function emptyProfile(): LocalProfile {
@@ -99,7 +101,8 @@ export function isLocalProfile(value: unknown): value is LocalProfile {
     isStringArray(p.customFlavors) &&
     typeof p.onboardingCompleted === "boolean" &&
     typeof p.tutorialCompleted === "boolean" &&
-    typeof p.tutorialSkipped === "boolean"
+    typeof p.tutorialSkipped === "boolean" &&
+    (p.termsAcceptedVersion === undefined || typeof p.termsAcceptedVersion === "string")
   );
 }
 

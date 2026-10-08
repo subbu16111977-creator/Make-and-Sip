@@ -2,6 +2,7 @@ import type { LocalProfile } from "@/lib/profile";
 import type { PantryItem, Recipe, EquipmentTag } from "@/types";
 import { hasRequiredEquipment, matchRecipe } from "@/lib/pantryMatch";
 import type { TutorialTargetId } from "@/lib/tutorialTargets";
+import { TERMS_VERSION } from "@/lib/legalText";
 
 /**
  * The first-launch flow as plain logic: which screen to show, and what the
@@ -11,7 +12,7 @@ import type { TutorialTargetId } from "@/lib/tutorialTargets";
  * flow only ever produces a new LocalProfile (flags) or a phase name.
  */
 
-export type Phase = "intro" | "tutorial" | "main";
+export type Phase = "intro" | "agreement" | "tutorial" | "main";
 /** A replay started from Settings. It shows the screens again without changing any stored flag. */
 export type Replay = "intro" | "tutorial" | null;
 
@@ -19,11 +20,21 @@ export function getPhase(profile: LocalProfile, replay: Replay): Phase {
   if (replay === "intro") return "intro";
   if (replay === "tutorial") return "tutorial";
   if (!profile.onboardingCompleted) return "intro";
+  if (!hasAcceptedTerms(profile)) return "agreement";
   if (!profile.tutorialCompleted && !profile.tutorialSkipped) return "tutorial";
   return "main";
 }
 
-/** Finishing or skipping the introduction both lead on to the tutorial. */
+export function hasAcceptedTerms(profile: LocalProfile): boolean {
+  return profile.termsAcceptedVersion === TERMS_VERSION;
+}
+
+/** Records that the person agreed to the current Terms of Use and Privacy Policy. */
+export function markTermsAccepted(profile: LocalProfile): LocalProfile {
+  return hasAcceptedTerms(profile) ? profile : { ...profile, termsAcceptedVersion: TERMS_VERSION };
+}
+
+/** Finishing or skipping the introduction both lead on to the terms, then the tutorial. */
 export function markIntroDone(profile: LocalProfile): LocalProfile {
   return profile.onboardingCompleted ? profile : { ...profile, onboardingCompleted: true };
 }

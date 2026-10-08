@@ -6,6 +6,7 @@ import {
   clampIndex,
   getPhase,
   markIntroDone,
+  markTermsAccepted,
   markTutorialCompleted,
   markTutorialSkipped,
   pickTutorialRecipe,
@@ -15,33 +16,48 @@ import { recipes } from "@/data/recipes";
 import type { PantryItem } from "@/types";
 
 const fresh = () => emptyProfile();
+/** The introduction finished and the terms agreed — the point from which the tutorial starts. */
+const agreed = () => markTermsAccepted(markIntroDone(fresh()));
 
 describe("first launch", () => {
   it("shows the introduction first", () => {
     expect(getPhase(fresh(), null)).toBe("intro");
   });
-  it("opens the tutorial after the introduction is completed", () => {
-    expect(getPhase(markIntroDone(fresh()), null)).toBe("tutorial");
+  it("asks for agreement to the terms right after the introduction", () => {
+    expect(getPhase(markIntroDone(fresh()), null)).toBe("agreement");
   });
-  it("opens the tutorial even when the introduction (and profile setup) is skipped", () => {
+  it("asks for agreement even when the introduction (and profile setup) is skipped", () => {
     const skipped = markIntroDone(fresh());
     expect(skipped.displayName).toBeUndefined();
-    expect(getPhase(skipped, null)).toBe("tutorial");
+    expect(getPhase(skipped, null)).toBe("agreement");
+  });
+  it("opens the tutorial after the terms are agreed", () => {
+    expect(getPhase(agreed(), null)).toBe("tutorial");
+  });
+  it("asks again if the terms change", () => {
+    expect(getPhase({ ...agreed(), termsAcceptedVersion: "old" }, null)).toBe("agreement");
+  });
+  it("keeps the agreement across a reload", () => {
+    const stored = JSON.parse(JSON.stringify(agreed())) as LocalProfile;
+    expect(getPhase(stored, null)).toBe("tutorial");
+  });
+  it("does not ask for agreement in a replay of the introduction", () => {
+    expect(getPhase(markIntroDone(fresh()), "intro")).toBe("intro");
   });
   it("opens the main app after the tutorial is completed", () => {
-    expect(getPhase(markTutorialCompleted(markIntroDone(fresh())), null)).toBe("main");
+    expect(getPhase(markTutorialCompleted(agreed()), null)).toBe("main");
   });
   it("opens the main app after the tutorial is skipped", () => {
-    expect(getPhase(markTutorialSkipped(markIntroDone(fresh())), null)).toBe("main");
+    expect(getPhase(markTutorialSkipped(agreed()), null)).toBe("main");
   });
   it("does not show the introduction or tutorial again once finished (reload)", () => {
-    const done = JSON.parse(JSON.stringify(markTutorialCompleted(markIntroDone(fresh())))) as LocalProfile;
+    const done = JSON.parse(JSON.stringify(markTutorialCompleted(agreed()))) as LocalProfile;
     expect(getPhase(done, null)).toBe("main");
   });
 });
 
 describe("replays from Settings", () => {
-  const done = markTutorialCompleted(markIntroDone(fresh()));
+  const done = markTutorialCompleted(agreed());
   it("replays the introduction", () => {
     expect(getPhase(done, "intro")).toBe("intro");
   });
