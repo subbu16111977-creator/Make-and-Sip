@@ -15,6 +15,7 @@ import { usePantry } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { recipes } from "@/data/recipes";
 import { missingEquipment, rankRecipesForDiscover } from "@/lib/pantryMatch";
+import { computeCookability } from "@/lib/cookability";
 import { SORT_OPTIONS, sortDiscover, type DiscoverSort } from "@/lib/discoverView";
 import type { DietTag, TasteTag } from "@/types";
 
@@ -83,8 +84,16 @@ export default function DiscoverScreen() {
       return true;
     });
     // Best for you reshuffles equally good matches each time the app is opened or Refresh is pressed.
-    return sort === "for-you" ? sortByForYou(kept, preferences, { seed: SESSION_SEED + refreshTick }) : sortDiscover(kept, sort);
-  }, [ranked, query, selectedCuisine, selectedDiets, sort, preferences, refreshTick]);
+    if (sort === "for-you") return sortByForYou(kept, preferences, { seed: SESSION_SEED + refreshTick });
+    if (sort === "cookable") {
+      // Highest Cookability first; equal scores keep the pantry-match order.
+      return kept
+        .map((m, i) => ({ m, i, score: computeCookability(m.recipe, pantryItems, ownedEquipment) }))
+        .sort((a, b) => b.score.percent - a.score.percent || Number(b.score.category === "ready") - Number(a.score.category === "ready") || a.i - b.i)
+        .map((x) => x.m);
+    }
+    return sortDiscover(kept, sort);
+  }, [ranked, query, selectedCuisine, selectedDiets, sort, preferences, refreshTick, pantryItems, ownedEquipment]);
 
   const firstCardTarget = useTutorialTarget("discover-first-card");
   const cardGap = spacing.md;

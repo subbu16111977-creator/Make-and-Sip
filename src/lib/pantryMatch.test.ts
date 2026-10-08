@@ -275,3 +275,10 @@ describe("Discover sorting", () => {
     expect(sortDiscover(ms, "az").map((m) => m.recipe.id)).toEqual(["a-fast", "b-slow", "c-mid"]);
   });
 });
+
+describe("counts written as 'medium' or 'whole' match pantry 'pcs'", () => {
+  it("reports a shortfall for pieces", () => {
+    const m = getIngredientMatch(recipeIngredient({ pantryId: "onion", label: "Onion", amount: "3 medium" }), [pantryItem({ ingredientId: "onion", quantity: 1, unit: "pcs" })]);
+    expect(m.quantityStatus).toBe("insufficient");
+  });
+});

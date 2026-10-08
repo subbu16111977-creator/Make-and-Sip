@@ -130,7 +130,7 @@ export const ingredientRegistry: IngredientEntity[] = [
     baseIngredient: "bell_pepper",
     displayName: "Bell pepper",
     category: "Vegetables",
-    synonyms: ["bell pepper", "red bell peppers"],
+    synonyms: ["bell pepper", "red bell peppers", "capsicum", "red capsicum", "green capsicum", "yellow capsicum"],
   },
   {
     id: "berries",
@@ -274,7 +274,7 @@ export const ingredientRegistry: IngredientEntity[] = [
     baseIngredient: "cilantro",
     displayName: "Cilantro",
     category: "Vegetables",
-    synonyms: ["cilantro", "cilantro leaves", "cilantro or parsley"],
+    synonyms: ["cilantro", "cilantro leaves", "cilantro or parsley", "coriander", "coriander leaves", "fresh coriander", "coriander leaf"],
   },
   {
     id: "cinnamon-stick",
@@ -442,7 +442,7 @@ export const ingredientRegistry: IngredientEntity[] = [
     baseIngredient: "green_chili",
     displayName: "Green chili",
     category: "Vegetables",
-    synonyms: ["green chili", "green chilies", "jalape\u00f1o", "red or green chili"],
+    synonyms: ["green chili", "green chilies", "jalape\u00f1o", "red or green chili", "chili", "chilli", "chile", "chilies", "chillies", "chilis", "chiles", "green chilli", "green chillies", "green chiles", "fresh chili", "fresh chilies"],
   },
   {
     id: "honey",
@@ -690,7 +690,7 @@ export const ingredientRegistry: IngredientEntity[] = [
     baseIngredient: "roti_flour",
     displayName: "Whole wheat atta",
     category: "Grains",
-    synonyms: ["roti flour", "wheat atta", "whole wheat atta"],
+    synonyms: ["roti flour", "wheat atta", "whole wheat atta", "atta", "chakki atta", "whole wheat flour", "whole-wheat flour", "wholemeal flour", "wholewheat flour"],
   },
   {
     id: "saffron",

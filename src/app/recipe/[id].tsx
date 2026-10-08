@@ -12,8 +12,9 @@ import { useFavorites } from "@/context/FavoritesContext";
 import { useTutorialTarget } from "@/lib/tutorialTargets";
 import { useShopping } from "@/context/ShoppingContext";
 import { useEquipment } from "@/context/EquipmentContext";
-import { getRecipeAvailability, getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
-import { MatchBadge } from "@/components/MatchBadge";
+import { getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
+import { useCookability } from "@/lib/useCookability";
+import { CookabilityBadge } from "@/components/CookabilityBadge";
 import { RecipeImage } from "@/components/RecipeImage";
 import { ChevronLeftIcon, CheckIcon, ClockIcon, HeartIcon, SavedIcon, ShoppingIcon } from "@/components/icons";
 
@@ -48,18 +49,20 @@ export default function RecipeDetailScreen() {
 
   const recipe = useMemo(() => recipes.find((r) => r.id === id), [id]);
   const match = useMemo(() => (recipe ? matchRecipe(pantryItems, recipe) : null), [recipe, pantryItems]);
-  // Recomputed fresh from current Pantry state on every render — never
-  // cached on the recipe — so a quantity shortfall or a subtype match
-  // shows up here the moment Pantry changes, same as `match` above.
-  const availability = useMemo(() => (recipe ? getRecipeAvailability(recipe, pantryItems) : null), [recipe, pantryItems]);
-  const matchByPantryId = useMemo(
-    () => new Map((availability?.ingredients ?? []).map((m) => [m.recipeIngredient.pantryId, m])),
-    [availability]
-  );
+  // The Cookability check works out amounts for the chosen number of servings (the recipe itself never changes).
+  const [chosenServings, setChosenServings] = useState<number | null>(null);
+  const servings = chosenServings ?? recipe?.servings ?? 1;
+  const cookability = useCookability(recipe, servings);
+  const cookByIngredient = useMemo(() => new Map((cookability?.ingredients ?? []).map((c) => [c.ingredient, c])), [cookability]);
 
   // What "Add to Shopping" sends: required missing items plus top-ups for anything the pantry is short on.
-  // Optional ingredients are held back and offered separately.
-  const plan = useMemo(() => (recipe ? getShoppingPlan(recipe, pantryItems) : null), [recipe, pantryItems]);
+  // Optional ingredients are held back and offered separately. Top-ups are only sent for amounts still short
+  // at the chosen number of servings.
+  const plan = useMemo(() => {
+    if (!recipe) return null;
+    const base = getShoppingPlan(recipe, pantryItems);
+    return { ...base, shortfalls: base.shortfalls.filter((sf) => cookByIngredient.get(sf.ingredient)?.match === "insufficient") };
+  }, [recipe, pantryItems, cookByIngredient]);
 
   const [justAdded, setJustAdded] = useState(false);
   const [justAddedOptional, setJustAddedOptional] = useState(false);
@@ -73,7 +76,7 @@ export default function RecipeDetailScreen() {
     };
   }, []);
 
-  if (!recipe || !match) {
+  if (!recipe || !match || !cookability) {
     return (
       <View style={[styles.notFoundWrap, { paddingTop: insets.top + spacing.xl }]}>
         <Text style={styles.notFoundText}>We couldn&apos;t find that recipe.</Text>
@@ -168,7 +171,7 @@ export default function RecipeDetailScreen() {
             </View>
 
             <View style={styles.badgeRow}>
-              <MatchBadge haveCount={match.have.length} totalCount={recipe.ingredients.length} tone="dark" />
+              {cookability ? <CookabilityBadge cookability={cookability} /> : null}
             </View>
           </View>
         </View>
@@ -181,6 +184,49 @@ export default function RecipeDetailScreen() {
                 <Text style={styles.timeTileLabel}>{tile.label}</Text>
               </View>
             ))}
+          </View>
+
+          <View style={styles.cookPanel} accessible accessibilityLabel={`${cookability.label}. ${cookability.summary}`}>
+            <View style={styles.cookHead}>
+              <Text style={styles.cookPercent}>{cookability.percent}%</Text>
+              <View style={styles.cookHeadText}>
+                <Text style={styles.cookLabel}>{cookability.label}</Text>
+                <Text style={styles.cookSummary}>{cookability.summary}</Text>
+              </View>
+            </View>
+            <View style={styles.cookBar}>
+              <View style={[styles.cookBarFill, { width: `${cookability.percent}%` }]} />
+            </View>
+            <View style={styles.cookStats}>
+              {cookability.requiredMissing > 0 ? <Text style={styles.cookStat}>{cookability.requiredMissing} missing</Text> : null}
+              {cookability.requiredInsufficient > 0 ? <Text style={styles.cookStat}>{cookability.requiredInsufficient} not enough</Text> : null}
+              {cookability.requiredAmbiguous > 0 ? <Text style={styles.cookStat}>{cookability.requiredAmbiguous} to double-check</Text> : null}
+              {cookability.requiredUnverified > 0 ? <Text style={styles.cookStatSoft}>{cookability.requiredUnverified} amounts couldn&apos;t be checked</Text> : null}
+              {cookability.equipmentNeeded.length > 0 ? (
+                <Text style={cookability.equipmentMissing.length ? styles.cookStat : styles.cookStatSoft}>
+                  {cookability.equipmentMissing.length ? `Needs ${cookability.equipmentMissing.map((t) => t.toLowerCase()).join(", ")}` : "You have the equipment"}
+                </Text>
+              ) : null}
+              {cookability.optionalHave + cookability.optionalMissing > 0 ? (
+                <Text style={styles.cookStatSoft}>
+                  Optional: {cookability.optionalHave} on hand, {cookability.optionalMissing} not
+                </Text>
+              ) : null}
+            </View>
+            <View style={styles.servingsRow}>
+              <Text style={styles.servingsText}>
+                Checked for {servings} {servings === 1 ? "serving" : "servings"}
+                {servings !== recipe.servings ? ` (recipe makes ${recipe.servings})` : ""}
+              </Text>
+              <View style={styles.stepper}>
+                <Pressable onPress={() => setChosenServings(Math.max(1, servings - 1))} disabled={servings <= 1} hitSlop={8} accessibilityRole="button" accessibilityLabel="Fewer servings" style={[styles.stepButton, servings <= 1 && styles.stepButtonOff]}>
+                  <Text style={styles.stepButtonText}>−</Text>
+                </Pressable>
+                <Pressable onPress={() => setChosenServings(Math.min(24, servings + 1))} disabled={servings >= 24} hitSlop={8} accessibilityRole="button" accessibilityLabel="More servings" style={[styles.stepButton, servings >= 24 && styles.stepButtonOff]}>
+                  <Text style={styles.stepButtonText}>+</Text>
+                </Pressable>
+              </View>
+            </View>
           </View>
 
           {toBuyCount > 0 && (
@@ -239,24 +285,28 @@ export default function RecipeDetailScreen() {
             <View style={styles.ingredientGroup}>
               <Text style={styles.ingredientGroupLabel}>On hand · {match.have.length}</Text>
               {match.have.map((ing, i) => {
-                const m = matchByPantryId.get(ing.pantryId);
-                const shortfall = m?.status === "quantity_insufficient" ? m.missingQuantity : null;
+                const c = cookByIngredient.get(ing);
+                const shortfall = c?.match === "insufficient" ? c.shortBy : null;
+                const check = c?.match === "ambiguous";
+                const unverified = !shortfall && !check && c?.quantity === "unknown";
                 return (
                   <View key={`${ing.pantryId}-${i}`} style={styles.ingredientRow}>
                     <View
                       style={[
                         styles.ingredientMark,
-                        shortfall ? styles.ingredientMarkPartial : styles.ingredientMarkHave,
+                        shortfall || check ? styles.ingredientMarkPartial : styles.ingredientMarkHave,
                       ]}
                     >
-                      {!shortfall && <CheckIcon size={10} color={colors.cream} strokeWidth={2.8} />}
+                      {!shortfall && !check && <CheckIcon size={10} color={colors.cream} strokeWidth={2.8} />}
                     </View>
                     <View style={styles.ingredientLabelStack}>
                       <Text style={styles.ingredientLabel}>
                         {ing.label}
                         {ing.optional ? <Text style={styles.optionalTag}> · optional</Text> : null}
                       </Text>
-                      {shortfall && <Text style={styles.shortfallText}>Need {shortfall} more</Text>}
+                      {shortfall && <Text style={styles.shortfallText}>Need {shortfall} more{c?.approximate ? " (estimated)" : ""}</Text>}
+                      {check && <Text style={styles.shortfallText}>A different cut or form — check it works</Text>}
+                      {unverified && <Text style={styles.uncheckedText}>Amount not checked</Text>}
                     </View>
                     <Text style={styles.ingredientAmount}>{ing.amount}</Text>
                   </View>
@@ -494,6 +544,33 @@ const styles = StyleSheet.create({
     ...typeScale.bodySmall,
     color: colors.espresso,
   },
+  uncheckedText: {
+    ...typeScale.caption,
+    color: colors.espressoFaint,
+  },
+  cookPanel: {
+    backgroundColor: colors.paper,
+    borderRadius: radii.lg,
+    padding: spacing.lg,
+    marginBottom: spacing.lg,
+    gap: spacing.sm,
+  },
+  cookHead: { flexDirection: "row", alignItems: "center", gap: spacing.md },
+  cookPercent: { ...typeScale.title, color: colors.burntOrange, fontSize: 30, minWidth: 74 },
+  cookHeadText: { flex: 1, gap: 2 },
+  cookLabel: { ...typeScale.label, color: colors.espresso },
+  cookSummary: { ...typeScale.caption, color: colors.espressoMuted },
+  cookBar: { height: 6, borderRadius: 3, backgroundColor: "rgba(255,255,255,0.08)", overflow: "hidden" },
+  cookBarFill: { height: 6, borderRadius: 3, backgroundColor: colors.burntOrange },
+  cookStats: { gap: 2 },
+  cookStat: { ...typeScale.caption, color: colors.espressoMuted },
+  cookStatSoft: { ...typeScale.caption, color: colors.espressoFaint },
+  servingsRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: spacing.xs },
+  servingsText: { ...typeScale.caption, color: colors.espresso, flex: 1 },
+  stepper: { flexDirection: "row", gap: spacing.sm },
+  stepButton: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255,255,255,0.08)" },
+  stepButtonOff: { opacity: 0.35 },
+  stepButtonText: { ...typeScale.title, color: colors.espresso, fontSize: 22, lineHeight: 26 },
   shortfallText: {
     ...typeScale.caption,
     color: colors.mustard,

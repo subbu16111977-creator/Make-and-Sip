@@ -1,10 +1,11 @@
 import type { Recipe, RecipeIngredient } from "@/types";
 
 /** How Discover can arrange the list. "best" keeps the pantry-match ranking. */
-export type DiscoverSort = "best" | "for-you" | "quickest" | "easiest" | "fewest-to-buy" | "az";
+export type DiscoverSort = "best" | "cookable" | "for-you" | "quickest" | "easiest" | "fewest-to-buy" | "az";
 
 export const SORT_OPTIONS: { key: DiscoverSort; label: string }[] = [
   { key: "best", label: "Best match" },
+  { key: "cookable", label: "Most cookable" },
   { key: "for-you", label: "Best for you" },
   { key: "quickest", label: "Quickest" },
   { key: "easiest", label: "Easiest" },
@@ -17,8 +18,8 @@ const requiredMissingCount = (missing: RecipeIngredient[]) => missing.filter((i)
 
 /** Stable sort: ties keep the incoming (best-match) order. */
 export function sortDiscover<T extends { recipe: Recipe; missing: RecipeIngredient[] }>(items: T[], sort: DiscoverSort): T[] {
-  // "for-you" is ordered by the caller (it needs the profile), so here it keeps the incoming order.
-  if (sort === "best" || sort === "for-you") return items;
+  // "for-you" and "cookable" are ordered by the caller (they need the profile / pantry), so here it keeps the incoming order.
+  if (sort === "best" || sort === "for-you" || sort === "cookable") return items;
   const indexed = items.map((item, i) => ({ item, i }));
   const cmp = (a: T, b: T): number => {
     switch (sort) {

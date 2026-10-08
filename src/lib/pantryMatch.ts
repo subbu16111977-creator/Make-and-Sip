@@ -52,6 +52,12 @@ function displayNameOf(ingredientId: string): string {
 const MASS_TO_G: Record<string, number> = { g: 1, kg: 1000, lb: 453.592, oz: 28.3495 };
 const VOLUME_TO_ML: Record<string, number> = { ml: 1, l: 1000, tsp: 4.92892, tbsp: 14.7868, cup: 236.588 };
 
+/** Recipes write counts as "whole" or "piece" ("2 medium"); the pantry calls them "pcs". They are the same thing. */
+function countUnit(unit: string | null): string | null {
+  const u = unit?.toLowerCase();
+  return u === "piece" || u === "whole" ? "pcs" : unit;
+}
+
 function comparableAmount(quantity: number, unit: string | null): { base: "mass" | "volume" | "count"; amount: number } | null {
   if (!unit) return null;
   const u = unit.toLowerCase();
@@ -73,6 +79,7 @@ function compareQuantity(
   if (!pantryItem.quantityKnown) return { status: "unknown", missingQuantity: null };
   if (requiredQuantity === null) return { status: "unknown", missingQuantity: null };
 
+  requiredUnit = countUnit(requiredUnit);
   const required = comparableAmount(requiredQuantity, requiredUnit);
   const have = comparableAmount(pantryItem.quantity, pantryItem.unit);
 
@@ -239,13 +246,14 @@ export function getShortfallRequest(recipeIngredient: RecipeIngredient, pantryIt
 
   const parsed = normalizeIngredient(`${recipeIngredient.amount} ${recipeIngredient.label}`);
   if (parsed.quantity === null || !parsed.unit) return null;
+  const parsedUnit = countUnit(parsed.unit) as string;
 
   let short: number | null = null;
-  const required = comparableAmount(parsed.quantity, parsed.unit);
+  const required = comparableAmount(parsed.quantity, parsedUnit);
   const have = comparableAmount(pantryItem.quantity, pantryItem.unit);
   if (required && have && required.base === have.base) {
     short = (required.amount - have.amount) / (have.amount / pantryItem.quantity);
-  } else if (parsed.unit.toLowerCase() === pantryItem.unit.toLowerCase()) {
+  } else if (parsedUnit.toLowerCase() === pantryItem.unit.toLowerCase()) {
     short = parsed.quantity - pantryItem.quantity;
   }
   if (short === null || short <= 0) return null;

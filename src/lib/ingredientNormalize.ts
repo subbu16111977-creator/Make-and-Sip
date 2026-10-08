@@ -166,6 +166,9 @@ function singularize(word: string): string | null {
   return null;
 }
 
+/** Words that turn one ingredient into a different product (garlic → garlic powder, tomato → tomato sauce, chicken → chicken stock). */
+const IDENTITY_CHANGING_WORDS = new Set(["powder", "paste", "sauce", "stock", "broth", "flakes", "juice", "extract", "essence", "seasoning", "puree", "purée", "syrup", "vinegar", "oil", "milk", "cream", "butter", "flour", "starch"]);
+
 interface SynonymResolution {
   entity: IngredientEntity | null;
   confidence: number;
@@ -203,6 +206,10 @@ export function resolveSynonym(phrase: string): SynonymResolution {
     }
   }
   if (best) {
+    // "garlic powder" must not quietly become "garlic": a word that changes what the product IS, which the matched
+    // synonym doesn't contain, means this is a different ingredient the registry doesn't know yet.
+    const changesIdentity = cleaned.split(/[\s-]+/).some((w) => IDENTITY_CHANGING_WORDS.has(w) && !best!.phrase.includes(w));
+    if (changesIdentity) return { entity: null, confidence: 0, ambiguous: false };
     return { entity: best.entity, confidence: 0.75, ambiguous: tiedIds.size > 1 };
   }
 
@@ -232,7 +239,15 @@ interface QuantityParse {
   rest: string;
 }
 
-function parseLeadingQuantity(text: string): QuantityParse {
+const UNICODE_FRACTIONS: Record<string, string> = { "¼": "1/4", "½": "1/2", "¾": "3/4", "⅓": "1/3", "⅔": "2/3", "⅛": "1/8", "⅜": "3/8", "⅝": "5/8", "⅞": "7/8" };
+
+/** "1½ cups" -> "1 1/2 cups", "¼ tsp" -> "1/4 tsp" — recipe text uses the single-character fractions. */
+function expandUnicodeFractions(text: string): string {
+  return text.replace(/(\d)?\s*([¼½¾⅓⅔⅛⅜⅝⅞])/g, (_m, whole: string | undefined, f: string) => `${whole ? `${whole} ` : ""}${UNICODE_FRACTIONS[f]}`);
+}
+
+function parseLeadingQuantity(rawText: string): QuantityParse {
+  const text = expandUnicodeFractions(rawText);
   const m = LEADING_QTY_RE.exec(text);
   if (!m) return { quantity: null, unit: null, rest: text.trim() };
 
@@ -252,6 +267,16 @@ function parseLeadingQuantity(text: string): QuantityParse {
 
   // Skip a parenthetical conversion right after the quantity/unit, e.g. "(700 g)".
   rest = rest.replace(/^\(([^)]*)\)\s*/, "").trim();
+
+  // "2 (14 oz) cans": the unit word comes after the parenthetical, and it is a count of cans, not of ounces.
+  if (unit === null) {
+    const late = rest.match(/^([a-zA-Z]+)\b\.?\s*/);
+    const canonical = late ? UNIT_WORDS[late[1].toLowerCase()] : undefined;
+    if (late && canonical) {
+      unit = canonical;
+      rest = rest.slice(late[0].length);
+    }
+  }
 
   if (unit === null && quantity !== null) {
     unit = quantity <= 1 ? "whole" : "piece";
@@ -335,6 +360,12 @@ function slugify(text: string): string {
   );
 }
 
+/** Just the leading amount of a recipe line ("1 1/2 cups (300 g)", "½ onion") — no ingredient lookup, so it is cheap to call for every dish. */
+export function parseAmount(amountText: string): { quantity: number | null; unit: string | null } {
+  const { quantity, unit } = parseLeadingQuantity(amountText.trim());
+  return { quantity, unit };
+}
+
 export function normalizeIngredient(rawText: string): NormalizedIngredient {
   const text = rawText.trim();
   const { quantity, unit, rest } = parseLeadingQuantity(text);
@@ -342,7 +373,9 @@ export function normalizeIngredient(rawText: string): NormalizedIngredient {
 
   // Try the cleaned name phrase, then fall back to the raw remainder (in
   // case noise/form stripping was too aggressive for an unusual phrase).
-  let resolution = resolveSynonym(namePhrase);
+  // A phrase that is itself a registered name ("whole wheat flour") wins over its noise-stripped form ("wheat flour").
+  const wholePhrase = exactPhraseIndex.get(rest.trim().toLowerCase());
+  let resolution: SynonymResolution = wholePhrase ? { entity: wholePhrase, confidence: 1, ambiguous: false } : resolveSynonym(namePhrase);
   if (!resolution.entity && namePhrase !== rest.trim()) {
     resolution = resolveSynonym(rest.split(",")[0]);
   }

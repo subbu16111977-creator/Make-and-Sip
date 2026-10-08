@@ -3,13 +3,12 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors, radii, spacing, type as typeScale, shadows } from "@/theme";
 import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, SavedIcon, ShoppingIcon, CheckIcon, HeartIcon } from "./icons";
-import { MatchBadge } from "./MatchBadge";
+import { CookabilityBadge } from "./CookabilityBadge";
+import { useCookability } from "@/lib/useCookability";
 import { RecipeImage } from "./RecipeImage";
 import { useSaved } from "@/context/SavedContext";
 import { useFavorites } from "@/context/FavoritesContext";
 import { useShopping } from "@/context/ShoppingContext";
-import { useEquipment } from "@/context/EquipmentContext";
-import { canMakeRecipe } from "@/lib/pantryMatch";
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -34,8 +33,8 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
   const saved = isSaved(recipe.id);
   const { isFavorite, toggleFavorite } = useFavorites();
   const favorite = isFavorite(recipe.id);
-  const { owned: ownedEquipment } = useEquipment();
-  const canMake = canMakeRecipe(recipe, haveCount, missing, ownedEquipment);
+  const cookability = useCookability(recipe);
+  const canMake = cookability?.category === "ready";
   const [justAdded, setJustAdded] = useState(false);
   const addedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -94,7 +93,7 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
         </Pressable>
 
         <View style={styles.badgeOverlay}>
-          <MatchBadge haveCount={haveCount} totalCount={totalCount} tone="dark" />
+          {cookability ? <CookabilityBadge cookability={cookability} /> : null}
         </View>
       </View>
       <Text style={styles.title} numberOfLines={2}>
