@@ -39,25 +39,25 @@ export function termsOfUse(): LegalDocument {
   }
   return {
     title: "Terms of Use",
-    intro: `Last updated ${LEGAL_UPDATED}. By using Mise you agree to these terms.`,
+    intro: `Last updated ${LEGAL_UPDATED}. By using Make & Sip you agree to these terms.`,
     sections: [
       {
         title: "Using the app",
         paragraphs: [
-          "Mise is for personal, non-commercial use. Don't copy, resell, reverse-engineer or misuse the app or its content. The recipes, text, logo and design belong to the app's owner or their licensors; photos belong to their photographers.",
+          "Make & Sip is for personal, non-commercial use. Don't copy, resell, reverse-engineer or misuse the app or its content. The recipes, text, logo and design belong to the app's owner or their licensors; photos belong to their photographers.",
         ],
       },
       {
         title: "Food safety and allergies",
         paragraphs: [
           "Recipes are general cooking inspiration. You are responsible for checking ingredients for allergens and for your own dietary needs. Diet and allergen tags (such as Vegan or Gluten-Free) are a convenience and may be incomplete or wrong, so always check labels.",
-          "Cook meat, poultry, eggs and seafood thoroughly, store food safely, and take care around heat and sharp tools. Expiry dates in your pantry are estimates you enter, not a food-safety guarantee. Mise does not give medical or nutritional advice.",
+          "Cook meat, poultry, eggs and seafood thoroughly, store food safely, and take care around heat and sharp tools. Expiry dates in your pantry are estimates you enter, not a food-safety guarantee. Make & Sip does not give medical or nutritional advice.",
         ],
       },
       {
-        title: "Mise Premium, subscriptions and the free trial",
+        title: "Make & Sip Premium, subscriptions and the free trial",
         paragraphs: [
-          "Mise needs an active plan: Monthly or Yearly (both renew automatically) or Lifetime (one payment, no renewal).",
+          "Make & Sip needs an active plan: Monthly or Yearly (both renew automatically) or Lifetime (one payment, no renewal).",
           "New subscribers may get a 7-day free trial, once per Google account. If you don't cancel before the trial ends, your plan starts and you are charged the plan price. The trial doesn't apply to Lifetime.",
           "Payment is charged to your Google Play account. Subscriptions renew until cancelled; cancel at least 24 hours before the end of the current period in Google Play under Payments & subscriptions. After you cancel you keep access until the end of the period you've paid for.",
           "If a renewal payment fails, Google Play may retry for a short time and you may keep access meanwhile. If it isn't resolved, access ends. Refunds are handled by Google Play under its policies.",
@@ -83,12 +83,12 @@ export function privacyPolicy(): LegalDocument {
   const contact = contactLine();
   return {
     title: "Privacy Policy",
-    intro: `Last updated ${LEGAL_UPDATED}. This explains what information Mise handles.`,
+    intro: `Last updated ${LEGAL_UPDATED}. This explains what information Make & Sip handles.`,
     sections: [
       {
         title: "The short version",
         paragraphs: [
-          "Mise has no accounts and no sign-in. Your pantry, shopping list, saved and favourite dishes, equipment and optional profile stay on your device; we don't receive them. We don't show ads and we don't use analytics or tracking tools.",
+          "Make & Sip has no accounts and no sign-in. Your pantry, shopping list, saved and favourite dishes, equipment and optional profile stay on your device; we don't receive them. We don't show ads and we don't use analytics or tracking tools.",
         ],
       },
       {
@@ -114,7 +114,7 @@ export function privacyPolicy(): LegalDocument {
       },
       {
         title: "Children",
-        paragraphs: ["Mise isn't directed at children under 13, and we don't knowingly collect information from them."],
+        paragraphs: ["Make & Sip isn't directed at children under 13, and we don't knowingly collect information from them."],
       },
       {
         title: "Your choices",

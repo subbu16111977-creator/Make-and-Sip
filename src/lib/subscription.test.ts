@@ -151,14 +151,14 @@ describe("reminders (3, 2 and 1 days before the term ends)", () => {
   it("renewals get renewal wording", () => {
     const sub = startSubscription("yearly", start);
     const r = upcomingReminders(sub, at(2026, 12, 1)).find((x) => x.termEnd.getFullYear() === 2027)!;
-    expect(r.title).toBe("Mise Premium renews in 3 days");
+    expect(r.title).toBe("Make & Sip Premium renews in 3 days");
     expect(r.body).toBe(`Your yearly plan renews on ${formatDate(at(2027, 10, 14))} for $29.99 per year.`);
   });
   it("a cancelled plan only reminds about the end of access", () => {
     const sub = cancel(startSubscription("monthly", start), at(2026, 11, 1));
     const r = upcomingReminders(sub, at(2026, 11, 2));
     expect(r).toHaveLength(3);
-    expect(r[0].title).toBe("Your Mise Premium ends in 3 days");
+    expect(r[0].title).toBe("Your Make & Sip Premium ends in 3 days");
     expect(r.every((x) => x.termEnd.getDate() === 14 && x.termEnd.getMonth() === 10)).toBe(true);
   });
   it("skips reminders that are already in the past", () => {
@@ -376,7 +376,7 @@ describe("a failed renewal payment", () => {
     const r = upcomingReminders(sub, at(2026, 11, 14, 13));
     expect(r).toHaveLength(3);
     expect(r.map((x) => x.at.getDate())).toEqual([18, 19, 20]);
-    expect(r[0].title).toBe("Your Mise Premium access ends in 3 days");
+    expect(r[0].title).toBe("Your Make & Sip Premium access ends in 3 days");
     expect(r[0].body).toContain("couldn't charge your payment method");
   });
   it("cannot happen to lifetime or a cancelled plan, and can't be cancelled while failing", () => {

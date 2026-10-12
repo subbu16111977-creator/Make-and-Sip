@@ -1,11 +1,11 @@
-# Mise Privacy Policy
+# Make & Sip Privacy Policy
 
 _Draft — have it reviewed before publishing, and fill in the bracketed parts. Last updated: [DATE]._
 
-Mise ("the app") helps you keep a pantry and find dishes to cook. This policy explains what information the app handles.
+Make & Sip ("the app") helps you keep a pantry and find dishes to cook. This policy explains what information the app handles.
 
 ## The short version
-- Mise has **no accounts and no sign-in**.
+- Make & Sip has **no accounts and no sign-in**.
 - Your pantry, shopping list, saved and favourite dishes, equipment, and optional profile stay **on your device**. We do not receive them.
 - We do not show ads and we do not use analytics or tracking tools.
 
@@ -22,7 +22,7 @@ If you allow notifications, the app schedules **local** reminders on your device
 Dish photos are loaded over the internet from image providers when you use the app. Those providers may see your device's IP address, as with any web image.
 
 ## Children
-Mise is not directed at children under 13 and we do not knowingly collect information from them.
+Make & Sip is not directed at children under 13 and we do not knowingly collect information from them.
 
 ## Your choices
 You can delete all app data by resetting it in the app or uninstalling the app. To manage or cancel a subscription, use Google Play → Payments & subscriptions.

@@ -1,7 +1,7 @@
 import { useWindowDimensions } from "react-native";
 
 /**
- * Mise is built for phones. On wide screens (a computer browser, a tablet) the
+ * Make & Sip is built for phones. On wide screens (a computer browser, a tablet) the
  * app is shown as a centred phone-width column, so every layout calculation has
  * to use that column's width rather than the whole window's.
  */

@@ -47,7 +47,7 @@ export function AgreementScreen() {
         <Text style={styles.title} accessibilityRole="header">
           Terms of Use and Privacy Policy
         </Text>
-        <Text style={styles.lead}>Please read these, then tap I agree at the bottom to start using Mise.</Text>
+        <Text style={styles.lead}>Please read these, then tap I agree at the bottom to start using Make & Sip.</Text>
         <Document doc={termsOfUse()} />
         <Document doc={privacyPolicy()} />
       </ScrollView>
@@ -55,7 +55,7 @@ export function AgreementScreen() {
       <View style={styles.footer}>
         <Button label="I agree" icon="none" onPress={acceptTerms} fullWidth />
         <Text style={styles.fineprint}>By tapping I agree, you accept the Terms of Use and Privacy Policy above.</Text>
-        {declined ? <Text style={styles.declined}>Mise can only be used once you agree. You can close the app now, or tap I agree to continue.</Text> : null}
+        {declined ? <Text style={styles.declined}>Make & Sip can only be used once you agree. You can close the app now, or tap I agree to continue.</Text> : null}
         <Pressable onPress={decline} accessibilityRole="button" accessibilityLabel="I don't agree" style={styles.decline}>
           <Text style={styles.declineText}>I don&apos;t agree</Text>
         </Pressable>

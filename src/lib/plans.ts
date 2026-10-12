@@ -1,5 +1,5 @@
 /**
- * Mise Premium plans, as shown on the paywall page. Prices here are for DISPLAY only:
+ * Make & Sip Premium plans, as shown on the paywall page. Prices here are for DISPLAY only:
  * once real in-app purchases are connected, the App Store and Google Play supply the
  * live (and localised) price and decide what is charged.
  *
@@ -87,7 +87,7 @@ export function chargeNotice(plan: Plan, withTrial: boolean): string {
 export function trialDescription(then: Plan): string {
   const unit = then.period === "year" ? "year" : "month";
   return (
-    `Try everything in Mise Premium free for ${TRIAL_DAYS} days. ` +
+    `Try everything in Make & Sip Premium free for ${TRIAL_DAYS} days. ` +
     `After the ${TRIAL_DAYS} days, a charge of ${formatPrice(then.price)} per ${unit} is added automatically, ` +
     `unless you cancel before the trial ends.`
   );

@@ -135,7 +135,7 @@ export default function ProfileScreen() {
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Mise Premium</Text>
+        <Text style={styles.sectionTitle}>Make & Sip Premium</Text>
         {planSummary ? (
           <Pressable onPress={() => router.push("/subscription")} accessibilityRole="button" accessibilityLabel="Open your subscription" style={styles.row}>
             <Text style={styles.rowText}>
@@ -144,7 +144,7 @@ export default function ProfileScreen() {
             <Text style={styles.sub}>{planSummary.headline}</Text>
           </Pressable>
         ) : (
-          <Pressable onPress={() => router.push("/paywall")} accessibilityRole="button" accessibilityLabel="See Mise Premium plans" style={styles.row}>
+          <Pressable onPress={() => router.push("/paywall")} accessibilityRole="button" accessibilityLabel="See Make & Sip Premium plans" style={styles.row}>
             <Text style={styles.rowText}>See plans and pricing</Text>
           </Pressable>
         )}

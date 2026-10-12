@@ -1,7 +1,7 @@
 import { TRIAL_DAYS, formatPrice, getPlan, type PlanId } from "@/lib/plans";
 
 /**
- * A Mise Premium subscription as the app understands it: which plan, when it began, whether it
+ * A Make & Sip Premium subscription as the app understands it: which plan, when it began, whether it
  * began with the free trial, and — once cancelled — the date access ends. Everything the
  * Subscription screen shows (status, renewal or end date, reminders) is worked out from this
  * record and "now", so it is plain logic that can be tested.
@@ -190,7 +190,7 @@ export function summarize(sub: Subscription, now: Date): Summary {
         badge: "Payment issue",
         date: end,
         headline: `We couldn't charge your payment method. You still have access until ${end ? formatDate(end) : ""}.`,
-        detail: "Update your payment method in your App Store or Google Play settings to keep Mise Premium.",
+        detail: "Update your payment method in your App Store or Google Play settings to keep Make & Sip Premium.",
       };
     case "cancelled":
       return {
@@ -208,7 +208,7 @@ export function summarize(sub: Subscription, now: Date): Summary {
         badge: "Ended",
         date: end,
         headline: `Your subscription ended on ${end ? formatDate(end) : ""}.`,
-        detail: "Choose a plan to get Mise Premium back.",
+        detail: "Choose a plan to get Make & Sip Premium back.",
       };
   }
 }
@@ -243,13 +243,13 @@ function reminderText(sub: Subscription, termEnd: Date, daysBefore: number): { t
   const when = formatDate(termEnd);
   if (sub.billingFailedAt) {
     return {
-      title: `Your Mise Premium access ends in ${dayWord(daysBefore)}`,
+      title: `Your Make & Sip Premium access ends in ${dayWord(daysBefore)}`,
       body: `We couldn't charge your payment method. Update it before ${when} to keep your plan.`,
     };
   }
   if (sub.cancelledEndsAt) {
     return {
-      title: `Your Mise Premium ends in ${dayWord(daysBefore)}`,
+      title: `Your Make & Sip Premium ends in ${dayWord(daysBefore)}`,
       body: `Your ${plan.title.toLowerCase()} plan ends on ${when}. Resubscribe in the app to keep going.`,
     };
   }
@@ -261,7 +261,7 @@ function reminderText(sub: Subscription, termEnd: Date, daysBefore: number): { t
     };
   }
   return {
-    title: `Mise Premium renews in ${dayWord(daysBefore)}`,
+    title: `Make & Sip Premium renews in ${dayWord(daysBefore)}`,
     body: `Your ${plan.title.toLowerCase()} plan renews on ${when} for ${price} per ${unit}.`,
   };
 }

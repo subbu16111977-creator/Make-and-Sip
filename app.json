@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Mise",
+    "name": "Make & Sip",
     "slug": "mise",
     "scheme": "mise",
     "version": "1.0.0",
@@ -43,7 +43,7 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Mise uses your photo library only when you choose a profile photo. The photo stays on this device.",
+          "photosPermission": "Make & Sip uses your photo library only when you choose a profile photo. The photo stays on this device.",
           "cameraPermission": false,
           "microphonePermission": false
         }

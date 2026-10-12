@@ -17,7 +17,7 @@ export interface StoreEntitlement {
   billingIssueDetectedAt: string | null;
 }
 
-/** Works out which Mise plan a store product is, from its id (e.g. "mise_premium:yearly" or "lifetime"). */
+/** Works out which Make & Sip plan a store product is, from its id (e.g. "mise_premium:yearly" or "lifetime"). */
 export function planFromProductId(productId: string): PlanId | null {
   const id = productId.toLowerCase();
   if (id.includes("lifetime")) return "lifetime";

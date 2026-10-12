@@ -16,7 +16,7 @@ interface LogoProps {
   style?: StyleProp<ImageStyle>;
 }
 
-/** The Mise logo (supplied artwork, on a transparent background so it sits on the app's dark surfaces). */
+/** The Make & Sip logo (supplied artwork, on a transparent background so it sits on the app's dark surfaces). */
 export function Logo({ variant = "full", height, style }: LogoProps) {
   const ratio = variant === "full" ? FULL_RATIO : MARK_RATIO;
   return (
@@ -26,7 +26,7 @@ export function Logo({ variant = "full", height, style }: LogoProps) {
       resizeMode="contain"
       accessible
       accessibilityRole="image"
-      accessibilityLabel="Mise logo"
+      accessibilityLabel="Make & Sip logo"
     />
   );
 }

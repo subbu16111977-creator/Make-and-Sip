@@ -139,7 +139,7 @@ function TrialCard({
 }
 
 /**
- * The Mise Premium paywall. This is the page design only: choosing a plan and pressing the button
+ * The Make & Sip Premium paywall. This is the page design only: choosing a plan and pressing the button
  * show a preview notice and never start a purchase. There is no free plan, so once real purchases
  * are connected this page will sit between the tutorial and the app.
  */

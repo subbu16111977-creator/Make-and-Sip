@@ -1,7 +1,7 @@
 import { Platform } from "react-native";
 
 /**
- * Mise — typographic system
+ * Make & Sip — typographic system
  *
  * Libre Caslon Display (serif) carries editorial moments: recipe
  * titles, chapter headings, quotes — a single regular weight, set

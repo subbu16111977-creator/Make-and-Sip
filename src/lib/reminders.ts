@@ -54,7 +54,7 @@ export async function ensureReminderPermission(): Promise<boolean> {
   }
 }
 
-/** Replaces any scheduled Mise reminders with the ones the subscription needs (none for no plan or lifetime). */
+/** Replaces any scheduled Make & Sip reminders with the ones the subscription needs (none for no plan or lifetime). */
 export async function syncReminders(subscription: Subscription | null, now: Date = new Date()): Promise<void> {
   if (Platform.OS === "web") return;
   try {

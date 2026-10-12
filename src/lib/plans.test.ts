@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_PLAN, PLANS, TRIAL_DAYS, TRIAL_ONCE_NOTE, TRIAL_USED_NOTICE, trialDescription, chargeNotice, ctaLabel, formatPrice, getPlan, hasTrial, isSubscription, perMonth, priceLine, yearlySavingsPercent } from "./plans";
 
-describe("Mise Premium plans", () => {
+describe("Make & Sip Premium plans", () => {
   it("has exactly monthly, yearly and lifetime, with the agreed prices", () => {
     expect(PLANS.map((p) => p.id).sort()).toEqual(["lifetime", "monthly", "yearly"]);
     expect(getPlan("monthly").price).toBe(4.99);

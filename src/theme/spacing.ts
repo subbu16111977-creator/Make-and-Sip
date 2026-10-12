@@ -1,4 +1,4 @@
-/** Mise — spacing & layout scale (4px base unit, editorial-generous). */
+/** Make & Sip — spacing & layout scale (4px base unit, editorial-generous). */
 export const spacing = {
   none: 0,
   xs: 4,

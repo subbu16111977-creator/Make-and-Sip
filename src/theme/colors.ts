@@ -1,5 +1,5 @@
 /**
- * Mise — color tokens
+ * Make & Sip — color tokens
  *
  * "Midnight Kitchen": a moody, late-night-cookbook palette. Near-black
  * espresso-brown surfaces carry the page; warm amber-gold is the one

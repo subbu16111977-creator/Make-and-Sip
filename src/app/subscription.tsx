@@ -68,7 +68,7 @@ export default function SubscriptionScreen() {
         {header}
         <View style={styles.empty}>
           <Text style={styles.emptyTitle}>No plan yet</Text>
-          <Text style={styles.emptyBody}>Choose a Mise Premium plan to get started. Every plan begins with a 7-day free trial, except Lifetime.</Text>
+          <Text style={styles.emptyBody}>Choose a Make & Sip Premium plan to get started. Every plan begins with a 7-day free trial, except Lifetime.</Text>
           <Pressable onPress={() => router.replace("/paywall")} accessibilityRole="button" accessibilityLabel="See plans" style={styles.primary}>
             <Text style={styles.primaryText}>See plans</Text>
           </Pressable>
@@ -98,7 +98,7 @@ export default function SubscriptionScreen() {
           <View style={styles.cardHead}>
             <View style={styles.cardHeadText}>
               <Text style={styles.eyebrow}>CURRENT PLAN</Text>
-              <Text style={styles.planName}>Mise Premium · {summary.planName}</Text>
+              <Text style={styles.planName}>Make & Sip Premium · {summary.planName}</Text>
             </View>
             <View style={[styles.badge, { backgroundColor: BADGE_COLOR[status] }]}>
               <Text style={styles.badgeText}>{summary.badge}</Text>
@@ -127,7 +127,7 @@ export default function SubscriptionScreen() {
             ))}
             {permission === "denied" ? (
               <Pressable onPress={() => void Linking.openSettings()} accessibilityRole="button" accessibilityLabel="Open settings to allow notifications" style={styles.permWarn}>
-                <Text style={styles.permWarnText}>Notifications are turned off for Mise, so these reminders can’t reach you. Tap to open settings and turn them on.</Text>
+                <Text style={styles.permWarnText}>Notifications are turned off for Make & Sip, so these reminders can’t reach you. Tap to open settings and turn them on.</Text>
               </Pressable>
             ) : (
               <Text style={styles.footnote}>
