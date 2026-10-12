@@ -203,6 +203,11 @@ export default function RecipeDetailScreen() {
                   {cookability.equipmentMissing.length ? `Needs ${cookability.equipmentMissing.map((t) => t.toLowerCase()).join(", ")}` : "You have the equipment"}
                 </Text>
               ) : null}
+              {cookability.equipmentOptional.length > 0 ? (
+                <Text style={styles.cookStatSoft}>
+                  Optional equipment: {cookability.equipmentOptionalOwned.length} of {cookability.equipmentOptional.length} on hand
+                </Text>
+              ) : null}
               {cookability.optionalHave + cookability.optionalMissing > 0 ? (
                 <Text style={styles.cookStatSoft}>
                   Optional: {cookability.optionalHave} on hand, {cookability.optionalMissing} not
@@ -269,6 +274,29 @@ export default function RecipeDetailScreen() {
                     </View>
                     <Text style={styles.ingredientLabel}>{tag}</Text>
                     {!owned && <Text style={styles.equipmentMissingTag}>missing — you&apos;ll need to get this</Text>}
+                  </View>
+                );
+              })}
+            </View>
+          )}
+
+          {(recipe.optionalEquipment?.length ?? 0) > 0 && (
+            <View style={styles.ingredientGroup}>
+              <Text style={styles.ingredientGroupLabel}>Optional equipment</Text>
+              {recipe.optionalEquipment?.map(({ tag, without }) => {
+                const owned = isEquipmentOwned(tag);
+                return (
+                  <View key={tag} style={styles.ingredientRow}>
+                    <View style={[styles.ingredientMark, owned ? styles.ingredientMarkHave : styles.ingredientMarkOptional]}>
+                      {owned && <CheckIcon size={10} color={colors.cream} strokeWidth={2.8} />}
+                    </View>
+                    <View style={styles.ingredientLabelStack}>
+                      <Text style={styles.ingredientLabel}>
+                        {tag}
+                        <Text style={styles.optionalTag}> · optional</Text>
+                      </Text>
+                      {!owned && without ? <Text style={styles.uncheckedText}>Without it: {without}</Text> : null}
+                    </View>
                   </View>
                 );
               })}
@@ -528,6 +556,10 @@ const styles = StyleSheet.create({
   },
   ingredientMarkHave: {
     backgroundColor: colors.sageOlive,
+  },
+  ingredientMarkOptional: {
+    borderWidth: 1.5,
+    borderColor: colors.hairlineStrong,
   },
   ingredientMarkMissing: {
     borderWidth: 1.5,

@@ -39,7 +39,9 @@ Until then every drink is non-alcoholic and the UI should not imply otherwise.
   scoop, part, ice cube) are handled explicitly; incomparable units are "quantity unknown", never guessed. Servings
   scale required amounts without ever editing the recipe.
 - **Equipment matters.** A drink needing equipment the user does not own (blender, shaker, espresso machine, French
-  press, kettle, milk frother …) is never "Ready to make"; show the gap clearly.
+  press, kettle, milk frother …) is never "Ready to make"; show the gap clearly. Equipment can also be **optional**
+  per drink (`optionalEquipment`, e.g. an espresso machine or a shaker, with a one-line "without it" tip): it never
+  blocks "Ready to make" or lowers the score, and a tag is never both required and optional.
 - **Result levels** — always these four, with thresholds kept as named constants in one place:
   - **Ready to make**
   - **Almost ready**

@@ -139,6 +139,21 @@ describe("score and categories", () => {
     expect(c.equipmentMissing).toEqual(["Espresso Machine"]);
     expect(computeCookability(dish([ing("onion", "1")], { equipment: ["Espresso Machine"] }), pantryAll, ["Espresso Machine"]).category).toBe("ready");
   });
+  it("optional equipment never blocks 'ready' or lowers the score", () => {
+    const withOptional = dish([ing("onion", "1")], { optionalEquipment: [{ tag: "Shaker", without: "Stir hard in a jar." }] });
+    const c = computeCookability(withOptional, pantryAll, []);
+    expect(c.category).toBe("ready");
+    expect(c.percent).toBe(100);
+    expect(c.equipmentMissing).toEqual([]);
+    expect(c.equipmentOptional).toEqual(["Shaker"]);
+    expect(c.equipmentOptionalOwned).toEqual([]);
+    expect(computeCookability(withOptional, pantryAll, ["Shaker"]).equipmentOptionalOwned).toEqual(["Shaker"]);
+  });
+  it("required equipment still blocks 'ready' even when other equipment is optional", () => {
+    const d = dish([ing("onion", "1")], { equipment: ["Blender"], optionalEquipment: [{ tag: "Shaker" }] });
+    expect(computeCookability(d, pantryAll, ["Shaker"]).category).toBe("almost");
+    expect(computeCookability(d, pantryAll, ["Blender"]).category).toBe("ready");
+  });
   it("low match below 40%", () => {
     const c = computeCookability(dish([ing("chicken-breast", "500 g"), ing("rice", "1 cup"), ing("onion", "1")]), [item("onion", 1, "pcs")], []);
     expect(c.category).toBe("low");

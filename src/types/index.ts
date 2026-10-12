@@ -134,6 +134,12 @@ export type TasteTag =
   | "Sweet"
   | "Herby";
 
+export interface OptionalEquipment {
+  tag: EquipmentTag;
+  /** What to do without it, in a short sentence, e.g. "Shake hard in a lidded jar." */
+  without?: string;
+}
+
 export interface RecipeIngredient {
   /** Matches a PantryItem id when the user could plausibly have it on hand. */
   pantryId: string;
@@ -163,8 +169,14 @@ export interface Recipe {
   image: string;
   imageAttribution?: string;
   ingredients: RecipeIngredient[];
-  /** Specialty appliances this dish needs, beyond a basic stovetop. Empty = always makeable, equipment-wise. */
+  /** Equipment this drink can't be made without. Empty = always makeable, equipment-wise. */
   equipment: EquipmentTag[];
+  /**
+   * Equipment that makes the drink better or easier but isn't needed (an espresso machine for a latte that works
+   * with strong moka-pot coffee, a shaker you can swap for a jar). Never blocks "Ready to make" and never lowers the
+   * score. A tag never appears in both `equipment` and `optionalEquipment`.
+   */
+  optionalEquipment?: OptionalEquipment[];
   steps: string[];
   /** Cultural/historical context and any other free-text detail that doesn't fit a structured field. */
   notes?: string;

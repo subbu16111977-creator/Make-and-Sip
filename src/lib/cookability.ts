@@ -307,6 +307,9 @@ export interface Cookability {
   optionalMissing: number;
   equipmentNeeded: EquipmentTag[];
   equipmentMissing: EquipmentTag[];
+  /** Equipment the drink is better with, and which of it the person owns. Never affects the score or the category. */
+  equipmentOptional: EquipmentTag[];
+  equipmentOptionalOwned: EquipmentTag[];
   ingredients: IngredientCookability[];
   /** A one-line plain-English summary for the card/detail screen. */
   summary: string;
@@ -334,6 +337,7 @@ export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEq
   const importantProblems = problems.filter((i) => i.weight >= 2).length;
 
   const equipmentMissing = recipe.equipment.filter((t) => !ownedEquipment.includes(t));
+  const equipmentOptional = (recipe.optionalEquipment ?? []).map((o) => o.tag).filter((t) => !recipe.equipment.includes(t));
 
   let category: CookabilityCategory;
   if (problems.length === 0 && equipmentMissing.length === 0) category = "ready";
@@ -371,6 +375,8 @@ export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEq
     optionalMissing: optional.filter((i) => i.match === "missing").length,
     equipmentNeeded: recipe.equipment,
     equipmentMissing,
+    equipmentOptional,
+    equipmentOptionalOwned: equipmentOptional.filter((t) => ownedEquipment.includes(t)),
     ingredients: all,
     summary,
   };
