@@ -7,7 +7,7 @@ export interface IconProps {
   strokeWidth?: number;
 }
 
-const defaults = { size: 24, color: "#F4EEE0", strokeWidth: 1.6 };
+const defaults = { size: 24, color: "#F6ECDD", strokeWidth: 1.6 };
 
 /** A calm house outline — Home tab. */
 export function HomeIcon({ size = defaults.size, color = defaults.color, strokeWidth = defaults.strokeWidth }: IconProps) {

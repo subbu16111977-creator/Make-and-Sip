@@ -3,28 +3,27 @@ import { Platform } from "react-native";
 /**
  * Make & Sip — typographic system
  *
- * Libre Caslon Display (serif) carries editorial moments: recipe
- * titles, chapter headings, quotes — a single regular weight, set
- * large. Work Sans (sans) carries everything functional: ingredients,
- * metadata, controls, body copy. Two families only.
+ * Bricolage Grotesque carries the voice: drink names, headings, big numbers — warm, slightly quirky, confident,
+ * with the compact punch of a gig poster rather than a cookbook. DM Sans carries everything functional:
+ * ingredients, metadata, controls, body copy — friendly geometric shapes that stay calm at small sizes.
+ * Two families only.
  */
 export const fontFamily = {
-  serif: "LibreCaslonDisplay_400Regular",
-  serifItalic: "LibreCaslonDisplay_400Regular",
-  serifRegular: "LibreCaslonDisplay_400Regular",
-  serifBold: "LibreCaslonDisplay_400Regular",
-  sans: "WorkSans_400Regular",
-  sansMedium: "WorkSans_500Medium",
-  sansSemiBold: "WorkSans_600SemiBold",
-  sansBold: "WorkSans_700Bold",
+  display: "BricolageGrotesque_600SemiBold",
+  displayMedium: "BricolageGrotesque_500Medium",
+  sans: "DMSans_400Regular",
+  sansMedium: "DMSans_500Medium",
+  sansSemiBold: "DMSans_600SemiBold",
+  sansBold: "DMSans_700Bold",
 } as const;
 
 export const fontsToLoad = {
-  LibreCaslonDisplay_400Regular: require("@expo-google-fonts/libre-caslon-display/400Regular/LibreCaslonDisplay_400Regular.ttf"),
-  WorkSans_400Regular: require("@expo-google-fonts/work-sans/400Regular/WorkSans_400Regular.ttf"),
-  WorkSans_500Medium: require("@expo-google-fonts/work-sans/500Medium/WorkSans_500Medium.ttf"),
-  WorkSans_600SemiBold: require("@expo-google-fonts/work-sans/600SemiBold/WorkSans_600SemiBold.ttf"),
-  WorkSans_700Bold: require("@expo-google-fonts/work-sans/700Bold/WorkSans_700Bold.ttf"),
+  BricolageGrotesque_500Medium: require("@expo-google-fonts/bricolage-grotesque/500Medium/BricolageGrotesque_500Medium.ttf"),
+  BricolageGrotesque_600SemiBold: require("@expo-google-fonts/bricolage-grotesque/600SemiBold/BricolageGrotesque_600SemiBold.ttf"),
+  DMSans_400Regular: require("@expo-google-fonts/dm-sans/400Regular/DMSans_400Regular.ttf"),
+  DMSans_500Medium: require("@expo-google-fonts/dm-sans/500Medium/DMSans_500Medium.ttf"),
+  DMSans_600SemiBold: require("@expo-google-fonts/dm-sans/600SemiBold/DMSans_600SemiBold.ttf"),
+  DMSans_700Bold: require("@expo-google-fonts/dm-sans/700Bold/DMSans_700Bold.ttf"),
 };
 
 type TextPreset = {
@@ -36,23 +35,23 @@ type TextPreset = {
 };
 
 /**
- * Type scale. "display"/"headline"/"title" are serif editorial
- * moments. Everything else is sans and functional.
+ * Type scale. "display"/"headline"/"title" use the display face; everything else is the functional sans.
+ * Sizes and line heights are unchanged from the previous theme so no layout moves.
  */
 export const type: Record<string, TextPreset> = {
-  // Editorial serif
-  display: { fontFamily: fontFamily.serif, fontSize: 34, lineHeight: 40, letterSpacing: -0.4 },
-  displayItalic: { fontFamily: fontFamily.serifItalic, fontSize: 22, lineHeight: 28 },
-  headline: { fontFamily: fontFamily.serif, fontSize: 26, lineHeight: 32, letterSpacing: -0.2 },
-  title: { fontFamily: fontFamily.serif, fontSize: 20, lineHeight: 26 },
-  titleSmall: { fontFamily: fontFamily.serif, fontSize: 17, lineHeight: 22 },
+  // Display face
+  display: { fontFamily: fontFamily.display, fontSize: 34, lineHeight: 40, letterSpacing: -0.7 },
+  displayItalic: { fontFamily: fontFamily.displayMedium, fontSize: 22, lineHeight: 28, letterSpacing: -0.3 },
+  headline: { fontFamily: fontFamily.display, fontSize: 26, lineHeight: 32, letterSpacing: -0.5 },
+  title: { fontFamily: fontFamily.display, fontSize: 20, lineHeight: 26, letterSpacing: -0.3 },
+  titleSmall: { fontFamily: fontFamily.display, fontSize: 17, lineHeight: 22, letterSpacing: -0.2 },
 
   // Functional sans
   eyebrow: {
-    fontFamily: fontFamily.sansSemiBold,
+    fontFamily: fontFamily.sansBold,
     fontSize: 12,
     lineHeight: 16,
-    letterSpacing: 1.6,
+    letterSpacing: 1.5,
     textTransform: "uppercase",
   },
   body: { fontFamily: fontFamily.sans, fontSize: 16, lineHeight: 23 },
@@ -66,6 +65,6 @@ export const type: Record<string, TextPreset> = {
 
 /** Web fallback stacks so the design still reads before fonts hydrate. */
 export const fallbackFamily = Platform.select({
-  web: { serif: "Georgia, 'Times New Roman', serif", sans: "system-ui, sans-serif" },
-  default: { serif: undefined, sans: undefined },
+  web: { display: "system-ui, sans-serif", sans: "system-ui, sans-serif" },
+  default: { display: undefined, sans: undefined },
 });

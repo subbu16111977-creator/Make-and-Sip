@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { colors, radii, spacing, type as typeScale, shadows } from "@/theme";
+import { colors, radii, spacing, type as typeScale, shadows, shade } from "@/theme";
 import { RecipeImage } from "./RecipeImage";
 
 interface CuisineTileProps {
@@ -17,7 +17,7 @@ export function CuisineTile({ cuisine, count, image, onPress }: CuisineTileProps
     <Pressable onPress={onPress} style={styles.wrap}>
       <RecipeImage uri={image} title={cuisine} style={StyleSheet.absoluteFill} />
       <LinearGradient
-        colors={["rgba(11,10,8,0.05)", "rgba(11,10,8,0.85)"]}
+        colors={[shade(0.05), shade(0.85)]}
         locations={[0.35, 1]}
         style={StyleSheet.absoluteFill}
       />

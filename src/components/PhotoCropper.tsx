@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, Image, Modal, Pressable, PanResponder, Platform, StyleSheet } from "react-native";
 import { useAppDimensions } from "@/lib/useAppDimensions";
-import { colors, radii, spacing, type as typeScale } from "@/theme";
+import { colors, radii, spacing, type as typeScale, shade } from "@/theme";
 import { DEFAULT_CROP, MAX_ZOOM, MIN_ZOOM, clampCrop, layoutFor, withDrag, withZoom, type PhotoCrop } from "@/lib/photoCrop";
 
 interface PhotoCropperProps {
@@ -148,7 +148,7 @@ function CropperBody({ visible, uri, aspect, initialCrop, onCancel, onDone }: Ph
                 height: side - hole * 2 + ring * 2,
                 borderRadius: (side - hole * 2 + ring * 2) / 2,
                 borderWidth: ring,
-                borderColor: "rgba(11,10,8,0.72)",
+                borderColor: shade(0.72),
               }}
             />
             <View
@@ -205,7 +205,7 @@ function CropperBody({ visible, uri, aspect, initialCrop, onCancel, onDone }: Ph
 }
 
 const styles = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: "rgba(11,10,8,0.85)", alignItems: "center", justifyContent: "center", padding: spacing.lg },
+  backdrop: { flex: 1, backgroundColor: shade(0.85), alignItems: "center", justifyContent: "center", padding: spacing.lg },
   panel: { width: "100%", maxWidth: 420, backgroundColor: colors.paper, borderRadius: radii["2xl"], padding: spacing["2xl"], gap: spacing.md, alignItems: "center", borderWidth: StyleSheet.hairlineWidth, borderColor: colors.hairlineStrong },
   title: { ...typeScale.headline, fontSize: 22, color: colors.espresso },
   help: { ...typeScale.bodySmall, color: colors.espressoMuted, textAlign: "center" },

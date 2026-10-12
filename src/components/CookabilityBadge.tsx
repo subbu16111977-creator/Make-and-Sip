@@ -5,10 +5,10 @@ import type { Cookability, CookabilityCategory } from "@/lib/cookability";
 import { CheckIcon } from "./icons";
 
 const TINT: Record<CookabilityCategory, string> = {
-  ready: "rgba(110, 154, 91, 0.92)",
-  almost: "rgba(227, 162, 60, 0.92)",
-  partial: "rgba(60, 54, 44, 0.88)",
-  low: "rgba(60, 54, 44, 0.88)",
+  ready: "rgba(125, 165, 103, 0.94)",
+  almost: "rgba(240, 162, 79, 0.94)",
+  partial: "rgba(44, 35, 30, 0.9)",
+  low: "rgba(44, 35, 30, 0.9)",
 };
 
 /** "Ready · 100%" / "82% · Almost ready" — the dish's Cookability at a glance, used on cards and the dish page. */
@@ -27,5 +27,5 @@ export function CookabilityBadge({ cookability }: { cookability: Cookability }) 
 const styles = StyleSheet.create({
   wrap: { flexDirection: "row", alignItems: "center", gap: 5, alignSelf: "flex-start", paddingVertical: 5, paddingHorizontal: spacing.sm, borderRadius: radii.sm },
   text: { ...typeScale.caption, fontFamily: typeScale.meta.fontFamily, fontSize: 12, color: colors.white },
-  textDark: { color: "#1B1710" },
+  textDark: { color: colors.cream },
 });

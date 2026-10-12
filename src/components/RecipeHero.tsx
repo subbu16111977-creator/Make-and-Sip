@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { LinearGradient } from "expo-linear-gradient";
-import { colors, radii, spacing, type as typeScale, layout, shadows } from "@/theme";
+import { colors, radii, spacing, type as typeScale, layout, shadows, shade } from "@/theme";
 import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, LeafIcon, SavedIcon, ShoppingIcon, CheckIcon } from "./icons";
 import { MatchBadge } from "./MatchBadge";
@@ -74,7 +74,7 @@ export function RecipeHero({
       <Pressable onPress={onPress} style={StyleSheet.absoluteFill}>
         <RecipeImage uri={recipe.image} title={recipe.title} style={StyleSheet.absoluteFill} transition={200} />
         <LinearGradient
-          colors={["rgba(11,10,8,0.5)", "rgba(11,10,8,0.05)", "rgba(11,10,8,0.2)", "rgba(11,10,8,0.95)"]}
+          colors={[shade(0.5), shade(0.05), shade(0.2), shade(0.95)]}
           locations={[0, 0.22, 0.55, 1]}
           style={StyleSheet.absoluteFill}
         />
@@ -161,14 +161,14 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: "rgba(11, 10, 8, 0.5)",
+    backgroundColor: shade(0.5),
     borderWidth: 1,
-    borderColor: "rgba(244,238,224,0.22)",
+    borderColor: colors.hairlineStrong,
     alignItems: "center",
     justifyContent: "center",
   },
   eyebrowChip: {
-    backgroundColor: "rgba(255, 248, 238, 0.92)",
+    backgroundColor: "rgba(251, 244, 234, 0.92)",
     paddingVertical: 6,
     paddingHorizontal: spacing.md,
     borderRadius: radii.sm,

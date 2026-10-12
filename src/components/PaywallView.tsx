@@ -199,7 +199,7 @@ export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
 
         <View style={[styles.hero, compact && styles.heroCompact]}>
           <Logo variant="mark" height={compact ? 36 : 52} />
-          <Text style={styles.eyebrow}>MISE PREMIUM</Text>
+          <Text style={styles.eyebrow}>MAKE & SIP PREMIUM</Text>
           <Text style={[styles.title, compact && styles.titleCompact]} accessibilityRole="header">
             Cook with what you have
           </Text>

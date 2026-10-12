@@ -4,7 +4,7 @@ import { useAppDimensions } from "@/lib/useAppDimensions";
 import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { colors, radii, spacing, type as typeScale, layout, shadows } from "@/theme";
+import { colors, radii, spacing, type as typeScale, layout, shadows, shade } from "@/theme";
 import { recipes } from "@/data/recipes";
 import { usePantry } from "@/context/PantryContext";
 import { useSaved } from "@/context/SavedContext";
@@ -123,7 +123,7 @@ export default function RecipeDetailScreen() {
         <View style={[styles.heroWrap, { height: heroHeight }]}>
           <RecipeImage uri={recipe.image} title={recipe.title} style={StyleSheet.absoluteFill} transition={200} />
           <LinearGradient
-            colors={["rgba(11,10,8,0.55)", "rgba(11,10,8,0.05)", "rgba(11,10,8,0.18)", "rgba(11,10,8,0.97)"]}
+            colors={[shade(0.55), shade(0.05), shade(0.18), shade(0.97)]}
             locations={[0, 0.3, 0.6, 1]}
             style={StyleSheet.absoluteFill}
           />
@@ -409,9 +409,9 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: "rgba(11, 10, 8, 0.5)",
+    backgroundColor: shade(0.5),
     borderWidth: 1,
-    borderColor: "rgba(244,238,224,0.22)",
+    borderColor: colors.hairlineStrong,
     alignItems: "center",
     justifyContent: "center",
   },

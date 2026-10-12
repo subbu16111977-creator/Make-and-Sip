@@ -10,12 +10,12 @@ interface ExpiringIngredientCardProps {
 
 function urgencyFor(days: number) {
   if (days <= 1) {
-    return { label: days <= 0 ? "Use today" : "Use tomorrow", fg: colors.tomato, bg: "rgba(209, 87, 61, 0.16)" };
+    return { label: days <= 0 ? "Use today" : "Use tomorrow", fg: colors.tomato, bg: "rgba(222, 107, 82, 0.16)" };
   }
   if (days <= 3) {
-    return { label: `${days} days left`, fg: colors.mustard, bg: "rgba(201, 138, 70, 0.18)" };
+    return { label: `${days} days left`, fg: colors.mustard, bg: "rgba(212, 154, 82, 0.18)" };
   }
-  return { label: `${days} days left`, fg: colors.sageOlive, bg: "rgba(143, 175, 123, 0.14)" };
+  return { label: `${days} days left`, fg: colors.sageOlive, bg: "rgba(147, 176, 127, 0.14)" };
 }
 
 /** A single ingredient "shelf card" for the horizontal Use These First rail. */

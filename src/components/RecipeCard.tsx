@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { colors, radii, spacing, type as typeScale, shadows } from "@/theme";
+import { colors, radii, spacing, type as typeScale, shadows, shade } from "@/theme";
 import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, SavedIcon, ShoppingIcon, CheckIcon, HeartIcon } from "./icons";
 import { CookabilityBadge } from "./CookabilityBadge";
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     width: 26,
     height: 26,
     borderRadius: 13,
-    backgroundColor: "rgba(11, 10, 8, 0.55)",
+    backgroundColor: shade(0.55),
     alignItems: "center",
     justifyContent: "center",
   },
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     width: 26,
     height: 26,
     borderRadius: 13,
-    backgroundColor: "rgba(11, 10, 8, 0.55)",
+    backgroundColor: shade(0.55),
     alignItems: "center",
     justifyContent: "center",
   },
