@@ -22,6 +22,7 @@ import { UnlockCelebration } from "@/components/UnlockCelebration";
 import { colors, spacing, radii, type as typeScale, layout, shadows } from "@/theme";
 import { usePantry, type NewPantryItemInput } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
+import { EQUIPMENT_HELP, EQUIPMENT_TAGS } from "@/lib/equipment";
 import { useTutorialTarget } from "@/lib/tutorialTargets";
 import { daysUntil, recipesUnlockedByAdding } from "@/lib/pantryMatch";
 import { recipes } from "@/data/recipes";
@@ -53,19 +54,7 @@ const EXPIRY_OPTIONS: { label: string; days: number }[] = [
   { label: "6 months", days: 180 },
 ];
 
-const EQUIPMENT_LIST: { tag: EquipmentTag; helper: string }[] = [
-  { tag: "Oven", helper: "Baking, roasting, broiling" },
-  { tag: "Microwave", helper: "Reheating, quick defrost" },
-  { tag: "Blender", helper: "Smoothies, purées, soups" },
-  { tag: "Food Processor", helper: "Dips, dough, fine chopping" },
-  { tag: "Stand Mixer", helper: "Batters, doughs, whipping" },
-  { tag: "Air Fryer", helper: "Crisping with little oil" },
-  { tag: "Pressure Cooker", helper: "Fast dals, stews, beans" },
-  { tag: "Rice Cooker", helper: "Hands-off rice and grains" },
-  { tag: "Grill", helper: "Charred, smoky flavour" },
-  { tag: "Slow Cooker", helper: "Low and slow, all day" },
-  { tag: "Toaster", helper: "Bread, quick crisping" },
-];
+const EQUIPMENT_LIST: { tag: EquipmentTag; helper: string }[] = EQUIPMENT_TAGS.map((tag) => ({ tag, helper: EQUIPMENT_HELP[tag] }));
 
 type Segment = "ingredients" | "equipment";
 
@@ -215,7 +204,7 @@ export default function PantryScreen() {
         <Text style={styles.subhead}>
           {segment === "ingredients"
             ? `${items.length} ingredients across ${categoryCount} categories`
-            : `${ownedEquipmentCount} of ${EQUIPMENT_LIST.length} appliances on hand`}
+            : `${ownedEquipmentCount} of ${EQUIPMENT_LIST.length} items on hand`}
         </Text>
       </View>
 
@@ -268,7 +257,7 @@ export default function PantryScreen() {
           contentContainerStyle={styles.listContent}
           ListHeaderComponent={
             <Text style={styles.equipmentIntro}>
-              Tick what you own. Dishes that need gear you don&apos;t have stay in Discover marked &quot;Needs …&quot;, and
+              Tick what you own. Drinks that need gear you don&apos;t have stay in Discover marked &quot;Needs …&quot;, and
               Home leaves them out of its picks until you check it off here.
             </Text>
           }

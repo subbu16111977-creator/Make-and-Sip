@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useMemo } from "react";
 import type { EquipmentTag } from "@/types";
 import { AppBlank } from "@/components/AppBlank";
-import { isEquipmentTags } from "@/lib/persistedShapes";
+import { sanitizeEquipment } from "@/lib/equipment";
 import { usePersistedState } from "@/lib/usePersistedState";
 
 interface EquipmentContextValue {
@@ -14,22 +14,27 @@ interface EquipmentContextValue {
 
 const EquipmentContext = createContext<EquipmentContextValue | undefined>(undefined);
 
+const isStringList = (value: unknown): value is EquipmentTag[] => Array.isArray(value) && value.every((v) => typeof v === "string");
+
 /** A new user owns no equipment until they tick it in Pantry > Equipment. */
 const SEED_OWNED: EquipmentTag[] = [];
 
 /**
- * Live "what's in my kitchen" state for appliances, separate from
- * pantry ingredients. Recipes that need gear you don't own are
- * hard-filtered out of recommendations (Home, Discover) — see
- * hasRequiredEquipment in lib/pantryMatch.
+ * Live "what equipment do I have" state, separate from pantry ingredients. A drink that needs gear you don't own is
+ * never "Ready to make" — see hasRequiredEquipment in lib/pantryMatch.
  */
 export function EquipmentProvider({ children }: { children: React.ReactNode }) {
-  const [owned, setOwned, hydrated] = usePersistedState<EquipmentTag[]>("mise.equipment.v1", SEED_OWNED, isEquipmentTags);
+  // Stored as a plain list of names; anything this version no longer knows (e.g. "Oven" from the food app) is ignored.
+  const [stored, setOwned, hydrated] = usePersistedState<EquipmentTag[]>("mise.equipment.v1", SEED_OWNED, isStringList);
+  const owned = useMemo(() => sanitizeEquipment(stored), [stored]);
 
   const isOwned = useCallback((tag: EquipmentTag) => owned.includes(tag), [owned]);
 
   const toggleEquipment = useCallback((tag: EquipmentTag) => {
-    setOwned((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
+    setOwned((prev) => {
+      const current = sanitizeEquipment(prev);
+      return current.includes(tag) ? current.filter((t) => t !== tag) : [...current, tag];
+    });
   }, [setOwned]);
 
   const reset = useCallback(() => setOwned([]), [setOwned]);

@@ -44,7 +44,7 @@ describe("persistedShapes — data read back from device storage", () => {
 
   it("rejects saved ids and equipment that are not the expected kind", () => {
     expect(isSavedIds(["ok", 3])).toBe(false);
-    expect(isEquipmentTags(["Oven", "Time Machine"])).toBe(false);
-    expect(isEquipmentTags(["Oven", "Air Fryer"])).toBe(true);
+    expect(isEquipmentTags(["Espresso Machine", "Time Machine"])).toBe(false);
+    expect(isEquipmentTags(["Espresso Machine", "Milk Frother"])).toBe(true);
   });
 });

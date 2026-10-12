@@ -197,17 +197,17 @@ describe("pickSlideshowMatches", () => {
 });
 
 describe("canMakeRecipe", () => {
-  const recipe = { id: "r", equipment: ["Oven"], ingredients: [] } as unknown as Recipe;
+  const recipe = { id: "r", equipment: ["Espresso Machine"], ingredients: [] } as unknown as Recipe;
   const req = recipeIngredient({ pantryId: "a" });
   const opt = recipeIngredient({ pantryId: "b", optional: true });
 
   it("is true with all required ingredients and gear, even when optional ones are missing", () => {
-    expect(canMakeRecipe(recipe, 1, [opt], ["Oven"])).toBe(true);
+    expect(canMakeRecipe(recipe, 1, [opt], ["Espresso Machine"])).toBe(true);
   });
   it("is false when a required ingredient is missing, gear is missing, or nothing is on hand", () => {
-    expect(canMakeRecipe(recipe, 1, [req], ["Oven"])).toBe(false);
+    expect(canMakeRecipe(recipe, 1, [req], ["Espresso Machine"])).toBe(false);
     expect(canMakeRecipe(recipe, 1, [], [])).toBe(false);
-    expect(canMakeRecipe(recipe, 0, [], ["Oven"])).toBe(false);
+    expect(canMakeRecipe(recipe, 0, [], ["Espresso Machine"])).toBe(false);
   });
 });
 
@@ -218,9 +218,9 @@ describe("Home section helpers", () => {
 
   it("pickReadyToCook needs every required ingredient and all equipment", () => {
     const pantry = have("a", "b");
-    const recipes = [mk("ok", ["a", "b"]), mk("gear", ["a", "b"], { equipment: ["Oven"] }), mk("short", ["a", "c"])];
+    const recipes = [mk("ok", ["a", "b"]), mk("gear", ["a", "b"], { equipment: ["Espresso Machine"] }), mk("short", ["a", "c"])];
     expect(pickReadyToCook(pantry, recipes, []).map((m) => m.recipe.id)).toEqual(["ok"]);
-    expect(pickReadyToCook(pantry, recipes, ["Oven"]).map((m) => m.recipe.id).sort()).toEqual(["gear", "ok"]);
+    expect(pickReadyToCook(pantry, recipes, ["Espresso Machine"]).map((m) => m.recipe.id).sort()).toEqual(["gear", "ok"]);
   });
 
   it("pickAlmostThere needs >=1 ingredient on hand, something still missing, and all equipment owned; closest first", () => {
@@ -231,10 +231,10 @@ describe("Home section helpers", () => {
       mk("many", ["a", "b", "c", "d", "e"]),
       mk("none", ["x", "y"]),
       mk("done", ["a"]),
-      mk("gear", ["a", "b"], { equipment: ["Oven"] }),
+      mk("gear", ["a", "b"], { equipment: ["Espresso Machine"] }),
     ];
     expect(pickAlmostThere(pantry, recipes, []).map((m) => m.recipe.id)).toEqual(["one", "two", "many"]);
-    expect(pickAlmostThere(pantry, recipes, ["Oven"]).map((m) => m.recipe.id)).toContain("gear");
+    expect(pickAlmostThere(pantry, recipes, ["Espresso Machine"]).map((m) => m.recipe.id)).toContain("gear");
   });
 
   it("pickQuickRecipes only returns short dishes and is stable per seed", () => {
@@ -245,9 +245,9 @@ describe("Home section helpers", () => {
   });
 
   it("bestEquipmentUnlock picks the appliance that unlocks the most dishes", () => {
-    const recipes = [mk("a", [], { equipment: ["Air Fryer"] }), mk("b", [], { equipment: ["Air Fryer"] }), mk("c", [], { equipment: ["Grill"] }), mk("d", [], { equipment: ["Oven", "Grill"] })];
-    expect(bestEquipmentUnlock(["Oven"], ["Air Fryer", "Grill", "Oven"], recipes)).toEqual({ tag: "Air Fryer", count: 2 });
-    expect(bestEquipmentUnlock(["Oven", "Air Fryer", "Grill"], ["Air Fryer", "Grill"], recipes)).toBeNull();
+    const recipes = [mk("a", [], { equipment: ["Milk Frother"] }), mk("b", [], { equipment: ["Milk Frother"] }), mk("c", [], { equipment: ["Soda Maker"] }), mk("d", [], { equipment: ["Espresso Machine", "Soda Maker"] })];
+    expect(bestEquipmentUnlock(["Espresso Machine"], ["Milk Frother", "Soda Maker", "Espresso Machine"], recipes)).toEqual({ tag: "Milk Frother", count: 2 });
+    expect(bestEquipmentUnlock(["Espresso Machine", "Milk Frother", "Soda Maker"], ["Milk Frother", "Soda Maker"], recipes)).toBeNull();
   });
 
   it("cuisineSummaries counts dishes and picks a photo", () => {

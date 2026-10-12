@@ -84,23 +84,32 @@ export type Difficulty = "Easy" | "Medium" | "Advanced";
 export type Budget = "$" | "$$" | "$$$";
 
 /**
- * Kitchen appliances a dish might need beyond a basic stovetop, knife,
- * and pot — the stuff not everyone owns. A recipe with an empty
- * `equipment` array needs none of these; a plain stovetop/oven-free
- * dish is always makeable regardless of what's checked in Equipment.
+ * Drink-making equipment a drink might need beyond a glass, a spoon and a saucepan — the gear not everyone owns.
+ * A drink with an empty `equipment` array needs none of these and is always makeable, equipment-wise.
  */
 export type EquipmentTag =
-  | "Oven"
-  | "Microwave"
+  | "Espresso Machine"
+  | "Moka Pot"
+  | "French Press"
+  | "Pour-Over Dripper"
+  | "Drip Coffee Maker"
+  | "AeroPress"
+  | "Cold Brew Pitcher"
+  | "Coffee Grinder"
+  | "Milk Frother"
+  | "Electric Kettle"
+  | "Teapot"
+  | "Matcha Whisk"
   | "Blender"
-  | "Food Processor"
-  | "Stand Mixer"
-  | "Air Fryer"
-  | "Pressure Cooker"
-  | "Rice Cooker"
-  | "Grill"
-  | "Slow Cooker"
-  | "Toaster";
+  | "Juicer"
+  | "Citrus Squeezer"
+  | "Soda Maker"
+  | "Ice Cream Scoop"
+  | "Shaker"
+  | "Muddler"
+  | "Strainer"
+  | "Jigger"
+  | "Pitcher";
 
 export type DietTag =
   | "Vegetarian"

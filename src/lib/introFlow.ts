@@ -80,8 +80,8 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
   {
     id: "equipment",
     title: "Add equipment",
-    body: "Choose the equipment you have so the app can show dishes that fit your kitchen.",
-    hint: "Tap an appliance, like the glowing one, to tick it. Nothing is changed unless you tap.",
+    body: "Choose the equipment you have so the app can show drinks that fit your setup.",
+    hint: "Tap an item, like the glowing one, to tick it. Nothing is changed unless you tap.",
     target: "equipment-first-row",
     placement: "bottom",
   },

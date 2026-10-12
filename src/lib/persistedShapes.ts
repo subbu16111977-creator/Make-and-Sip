@@ -1,3 +1,4 @@
+import { EQUIPMENT_TAGS } from "@/lib/equipment";
 import type { EquipmentTag, PantryItem, ShoppingItem } from "@/types";
 
 /**
@@ -10,19 +11,7 @@ import type { EquipmentTag, PantryItem, ShoppingItem } from "@/types";
  * combine items; they are not a full schema.
  */
 
-export const EQUIPMENT_TAGS: readonly EquipmentTag[] = [
-  "Oven",
-  "Microwave",
-  "Blender",
-  "Food Processor",
-  "Stand Mixer",
-  "Air Fryer",
-  "Pressure Cooker",
-  "Rice Cooker",
-  "Grill",
-  "Slow Cooker",
-  "Toaster",
-];
+export { EQUIPMENT_TAGS };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);

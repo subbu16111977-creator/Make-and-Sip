@@ -134,10 +134,10 @@ describe("score and categories", () => {
     expect(c.percent).toBeLessThanOrEqual(70);
   });
   it("missing equipment prevents 'ready'", () => {
-    const c = computeCookability(dish([ing("onion", "1")], { equipment: ["Oven"] }), pantryAll, []);
+    const c = computeCookability(dish([ing("onion", "1")], { equipment: ["Espresso Machine"] }), pantryAll, []);
     expect(c.category).toBe("almost");
-    expect(c.equipmentMissing).toEqual(["Oven"]);
-    expect(computeCookability(dish([ing("onion", "1")], { equipment: ["Oven"] }), pantryAll, ["Oven"]).category).toBe("ready");
+    expect(c.equipmentMissing).toEqual(["Espresso Machine"]);
+    expect(computeCookability(dish([ing("onion", "1")], { equipment: ["Espresso Machine"] }), pantryAll, ["Espresso Machine"]).category).toBe("ready");
   });
   it("low match below 40%", () => {
     const c = computeCookability(dish([ing("chicken-breast", "500 g"), ing("rice", "1 cup"), ing("onion", "1")]), [item("onion", 1, "pcs")], []);

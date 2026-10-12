@@ -147,7 +147,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the oven to 425°F (220°C) with a baking tray inside to warm up.",
@@ -430,7 +430,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Food Processor"
+   "Juicer"
   ],
   "steps": [
    "Drain and rinse the chickpeas well, then, for the smoothest possible hummus, slip the skins off by rubbing them gently between your palms under running water — this step is optional but makes a real difference.",
@@ -1416,7 +1416,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Pressure Cooker"
+   "Moka Pot"
   ],
   "steps": [
    "Pressure cook the toor dal with 3 cups water and 1/2 teaspoon of the turmeric for 3–4 whistles (about 12–15 minutes), until completely soft and mushy. Whisk smooth once cooked (or use a hand blender directly in the pot).",
@@ -1783,7 +1783,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Grill"
+   "Soda Maker"
   ],
   "steps": [
    "The night before or at least 1 hour ahead, coat the brisket evenly on all sides with the salt and pepper, pressing it into the meat.",
@@ -1869,7 +1869,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Grill"
+   "Soda Maker"
   ],
   "steps": [
    "Remove the thin membrane from the back of each rack of ribs, peeling it off with a paper towel for grip.",
@@ -2098,7 +2098,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Grill"
+   "Soda Maker"
   ],
   "steps": [
    "Whisk the olive oil, lemon juice, garlic, smoked paprika, salt, and pepper in a bowl or bag. Add the chicken breasts, turning to coat, and marinate at room temperature 30 minutes (or refrigerated up to a few hours).",
@@ -2172,7 +2172,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the oven as high as it will go with a baking sheet or pizza stone inside for at least 20 minutes.",
@@ -2246,7 +2246,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the oven as high as it will go with a baking sheet or pizza stone inside for at least 20 minutes.",
@@ -2344,7 +2344,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Whisk the yeast and sugar into 1 cup (240 ml) warm water and let sit 5 minutes until foamy.",
@@ -2559,7 +2559,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the olive oil in a large pot over medium heat. Cook the onion, carrot, and celery 8–10 minutes until softened.",
@@ -2716,7 +2716,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the oven to 425°F (220°C). Season the chicken with salt and pepper.",
@@ -2777,7 +2777,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Grill"
+   "Soda Maker"
   ],
   "steps": [
    "Remove the steak from the refrigerator at least 1 hour before cooking to come to room temperature — this is essential for even cooking on such a thick cut.",
@@ -3883,7 +3883,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Grill"
+   "Soda Maker"
   ],
   "steps": [
    "Combine the olive oil, grated onion, garlic, cumin, paprika, oregano, lemon juice, salt, and pepper in a large bowl.",
@@ -3972,7 +3972,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Grill"
+   "Soda Maker"
   ],
   "steps": [
    "Whisk together the yogurt, tomato paste, olive oil, garlic, lemon juice, paprika, cumin, salt, and pepper.",
@@ -4228,7 +4228,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the oven to 400°F (200°C). Wrap each beet individually in foil and roast 45–55 minutes until a knife slides in easily.",
@@ -4310,7 +4310,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the oven to 350°F (175°C). Combine the walnuts, pistachios, sugar, and cinnamon in a bowl.",
@@ -4488,7 +4488,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Grill"
+   "Soda Maker"
   ],
   "steps": [
    "Whisk the achiote paste with the orange juice, lime juice, garlic, cumin, oregano, oil, and salt until smooth.",
@@ -4702,7 +4702,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the oven to 450°F (230°C). Toss the cauliflower with the oil, chili powder, cumin, paprika, half the lime juice, and 3/4 teaspoon salt.",
@@ -5554,7 +5554,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat 3 tablespoons of the oil in a 12-inch ovenproof skillet over medium heat. Toast the noodles, stirring, 3–4 minutes until deep golden. Transfer to a bowl.",
@@ -5810,7 +5810,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the oven to 425°F (220°C). Line a 9-inch springform pan with two crisscrossed sheets of parchment, letting it stand 2 inches above the rim (creases are fine).",
@@ -8182,7 +8182,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Rub the chicken with 1 tablespoon ghee, half the cumin, coriander, and turmeric, and 1 teaspoon salt.",
@@ -8591,8 +8591,8 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven",
-   "Food Processor"
+   "Espresso Machine",
+   "Juicer"
   ],
   "steps": [
    "Process the lean lamb, grated onion, drained bulgur, 1 tablespoon baharat, 1 1/2 teaspoons salt, and pepper in a food processor, with a few spoonfuls of ice water, into a smooth, sticky paste. Chill.",
@@ -8689,7 +8689,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Boil the rice in salted water 5 minutes until al dente; drain.",
@@ -9070,7 +9070,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the oven to 200°C.",
@@ -9130,7 +9130,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Oven"
+   "Espresso Machine"
   ],
   "steps": [
    "Heat the oven to 160°C.",
@@ -9941,7 +9941,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Microwave"
+   "Electric Kettle"
   ],
   "steps": [
    "Wrap each strawberry in 20 g bean paste.",
@@ -10015,7 +10015,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Rice Cooker"
+   "Teapot"
   ],
   "steps": [
    "Rinse 200 g rice until the water runs clear, cook with 240 ml water, then fold in 3 tbsp vinegar, 1 tbsp sugar and 1 tsp salt (warmed to dissolve) and fan until body temperature.",
@@ -10119,7 +10119,7 @@ export const recipes: Recipe[] = [
    }
   ],
   "equipment": [
-   "Rice Cooker"
+   "Teapot"
   ],
   "steps": [
    "Rinse 200 g rice until the water runs clear, cook with 240 ml water, then fold in 3 tbsp vinegar, 1 tbsp sugar and 1 tsp salt (warmed to dissolve) and fan until body temperature.",

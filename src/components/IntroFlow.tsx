@@ -64,7 +64,7 @@ function EquipmentPicker() {
   return (
     <View style={styles.visualCard}>
       <Text style={styles.cardNote}>
-        If a dish needs an appliance you don’t have, it stays out of your suggestions, so ticking what you own helps.
+        If a drink needs equipment you don’t have, it stays out of your suggestions, so ticking what you own helps.
       </Text>
       {open ? (
         <>
