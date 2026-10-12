@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ingredientRegistry } from "./ingredients";
 import { recipes } from "./recipes";
-import { pantryItems } from "./pantry";
+import { pantryItems } from "@/test/fixtures/pantry";
 import { resolveIngredientById } from "@/lib/ingredientNormalize";
 
 /**

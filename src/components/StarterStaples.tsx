@@ -12,6 +12,7 @@ export function StarterStaples() {
   const [justAdded, setJustAdded] = useState<string[]>([]);
 
   const have = new Set(items.map((i) => i.ingredientId));
+  if (STARTER_STAPLES.length === 0) return null;
 
   return (
     <View style={styles.wrap}>

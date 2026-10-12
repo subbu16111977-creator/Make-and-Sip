@@ -1,3 +1,4 @@
+// Test fixture: the retired Mise seed pantry, used only by tests.
 import type { PantryItem } from "@/types";
 
 /** ISO date `n` days from now — keeps "expiring soon" data honest whenever the app runs. */

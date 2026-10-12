@@ -3,7 +3,7 @@ import { sortDiscover } from "./discoverView";
 import { getIngredientMatch, getRecipeAvailability, matchRecipe, pickSlideshowMatches, pickReadyToCook, pickAlmostThere, pickQuickRecipes, canMakeRecipe, bestEquipmentUnlock, cuisineSummaries } from "./pantryMatch";
 import type { PantryItem, Recipe, RecipeIngredient } from "@/types";
 import { recipes } from "@/data/recipes";
-import { pantryItems as seedPantry } from "@/data/pantry";
+import { pantryItems as seedPantry } from "@/test/fixtures/pantry";
 
 function pantryItem(overrides: Partial<PantryItem>): PantryItem {
   return {

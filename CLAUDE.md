@@ -82,6 +82,9 @@ Until then every drink is non-alcoholic and the UI should not imply otherwise.
 ## Migration status
 
 Planned in stages (backup → archive food → rename/identity → empty the food data → types/registry → engine → drinks
-data → UI copy → legal → tests/docs/build). Update this section as stages complete. Open decisions: new Android package id
+data → UI copy → legal → tests/docs/build). Update this section as stages complete. Done so far: food app checkpointed (`checkpoint-final-mise-food-app`, branch `archive/mise-food-app`, bundle backup at
+`~/Downloads/mise-food-app-backup.bundle`); visible name changed to Make & Sip; food dishes and ingredient registry removed
+(app data files are empty; engine tests run against frozen food fixtures in `src/test/fixtures`, wired by
+`src/test/setup.ts` — delete both when the drinks data lands). Open decisions: new Android package id
 (suggested `com.subbu.makeandsip`; free to change until the first Play upload), archive vs delete of the 642 food recipes
 (default: archive), remote backup repo.

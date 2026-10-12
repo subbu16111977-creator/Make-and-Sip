@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { isEquipmentTags, isPantryItems, isSavedIds, isShoppingItems } from "./persistedShapes";
-import { pantryItems as seedPantry } from "@/data/pantry";
+import { pantryItems as seedPantry } from "@/test/fixtures/pantry";
 import { addMissingIngredientsFromRecipe } from "./inventoryActions";
 
 describe("persistedShapes — data read back from device storage", () => {
