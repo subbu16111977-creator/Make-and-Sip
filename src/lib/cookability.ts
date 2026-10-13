@@ -1,4 +1,5 @@
 import type { EquipmentTag, PantryItem, Recipe, RecipeIngredient } from "@/types";
+import { hasEquipmentRequirement, requiredEquipmentTags, unmetEquipment } from "@/lib/equipmentNeeds";
 import { expandUnicodeFractions, parseAmount, resolveIngredientById } from "@/lib/ingredientNormalize";
 
 /**
@@ -306,8 +307,10 @@ export interface Cookability {
   requiredUnverified: number;
   optionalHave: number;
   optionalMissing: number;
+  /** Every tag the drink's required equipment mentions (items and "any one of" groups). */
   equipmentNeeded: EquipmentTag[];
-  equipmentMissing: EquipmentTag[];
+  /** What is still missing, as labels: a missing item, or "A, B or C" for a group with none owned. */
+  equipmentMissing: string[];
   /** Equipment the drink is better with, and which of it the person owns. Never affects the score or the category. */
   equipmentOptional: EquipmentTag[];
   equipmentOptionalOwned: EquipmentTag[];
@@ -337,8 +340,8 @@ export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEq
   const problems = [...missing, ...insufficient, ...ambiguous];
   const importantProblems = problems.filter((i) => i.weight >= 2).length;
 
-  const equipmentMissing = recipe.equipment.filter((t) => !ownedEquipment.includes(t));
-  const equipmentOptional = (recipe.optionalEquipment ?? []).map((o) => o.tag).filter((t) => !recipe.equipment.includes(t));
+  const equipmentMissing = unmetEquipment(ownedEquipment, recipe);
+  const equipmentOptional = (recipe.optionalEquipment ?? []).map((o) => o.tag).filter((t) => !requiredEquipmentTags(recipe).includes(t));
 
   let category: CookabilityCategory;
   if (problems.length === 0 && equipmentMissing.length === 0) category = "ready";
@@ -349,7 +352,7 @@ export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEq
   const satisfied = required.length - problems.length;
   let summary: string;
   if (category === "ready") {
-    summary = `You have all ${plural(required.length, "required ingredient")}${recipe.equipment.length ? " and the equipment" : ""}.`;
+    summary = `You have all ${plural(required.length, "required ingredient")}${hasEquipmentRequirement(recipe) ? " and the equipment" : ""}.`;
   } else {
     const bits: string[] = [];
     if (missing.length) bits.push(`${missing.length} missing`);
@@ -374,7 +377,7 @@ export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEq
     requiredUnverified: unverified.length,
     optionalHave: optional.filter((i) => i.match !== "missing").length,
     optionalMissing: optional.filter((i) => i.match === "missing").length,
-    equipmentNeeded: recipe.equipment,
+    equipmentNeeded: requiredEquipmentTags(recipe),
     equipmentMissing,
     equipmentOptional,
     equipmentOptionalOwned: equipmentOptional.filter((t) => ownedEquipment.includes(t)),

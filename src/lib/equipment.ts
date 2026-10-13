@@ -27,6 +27,9 @@ export const EQUIPMENT_HELP: Record<EquipmentTag, string> = {
   Strainer: "Straining shaken or steeped drinks",
   Jigger: "Measuring small pours accurately",
   Pitcher: "Lemonades, coolers, big batches",
+  Cezve: "Turkish and Greek coffee",
+  "Phin Filter": "Vietnamese slow-drip coffee",
+  "South Indian Filter": "Filter kaapi decoction",
 };
 
 export const EQUIPMENT_TAGS: readonly EquipmentTag[] = Object.keys(EQUIPMENT_HELP) as EquipmentTag[];

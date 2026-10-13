@@ -1,6 +1,7 @@
 import type { EquipmentTag, PantryItem, Recipe, RecipeIngredient, TasteTag } from "@/types";
 import { normalizeIngredient, resolveIngredientById } from "@/lib/ingredientNormalize";
 import { computeCookability } from "@/lib/cookability";
+import { equipmentSatisfied, unmetEquipment } from "@/lib/equipmentNeeds";
 
 export interface RecipeMatch {
   recipe: Recipe;
@@ -288,12 +289,12 @@ export function getShoppingPlan(recipe: Recipe, pantryItems: PantryItem[]): Shop
 
 /** True when `owned` covers every appliance `recipe` needs (an empty requirement list always passes). */
 export function hasRequiredEquipment(owned: EquipmentTag[], recipe: Recipe): boolean {
-  return recipe.equipment.every((tag) => owned.includes(tag));
+  return equipmentSatisfied(owned, recipe);
 }
 
 /** The recipe's required equipment the user doesn't currently own. */
-export function missingEquipment(owned: EquipmentTag[], recipe: Recipe): EquipmentTag[] {
-  return recipe.equipment.filter((tag) => !owned.includes(tag));
+export function missingEquipment(owned: EquipmentTag[], recipe: Recipe): string[] {
+  return unmetEquipment(owned, recipe);
 }
 
 /**

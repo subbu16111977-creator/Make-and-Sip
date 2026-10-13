@@ -22,14 +22,22 @@ describe("recipe catalogue", () => {
     expect(dupes).toEqual([]);
   });
 
-  it("uses only known equipment, and never lists the same tag as both required and optional", () => {
+  it("uses only known equipment, and never lists a tag in more than one of required, any-of and optional", () => {
     const bad: string[] = [];
     for (const r of recipes) {
-      for (const tag of r.equipment) if (!isEquipmentTag(tag)) bad.push(`${r.id}: unknown required "${tag}"`);
-      for (const o of r.optionalEquipment ?? []) {
-        if (!isEquipmentTag(o.tag)) bad.push(`${r.id}: unknown optional "${o.tag}"`);
-        if (r.equipment.includes(o.tag)) bad.push(`${r.id}: "${o.tag}" is both required and optional`);
+      const seen = new Map<string, string>();
+      const note = (tag: string, where: string) => {
+        if (!isEquipmentTag(tag)) bad.push(`${r.id}: unknown ${where} "${tag}"`);
+        const prev = seen.get(tag);
+        if (prev) bad.push(`${r.id}: "${tag}" is in both ${prev} and ${where}`);
+        else seen.set(tag, where);
+      };
+      for (const tag of r.equipment) note(tag, "required");
+      for (const group of r.equipmentAnyOf ?? []) {
+        if (group.length < 2) bad.push(`${r.id}: an any-of group needs at least two tools`);
+        for (const tag of group) note(tag, "any-of");
       }
+      for (const o of r.optionalEquipment ?? []) note(o.tag, "optional");
     }
     expect(bad).toEqual([]);
   });

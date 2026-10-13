@@ -14,6 +14,7 @@ import { useShopping } from "@/context/ShoppingContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
 import { useCookability } from "@/lib/useCookability";
+import { hasEquipmentRequirement } from "@/lib/equipmentNeeds";
 import { scaledRecipe } from "@/lib/cookability";
 import { CookabilityBadge } from "@/components/CookabilityBadge";
 import { TemperatureBadge } from "@/components/TemperatureBadge";
@@ -266,7 +267,7 @@ export default function RecipeDetailScreen() {
             </Pressable>
           )}
 
-          {recipe.equipment.length > 0 && (
+          {hasEquipmentRequirement(recipe) && (
             <View style={styles.ingredientGroup}>
               <Text style={styles.ingredientGroupLabel}>Equipment needed</Text>
               {recipe.equipment.map((tag) => {
@@ -278,6 +279,20 @@ export default function RecipeDetailScreen() {
                     </View>
                     <Text style={styles.ingredientLabel}>{tag}</Text>
                     {!owned && <Text style={styles.equipmentMissingTag}>missing — you&apos;ll need to get this</Text>}
+                  </View>
+                );
+              })}
+              {recipe.equipmentAnyOf?.map((group) => {
+                const have = group.filter((tag) => isEquipmentOwned(tag));
+                return (
+                  <View key={group.join("|")} style={styles.ingredientRow}>
+                    <View style={[styles.ingredientMark, have.length ? styles.ingredientMarkHave : styles.ingredientMarkMissing]}>
+                      {have.length > 0 && <CheckIcon size={10} color={colors.cream} strokeWidth={2.8} />}
+                    </View>
+                    <View style={styles.ingredientLabelStack}>
+                      <Text style={styles.ingredientLabel}>One of: {group.join(", ")}</Text>
+                      {have.length > 0 ? <Text style={styles.uncheckedText}>You have {have.join(" and ")}</Text> : <Text style={styles.equipmentMissingTag}>you&apos;ll need one of these</Text>}
+                    </View>
                   </View>
                 );
               })}

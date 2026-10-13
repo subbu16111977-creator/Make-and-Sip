@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors, radii, spacing, type as typeScale, layout, shadows, shade } from "@/theme";
-import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
+import type { Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, LeafIcon, SavedIcon, ShoppingIcon, CheckIcon } from "./icons";
 import { MatchBadge } from "./MatchBadge";
 import { TemperatureBadge } from "./TemperatureBadge";
@@ -22,7 +22,7 @@ interface RecipeHeroProps {
   /** Adds a tick before the eyebrow when the dish can be made right now. */
   canMake?: boolean;
   /** Appliances the recipe needs that the user hasn't ticked in Pantry > Equipment. */
-  missingEquipment?: EquipmentTag[];
+  missingEquipment?: string[];
   onPress?: () => void;
 }
 

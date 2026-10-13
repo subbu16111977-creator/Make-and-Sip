@@ -110,7 +110,10 @@ export type EquipmentTag =
   | "Muddler"
   | "Strainer"
   | "Jigger"
-  | "Pitcher";
+  | "Pitcher"
+  | "Cezve"
+  | "Phin Filter"
+  | "South Indian Filter";
 
 export type DietTag = "Vegan" | "Dairy-Free" | "Caffeine-Free" | "Low Sugar" | "Gluten-Free";
 
@@ -160,6 +163,13 @@ export interface Recipe {
   temperature: "hot" | "cold";
   /** Equipment this drink can't be made without. Empty = always makeable, equipment-wise. */
   equipment: EquipmentTag[];
+  /**
+   * "Any one of these" requirements: each inner list is a set of interchangeable tools, and owning ONE of them
+   * satisfies it (an espresso machine, a moka pot or an AeroPress for a strong-coffee base). A drink with an unmet
+   * group is never "Ready to make". A tag never appears in more than one of `equipment`, `equipmentAnyOf` and
+   * `optionalEquipment`, and each group has at least two tags.
+   */
+  equipmentAnyOf?: EquipmentTag[][];
   /**
    * Equipment that makes the drink better or easier but isn't needed (an espresso machine for a latte that works
    * with strong moka-pot coffee, a shaker you can swap for a jar). Never blocks "Ready to make" and never lowers the

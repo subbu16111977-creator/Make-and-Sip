@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors, radii, spacing, type as typeScale, shadows, shade } from "@/theme";
-import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
+import type { Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, SavedIcon, ShoppingIcon, CheckIcon, HeartIcon } from "./icons";
 import { CookabilityBadge } from "./CookabilityBadge";
 import { TemperatureBadge } from "./TemperatureBadge";
@@ -18,7 +18,7 @@ interface RecipeCardProps {
   /** Ingredients still missing from the pantry — shows an "add to shopping" action when non-empty. */
   missing?: RecipeIngredient[];
   /** Appliances the recipe needs that the user hasn't ticked in Pantry > Equipment. */
-  missingEquipment?: EquipmentTag[];
+  missingEquipment?: string[];
   /** Optional one-line note under the meta row, e.g. "Missing cilantro". */
   note?: string;
   onPress?: () => void;
