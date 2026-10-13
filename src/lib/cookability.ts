@@ -78,6 +78,14 @@ export const DENSITY_G_PER_ML: Record<string, number> = {
   "jasmine-rice": 0.8,
   cornstarch: 0.54,
   water: 1,
+  ice: 0.55,
+  "ground-coffee": 0.4,
+  "sweetened-condensed-milk": 1.3,
+  "heavy-cream": 1,
+  "cocoa-powder": 0.5,
+  "oat-milk": 1.03,
+  "almond-milk": 1.02,
+  "soy-milk": 1.03,
 };
 
 type Dimension = "mass" | "volume" | "count" | "other";

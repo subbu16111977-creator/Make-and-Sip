@@ -19,15 +19,17 @@
 const fs = require("fs");
 const path = require("path");
 
-const RECIPES_FILE = path.join(__dirname, "..", "src", "data", "recipes.ts");
+const DRINKS_DIR = path.join(__dirname, "..", "src", "data", "drinks");
 
+/** Reads every drink file: each drink's id, title and image (a quoted URL or a pexels(<id>) helper call). */
 function extractRecipes(source) {
   const pattern =
-    /id:\s*"([^"]+)",\s*\n\s*title:\s*"([^"]+)"[\s\S]*?image:\s*"([^"]*)"/g;
+    /id:\s*"([^"]+)",\s*\n\s*title:\s*"([^"]+)"[\s\S]*?image:\s*(?:"([^"]*)"|pexels\((\d+)\))/g;
   const recipes = [];
   let match;
   while ((match = pattern.exec(source)) !== null) {
-    recipes.push({ id: match[1], title: match[2], image: match[3] });
+    const image = match[3] !== undefined ? match[3] : `https://images.pexels.com/photos/${match[4]}/pexels-photo-${match[4]}.jpeg?auto=compress&cs=tinysrgb&w=1600`;
+    recipes.push({ id: match[1], title: match[2], image });
   }
   return recipes;
 }
@@ -43,10 +45,10 @@ async function checkUrl(url) {
 }
 
 async function main() {
-  const source = fs.readFileSync(RECIPES_FILE, "utf8");
-  const recipes = extractRecipes(source);
+  const files = fs.readdirSync(DRINKS_DIR).filter((f) => f.endsWith(".ts"));
+  const recipes = files.flatMap((f) => extractRecipes(fs.readFileSync(path.join(DRINKS_DIR, f), "utf8")));
 
-  console.log(`Found ${recipes.length} recipes in ${path.relative(process.cwd(), RECIPES_FILE)}\n`);
+  console.log(`Found ${recipes.length} drinks in ${path.relative(process.cwd(), DRINKS_DIR)}\n`);
 
   // Recipes with a deliberately blank image (no verified photo found yet)
   // show the app's neutral "Photo coming soon" fallback instead of a
