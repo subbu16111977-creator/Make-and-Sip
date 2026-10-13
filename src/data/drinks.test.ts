@@ -1,9 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { recipes } from "./recipes";
 import { CUISINE_OPTIONS, CUISINE_OTHER } from "@/lib/profile";
-import { isQualitative } from "@/lib/cookability";
 import { parseAmount, normalizeIngredient, resolveIngredientById } from "@/lib/ingredientNormalize";
-import { computeCookability } from "@/lib/cookability";
+import { computeCookability, isQualitative } from "@/lib/cookability";
 import { addPantryItem } from "@/lib/inventoryActions";
 import type { PantryItem } from "@/types";
 
