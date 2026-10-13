@@ -42,6 +42,10 @@ export const colors = {
   tomato: "#E0735B",
   clay: "#C28A5E",
 
+  // Temperature — the hot and cold marks on drink photos
+  ember: "#EE9A6B",
+  frost: "#A6D3E3",
+
   // Structural
   hairline: "rgba(238, 232, 218, 0.12)",
   hairlineStrong: "rgba(238, 232, 218, 0.24)",

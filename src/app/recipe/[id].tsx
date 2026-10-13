@@ -16,6 +16,7 @@ import { getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
 import { useCookability } from "@/lib/useCookability";
 import { scaledRecipe } from "@/lib/cookability";
 import { CookabilityBadge } from "@/components/CookabilityBadge";
+import { TemperatureBadge } from "@/components/TemperatureBadge";
 import { RecipeImage } from "@/components/RecipeImage";
 import { ChevronLeftIcon, CheckIcon, ClockIcon, HeartIcon, SavedIcon, ShoppingIcon } from "@/components/icons";
 
@@ -133,6 +134,7 @@ export default function RecipeDetailScreen() {
               <ChevronLeftIcon size={18} color={colors.white} strokeWidth={2.1} />
             </Pressable>
             <View style={styles.heroActions}>
+              <TemperatureBadge temperature={recipe.temperature} size={36} />
               <Pressable
                 ref={heartTarget}
                 onPress={() => toggleFavorite(recipeId)}
@@ -162,6 +164,8 @@ export default function RecipeDetailScreen() {
               <Text style={styles.metaText}>{recipe.difficulty}</Text>
               <View style={styles.metaDot} />
               <Text style={styles.metaText}>{recipe.cuisine}</Text>
+              <View style={styles.metaDot} />
+              <Text style={styles.metaText}>{recipe.temperature === "hot" ? "Hot" : "Iced"}</Text>
               <View style={styles.metaDot} />
               <Text style={styles.metaText}>Serves {recipe.servings}</Text>
             </View>

@@ -24,6 +24,7 @@ const RECIPE: Recipe = {
   id: "curry",
   title: "Weeknight Curry",
   description: "",
+  temperature: "hot",
   cuisine: "Test",
   dietTags: [],
   tasteTags: [],

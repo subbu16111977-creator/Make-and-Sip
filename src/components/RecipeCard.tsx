@@ -4,6 +4,7 @@ import { colors, radii, spacing, type as typeScale, shadows, shade } from "@/the
 import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, SavedIcon, ShoppingIcon, CheckIcon, HeartIcon } from "./icons";
 import { CookabilityBadge } from "./CookabilityBadge";
+import { TemperatureBadge } from "./TemperatureBadge";
 import { useCookability } from "@/lib/useCookability";
 import { RecipeImage } from "./RecipeImage";
 import { useSaved } from "@/context/SavedContext";
@@ -34,7 +35,6 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
   const { isFavorite, toggleFavorite } = useFavorites();
   const favorite = isFavorite(recipe.id);
   const cookability = useCookability(recipe);
-  const canMake = cookability?.category === "ready";
   const [justAdded, setJustAdded] = useState(false);
   const addedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -56,12 +56,9 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
       <View style={[styles.imageWrap, { height: width * 1.15 }]}>
         <RecipeImage uri={recipe.image} title={recipe.title} style={StyleSheet.absoluteFill} />
 
-        {canMake && (
-          <View style={styles.canMakeBadge}>
-            <CheckIcon size={11} color={colors.white} strokeWidth={2.6} />
-            <Text style={styles.canMakeText}>Can make</Text>
-          </View>
-        )}
+        <View style={styles.temperatureBadge}>
+          <TemperatureBadge temperature={recipe.temperature} />
+        </View>
 
         <Pressable
           onPress={() => toggleSaved(recipe.id)}
@@ -144,22 +141,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  canMakeBadge: {
+  temperatureBadge: {
     position: "absolute",
     top: spacing.sm,
     left: spacing.sm,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-    height: 26,
-    paddingHorizontal: spacing.sm,
-    borderRadius: 13,
-    backgroundColor: colors.deepOlive,
-  },
-  canMakeText: {
-    ...typeScale.caption,
-    color: colors.white,
-    fontWeight: "600",
   },
   saveButton: {
     right: spacing.sm,

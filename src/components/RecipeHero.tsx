@@ -6,6 +6,7 @@ import { colors, radii, spacing, type as typeScale, layout, shadows, shade } fro
 import type { EquipmentTag, Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, LeafIcon, SavedIcon, ShoppingIcon, CheckIcon } from "./icons";
 import { MatchBadge } from "./MatchBadge";
+import { TemperatureBadge } from "./TemperatureBadge";
 import { RecipeImage } from "./RecipeImage";
 import { useSaved } from "@/context/SavedContext";
 import { useShopping } from "@/context/ShoppingContext";
@@ -85,6 +86,7 @@ export function RecipeHero({
             <Text style={styles.eyebrowChipText}>{eyebrow}</Text>
           </View>
           <View style={styles.topRowActions}>
+            <TemperatureBadge temperature={recipe.temperature} size={32} />
             {missing.length > 0 && (
               <Pressable onPress={handleAddMissing} hitSlop={8} style={styles.iconButton}>
                 {justAdded ? (

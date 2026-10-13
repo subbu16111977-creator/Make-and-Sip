@@ -88,7 +88,8 @@ export const recipes: Recipe[] = [
    "Slide in the sliced bell pepper, lower the heat slightly, and cook uncovered for 10 minutes, stirring occasionally, until the chicken is cooked through (165\u00b0F/74\u00b0C at the thickest point) and the sauce coats the back of a spoon.",
    "Stir in the brown sugar and fish sauce if using, and taste \u2014 adjust either to balance heat, salt, and sweetness.",
    "Off the heat, stir in the lime juice and torn basil. Serve over the rice with lime wedges on the side."
-  ]
+  ],
+  "temperature": "hot"
  },
  {
   "id": "bbq-chicken-flatbread",
@@ -155,7 +156,8 @@ export const recipes: Recipe[] = [
    "Scatter the shredded chicken, sliced onion, and mozzarella evenly over both flatbreads.",
    "Carefully slide the flatbreads onto the hot tray and bake for 10\u201312 minutes, until the cheese is fully melted and bubbling and the edges of the bread have caught some char.",
    "Pull them straight from the oven and top immediately with the pineapple and cilantro while everything's still hot. Slice into wedges to serve."
-  ]
+  ],
+  "temperature": "cold"
  },
  {
   "id": "loaded-black-bean-tacos",
@@ -232,7 +234,8 @@ export const recipes: Recipe[] = [
    "Warm the tortillas directly over a gas flame or in a dry pan, a few seconds per side, until pliable and lightly spotted with char.",
    "Fill each warm tortilla with the beans, then top with the quick-pickled onion, sliced jalape\u00f1o, cilantro, and crumbled cheese.",
    "Serve right away while the tortillas are still warm and pliable."
-  ]
+  ],
+  "temperature": "hot"
  },
  {
   "id": "chicken-biryani",
@@ -367,13 +370,14 @@ export const recipes: Recipe[] = [
    "Cover with a tight-fitting lid \u2014 if it's not airtight, seal the rim with a strip of dough or a layer of foil pressed down before the lid goes on. Cook on the lowest possible heat for 25 minutes. You're steaming, not boiling, so resist lifting the lid to check.",
    "Take the pot off the heat and let it rest, still tightly covered, for 10 minutes.",
    "Open the lid and, using a flat spatula, fold everything together gently from the bottom up in wide strokes, so the rice stays fluffy and the grains don't break. Serve hot, straight from the pot."
-  ]
+  ],
+  "temperature": "cold"
  },
  {
   "id": "whipped-hummus-plate",
   "title": "Whipped Hummus Plate",
   "description": "Ultra-smooth hummus, good olive oil, warm bread \u2014 a mezze plate that's mostly a food processor.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Vegan",
    "Gluten-Free"
@@ -440,7 +444,8 @@ export const recipes: Recipe[] = [
    "Spread the hummus onto a plate using the back of a spoon, swirling in a circular motion to create a shallow well in the centre.",
    "Drizzle generously with more olive oil and finish with the toasted ground cumin.",
    "Serve with warm bread alongside for scooping."
-  ]
+  ],
+  "temperature": "hot"
  },
  {
   "id": "chicken-korma",
@@ -567,7 +572,8 @@ export const recipes: Recipe[] = [
    "Lower the heat and stir in the cashew-yogurt paste a spoonful at a time, stirring constantly so it doesn't split. Once fully incorporated, add 1/2 cup water.",
    "Cover and simmer on low for 18\u201320 minutes, stirring occasionally, until the chicken is cooked through and the gravy has thickened to coat a spoon.",
    "Stir in the garam masala and cream if using. Simmer 2 more minutes, taste for salt, and finish with cilantro."
-  ]
+  ],
+  "temperature": "cold"
  },
  {
   "id": "chicken-do-pyaza",
@@ -672,7 +678,8 @@ export const recipes: Recipe[] = [
    "Add 1 cup water, bring to a boil, then cover and simmer on low for 15 minutes.",
    "Stir in the reserved onion petals, cover again, and simmer 10\u201312 more minutes until the chicken is cooked through and the onion petals are tender but still holding their shape, with a little bite left.",
    "Stir in the garam masala, simmer uncovered 2 minutes, and finish with cilantro."
-  ]
+  ],
+  "temperature": "hot"
  },
  {
   "id": "kerala-mutton-curry",
@@ -791,7 +798,8 @@ export const recipes: Recipe[] = [
    "Add the mutton and toss well to coat in the masala. Cook for 5 minutes, turning to seal.",
    "Add 2 cups water, bring to a boil, then cover and simmer on low for 55\u201365 minutes, stirring occasionally and topping up water if it runs low, until the mutton is completely tender.",
    "Uncover and simmer for a final 5\u201310 minutes to thicken the gravy. Stir in the tamarind if using and the remaining curry leaves and crushed peppercorns. Taste and adjust salt before serving."
-  ]
+  ],
+  "temperature": "cold"
  },
  {
   "id": "kashmiri-mutton-yakhni",
@@ -883,7 +891,8 @@ export const recipes: Recipe[] = [
    "Remove the pot from the heat briefly and stir in the whisked yogurt a spoonful at a time \u2014 adding it off the heat and slowly helps stop it from splitting.",
    "Return to low heat and simmer gently, uncovered, for 8\u201310 minutes, stirring often, until the gravy thickens slightly and turns a pale, creamy colour. Don't let it boil hard once the yogurt is in.",
    "Stir in the nutmeg if using, taste and adjust salt, and finish with mint or cilantro. Yakhni is meant to be mild and fragrant rather than fiery, so season gently."
-  ]
+  ],
+  "temperature": "hot"
  },
  {
   "id": "amritsari-fish",
@@ -973,7 +982,8 @@ export const recipes: Recipe[] = [
    "Heat the oil in a heavy pot or kadai to 350\u00b0F (175\u00b0C). Test with a small drop of batter \u2014 it should sizzle and rise within a few seconds.",
    "Fry the fish in batches of 4\u20135 pieces, without crowding the pot, for 3\u20134 minutes, turning once, until deep golden and crisp. Drain on a wire rack or paper towels.",
    "Let the oil come back up to temperature between batches. Once all the fish is fried, sprinkle with the remaining chaat masala and the rest of the lemon juice, and serve immediately while hot and crisp."
-  ]
+  ],
+  "temperature": "cold"
  },
  {
   "id": "bengali-prawn-malai-curry",
@@ -1066,7 +1076,8 @@ export const recipes: Recipe[] = [
    "Pour in the coconut milk and 1/3 cup water. Add the sugar and season with salt. Bring to a gentle simmer \u2014 don't let it boil hard, or the coconut milk can split.",
    "Simmer for 6\u20138 minutes, stirring occasionally, until the sauce thickens slightly and turns a pale golden color. Slide the seared prawns back in along with the remaining green chilies.",
    "Simmer for 3\u20134 minutes more, just until the prawns are fully cooked through and the sauce clings lightly to them. Serve over steamed rice."
-  ]
+  ],
+  "temperature": "hot"
  },
  {
   "id": "andhra-prawn-curry",
@@ -1175,7 +1186,8 @@ export const recipes: Recipe[] = [
    "Add the tomato and cook for 4\u20135 minutes, mashing it down, until it breaks apart completely. Stir in the ground coriander, red chili powder, and remaining turmeric, and cook for 2 minutes until the oil starts to separate.",
    "Add the prawns and 1/4 cup water. Cook uncovered over medium-high heat for 6\u20138 minutes, stirring frequently, until the prawns are cooked through, the water has evaporated, and the masala clings to them as a thick, dry-ish coating rather than a loose gravy.",
    "Taste and adjust salt and heat \u2014 iguru is meant to be assertively spicy. Scatter with cilantro and serve hot as a side with rice or dal."
-  ]
+  ],
+  "temperature": "cold"
  },
  {
   "id": "undhiyu",
@@ -1297,7 +1309,8 @@ export const recipes: Recipe[] = [
    "Layer in the stuffed potatoes first (they take longest), then the stuffed eggplants, then the green beans, sprinkling any leftover stuffing masala over the top. Add 1/3 cup water, cover tightly, and cook over low heat for 20\u201325 minutes, shaking the pot occasionally instead of stirring (to keep the vegetables intact), until everything is tender.",
    "Gently fold in the fried muthiya during the last 5 minutes, just to warm them through and let them soak up some of the juices.",
    "Scatter with the remaining cilantro and serve hot \u2014 undhiyu is traditionally eaten with puri, but rice works well too."
-  ]
+  ],
+  "temperature": "hot"
  },
  {
   "id": "sambar",
@@ -1425,7 +1438,8 @@ export const recipes: Recipe[] = [
    "Stir the cooked, mashed dal into the vegetable-tamarind mixture. Add water to reach a soupy, pourable consistency, season with salt, and simmer for 10 minutes, stirring occasionally, to let the flavors meld.",
    "For the tempering: heat the oil in a small pan over medium heat. Add the mustard seeds and let them pop, then add the fenugreek seeds (if using), dried red chilies, curry leaves, and asafoetida. Fry for 15\u201320 seconds until fragrant.",
    "Pour the tempering over the sambar and stir it in. Simmer 2 more minutes, scatter with cilantro, and serve hot with rice."
-  ]
+  ],
+  "temperature": "cold"
  },
  {
   "id": "vegetable-biryani",
@@ -1560,7 +1574,8 @@ export const recipes: Recipe[] = [
    "Spread the vegetable masala evenly across the bottom of the pot. Layer the partially cooked rice on top. Scatter with the remaining fried onions, mint, and cilantro, and drizzle with the remaining oil.",
    "Cover tightly with a lid (seal the edges with a strip of dough or foil if the lid isn't snug) and cook on the lowest possible heat for 20\u201325 minutes to steam through on the dum.",
    "Rest, covered, for 5 minutes off the heat, then fluff gently with a fork, folding the rice and vegetable layers together from the bottom up before serving."
-  ]
+  ],
+  "temperature": "hot"
  },
  {
   "id": "kerala-vegetable-stew",
@@ -1658,7 +1673,8 @@ export const recipes: Recipe[] = [
    "Add the potatoes, carrots, and green beans along with half the coconut milk and 1/2 cup water. Season with salt, bring to a gentle simmer, cover, and cook for 15\u201318 minutes, until the vegetables are tender.",
    "Add the peas and simmer, uncovered, for 3 minutes more.",
    "Stir in the remaining coconut milk and warm through gently for 2 minutes without letting it boil hard, to keep the stew silky. Serve warm with appam, string hoppers, or rice."
-  ]
+  ],
+  "temperature": "cold"
  },
  {
   "id": "southern-fried-chicken",
@@ -1739,7 +1755,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Fried chicken as a Southern dish has roots in West African cooking traditions carried and adapted by enslaved and, later, free Black cooks in the American South, who combined seasoned frying techniques with ingredients available on Southern plantations and farms. It became a signature of Southern and soul-food cooking by the 19th century.",
   "sourceName": "Southern Foodways Alliance",
-  "sourceUrl": "https://www.southernfoodways.org/"
+  "sourceUrl": "https://www.southernfoodways.org/",
+  "temperature": "hot"
  },
  {
   "id": "texas-brisket",
@@ -1793,7 +1810,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Central Texas brisket barbecue traces to German and Czech immigrant meat markets in the Texas Hill Country in the late 1800s, which smoked unsold cuts of meat; brisket, seasoned simply with salt and pepper and smoked low and slow, became the region's signature.",
   "sourceName": "Texas Monthly BBQ Archive",
-  "sourceUrl": "https://www.texasmonthly.com/bbq/"
+  "sourceUrl": "https://www.texasmonthly.com/bbq/",
+  "temperature": "cold"
  },
  {
   "id": "memphis-dry-rub-ribs",
@@ -1878,7 +1896,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Memphis is known for two barbecue styles \u2014 wet (sauced) and dry (rubbed) \u2014 with dry-rub ribs as the city's signature, letting the smoke and spice rub carry the flavor rather than a sauce.",
   "sourceName": "Southern Foodways Alliance",
-  "sourceUrl": "https://www.southernfoodways.org/"
+  "sourceUrl": "https://www.southernfoodways.org/",
+  "temperature": "hot"
  },
  {
   "id": "chicken-fried-steak",
@@ -1957,7 +1976,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Chicken fried steak developed in Texas and the South, likely from German and Austrian immigrant communities' schnitzel technique applied to inexpensive beef cuts and prepared in the style of Southern fried chicken.",
   "sourceName": "Texas State Historical Association",
-  "sourceUrl": "https://www.tshaonline.org/"
+  "sourceUrl": "https://www.tshaonline.org/",
+  "temperature": "cold"
  },
  {
   "id": "smores",
@@ -2006,7 +2026,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "S'mores were first published as a recipe in the Girl Scouts' 1927 guidebook 'Tramping and Trailing with the Girl Scouts,' under the name 'Some Mores' \u2014 an American campfire tradition ever since.",
   "sourceName": "Girl Scouts of the USA",
-  "sourceUrl": "https://www.girlscouts.org/"
+  "sourceUrl": "https://www.girlscouts.org/",
+  "temperature": "hot"
  },
  {
   "id": "grilled-chicken-burger",
@@ -2102,7 +2123,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "The grilled chicken burger became a fixture of American backyard cookouts and casual dining from the late 20th century onward, offering a grilled, lighter alternative to the beef burger without sacrificing the same bun-and-toppings format.",
   "sourceName": "America's Test Kitchen",
-  "sourceUrl": "https://www.americastestkitchen.com/"
+  "sourceUrl": "https://www.americastestkitchen.com/",
+  "temperature": "cold"
  },
  {
   "id": "marinara-pizza",
@@ -2177,7 +2199,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Pizza marinara, despite the name, contains no seafood \u2014 it's named for the sailors' wives ('marinara') of Naples who made it, using ingredients that kept well without refrigeration. It predates the Margherita and is, alongside it, one of the two defining Neapolitan pizzas.",
   "sourceName": "Associazione Verace Pizza Napoletana",
-  "sourceUrl": "https://www.pizzanapoletana.org/"
+  "sourceUrl": "https://www.pizzanapoletana.org/",
+  "temperature": "hot"
  },
  {
   "id": "diavola-pizza",
@@ -2248,7 +2271,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Pizza diavola is a classic Italian pizza, topped with spicy salami and chili \u2014 the name means 'devil-style,' referring to the heat. It's the closest Italian equivalent to the American pepperoni pizza, though the salami and technique differ.",
   "sourceName": "La Cucina Italiana",
-  "sourceUrl": "https://www.lacucinaitaliana.com/"
+  "sourceUrl": "https://www.lacucinaitaliana.com/",
+  "temperature": "cold"
  },
  {
   "id": "chicago-deep-dish-pizza",
@@ -2347,7 +2371,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Chicago deep-dish pizza was invented at Pizzeria Uno in Chicago in 1943; it inverts the usual order (cheese on the dough, sauce on top) so the cheese doesn't burn during the long bake needed for the thick crust.",
   "sourceName": "Choose Chicago",
-  "sourceUrl": "https://www.choosechicago.com/"
+  "sourceUrl": "https://www.choosechicago.com/",
+  "temperature": "hot"
  },
  {
   "id": "spaghetti-bolognese",
@@ -2446,7 +2471,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Spaghetti bolognese as usually served outside Italy differs from Bologna's own rag\u00f9 alla bolognese, which is traditionally paired with fresh tagliatelle, not dried spaghetti \u2014 this recipe keeps the beloved spaghetti pairing while noting the distinction honestly.",
   "sourceName": "La Cucina Italiana",
-  "sourceUrl": "https://www.lacucinaitaliana.com/"
+  "sourceUrl": "https://www.lacucinaitaliana.com/",
+  "temperature": "cold"
  },
  {
   "id": "lasagna-alla-bolognese",
@@ -2557,7 +2583,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Lasagna alla bolognese is a signature dish of Emilia-Romagna, traditionally made with fresh egg pasta sheets, a slow-cooked meat rag\u00f9, and b\u00e9chamel (not ricotta, which is a common substitution in Southern Italian and Italian-American versions).",
   "sourceName": "La Cucina Italiana",
-  "sourceUrl": "https://www.lacucinaitaliana.com/"
+  "sourceUrl": "https://www.lacucinaitaliana.com/",
+  "temperature": "hot"
  },
  {
   "id": "potato-gnocchi-pomodoro",
@@ -2626,7 +2653,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Gnocchi are a potato-based dumpling found across Italy in regional variations; al pomodoro (with simple tomato sauce) is one of the most common everyday preparations, letting the pillowy texture of the gnocchi itself be the star.",
   "sourceName": "La Cucina Italiana",
-  "sourceUrl": "https://www.lacucinaitaliana.com/"
+  "sourceUrl": "https://www.lacucinaitaliana.com/",
+  "temperature": "cold"
  },
  {
   "id": "chicken-parmesan",
@@ -2712,7 +2740,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Chicken parmesan is an Italian-American dish, adapting the older Southern Italian eggplant parmigiana (melanzane alla parmigiana) by substituting breaded, fried chicken for the eggplant \u2014 not a dish found in this form in Italy itself.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "bistecca-alla-fiorentina",
@@ -2772,7 +2801,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Bistecca alla Fiorentina is a Tuscan specialty, traditionally cut from Chianina cattle, a breed native to the Val di Chiana \u2014 the steak is meant to be simple: just the meat, salt, fire, and time.",
   "sourceName": "La Cucina Italiana",
-  "sourceUrl": "https://www.lacucinaitaliana.com/"
+  "sourceUrl": "https://www.lacucinaitaliana.com/",
+  "temperature": "cold"
  },
  {
   "id": "chow-mein",
@@ -2880,7 +2910,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Chow mein ('stir-fried noodles') is a broad category across Chinese regional cooking and the Chinese diaspora; this pan-fried style, with noodles left to crisp slightly against the wok, is common in Cantonese and American-Chinese kitchens alike.",
   "sourceName": "The Woks of Life",
-  "sourceUrl": "https://thewoksoflife.com/"
+  "sourceUrl": "https://thewoksoflife.com/",
+  "temperature": "hot"
  },
  {
   "id": "pork-chive-jiaozi",
@@ -2974,7 +3005,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Jiaozi are a staple across northern China, traditionally eaten on Chinese New Year's Eve, when the whole family gathers to fold them together \u2014 the pleated shape is said to resemble old silver ingots, symbolizing wealth for the year ahead.",
   "sourceName": "The Woks of Life",
-  "sourceUrl": "https://thewoksoflife.com/"
+  "sourceUrl": "https://thewoksoflife.com/",
+  "temperature": "cold"
  },
  {
   "id": "fried-pork-wontons",
@@ -3066,7 +3098,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Fried wontons are a Chinese-American restaurant staple rather than a dish typically eaten this way in China, where wontons are far more often served in soup; the crunchy fried version became popular stateside as a shareable appetizer.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "sweet-corn-chicken-soup",
@@ -3150,7 +3183,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Like its vegetarian counterpart, sweet corn chicken soup is an Indo-Chinese restaurant staple \u2014 shredded poached chicken keeps the texture light rather than chunky, matching the soup's silky, cornstarch-thickened body.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "congee",
@@ -3226,7 +3260,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Congee (zhou) is a staple across Chinese home cooking, especially common for breakfast or when feeling unwell \u2014 the long, slow simmer that breaks the rice grains down fully is what gives it its signature silky texture, and toppings vary endlessly by region and preference.",
   "sourceName": "The Woks of Life",
-  "sourceUrl": "https://thewoksoflife.com/"
+  "sourceUrl": "https://thewoksoflife.com/",
+  "temperature": "hot"
  },
  {
   "id": "chicken-manchurian",
@@ -3329,7 +3364,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Chicken Manchurian is a Kolkata Indo-Chinese invention with no real link to the Manchuria region of China \u2014 it reflects how thoroughly Chinese cooking techniques were reinterpreted with Indian spicing and bold, gravy-forward presentation once they reached India.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "sweet-and-sour-fish",
@@ -3425,7 +3461,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Sweet and sour fish follows the same gu lao\u2013style sauce as the chicken version, but needs a gentler hand \u2014 fried fish is far more delicate, so it's folded into the sauce at the very end rather than vigorously tossed.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "sweet-and-sour-pork",
@@ -3518,7 +3555,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Sweet and sour pork (gu lao yuk) is the original version of this dish, Cantonese in origin and dating back over a century \u2014 the chicken, fish, and other variations found on international menus all descend from this pork original.",
   "sourceName": "The Woks of Life",
-  "sourceUrl": "https://thewoksoflife.com/"
+  "sourceUrl": "https://thewoksoflife.com/",
+  "temperature": "cold"
  },
  {
   "id": "vegetable-spring-rolls",
@@ -3621,7 +3659,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Spring rolls are named for their traditional association with the Spring Festival (Chinese New Year), though they're now eaten year-round \u2014 keeping the filling fully cooled before wrapping is the key to a crisp, non-soggy shell.",
   "sourceName": "The Woks of Life",
-  "sourceUrl": "https://thewoksoflife.com/"
+  "sourceUrl": "https://thewoksoflife.com/",
+  "temperature": "hot"
  },
  {
   "id": "red-bean-soup",
@@ -3679,7 +3718,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Red bean soup (hong dou sha) is a classic Cantonese 'tong sui' (sweet soup) dessert, traditionally served warm even in summer \u2014 dried tangerine peel is a common addition that cuts through the sweetness with a faint citrus bitterness.",
   "sourceName": "The Woks of Life",
-  "sourceUrl": "https://thewoksoflife.com/"
+  "sourceUrl": "https://thewoksoflife.com/",
+  "temperature": "cold"
  },
  {
   "id": "dolma",
@@ -3769,13 +3809,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Dolma (from the Turkish for 'stuffed') appears across Greek, Turkish, Lebanese, and Armenian cooking with small regional differences \u2014 this herb-forward, meat-free version is common as a mezze, while meat-filled versions are often served warm as a main.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "lamb-shish-kebab",
   "title": "Lamb Shish Kebab",
   "description": "Cubed lamb marinated in olive oil, garlic, and warm spices, grilled over high heat until charred outside and pink within \u2014 found with regional variations from Turkey to the Levant.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Dairy-Free",
    "Gluten-Free"
@@ -3864,13 +3905,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Shish kebab ('skewer of roasted meat') is found across Turkey, the Levant, and beyond, with countless regional spice variations \u2014 grated onion in the marinade is a common tenderizing trick, breaking down the meat's surface before it even hits the grill.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "chicken-shish-tawook",
   "title": "Chicken Shish Tawook",
   "description": "Chicken marinated in yogurt, garlic, and tomato paste, skewered and grilled until juicy and lightly charred \u2014 a Levantine and Turkish grilled chicken classic, often served with garlic sauce.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Gluten-Free"
   ],
@@ -3952,7 +3994,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Shish tawook is a staple of Levantine and Turkish grilling \u2014 the small amount of tomato paste in the marinade gives the chicken its characteristic light orange-red hue without the heavier flavor of a full tomato sauce.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "lamb-tagine-apricots",
@@ -4056,13 +4099,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Sweet-savory combinations like lamb and dried fruit are a hallmark of Moroccan cooking, reflecting historic trade routes that brought spices and dried fruits into North Africa \u2014 almonds scattered on top add a textural contrast to the soft, glossy stew.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "mujadara",
   "title": "Mujadara",
   "description": "Lentils and rice simmered together, topped with a generous pile of deeply caramelized onions \u2014 a Levantine lentil dish that's humble, cheap, and completely addictive.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Low Sugar",
    "Vegan",
@@ -4129,7 +4173,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Mujadara's defining feature is the caramelized onions \u2014 rushing this step is the most common mistake, since real caramelization (not just softening) takes a genuine 25\u201330 minutes of patient, low-and-slow cooking.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "beet-salad-feta",
@@ -4207,7 +4252,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Roasting beets whole in foil (rather than boiling) concentrates their natural sweetness and makes peeling far easier once they're cooked \u2014 tossing them with dressing while still warm also helps them absorb more flavor than if dressed cold.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "baklava",
@@ -4290,7 +4336,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Pouring hot syrup over hot baklava (or cold syrup over cooled baklava) keeps the layers crisp; mixing temperatures the opposite way is what makes baklava turn soggy instead of staying crackly.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "guacamole",
@@ -4368,7 +4415,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Authentic guacamole is deliberately minimal \u2014 garlic, cumin, and sour cream are not traditional. Grinding the onion and chile with salt first releases their oils and seasons the whole batch evenly.",
   "sourceName": "Rick Bayless / Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "pollo-asado-tacos",
@@ -4466,7 +4514,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Achiote (annatto) gives the chicken its brick-orange color and a gentle earthy flavor. The citrus helps tenderize the meat but turns it mushy past about 8 hours.",
   "sourceName": "Rick Bayless / Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "tacos-al-pastor",
@@ -4586,7 +4635,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Al pastor was created in Mexico City by Lebanese immigrants who adapted shawarma, replacing lamb with marinated pork and adding pineapple. In taquer\u00edas it's shaved from a vertical spit (trompo); thin slices seared hard at home come close.",
   "sourceName": "Rick Bayless / Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "roasted-cauliflower-tacos",
@@ -4680,7 +4730,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "High heat and a single layer on the pan are what make cauliflower caramelize and char instead of steaming into mush.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "chicken-quesadilla",
@@ -4761,7 +4812,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Shredded cheese goes in first and last so it acts like glue, sealing the filling inside the tortilla. Don't overfill, or the quesadilla won't close and the filling spills in the pan.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "chilaquiles-rojos",
@@ -4857,7 +4909,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "The chips should keep some crunch \u2014 add them only at the last minute. Chilaquiles are the classic way to use up stale tortillas and are a breakfast staple and a hangover cure.",
   "sourceName": "Rick Bayless / Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "churros",
@@ -4947,7 +5000,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "The star tip creates ridges that make the surface crisp and give the cinnamon sugar something to grip. Keep the oil at 350\u00b0F: too cool and the churros are greasy, too hot and the inside stays raw.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "arroz-con-leche",
@@ -5031,7 +5085,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Cooking the rice in water first softens it before the milk goes in, which keeps the milk from scorching and the grains from staying firm. Stir often toward the end, as the starch thickens quickly.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "gorditas-de-pollo",
@@ -5127,7 +5182,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "'Gordita' means little fat one. They're a street food from central Mexico (Zacatecas and Quer\u00e9taro especially) and are traditionally stuffed with chicharr\u00f3n in green sauce, beans, or guisados (stews).",
   "sourceName": "Rick Bayless / Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "pozole-blanco",
@@ -5220,7 +5276,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Pozole blanco is the base from which red and green pozole are made \u2014 the chile paste or tomatillo-pumpkin-seed sauce is stirred in. Eating it white lets the pork and corn flavors speak, and each diner adds their own heat.",
   "sourceName": "Rick Bayless / Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "chicken-guacamole-tacos",
@@ -5310,7 +5367,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Mash the guacamole just before serving: cut avocado browns within minutes. Lime juice slows the discoloration but doesn't stop it.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "albondigas-en-salsa",
@@ -5431,7 +5489,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Alb\u00f3ndigas turn up in tapas bars across Spain, always in sauce. A mix of pork and beef keeps them juicy, and dredging in flour before browning gives the sauce body.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "fideua",
@@ -5533,7 +5592,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Fideu\u00e0 was created in Gandia, near Valencia, when a ship's cook swapped noodles for rice. Toasting the fideos first gives a nutty flavor and keeps them from going soft.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "lentejas-con-chorizo",
@@ -5631,7 +5691,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Spanish lentil stew is better the next day. Use cured Spanish chorizo, not fresh Mexican chorizo, and don't salt until the lentils are nearly tender.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "pisto-manchego",
@@ -5717,7 +5778,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Pisto is cooked slowly \u2014 no rushing \u2014 so the vegetables keep their shape but melt together. It keeps 4 days in the fridge and makes a great filling for empanadas.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "tarta-de-queso-vasca",
@@ -5788,7 +5850,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Created at La Vi\u00f1a in San Sebasti\u00e1n. The 'burnt' top is the point \u2014 it adds bitter-caramel notes against the creamy center. Don't open the oven in the first 35 minutes.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "hot"
  },
  {
   "id": "aceitunas-alinadas",
@@ -5865,7 +5928,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Spanish olive varieties like manzanilla, gordal, and arbequina are classic. Don't add salt \u2014 olives are already brined.",
   "sourceName": "Serious Eats",
-  "sourceUrl": "https://www.seriouseats.com/"
+  "sourceUrl": "https://www.seriouseats.com/",
+  "temperature": "cold"
  },
  {
   "id": "tom-yum-goong",
@@ -5967,7 +6031,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Add the lime juice off the heat, since cooking dulls its brightness. The woody lemongrass, galangal, and lime leaves are flavor, not food; diners push them aside.",
   "sourceName": "Hot Thai Kitchen",
-  "sourceUrl": "https://hot-thai-kitchen.com/"
+  "sourceUrl": "https://hot-thai-kitchen.com/",
+  "temperature": "hot"
  },
  {
   "id": "khao-soi",
@@ -6079,7 +6144,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Khao soi shows Burmese and Chinese Muslim influence. The contrast of soft boiled noodles, crispy fried noodles, creamy broth, and sharp pickles is the whole point.",
   "sourceName": "Hot Thai Kitchen",
-  "sourceUrl": "https://hot-thai-kitchen.com/"
+  "sourceUrl": "https://hot-thai-kitchen.com/",
+  "temperature": "cold"
  },
  {
   "id": "yam-woon-sen",
@@ -6183,7 +6249,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Dress the noodles while still slightly warm so they absorb the flavors. The salad keeps well for a few hours, making it a good make-ahead dish.",
   "sourceName": "Hot Thai Kitchen",
-  "sourceUrl": "https://hot-thai-kitchen.com/"
+  "sourceUrl": "https://hot-thai-kitchen.com/",
+  "temperature": "hot"
  },
  {
   "id": "bun-cha-hanoi",
@@ -6290,7 +6357,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "B\u00fan ch\u1ea3 was famously eaten by Barack Obama and Anthony Bourdain in Hanoi. The dipping broth is meant to be served lukewarm, not hot.",
   "sourceName": "Viet World Kitchen",
-  "sourceUrl": "https://www.vietworldkitchen.com/"
+  "sourceUrl": "https://www.vietworldkitchen.com/",
+  "temperature": "cold"
  },
  {
   "id": "banh-xeo",
@@ -6401,7 +6469,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "'X\u00e8o' is the sizzle sound the batter makes when poured into the hot pan. A thin batter and a very hot pan give the lacy crisp edges. Stir the batter before each crepe, as the flour settles.",
   "sourceName": "Viet World Kitchen",
-  "sourceUrl": "https://www.vietworldkitchen.com/"
+  "sourceUrl": "https://www.vietworldkitchen.com/",
+  "temperature": "hot"
  },
  {
   "id": "gado-gado",
@@ -6521,7 +6590,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "'Gado-gado' means 'mix-mix'. The vegetables vary by region; add whatever is fresh, like spinach, long beans, or chayote. Store the sauce separately and thin with warm water when needed.",
   "sourceName": "Indonesia Eats",
-  "sourceUrl": "https://www.indonesiaeats.com/"
+  "sourceUrl": "https://www.indonesiaeats.com/",
+  "temperature": "cold"
  },
  {
   "id": "sayur-lodeh",
@@ -6637,7 +6707,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Sayur lodeh is traditionally served with lontong (rice cakes) or rice. Keep the heat low once the coconut milk goes in, to avoid splitting.",
   "sourceName": "Indonesia Eats",
-  "sourceUrl": "https://www.indonesiaeats.com/"
+  "sourceUrl": "https://www.indonesiaeats.com/",
+  "temperature": "hot"
  },
  {
   "id": "char-kway-teow",
@@ -6735,7 +6806,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "The signature is wok hei, a smoky char from very high heat. Cook one or two portions at a time and keep the noodles moving. Cockles and lard are traditional in Penang.",
   "sourceName": "Rasa Malaysia",
-  "sourceUrl": "https://rasamalaysia.com/"
+  "sourceUrl": "https://rasamalaysia.com/",
+  "temperature": "cold"
  },
  {
   "id": "penang-prawn-mee",
@@ -6845,7 +6917,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "The broth gets its sweetness from prawn heads, so don't skip them. The chili paste is added at the end so you can adjust spice. A spoon of sambal on top is traditional.",
   "sourceName": "Rasa Malaysia",
-  "sourceUrl": "https://rasamalaysia.com/"
+  "sourceUrl": "https://rasamalaysia.com/",
+  "temperature": "hot"
  },
  {
   "id": "bai-sach-chrouk",
@@ -6955,7 +7028,8 @@ export const recipes: Recipe[] = [
    "Serve the pork over rice with pickles, a drizzle of scallion oil, and a bowl of hot broth if you like."
   ],
   "notes": "The coconut milk marinade tenderizes the thin pork and gives it a signature sweetness. Bai sach chrouk is sold at street stalls across Phnom Penh every morning.",
-  "sourceName": "Traditional Khmer home cooking"
+  "sourceName": "Traditional Khmer home cooking",
+  "temperature": "cold"
  },
  {
   "id": "hor-mok-pla",
@@ -7052,7 +7126,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Hor mok has a soft custard texture; don't boil the steaming water hard or the surface will pit. The fish pieces should be chopped small so they're bound by the custard.",
   "sourceName": "Hot Thai Kitchen",
-  "sourceUrl": "https://hot-thai-kitchen.com/"
+  "sourceUrl": "https://hot-thai-kitchen.com/",
+  "temperature": "hot"
  },
  {
   "id": "cumi-goreng-tepung",
@@ -7147,7 +7222,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Rice flour and cornstarch give the thin, shattering crust. Don't overcrowd the pot; a hot oil temperature prevents greasy coating and rubbery squid.",
   "sourceName": "Indonesia Eats",
-  "sourceUrl": "https://www.indonesiaeats.com/"
+  "sourceUrl": "https://www.indonesiaeats.com/",
+  "temperature": "cold"
  },
  {
   "id": "kimchi-bokkeumbap",
@@ -7248,7 +7324,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "The sourer and more aged the kimchi, the better the fried rice. Adding a splash of the kimchi brine gives extra flavor and tang. Day-old rice fries better than fresh.",
   "sourceName": "Maangchi",
-  "sourceUrl": "https://www.maangchi.com/"
+  "sourceUrl": "https://www.maangchi.com/",
+  "temperature": "hot"
  },
  {
   "id": "dakgalbi",
@@ -7364,7 +7441,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Chuncheon dakgalbi is traditionally cooked at the table on a large iron griddle. Finish it with a scoop of rice, a little seaweed, and sesame oil stir-fried into the sauce for 'bokkeumbap'. Add cheese on top for a popular modern twist.",
   "sourceName": "Maangchi",
-  "sourceUrl": "https://www.maangchi.com/"
+  "sourceUrl": "https://www.maangchi.com/",
+  "temperature": "cold"
  },
  {
   "id": "samgyetang",
@@ -7444,7 +7522,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Samgyetang is traditionally eaten on the hottest days of summer (boknal) to 'fight heat with heat'. Use small birds for individual servings; if only large chicken is available, simmer longer and shred the meat.",
   "sourceName": "Maangchi",
-  "sourceUrl": "https://www.maangchi.com/"
+  "sourceUrl": "https://www.maangchi.com/",
+  "temperature": "hot"
  },
  {
   "id": "japchae",
@@ -7549,7 +7628,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Cooking each vegetable separately keeps their colors and textures distinct. Japchae is served warm or at room temperature and keeps well for a few hours.",
   "sourceName": "Maangchi",
-  "sourceUrl": "https://www.maangchi.com/"
+  "sourceUrl": "https://www.maangchi.com/",
+  "temperature": "cold"
  },
  {
   "id": "yangnyeom-chicken",
@@ -7656,7 +7736,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "The double fry is the secret: the first cooks the chicken, the second dries out the coating so it stays crisp under the glaze. Potato starch gives a thin, glassy crust. For plain 'huraideu' style, skip the glaze and serve with salt.",
   "sourceName": "Maangchi",
-  "sourceUrl": "https://www.maangchi.com/"
+  "sourceUrl": "https://www.maangchi.com/",
+  "temperature": "hot"
  },
  {
   "id": "baechu-kimchi",
@@ -7747,7 +7828,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Always use non-iodized coarse salt; table salt can inhibit fermentation. Press kimchi under its brine to prevent mold, and use clean utensils. Kimchi keeps for months refrigerated, growing more sour over time.",
   "sourceName": "Maangchi",
-  "sourceUrl": "https://www.maangchi.com/"
+  "sourceUrl": "https://www.maangchi.com/",
+  "temperature": "cold"
  },
  {
   "id": "kkakdugi",
@@ -7829,13 +7911,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Kkakdugi's crunch is its charm: salt briefly and don't over-ferment. It's traditionally served with seolleongtang and other beef soups. Use Korean radish if you can find it; daikon is the closest substitute.",
   "sourceName": "Maangchi",
-  "sourceUrl": "https://www.maangchi.com/"
+  "sourceUrl": "https://www.maangchi.com/",
+  "temperature": "hot"
  },
  {
   "id": "beef-shish-kebab",
   "title": "Beef Shish Kebab",
   "description": "Cubes of beef sirloin marinated in olive oil, garlic, cumin, and paprika, skewered with onion and peppers and grilled until charred outside and pink inside.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Dairy-Free"
   ],
@@ -7933,13 +8016,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Use well-trimmed sirloin or tenderloin. Overcooked beef cubes dry out, so pull them at 130\u2013135\u00b0F (54\u201357\u00b0C) for medium.",
   "sourceName": "The Mediterranean Dish",
-  "sourceUrl": "https://www.themediterraneandish.com/"
+  "sourceUrl": "https://www.themediterraneandish.com/",
+  "temperature": "cold"
  },
  {
   "id": "kofta-mashwiya",
   "title": "Kofta Mashwiya (Arabic Lamb Kofta Plate)",
   "description": "Seasoned ground lamb and beef with parsley and onion, shaped into long skewers, grilled, and served with fries, grilled tomato, and garlic sauce.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Dairy-Free"
   ],
@@ -8031,13 +8115,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Squeezing excess liquid from the onion prevents the kofta from falling apart. A little fat in the meat blend is important for juiciness.",
   "sourceName": "The Mediterranean Dish",
-  "sourceUrl": "https://www.themediterraneandish.com/"
+  "sourceUrl": "https://www.themediterraneandish.com/",
+  "temperature": "hot"
  },
  {
   "id": "chicken-mandi",
   "title": "Chicken Mandi",
   "description": "Tender spiced chicken served over fragrant rice cooked in its stock, topped with fried onions and nuts. A comforting Yemeni and Saudi dish.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [],
   "tasteTags": [
    "Creamy",
@@ -8141,13 +8226,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Chicken mandi usually cooks on top of the rice in a sealed pit so juices drip down. Roasting the chicken separately and finishing under a broiler gives a similar result at home.",
   "sourceName": "The Mediterranean Dish",
-  "sourceUrl": "https://www.themediterraneandish.com/"
+  "sourceUrl": "https://www.themediterraneandish.com/",
+  "temperature": "cold"
  },
  {
   "id": "maqluba",
   "title": "Maqluba (Upside-Down Chicken, Rice and Eggplant)",
   "description": "A showstopper of layered fried eggplant, spiced chicken, and rice cooked in one pot, then flipped onto a platter so it forms a golden dome.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [],
   "tasteTags": [
    "Creamy",
@@ -8249,13 +8335,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "'Maqluba' means upside down. Fry the eggplant ahead for flavor and structure. If the flip worries you, press the layers down firmly and let the pot rest well first. A Palestinian, Jordanian, and Syrian classic.",
   "sourceName": "The Mediterranean Dish",
-  "sourceUrl": "https://www.themediterraneandish.com/"
+  "sourceUrl": "https://www.themediterraneandish.com/",
+  "temperature": "hot"
  },
  {
   "id": "kuzu-doner-durum",
   "title": "Lamb D\u00f6ner D\u00fcr\u00fcm (Wrapped Lamb D\u00f6ner)",
   "description": "Thinly sliced spiced lamb seared hot and rolled in thin lavash with tomatoes, onions, and sumac, a Turkish fast-food favorite.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Dairy-Free"
   ],
@@ -8347,13 +8434,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "D\u00fcr\u00fcm means 'rolled'. Slice the lamb very thin, and freeze for 30 minutes first to make slicing easier. Pair with ayran and pickled peppers.",
   "sourceName": "Turkish Style Cooking",
-  "sourceUrl": "https://www.turkishstylecooking.com/"
+  "sourceUrl": "https://www.turkishstylecooking.com/",
+  "temperature": "cold"
  },
  {
   "id": "shawarma-sandwich-fries",
   "title": "Shawarma Sandwich with Fries and Pickles",
   "description": "A pressed pita sandwich stuffed with chicken shawarma, garlic sauce, pickles, and crisp French fries \u2014 a Lebanese snack-bar favorite.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [],
   "tasteTags": [
    "Creamy",
@@ -8449,13 +8537,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Putting fries inside the sandwich is a Lebanese snack-bar habit. Pressing the roll crisps the bread and seals in the filling.",
   "sourceName": "The Mediterranean Dish",
-  "sourceUrl": "https://www.themediterraneandish.com/"
+  "sourceUrl": "https://www.themediterraneandish.com/",
+  "temperature": "hot"
  },
  {
   "id": "kibbeh-baked",
   "title": "Kibbeh bil Sanieh (Baked Lebanese Kibbeh)",
   "description": "Layers of spiced bulgur-and-lamb shell sandwiching a saut\u00e9ed lamb, onion, and pine nut filling, scored in diamonds and baked until golden.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Dairy-Free"
   ],
@@ -8546,13 +8635,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Kibbeh is Lebanon's national dish; different regions make it raw (nayyeh), fried, in yogurt, or baked. The shell mixture should be silky-smooth: keep it cold while working.",
   "sourceName": "The Mediterranean Dish",
-  "sourceUrl": "https://www.themediterraneandish.com/"
+  "sourceUrl": "https://www.themediterraneandish.com/",
+  "temperature": "cold"
  },
  {
   "id": "tahchin",
   "title": "Tahchin (Persian Saffron Yogurt Rice Cake with Chicken)",
   "description": "A golden, crisp-crusted Persian rice cake layered with saffron-yogurt rice and tender chicken, baked and flipped onto a platter, garnished with barberries.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Gluten-Free"
   ],
@@ -8642,13 +8732,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "'Tah' means bottom, and the crisp golden crust is the prize. Pressing the rice firmly and baking covered helps it unmold in one piece. Tahchin is a Persian party dish, and it can be made with lamb or spinach.",
   "sourceName": "Persian Mama",
-  "sourceUrl": "https://persianmama.com/"
+  "sourceUrl": "https://persianmama.com/",
+  "temperature": "hot"
  },
  {
   "id": "fatteh-chickpea-yogurt",
   "title": "Fatteh (Chickpeas, Toasted Pita and Garlic Yogurt)",
   "description": "Crisp toasted pita layered with warm chickpeas and a cool, garlicky tahini-yogurt sauce, topped with pine nuts and sizzling butter.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Low Sugar"
   ],
@@ -8741,13 +8832,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Fatteh means 'crushed' (the bread). It's a Levantine breakfast and Ramadan favorite. Assemble just before serving so the pita stays partly crunchy.",
   "sourceName": "The Mediterranean Dish",
-  "sourceUrl": "https://www.themediterraneandish.com/"
+  "sourceUrl": "https://www.themediterraneandish.com/",
+  "temperature": "cold"
  },
  {
   "id": "mercimek-corbasi",
   "title": "Mercimek \u00c7orbas\u0131 (Turkish Red Lentil Soup)",
   "description": "Silky, golden red lentil soup with carrot, onion, and a hint of cumin, finished with a lemon squeeze and a drizzle of red pepper butter.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Low Sugar"
   ],
@@ -8840,13 +8932,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Served in nearly every Turkish restaurant before the main course, and eaten with a squeeze of lemon and crusty bread. A little potato makes the soup creamy.",
   "sourceName": "Turkish Style Cooking",
-  "sourceUrl": "https://www.turkishstylecooking.com/"
+  "sourceUrl": "https://www.turkishstylecooking.com/",
+  "temperature": "hot"
  },
  {
   "id": "fish-and-chips",
   "title": "Fish and Chips with Mushy Peas and Tartare Sauce",
   "description": "Beer-battered cod fried until shatteringly crisp, thick-cut chips, minted mushy peas and a quick caper tartare sauce.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Caffeine-Free",
    "Dairy-Free"
@@ -8947,13 +9040,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Keep the batter cold and fry as soon as it is mixed for the crispest coating. Traditional shops use haddock in Scotland and the north, cod in the south.",
   "sourceName": "BBC Good Food",
-  "sourceUrl": "https://www.bbcgoodfood.com/"
+  "sourceUrl": "https://www.bbcgoodfood.com/",
+  "temperature": "cold"
  },
  {
   "id": "sausage-rolls",
   "title": "Sausage Rolls",
   "description": "Seasoned pork and sage filling rolled in all-butter puff pastry and baked until flaky.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [],
   "tasteTags": [
    "Creamy",
@@ -9021,13 +9115,14 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Keep the pastry cold; chill rolls 15 minutes before baking for the best flake.",
   "sourceName": "BBC Good Food",
-  "sourceUrl": "https://www.bbcgoodfood.com/"
+  "sourceUrl": "https://www.bbcgoodfood.com/",
+  "temperature": "hot"
  },
  {
   "id": "shortbread",
   "title": "Scottish Shortbread",
   "description": "Three-ingredient buttery shortbread fingers, crumbly and golden, a Scottish Hogmanay tradition.",
-  "cuisine": "Hot drinks",
+  "cuisine": "Tea",
   "dietTags": [
    "Low Sugar"
   ],
@@ -9080,7 +9175,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Cornflour keeps the biscuit tender; do not overwork the dough.",
   "sourceName": "BBC Good Food",
-  "sourceUrl": "https://www.bbcgoodfood.com/"
+  "sourceUrl": "https://www.bbcgoodfood.com/",
+  "temperature": "cold"
  },
  {
   "id": "tendon",
@@ -9168,7 +9264,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Keep the batter ice-cold and mix minimally for a light, lacy crust.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "hot"
  },
  {
   "id": "karaage-don",
@@ -9254,7 +9351,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "The double-fry gives lasting crunch; potato starch is key to the crisp crust.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "cold"
  },
  {
   "id": "chicken-shoyu-ramen",
@@ -9335,7 +9433,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "A gentle simmer keeps the broth clear. The poaching liquid is already chicken-rich, so do not over-season.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "hot"
  },
  {
   "id": "kitsune-udon",
@@ -9408,7 +9507,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "The sweet tofu \"fox\" topping gives the dish its name, since foxes are said to love fried tofu.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "cold"
  },
  {
   "id": "chicken-karaage",
@@ -9492,7 +9592,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Do not coat in starch ahead of time, or the crust becomes gummy.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "hot"
  },
  {
   "id": "tamagoyaki",
@@ -9561,7 +9662,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Medium-low heat prevents browning. A round nonstick pan works if folded in thirds.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "cold"
  },
  {
   "id": "vegetable-gyoza",
@@ -9642,7 +9744,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Check that wrappers contain no egg for a strict vegan result.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "hot"
  },
  {
   "id": "shabu-shabu",
@@ -9738,7 +9841,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Ask a butcher to slice beef 1 mm thick, or freeze the beef for an hour and slice yourself.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "cold"
  },
  {
   "id": "tonjiru",
@@ -9818,7 +9922,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Serve on cold days; it's a one-bowl meal with rice.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "hot"
  },
  {
   "id": "mochi-daifuku",
@@ -9882,7 +9987,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Best eaten the day it is made. Dust hands with starch to avoid sticking.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "cold"
  },
  {
   "id": "shrimp-nigiri",
@@ -9956,7 +10062,8 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Skewer the shrimp straight before boiling 2 minutes to keep a flat shape.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "hot"
  },
  {
   "id": "dragon-roll",
@@ -10061,6 +10168,7 @@ export const recipes: Recipe[] = [
   ],
   "notes": "Layer avocado under cling film to press it smooth before slicing.",
   "sourceName": "Just One Cookbook",
-  "sourceUrl": "https://www.justonecookbook.com/"
+  "sourceUrl": "https://www.justonecookbook.com/",
+  "temperature": "cold"
  }
 ];

@@ -20,6 +20,7 @@ const CHICKEN_RECIPE: Recipe = {
   id: "recipe_123",
   title: "Weeknight Chicken",
   description: "",
+  temperature: "hot",
   cuisine: "Test",
   dietTags: [],
   tasteTags: [],

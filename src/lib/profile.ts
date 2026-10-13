@@ -24,7 +24,6 @@ export const CUISINE_OPTIONS = [
   "Juices",
   "Lemonades & coolers",
   "Sodas & sparkling",
-  "Hot drinks",
   "Others",
 ] as const;
 

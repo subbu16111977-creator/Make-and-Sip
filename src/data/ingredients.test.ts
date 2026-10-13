@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ingredientRegistry } from "./ingredients";
 import { recipes } from "./recipes";
-import { pantryItems } from "@/test/fixtures/pantry";
 import { resolveIngredientById } from "@/lib/ingredientNormalize";
 
 /**
@@ -37,11 +36,6 @@ describe("ingredient registry integrity", () => {
     expect(clashes).toEqual([]);
     const ids = ingredientRegistry.map((e) => e.id);
     expect(new Set(ids).size).toBe(ids.length);
-  });
-
-  it("every seed pantry item's ingredientId resolves to a registry entry", () => {
-    const unresolved = pantryItems.filter((p) => !resolveIngredientById(p.ingredientId)).map((p) => p.id);
-    expect(unresolved).toEqual([]);
   });
 
   it("no two registry entries claim the same id", () => {

@@ -26,7 +26,7 @@ describe("option lists", () => {
   it("uses the exact drink-type labels in order", () => {
     expect([...CUISINE_OPTIONS]).toEqual([
       "Coffee", "Tea", "Milkshakes & thick shakes", "Smoothies", "Mocktails", "Juices", "Lemonades & coolers",
-      "Sodas & sparkling", "Hot drinks", "Others",
+      "Sodas & sparkling", "Others",
     ]);
   });
   it("uses the exact flavour labels in order", () => {

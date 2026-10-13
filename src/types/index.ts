@@ -156,6 +156,8 @@ export interface Recipe {
   image: string;
   imageAttribution?: string;
   ingredients: RecipeIngredient[];
+  /** Whether the drink is served hot or cold — shown as a flame or snowflake on its photo. */
+  temperature: "hot" | "cold";
   /** Equipment this drink can't be made without. Empty = always makeable, equipment-wise. */
   equipment: EquipmentTag[];
   /**

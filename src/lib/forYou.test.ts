@@ -34,9 +34,9 @@ describe("matching the profile's wording to the dishes' wording", () => {
     }
   });
   it("handles the different spellings (Rich and indulgent / Rich)", () => {
-    const p = preferencesFrom(profile({ favoriteCuisines: ["Hot drinks"], favoriteFlavors: ["Rich and indulgent"] }));
+    const p = preferencesFrom(profile({ favoriteCuisines: ["Tea"], favoriteFlavors: ["Rich and indulgent"] }));
     expect(p.tastes).toEqual(["Rich"]);
-    expect(recipes.find((r) => r.cuisine === "Hot drinks" && cuisineMatches(p, r))).toBeDefined();
+    expect(recipes.find((r) => r.cuisine === "Tea" && cuisineMatches(p, r))).toBeDefined();
   });
   it("ignores typed text unless Others/Other is ticked, and counts it when it is", () => {
     expect(preferencesFrom(profile({ customCuisines: ["Kombucha"] })).customCuisines).toEqual([]);

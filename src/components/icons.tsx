@@ -8,6 +8,7 @@ import { CaretRight } from "phosphor-react-native/src/icons/CaretRight";
 import { Check } from "phosphor-react-native/src/icons/Check";
 import { Clock } from "phosphor-react-native/src/icons/Clock";
 import { Compass } from "phosphor-react-native/src/icons/Compass";
+import { Fire } from "phosphor-react-native/src/icons/Fire";
 import { Heart } from "phosphor-react-native/src/icons/Heart";
 import { House } from "phosphor-react-native/src/icons/House";
 import { Jar } from "phosphor-react-native/src/icons/Jar";
@@ -16,6 +17,7 @@ import { MagnifyingGlass } from "phosphor-react-native/src/icons/MagnifyingGlass
 import { Plus } from "phosphor-react-native/src/icons/Plus";
 import { ShoppingBag } from "phosphor-react-native/src/icons/ShoppingBag";
 import { SlidersHorizontal } from "phosphor-react-native/src/icons/SlidersHorizontal";
+import { Snowflake } from "phosphor-react-native/src/icons/Snowflake";
 import { Trash } from "phosphor-react-native/src/icons/Trash";
 import { User } from "phosphor-react-native/src/icons/User";
 import { WarningCircle } from "phosphor-react-native/src/icons/WarningCircle";
@@ -77,4 +79,8 @@ export const CloseIcon = make(X, { size: 18 });
 export const SearchIcon = make(MagnifyingGlass, { size: 18 });
 export const TrashIcon = make(Trash, { size: 18 });
 export const SlidersIcon = make(SlidersHorizontal, { size: 18 });
+/** Marks a hot drink. */
+export const FireIcon = make(Fire, { size: 15 });
+/** Marks a cold drink. */
+export const SnowflakeIcon = make(Snowflake, { size: 15 });
 export const RefreshIcon = make(ArrowClockwise, { size: 16 });

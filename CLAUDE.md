@@ -18,7 +18,9 @@ Active categories:
 - Juices
 - Lemonades and coolers
 - Sodas and sparkling drinks
-- Hot drinks
+
+There is no "hot drinks" category: whether a drink is hot or cold is a property of each drink (`temperature`), shown as a
+flame or snowflake in the corner of its photo.
 
 **Cocktails / alcohol: not in the first release.** The product owner decided "no need cocktail" (2026-10-12).
 Do not add spirits, wine, beer, liqueurs or cocktail recipes. If alcohol is ever added later, it needs its own
