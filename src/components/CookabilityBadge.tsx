@@ -5,10 +5,10 @@ import type { Cookability, CookabilityCategory } from "@/lib/cookability";
 import { CheckIcon } from "./icons";
 
 const TINT: Record<CookabilityCategory, string> = {
-  ready: "rgba(125, 165, 103, 0.94)",
-  almost: "rgba(240, 162, 79, 0.94)",
-  partial: "rgba(44, 35, 30, 0.9)",
-  low: "rgba(44, 35, 30, 0.9)",
+  ready: "rgba(111, 175, 140, 0.95)",
+  almost: "rgba(201, 166, 107, 0.95)",
+  partial: "rgba(28, 43, 37, 0.92)",
+  low: "rgba(28, 43, 37, 0.92)",
 };
 
 /** "Ready · 100%" / "82% · Almost ready" — the dish's Cookability at a glance, used on cards and the dish page. */

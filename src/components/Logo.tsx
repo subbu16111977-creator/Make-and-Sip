@@ -5,7 +5,7 @@ const FULL = require("../../assets/logo.png");
 const MARK = require("../../assets/logo-mark.png");
 
 // Source image sizes, so the logo keeps its proportions at any width.
-const FULL_RATIO = 900 / 706; // width / height of logo.png (mug mark + "make & sip" wordmark)
+const FULL_RATIO = 900 / 753; // width / height of logo.png (mug mark + "make & sip" wordmark)
 const MARK_RATIO = 640 / 700; // width / height of logo-mark.png
 
 interface LogoProps {

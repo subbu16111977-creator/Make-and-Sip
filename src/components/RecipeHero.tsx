@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   eyebrowChip: {
-    backgroundColor: "rgba(251, 244, 234, 0.92)",
+    backgroundColor: "rgba(246, 242, 232, 0.92)",
     paddingVertical: 6,
     paddingHorizontal: spacing.md,
     borderRadius: radii.sm,

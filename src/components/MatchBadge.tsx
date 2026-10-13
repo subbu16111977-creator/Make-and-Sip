@@ -43,16 +43,16 @@ const styles = StyleSheet.create({
     borderRadius: radii.sm,
   },
   wrapLight: {
-    backgroundColor: "rgba(125, 165, 103, 0.14)",
+    backgroundColor: "rgba(111, 175, 140, 0.16)",
   },
   wrapLightComplete: {
-    backgroundColor: "rgba(125, 165, 103, 0.22)",
+    backgroundColor: "rgba(111, 175, 140, 0.24)",
   },
   wrapDark: {
-    backgroundColor: "rgba(251, 244, 234, 0.16)",
+    backgroundColor: "rgba(246, 242, 232, 0.16)",
   },
   wrapDarkComplete: {
-    backgroundColor: "rgba(251, 244, 234, 0.22)",
+    backgroundColor: "rgba(246, 242, 232, 0.22)",
   },
   text: {
     ...typeScale.caption,

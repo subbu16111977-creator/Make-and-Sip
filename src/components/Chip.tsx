@@ -1,6 +1,6 @@
 import React from "react";
 import { Pressable, Text, StyleSheet } from "react-native";
-import { colors, radii, spacing, type as typeScale } from "@/theme";
+import { colors, radii, semantic, spacing, type as typeScale } from "@/theme";
 
 interface ChipProps {
   label: string;
@@ -22,15 +22,15 @@ export function Chip({ label, selected, onPress }: ChipProps) {
 
 const styles = StyleSheet.create({
   base: {
-    paddingVertical: 8,
+    paddingVertical: 9,
     paddingHorizontal: spacing.lg,
-    borderRadius: radii.pill,
-    backgroundColor: colors.paper,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: colors.hairline,
+    borderRadius: radii.md,
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    borderColor: colors.hairlineStrong,
   },
   selected: {
-    backgroundColor: colors.burntOrange,
+    backgroundColor: semantic.missingSoft,
     borderColor: colors.burntOrange,
   },
   pressed: {
@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
     color: colors.espresso,
   },
   labelSelected: {
-    color: colors.cream,
+    color: colors.tangerine,
   },
 });

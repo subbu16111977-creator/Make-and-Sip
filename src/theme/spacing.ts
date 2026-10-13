@@ -16,14 +16,14 @@ export const spacing = {
 
 export type SpacingToken = keyof typeof spacing;
 
-/** Corner radii — moderate throughout; nothing is a pill by default. */
+/** Corner radii — small and crisp, the way a printed menu or a hotel card is cut. Nothing is a pill unless it is a dot. */
 export const radii = {
   none: 0,
-  sm: 4,
-  md: 8,
-  lg: 12,
-  xl: 18,
-  "2xl": 24,
+  sm: 2,
+  md: 4,
+  lg: 6,
+  xl: 10,
+  "2xl": 14,
   pill: 999,
 } as const;
 

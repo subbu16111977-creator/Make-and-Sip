@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   // On the web the app is a centred phone-width column; on a phone this is a no-op.
   page: {
     flex: 1,
-    backgroundColor: Platform.OS === "web" ? "#120D0B" : colors.cream,
+    backgroundColor: Platform.OS === "web" ? "#08100D" : colors.cream,
     alignItems: "center",
   },
   root: {

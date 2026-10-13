@@ -24,7 +24,7 @@ describe("theme colours", () => {
     expect(contrast(semantic.onPrimary, semantic.primary)).toBeGreaterThanOrEqual(4.5);
   });
   it("shade builds a wash of the app's own dark surface", () => {
-    expect(shade(0.5)).toBe("rgba(22, 16, 13, 0.5)");
+    expect(shade(0.5)).toBe("rgba(9, 16, 13, 0.5)");
     expect(colors.scrim).toBe(shade(0.5));
   });
 });

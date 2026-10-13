@@ -592,7 +592,7 @@ const styles = StyleSheet.create({
   cookHeadText: { flex: 1, gap: 2 },
   cookLabel: { ...typeScale.label, color: colors.espresso },
   cookSummary: { ...typeScale.caption, color: colors.espressoMuted },
-  cookBar: { height: 6, borderRadius: 3, backgroundColor: "rgba(255,255,255,0.08)", overflow: "hidden" },
+  cookBar: { height: 6, borderRadius: 3, backgroundColor: colors.hairline, overflow: "hidden" },
   cookBarFill: { height: 6, borderRadius: 3, backgroundColor: colors.burntOrange },
   cookStats: { gap: 2 },
   cookStat: { ...typeScale.caption, color: colors.espressoMuted },
@@ -600,7 +600,7 @@ const styles = StyleSheet.create({
   servingsRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: spacing.xs },
   servingsText: { ...typeScale.caption, color: colors.espresso, flex: 1 },
   stepper: { flexDirection: "row", gap: spacing.sm },
-  stepButton: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255,255,255,0.08)" },
+  stepButton: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center", backgroundColor: colors.hairline },
   stepButtonOff: { opacity: 0.35 },
   stepButtonText: { ...typeScale.title, color: colors.espresso, fontSize: 22, lineHeight: 26 },
   shortfallText: {

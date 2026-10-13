@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.sm,
-    paddingVertical: 14,
+    paddingVertical: 16,
     paddingHorizontal: spacing["2xl"],
     borderRadius: radii.md,
     alignSelf: "flex-start",
@@ -62,8 +62,8 @@ const variantStyles = StyleSheet.create({
   },
   secondary: {
     backgroundColor: "transparent",
-    borderWidth: 1.3,
-    borderColor: colors.espresso,
+    borderWidth: 1,
+    borderColor: colors.burntOrange,
   },
   ghost: {
     backgroundColor: "transparent",
@@ -73,6 +73,6 @@ const variantStyles = StyleSheet.create({
 
 const labelVariantStyles = StyleSheet.create({
   primary: { color: colors.cream },
-  secondary: { color: colors.espresso },
+  secondary: { color: colors.burntOrange },
   ghost: { color: colors.burntOrange },
 });

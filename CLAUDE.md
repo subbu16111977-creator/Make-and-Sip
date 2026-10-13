@@ -64,6 +64,11 @@ Until then every drink is non-alcoholic and the UI should not imply otherwise.
   real, consistent iconography (no emoji as UI); considered empty/loading/error states; aligned grids; restrained
   gradients and shadows; copy written like a human product (no filler, no exclamation-mark enthusiasm). Every new
   screen is checked at phone width in the browser before it is called done.
+- **Current look ("Bottle & brass"):** deep bottle-green surfaces, a single muted brass accent, soft ivory text (all in
+  `src/theme/colors.ts`, with contrast tests). Type: Cormorant Garamond for display/headings, Jost for everything
+  functional; buttons and eyebrows are small letter-spaced capitals. Corners are small and crisp (`radii`). Icons are
+  one family — Phosphor, light weight — and only come through `src/components/icons.tsx`. Don't add one-off icons,
+  colours or fonts outside these.
 - Accessibility and tap targets (≥44pt) are part of "professional".
 
 ## Safety and workflow

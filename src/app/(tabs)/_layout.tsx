@@ -51,7 +51,7 @@ function MiseTabBar({ state, navigation }: MiseTabBarProps) {
         return (
           <Pressable key={route.key} onPress={onPress} style={styles.tab} hitSlop={6}>
             <View style={[styles.indicator, focused && styles.indicatorActive]} />
-            <Icon size={22} color={focused ? colors.burntOrange : colors.espressoFaint} strokeWidth={focused ? 1.8 : 1.5} />
+            <Icon size={22} color={focused ? colors.burntOrange : colors.espressoFaint} strokeWidth={focused ? 2 : 1.5} />
             <Text style={[styles.label, focused && styles.labelActive]}>{meta.label}</Text>
           </Pressable>
         );
@@ -101,11 +101,13 @@ const styles = StyleSheet.create({
   },
   label: {
     ...typeScale.caption,
-    fontSize: 11,
+    fontSize: 9,
+    letterSpacing: 0.6,
+    textTransform: "uppercase",
     color: colors.espressoFaint,
   },
   labelActive: {
     color: colors.burntOrange,
-    fontFamily: typeScale.label.fontFamily,
+    fontFamily: typeScale.button.fontFamily,
   },
 });
