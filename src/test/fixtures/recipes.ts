@@ -6,14 +6,14 @@ export const recipes: Recipe[] = [
  {
   "id": "weeknight-red-curry",
   "title": "Weeknight Red Curry",
-  "description": "A fast, fragrant curry built for a Tuesday — coconut milk, curry paste, and whatever's about to turn in the fridge.",
-  "cuisine": "South East Asian",
+  "description": "A fast, fragrant curry built for a Tuesday \u2014 coconut milk, curry paste, and whatever's about to turn in the fridge.",
+  "cuisine": "Smoothies",
   "dietTags": [
    "Dairy-Free"
   ],
   "tasteTags": [
    "Spicy",
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 30,
   "prepMinutes": 10,
@@ -80,13 +80,13 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Rinse the rice in a fine-mesh strainer under cold water until it runs clear, then cook it in a saucepan according to the package (roughly 1 1/2 cups rice to 2 1/4 cups water, covered, 15 minutes on low) — start this first so it's ready when the curry is.",
+   "Rinse the rice in a fine-mesh strainer under cold water until it runs clear, then cook it in a saucepan according to the package (roughly 1 1/2 cups rice to 2 1/4 cups water, covered, 15 minutes on low) \u2014 start this first so it's ready when the curry is.",
    "Pat the chicken thighs dry with paper towels and slice into 1-inch strips against the grain.",
-   "Heat the oil in a wide pan or wok over medium-high heat. Add the curry paste and fry, stirring constantly with a spatula, until it darkens a shade and the kitchen smells properly toasted, 60–90 seconds — don't walk away, it catches fast.",
+   "Heat the oil in a wide pan or wok over medium-high heat. Add the curry paste and fry, stirring constantly with a spatula, until it darkens a shade and the kitchen smells properly toasted, 60\u201390 seconds \u2014 don't walk away, it catches fast.",
    "Add the chicken to the pan and sear in a single layer for 2 minutes per side, just until coloured on the outside; it'll finish cooking in the sauce.",
    "Pour in the coconut milk, scraping up any browned bits from the bottom of the pan with the spatula, and bring to a gentle simmer.",
-   "Slide in the sliced bell pepper, lower the heat slightly, and cook uncovered for 10 minutes, stirring occasionally, until the chicken is cooked through (165°F/74°C at the thickest point) and the sauce coats the back of a spoon.",
-   "Stir in the brown sugar and fish sauce if using, and taste — adjust either to balance heat, salt, and sweetness.",
+   "Slide in the sliced bell pepper, lower the heat slightly, and cook uncovered for 10 minutes, stirring occasionally, until the chicken is cooked through (165\u00b0F/74\u00b0C at the thickest point) and the sauce coats the back of a spoon.",
+   "Stir in the brown sugar and fish sauce if using, and taste \u2014 adjust either to balance heat, salt, and sweetness.",
    "Off the heat, stir in the lime juice and torn basil. Serve over the rice with lime wedges on the side."
   ]
  },
@@ -94,10 +94,10 @@ export const recipes: Recipe[] = [
   "id": "bbq-chicken-flatbread",
   "title": "BBQ Chicken & Pineapple Flatbread",
   "description": "Leftover roast chicken, smoky sauce, and a hit of pineapple on a blistered flatbread base.",
-  "cuisine": "American",
+  "cuisine": "Milkshakes & thick shakes",
   "dietTags": [],
   "tasteTags": [
-   "Smoky",
+   "Bitter",
    "Sweet"
   ],
   "timeMinutes": 20,
@@ -150,24 +150,24 @@ export const recipes: Recipe[] = [
    "Espresso Machine"
   ],
   "steps": [
-   "Heat the oven to 425°F (220°C) with a baking tray inside to warm up.",
+   "Heat the oven to 425\u00b0F (220\u00b0C) with a baking tray inside to warm up.",
    "Spread the BBQ sauce evenly over each flatbread with the back of a spoon, leaving a small bare border around the edge.",
    "Scatter the shredded chicken, sliced onion, and mozzarella evenly over both flatbreads.",
-   "Carefully slide the flatbreads onto the hot tray and bake for 10–12 minutes, until the cheese is fully melted and bubbling and the edges of the bread have caught some char.",
+   "Carefully slide the flatbreads onto the hot tray and bake for 10\u201312 minutes, until the cheese is fully melted and bubbling and the edges of the bread have caught some char.",
    "Pull them straight from the oven and top immediately with the pineapple and cilantro while everything's still hot. Slice into wedges to serve."
   ]
  },
  {
   "id": "loaded-black-bean-tacos",
   "title": "Loaded Black Bean Tacos",
-  "description": "Smashed black beans, quick pickled onion, and whatever's crisp — done in fifteen minutes flat.",
-  "cuisine": "Mexican",
+  "description": "Smashed black beans, quick pickled onion, and whatever's crisp \u2014 done in fifteen minutes flat.",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
-   "Vegetarian"
+   "Low Sugar"
   ],
   "tasteTags": [
    "Spicy",
-   "Tangy"
+   "Fruity"
   ],
   "timeMinutes": 15,
   "prepMinutes": 10,
@@ -207,7 +207,7 @@ export const recipes: Recipe[] = [
    },
    {
     "pantryId": "green-chili",
-    "label": "Jalapeño, thinly sliced",
+    "label": "Jalape\u00f1o, thinly sliced",
     "amount": "1",
     "optional": true
    },
@@ -226,23 +226,23 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Toss the sliced red onion with the lime juice and a pinch of salt in a small bowl. Let it sit while you cook the beans — it'll soften and turn bright pink as it quick-pickles, about 10 minutes.",
-   "Warm the beans, including their liquid, in a small pan over medium heat with the cumin. As they heat, roughly mash about half of them against the side of the pan with the back of a spoon — you want a mix of whole and mashed for texture.",
-   "Simmer for 3–4 minutes, until slightly thickened, then remove from the heat.",
+   "Toss the sliced red onion with the lime juice and a pinch of salt in a small bowl. Let it sit while you cook the beans \u2014 it'll soften and turn bright pink as it quick-pickles, about 10 minutes.",
+   "Warm the beans, including their liquid, in a small pan over medium heat with the cumin. As they heat, roughly mash about half of them against the side of the pan with the back of a spoon \u2014 you want a mix of whole and mashed for texture.",
+   "Simmer for 3\u20134 minutes, until slightly thickened, then remove from the heat.",
    "Warm the tortillas directly over a gas flame or in a dry pan, a few seconds per side, until pliable and lightly spotted with char.",
-   "Fill each warm tortilla with the beans, then top with the quick-pickled onion, sliced jalapeño, cilantro, and crumbled cheese.",
+   "Fill each warm tortilla with the beans, then top with the quick-pickled onion, sliced jalape\u00f1o, cilantro, and crumbled cheese.",
    "Serve right away while the tortillas are still warm and pliable."
   ]
  },
  {
   "id": "chicken-biryani",
   "title": "Chicken Biryani",
-  "description": "Layered rice and spiced chicken, steamed together low and slow — a weekend project worth the wait.",
-  "cuisine": "Indian",
+  "description": "Layered rice and spiced chicken, steamed together low and slow \u2014 a weekend project worth the wait.",
+  "cuisine": "Tea",
   "dietTags": [],
   "tasteTags": [
    "Spicy",
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 70,
   "prepMinutes": 25,
@@ -356,15 +356,15 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "In a large bowl, combine the chicken with the yogurt, ginger, garlic, lemon juice, 1 teaspoon of the garam masala, the turmeric, and red chili powder. Massage it into the chicken with your hands until every piece is coated.",
-   "Cover and marinate in the fridge for at least 30 minutes — overnight develops even more flavour if you have the time.",
+   "Cover and marinate in the fridge for at least 30 minutes \u2014 overnight develops even more flavour if you have the time.",
    "Rinse the basmati rice in a bowl under cold water, swishing with your hand, until the water runs mostly clear. Cover with fresh water and soak for 20 minutes, then drain.",
-   "Bring a large pot of well-salted water to a boil. Add the drained rice and cook for 5–6 minutes, until it's about 70% cooked — still with a firm, chalky bite in the very centre. Drain immediately in a colander; don't let it sit in the hot pot.",
+   "Bring a large pot of well-salted water to a boil. Add the drained rice and cook for 5\u20136 minutes, until it's about 70% cooked \u2014 still with a firm, chalky bite in the very centre. Drain immediately in a colander; don't let it sit in the hot pot.",
    "While the rice soaks, melt the ghee in a small pan over medium heat. Add the cumin seeds, bay leaves, peppercorns, and cinnamon stick, and let them sizzle for about a minute until fragrant.",
-   "If you haven't already got crisp fried onions, thinly slice the onions and fry in oil over medium heat, stirring often, for 12–15 minutes until deep golden brown and crisp; drain on paper towels.",
+   "If you haven't already got crisp fried onions, thinly slice the onions and fry in oil over medium heat, stirring often, for 12\u201315 minutes until deep golden brown and crisp; drain on paper towels.",
    "In a heavy-bottomed pot or Dutch oven, spread the marinated chicken in an even layer across the bottom.",
    "Spoon half the par-cooked rice over the chicken in an even layer. Scatter over half the fried onions, half the mint, and half the cilantro.",
    "Layer the remaining rice on top, then scatter with the remaining fried onions, mint, and cilantro. Drizzle the saffron-soaked milk over the top if using, along with the tempered whole spices and their ghee.",
-   "Cover with a tight-fitting lid — if it's not airtight, seal the rim with a strip of dough or a layer of foil pressed down before the lid goes on. Cook on the lowest possible heat for 25 minutes. You're steaming, not boiling, so resist lifting the lid to check.",
+   "Cover with a tight-fitting lid \u2014 if it's not airtight, seal the rim with a strip of dough or a layer of foil pressed down before the lid goes on. Cook on the lowest possible heat for 25 minutes. You're steaming, not boiling, so resist lifting the lid to check.",
    "Take the pot off the heat and let it rest, still tightly covered, for 10 minutes.",
    "Open the lid and, using a flat spatula, fold everything together gently from the bottom up in wide strokes, so the rice stays fluffy and the grains don't break. Serve hot, straight from the pot."
   ]
@@ -372,15 +372,15 @@ export const recipes: Recipe[] = [
  {
   "id": "whipped-hummus-plate",
   "title": "Whipped Hummus Plate",
-  "description": "Ultra-smooth hummus, good olive oil, warm bread — a mezze plate that's mostly a food processor.",
-  "cuisine": "Middle Eastern",
+  "description": "Ultra-smooth hummus, good olive oil, warm bread \u2014 a mezze plate that's mostly a food processor.",
+  "cuisine": "Hot drinks",
   "dietTags": [
    "Vegan",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Fresh & Light",
-   "Herby"
+   "Refreshing",
+   "Herbal"
   ],
   "timeMinutes": 15,
   "prepMinutes": 15,
@@ -433,9 +433,9 @@ export const recipes: Recipe[] = [
    "Juicer"
   ],
   "steps": [
-   "Drain and rinse the chickpeas well, then, for the smoothest possible hummus, slip the skins off by rubbing them gently between your palms under running water — this step is optional but makes a real difference.",
+   "Drain and rinse the chickpeas well, then, for the smoothest possible hummus, slip the skins off by rubbing them gently between your palms under running water \u2014 this step is optional but makes a real difference.",
    "Add the chickpeas, tahini, lemon juice, and roughly chopped garlic to a food processor.",
-   "Blend for a full minute, scraping down the sides, then, with the motor running, stream in cold water a tablespoon at a time until the hummus turns pale, airy, and completely smooth — this takes longer than you'd think, a full 3–4 minutes of processing total.",
+   "Blend for a full minute, scraping down the sides, then, with the motor running, stream in cold water a tablespoon at a time until the hummus turns pale, airy, and completely smooth \u2014 this takes longer than you'd think, a full 3\u20134 minutes of processing total.",
    "With the motor still running, stream in the olive oil until fully incorporated.",
    "Spread the hummus onto a plate using the back of a spoon, swirling in a circular motion to create a shallow well in the centre.",
    "Drizzle generously with more olive oil and finish with the toasted ground cumin.",
@@ -445,12 +445,12 @@ export const recipes: Recipe[] = [
  {
   "id": "chicken-korma",
   "title": "Chicken Korma",
-  "description": "A mellow, nutty braise — chicken simmered gently in a cashew-and-yogurt gravy with warm whole spices, built for comfort rather than heat.",
-  "cuisine": "Indian",
+  "description": "A mellow, nutty braise \u2014 chicken simmered gently in a cashew-and-yogurt gravy with warm whole spices, built for comfort rather than heat.",
+  "cuisine": "Tea",
   "dietTags": [],
   "tasteTags": [
-   "Rich & Indulgent",
-   "Comforting"
+   "Rich",
+   "Creamy"
   ],
   "timeMinutes": 55,
   "prepMinutes": 20,
@@ -560,25 +560,25 @@ export const recipes: Recipe[] = [
   "steps": [
    "Blend the soaked cashews with the yogurt and 1/4 cup water to a smooth, pourable paste. Set aside.",
    "Melt the ghee in a heavy pot over medium heat. Add the cinnamon, cardamom, cloves, and bay leaf, and let them sizzle for 30 seconds until fragrant.",
-   "Add the sliced onions and a pinch of salt; cook for 10–12 minutes, stirring often, until deep golden brown — this is where most of the flavour comes from, so don't rush it.",
+   "Add the sliced onions and a pinch of salt; cook for 10\u201312 minutes, stirring often, until deep golden brown \u2014 this is where most of the flavour comes from, so don't rush it.",
    "Stir in the ginger, garlic, and green chilies if using; cook 1 minute until fragrant.",
    "Add the coriander, cumin, and red chili powder; cook for 30 seconds, stirring constantly so the spices don't scorch.",
-   "Add the chicken and cook for 4–5 minutes, turning to coat and lightly sear each piece.",
+   "Add the chicken and cook for 4\u20135 minutes, turning to coat and lightly sear each piece.",
    "Lower the heat and stir in the cashew-yogurt paste a spoonful at a time, stirring constantly so it doesn't split. Once fully incorporated, add 1/2 cup water.",
-   "Cover and simmer on low for 18–20 minutes, stirring occasionally, until the chicken is cooked through and the gravy has thickened to coat a spoon.",
+   "Cover and simmer on low for 18\u201320 minutes, stirring occasionally, until the chicken is cooked through and the gravy has thickened to coat a spoon.",
    "Stir in the garam masala and cream if using. Simmer 2 more minutes, taste for salt, and finish with cilantro."
   ]
  },
  {
   "id": "chicken-do-pyaza",
   "title": "Chicken Do Pyaza",
-  "description": "\"Double onion\" chicken — onions cooked two ways, melted into the base and added again in big petals near the end for sweetness and bite.",
-  "cuisine": "Indian",
+  "description": "\"Double onion\" chicken \u2014 onions cooked two ways, melted into the base and added again in big petals near the end for sweetness and bite.",
+  "cuisine": "Tea",
   "dietTags": [
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Comforting",
+   "Creamy",
    "Spicy"
   ],
   "timeMinutes": 50,
@@ -666,26 +666,26 @@ export const recipes: Recipe[] = [
   "steps": [
    "Set aside about a third of the chopped onions, cut into big petals rather than finely chopped, for adding later. Finely chop the rest.",
    "Heat the oil in a heavy pot over medium heat. Add the cumin seeds and bay leaf; let them sizzle for 30 seconds.",
-   "Add the finely chopped onions (not the petals) and cook for 12–15 minutes, stirring often, until deep golden brown.",
-   "Stir in the ginger and garlic; cook 1 minute, then add the tomatoes, turmeric, red chili powder, and ground coriander. Cook for 6–8 minutes, mashing occasionally, until the masala is thick and the oil separates at the edges.",
+   "Add the finely chopped onions (not the petals) and cook for 12\u201315 minutes, stirring often, until deep golden brown.",
+   "Stir in the ginger and garlic; cook 1 minute, then add the tomatoes, turmeric, red chili powder, and ground coriander. Cook for 6\u20138 minutes, mashing occasionally, until the masala is thick and the oil separates at the edges.",
    "Add the chicken and green chilies if using, and toss to coat well. Cook for 5 minutes, turning occasionally.",
    "Add 1 cup water, bring to a boil, then cover and simmer on low for 15 minutes.",
-   "Stir in the reserved onion petals, cover again, and simmer 10–12 more minutes until the chicken is cooked through and the onion petals are tender but still holding their shape, with a little bite left.",
+   "Stir in the reserved onion petals, cover again, and simmer 10\u201312 more minutes until the chicken is cooked through and the onion petals are tender but still holding their shape, with a little bite left.",
    "Stir in the garam masala, simmer uncovered 2 minutes, and finish with cilantro."
   ]
  },
  {
   "id": "kerala-mutton-curry",
   "title": "Kerala Mutton Curry",
-  "description": "A dark, coconut-oil-fragrant mutton curry from Kerala — black pepper and roasted coconut give it a completely different character from North Indian curries.",
-  "cuisine": "Indian",
+  "description": "A dark, coconut-oil-fragrant mutton curry from Kerala \u2014 black pepper and roasted coconut give it a completely different character from North Indian curries.",
+  "cuisine": "Tea",
   "dietTags": [
    "Dairy-Free"
   ],
   "tasteTags": [
    "Spicy",
-   "Smoky",
-   "Comforting"
+   "Bitter",
+   "Creamy"
   ],
   "timeMinutes": 85,
   "prepMinutes": 20,
@@ -782,26 +782,26 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Toss the mutton with the turmeric and a pinch of salt. Set aside.",
-   "In a dry pan over medium heat, roast the grated coconut, coriander seeds, half the peppercorns, and fennel seeds together for 4–5 minutes, stirring constantly, until the coconut turns a deep golden brown and the spices smell toasted. Let cool, then grind to a coarse paste with a splash of water.",
+   "In a dry pan over medium heat, roast the grated coconut, coriander seeds, half the peppercorns, and fennel seeds together for 4\u20135 minutes, stirring constantly, until the coconut turns a deep golden brown and the spices smell toasted. Let cool, then grind to a coarse paste with a splash of water.",
    "Heat the oil in a heavy pot over medium heat. Add the mustard seeds and let them pop, then add half the curry leaves if using.",
    "Add the sliced shallots and cook for 10 minutes, stirring often, until deep golden brown.",
    "Stir in the ginger, garlic, and green chilies if using; cook 1 minute until fragrant.",
-   "Add the tomato and cook for 4–5 minutes, mashing, until softened.",
+   "Add the tomato and cook for 4\u20135 minutes, mashing, until softened.",
    "Stir in the red chili powder and the roasted coconut paste; cook for 2 minutes until fragrant.",
    "Add the mutton and toss well to coat in the masala. Cook for 5 minutes, turning to seal.",
-   "Add 2 cups water, bring to a boil, then cover and simmer on low for 55–65 minutes, stirring occasionally and topping up water if it runs low, until the mutton is completely tender.",
-   "Uncover and simmer for a final 5–10 minutes to thicken the gravy. Stir in the tamarind if using and the remaining curry leaves and crushed peppercorns. Taste and adjust salt before serving."
+   "Add 2 cups water, bring to a boil, then cover and simmer on low for 55\u201365 minutes, stirring occasionally and topping up water if it runs low, until the mutton is completely tender.",
+   "Uncover and simmer for a final 5\u201310 minutes to thicken the gravy. Stir in the tamarind if using and the remaining curry leaves and crushed peppercorns. Taste and adjust salt before serving."
   ]
  },
  {
   "id": "kashmiri-mutton-yakhni",
   "title": "Kashmiri Mutton Yakhni",
-  "description": "A pale, yogurt-based Kashmiri curry built on whole spices rather than chili powder — gentle, fragrant, and completely different from a typical red curry.",
-  "cuisine": "Indian",
+  "description": "A pale, yogurt-based Kashmiri curry built on whole spices rather than chili powder \u2014 gentle, fragrant, and completely different from a typical red curry.",
+  "cuisine": "Tea",
   "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Herby"
+   "Creamy",
+   "Herbal"
   ],
   "timeMinutes": 85,
   "prepMinutes": 15,
@@ -877,27 +877,27 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Melt the ghee in a heavy pot over medium heat. Add the bay leaves, cinnamon, cardamom pods, black cardamom, and cloves; let them sizzle for 30 seconds until fragrant.",
-   "Add the mutton and half the ginger; cook for 5–6 minutes, turning, until the meat is sealed on all sides (yakhni doesn't brown the meat deeply — it should stay pale).",
+   "Add the mutton and half the ginger; cook for 5\u20136 minutes, turning, until the meat is sealed on all sides (yakhni doesn't brown the meat deeply \u2014 it should stay pale).",
    "Add 3 cups water and bring to a boil, skimming off any foam that rises. Cover and simmer on low for 45 minutes.",
-   "Stir in the ground fennel and remaining ginger. Continue simmering, covered, for another 15–20 minutes until the mutton is completely tender.",
-   "Remove the pot from the heat briefly and stir in the whisked yogurt a spoonful at a time — adding it off the heat and slowly helps stop it from splitting.",
-   "Return to low heat and simmer gently, uncovered, for 8–10 minutes, stirring often, until the gravy thickens slightly and turns a pale, creamy colour. Don't let it boil hard once the yogurt is in.",
+   "Stir in the ground fennel and remaining ginger. Continue simmering, covered, for another 15\u201320 minutes until the mutton is completely tender.",
+   "Remove the pot from the heat briefly and stir in the whisked yogurt a spoonful at a time \u2014 adding it off the heat and slowly helps stop it from splitting.",
+   "Return to low heat and simmer gently, uncovered, for 8\u201310 minutes, stirring often, until the gravy thickens slightly and turns a pale, creamy colour. Don't let it boil hard once the yogurt is in.",
    "Stir in the nutmeg if using, taste and adjust salt, and finish with mint or cilantro. Yakhni is meant to be mild and fragrant rather than fiery, so season gently."
   ]
  },
  {
   "id": "amritsari-fish",
   "title": "Amritsari Fish (Amritsari Machli)",
-  "description": "Punjabi street-food fried fish — chunks of white fish marinated in ginger, garlic, and carom-scented spice, coated in a crisp besan batter, and deep-fried to order.",
-  "cuisine": "Indian",
+  "description": "Punjabi street-food fried fish \u2014 chunks of white fish marinated in ginger, garlic, and carom-scented spice, coated in a crisp besan batter, and deep-fried to order.",
+  "cuisine": "Tea",
   "dietTags": [
-   "Pescatarian",
+   "Caffeine-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Spicy",
    "Tangy",
-   "Smoky"
+   "Bitter"
   ],
   "timeMinutes": 45,
   "prepMinutes": 20,
@@ -969,24 +969,24 @@ export const recipes: Recipe[] = [
   "steps": [
    "Pat the fish chunks dry and toss with half the lemon juice and a pinch of salt. Let sit for 10 minutes, then pat dry again.",
    "Combine the ginger, garlic, red chili powder, turmeric, ground coriander, 1 teaspoon of the chaat masala, and 1 teaspoon salt with the fish. Massage it in, cover, and marinate in the fridge for 30 minutes.",
-   "Whisk the gram flour and rice flour with 3–4 tablespoons water into a thick, coating batter — it should cling heavily to the back of a spoon, not drip off. Fold the marinated fish into the batter until every piece is coated.",
-   "Heat the oil in a heavy pot or kadai to 350°F (175°C). Test with a small drop of batter — it should sizzle and rise within a few seconds.",
-   "Fry the fish in batches of 4–5 pieces, without crowding the pot, for 3–4 minutes, turning once, until deep golden and crisp. Drain on a wire rack or paper towels.",
+   "Whisk the gram flour and rice flour with 3\u20134 tablespoons water into a thick, coating batter \u2014 it should cling heavily to the back of a spoon, not drip off. Fold the marinated fish into the batter until every piece is coated.",
+   "Heat the oil in a heavy pot or kadai to 350\u00b0F (175\u00b0C). Test with a small drop of batter \u2014 it should sizzle and rise within a few seconds.",
+   "Fry the fish in batches of 4\u20135 pieces, without crowding the pot, for 3\u20134 minutes, turning once, until deep golden and crisp. Drain on a wire rack or paper towels.",
    "Let the oil come back up to temperature between batches. Once all the fish is fried, sprinkle with the remaining chaat masala and the rest of the lemon juice, and serve immediately while hot and crisp."
   ]
  },
  {
   "id": "bengali-prawn-malai-curry",
   "title": "Bengali Prawn Malai Curry (Chingri Malai Curry)",
-  "description": "A festive, mildly sweet Bengali coconut prawn curry — 'malai' here means coconut milk, not cream, and the whole dish stays gentle enough to let large, buttery prawns lead.",
-  "cuisine": "Indian",
+  "description": "A festive, mildly sweet Bengali coconut prawn curry \u2014 'malai' here means coconut milk, not cream, and the whole dish stays gentle enough to let large, buttery prawns lead.",
+  "cuisine": "Tea",
   "dietTags": [
-   "Pescatarian",
+   "Caffeine-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 35,
   "prepMinutes": 15,
@@ -1059,22 +1059,22 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Toss the prawns with 1/2 teaspoon of the turmeric and a pinch of salt. Heat 2 tablespoons of the oil in a wide pan over medium-high heat and sear the prawns for 1–2 minutes per side, just until pink and starting to curl. Remove and set aside — they'll finish cooking in the sauce.",
+   "Toss the prawns with 1/2 teaspoon of the turmeric and a pinch of salt. Heat 2 tablespoons of the oil in a wide pan over medium-high heat and sear the prawns for 1\u20132 minutes per side, just until pink and starting to curl. Remove and set aside \u2014 they'll finish cooking in the sauce.",
    "In the same pan, heat the remaining oil over medium heat. Add the bay leaf, cinnamon stick, cardamom pods, and cloves, and let them sizzle for 30 seconds until fragrant.",
-   "Add the grated onion and cook for 6–7 minutes, stirring often, until it turns soft, pale golden, and the raw smell is completely gone.",
-   "Add the ginger, remaining turmeric, and half the green chilies. Cook for 1–2 minutes.",
-   "Pour in the coconut milk and 1/3 cup water. Add the sugar and season with salt. Bring to a gentle simmer — don't let it boil hard, or the coconut milk can split.",
-   "Simmer for 6–8 minutes, stirring occasionally, until the sauce thickens slightly and turns a pale golden color. Slide the seared prawns back in along with the remaining green chilies.",
-   "Simmer for 3–4 minutes more, just until the prawns are fully cooked through and the sauce clings lightly to them. Serve over steamed rice."
+   "Add the grated onion and cook for 6\u20137 minutes, stirring often, until it turns soft, pale golden, and the raw smell is completely gone.",
+   "Add the ginger, remaining turmeric, and half the green chilies. Cook for 1\u20132 minutes.",
+   "Pour in the coconut milk and 1/3 cup water. Add the sugar and season with salt. Bring to a gentle simmer \u2014 don't let it boil hard, or the coconut milk can split.",
+   "Simmer for 6\u20138 minutes, stirring occasionally, until the sauce thickens slightly and turns a pale golden color. Slide the seared prawns back in along with the remaining green chilies.",
+   "Simmer for 3\u20134 minutes more, just until the prawns are fully cooked through and the sauce clings lightly to them. Serve over steamed rice."
   ]
  },
  {
   "id": "andhra-prawn-curry",
   "title": "Andhra Prawn Curry (Royyala Iguru)",
-  "description": "A thick, punishingly spicy Andhra-style prawn curry cooked almost dry — 'iguru' means a masala reduced down until it coats rather than pools, and Andhra cooking rarely holds back on chili.",
-  "cuisine": "Indian",
+  "description": "A thick, punishingly spicy Andhra-style prawn curry cooked almost dry \u2014 'iguru' means a masala reduced down until it coats rather than pools, and Andhra cooking rarely holds back on chili.",
+  "cuisine": "Tea",
   "dietTags": [
-   "Pescatarian",
+   "Caffeine-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
@@ -1170,27 +1170,27 @@ export const recipes: Recipe[] = [
   "steps": [
    "Toss the prawns with 1/4 teaspoon of the turmeric and a pinch of salt; set aside.",
    "Heat the oil in a wide, heavy pan over medium heat. Add the mustard seeds and cumin seeds and let them sizzle for 10 seconds, then add the curry leaves and dried red chilies and fry for 15 seconds.",
-   "Add the chopped onion and cook for 6–7 minutes, stirring often, until deeply golden.",
-   "Add the ginger, garlic, and green chilies and cook for 1–2 minutes until fragrant.",
-   "Add the tomato and cook for 4–5 minutes, mashing it down, until it breaks apart completely. Stir in the ground coriander, red chili powder, and remaining turmeric, and cook for 2 minutes until the oil starts to separate.",
-   "Add the prawns and 1/4 cup water. Cook uncovered over medium-high heat for 6–8 minutes, stirring frequently, until the prawns are cooked through, the water has evaporated, and the masala clings to them as a thick, dry-ish coating rather than a loose gravy.",
-   "Taste and adjust salt and heat — iguru is meant to be assertively spicy. Scatter with cilantro and serve hot as a side with rice or dal."
+   "Add the chopped onion and cook for 6\u20137 minutes, stirring often, until deeply golden.",
+   "Add the ginger, garlic, and green chilies and cook for 1\u20132 minutes until fragrant.",
+   "Add the tomato and cook for 4\u20135 minutes, mashing it down, until it breaks apart completely. Stir in the ground coriander, red chili powder, and remaining turmeric, and cook for 2 minutes until the oil starts to separate.",
+   "Add the prawns and 1/4 cup water. Cook uncovered over medium-high heat for 6\u20138 minutes, stirring frequently, until the prawns are cooked through, the water has evaporated, and the masala clings to them as a thick, dry-ish coating rather than a loose gravy.",
+   "Taste and adjust salt and heat \u2014 iguru is meant to be assertively spicy. Scatter with cilantro and serve hot as a side with rice or dal."
   ]
  },
  {
   "id": "undhiyu",
   "title": "Undhiyu",
-  "description": "A festive Gujarati mixed-vegetable curry, traditionally cooked upside-down in an earthen pot buried in the ground — this stovetop version keeps the signature fenugreek-besan dumplings and layered winter vegetables.",
-  "cuisine": "Indian",
+  "description": "A festive Gujarati mixed-vegetable curry, traditionally cooked upside-down in an earthen pot buried in the ground \u2014 this stovetop version keeps the signature fenugreek-besan dumplings and layered winter vegetables.",
+  "cuisine": "Tea",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Spicy",
-   "Tangy",
-   "Comforting"
+   "Fruity",
+   "Creamy"
   ],
   "timeMinutes": 60,
   "prepMinutes": 30,
@@ -1290,28 +1290,28 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Make the muthiya dough: combine the gram flour, chopped fenugreek leaves, 1/2 teaspoon turmeric, 1 teaspoon red chili powder, 1 teaspoon sugar, 2 tablespoons oil, and a pinch of salt in a bowl. Add water a tablespoon at a time and knead into a firm dough. Shape into small logs about 2 inches long.",
-   "Heat 2 tablespoons of oil in a pan over medium heat and shallow-fry the muthiya logs for 6–8 minutes, turning occasionally, until golden brown and firm on the outside. Drain and set aside.",
+   "Heat 2 tablespoons of oil in a pan over medium heat and shallow-fry the muthiya logs for 6\u20138 minutes, turning occasionally, until golden brown and firm on the outside. Drain and set aside.",
    "Make the stuffing masala: combine the coconut, half the cilantro, green chilies, ginger, remaining turmeric, remaining red chili powder, ground coriander, remaining sugar, and lemon juice with a pinch of salt.",
    "Stuff a spoonful of this masala into the slits of the eggplants and potatoes, pressing it in firmly. Reserve any extra masala.",
    "Heat the remaining oil in a large, heavy pot over medium heat. Add the cumin seeds and asafoetida and let them sizzle for 15 seconds.",
-   "Layer in the stuffed potatoes first (they take longest), then the stuffed eggplants, then the green beans, sprinkling any leftover stuffing masala over the top. Add 1/3 cup water, cover tightly, and cook over low heat for 20–25 minutes, shaking the pot occasionally instead of stirring (to keep the vegetables intact), until everything is tender.",
+   "Layer in the stuffed potatoes first (they take longest), then the stuffed eggplants, then the green beans, sprinkling any leftover stuffing masala over the top. Add 1/3 cup water, cover tightly, and cook over low heat for 20\u201325 minutes, shaking the pot occasionally instead of stirring (to keep the vegetables intact), until everything is tender.",
    "Gently fold in the fried muthiya during the last 5 minutes, just to warm them through and let them soak up some of the juices.",
-   "Scatter with the remaining cilantro and serve hot — undhiyu is traditionally eaten with puri, but rice works well too."
+   "Scatter with the remaining cilantro and serve hot \u2014 undhiyu is traditionally eaten with puri, but rice works well too."
   ]
  },
  {
   "id": "sambar",
   "title": "Sambar",
-  "description": "A tangy, lightly sweet South Indian lentil-and-vegetable stew, built on toor dal and a from-scratch tamarind broth spiked with sambar powder — the daily backbone of a South Indian meal.",
-  "cuisine": "Indian",
+  "description": "A tangy, lightly sweet South Indian lentil-and-vegetable stew, built on toor dal and a from-scratch tamarind broth spiked with sambar powder \u2014 the daily backbone of a South Indian meal.",
+  "cuisine": "Tea",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Tangy",
-   "Comforting",
+   "Creamy",
    "Spicy"
   ],
   "timeMinutes": 50,
@@ -1389,7 +1389,7 @@ export const recipes: Recipe[] = [
    },
    {
     "pantryId": "fenugreek-leaves",
-    "label": "Fenugreek seeds, if you have them (a pinch — optional)",
+    "label": "Fenugreek seeds, if you have them (a pinch \u2014 optional)",
     "amount": "1/4 teaspoon",
     "optional": true
    },
@@ -1419,28 +1419,28 @@ export const recipes: Recipe[] = [
    "Moka Pot"
   ],
   "steps": [
-   "Pressure cook the toor dal with 3 cups water and 1/2 teaspoon of the turmeric for 3–4 whistles (about 12–15 minutes), until completely soft and mushy. Whisk smooth once cooked (or use a hand blender directly in the pot).",
-   "Meanwhile, combine the carrot, eggplant, green beans, potato, and onion in a pot with 2 cups water, the remaining turmeric, and a pinch of salt. Bring to a boil and simmer for 12–15 minutes until just tender.",
-   "Add the tomato, coriander powder, red chili powder, and the strained tamarind water to the vegetables. Simmer for 8–10 minutes to let the raw tamarind smell cook off.",
+   "Pressure cook the toor dal with 3 cups water and 1/2 teaspoon of the turmeric for 3\u20134 whistles (about 12\u201315 minutes), until completely soft and mushy. Whisk smooth once cooked (or use a hand blender directly in the pot).",
+   "Meanwhile, combine the carrot, eggplant, green beans, potato, and onion in a pot with 2 cups water, the remaining turmeric, and a pinch of salt. Bring to a boil and simmer for 12\u201315 minutes until just tender.",
+   "Add the tomato, coriander powder, red chili powder, and the strained tamarind water to the vegetables. Simmer for 8\u201310 minutes to let the raw tamarind smell cook off.",
    "Stir the cooked, mashed dal into the vegetable-tamarind mixture. Add water to reach a soupy, pourable consistency, season with salt, and simmer for 10 minutes, stirring occasionally, to let the flavors meld.",
-   "For the tempering: heat the oil in a small pan over medium heat. Add the mustard seeds and let them pop, then add the fenugreek seeds (if using), dried red chilies, curry leaves, and asafoetida. Fry for 15–20 seconds until fragrant.",
+   "For the tempering: heat the oil in a small pan over medium heat. Add the mustard seeds and let them pop, then add the fenugreek seeds (if using), dried red chilies, curry leaves, and asafoetida. Fry for 15\u201320 seconds until fragrant.",
    "Pour the tempering over the sambar and stir it in. Simmer 2 more minutes, scatter with cilantro, and serve hot with rice."
   ]
  },
  {
   "id": "vegetable-biryani",
   "title": "Vegetable Biryani",
-  "description": "A layered, dum-steamed biryani built from a vibrant mixed-vegetable masala and part-cooked basmati rice — proof that biryani's magic is in the technique, not just the protein.",
-  "cuisine": "Indian",
+  "description": "A layered, dum-steamed biryani built from a vibrant mixed-vegetable masala and part-cooked basmati rice \u2014 proof that biryani's magic is in the technique, not just the protein.",
+  "cuisine": "Tea",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Spicy",
-   "Rich & Indulgent",
-   "Comforting"
+   "Rich",
+   "Creamy"
   ],
   "timeMinutes": 60,
   "prepMinutes": 25,
@@ -1553,28 +1553,28 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Bring a large pot of well-salted water to a boil with the bay leaves, cinnamon stick, cardamom, and cloves. Drain the soaked rice, add it to the pot, and cook for 5–6 minutes until about 70% cooked — still firm at the core. Drain and set aside.",
-   "Heat 3 tablespoons of the oil in a wide, heavy pot over medium heat. Add half the sliced onions and cook for 8–10 minutes, stirring often, until deeply golden and crisp. Remove half to a plate for layering later.",
-   "To the onions remaining in the pot, add the ginger, garlic, and green chilies and cook for 1–2 minutes. Add the tomatoes and red chili powder and cook for 5–6 minutes until the tomatoes break down.",
-   "Add the carrot, green beans, cauliflower, and potato along with 1/2 cup water. Cover and simmer for 10–12 minutes until the vegetables are just tender. Stir in the peas, half the mint, half the cilantro, and the garam masala. Season with salt — this masala should taste slightly stronger than you want the final dish, since it seasons the rice too.",
+   "Bring a large pot of well-salted water to a boil with the bay leaves, cinnamon stick, cardamom, and cloves. Drain the soaked rice, add it to the pot, and cook for 5\u20136 minutes until about 70% cooked \u2014 still firm at the core. Drain and set aside.",
+   "Heat 3 tablespoons of the oil in a wide, heavy pot over medium heat. Add half the sliced onions and cook for 8\u201310 minutes, stirring often, until deeply golden and crisp. Remove half to a plate for layering later.",
+   "To the onions remaining in the pot, add the ginger, garlic, and green chilies and cook for 1\u20132 minutes. Add the tomatoes and red chili powder and cook for 5\u20136 minutes until the tomatoes break down.",
+   "Add the carrot, green beans, cauliflower, and potato along with 1/2 cup water. Cover and simmer for 10\u201312 minutes until the vegetables are just tender. Stir in the peas, half the mint, half the cilantro, and the garam masala. Season with salt \u2014 this masala should taste slightly stronger than you want the final dish, since it seasons the rice too.",
    "Spread the vegetable masala evenly across the bottom of the pot. Layer the partially cooked rice on top. Scatter with the remaining fried onions, mint, and cilantro, and drizzle with the remaining oil.",
-   "Cover tightly with a lid (seal the edges with a strip of dough or foil if the lid isn't snug) and cook on the lowest possible heat for 20–25 minutes to steam through on the dum.",
+   "Cover tightly with a lid (seal the edges with a strip of dough or foil if the lid isn't snug) and cook on the lowest possible heat for 20\u201325 minutes to steam through on the dum.",
    "Rest, covered, for 5 minutes off the heat, then fluff gently with a fork, folding the rice and vegetable layers together from the bottom up before serving."
   ]
  },
  {
   "id": "kerala-vegetable-stew",
   "title": "Kerala Vegetable Stew",
-  "description": "A pale, gently spiced coconut milk stew of potatoes and mixed vegetables, built the same way as fish moilee but entirely plant-based — the classic breakfast partner to appam.",
-  "cuisine": "Indian",
+  "description": "A pale, gently spiced coconut milk stew of potatoes and mixed vegetables, built the same way as fish moilee but entirely plant-based \u2014 the classic breakfast partner to appam.",
+  "cuisine": "Tea",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Fresh & Light"
+   "Creamy",
+   "Refreshing"
   ],
   "timeMinutes": 35,
   "prepMinutes": 15,
@@ -1653,9 +1653,9 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Heat the oil in a wide, heavy pot over medium heat. Add the cinnamon stick, cardamom, and cloves, and let them sizzle for 30 seconds until fragrant.",
-   "Add the sliced onion and cook for 6–7 minutes, stirring occasionally, until soft and translucent but not browned — stew stays pale, not caramelized.",
+   "Add the sliced onion and cook for 6\u20137 minutes, stirring occasionally, until soft and translucent but not browned \u2014 stew stays pale, not caramelized.",
    "Add the ginger, green chilies, and curry leaves, and cook for 2 minutes.",
-   "Add the potatoes, carrots, and green beans along with half the coconut milk and 1/2 cup water. Season with salt, bring to a gentle simmer, cover, and cook for 15–18 minutes, until the vegetables are tender.",
+   "Add the potatoes, carrots, and green beans along with half the coconut milk and 1/2 cup water. Season with salt, bring to a gentle simmer, cover, and cook for 15\u201318 minutes, until the vegetables are tender.",
    "Add the peas and simmer, uncovered, for 3 minutes more.",
    "Stir in the remaining coconut milk and warm through gently for 2 minutes without letting it boil hard, to keep the stew silky. Serve warm with appam, string hoppers, or rice."
   ]
@@ -1663,14 +1663,12 @@ export const recipes: Recipe[] = [
  {
   "id": "southern-fried-chicken",
   "title": "Southern Fried Chicken",
-  "description": "Buttermilk-brined and double-dredged for a shatter-crisp crust — the technique Southern and soul-food cooks perfected over generations.",
-  "cuisine": "American",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "Buttermilk-brined and double-dredged for a shatter-crisp crust \u2014 the technique Southern and soul-food cooks perfected over generations.",
+  "cuisine": "Milkshakes & thick shakes",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 45,
   "prepMinutes": 15,
@@ -1732,11 +1730,11 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Season the chicken pieces all over with 1 teaspoon salt and 1 teaspoon black pepper, then submerge in the buttermilk (whisked with the hot sauce, if using) in a large bowl or zip-top bag. Cover and refrigerate at least 4 hours, ideally overnight — this tenderizes the meat and seasons it through.",
+   "Season the chicken pieces all over with 1 teaspoon salt and 1 teaspoon black pepper, then submerge in the buttermilk (whisked with the hot sauce, if using) in a large bowl or zip-top bag. Cover and refrigerate at least 4 hours, ideally overnight \u2014 this tenderizes the meat and seasons it through.",
    "When ready to fry, whisk the flour with the paprika, cayenne, and the remaining salt and pepper in a shallow dish.",
    "Lift each piece of chicken from the buttermilk, letting the excess drip off, and dredge thoroughly in the seasoned flour, pressing the coating on. Set on a wire rack for 10 minutes so the crust sets slightly.",
-   "Pour the oil into a deep, heavy pot (cast iron is traditional) to a depth of about 2 inches and heat to 325°F (163°C) on a deep-fry thermometer.",
-   "Fry the chicken in batches, skin-side down first, without crowding the pot — this keeps the oil temperature from dropping. Fry 12–15 minutes per batch, turning occasionally, until deep golden brown and the internal temperature reaches 165°F (74°C) at the thickest point.",
+   "Pour the oil into a deep, heavy pot (cast iron is traditional) to a depth of about 2 inches and heat to 325\u00b0F (163\u00b0C) on a deep-fry thermometer.",
+   "Fry the chicken in batches, skin-side down first, without crowding the pot \u2014 this keeps the oil temperature from dropping. Fry 12\u201315 minutes per batch, turning occasionally, until deep golden brown and the internal temperature reaches 165\u00b0F (74\u00b0C) at the thickest point.",
    "Lift out with tongs or a spider strainer onto a fresh wire rack (not paper towels, which steam the crust soft) and let rest 5 minutes before serving."
   ],
   "notes": "Fried chicken as a Southern dish has roots in West African cooking traditions carried and adapted by enslaved and, later, free Black cooks in the American South, who combined seasoned frying techniques with ingredients available on Southern plantations and farms. It became a signature of Southern and soul-food cooking by the 19th century.",
@@ -1746,16 +1744,15 @@ export const recipes: Recipe[] = [
  {
   "id": "texas-brisket",
   "title": "Texas-Style Smoked Brisket",
-  "description": "Salt, pepper, smoke, and patience — Central Texas barbecue's defining cut, low-and-slow for half a day.",
-  "cuisine": "American",
+  "description": "Salt, pepper, smoke, and patience \u2014 Central Texas barbecue's defining cut, low-and-slow for half a day.",
+  "cuisine": "Milkshakes & thick shakes",
   "dietTags": [
-   "Non-Vegetarian",
    "Gluten-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Smoky",
-   "Rich & Indulgent"
+   "Bitter",
+   "Rich"
   ],
   "timeMinutes": 780,
   "prepMinutes": 30,
@@ -1769,7 +1766,7 @@ export const recipes: Recipe[] = [
    {
     "pantryId": "beef-brisket",
     "label": "Whole beef brisket, trimmed to a 1/4-inch fat cap",
-    "amount": "12–14 lb (5.4–6.4 kg)"
+    "amount": "12\u201314 lb (5.4\u20136.4 kg)"
    },
    {
     "pantryId": "fine-salt",
@@ -1787,12 +1784,12 @@ export const recipes: Recipe[] = [
   ],
   "steps": [
    "The night before or at least 1 hour ahead, coat the brisket evenly on all sides with the salt and pepper, pressing it into the meat.",
-   "Set up a smoker for indirect heat at a steady 250°F (121°C) using a mild wood like post oak or hickory.",
-   "Place the brisket fat-side up and smoke undisturbed, maintaining the temperature, until the internal temperature reaches about 165°F (74°C) and a dark bark has formed, roughly 6–7 hours.",
+   "Set up a smoker for indirect heat at a steady 250\u00b0F (121\u00b0C) using a mild wood like post oak or hickory.",
+   "Place the brisket fat-side up and smoke undisturbed, maintaining the temperature, until the internal temperature reaches about 165\u00b0F (74\u00b0C) and a dark bark has formed, roughly 6\u20137 hours.",
    "Wrap the brisket tightly in butcher paper or heavy-duty foil (the 'Texas crutch') to push through the temperature plateau without drying out the surface.",
-   "Return to the smoker and continue cooking until the internal temperature reaches 203°F (95°C) and a probe slides in with almost no resistance, another 4–5 hours.",
-   "Rest the wrapped brisket in a cooler (no ice) for at least 1 hour, ideally 2, before unwrapping — this redistributes the juices and is not optional for a good result.",
-   "Slice against the grain into pencil-thick slices, cutting the flat and point separately since their grain runs different directions. Serve as-is, Central Texas style — no sauce needed."
+   "Return to the smoker and continue cooking until the internal temperature reaches 203\u00b0F (95\u00b0C) and a probe slides in with almost no resistance, another 4\u20135 hours.",
+   "Rest the wrapped brisket in a cooler (no ice) for at least 1 hour, ideally 2, before unwrapping \u2014 this redistributes the juices and is not optional for a good result.",
+   "Slice against the grain into pencil-thick slices, cutting the flat and point separately since their grain runs different directions. Serve as-is, Central Texas style \u2014 no sauce needed."
   ],
   "notes": "Central Texas brisket barbecue traces to German and Czech immigrant meat markets in the Texas Hill Country in the late 1800s, which smoked unsold cuts of meat; brisket, seasoned simply with salt and pepper and smoked low and slow, became the region's signature.",
   "sourceName": "Texas Monthly BBQ Archive",
@@ -1801,14 +1798,14 @@ export const recipes: Recipe[] = [
  {
   "id": "memphis-dry-rub-ribs",
   "title": "Memphis Dry-Rub Ribs",
-  "description": "Pork ribs coated in a paprika-forward spice rub and smoked without sauce — Memphis's contribution to American barbecue.",
-  "cuisine": "American",
+  "description": "Pork ribs coated in a paprika-forward spice rub and smoked without sauce \u2014 Memphis's contribution to American barbecue.",
+  "cuisine": "Milkshakes & thick shakes",
   "dietTags": [
    "Gluten-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Smoky",
+   "Bitter",
    "Spicy"
   ],
   "timeMinutes": 330,
@@ -1824,7 +1821,7 @@ export const recipes: Recipe[] = [
    {
     "pantryId": "pork-ribs",
     "label": "St. Louis-style or baby back pork ribs",
-    "amount": "2 racks (about 5–6 lb / 2.3–2.7 kg)"
+    "amount": "2 racks (about 5\u20136 lb / 2.3\u20132.7 kg)"
    },
    {
     "pantryId": "paprika",
@@ -1875,25 +1872,23 @@ export const recipes: Recipe[] = [
    "Remove the thin membrane from the back of each rack of ribs, peeling it off with a paper towel for grip.",
    "Mix the paprika, brown sugar, salt, pepper, garlic powder, cayenne, and dry mustard in a bowl to make the rub.",
    "Coat the ribs generously all over with the rub, pressing it in. Let sit at least 1 hour, or refrigerate overnight for deeper flavor.",
-   "Set up a smoker for indirect heat at a steady 225–250°F (107–121°C) using hickory.",
-   "Smoke the ribs, meat-side up, for 5–6 hours, until the meat has pulled back from the bone ends by about 1/2 inch and is tender enough to tear easily, without falling off the bone.",
+   "Set up a smoker for indirect heat at a steady 225\u2013250\u00b0F (107\u2013121\u00b0C) using hickory.",
+   "Smoke the ribs, meat-side up, for 5\u20136 hours, until the meat has pulled back from the bone ends by about 1/2 inch and is tender enough to tear easily, without falling off the bone.",
    "Rest 10 minutes, then slice between the bones and serve dry, with extra rub or hot sauce on the side rather than a wet barbecue sauce."
   ],
-  "notes": "Memphis is known for two barbecue styles — wet (sauced) and dry (rubbed) — with dry-rub ribs as the city's signature, letting the smoke and spice rub carry the flavor rather than a sauce.",
+  "notes": "Memphis is known for two barbecue styles \u2014 wet (sauced) and dry (rubbed) \u2014 with dry-rub ribs as the city's signature, letting the smoke and spice rub carry the flavor rather than a sauce.",
   "sourceName": "Southern Foodways Alliance",
   "sourceUrl": "https://www.southernfoodways.org/"
  },
  {
   "id": "chicken-fried-steak",
   "title": "Chicken Fried Steak",
-  "description": "Tenderized beef, breaded and pan-fried like fried chicken, smothered in black pepper cream gravy — a Texan and Southern diner classic.",
-  "cuisine": "American",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "Tenderized beef, breaded and pan-fried like fried chicken, smothered in black pepper cream gravy \u2014 a Texan and Southern diner classic.",
+  "cuisine": "Milkshakes & thick shakes",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 40,
   "prepMinutes": 15,
@@ -1956,8 +1951,8 @@ export const recipes: Recipe[] = [
    "Pat the cube steaks dry and season both sides with salt and pepper.",
    "Set up a dredging station: seasoned flour (with paprika, cayenne if using, salt) in one dish, whisked eggs and 1/2 cup buttermilk in another.",
    "Dredge each steak in flour, then the egg mixture, then back in the flour, pressing to build a thick, craggy crust.",
-   "Heat the oil in a large skillet over medium-high heat until shimmering. Fry the steaks 3–4 minutes per side until deep golden and cooked through. Drain on a wire rack, reserving 3 tablespoons of the oil in the pan.",
-   "For the gravy, whisk 3 tablespoons of the flour into the reserved oil and cook 1–2 minutes. Gradually whisk in the remaining buttermilk, then simmer, whisking, until thickened, 4–5 minutes.",
+   "Heat the oil in a large skillet over medium-high heat until shimmering. Fry the steaks 3\u20134 minutes per side until deep golden and cooked through. Drain on a wire rack, reserving 3 tablespoons of the oil in the pan.",
+   "For the gravy, whisk 3 tablespoons of the flour into the reserved oil and cook 1\u20132 minutes. Gradually whisk in the remaining buttermilk, then simmer, whisking, until thickened, 4\u20135 minutes.",
    "Season the gravy generously with the coarse black pepper and salt. Serve the steaks smothered in gravy."
   ],
   "notes": "Chicken fried steak developed in Texas and the South, likely from German and Austrian immigrant communities' schnitzel technique applied to inexpensive beef cuts and prepared in the style of Southern fried chicken.",
@@ -1967,10 +1962,10 @@ export const recipes: Recipe[] = [
  {
   "id": "smores",
   "title": "S'mores",
-  "description": "A toasted marshmallow and a square of chocolate, pressed between two graham crackers — the American campfire treat, first published in 1927.",
-  "cuisine": "American",
+  "description": "A toasted marshmallow and a square of chocolate, pressed between two graham crackers \u2014 the American campfire treat, first published in 1927.",
+  "cuisine": "Milkshakes & thick shakes",
   "dietTags": [
-   "Vegetarian"
+   "Low Sugar"
   ],
   "tasteTags": [
    "Sweet"
@@ -2004,26 +1999,24 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Break each graham cracker sheet in half to make 8 squares total. Lay a piece of chocolate on 4 of the squares.",
-   "Skewer a marshmallow on a stick or long fork and toast over an open flame or campfire coals, turning slowly, until golden brown and gooey inside, 1–2 minutes.",
-   "Immediately press the hot marshmallow onto the chocolate-topped cracker — the heat will start melting the chocolate.",
+   "Skewer a marshmallow on a stick or long fork and toast over an open flame or campfire coals, turning slowly, until golden brown and gooey inside, 1\u20132 minutes.",
+   "Immediately press the hot marshmallow onto the chocolate-topped cracker \u2014 the heat will start melting the chocolate.",
    "Top with the second graham cracker square and press gently to sandwich everything together.",
    "Let sit 30 seconds so the chocolate finishes melting, then eat right away, while warm."
   ],
-  "notes": "S'mores were first published as a recipe in the Girl Scouts' 1927 guidebook 'Tramping and Trailing with the Girl Scouts,' under the name 'Some Mores' — an American campfire tradition ever since.",
+  "notes": "S'mores were first published as a recipe in the Girl Scouts' 1927 guidebook 'Tramping and Trailing with the Girl Scouts,' under the name 'Some Mores' \u2014 an American campfire tradition ever since.",
   "sourceName": "Girl Scouts of the USA",
   "sourceUrl": "https://www.girlscouts.org/"
  },
  {
   "id": "grilled-chicken-burger",
   "title": "Grilled Chicken Burger",
-  "description": "A juicy, char-grilled chicken breast with lettuce, tomato, and mayo on a toasted bun — the lighter alternative to a beef burger.",
-  "cuisine": "American",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "A juicy, char-grilled chicken breast with lettuce, tomato, and mayo on a toasted bun \u2014 the lighter alternative to a beef burger.",
+  "cuisine": "Milkshakes & thick shakes",
+  "dietTags": [],
   "tasteTags": [
-   "Fresh & Light",
-   "Comforting"
+   "Refreshing",
+   "Creamy"
   ],
   "timeMinutes": 30,
   "prepMinutes": 15,
@@ -2103,7 +2096,7 @@ export const recipes: Recipe[] = [
   "steps": [
    "Whisk the olive oil, lemon juice, garlic, smoked paprika, salt, and pepper in a bowl or bag. Add the chicken breasts, turning to coat, and marinate at room temperature 30 minutes (or refrigerated up to a few hours).",
    "Heat a grill or grill pan to medium-high heat.",
-   "Grill the chicken 5–7 minutes per side, until well-marked and the internal temperature reaches 165°F (74°C). Let rest 5 minutes.",
+   "Grill the chicken 5\u20137 minutes per side, until well-marked and the internal temperature reaches 165\u00b0F (74\u00b0C). Let rest 5 minutes.",
    "Butter and toast the buns on the grill, cut-side down, 1 minute.",
    "Spread mayonnaise on the buns, then build each burger with lettuce, the grilled chicken, tomato, and red onion if using."
   ],
@@ -2114,16 +2107,16 @@ export const recipes: Recipe[] = [
  {
   "id": "marinara-pizza",
   "title": "Pizza Marinara",
-  "description": "No cheese at all — just tomato, garlic, oregano, and olive oil on a thin crust. One of Naples' two original pizzas, older than the Margherita.",
-  "cuisine": "Italian",
+  "description": "No cheese at all \u2014 just tomato, garlic, oregano, and olive oil on a thin crust. One of Naples' two original pizzas, older than the Margherita.",
+  "cuisine": "Coffee",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Fresh & Light",
-   "Herby"
+   "Refreshing",
+   "Herbal"
   ],
   "timeMinutes": 20,
   "prepMinutes": 10,
@@ -2179,24 +2172,22 @@ export const recipes: Recipe[] = [
    "Stretch the dough into a 12-inch round on a floured surface.",
    "Spread the crushed tomatoes over the dough as the base, leaving a border.",
    "Scatter the garlic slices and oregano evenly over the tomato, then season with salt and drizzle with the olive oil.",
-   "Bake 8–10 minutes until the crust is golden and the edges of the garlic have started to crisp.",
+   "Bake 8\u201310 minutes until the crust is golden and the edges of the garlic have started to crisp.",
    "Slice and serve immediately."
   ],
-  "notes": "Pizza marinara, despite the name, contains no seafood — it's named for the sailors' wives ('marinara') of Naples who made it, using ingredients that kept well without refrigeration. It predates the Margherita and is, alongside it, one of the two defining Neapolitan pizzas.",
+  "notes": "Pizza marinara, despite the name, contains no seafood \u2014 it's named for the sailors' wives ('marinara') of Naples who made it, using ingredients that kept well without refrigeration. It predates the Margherita and is, alongside it, one of the two defining Neapolitan pizzas.",
   "sourceName": "Associazione Verace Pizza Napoletana",
   "sourceUrl": "https://www.pizzanapoletana.org/"
  },
  {
   "id": "diavola-pizza",
   "title": "Pizza Diavola",
-  "description": "Spicy salami, chili flakes, and mozzarella — Italy's answer to a fiery pepperoni pizza, 'diavola' meaning devil-style.",
-  "cuisine": "Italian",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "Spicy salami, chili flakes, and mozzarella \u2014 Italy's answer to a fiery pepperoni pizza, 'diavola' meaning devil-style.",
+  "cuisine": "Coffee",
+  "dietTags": [],
   "tasteTags": [
    "Spicy",
-   "Rich & Indulgent"
+   "Rich"
   ],
   "timeMinutes": 25,
   "prepMinutes": 15,
@@ -2252,24 +2243,22 @@ export const recipes: Recipe[] = [
    "Heat the oven as high as it will go with a baking sheet or pizza stone inside for at least 20 minutes.",
    "Stretch the dough into a 12-inch round on a floured surface and spread the crushed tomatoes over it, leaving a border.",
    "Scatter over the mozzarella, then arrange the spicy salami slices evenly across the top. Scatter with the chili flakes.",
-   "Bake 8–10 minutes until the crust is golden and the salami edges have crisped slightly.",
+   "Bake 8\u201310 minutes until the crust is golden and the salami edges have crisped slightly.",
    "Drizzle with chili oil if using, slice, and serve."
   ],
-  "notes": "Pizza diavola is a classic Italian pizza, topped with spicy salami and chili — the name means 'devil-style,' referring to the heat. It's the closest Italian equivalent to the American pepperoni pizza, though the salami and technique differ.",
+  "notes": "Pizza diavola is a classic Italian pizza, topped with spicy salami and chili \u2014 the name means 'devil-style,' referring to the heat. It's the closest Italian equivalent to the American pepperoni pizza, though the salami and technique differ.",
   "sourceName": "La Cucina Italiana",
   "sourceUrl": "https://www.lacucinaitaliana.com/"
  },
  {
   "id": "chicago-deep-dish-pizza",
   "title": "Chicago Deep-Dish Pizza",
-  "description": "A thick, buttery crust built up the sides of a pan, cheese first, then chunky tomato sauce on top — eaten with a fork and knife.",
-  "cuisine": "Italian",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "A thick, buttery crust built up the sides of a pan, cheese first, then chunky tomato sauce on top \u2014 eaten with a fork and knife.",
+  "cuisine": "Coffee",
+  "dietTags": [],
   "tasteTags": [
-   "Rich & Indulgent",
-   "Comforting"
+   "Rich",
+   "Creamy"
   ],
   "timeMinutes": 90,
   "prepMinutes": 30,
@@ -2348,13 +2337,13 @@ export const recipes: Recipe[] = [
   ],
   "steps": [
    "Whisk the yeast and sugar into 1 cup (240 ml) warm water and let sit 5 minutes until foamy.",
-   "Combine the flour, cornmeal, and salt in a large bowl. Add the yeast mixture and the olive oil and mix until a shaggy dough forms, then knead 5–7 minutes until smooth. Cover and let rise in a warm spot 1 hour, until doubled.",
+   "Combine the flour, cornmeal, and salt in a large bowl. Add the yeast mixture and the olive oil and mix until a shaggy dough forms, then knead 5\u20137 minutes until smooth. Cover and let rise in a warm spot 1 hour, until doubled.",
    "Cook the sausage in a skillet over medium heat, breaking it into crumbles, until browned, about 8 minutes. Set aside.",
-   "Heat the oven to 425°F (220°C). Generously oil a 9-inch round, straight-sided cake pan or deep-dish pizza pan.",
+   "Heat the oven to 425\u00b0F (220\u00b0C). Generously oil a 9-inch round, straight-sided cake pan or deep-dish pizza pan.",
    "Press the dough into the pan and up the sides, about 1 1/2 inches up the walls.",
    "Layer the mozzarella slices over the bottom of the crust first, then the cooked sausage.",
    "Simmer the crushed tomatoes with the garlic, oregano, and a pinch of salt for 10 minutes to thicken slightly, then spoon this chunky sauce over the top and finish with the parmesan.",
-   "Bake 30–35 minutes until the crust is deeply golden and the sauce is bubbling. Let rest 10 minutes before slicing — it needs time to set."
+   "Bake 30\u201335 minutes until the crust is deeply golden and the sauce is bubbling. Let rest 10 minutes before slicing \u2014 it needs time to set."
   ],
   "notes": "Chicago deep-dish pizza was invented at Pizzeria Uno in Chicago in 1943; it inverts the usual order (cheese on the dough, sauce on top) so the cheese doesn't burn during the long bake needed for the thick crust.",
   "sourceName": "Choose Chicago",
@@ -2363,14 +2352,12 @@ export const recipes: Recipe[] = [
  {
   "id": "spaghetti-bolognese",
   "title": "Spaghetti Bolognese",
-  "description": "A slow-simmered beef and pork ragù, built on soffritto and a splash of milk — the internationally popular (if not strictly traditional-Bologna) version.",
-  "cuisine": "Italian",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "A slow-simmered beef and pork rag\u00f9, built on soffritto and a splash of milk \u2014 the internationally popular (if not strictly traditional-Bologna) version.",
+  "cuisine": "Coffee",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 150,
   "prepMinutes": 20,
@@ -2434,7 +2421,7 @@ export const recipes: Recipe[] = [
    {
     "pantryId": "beef-broth",
     "label": "Beef broth, as needed",
-    "amount": "1–2 cups (240–480 ml)"
+    "amount": "1\u20132 cups (240\u2013480 ml)"
    },
    {
     "pantryId": "parmesan",
@@ -2449,29 +2436,27 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Heat the olive oil in a large, heavy pot over medium heat. Add the onion, carrot, and celery and cook 8–10 minutes until softened.",
+   "Heat the olive oil in a large, heavy pot over medium heat. Add the onion, carrot, and celery and cook 8\u201310 minutes until softened.",
    "Add the ground beef and pork and cook, breaking it up, until browned, about 10 minutes.",
-   "Pour in the white wine and simmer until mostly evaporated, 3–4 minutes.",
-   "Stir in the milk and simmer until it's absorbed, about 5 minutes — this classic technique tenderizes the meat.",
-   "Add the crushed tomatoes and a cup of the beef broth. Season with salt and pepper, bring to a bare simmer, then partially cover and cook on very low heat 2–2 1/2 hours, stirring occasionally and adding more broth if it gets too thick.",
+   "Pour in the white wine and simmer until mostly evaporated, 3\u20134 minutes.",
+   "Stir in the milk and simmer until it's absorbed, about 5 minutes \u2014 this classic technique tenderizes the meat.",
+   "Add the crushed tomatoes and a cup of the beef broth. Season with salt and pepper, bring to a bare simmer, then partially cover and cook on very low heat 2\u20132 1/2 hours, stirring occasionally and adding more broth if it gets too thick.",
    "Cook the spaghetti in salted boiling water until al dente.",
-   "Toss the pasta with the ragù (or ladle the ragù over the pasta) and serve with grated parmesan."
+   "Toss the pasta with the rag\u00f9 (or ladle the rag\u00f9 over the pasta) and serve with grated parmesan."
   ],
-  "notes": "Spaghetti bolognese as usually served outside Italy differs from Bologna's own ragù alla bolognese, which is traditionally paired with fresh tagliatelle, not dried spaghetti — this recipe keeps the beloved spaghetti pairing while noting the distinction honestly.",
+  "notes": "Spaghetti bolognese as usually served outside Italy differs from Bologna's own rag\u00f9 alla bolognese, which is traditionally paired with fresh tagliatelle, not dried spaghetti \u2014 this recipe keeps the beloved spaghetti pairing while noting the distinction honestly.",
   "sourceName": "La Cucina Italiana",
   "sourceUrl": "https://www.lacucinaitaliana.com/"
  },
  {
   "id": "lasagna-alla-bolognese",
   "title": "Lasagna alla Bolognese",
-  "description": "Layers of pasta, slow-cooked meat ragù, and creamy béchamel, baked until bubbling — Emilia-Romagna's signature baked pasta.",
-  "cuisine": "Italian",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "Layers of pasta, slow-cooked meat rag\u00f9, and creamy b\u00e9chamel, baked until bubbling \u2014 Emilia-Romagna's signature baked pasta.",
+  "cuisine": "Coffee",
+  "dietTags": [],
   "tasteTags": [
-   "Rich & Indulgent",
-   "Comforting"
+   "Rich",
+   "Creamy"
   ],
   "timeMinutes": 180,
   "prepMinutes": 40,
@@ -2529,17 +2514,17 @@ export const recipes: Recipe[] = [
    },
    {
     "pantryId": "butter",
-    "label": "Unsalted butter (for the béchamel)",
+    "label": "Unsalted butter (for the b\u00e9chamel)",
     "amount": "5 tablespoons (70 g)"
    },
    {
     "pantryId": "all-purpose-flour",
-    "label": "All-purpose flour (for the béchamel)",
+    "label": "All-purpose flour (for the b\u00e9chamel)",
     "amount": "5 tablespoons (40 g)"
    },
    {
     "pantryId": "milk",
-    "label": "Whole milk (for the béchamel)",
+    "label": "Whole milk (for the b\u00e9chamel)",
     "amount": "4 cups (950 ml)"
    },
    {
@@ -2562,29 +2547,29 @@ export const recipes: Recipe[] = [
    "Espresso Machine"
   ],
   "steps": [
-   "Heat the olive oil in a large pot over medium heat. Cook the onion, carrot, and celery 8–10 minutes until softened.",
+   "Heat the olive oil in a large pot over medium heat. Cook the onion, carrot, and celery 8\u201310 minutes until softened.",
    "Add the ground beef and pork and cook until browned, about 10 minutes. Pour in the wine and simmer until mostly evaporated.",
-   "Add the crushed tomatoes, season with salt and pepper, and simmer uncovered on low heat 1 1/2–2 hours, stirring occasionally, until thick and deeply flavored.",
-   "For the béchamel, melt the butter in a saucepan, whisk in the flour, and cook 2 minutes. Gradually whisk in the milk and simmer, whisking often, until thickened, about 8 minutes. Season with nutmeg, salt, and pepper.",
-   "Cook the lasagna noodles according to the package (or use no-boil noodles), and heat the oven to 375°F (190°C).",
-   "In a 9x13-inch baking dish, spread a thin layer of béchamel, then a layer of noodles, a layer of ragù, a layer of béchamel, and a scatter of parmesan. Repeat the layers, finishing with béchamel and a generous layer of parmesan on top.",
-   "Bake 35–40 minutes until bubbling and golden on top. Rest 15 minutes before slicing — it needs time to set."
+   "Add the crushed tomatoes, season with salt and pepper, and simmer uncovered on low heat 1 1/2\u20132 hours, stirring occasionally, until thick and deeply flavored.",
+   "For the b\u00e9chamel, melt the butter in a saucepan, whisk in the flour, and cook 2 minutes. Gradually whisk in the milk and simmer, whisking often, until thickened, about 8 minutes. Season with nutmeg, salt, and pepper.",
+   "Cook the lasagna noodles according to the package (or use no-boil noodles), and heat the oven to 375\u00b0F (190\u00b0C).",
+   "In a 9x13-inch baking dish, spread a thin layer of b\u00e9chamel, then a layer of noodles, a layer of rag\u00f9, a layer of b\u00e9chamel, and a scatter of parmesan. Repeat the layers, finishing with b\u00e9chamel and a generous layer of parmesan on top.",
+   "Bake 35\u201340 minutes until bubbling and golden on top. Rest 15 minutes before slicing \u2014 it needs time to set."
   ],
-  "notes": "Lasagna alla bolognese is a signature dish of Emilia-Romagna, traditionally made with fresh egg pasta sheets, a slow-cooked meat ragù, and béchamel (not ricotta, which is a common substitution in Southern Italian and Italian-American versions).",
+  "notes": "Lasagna alla bolognese is a signature dish of Emilia-Romagna, traditionally made with fresh egg pasta sheets, a slow-cooked meat rag\u00f9, and b\u00e9chamel (not ricotta, which is a common substitution in Southern Italian and Italian-American versions).",
   "sourceName": "La Cucina Italiana",
   "sourceUrl": "https://www.lacucinaitaliana.com/"
  },
  {
   "id": "potato-gnocchi-pomodoro",
   "title": "Potato Gnocchi al Pomodoro",
-  "description": "Pillowy potato dumplings in a bright, simple tomato sauce — comfort food built from just a handful of ingredients.",
-  "cuisine": "Italian",
+  "description": "Pillowy potato dumplings in a bright, simple tomato sauce \u2014 comfort food built from just a handful of ingredients.",
+  "cuisine": "Coffee",
   "dietTags": [
-   "Vegetarian"
+   "Low Sugar"
   ],
   "tasteTags": [
-   "Comforting",
-   "Fresh & Light"
+   "Creamy",
+   "Refreshing"
   ],
   "timeMinutes": 30,
   "prepMinutes": 10,
@@ -2634,8 +2619,8 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Heat 2 tablespoons of the olive oil in a saucepan over medium heat. Add the garlic and cook 30 seconds until fragrant.",
-   "Add the crushed tomatoes, season with salt, and simmer 15–18 minutes until thickened.",
-   "Bring a large pot of salted water to a boil and cook the gnocchi according to the package — they're done as soon as they float to the surface, usually 2–3 minutes; don't overcook, or they turn mushy.",
+   "Add the crushed tomatoes, season with salt, and simmer 15\u201318 minutes until thickened.",
+   "Bring a large pot of salted water to a boil and cook the gnocchi according to the package \u2014 they're done as soon as they float to the surface, usually 2\u20133 minutes; don't overcook, or they turn mushy.",
    "Drain the gnocchi gently and toss into the tomato sauce along with most of the basil.",
    "Drizzle with the remaining olive oil, scatter with the remaining basil, and serve with grated parmesan."
   ],
@@ -2646,14 +2631,12 @@ export const recipes: Recipe[] = [
  {
   "id": "chicken-parmesan",
   "title": "Chicken Parmesan",
-  "description": "Breaded, fried chicken breast under melted mozzarella and tomato sauce — Italian-American comfort food, built from the older eggplant parmigiana.",
-  "cuisine": "Italian",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "Breaded, fried chicken breast under melted mozzarella and tomato sauce \u2014 Italian-American comfort food, built from the older eggplant parmigiana.",
+  "cuisine": "Coffee",
+  "dietTags": [],
   "tasteTags": [
-   "Rich & Indulgent",
-   "Comforting"
+   "Rich",
+   "Creamy"
   ],
   "timeMinutes": 45,
   "prepMinutes": 20,
@@ -2719,31 +2702,30 @@ export const recipes: Recipe[] = [
    "Espresso Machine"
   ],
   "steps": [
-   "Heat the oven to 425°F (220°C). Season the chicken with salt and pepper.",
+   "Heat the oven to 425\u00b0F (220\u00b0C). Season the chicken with salt and pepper.",
    "Set up a dredging station: flour in one dish, beaten eggs in another, and the breadcrumbs mixed with half the parmesan in a third.",
    "Dredge each piece of chicken in flour, then egg, then the breadcrumb mixture, pressing to coat well.",
-   "Heat the olive oil in a large skillet over medium-high heat and fry the chicken 3–4 minutes per side until golden brown (it will finish cooking in the oven).",
+   "Heat the olive oil in a large skillet over medium-high heat and fry the chicken 3\u20134 minutes per side until golden brown (it will finish cooking in the oven).",
    "Transfer the chicken to a baking dish, spoon the marinara sauce over each piece, then top with mozzarella and the remaining parmesan.",
-   "Bake 12–15 minutes until the chicken is cooked through (165°F/74°C) and the cheese is melted and bubbling.",
+   "Bake 12\u201315 minutes until the chicken is cooked through (165\u00b0F/74\u00b0C) and the cheese is melted and bubbling.",
    "Scatter with fresh basil if using and serve."
   ],
-  "notes": "Chicken parmesan is an Italian-American dish, adapting the older Southern Italian eggplant parmigiana (melanzane alla parmigiana) by substituting breaded, fried chicken for the eggplant — not a dish found in this form in Italy itself.",
+  "notes": "Chicken parmesan is an Italian-American dish, adapting the older Southern Italian eggplant parmigiana (melanzane alla parmigiana) by substituting breaded, fried chicken for the eggplant \u2014 not a dish found in this form in Italy itself.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "bistecca-alla-fiorentina",
   "title": "Bistecca alla Fiorentina",
-  "description": "A massive, bone-in T-bone steak, grilled hard and fast over wood coals, seasoned with nothing but salt — Tuscany's iconic steak.",
-  "cuisine": "Italian",
+  "description": "A massive, bone-in T-bone steak, grilled hard and fast over wood coals, seasoned with nothing but salt \u2014 Tuscany's iconic steak.",
+  "cuisine": "Coffee",
   "dietTags": [
-   "Non-Vegetarian",
    "Gluten-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Smoky",
-   "Rich & Indulgent"
+   "Bitter",
+   "Rich"
   ],
   "timeMinutes": 30,
   "prepMinutes": 10,
@@ -2757,7 +2739,7 @@ export const recipes: Recipe[] = [
    {
     "pantryId": "beef-sirloin",
     "label": "Bone-in T-bone or porterhouse steak, at least 2 inches thick (traditionally from Chianina cattle)",
-    "amount": "1 (about 2.5–3 lb / 1.1–1.4 kg)"
+    "amount": "1 (about 2.5\u20133 lb / 1.1\u20131.4 kg)"
    },
    {
     "pantryId": "fine-salt",
@@ -2780,15 +2762,15 @@ export const recipes: Recipe[] = [
    "Soda Maker"
   ],
   "steps": [
-   "Remove the steak from the refrigerator at least 1 hour before cooking to come to room temperature — this is essential for even cooking on such a thick cut.",
+   "Remove the steak from the refrigerator at least 1 hour before cooking to come to room temperature \u2014 this is essential for even cooking on such a thick cut.",
    "Heat a grill to very high heat, ideally with wood or charcoal.",
-   "Grill the steak 5–7 minutes per side, without moving it, to develop a deep char.",
+   "Grill the steak 5\u20137 minutes per side, without moving it, to develop a deep char.",
    "Stand the steak on its bone edge for a couple of minutes to render the fat along the bone.",
-   "Check doneness — traditionally served rare to medium-rare, since the thick cut and short cook time on the flat sides keep it that way.",
-   "Season generously with coarse salt immediately after grilling (never before, which draws out moisture), rest 5–10 minutes, then slice the meat off the bone and fan the slices back onto the bone to serve.",
+   "Check doneness \u2014 traditionally served rare to medium-rare, since the thick cut and short cook time on the flat sides keep it that way.",
+   "Season generously with coarse salt immediately after grilling (never before, which draws out moisture), rest 5\u201310 minutes, then slice the meat off the bone and fan the slices back onto the bone to serve.",
    "Finish with a drizzle of good olive oil and lemon wedges alongside, if using."
   ],
-  "notes": "Bistecca alla Fiorentina is a Tuscan specialty, traditionally cut from Chianina cattle, a breed native to the Val di Chiana — the steak is meant to be simple: just the meat, salt, fire, and time.",
+  "notes": "Bistecca alla Fiorentina is a Tuscan specialty, traditionally cut from Chianina cattle, a breed native to the Val di Chiana \u2014 the steak is meant to be simple: just the meat, salt, fire, and time.",
   "sourceName": "La Cucina Italiana",
   "sourceUrl": "https://www.lacucinaitaliana.com/"
  },
@@ -2796,13 +2778,11 @@ export const recipes: Recipe[] = [
   "id": "chow-mein",
   "title": "Chicken Chow Mein",
   "description": "Pan-fried wheat noodles stir-fried until lightly crisp at the edges, tossed with chicken, cabbage, and carrots in a glossy soy-based sauce.",
-  "cuisine": "Chinese",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "cuisine": "Mocktails",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 35,
   "prepMinutes": 20,
@@ -2893,10 +2873,10 @@ export const recipes: Recipe[] = [
    "Cook the noodles according to package directions until just tender, then drain, rinse under cold water, and toss with 1 teaspoon of the vegetable oil to prevent sticking.",
    "Toss the sliced chicken with 1 tablespoon soy sauce and let marinate 10 minutes.",
    "Whisk together the remaining soy sauce, dark soy sauce, oyster sauce, sesame oil, sugar, and white pepper in a small bowl for the sauce.",
-   "Heat 2 tablespoons of the oil in a large wok or skillet over high heat until shimmering. Add the chicken and stir-fry 3–4 minutes until cooked through. Remove and set aside.",
-   "Add the remaining oil to the wok. Add the garlic and ginger and stir-fry 30 seconds, then add the cabbage and carrot and stir-fry 2–3 minutes until just softened.",
-   "Push the vegetables aside, add the noodles, and pour the sauce over everything. Toss vigorously to coat, letting the noodles sit undisturbed for 30–60 seconds at a time against the hot wok to pick up a little char.",
-   "Return the chicken to the wok along with the bean sprouts and scallions. Toss 1–2 minutes more until everything is heated through and well combined."
+   "Heat 2 tablespoons of the oil in a large wok or skillet over high heat until shimmering. Add the chicken and stir-fry 3\u20134 minutes until cooked through. Remove and set aside.",
+   "Add the remaining oil to the wok. Add the garlic and ginger and stir-fry 30 seconds, then add the cabbage and carrot and stir-fry 2\u20133 minutes until just softened.",
+   "Push the vegetables aside, add the noodles, and pour the sauce over everything. Toss vigorously to coat, letting the noodles sit undisturbed for 30\u201360 seconds at a time against the hot wok to pick up a little char.",
+   "Return the chicken to the wok along with the bean sprouts and scallions. Toss 1\u20132 minutes more until everything is heated through and well combined."
   ],
   "notes": "Chow mein ('stir-fried noodles') is a broad category across Chinese regional cooking and the Chinese diaspora; this pan-fried style, with noodles left to crisp slightly against the wok, is common in Cantonese and American-Chinese kitchens alike.",
   "sourceName": "The Woks of Life",
@@ -2905,14 +2885,12 @@ export const recipes: Recipe[] = [
  {
   "id": "pork-chive-jiaozi",
   "title": "Pork and Chive Jiaozi",
-  "description": "Juicy ground pork and Chinese chive filling folded into pleated dumpling wrappers, pan-fried on one side then steamed — the everyday boiled-or-potsticker dumpling of northern China.",
-  "cuisine": "Chinese",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "Juicy ground pork and Chinese chive filling folded into pleated dumpling wrappers, pan-fried on one side then steamed \u2014 the everyday boiled-or-potsticker dumpling of northern China.",
+  "cuisine": "Mocktails",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Herby"
+   "Creamy",
+   "Herbal"
   ],
   "timeMinutes": 60,
   "prepMinutes": 45,
@@ -2987,28 +2965,26 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Salt the chopped napa cabbage and let sit 10 minutes, then squeeze out as much liquid as possible with your hands — this keeps the filling from turning watery.",
+   "Salt the chopped napa cabbage and let sit 10 minutes, then squeeze out as much liquid as possible with your hands \u2014 this keeps the filling from turning watery.",
    "Mix the ground pork, drained cabbage, chives, ginger, soy sauce, shaoxing wine, sesame oil, white pepper, and salt in a bowl, stirring vigorously in one direction until the mixture turns slightly sticky and cohesive.",
    "Place a heaping teaspoon of filling in the center of each wrapper. Wet the edge with water, fold in half, and pleat to seal tightly, pressing out any air.",
-   "To boil: drop the dumplings into a large pot of boiling water, stir gently to prevent sticking, and cook until they float plus 2 more minutes, about 6–8 minutes total.",
-   "To pan-fry (potsticker style): heat the oil in a nonstick skillet over medium-high heat, arrange the dumplings flat-side down, and cook 2 minutes until golden on the bottom. Add 1/3 cup water, cover immediately, and steam 5–6 minutes until the water evaporates and the wrappers are translucent.",
+   "To boil: drop the dumplings into a large pot of boiling water, stir gently to prevent sticking, and cook until they float plus 2 more minutes, about 6\u20138 minutes total.",
+   "To pan-fry (potsticker style): heat the oil in a nonstick skillet over medium-high heat, arrange the dumplings flat-side down, and cook 2 minutes until golden on the bottom. Add 1/3 cup water, cover immediately, and steam 5\u20136 minutes until the water evaporates and the wrappers are translucent.",
    "Serve hot with black vinegar for dipping."
   ],
-  "notes": "Jiaozi are a staple across northern China, traditionally eaten on Chinese New Year's Eve, when the whole family gathers to fold them together — the pleated shape is said to resemble old silver ingots, symbolizing wealth for the year ahead.",
+  "notes": "Jiaozi are a staple across northern China, traditionally eaten on Chinese New Year's Eve, when the whole family gathers to fold them together \u2014 the pleated shape is said to resemble old silver ingots, symbolizing wealth for the year ahead.",
   "sourceName": "The Woks of Life",
   "sourceUrl": "https://thewoksoflife.com/"
  },
  {
   "id": "fried-pork-wontons",
   "title": "Fried Pork Wontons",
-  "description": "Crisp, deep-fried wonton wrappers around a simple pork and shrimp filling, served with a sweet-and-sour or chili dipping sauce — the crunchy starter found on every Chinese-American menu.",
-  "cuisine": "Chinese",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "Crisp, deep-fried wonton wrappers around a simple pork and shrimp filling, served with a sweet-and-sour or chili dipping sauce \u2014 the crunchy starter found on every Chinese-American menu.",
+  "cuisine": "Mocktails",
+  "dietTags": [],
   "tasteTags": [
-   "Rich & Indulgent",
-   "Comforting"
+   "Rich",
+   "Creamy"
   ],
   "timeMinutes": 45,
   "prepMinutes": 30,
@@ -3085,7 +3061,7 @@ export const recipes: Recipe[] = [
    "Mix the ground pork, shrimp, scallion, ginger, soy sauce, sesame oil, and white pepper until well combined.",
    "Place a teaspoon of filling in the center of each wrapper. Wet the edges, fold into a triangle, and press to seal, then bring the two bottom corners together and pinch to seal, forming a classic wonton shape.",
    "Whisk together the ketchup, rice vinegar, and sugar with 2 tablespoons water for the dipping sauce.",
-   "Heat the oil to 350°F (175°C) in a deep, heavy pot. Fry the wontons in batches 3–4 minutes, turning occasionally, until deep golden and crisp.",
+   "Heat the oil to 350\u00b0F (175\u00b0C) in a deep, heavy pot. Fry the wontons in batches 3\u20134 minutes, turning occasionally, until deep golden and crisp.",
    "Drain on a wire rack and serve hot with the dipping sauce."
   ],
   "notes": "Fried wontons are a Chinese-American restaurant staple rather than a dish typically eaten this way in China, where wontons are far more often served in soup; the crunchy fried version became popular stateside as a shareable appetizer.",
@@ -3095,14 +3071,12 @@ export const recipes: Recipe[] = [
  {
   "id": "sweet-corn-chicken-soup",
   "title": "Sweet Corn Chicken Soup",
-  "description": "The meaty version of the Indo-Chinese corn soup — shredded chicken and sweet corn in a silky, white-pepper-spiked broth with an egg-drop finish.",
-  "cuisine": "Chinese",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "The meaty version of the Indo-Chinese corn soup \u2014 shredded chicken and sweet corn in a silky, white-pepper-spiked broth with an egg-drop finish.",
+  "cuisine": "Mocktails",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Fresh & Light"
+   "Creamy",
+   "Refreshing"
   ],
   "timeMinutes": 30,
   "prepMinutes": 15,
@@ -3174,24 +3148,24 @@ export const recipes: Recipe[] = [
    "Reduce the heat to low and drizzle in the beaten eggs in a thin stream while gently stirring to form ribbons.",
    "Season generously with white pepper and salt to taste, and garnish with scallions before serving."
   ],
-  "notes": "Like its vegetarian counterpart, sweet corn chicken soup is an Indo-Chinese restaurant staple — shredded poached chicken keeps the texture light rather than chunky, matching the soup's silky, cornstarch-thickened body.",
+  "notes": "Like its vegetarian counterpart, sweet corn chicken soup is an Indo-Chinese restaurant staple \u2014 shredded poached chicken keeps the texture light rather than chunky, matching the soup's silky, cornstarch-thickened body.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "congee",
   "title": "Congee (Rice Porridge)",
-  "description": "Rice simmered low and slow in far more water than usual until it breaks down into a silky, savory porridge — Chinese comfort food, endlessly customizable with toppings.",
-  "cuisine": "Chinese",
+  "description": "Rice simmered low and slow in far more water than usual until it breaks down into a silky, savory porridge \u2014 Chinese comfort food, endlessly customizable with toppings.",
+  "cuisine": "Mocktails",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Fresh & Light"
+   "Creamy",
+   "Refreshing"
   ],
   "timeMinutes": 90,
   "prepMinutes": 10,
@@ -3246,25 +3220,23 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Combine the rinsed rice, stock, and ginger in a large, heavy pot and bring to a boil.",
-   "Reduce the heat to the lowest simmer, partially cover, and cook 1–1 1/2 hours, stirring occasionally to prevent sticking, until the rice has broken down into a thick, creamy porridge (add more water or stock if it gets too thick before the rice has fully broken down).",
+   "Reduce the heat to the lowest simmer, partially cover, and cook 1\u20131 1/2 hours, stirring occasionally to prevent sticking, until the rice has broken down into a thick, creamy porridge (add more water or stock if it gets too thick before the rice has fully broken down).",
    "Season with salt to taste.",
    "Ladle into bowls and top with sesame oil, scallions, a drizzle of soy sauce, and white pepper if using."
   ],
-  "notes": "Congee (zhou) is a staple across Chinese home cooking, especially common for breakfast or when feeling unwell — the long, slow simmer that breaks the rice grains down fully is what gives it its signature silky texture, and toppings vary endlessly by region and preference.",
+  "notes": "Congee (zhou) is a staple across Chinese home cooking, especially common for breakfast or when feeling unwell \u2014 the long, slow simmer that breaks the rice grains down fully is what gives it its signature silky texture, and toppings vary endlessly by region and preference.",
   "sourceName": "The Woks of Life",
   "sourceUrl": "https://thewoksoflife.com/"
  },
  {
   "id": "chicken-manchurian",
   "title": "Chicken Manchurian",
-  "description": "Fried chicken balls tossed in a dark, garlicky, soy-based gravy with bell pepper and scallion — an Indo-Chinese invention with no actual connection to Manchuria.",
-  "cuisine": "Chinese",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "Fried chicken balls tossed in a dark, garlicky, soy-based gravy with bell pepper and scallion \u2014 an Indo-Chinese invention with no actual connection to Manchuria.",
+  "cuisine": "Mocktails",
+  "dietTags": [],
   "tasteTags": [
    "Spicy",
-   "Rich & Indulgent"
+   "Rich"
   ],
   "timeMinutes": 45,
   "prepMinutes": 30,
@@ -3348,29 +3320,29 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Combine the ground chicken with the flour, 2 tablespoons cornstarch, half the ginger, 4 minced garlic cloves, 1 minced green chili, and 1 tablespoon soy sauce. Mix well and shape into 1-inch balls.",
-   "Heat the oil to 350°F (175°C) in a deep, heavy pot. Fry the chicken balls in batches 4–5 minutes until golden and cooked through. Drain on a wire rack.",
+   "Heat the oil to 350\u00b0F (175\u00b0C) in a deep, heavy pot. Fry the chicken balls in batches 4\u20135 minutes until golden and cooked through. Drain on a wire rack.",
    "Heat 2 tablespoons oil in a wok over medium-high heat. Add the remaining garlic, ginger, and green chilies, stir-frying 30 seconds until fragrant.",
-   "Add the onion and bell pepper, stir-frying 2–3 minutes until just softened.",
+   "Add the onion and bell pepper, stir-frying 2\u20133 minutes until just softened.",
    "Whisk the remaining cornstarch into the chicken stock, then pour it into the wok along with the remaining soy sauce, ketchup, and black pepper. Bring to a simmer, stirring until thickened, about 2 minutes.",
-   "Add the fried chicken balls and toss to coat evenly in the gravy, simmering 1–2 minutes more so they absorb some sauce.",
+   "Add the fried chicken balls and toss to coat evenly in the gravy, simmering 1\u20132 minutes more so they absorb some sauce.",
    "Garnish with scallions and serve hot over rice or noodles."
   ],
-  "notes": "Chicken Manchurian is a Kolkata Indo-Chinese invention with no real link to the Manchuria region of China — it reflects how thoroughly Chinese cooking techniques were reinterpreted with Indian spicing and bold, gravy-forward presentation once they reached India.",
+  "notes": "Chicken Manchurian is a Kolkata Indo-Chinese invention with no real link to the Manchuria region of China \u2014 it reflects how thoroughly Chinese cooking techniques were reinterpreted with Indian spicing and bold, gravy-forward presentation once they reached India.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "sweet-and-sour-fish",
   "title": "Sweet and Sour Fish",
-  "description": "Battered, fried fish fillets in the same tangy red sauce as sweet and sour chicken, with pineapple and bell pepper — a lighter, flakier variation on the Cantonese-American classic.",
-  "cuisine": "Chinese",
+  "description": "Battered, fried fish fillets in the same tangy red sauce as sweet and sour chicken, with pineapple and bell pepper \u2014 a lighter, flakier variation on the Cantonese-American classic.",
+  "cuisine": "Mocktails",
   "dietTags": [
-   "Pescatarian",
+   "Caffeine-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Sweet",
-   "Tangy"
+   "Fruity"
   ],
   "timeMinutes": 35,
   "prepMinutes": 20,
@@ -3444,25 +3416,23 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Pat the fish chunks dry. Whisk together 1/2 cup cornstarch, the egg, and a splash of water into a thick batter. Toss the fish in the batter, coating gently to avoid breaking the pieces.",
-   "Heat the oil to 350°F (175°C) in a deep, heavy pot. Fry the fish in batches 3–4 minutes until golden and just cooked through (fish cooks faster than chicken, so watch closely). Drain on a wire rack.",
+   "Heat the oil to 350\u00b0F (175\u00b0C) in a deep, heavy pot. Fry the fish in batches 3\u20134 minutes until golden and just cooked through (fish cooks faster than chicken, so watch closely). Drain on a wire rack.",
    "Whisk together the remaining cornstarch, ketchup, rice vinegar, brown sugar, soy sauce, and 1/2 cup (120 ml) water for the sauce.",
-   "Heat 2 tablespoons oil in a wok over high heat. Add the bell peppers and onion, stir-frying 2–3 minutes until just crisp-tender.",
+   "Heat 2 tablespoons oil in a wok over high heat. Add the bell peppers and onion, stir-frying 2\u20133 minutes until just crisp-tender.",
    "Add the pineapple and stir-fry 1 minute more.",
    "Pour in the sauce and simmer, stirring, until thickened and glossy, about 2 minutes.",
    "Gently fold in the fried fish, tossing carefully to coat without breaking the pieces apart. Season with salt to taste and serve immediately over rice."
   ],
-  "notes": "Sweet and sour fish follows the same gu lao–style sauce as the chicken version, but needs a gentler hand — fried fish is far more delicate, so it's folded into the sauce at the very end rather than vigorously tossed.",
+  "notes": "Sweet and sour fish follows the same gu lao\u2013style sauce as the chicken version, but needs a gentler hand \u2014 fried fish is far more delicate, so it's folded into the sauce at the very end rather than vigorously tossed.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "sweet-and-sour-pork",
   "title": "Sweet and Sour Pork",
-  "description": "The original sweet and sour dish — battered pork chunks fried crisp, tossed with pineapple and bell pepper in a tangy red sauce — Cantonese in origin, before chicken versions took over abroad.",
-  "cuisine": "Chinese",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "The original sweet and sour dish \u2014 battered pork chunks fried crisp, tossed with pineapple and bell pepper in a tangy red sauce \u2014 Cantonese in origin, before chicken versions took over abroad.",
+  "cuisine": "Mocktails",
+  "dietTags": [],
   "tasteTags": [
    "Sweet",
    "Tangy"
@@ -3539,30 +3509,30 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Whisk together 1/2 cup cornstarch, the egg, and a splash of water into a thick batter. Toss the pork cubes in the batter until well coated.",
-   "Heat the oil to 350°F (175°C) in a deep, heavy pot. Fry the pork in batches 5–6 minutes until golden and cooked through. Drain on a wire rack.",
+   "Heat the oil to 350\u00b0F (175\u00b0C) in a deep, heavy pot. Fry the pork in batches 5\u20136 minutes until golden and cooked through. Drain on a wire rack.",
    "Whisk together the remaining cornstarch, ketchup, rice vinegar, brown sugar, soy sauce, and 1/2 cup (120 ml) water for the sauce.",
-   "Heat 2 tablespoons oil in a wok over high heat. Add the bell peppers and onion, stir-frying 2–3 minutes until just crisp-tender.",
+   "Heat 2 tablespoons oil in a wok over high heat. Add the bell peppers and onion, stir-frying 2\u20133 minutes until just crisp-tender.",
    "Add the pineapple and stir-fry 1 minute more.",
    "Pour in the sauce and simmer, stirring, until thickened and glossy, about 2 minutes.",
    "Add the fried pork and toss vigorously to coat evenly. Season with salt to taste and serve immediately over rice."
   ],
-  "notes": "Sweet and sour pork (gu lao yuk) is the original version of this dish, Cantonese in origin and dating back over a century — the chicken, fish, and other variations found on international menus all descend from this pork original.",
+  "notes": "Sweet and sour pork (gu lao yuk) is the original version of this dish, Cantonese in origin and dating back over a century \u2014 the chicken, fish, and other variations found on international menus all descend from this pork original.",
   "sourceName": "The Woks of Life",
   "sourceUrl": "https://thewoksoflife.com/"
  },
  {
   "id": "vegetable-spring-rolls",
   "title": "Vegetable Spring Rolls",
-  "description": "Shredded cabbage, carrot, and mushroom rolled in thin wrappers and deep-fried until shatteringly crisp — a dim sum and appetizer staple, best served piping hot.",
-  "cuisine": "Chinese",
+  "description": "Shredded cabbage, carrot, and mushroom rolled in thin wrappers and deep-fried until shatteringly crisp \u2014 a dim sum and appetizer staple, best served piping hot.",
+  "cuisine": "Mocktails",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 45,
   "prepMinutes": 30,
@@ -3642,31 +3612,31 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Heat 2 tablespoons of the oil in a wok over high heat. Add the garlic and ginger, stir-frying 30 seconds until fragrant.",
-   "Add the cabbage, carrots, and mushrooms, stir-frying 3–4 minutes until softened but still with some bite.",
+   "Add the cabbage, carrots, and mushrooms, stir-frying 3\u20134 minutes until softened but still with some bite.",
    "Stir in the bean sprouts, scallions, soy sauce, and sesame oil, tossing 1 minute. Sprinkle in the cornstarch and toss to absorb any excess liquid.",
-   "Spread the filling on a baking sheet and let cool completely — hot filling will make the wrappers soggy and tear.",
+   "Spread the filling on a baking sheet and let cool completely \u2014 hot filling will make the wrappers soggy and tear.",
    "Place about 2 tablespoons of filling near one corner of each wrapper. Fold the corner over the filling, tuck in the sides, and roll tightly, sealing the final edge with the flour paste.",
-   "Heat the remaining oil to 350°F (175°C) in a deep, heavy pot. Fry the spring rolls in batches 3–4 minutes, turning occasionally, until deep golden and crisp.",
+   "Heat the remaining oil to 350\u00b0F (175\u00b0C) in a deep, heavy pot. Fry the spring rolls in batches 3\u20134 minutes, turning occasionally, until deep golden and crisp.",
    "Drain on a wire rack and serve immediately with soy sauce or sweet chili sauce for dipping."
   ],
-  "notes": "Spring rolls are named for their traditional association with the Spring Festival (Chinese New Year), though they're now eaten year-round — keeping the filling fully cooled before wrapping is the key to a crisp, non-soggy shell.",
+  "notes": "Spring rolls are named for their traditional association with the Spring Festival (Chinese New Year), though they're now eaten year-round \u2014 keeping the filling fully cooled before wrapping is the key to a crisp, non-soggy shell.",
   "sourceName": "The Woks of Life",
   "sourceUrl": "https://thewoksoflife.com/"
  },
  {
   "id": "red-bean-soup",
   "title": "Red Bean Soup (Hong Dou Sha)",
-  "description": "Adzuki beans simmered low and slow with dried tangerine peel until they break down into a thick, lightly sweet soup — a classic Cantonese dessert, served warm.",
-  "cuisine": "Chinese",
+  "description": "Adzuki beans simmered low and slow with dried tangerine peel until they break down into a thick, lightly sweet soup \u2014 a classic Cantonese dessert, served warm.",
+  "cuisine": "Mocktails",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
    "Sweet",
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 100,
   "prepMinutes": 10,
@@ -3702,29 +3672,29 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Combine the adzuki beans, dried peel if using, and 8 cups (1.9 L) water in a large pot. Bring to a boil, then skim off any foam.",
-   "Reduce the heat to the lowest simmer, cover partially, and cook 1 1/2–2 hours, stirring occasionally, until the beans are very soft and starting to break down into the liquid (add more water if it gets too thick before the beans soften).",
+   "Reduce the heat to the lowest simmer, cover partially, and cook 1 1/2\u20132 hours, stirring occasionally, until the beans are very soft and starting to break down into the liquid (add more water if it gets too thick before the beans soften).",
    "Stir in the sugar and simmer 5 minutes more until dissolved.",
    "For a thicker, more traditional texture, mash some of the beans against the side of the pot with a spoon.",
    "Serve warm, topped with cooked glutinous rice balls if using."
   ],
-  "notes": "Red bean soup (hong dou sha) is a classic Cantonese 'tong sui' (sweet soup) dessert, traditionally served warm even in summer — dried tangerine peel is a common addition that cuts through the sweetness with a faint citrus bitterness.",
+  "notes": "Red bean soup (hong dou sha) is a classic Cantonese 'tong sui' (sweet soup) dessert, traditionally served warm even in summer \u2014 dried tangerine peel is a common addition that cuts through the sweetness with a faint citrus bitterness.",
   "sourceName": "The Woks of Life",
   "sourceUrl": "https://thewoksoflife.com/"
  },
  {
   "id": "dolma",
   "title": "Dolma (Stuffed Grape Leaves)",
-  "description": "Grape leaves rolled tightly around a rice, herb, and pine nut filling, simmered until tender — a dish found with small variations across the entire Eastern Mediterranean.",
-  "cuisine": "Mediterranean",
+  "description": "Grape leaves rolled tightly around a rice, herb, and pine nut filling, simmered until tender \u2014 a dish found with small variations across the entire Eastern Mediterranean.",
+  "cuisine": "Lemonades & coolers",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Tangy",
-   "Herby"
+   "Fruity",
+   "Herbal"
   ],
   "timeMinutes": 90,
   "prepMinutes": 60,
@@ -3794,26 +3764,25 @@ export const recipes: Recipe[] = [
    "Fold the bottom of the leaf over the filling, fold in the sides, and roll up tightly into a small log. Repeat with the remaining leaves and filling.",
    "Line the bottom of a wide pot with a few extra grape leaves (to prevent scorching) and arrange the rolled dolma seam-side down in tight rows.",
    "Drizzle with the remaining olive oil and lemon juice, and add enough water to just cover the dolma. Place a heatproof plate directly on top to weigh them down.",
-   "Bring to a simmer, cover, and cook 30–35 minutes over low heat until the rice is tender.",
+   "Bring to a simmer, cover, and cook 30\u201335 minutes over low heat until the rice is tender.",
    "Let cool slightly in the pot, then serve warm or at room temperature."
   ],
-  "notes": "Dolma (from the Turkish for 'stuffed') appears across Greek, Turkish, Lebanese, and Armenian cooking with small regional differences — this herb-forward, meat-free version is common as a mezze, while meat-filled versions are often served warm as a main.",
+  "notes": "Dolma (from the Turkish for 'stuffed') appears across Greek, Turkish, Lebanese, and Armenian cooking with small regional differences \u2014 this herb-forward, meat-free version is common as a mezze, while meat-filled versions are often served warm as a main.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "lamb-shish-kebab",
   "title": "Lamb Shish Kebab",
-  "description": "Cubed lamb marinated in olive oil, garlic, and warm spices, grilled over high heat until charred outside and pink within — found with regional variations from Turkey to the Levant.",
-  "cuisine": "Middle Eastern",
+  "description": "Cubed lamb marinated in olive oil, garlic, and warm spices, grilled over high heat until charred outside and pink within \u2014 found with regional variations from Turkey to the Levant.",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Smoky",
-   "Rich & Indulgent"
+   "Bitter",
+   "Rich"
   ],
   "timeMinutes": 35,
   "prepMinutes": 20,
@@ -3890,25 +3859,24 @@ export const recipes: Recipe[] = [
    "Add the lamb and toss thoroughly to coat. Cover and marinate in the refrigerator at least 8 hours or overnight.",
    "If using wooden skewers, soak them in water 30 minutes beforehand.",
    "Thread the lamb onto skewers, alternating with bell pepper pieces if using, leaving a little space between pieces for even cooking.",
-   "Heat a grill to high heat. Grill the skewers 10–12 minutes, turning every few minutes, until well-charred outside and still pink-to-medium within.",
+   "Heat a grill to high heat. Grill the skewers 10\u201312 minutes, turning every few minutes, until well-charred outside and still pink-to-medium within.",
    "Rest 5 minutes before serving, traditionally with rice or flatbread."
   ],
-  "notes": "Shish kebab ('skewer of roasted meat') is found across Turkey, the Levant, and beyond, with countless regional spice variations — grated onion in the marinade is a common tenderizing trick, breaking down the meat's surface before it even hits the grill.",
+  "notes": "Shish kebab ('skewer of roasted meat') is found across Turkey, the Levant, and beyond, with countless regional spice variations \u2014 grated onion in the marinade is a common tenderizing trick, breaking down the meat's surface before it even hits the grill.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "chicken-shish-tawook",
   "title": "Chicken Shish Tawook",
-  "description": "Chicken marinated in yogurt, garlic, and tomato paste, skewered and grilled until juicy and lightly charred — a Levantine and Turkish grilled chicken classic, often served with garlic sauce.",
-  "cuisine": "Middle Eastern",
+  "description": "Chicken marinated in yogurt, garlic, and tomato paste, skewered and grilled until juicy and lightly charred \u2014 a Levantine and Turkish grilled chicken classic, often served with garlic sauce.",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Non-Vegetarian",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Herby",
-   "Smoky"
+   "Herbal",
+   "Bitter"
   ],
   "timeMinutes": 35,
   "prepMinutes": 20,
@@ -3979,25 +3947,24 @@ export const recipes: Recipe[] = [
    "Add the chicken and toss to coat thoroughly. Cover and marinate in the refrigerator at least 6 hours or overnight.",
    "If using wooden skewers, soak them in water 30 minutes beforehand.",
    "Thread the chicken onto skewers.",
-   "Heat a grill to medium-high. Grill the skewers 10–12 minutes, turning occasionally, until charred in spots and cooked through (165°F/74°C).",
+   "Heat a grill to medium-high. Grill the skewers 10\u201312 minutes, turning occasionally, until charred in spots and cooked through (165\u00b0F/74\u00b0C).",
    "Serve with rice, flatbread, and garlic sauce (toum) or garlic yogurt."
   ],
-  "notes": "Shish tawook is a staple of Levantine and Turkish grilling — the small amount of tomato paste in the marinade gives the chicken its characteristic light orange-red hue without the heavier flavor of a full tomato sauce.",
+  "notes": "Shish tawook is a staple of Levantine and Turkish grilling \u2014 the small amount of tomato paste in the marinade gives the chicken its characteristic light orange-red hue without the heavier flavor of a full tomato sauce.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "lamb-tagine-apricots",
   "title": "Lamb Tagine with Apricots and Almonds",
-  "description": "Lamb braised with dried apricots, cinnamon, and honey until the sauce turns thick and glossy — the sweet-savory side of Moroccan tagine cooking.",
-  "cuisine": "Mediterranean",
+  "description": "Lamb braised with dried apricots, cinnamon, and honey until the sauce turns thick and glossy \u2014 the sweet-savory side of Moroccan tagine cooking.",
+  "cuisine": "Lemonades & coolers",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Sweet",
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 130,
   "prepMinutes": 20,
@@ -4081,30 +4048,30 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Season the lamb generously with salt and pepper. Heat the olive oil in a large, heavy pot over medium-high heat and brown the lamb in batches, 3–4 minutes per side. Remove and set aside.",
-   "Add the onion to the same pot and cook 6–8 minutes until softened. Add the garlic, ginger, cinnamon sticks, turmeric, and cumin, cooking 1 minute until fragrant.",
+   "Season the lamb generously with salt and pepper. Heat the olive oil in a large, heavy pot over medium-high heat and brown the lamb in batches, 3\u20134 minutes per side. Remove and set aside.",
+   "Add the onion to the same pot and cook 6\u20138 minutes until softened. Add the garlic, ginger, cinnamon sticks, turmeric, and cumin, cooking 1 minute until fragrant.",
    "Return the lamb to the pot, add the stock, and bring to a simmer. Cover and cook 1 1/2 hours over low heat, until the lamb is very tender.",
-   "Stir in the dried apricots and honey and simmer, uncovered, 15–20 minutes more, until the sauce thickens and the apricots plump up.",
+   "Stir in the dried apricots and honey and simmer, uncovered, 15\u201320 minutes more, until the sauce thickens and the apricots plump up.",
    "Remove the cinnamon sticks, adjust seasoning, and scatter with toasted almonds before serving, traditionally with couscous."
   ],
-  "notes": "Sweet-savory combinations like lamb and dried fruit are a hallmark of Moroccan cooking, reflecting historic trade routes that brought spices and dried fruits into North Africa — almonds scattered on top add a textural contrast to the soft, glossy stew.",
+  "notes": "Sweet-savory combinations like lamb and dried fruit are a hallmark of Moroccan cooking, reflecting historic trade routes that brought spices and dried fruits into North Africa \u2014 almonds scattered on top add a textural contrast to the soft, glossy stew.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "mujadara",
   "title": "Mujadara",
-  "description": "Lentils and rice simmered together, topped with a generous pile of deeply caramelized onions — a Levantine lentil dish that's humble, cheap, and completely addictive.",
-  "cuisine": "Middle Eastern",
+  "description": "Lentils and rice simmered together, topped with a generous pile of deeply caramelized onions \u2014 a Levantine lentil dish that's humble, cheap, and completely addictive.",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 60,
   "prepMinutes": 15,
@@ -4153,28 +4120,28 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Combine the lentils with 3 cups (720 ml) water in a pot, bring to a boil, and simmer 12–15 minutes until just tender but not mushy. Drain and set aside.",
-   "Heat 1/3 cup of the olive oil in a large skillet over medium heat. Add the onions and cook, stirring occasionally, 25–30 minutes until deeply golden-brown and caramelized (don't rush this — the onions are the dish's main flavor). Remove and set aside, reserving the oil in the pan.",
+   "Combine the lentils with 3 cups (720 ml) water in a pot, bring to a boil, and simmer 12\u201315 minutes until just tender but not mushy. Drain and set aside.",
+   "Heat 1/3 cup of the olive oil in a large skillet over medium heat. Add the onions and cook, stirring occasionally, 25\u201330 minutes until deeply golden-brown and caramelized (don't rush this \u2014 the onions are the dish's main flavor). Remove and set aside, reserving the oil in the pan.",
    "Add the remaining oil to the same pan along with the rice, stirring to coat.",
-   "Add the cooked lentils, cumin, 2 cups (480 ml) water, salt, and pepper. Bring to a boil, then reduce to low, cover, and simmer 15–18 minutes until the rice is tender and the liquid is absorbed.",
+   "Add the cooked lentils, cumin, 2 cups (480 ml) water, salt, and pepper. Bring to a boil, then reduce to low, cover, and simmer 15\u201318 minutes until the rice is tender and the liquid is absorbed.",
    "Let stand, covered, 5 minutes, then fluff gently with a fork.",
    "Top generously with the caramelized onions and serve with yogurt on the side if using."
   ],
-  "notes": "Mujadara's defining feature is the caramelized onions — rushing this step is the most common mistake, since real caramelization (not just softening) takes a genuine 25–30 minutes of patient, low-and-slow cooking.",
+  "notes": "Mujadara's defining feature is the caramelized onions \u2014 rushing this step is the most common mistake, since real caramelization (not just softening) takes a genuine 25\u201330 minutes of patient, low-and-slow cooking.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "beet-salad-feta",
   "title": "Beet Salad with Feta and Walnuts",
-  "description": "Roasted beets tossed with crumbled feta, toasted walnuts, and a sharp vinaigrette — an earthy, colorful Mediterranean salad built on contrast.",
-  "cuisine": "Mediterranean",
+  "description": "Roasted beets tossed with crumbled feta, toasted walnuts, and a sharp vinaigrette \u2014 an earthy, colorful Mediterranean salad built on contrast.",
+  "cuisine": "Lemonades & coolers",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Fresh & Light",
+   "Refreshing",
    "Tangy"
   ],
   "timeMinutes": 70,
@@ -4231,14 +4198,14 @@ export const recipes: Recipe[] = [
    "Espresso Machine"
   ],
   "steps": [
-   "Heat the oven to 400°F (200°C). Wrap each beet individually in foil and roast 45–55 minutes until a knife slides in easily.",
+   "Heat the oven to 400\u00b0F (200\u00b0C). Wrap each beet individually in foil and roast 45\u201355 minutes until a knife slides in easily.",
    "Let the beets cool enough to handle, then peel (the skins should slip off easily) and cut into wedges.",
    "Whisk together 1/4 cup of the olive oil, the vinegar, and honey for the dressing. Season with salt and pepper.",
    "Toss the beet wedges with the dressing while still slightly warm, so they absorb more flavor.",
    "Arrange on a platter, scatter with the crumbled feta, toasted walnuts, and mint if using.",
    "Finish with a final drizzle of olive oil before serving."
   ],
-  "notes": "Roasting beets whole in foil (rather than boiling) concentrates their natural sweetness and makes peeling far easier once they're cooked — tossing them with dressing while still warm also helps them absorb more flavor than if dressed cold.",
+  "notes": "Roasting beets whole in foil (rather than boiling) concentrates their natural sweetness and makes peeling far easier once they're cooked \u2014 tossing them with dressing while still warm also helps them absorb more flavor than if dressed cold.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
@@ -4246,13 +4213,13 @@ export const recipes: Recipe[] = [
   "id": "baklava",
   "title": "Baklava",
   "description": "Dozens of paper-thin phyllo layers brushed with butter, filled with spiced chopped nuts, cut into diamonds, and soaked in a lemon-scented honey syrup.",
-  "cuisine": "Mediterranean",
+  "cuisine": "Lemonades & coolers",
   "dietTags": [
-   "Vegetarian"
+   "Low Sugar"
   ],
   "tasteTags": [
    "Sweet",
-   "Rich & Indulgent"
+   "Rich"
   ],
   "timeMinutes": 90,
   "prepMinutes": 40,
@@ -4313,13 +4280,13 @@ export const recipes: Recipe[] = [
    "Espresso Machine"
   ],
   "steps": [
-   "Heat the oven to 350°F (175°C). Combine the walnuts, pistachios, sugar, and cinnamon in a bowl.",
+   "Heat the oven to 350\u00b0F (175\u00b0C). Combine the walnuts, pistachios, sugar, and cinnamon in a bowl.",
    "Butter a 9x13-inch baking pan. Lay a sheet of phyllo in the pan and brush with melted butter; repeat to layer 10 sheets, buttering each one, keeping the rest covered with a damp towel.",
    "Sprinkle a third of the nut mixture evenly over the layered phyllo. Layer 5 more buttered phyllo sheets on top, then another third of the nuts, then 5 more sheets, the rest of the nuts, and finish with a final 10 buttered sheets on top.",
    "Using a sharp knife, cut the unbaked baklava all the way through into diamonds or squares.",
-   "Bake 45–50 minutes until deep golden brown and crisp.",
+   "Bake 45\u201350 minutes until deep golden brown and crisp.",
    "Meanwhile, simmer the honey, water, and lemon juice together 5 minutes to make the syrup. Let cool slightly.",
-   "Pour the warm syrup evenly over the hot baklava immediately after it comes out of the oven. Let cool completely, uncovered, before serving — at least 4 hours."
+   "Pour the warm syrup evenly over the hot baklava immediately after it comes out of the oven. Let cool completely, uncovered, before serving \u2014 at least 4 hours."
   ],
   "notes": "Pouring hot syrup over hot baklava (or cold syrup over cooled baklava) keeps the layers crisp; mixing temperatures the opposite way is what makes baklava turn soggy instead of staying crackly.",
   "sourceName": "Serious Eats",
@@ -4328,16 +4295,16 @@ export const recipes: Recipe[] = [
  {
   "id": "guacamole",
   "title": "Classic Guacamole",
-  "description": "Ripe avocados mashed chunky with onion, chile, cilantro, and lime — the traditional molcajete-style guacamole, simple enough that the avocado stays the star.",
-  "cuisine": "Mexican",
+  "description": "Ripe avocados mashed chunky with onion, chile, cilantro, and lime \u2014 the traditional molcajete-style guacamole, simple enough that the avocado stays the star.",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Fresh & Light",
+   "Refreshing",
    "Tangy"
   ],
   "timeMinutes": 15,
@@ -4399,7 +4366,7 @@ export const recipes: Recipe[] = [
    "Fold in the remaining cilantro and the tomato if using. Taste and adjust salt and lime.",
    "Serve right away with warm tortilla chips, or press plastic wrap directly onto the surface to keep it from browning."
   ],
-  "notes": "Authentic guacamole is deliberately minimal — garlic, cumin, and sour cream are not traditional. Grinding the onion and chile with salt first releases their oils and seasons the whole batch evenly.",
+  "notes": "Authentic guacamole is deliberately minimal \u2014 garlic, cumin, and sour cream are not traditional. Grinding the onion and chile with salt first releases their oils and seasons the whole batch evenly.",
   "sourceName": "Rick Bayless / Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
@@ -4407,14 +4374,14 @@ export const recipes: Recipe[] = [
   "id": "pollo-asado-tacos",
   "title": "Tacos de Pollo Asado",
   "description": "Chicken thighs marinated in citrus, achiote, and garlic, grilled until charred at the edges, chopped, and served on corn tortillas with onion and cilantro.",
-  "cuisine": "Mexican",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
    "Gluten-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Smoky",
-   "Tangy"
+   "Bitter",
+   "Fruity"
   ],
   "timeMinutes": 35,
   "prepMinutes": 15,
@@ -4492,8 +4459,8 @@ export const recipes: Recipe[] = [
   ],
   "steps": [
    "Whisk the achiote paste with the orange juice, lime juice, garlic, cumin, oregano, oil, and salt until smooth.",
-   "Add the chicken, turn to coat, cover, and marinate in the refrigerator 2–8 hours.",
-   "Heat a grill or cast-iron grill pan to medium-high. Grill the chicken 5–6 minutes per side until charred in spots and 165°F (74°C) inside.",
+   "Add the chicken, turn to coat, cover, and marinate in the refrigerator 2\u20138 hours.",
+   "Heat a grill or cast-iron grill pan to medium-high. Grill the chicken 5\u20136 minutes per side until charred in spots and 165\u00b0F (74\u00b0C) inside.",
    "Rest 5 minutes, then chop into small pieces.",
    "Pile onto warm tortillas and top with onion and cilantro. Serve with lime wedges and salsa verde."
   ],
@@ -4505,13 +4472,13 @@ export const recipes: Recipe[] = [
   "id": "tacos-al-pastor",
   "title": "Tacos al Pastor",
   "description": "Thinly sliced pork marinated in guajillo, achiote, and pineapple, seared until caramelized and served on corn tortillas with pineapple, onion, and cilantro.",
-  "cuisine": "Mexican",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
    "Gluten-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Smoky",
+   "Bitter",
    "Sweet",
    "Spicy"
   ],
@@ -4612,12 +4579,12 @@ export const recipes: Recipe[] = [
   "steps": [
    "Soak the guajillos and ancho in hot water 15 minutes until soft; drain.",
    "Blend the chiles with the achiote, 1/2 cup chopped pineapple, vinegar, garlic, cumin, oregano, cloves, salt, and 1/4 cup (60 ml) water until smooth.",
-   "Toss the pork with the marinade, cover, and refrigerate 8–24 hours.",
-   "Heat the oil in a large cast-iron skillet over high heat. Cook the pork in single-layer batches 3–4 minutes per side until deeply browned and caramelized at the edges.",
+   "Toss the pork with the marinade, cover, and refrigerate 8\u201324 hours.",
+   "Heat the oil in a large cast-iron skillet over high heat. Cook the pork in single-layer batches 3\u20134 minutes per side until deeply browned and caramelized at the edges.",
    "Chop the pork roughly. Sear the diced pineapple in the same pan 2 minutes.",
    "Pile onto warm tortillas and top with pineapple, onion, cilantro, and a squeeze of lime."
   ],
-  "notes": "Al pastor was created in Mexico City by Lebanese immigrants who adapted shawarma, replacing lamb with marinated pork and adding pineapple. In taquerías it's shaved from a vertical spit (trompo); thin slices seared hard at home come close.",
+  "notes": "Al pastor was created in Mexico City by Lebanese immigrants who adapted shawarma, replacing lamb with marinated pork and adding pineapple. In taquer\u00edas it's shaved from a vertical spit (trompo); thin slices seared hard at home come close.",
   "sourceName": "Rick Bayless / Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
@@ -4625,15 +4592,15 @@ export const recipes: Recipe[] = [
   "id": "roasted-cauliflower-tacos",
   "title": "Roasted Cauliflower Tacos",
   "description": "Cauliflower florets tossed in chili, cumin, and lime, roasted until charred and caramelized, and tucked into tortillas over smashed avocado with cilantro.",
-  "cuisine": "Mexican",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Vegan",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Smoky",
-   "Fresh & Light",
+   "Bitter",
+   "Refreshing",
    "Spicy"
   ],
   "timeMinutes": 40,
@@ -4705,8 +4672,8 @@ export const recipes: Recipe[] = [
    "Espresso Machine"
   ],
   "steps": [
-   "Heat the oven to 450°F (230°C). Toss the cauliflower with the oil, chili powder, cumin, paprika, half the lime juice, and 3/4 teaspoon salt.",
-   "Spread in a single layer on a large baking sheet and roast 22–25 minutes, turning once, until deeply browned at the edges.",
+   "Heat the oven to 450\u00b0F (230\u00b0C). Toss the cauliflower with the oil, chili powder, cumin, paprika, half the lime juice, and 3/4 teaspoon salt.",
+   "Spread in a single layer on a large baking sheet and roast 22\u201325 minutes, turning once, until deeply browned at the edges.",
    "Mash the avocados with the remaining lime juice and salt until chunky.",
    "Spread avocado on each tortilla, top with cauliflower, red onion, and cilantro.",
    "Serve with salsa verde and lime wedges."
@@ -4719,11 +4686,11 @@ export const recipes: Recipe[] = [
   "id": "chicken-quesadilla",
   "title": "Chicken Quesadillas",
   "description": "Griddled flour tortillas filled with seasoned shredded chicken, melted Monterey Jack, and roasted poblano strips, cut into wedges and served with sour cream.",
-  "cuisine": "Mexican",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 30,
   "prepMinutes": 15,
@@ -4800,15 +4767,15 @@ export const recipes: Recipe[] = [
   "id": "chilaquiles-rojos",
   "title": "Chilaquiles Rojos",
   "description": "Crisp tortilla chips simmered briefly in a smoky red salsa until just softened, topped with crema, queso fresco, onion, and a fried egg.",
-  "cuisine": "Mexican",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Comforting",
+   "Creamy",
    "Spicy",
-   "Smoky"
+   "Bitter"
   ],
   "timeMinutes": 30,
   "prepMinutes": 10,
@@ -4884,11 +4851,11 @@ export const recipes: Recipe[] = [
   ],
   "steps": [
    "Simmer the tomatoes and guajillos in water 10 minutes until soft. Blend with the garlic, 2 tablespoons of the onion, stock, and salt until smooth.",
-   "Heat the oil in a large, wide skillet over medium-high heat. Add the sauce and simmer 5–6 minutes until thickened.",
-   "Add the chips and toss quickly for 30–60 seconds until coated and just beginning to soften.",
+   "Heat the oil in a large, wide skillet over medium-high heat. Add the sauce and simmer 5\u20136 minutes until thickened.",
+   "Add the chips and toss quickly for 30\u201360 seconds until coated and just beginning to soften.",
    "Divide among plates and top with fried eggs, crema, queso fresco, sliced onion, and cilantro. Serve immediately."
   ],
-  "notes": "The chips should keep some crunch — add them only at the last minute. Chilaquiles are the classic way to use up stale tortillas and are a breakfast staple and a hangover cure.",
+  "notes": "The chips should keep some crunch \u2014 add them only at the last minute. Chilaquiles are the classic way to use up stale tortillas and are a breakfast staple and a hangover cure.",
   "sourceName": "Rick Bayless / Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
@@ -4896,13 +4863,13 @@ export const recipes: Recipe[] = [
   "id": "churros",
   "title": "Churros with Chocolate Sauce",
   "description": "Ridged choux-style dough fried until crisp and golden, rolled in cinnamon sugar, and served with a thick, dark chocolate dipping sauce.",
-  "cuisine": "Mexican",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
-   "Vegetarian"
+   "Low Sugar"
   ],
   "tasteTags": [
    "Sweet",
-   "Rich & Indulgent"
+   "Rich"
   ],
   "timeMinutes": 45,
   "prepMinutes": 15,
@@ -4974,11 +4941,11 @@ export const recipes: Recipe[] = [
    "Bring the water, butter, 1 tablespoon sugar, and salt to a boil in a saucepan. Add the flour all at once and stir vigorously until a smooth ball forms and pulls away from the pan, about 1 minute.",
    "Cool 5 minutes, then beat in the eggs one at a time, then the vanilla, until smooth and glossy.",
    "Transfer to a piping bag fitted with a large star tip.",
-   "Heat the oil to 350°F (175°C). Pipe 4–6-inch lengths directly into the oil, cutting with scissors. Fry in batches 2–3 minutes per side until deep golden. Drain on paper towels.",
+   "Heat the oil to 350\u00b0F (175\u00b0C). Pipe 4\u20136-inch lengths directly into the oil, cutting with scissors. Fry in batches 2\u20133 minutes per side until deep golden. Drain on paper towels.",
    "Toss in the remaining sugar mixed with the cinnamon while still hot.",
    "For the sauce, heat the cream until steaming, pour over the chocolate, and stir until smooth. Serve alongside for dipping."
   ],
-  "notes": "The star tip creates ridges that make the surface crisp and give the cinnamon sugar something to grip. Keep the oil at 350°F: too cool and the churros are greasy, too hot and the inside stays raw.",
+  "notes": "The star tip creates ridges that make the surface crisp and give the cinnamon sugar something to grip. Keep the oil at 350\u00b0F: too cool and the churros are greasy, too hot and the inside stays raw.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
@@ -4986,14 +4953,14 @@ export const recipes: Recipe[] = [
   "id": "arroz-con-leche",
   "title": "Arroz con Leche",
   "description": "Rice slowly simmered in milk with cinnamon and lime peel until creamy and spoonable, sweetened and finished with a dusting of cinnamon and raisins.",
-  "cuisine": "Mexican",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Gluten-Free"
   ],
   "tasteTags": [
    "Sweet",
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 50,
   "prepMinutes": 5,
@@ -5070,12 +5037,12 @@ export const recipes: Recipe[] = [
   "id": "gorditas-de-pollo",
   "title": "Gorditas de Pollo en Salsa Roja",
   "description": "Thick masa pockets griddled until puffed and lightly crisp, split open and stuffed with shredded chicken in a guajillo salsa, lettuce, crema, and queso fresco.",
-  "cuisine": "Mexican",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Comforting",
+   "Creamy",
    "Spicy"
   ],
   "timeMinutes": 60,
@@ -5153,12 +5120,12 @@ export const recipes: Recipe[] = [
   ],
   "steps": [
    "Mix the masa harina, salt, lard, and warm water into a soft dough; rest 10 minutes. Divide into 8 balls and press each into a 1/3-inch-thick disc, about 4 inches wide.",
-   "Cook on a hot dry griddle 2–3 minutes per side until lightly golden and puffed. Keep warm wrapped in a towel.",
+   "Cook on a hot dry griddle 2\u20133 minutes per side until lightly golden and puffed. Keep warm wrapped in a towel.",
    "Soak the guajillos in hot water 15 minutes. Blend with the tomatoes, garlic, and 1/2 cup water until smooth; strain.",
    "Fry the sauce in the oil 5 minutes until thick, then stir in the shredded chicken and simmer 8 minutes.",
    "Split each gordita along the edge to form a pocket. Fill with the chicken and top with lettuce, crema, and queso fresco."
   ],
-  "notes": "'Gordita' means little fat one. They're a street food from central Mexico (Zacatecas and Querétaro especially) and are traditionally stuffed with chicharrón in green sauce, beans, or guisados (stews).",
+  "notes": "'Gordita' means little fat one. They're a street food from central Mexico (Zacatecas and Quer\u00e9taro especially) and are traditionally stuffed with chicharr\u00f3n in green sauce, beans, or guisados (stews).",
   "sourceName": "Rick Bayless / Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
@@ -5166,14 +5133,14 @@ export const recipes: Recipe[] = [
   "id": "pozole-blanco",
   "title": "Pozole Blanco",
   "description": "The clear-broth, Guerrero-style pozole: tender pork and hominy in a garlicky, herb-scented broth, finished at the table with chile, lime, cabbage, radish, and tostadas.",
-  "cuisine": "Mexican",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
    "Gluten-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Fresh & Light"
+   "Creamy",
+   "Refreshing"
   ],
   "timeMinutes": 150,
   "prepMinutes": 25,
@@ -5235,7 +5202,7 @@ export const recipes: Recipe[] = [
    },
    {
     "pantryId": "arbol-chiles",
-    "label": "Crushed dried chile de árbol, to serve",
+    "label": "Crushed dried chile de \u00e1rbol, to serve",
     "amount": "1 teaspoon"
    },
    {
@@ -5251,22 +5218,22 @@ export const recipes: Recipe[] = [
    "Remove the pork, discard bones and fat, shred the meat, and return it to the pot. Taste and adjust the salt.",
    "Ladle into bowls and serve with cabbage, chopped onion, radish, lime, oregano, crushed chile, and tostadas on the side."
   ],
-  "notes": "Pozole blanco is the base from which red and green pozole are made — the chile paste or tomatillo-pumpkin-seed sauce is stirred in. Eating it white lets the pork and corn flavors speak, and each diner adds their own heat.",
+  "notes": "Pozole blanco is the base from which red and green pozole are made \u2014 the chile paste or tomatillo-pumpkin-seed sauce is stirred in. Eating it white lets the pork and corn flavors speak, and each diner adds their own heat.",
   "sourceName": "Rick Bayless / Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "chicken-guacamole-tacos",
   "title": "Chicken and Guacamole Tacos",
-  "description": "Seared, spice-rubbed chicken pieces in soft corn tortillas piled with chunky guacamole, onion, and cilantro — the avocado is the sauce.",
-  "cuisine": "Mexican",
+  "description": "Seared, spice-rubbed chicken pieces in soft corn tortillas piled with chunky guacamole, onion, and cilantro \u2014 the avocado is the sauce.",
+  "cuisine": "Sodas & sparkling",
   "dietTags": [
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Fresh & Light",
-   "Smoky"
+   "Refreshing",
+   "Bitter"
   ],
   "timeMinutes": 30,
   "prepMinutes": 15,
@@ -5336,7 +5303,7 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Toss the chicken with the chili powder, paprika, garlic, and 1 teaspoon salt.",
-   "Heat the oil in a large skillet over medium-high heat. Cook the chicken in a single layer, in batches if needed, 5–6 minutes, turning, until browned and cooked through.",
+   "Heat the oil in a large skillet over medium-high heat. Cook the chicken in a single layer, in batches if needed, 5\u20136 minutes, turning, until browned and cooked through.",
    "Mash the avocados with the lime juice, 1/4 cup of the onion, half the cilantro, and the remaining salt, leaving the guacamole chunky.",
    "Spread guacamole over each warm tortilla and top with chicken, remaining onion, and cilantro.",
    "Serve with salsa and lime wedges."
@@ -5347,15 +5314,15 @@ export const recipes: Recipe[] = [
  },
  {
   "id": "albondigas-en-salsa",
-  "title": "Albóndigas en Salsa",
-  "description": "Tender pork-and-beef meatballs lightly browned and simmered in a savory sofrito sauce of tomato, white wine, and paprika — a tapa and a family supper.",
-  "cuisine": "Spanish",
+  "title": "Alb\u00f3ndigas en Salsa",
+  "description": "Tender pork-and-beef meatballs lightly browned and simmered in a savory sofrito sauce of tomato, white wine, and paprika \u2014 a tapa and a family supper.",
+  "cuisine": "Coffee",
   "dietTags": [
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Smoky"
+   "Creamy",
+   "Bitter"
   ],
   "timeMinutes": 55,
   "prepMinutes": 25,
@@ -5456,28 +5423,28 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Soak the breadcrumbs in the milk 5 minutes. Gently mix with the pork, beef, egg, 2 garlic cloves, parsley, 1/2 teaspoon paprika, and 1 teaspoon salt until just combined. Shape into about 20 golf-ball-size meatballs and roll in the flour.",
-   "Heat 3 tablespoons of the oil in a wide skillet over medium-high heat. Brown the meatballs in batches 4–5 minutes, turning. Set aside.",
+   "Heat 3 tablespoons of the oil in a wide skillet over medium-high heat. Brown the meatballs in batches 4\u20135 minutes, turning. Set aside.",
    "In the same pan, heat the remaining oil and cook the onion 8 minutes until soft and golden. Add the remaining garlic and 1/2 teaspoon paprika and cook 1 minute.",
    "Pour in the wine and scrape up the browned bits; boil 2 minutes. Add the tomato sauce, stock, bay leaf, and remaining salt.",
-   "Return the meatballs to the pan, partly cover, and simmer 18–20 minutes, turning once, until cooked through and the sauce clings. Add the peas for the last 3 minutes.",
+   "Return the meatballs to the pan, partly cover, and simmer 18\u201320 minutes, turning once, until cooked through and the sauce clings. Add the peas for the last 3 minutes.",
    "Serve with crusty bread to mop up the sauce."
   ],
-  "notes": "Albóndigas turn up in tapas bars across Spain, always in sauce. A mix of pork and beef keeps them juicy, and dredging in flour before browning gives the sauce body.",
+  "notes": "Alb\u00f3ndigas turn up in tapas bars across Spain, always in sauce. A mix of pork and beef keeps them juicy, and dredging in flour before browning gives the sauce body.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "fideua",
-  "title": "Fideuà",
+  "title": "Fideu\u00e0",
   "description": "Toasted thin noodles simmered in saffron fish stock with seafood until the edges crisp like a paella, served with a dollop of garlicky all-i-oli.",
-  "cuisine": "Spanish",
+  "cuisine": "Coffee",
   "dietTags": [
-   "Pescatarian",
+   "Caffeine-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Rich & Indulgent",
-   "Comforting"
+   "Rich",
+   "Creamy"
   ],
   "timeMinutes": 50,
   "prepMinutes": 15,
@@ -5557,28 +5524,28 @@ export const recipes: Recipe[] = [
    "Espresso Machine"
   ],
   "steps": [
-   "Heat 3 tablespoons of the oil in a 12-inch ovenproof skillet over medium heat. Toast the noodles, stirring, 3–4 minutes until deep golden. Transfer to a bowl.",
+   "Heat 3 tablespoons of the oil in a 12-inch ovenproof skillet over medium heat. Toast the noodles, stirring, 3\u20134 minutes until deep golden. Transfer to a bowl.",
    "Add the remaining oil, squid, and shrimp; cook 2 minutes and remove the shrimp. Add 3 garlic cloves and the tomato and cook 5 minutes until jammy. Stir in the paprika and saffron.",
    "Pour in the wine and boil 1 minute. Add the hot stock and salt and bring to a boil.",
    "Return the noodles and spread them evenly. Simmer 8 minutes without stirring until most of the liquid is absorbed.",
-   "Heat the broiler. Top with the shrimp and broil 3–4 minutes until the top is crisp and golden at the tips.",
-   "Stir the remaining garlic into the mayonnaise with a squeeze of lemon. Serve the fideuà from the pan with the all-i-oli and lemon."
+   "Heat the broiler. Top with the shrimp and broil 3\u20134 minutes until the top is crisp and golden at the tips.",
+   "Stir the remaining garlic into the mayonnaise with a squeeze of lemon. Serve the fideu\u00e0 from the pan with the all-i-oli and lemon."
   ],
-  "notes": "Fideuà was created in Gandia, near Valencia, when a ship's cook swapped noodles for rice. Toasting the fideos first gives a nutty flavor and keeps them from going soft.",
+  "notes": "Fideu\u00e0 was created in Gandia, near Valencia, when a ship's cook swapped noodles for rice. Toasting the fideos first gives a nutty flavor and keeps them from going soft.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "lentejas-con-chorizo",
   "title": "Lentejas Estofadas con Chorizo",
-  "description": "A thick, smoky Spanish lentil stew simmered with chorizo, potato, carrot, and pimentón — everyday comfort food from every home kitchen in Spain.",
-  "cuisine": "Spanish",
+  "description": "A thick, smoky Spanish lentil stew simmered with chorizo, potato, carrot, and piment\u00f3n \u2014 everyday comfort food from every home kitchen in Spain.",
+  "cuisine": "Coffee",
   "dietTags": [
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Smoky"
+   "Creamy",
+   "Bitter"
   ],
   "timeMinutes": 60,
   "prepMinutes": 15,
@@ -5620,7 +5587,7 @@ export const recipes: Recipe[] = [
    },
    {
     "pantryId": "smoked-paprika",
-    "label": "Smoked paprika (pimentón)",
+    "label": "Smoked paprika (piment\u00f3n)",
     "amount": "2 teaspoons"
    },
    {
@@ -5656,9 +5623,9 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Heat the oil in a Dutch oven over medium heat. Fry the chorizo 3–4 minutes until it releases its red oil and the edges crisp. Lift out half and set aside for garnish.",
+   "Heat the oil in a Dutch oven over medium heat. Fry the chorizo 3\u20134 minutes until it releases its red oil and the edges crisp. Lift out half and set aside for garnish.",
    "Add the onion, carrots, and pepper and cook 8 minutes until soft. Add the garlic and cook 1 minute, then stir in the paprika for 15 seconds.",
-   "Add the lentils, potatoes, bay leaves, and stock. Bring to a boil, reduce to a gentle simmer, cover partly, and cook 30–35 minutes until the lentils are tender and the broth has thickened.",
+   "Add the lentils, potatoes, bay leaves, and stock. Bring to a boil, reduce to a gentle simmer, cover partly, and cook 30\u201335 minutes until the lentils are tender and the broth has thickened.",
    "Mash a few spoonfuls of lentils against the side of the pot to thicken. Season with salt and the sherry vinegar.",
    "Rest 10 minutes (it thickens and improves), then serve topped with the reserved chorizo."
   ],
@@ -5669,17 +5636,17 @@ export const recipes: Recipe[] = [
  {
   "id": "pisto-manchego",
   "title": "Pisto Manchego",
-  "description": "Slow-cooked tomato, peppers, zucchini, and onion in olive oil — La Mancha's answer to ratatouille, served with a fried egg or crusty bread.",
-  "cuisine": "Spanish",
+  "description": "Slow-cooked tomato, peppers, zucchini, and onion in olive oil \u2014 La Mancha's answer to ratatouille, served with a fried egg or crusty bread.",
+  "cuisine": "Coffee",
   "dietTags": [
    "Vegan",
-   "Vegetarian",
+   "Low Sugar",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Fresh & Light"
+   "Creamy",
+   "Refreshing"
   ],
   "timeMinutes": 60,
   "prepMinutes": 15,
@@ -5745,24 +5712,24 @@ export const recipes: Recipe[] = [
   "steps": [
    "Heat the oil in a wide skillet over medium heat. Cook the onion and peppers with 1/2 teaspoon salt 12 minutes until soft and golden. Add the garlic for 1 minute.",
    "Add the zucchini and cook 8 minutes until it starts to soften.",
-   "Stir in the tomatoes, sugar, and remaining salt. Simmer on low, partly covered, 25–30 minutes, stirring occasionally, until the vegetables are very tender and the oil rises to the surface.",
+   "Stir in the tomatoes, sugar, and remaining salt. Simmer on low, partly covered, 25\u201330 minutes, stirring occasionally, until the vegetables are very tender and the oil rises to the surface.",
    "Taste and adjust seasoning. Serve warm or at room temperature with fried eggs on top and bread alongside."
   ],
-  "notes": "Pisto is cooked slowly — no rushing — so the vegetables keep their shape but melt together. It keeps 4 days in the fridge and makes a great filling for empanadas.",
+  "notes": "Pisto is cooked slowly \u2014 no rushing \u2014 so the vegetables keep their shape but melt together. It keeps 4 days in the fridge and makes a great filling for empanadas.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "tarta-de-queso-vasca",
   "title": "Tarta de Queso Vasca (Basque Burnt Cheesecake)",
-  "description": "A crustless cheesecake baked at very high heat until the top is deeply burnished and the center stays creamy and almost molten — born in San Sebastián.",
-  "cuisine": "Spanish",
+  "description": "A crustless cheesecake baked at very high heat until the top is deeply burnished and the center stays creamy and almost molten \u2014 born in San Sebasti\u00e1n.",
+  "cuisine": "Coffee",
   "dietTags": [
-   "Vegetarian"
+   "Low Sugar"
   ],
   "tasteTags": [
    "Sweet",
-   "Rich & Indulgent"
+   "Rich"
   ],
   "timeMinutes": 100,
   "prepMinutes": 15,
@@ -5813,30 +5780,30 @@ export const recipes: Recipe[] = [
    "Espresso Machine"
   ],
   "steps": [
-   "Heat the oven to 425°F (220°C). Line a 9-inch springform pan with two crisscrossed sheets of parchment, letting it stand 2 inches above the rim (creases are fine).",
+   "Heat the oven to 425\u00b0F (220\u00b0C). Line a 9-inch springform pan with two crisscrossed sheets of parchment, letting it stand 2 inches above the rim (creases are fine).",
    "Beat the cream cheese and sugar until smooth. Add the eggs one at a time, mixing after each.",
    "Beat in the cream, vanilla, and salt, then sift in the flour and mix just until combined. The batter will be thin.",
-   "Pour into the pan and bake 45–50 minutes until the top is deep brown and blistered but the center still jiggles like gelatin.",
+   "Pour into the pan and bake 45\u201350 minutes until the top is deep brown and blistered but the center still jiggles like gelatin.",
    "Cool completely in the pan (it will sink and wrinkle), then chill at least 4 hours. Serve at room temperature."
   ],
-  "notes": "Created at La Viña in San Sebastián. The 'burnt' top is the point — it adds bitter-caramel notes against the creamy center. Don't open the oven in the first 35 minutes.",
+  "notes": "Created at La Vi\u00f1a in San Sebasti\u00e1n. The 'burnt' top is the point \u2014 it adds bitter-caramel notes against the creamy center. Don't open the oven in the first 35 minutes.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
  {
   "id": "aceitunas-alinadas",
-  "title": "Aceitunas Aliñadas (Marinated Olives)",
-  "description": "Green and black olives tossed with garlic, orange peel, thyme, and sherry vinegar — the first thing set on the table in any Spanish bar.",
-  "cuisine": "Spanish",
+  "title": "Aceitunas Ali\u00f1adas (Marinated Olives)",
+  "description": "Green and black olives tossed with garlic, orange peel, thyme, and sherry vinegar \u2014 the first thing set on the table in any Spanish bar.",
+  "cuisine": "Coffee",
   "dietTags": [
    "Vegan",
-   "Vegetarian",
+   "Low Sugar",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
    "Tangy",
-   "Fresh & Light"
+   "Refreshing"
   ],
   "timeMinutes": 130,
   "prepMinutes": 10,
@@ -5896,7 +5863,7 @@ export const recipes: Recipe[] = [
    "Toss well. Cover and marinate at room temperature at least 2 hours, or refrigerate up to 1 week, shaking occasionally.",
    "Bring to room temperature before serving, with a bowl on the side for pits."
   ],
-  "notes": "Spanish olive varieties like manzanilla, gordal, and arbequina are classic. Don't add salt — olives are already brined.",
+  "notes": "Spanish olive varieties like manzanilla, gordal, and arbequina are classic. Don't add salt \u2014 olives are already brined.",
   "sourceName": "Serious Eats",
   "sourceUrl": "https://www.seriouseats.com/"
  },
@@ -5904,16 +5871,15 @@ export const recipes: Recipe[] = [
   "id": "tom-yum-goong",
   "title": "Tom Yum Goong (Hot and Sour Prawn Soup)",
   "description": "Thailand's iconic hot-and-sour soup: prawns in a lemongrass, galangal, and kaffir-lime broth with mushrooms, tomato, chili, and a bright squeeze of lime.",
-  "cuisine": "South East Asian",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
    "Spicy",
-   "Tangy",
-   "Herby"
+   "Fruity",
+   "Herbal"
   ],
   "timeMinutes": 35,
   "prepMinutes": 15,
@@ -6007,15 +5973,14 @@ export const recipes: Recipe[] = [
   "id": "khao-soi",
   "title": "Khao Soi (Northern Thai Curry Noodle Soup)",
   "description": "Chiang Mai's signature: egg noodles in a rich, mild coconut curry broth with tender chicken, topped with crispy fried noodles, pickled greens, shallots, and lime.",
-  "cuisine": "South East Asian",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Rich & Indulgent",
+   "Rich",
    "Spicy",
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 50,
   "prepMinutes": 20,
@@ -6105,11 +6070,11 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Cook 3 ounces (85 g) of the noodles in 2 inches of hot oil (350°F / 175°C) 30–60 seconds until puffed and golden. Drain on paper towels; these are your crispy topping.",
-   "Spoon the thick cream from the top of the coconut milk into a pot over medium heat. Cook 3–4 minutes until it separates. Fry the curry paste, turmeric, and cumin in it 2 minutes.",
-   "Add the chicken, stir to coat, then pour in the rest of the coconut milk and the stock. Simmer gently, partly covered, 20–25 minutes until the chicken is very tender.",
+   "Cook 3 ounces (85 g) of the noodles in 2 inches of hot oil (350\u00b0F / 175\u00b0C) 30\u201360 seconds until puffed and golden. Drain on paper towels; these are your crispy topping.",
+   "Spoon the thick cream from the top of the coconut milk into a pot over medium heat. Cook 3\u20134 minutes until it separates. Fry the curry paste, turmeric, and cumin in it 2 minutes.",
+   "Add the chicken, stir to coat, then pour in the rest of the coconut milk and the stock. Simmer gently, partly covered, 20\u201325 minutes until the chicken is very tender.",
    "Season the broth with the fish sauce, palm sugar, and soy sauce. Shred the chicken if you like and return to the pot.",
-   "Boil the remaining noodles according to package directions, 2–3 minutes, and divide among bowls.",
+   "Boil the remaining noodles according to package directions, 2\u20133 minutes, and divide among bowls.",
    "Ladle the curry broth and chicken over the noodles. Top with crispy noodles, shallots, pickled greens, and chili oil, with lime to squeeze over."
   ],
   "notes": "Khao soi shows Burmese and Chinese Muslim influence. The contrast of soft boiled noodles, crispy fried noodles, creamy broth, and sharp pickles is the whole point.",
@@ -6120,15 +6085,14 @@ export const recipes: Recipe[] = [
   "id": "yam-woon-sen",
   "title": "Yam Woon Sen (Thai Glass Noodle Salad)",
   "description": "Slippery glass noodles tossed with shrimp, minced pork, tomatoes, celery, and herbs in a hot, sour, salty-sweet lime dressing.",
-  "cuisine": "South East Asian",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Spicy",
-   "Tangy",
-   "Fresh & Light"
+   "Fruity",
+   "Refreshing"
   ],
   "timeMinutes": 30,
   "prepMinutes": 20,
@@ -6213,7 +6177,7 @@ export const recipes: Recipe[] = [
   "steps": [
    "Soak the noodles in warm water 10 minutes, then drop into boiling water for 1 minute until tender and translucent. Drain, rinse with cold water, drain very well, and snip into shorter lengths.",
    "Whisk the fish sauce, lime juice, sugar, chilies, and garlic until the sugar dissolves.",
-   "Poach the shrimp in simmering water 1–2 minutes until pink; remove. In the same water, cook the pork 2 minutes, breaking it up, and drain.",
+   "Poach the shrimp in simmering water 1\u20132 minutes until pink; remove. In the same water, cook the pork 2 minutes, breaking it up, and drain.",
    "Toss the noodles, shrimp, pork, shallot, celery, tomatoes, and scallions with the dressing.",
    "Fold in the cilantro, top with peanuts, and serve at room temperature or cold."
   ],
@@ -6223,17 +6187,16 @@ export const recipes: Recipe[] = [
  },
  {
   "id": "bun-cha-hanoi",
-  "title": "Bún Chả (Hanoi Grilled Pork with Noodles)",
+  "title": "B\u00fan Ch\u1ea3 (Hanoi Grilled Pork with Noodles)",
   "description": "Hanoi's famous lunch: charcoal-style grilled pork patties and belly slices in a sweet-sour fish sauce broth with rice vermicelli, pickled green papaya, and heaps of fresh herbs.",
-  "cuisine": "South East Asian",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Tangy",
-   "Smoky",
-   "Herby"
+   "Bitter",
+   "Herbal"
   ],
   "timeMinutes": 110,
   "prepMinutes": 30,
@@ -6321,27 +6284,26 @@ export const recipes: Recipe[] = [
    "Mix the ground pork with half of the shallots and garlic, 2 tablespoons fish sauce, 1 tablespoon sugar, pepper, and honey. Marinate the pork belly separately with the remaining shallot, garlic, 1 tablespoon fish sauce, and 1 tablespoon sugar for at least 1 hour.",
    "Make the dipping broth: dissolve the remaining sugar in 1 cup warm water, then add the remaining fish sauce, lime juice, chilies, carrot, and papaya. Taste. It should be sweet, sour, and salty.",
    "Shape the ground pork into 1 1/2-inch patties, about 16.",
-   "Grill the patties and belly slices over medium-high heat (or in a hot grill pan) 3–4 minutes per side, until charred and cooked through.",
+   "Grill the patties and belly slices over medium-high heat (or in a hot grill pan) 3\u20134 minutes per side, until charred and cooked through.",
    "Cook the vermicelli per package directions, rinse, and drain.",
    "Serve the grilled pork submerged in the dipping broth, with a plate of noodles and herbs on the side. Dip noodles and herbs into the bowl with each bite."
   ],
-  "notes": "Bún chả was famously eaten by Barack Obama and Anthony Bourdain in Hanoi. The dipping broth is meant to be served lukewarm, not hot.",
+  "notes": "B\u00fan ch\u1ea3 was famously eaten by Barack Obama and Anthony Bourdain in Hanoi. The dipping broth is meant to be served lukewarm, not hot.",
   "sourceName": "Viet World Kitchen",
   "sourceUrl": "https://www.vietworldkitchen.com/"
  },
  {
   "id": "banh-xeo",
-  "title": "Bánh Xèo (Sizzling Vietnamese Crepes)",
-  "description": "Giant crisp, turmeric-yellow rice-flour crepes made with coconut milk and filled with pork, shrimp, and bean sprouts, wrapped in lettuce and herbs and dunked in nước chấm.",
-  "cuisine": "South East Asian",
+  "title": "B\u00e1nh X\u00e8o (Sizzling Vietnamese Crepes)",
+  "description": "Giant crisp, turmeric-yellow rice-flour crepes made with coconut milk and filled with pork, shrimp, and bean sprouts, wrapped in lettuce and herbs and dunked in n\u01b0\u1edbc ch\u1ea5m.",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Rich & Indulgent",
-   "Herby"
+   "Rich",
+   "Herbal"
   ],
   "timeMinutes": 60,
   "prepMinutes": 30,
@@ -6434,10 +6396,10 @@ export const recipes: Recipe[] = [
    "Make the dipping sauce: stir the fish sauce, sugar, lime juice, and 1/2 cup warm water until dissolved; add chili and garlic if you like.",
    "Heat 1 tablespoon oil in a 10-inch nonstick skillet over medium-high heat. Cook a few slices of pork, 3 shrimp, and some onion for 2 minutes.",
    "Stir the batter, then pour about 1/2 cup into the pan, swirling to coat thinly; it should sizzle loudly. Scatter a handful of bean sprouts on half.",
-   "Cover for 2 minutes, then uncover and cook 3–4 minutes more, drizzling oil around the edge, until the underside is deep golden and crisp.",
+   "Cover for 2 minutes, then uncover and cook 3\u20134 minutes more, drizzling oil around the edge, until the underside is deep golden and crisp.",
    "Fold in half, slide onto a plate, and serve immediately. Tear off pieces, wrap in lettuce with herbs, and dip."
   ],
-  "notes": "'Xèo' is the sizzle sound the batter makes when poured into the hot pan. A thin batter and a very hot pan give the lacy crisp edges. Stir the batter before each crepe, as the flour settles.",
+  "notes": "'X\u00e8o' is the sizzle sound the batter makes when poured into the hot pan. A thin batter and a very hot pan give the lacy crisp edges. Stir the batter before each crepe, as the flour settles.",
   "sourceName": "Viet World Kitchen",
   "sourceUrl": "https://www.vietworldkitchen.com/"
  },
@@ -6445,14 +6407,14 @@ export const recipes: Recipe[] = [
   "id": "gado-gado",
   "title": "Gado-Gado (Indonesian Vegetable Salad with Peanut Sauce)",
   "description": "Blanched vegetables, potatoes, tofu, tempeh, and boiled eggs dressed in a thick, garlicky peanut sauce, Indonesia's best-loved warm salad.",
-  "cuisine": "South East Asian",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Fresh & Light"
+   "Creamy",
+   "Refreshing"
   ],
   "timeMinutes": 55,
   "prepMinutes": 30,
@@ -6565,15 +6527,15 @@ export const recipes: Recipe[] = [
   "id": "sayur-lodeh",
   "title": "Sayur Lodeh (Javanese Vegetable Coconut Curry)",
   "description": "A mild, golden vegetable stew of cabbage, long beans, eggplant, and tofu simmered in a coconut milk broth with lemongrass, galangal, and shallots. Everyday Javanese comfort.",
-  "cuisine": "South East Asian",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Vegetarian",
+   "Low Sugar",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Herby"
+   "Creamy",
+   "Herbal"
   ],
   "timeMinutes": 45,
   "prepMinutes": 20,
@@ -6670,7 +6632,7 @@ export const recipes: Recipe[] = [
    "Fry the paste in 1 tablespoon oil in a pot for 3 minutes until fragrant. Add the galangal, lemongrass, and bay leaves.",
    "Pour in the coconut milk and 1 cup water and bring to a gentle simmer; do not boil hard.",
    "Add the carrot and eggplant; simmer 8 minutes. Add the long beans and tofu; simmer 5 minutes more.",
-   "Add the cabbage, salt, and sugar and cook 3–4 minutes until the vegetables are tender.",
+   "Add the cabbage, salt, and sugar and cook 3\u20134 minutes until the vegetables are tender.",
    "Serve with steamed rice and sambal."
   ],
   "notes": "Sayur lodeh is traditionally served with lontong (rice cakes) or rice. Keep the heat low once the coconut milk goes in, to avoid splitting.",
@@ -6681,13 +6643,12 @@ export const recipes: Recipe[] = [
   "id": "char-kway-teow",
   "title": "Char Kway Teow (Penang Stir-Fried Flat Noodles)",
   "description": "Smoky, wok-charred flat rice noodles with prawns, Chinese sausage, egg, bean sprouts, and chives in a savory-sweet soy sauce, Penang's famous street noodles.",
-  "cuisine": "South East Asian",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Smoky",
+   "Bitter",
    "Spicy"
   ],
   "timeMinutes": 25,
@@ -6780,15 +6741,14 @@ export const recipes: Recipe[] = [
   "id": "penang-prawn-mee",
   "title": "Penang Hokkien Prawn Mee",
   "description": "Penang's signature noodle soup: a deep, orange broth of prawn heads and pork ribs with dried chili, ladled over yellow noodles and vermicelli with prawns, egg, kangkung, and crispy shallots.",
-  "cuisine": "South East Asian",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Spicy",
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 105,
   "prepMinutes": 30,
@@ -6891,14 +6851,13 @@ export const recipes: Recipe[] = [
   "id": "bai-sach-chrouk",
   "title": "Bai Sach Chrouk (Cambodian Grilled Pork and Rice)",
   "description": "Cambodia's beloved breakfast: thin slices of pork marinated in coconut milk and garlic, grilled until caramelized, served over rice with pickled vegetables and scallion oil.",
-  "cuisine": "South East Asian",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Sweet",
-   "Smoky"
+   "Bitter"
   ],
   "timeMinutes": 280,
   "prepMinutes": 25,
@@ -6991,7 +6950,7 @@ export const recipes: Recipe[] = [
    "Mix the pork with the coconut milk, garlic, fish sauce, palm sugar, soy sauce, and pepper. Marinate at least 4 hours or overnight.",
    "Make quick pickles: stir the vinegar, sugar, and 1/3 cup water with 1/2 teaspoon salt until dissolved; pour over the cucumber, daikon, and carrot. Chill at least 30 minutes.",
    "Cook the rice per package directions.",
-   "Grill the pork over medium-high heat (or in a grill pan) 2–3 minutes per side, until the edges are charred and the sugars caramelize.",
+   "Grill the pork over medium-high heat (or in a grill pan) 2\u20133 minutes per side, until the edges are charred and the sugars caramelize.",
    "Pour sizzling hot oil over the scallions in a small bowl.",
    "Serve the pork over rice with pickles, a drizzle of scallion oil, and a bowl of hot broth if you like."
   ],
@@ -7001,16 +6960,16 @@ export const recipes: Recipe[] = [
  {
   "id": "hor-mok-pla",
   "title": "Hor Mok Pla (Thai Steamed Fish Curry Custard)",
-  "description": "Fish folded into a red-curry coconut custard, steamed in banana-leaf cups until soufflé-soft, then topped with coconut cream and chilies.",
-  "cuisine": "South East Asian",
+  "description": "Fish folded into a red-curry coconut custard, steamed in banana-leaf cups until souffl\u00e9-soft, then topped with coconut cream and chilies.",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Pescatarian",
+   "Caffeine-Free",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
    "Spicy",
-   "Rich & Indulgent"
+   "Rich"
   ],
   "timeMinutes": 50,
   "prepMinutes": 25,
@@ -7086,8 +7045,8 @@ export const recipes: Recipe[] = [
   "steps": [
    "Skim the thick cream from the top of the coconut milk and reserve 1/3 cup for the topping.",
    "Whisk the remaining coconut milk with the curry paste, eggs, fish sauce, palm sugar, and rice flour until smooth.",
-   "Fold in the fish, shredded lime leaves, and basil. Line 4–6 ramekins or banana-leaf cups with a bed of cabbage and divide the mixture among them.",
-   "Steam over simmering water, covered, 20–25 minutes until set and puffed.",
+   "Fold in the fish, shredded lime leaves, and basil. Line 4\u20136 ramekins or banana-leaf cups with a bed of cabbage and divide the mixture among them.",
+   "Steam over simmering water, covered, 20\u201325 minutes until set and puffed.",
    "Warm the reserved coconut cream with a pinch of salt and spoon a little over each cup. Steam 2 minutes more.",
    "Top with chili slivers and a lime leaf and serve with jasmine rice."
   ],
@@ -7099,9 +7058,9 @@ export const recipes: Recipe[] = [
   "id": "cumi-goreng-tepung",
   "title": "Cumi Goreng Tepung (Indonesian Crispy Fried Squid)",
   "description": "Squid rings in a light, seasoned crisp coating, fried golden and served with lime and a chili-garlic sambal for dipping.",
-  "cuisine": "South East Asian",
+  "cuisine": "Smoothies",
   "dietTags": [
-   "Pescatarian",
+   "Caffeine-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
@@ -7182,7 +7141,7 @@ export const recipes: Recipe[] = [
    "Toss the squid with the lime juice, half the garlic, 1/2 teaspoon salt, and the white pepper. Marinate 15 minutes; pat dry.",
    "Whisk the flour, rice flour, cornstarch, and remaining salt in a bowl.",
    "Dip the squid in the egg wash, then the flour mixture, pressing lightly to coat.",
-   "Heat the oil to 375°F (190°C). Fry in 3 batches 1 1/2–2 minutes until pale golden and crisp. Drain on a rack and sprinkle with salt.",
+   "Heat the oil to 375\u00b0F (190\u00b0C). Fry in 3 batches 1 1/2\u20132 minutes until pale golden and crisp. Drain on a rack and sprinkle with salt.",
    "Stir the sambal oelek with the kecap manis, remaining garlic, and a squeeze of lime for the dip.",
    "Serve immediately with lime wedges."
   ],
@@ -7194,15 +7153,14 @@ export const recipes: Recipe[] = [
   "id": "kimchi-bokkeumbap",
   "title": "Kimchi Bokkeumbap (Kimchi Fried Rice)",
   "description": "Day-old rice stir-fried with sour kimchi, a little gochujang, and sesame oil, topped with a runny fried egg and toasted seaweed.",
-  "cuisine": "Korean",
+  "cuisine": "Tea",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Spicy",
-   "Tangy",
-   "Comforting"
+   "Fruity",
+   "Creamy"
   ],
   "timeMinutes": 22,
   "prepMinutes": 10,
@@ -7281,9 +7239,9 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Heat 1 tablespoon oil in a large pan or wok over medium-high heat. Cook the pork belly (if using) 3–4 minutes until the fat renders.",
+   "Heat 1 tablespoon oil in a large pan or wok over medium-high heat. Cook the pork belly (if using) 3\u20134 minutes until the fat renders.",
    "Add the scallion whites and garlic and stir 30 seconds. Add the kimchi and sugar and stir-fry 3 minutes until slightly caramelized.",
-   "Stir in the gochujang, then add the cold rice, breaking up clumps. Stir-fry 3–4 minutes until the rice is hot and slightly crisp.",
+   "Stir in the gochujang, then add the cold rice, breaking up clumps. Stir-fry 3\u20134 minutes until the rice is hot and slightly crisp.",
    "Season with the soy sauce and sesame oil.",
    "Fry the eggs in the remaining oil until the whites are crisp and the yolks are runny.",
    "Serve topped with an egg, scallion greens, crumbled seaweed, and sesame seeds."
@@ -7295,16 +7253,15 @@ export const recipes: Recipe[] = [
  {
   "id": "dakgalbi",
   "title": "Dakgalbi (Spicy Stir-Fried Chicken)",
-  "description": "Chicken, sweet potato, cabbage, and rice cakes stir-fried in a fiery gochujang and gochugaru sauce on a big skillet, finished with perilla leaves — a Chuncheon specialty.",
-  "cuisine": "Korean",
+  "description": "Chicken, sweet potato, cabbage, and rice cakes stir-fried in a fiery gochujang and gochugaru sauce on a big skillet, finished with perilla leaves \u2014 a Chuncheon specialty.",
+  "cuisine": "Tea",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Spicy",
    "Sweet",
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 105,
   "prepMinutes": 20,
@@ -7401,7 +7358,7 @@ export const recipes: Recipe[] = [
    "Mix the gochujang, gochugaru, soy sauce, sugar, mirin, garlic, ginger, sesame oil, and pepper. Marinate the chicken in half the sauce for 1 hour.",
    "Heat the oil in a large, wide skillet over medium heat. Add the sweet potato and 1/4 cup water, cover, and cook 5 minutes.",
    "Add the chicken and cook 5 minutes, stirring, until browned.",
-   "Add the cabbage, onion, and rice cakes with the remaining sauce and 1/4 cup water. Cook, stirring often, 10–12 minutes until the chicken is cooked through, the sweet potato is tender, and the sauce is glossy.",
+   "Add the cabbage, onion, and rice cakes with the remaining sauce and 1/4 cup water. Cook, stirring often, 10\u201312 minutes until the chicken is cooked through, the sweet potato is tender, and the sauce is glossy.",
    "Stir in the perilla leaves and cook 1 minute.",
    "Serve straight from the pan; traditionally finished with fried rice made in the leftover sauce."
   ],
@@ -7413,14 +7370,13 @@ export const recipes: Recipe[] = [
   "id": "samgyetang",
   "title": "Samgyetang (Korean Ginseng Chicken Soup)",
   "description": "A whole young chicken stuffed with sticky rice, garlic, jujubes, and ginseng, simmered until the meat falls from the bone in a clean, restorative broth.",
-  "cuisine": "Korean",
+  "cuisine": "Tea",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 105,
   "prepMinutes": 30,
@@ -7480,9 +7436,9 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Rinse the birds inside and out. Drain the soaked rice.",
-   "Stuff each cavity with 1/4 cup rice, 2 garlic cloves, 1–2 jujubes, and ginseng if using. Cross the legs and tie them together with kitchen twine to hold in the filling.",
+   "Stuff each cavity with 1/4 cup rice, 2 garlic cloves, 1\u20132 jujubes, and ginseng if using. Cross the legs and tie them together with kitchen twine to hold in the filling.",
    "Place in a pot just big enough to fit them, add the remaining garlic, ginger, and enough water to cover (about 6 cups / 1.4 L).",
-   "Bring to a boil, then reduce to a gentle simmer. Cover and cook 60–70 minutes until the chicken is very tender and the rice is cooked.",
+   "Bring to a boil, then reduce to a gentle simmer. Cover and cook 60\u201370 minutes until the chicken is very tender and the rice is cooked.",
    "Season the broth with salt and pepper. Serve each bird in a bowl of broth, topped with scallions.",
    "Serve with a small dish of salt and pepper for dipping the meat."
   ],
@@ -7493,15 +7449,14 @@ export const recipes: Recipe[] = [
  {
   "id": "japchae",
   "title": "Japchae (Korean Glass Noodles with Vegetables and Beef)",
-  "description": "Chewy sweet potato starch noodles tossed in a glossy soy–sesame sauce with beef, spinach, carrots, mushrooms, and peppers — a Korean party and holiday staple.",
-  "cuisine": "Korean",
+  "description": "Chewy sweet potato starch noodles tossed in a glossy soy\u2013sesame sauce with beef, spinach, carrots, mushrooms, and peppers \u2014 a Korean party and holiday staple.",
+  "cuisine": "Tea",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Sweet",
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 55,
   "prepMinutes": 30,
@@ -7584,12 +7539,12 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Soak the noodles in warm water 30 minutes, then boil 6–7 minutes until soft and chewy. Drain, rinse, and cut into shorter lengths with scissors.",
+   "Soak the noodles in warm water 30 minutes, then boil 6\u20137 minutes until soft and chewy. Drain, rinse, and cut into shorter lengths with scissors.",
    "Toss the noodles with 2 tablespoons soy sauce, 1 tablespoon sugar, and 1 tablespoon sesame oil.",
    "Marinate the beef with 1 tablespoon soy sauce, 1 teaspoon sugar, 1 teaspoon sesame oil, and half the garlic.",
    "Blanch the spinach 30 seconds, squeeze dry, and season with 1 teaspoon sesame oil and a pinch of salt.",
    "Stir-fry the carrot, onion, mushrooms, and pepper in separate batches in a little oil with a pinch of salt, 2 minutes each. Cook the beef 2 minutes.",
-   "Combine everything with the noodles in a large pan over low heat. Add the remaining soy sauce, sugar, sesame oil, and garlic. Toss 2–3 minutes until the noodles glisten.",
+   "Combine everything with the noodles in a large pan over low heat. Add the remaining soy sauce, sugar, sesame oil, and garlic. Toss 2\u20133 minutes until the noodles glisten.",
    "Sprinkle with sesame seeds and serve warm or at room temperature."
   ],
   "notes": "Cooking each vegetable separately keeps their colors and textures distinct. Japchae is served warm or at room temperature and keeps well for a few hours.",
@@ -7599,16 +7554,15 @@ export const recipes: Recipe[] = [
  {
   "id": "yangnyeom-chicken",
   "title": "Yangnyeom Chicken (Korean Fried Chicken)",
-  "description": "Twice-fried, ultra-crispy chicken wings or drumsticks tossed in a sticky sweet-spicy gochujang–garlic glaze, Korea's famous pub food.",
-  "cuisine": "Korean",
+  "description": "Twice-fried, ultra-crispy chicken wings or drumsticks tossed in a sticky sweet-spicy gochujang\u2013garlic glaze, Korea's famous pub food.",
+  "cuisine": "Tea",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
    "Spicy",
    "Sweet",
-   "Rich & Indulgent"
+   "Rich"
   ],
   "timeMinutes": 85,
   "prepMinutes": 20,
@@ -7695,9 +7649,9 @@ export const recipes: Recipe[] = [
   "steps": [
    "Pat the chicken very dry. Season with the salt and pepper and rest 30 minutes.",
    "Toss the chicken in the potato starch mixed with the flour to coat evenly, pressing the coating on.",
-   "Heat the oil to 325°F (160°C). Fry the chicken in batches 10–12 minutes until pale golden and cooked through. Drain on a rack for 10 minutes.",
-   "Raise the oil to 375°F (190°C). Fry again in batches 3–4 minutes until deeply golden and crackling crisp. Drain.",
-   "For the glaze, simmer the gochujang, ketchup, soy sauce, syrup, garlic, vinegar, and 2 tablespoons water in a large pan 3–4 minutes until thickened and glossy.",
+   "Heat the oil to 325\u00b0F (160\u00b0C). Fry the chicken in batches 10\u201312 minutes until pale golden and cooked through. Drain on a rack for 10 minutes.",
+   "Raise the oil to 375\u00b0F (190\u00b0C). Fry again in batches 3\u20134 minutes until deeply golden and crackling crisp. Drain.",
+   "For the glaze, simmer the gochujang, ketchup, soy sauce, syrup, garlic, vinegar, and 2 tablespoons water in a large pan 3\u20134 minutes until thickened and glossy.",
    "Toss the hot chicken in the glaze to coat, sprinkle with sesame seeds, and serve at once, with pickled radish and cold beer."
   ],
   "notes": "The double fry is the secret: the first cooks the chicken, the second dries out the coating so it stays crisp under the glaze. Potato starch gives a thin, glassy crust. For plain 'huraideu' style, skip the glaze and serve with salt.",
@@ -7708,9 +7662,8 @@ export const recipes: Recipe[] = [
   "id": "baechu-kimchi",
   "title": "Baechu Kimchi (Napa Cabbage Kimchi)",
   "description": "Korea's iconic fermented napa cabbage, salted and layered with a garlicky, gingery paste of gochugaru, fish sauce, and radish, then aged until tangy and fizzy.",
-  "cuisine": "Korean",
+  "cuisine": "Tea",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free",
    "Gluten-Free"
   ],
@@ -7787,10 +7740,10 @@ export const recipes: Recipe[] = [
   "steps": [
    "Quarter the cabbages lengthwise, keeping the core intact. Rinse, then sprinkle salt between each leaf. Brine at room temperature for 2 hours, turning every 30 minutes, until the thick parts bend without cracking.",
    "Rinse the cabbage 3 times in cold water and drain, cut side down, 30 minutes.",
-   "Make the porridge: whisk the sweet rice flour with 1 cup (240 ml) water and 1 tablespoon sugar over medium heat until it thickens, 3–4 minutes. Cool completely.",
+   "Make the porridge: whisk the sweet rice flour with 1 cup (240 ml) water and 1 tablespoon sugar over medium heat until it thickens, 3\u20134 minutes. Cool completely.",
    "Mix the cooled porridge with the gochugaru, garlic, ginger, fish sauce, and remaining sugar into a paste. Fold in the daikon, carrot, and scallions.",
    "Wearing gloves, smear the paste between every leaf of each cabbage quarter. Fold the outer leaf over and pack tightly into a glass jar or container, leaving 1 inch headspace.",
-   "Leave at room temperature 1–2 days until it begins to bubble and smell sour, then refrigerate. It's ready to eat fresh, and best after 1–2 weeks."
+   "Leave at room temperature 1\u20132 days until it begins to bubble and smell sour, then refrigerate. It's ready to eat fresh, and best after 1\u20132 weeks."
   ],
   "notes": "Always use non-iodized coarse salt; table salt can inhibit fermentation. Press kimchi under its brine to prevent mold, and use clean utensils. Kimchi keeps for months refrigerated, growing more sour over time.",
   "sourceName": "Maangchi",
@@ -7800,15 +7753,14 @@ export const recipes: Recipe[] = [
   "id": "kkakdugi",
   "title": "Kkakdugi (Cubed Radish Kimchi)",
   "description": "Crunchy cubes of Korean radish fermented with gochugaru, garlic, ginger, and salted shrimp: a tangy, spicy staple served with soups and stews.",
-  "cuisine": "Korean",
+  "cuisine": "Tea",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free",
    "Gluten-Free"
   ],
   "tasteTags": [
    "Spicy",
-   "Tangy"
+   "Fruity"
   ],
   "timeMinutes": 2910,
   "prepMinutes": 30,
@@ -7872,8 +7824,8 @@ export const recipes: Recipe[] = [
    "Mix the gochugaru into the drained radish first, tossing until the cubes are evenly red.",
    "Add the garlic, ginger, fish sauce, remaining sugar, rice porridge (if using), and scallions; mix well by hand (wear gloves).",
    "Pack tightly into a clean jar, pressing down so the liquid rises, leaving 1 inch headspace.",
-   "Leave at room temperature 1–2 days until it smells pleasantly sour and bubbles slightly, then refrigerate.",
-   "Eat after 3–4 days refrigerated; it keeps for 2–3 weeks."
+   "Leave at room temperature 1\u20132 days until it smells pleasantly sour and bubbles slightly, then refrigerate.",
+   "Eat after 3\u20134 days refrigerated; it keeps for 2\u20133 weeks."
   ],
   "notes": "Kkakdugi's crunch is its charm: salt briefly and don't over-ferment. It's traditionally served with seolleongtang and other beef soups. Use Korean radish if you can find it; daikon is the closest substitute.",
   "sourceName": "Maangchi",
@@ -7883,13 +7835,12 @@ export const recipes: Recipe[] = [
   "id": "beef-shish-kebab",
   "title": "Beef Shish Kebab",
   "description": "Cubes of beef sirloin marinated in olive oil, garlic, cumin, and paprika, skewered with onion and peppers and grilled until charred outside and pink inside.",
-  "cuisine": "Middle Eastern",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Smoky"
+   "Bitter"
   ],
   "timeMinutes": 272,
   "prepMinutes": 20,
@@ -7977,10 +7928,10 @@ export const recipes: Recipe[] = [
   "steps": [
    "Whisk the oil, garlic, lemon juice, cumin, paprika, allspice, salt, and pepper. Toss the beef in the marinade and refrigerate 4 hours.",
    "Thread the beef onto skewers, alternating with onion and pepper.",
-   "Grill over high heat (or on a very hot grill pan) 8–10 minutes, turning every 2–3 minutes, for medium-rare to medium.",
+   "Grill over high heat (or on a very hot grill pan) 8\u201310 minutes, turning every 2\u20133 minutes, for medium-rare to medium.",
    "Rest 3 minutes and serve with pita, rice, and yogurt or tahini sauce."
   ],
-  "notes": "Use well-trimmed sirloin or tenderloin. Overcooked beef cubes dry out, so pull them at 130–135°F (54–57°C) for medium.",
+  "notes": "Use well-trimmed sirloin or tenderloin. Overcooked beef cubes dry out, so pull them at 130\u2013135\u00b0F (54\u201357\u00b0C) for medium.",
   "sourceName": "The Mediterranean Dish",
   "sourceUrl": "https://www.themediterraneandish.com/"
  },
@@ -7988,13 +7939,12 @@ export const recipes: Recipe[] = [
   "id": "kofta-mashwiya",
   "title": "Kofta Mashwiya (Arabic Lamb Kofta Plate)",
   "description": "Seasoned ground lamb and beef with parsley and onion, shaped into long skewers, grilled, and served with fries, grilled tomato, and garlic sauce.",
-  "cuisine": "Middle Eastern",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Smoky"
+   "Bitter"
   ],
   "timeMinutes": 32,
   "prepMinutes": 20,
@@ -8075,7 +8025,7 @@ export const recipes: Recipe[] = [
   "steps": [
    "Combine the lamb, beef, onion, parsley, baharat, cumin, salt, and pepper and knead until sticky. Chill 30 minutes.",
    "Shape into 12 long fingers around metal skewers.",
-   "Grill over medium-high heat 8–10 minutes, turning, until browned and cooked through.",
+   "Grill over medium-high heat 8\u201310 minutes, turning, until browned and cooked through.",
    "Grill the tomatoes alongside.",
    "Serve with fries, pita, lemon, and garlic sauce."
   ],
@@ -8087,13 +8037,11 @@ export const recipes: Recipe[] = [
   "id": "chicken-mandi",
   "title": "Chicken Mandi",
   "description": "Tender spiced chicken served over fragrant rice cooked in its stock, topped with fried onions and nuts. A comforting Yemeni and Saudi dish.",
-  "cuisine": "Middle Eastern",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "cuisine": "Hot drinks",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Smoky"
+   "Creamy",
+   "Bitter"
   ],
   "timeMinutes": 80,
   "prepMinutes": 20,
@@ -8186,7 +8134,7 @@ export const recipes: Recipe[] = [
   ],
   "steps": [
    "Rub the chicken with 1 tablespoon ghee, half the cumin, coriander, and turmeric, and 1 teaspoon salt.",
-   "Roast at 425°F (220°C) 35–40 minutes, until browned and cooked through at 165°F (74°C).",
+   "Roast at 425\u00b0F (220\u00b0C) 35\u201340 minutes, until browned and cooked through at 165\u00b0F (74\u00b0C).",
    "Meanwhile, heat the remaining ghee in a pot and toast the whole spices 30 seconds. Add the drained rice and remaining ground spices, stir 2 minutes, then pour in the stock and remaining salt.",
    "Bring to a boil, cover, and cook on low 15 minutes. Rest 10 minutes and fluff.",
    "Serve the rice on a platter topped with the chicken, fried onions, raisins, and almonds, with tomato salsa."
@@ -8199,13 +8147,11 @@ export const recipes: Recipe[] = [
   "id": "maqluba",
   "title": "Maqluba (Upside-Down Chicken, Rice and Eggplant)",
   "description": "A showstopper of layered fried eggplant, spiced chicken, and rice cooked in one pot, then flipped onto a platter so it forms a golden dome.",
-  "cuisine": "Middle Eastern",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "cuisine": "Hot drinks",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 105,
   "prepMinutes": 30,
@@ -8298,7 +8244,7 @@ export const recipes: Recipe[] = [
    "Fry (or oven-roast) the eggplant slices until golden; drain.",
    "In a wide heavy pot, arrange the tomato slices, then the eggplant, then the chicken in layers (sliced onion and potato too if using).",
    "Mix the drained rice with the baharat, turmeric, and 2 teaspoons salt and spread over the top. Pour the hot stock over so it just covers the rice.",
-   "Bring to a boil, cover, and cook on low 30–35 minutes until the rice is tender. Rest 15 minutes.",
+   "Bring to a boil, cover, and cook on low 30\u201335 minutes until the rice is tender. Rest 15 minutes.",
    "Run a knife around the edge, place a large platter on top, and flip the pot in one confident motion. Rest 5 minutes before lifting the pot. Top with nuts and serve with yogurt."
   ],
   "notes": "'Maqluba' means upside down. Fry the eggplant ahead for flavor and structure. If the flip worries you, press the layers down firmly and let the pot rest well first. A Palestinian, Jordanian, and Syrian classic.",
@@ -8307,16 +8253,15 @@ export const recipes: Recipe[] = [
  },
  {
   "id": "kuzu-doner-durum",
-  "title": "Lamb Döner Dürüm (Wrapped Lamb Döner)",
+  "title": "Lamb D\u00f6ner D\u00fcr\u00fcm (Wrapped Lamb D\u00f6ner)",
   "description": "Thinly sliced spiced lamb seared hot and rolled in thin lavash with tomatoes, onions, and sumac, a Turkish fast-food favorite.",
-  "cuisine": "Middle Eastern",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Smoky",
-   "Rich & Indulgent"
+   "Bitter",
+   "Rich"
   ],
   "timeMinutes": 275,
   "prepMinutes": 20,
@@ -8396,25 +8341,23 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Mix the onion, oil, garlic, cumin, paprika, Aleppo pepper, salt, and pepper and coat the lamb slices. Marinate at least 4 hours.",
-   "Heat a skillet over high heat and sear the lamb in batches, 2–3 minutes per side, until browned with crisp edges.",
+   "Heat a skillet over high heat and sear the lamb in batches, 2\u20133 minutes per side, until browned with crisp edges.",
    "Warm the lavash. Place lamb, tomato, and sumac onions down the middle and drizzle with yogurt sauce.",
    "Roll up tightly, folding in the ends, and toast in the dry skillet 1 minute per side."
   ],
-  "notes": "Dürüm means 'rolled'. Slice the lamb very thin, and freeze for 30 minutes first to make slicing easier. Pair with ayran and pickled peppers.",
+  "notes": "D\u00fcr\u00fcm means 'rolled'. Slice the lamb very thin, and freeze for 30 minutes first to make slicing easier. Pair with ayran and pickled peppers.",
   "sourceName": "Turkish Style Cooking",
   "sourceUrl": "https://www.turkishstylecooking.com/"
  },
  {
   "id": "shawarma-sandwich-fries",
   "title": "Shawarma Sandwich with Fries and Pickles",
-  "description": "A pressed pita sandwich stuffed with chicken shawarma, garlic sauce, pickles, and crisp French fries — a Lebanese snack-bar favorite.",
-  "cuisine": "Middle Eastern",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "description": "A pressed pita sandwich stuffed with chicken shawarma, garlic sauce, pickles, and crisp French fries \u2014 a Lebanese snack-bar favorite.",
+  "cuisine": "Hot drinks",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Tangy"
+   "Creamy",
+   "Fruity"
   ],
   "timeMinutes": 280,
   "prepMinutes": 20,
@@ -8500,9 +8443,9 @@ export const recipes: Recipe[] = [
   "steps": [
    "Mix the yogurt, lemon, garlic, cumin, paprika, cinnamon, salt, and 1 tablespoon oil. Marinate the chicken 4 hours.",
    "Bake or fry the fries until golden and crisp.",
-   "Sear the chicken in a hot skillet in batches, 4–5 minutes per side, then slice thin.",
+   "Sear the chicken in a hot skillet in batches, 4\u20135 minutes per side, then slice thin.",
    "Spread garlic sauce on a pita, layer chicken, fries, pickles, and tomato, and roll tightly.",
-   "Press in a hot dry skillet or sandwich press 1–2 minutes per side until crisp and golden."
+   "Press in a hot dry skillet or sandwich press 1\u20132 minutes per side until crisp and golden."
   ],
   "notes": "Putting fries inside the sandwich is a Lebanese snack-bar habit. Pressing the roll crisps the bread and seals in the filling.",
   "sourceName": "The Mediterranean Dish",
@@ -8511,15 +8454,14 @@ export const recipes: Recipe[] = [
  {
   "id": "kibbeh-baked",
   "title": "Kibbeh bil Sanieh (Baked Lebanese Kibbeh)",
-  "description": "Layers of spiced bulgur-and-lamb shell sandwiching a sautéed lamb, onion, and pine nut filling, scored in diamonds and baked until golden.",
-  "cuisine": "Middle Eastern",
+  "description": "Layers of spiced bulgur-and-lamb shell sandwiching a saut\u00e9ed lamb, onion, and pine nut filling, scored in diamonds and baked until golden.",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Comforting",
-   "Rich & Indulgent"
+   "Creamy",
+   "Rich"
   ],
   "timeMinutes": 95,
   "prepMinutes": 50,
@@ -8596,11 +8538,11 @@ export const recipes: Recipe[] = [
   ],
   "steps": [
    "Process the lean lamb, grated onion, drained bulgur, 1 tablespoon baharat, 1 1/2 teaspoons salt, and pepper in a food processor, with a few spoonfuls of ice water, into a smooth, sticky paste. Chill.",
-   "For the filling, sauté the chopped onion in 2 tablespoons ghee for 6 minutes. Add the filling lamb and cook, breaking up, 6 minutes. Stir in the pine nuts, remaining baharat, cinnamon, and 1/2 teaspoon salt. Cool.",
-   "Heat the oven to 400°F (200°C). Oil a 9 x 13-inch baking dish. Press half the shell paste into the bottom, wetting your hands, in an even layer.",
+   "For the filling, saut\u00e9 the chopped onion in 2 tablespoons ghee for 6 minutes. Add the filling lamb and cook, breaking up, 6 minutes. Stir in the pine nuts, remaining baharat, cinnamon, and 1/2 teaspoon salt. Cool.",
+   "Heat the oven to 400\u00b0F (200\u00b0C). Oil a 9 x 13-inch baking dish. Press half the shell paste into the bottom, wetting your hands, in an even layer.",
    "Spread the filling evenly on top, then cover with the remaining paste, pressing smooth.",
    "Score deep diamonds with a sharp knife. Dot with the remaining ghee and drizzle with oil.",
-   "Bake 35–40 minutes until golden and crisp. Cool 10 minutes, then cut along the diamonds. Serve with yogurt."
+   "Bake 35\u201340 minutes until golden and crisp. Cool 10 minutes, then cut along the diamonds. Serve with yogurt."
   ],
   "notes": "Kibbeh is Lebanon's national dish; different regions make it raw (nayyeh), fried, in yogurt, or baked. The shell mixture should be silky-smooth: keep it cold while working.",
   "sourceName": "The Mediterranean Dish",
@@ -8610,14 +8552,13 @@ export const recipes: Recipe[] = [
   "id": "tahchin",
   "title": "Tahchin (Persian Saffron Yogurt Rice Cake with Chicken)",
   "description": "A golden, crisp-crusted Persian rice cake layered with saffron-yogurt rice and tender chicken, baked and flipped onto a platter, garnished with barberries.",
-  "cuisine": "Middle Eastern",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Non-Vegetarian",
    "Gluten-Free"
   ],
   "tasteTags": [
-   "Rich & Indulgent",
-   "Comforting"
+   "Rich",
+   "Creamy"
   ],
   "timeMinutes": 130,
   "prepMinutes": 40,
@@ -8679,7 +8620,7 @@ export const recipes: Recipe[] = [
    },
    {
     "pantryId": "barberries",
-    "label": "Barberries, sautéed in butter, for garnish",
+    "label": "Barberries, saut\u00e9ed in butter, for garnish",
     "amount": "1/2 cup"
    },
    {
@@ -8695,8 +8636,8 @@ export const recipes: Recipe[] = [
    "Boil the rice in salted water 5 minutes until al dente; drain.",
    "Cook the onion in 2 tablespoons oil until golden. Add the chicken, turmeric, 1/2 teaspoon salt, and pepper and cook 8 minutes until cooked. Cool.",
    "Whisk the yogurt, yolks, egg, saffron water, and 2 teaspoons salt. Fold in two-thirds of the rice until evenly coated.",
-   "Heat the oven to 375°F (190°C). Oil a 9 x 13-inch baking dish with 3 tablespoons oil. Press half the yogurt rice into the bottom firmly. Add the chicken, then top with the remaining yogurt rice and plain rice, pressing down.",
-   "Drizzle with the remaining oil, cover tightly with foil, and bake 70–75 minutes. Rest 10 minutes.",
+   "Heat the oven to 375\u00b0F (190\u00b0C). Oil a 9 x 13-inch baking dish with 3 tablespoons oil. Press half the yogurt rice into the bottom firmly. Add the chicken, then top with the remaining yogurt rice and plain rice, pressing down.",
+   "Drizzle with the remaining oil, cover tightly with foil, and bake 70\u201375 minutes. Rest 10 minutes.",
    "Run a knife around the edge, place a platter over, and flip. Garnish with barberries and pistachios, and serve with salad."
   ],
   "notes": "'Tah' means bottom, and the crisp golden crust is the prize. Pressing the rice firmly and baking covered helps it unmold in one piece. Tahchin is a Persian party dish, and it can be made with lamb or spinach.",
@@ -8707,12 +8648,12 @@ export const recipes: Recipe[] = [
   "id": "fatteh-chickpea-yogurt",
   "title": "Fatteh (Chickpeas, Toasted Pita and Garlic Yogurt)",
   "description": "Crisp toasted pita layered with warm chickpeas and a cool, garlicky tahini-yogurt sauce, topped with pine nuts and sizzling butter.",
-  "cuisine": "Middle Eastern",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Vegetarian"
+   "Low Sugar"
   ],
   "tasteTags": [
-   "Comforting",
+   "Creamy",
    "Tangy"
   ],
   "timeMinutes": 40,
@@ -8791,10 +8732,10 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Heat the oven to 400°F (200°C). Toss the pita with 2 tablespoons oil and toast 8–10 minutes until crisp and golden.",
+   "Heat the oven to 400\u00b0F (200\u00b0C). Toss the pita with 2 tablespoons oil and toast 8\u201310 minutes until crisp and golden.",
    "Whisk the yogurt, tahini, garlic, lemon juice, and salt until smooth.",
    "Warm the chickpeas in their liquid with the cumin 5 minutes.",
-   "Melt the butter in a small pan, add the pine nuts, and toast until golden, 2–3 minutes.",
+   "Melt the butter in a small pan, add the pine nuts, and toast until golden, 2\u20133 minutes.",
    "Layer the pita in a shallow dish, spoon over the warm chickpeas (with a little liquid), then the yogurt sauce.",
    "Top with the sizzling pine nuts and butter, paprika, parsley, and a drizzle of oil. Serve right away."
   ],
@@ -8804,14 +8745,14 @@ export const recipes: Recipe[] = [
  },
  {
   "id": "mercimek-corbasi",
-  "title": "Mercimek Çorbası (Turkish Red Lentil Soup)",
+  "title": "Mercimek \u00c7orbas\u0131 (Turkish Red Lentil Soup)",
   "description": "Silky, golden red lentil soup with carrot, onion, and a hint of cumin, finished with a lemon squeeze and a drizzle of red pepper butter.",
-  "cuisine": "Middle Eastern",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Vegetarian"
+   "Low Sugar"
   ],
   "tasteTags": [
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 45,
   "prepMinutes": 10,
@@ -8890,9 +8831,9 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Heat the oil in a pot. Cook the onion and carrot (and potato) 6–8 minutes until soft.",
+   "Heat the oil in a pot. Cook the onion and carrot (and potato) 6\u20138 minutes until soft.",
    "Stir in the tomato paste, cumin, and paprika for 1 minute.",
-   "Add the lentils and stock, bring to a boil, then simmer 20–25 minutes until the lentils are completely soft.",
+   "Add the lentils and stock, bring to a boil, then simmer 20\u201325 minutes until the lentils are completely soft.",
    "Blend with an immersion blender until smooth. Thin with hot water if too thick; season with salt.",
    "Melt the butter and sizzle with the Aleppo pepper and mint for 20 seconds.",
    "Serve hot with a drizzle of the red butter and a squeeze of lemon."
@@ -8905,14 +8846,14 @@ export const recipes: Recipe[] = [
   "id": "fish-and-chips",
   "title": "Fish and Chips with Mushy Peas and Tartare Sauce",
   "description": "Beer-battered cod fried until shatteringly crisp, thick-cut chips, minted mushy peas and a quick caper tartare sauce.",
-  "cuisine": "British",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Pescatarian",
+   "Caffeine-Free",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Rich & Indulgent",
-   "Comforting"
+   "Rich",
+   "Creamy"
   ],
   "timeMinutes": 60,
   "prepMinutes": 30,
@@ -8996,12 +8937,12 @@ export const recipes: Recipe[] = [
   "equipment": [],
   "steps": [
    "Cut potatoes into 1.5 cm thick chips, rinse in cold water and soak 30 minutes, then dry thoroughly.",
-   "Heat oil to 130°C and fry the chips in batches for 6–8 minutes until soft but pale; drain.",
+   "Heat oil to 130\u00b0C and fry the chips in batches for 6\u20138 minutes until soft but pale; drain.",
    "Simmer peas in 100 ml water for 5 minutes, add butter, mint and salt, then roughly mash and keep warm.",
    "Mix mayonnaise, capers, gherkins and a squeeze of lemon for the tartare sauce.",
-   "Whisk 200 g flour, baking powder, ½ tsp salt and cold beer into a smooth batter that coats a spoon.",
-   "Pat the fish dry, dust with the 40 g flour, dip in batter and lower into oil heated to 180°C. Fry 6–8 minutes until deep golden.",
-   "Raise the oil to 190°C and fry the chips again 3–4 minutes until crisp and golden; season with salt.",
+   "Whisk 200 g flour, baking powder, \u00bd tsp salt and cold beer into a smooth batter that coats a spoon.",
+   "Pat the fish dry, dust with the 40 g flour, dip in batter and lower into oil heated to 180\u00b0C. Fry 6\u20138 minutes until deep golden.",
+   "Raise the oil to 190\u00b0C and fry the chips again 3\u20134 minutes until crisp and golden; season with salt.",
    "Serve fish and chips immediately with mushy peas, tartare sauce and lemon wedges."
   ],
   "notes": "Keep the batter cold and fry as soon as it is mixed for the crispest coating. Traditional shops use haddock in Scotland and the north, cod in the south.",
@@ -9012,13 +8953,11 @@ export const recipes: Recipe[] = [
   "id": "sausage-rolls",
   "title": "Sausage Rolls",
   "description": "Seasoned pork and sage filling rolled in all-butter puff pastry and baked until flaky.",
-  "cuisine": "British",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "cuisine": "Hot drinks",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Herby"
+   "Creamy",
+   "Herbal"
   ],
   "timeMinutes": 50,
   "prepMinutes": 20,
@@ -9061,24 +9000,24 @@ export const recipes: Recipe[] = [
    {
     "pantryId": "black-pepper",
     "label": "Black pepper",
-    "amount": "½ tsp"
+    "amount": "\u00bd tsp"
    },
    {
     "pantryId": "fine-salt",
     "label": "Salt",
-    "amount": "½ tsp"
+    "amount": "\u00bd tsp"
    }
   ],
   "equipment": [
    "Espresso Machine"
   ],
   "steps": [
-   "Heat the oven to 200°C.",
+   "Heat the oven to 200\u00b0C.",
    "Mix sausage meat, onion, sage, breadcrumbs, salt and pepper.",
    "Cut each pastry sheet in half lengthways and spoon the filling in a line down each.",
    "Brush edges with egg, fold over, crimp with a fork and cut into 6 cm lengths.",
    "Place on a lined tray, brush with egg and slash the tops.",
-   "Bake 25–30 minutes until golden and the filling reaches 75°C inside."
+   "Bake 25\u201330 minutes until golden and the filling reaches 75\u00b0C inside."
   ],
   "notes": "Keep the pastry cold; chill rolls 15 minutes before baking for the best flake.",
   "sourceName": "BBC Good Food",
@@ -9088,9 +9027,9 @@ export const recipes: Recipe[] = [
   "id": "shortbread",
   "title": "Scottish Shortbread",
   "description": "Three-ingredient buttery shortbread fingers, crumbly and golden, a Scottish Hogmanay tradition.",
-  "cuisine": "British",
+  "cuisine": "Hot drinks",
   "dietTags": [
-   "Vegetarian"
+   "Low Sugar"
   ],
   "tasteTags": [
    "Sweet"
@@ -9133,7 +9072,7 @@ export const recipes: Recipe[] = [
    "Espresso Machine"
   ],
   "steps": [
-   "Heat the oven to 160°C.",
+   "Heat the oven to 160\u00b0C.",
    "Beat butter and sugar until pale, then work in flour, cornflour and salt to a soft dough.",
    "Press into a 20 cm tin, prick with a fork and score into fingers.",
    "Bake 25 minutes until pale golden.",
@@ -9147,12 +9086,12 @@ export const recipes: Recipe[] = [
   "id": "tendon",
   "title": "Tendon (Tempura Rice Bowl)",
   "description": "Crisp shrimp and vegetable tempura over rice, glazed with a sweet soy tentsuyu sauce.",
-  "cuisine": "Japanese",
+  "cuisine": "Juices",
   "dietTags": [
-   "Pescatarian"
+   "Caffeine-Free"
   ],
   "tasteTags": [
-   "Rich & Indulgent"
+   "Rich"
   ],
   "timeMinutes": 45,
   "prepMinutes": 25,
@@ -9223,7 +9162,7 @@ export const recipes: Recipe[] = [
    "Simmer dashi, soy sauce, mirin and sugar for 2 minutes to make tentsuyu.",
    "Score the shrimp underside to prevent curling, and dust everything lightly in flour.",
    "Whisk 80 g flour, yolk and 120 ml ice-cold water briefly; lumps are fine.",
-   "Heat oil to 170°C. Dip each piece in batter and fry shrimp 2–3 minutes and vegetables 3–4 minutes until pale golden.",
+   "Heat oil to 170\u00b0C. Dip each piece in batter and fry shrimp 2\u20133 minutes and vegetables 3\u20134 minutes until pale golden.",
    "Drain on a rack, then dip each piece briefly in tentsuyu.",
    "Arrange over rice and drizzle with extra sauce."
   ],
@@ -9235,13 +9174,11 @@ export const recipes: Recipe[] = [
   "id": "karaage-don",
   "title": "Karaage Don (Fried Chicken Rice Bowl)",
   "description": "Juicy ginger-garlic fried chicken over rice with a soft egg and mayo.",
-  "cuisine": "Japanese",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "cuisine": "Juices",
+  "dietTags": [],
   "tasteTags": [
-   "Rich & Indulgent",
-   "Comforting"
+   "Rich",
+   "Creamy"
   ],
   "timeMinutes": 55,
   "prepMinutes": 20,
@@ -9312,7 +9249,7 @@ export const recipes: Recipe[] = [
   "steps": [
    "Marinate chicken in soy, sake, ginger and garlic for 20 minutes.",
    "Toss the chicken in potato starch until coated.",
-   "Heat oil to 170°C and fry 4 minutes, rest 3 minutes, then fry again at 190°C for 1 minute.",
+   "Heat oil to 170\u00b0C and fry 4 minutes, rest 3 minutes, then fry again at 190\u00b0C for 1 minute.",
    "Place rice in bowls, top with chicken, halved eggs, mayo and scallion."
   ],
   "notes": "The double-fry gives lasting crunch; potato starch is key to the crisp crust.",
@@ -9323,13 +9260,11 @@ export const recipes: Recipe[] = [
   "id": "chicken-shoyu-ramen",
   "title": "Chicken Shoyu Ramen (Torigara)",
   "description": "Light golden chicken broth with soy tare, sliced poached chicken, bamboo shoots and egg.",
-  "cuisine": "Japanese",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "cuisine": "Juices",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting",
-   "Fresh & Light"
+   "Creamy",
+   "Refreshing"
   ],
   "timeMinutes": 80,
   "prepMinutes": 20,
@@ -9395,7 +9330,7 @@ export const recipes: Recipe[] = [
    "Poach the chicken in stock with ginger and scallion tops, 20 minutes at a bare simmer.",
    "Remove, slice, and strain the broth.",
    "Add soy sauce and mirin to the broth and keep hot.",
-   "Boil noodles per package and eggs 6½ minutes.",
+   "Boil noodles per package and eggs 6\u00bd minutes.",
    "Assemble noodles, sliced chicken, bamboo shoots, halved eggs, then pour hot broth over and finish with sesame oil."
   ],
   "notes": "A gentle simmer keeps the broth clear. The poaching liquid is already chicken-rich, so do not over-season.",
@@ -9406,12 +9341,12 @@ export const recipes: Recipe[] = [
   "id": "kitsune-udon",
   "title": "Kitsune Udon",
   "description": "Udon in clear dashi broth topped with sweet simmered fried tofu pouches and scallions.",
-  "cuisine": "Japanese",
+  "cuisine": "Juices",
   "dietTags": [
-   "Pescatarian"
+   "Caffeine-Free"
   ],
   "tasteTags": [
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 30,
   "prepMinutes": 10,
@@ -9479,13 +9414,12 @@ export const recipes: Recipe[] = [
   "id": "chicken-karaage",
   "title": "Tori Karaage (Japanese Fried Chicken)",
   "description": "Marinated chicken thigh pieces coated in potato starch and double-fried to a light, crunchy crust.",
-  "cuisine": "Japanese",
+  "cuisine": "Juices",
   "dietTags": [
-   "Non-Vegetarian",
    "Dairy-Free"
   ],
   "tasteTags": [
-   "Rich & Indulgent"
+   "Rich"
   ],
   "timeMinutes": 57,
   "prepMinutes": 15,
@@ -9552,8 +9486,8 @@ export const recipes: Recipe[] = [
   "steps": [
    "Cut chicken into 4 cm pieces and mix with soy sauce, sake, mirin, ginger and garlic; marinate 30 minutes.",
    "Toss with potato starch just before frying.",
-   "Fry at 170°C for 4 minutes, then rest 3 minutes.",
-   "Raise heat to 190°C and fry 1 minute more until deep golden.",
+   "Fry at 170\u00b0C for 4 minutes, then rest 3 minutes.",
+   "Raise heat to 190\u00b0C and fry 1 minute more until deep golden.",
    "Drain and serve with lemon and mayo."
   ],
   "notes": "Do not coat in starch ahead of time, or the crust becomes gummy.",
@@ -9564,13 +9498,13 @@ export const recipes: Recipe[] = [
   "id": "tamagoyaki",
   "title": "Tamagoyaki (Rolled Japanese Omelette)",
   "description": "Layered sweet-savory omelette rolled in a pan, slightly custardy inside.",
-  "cuisine": "Japanese",
+  "cuisine": "Juices",
   "dietTags": [
-   "Vegetarian"
+   "Low Sugar"
   ],
   "tasteTags": [
    "Sweet",
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 20,
   "prepMinutes": 10,
@@ -9622,7 +9556,7 @@ export const recipes: Recipe[] = [
    "Beat eggs with dashi, sugar, soy sauce and mirin; strain.",
    "Heat a 15 cm rectangular pan on medium-low and oil lightly.",
    "Pour in a thin layer, cook until nearly set, then roll to one end.",
-   "Oil the pan again, slide the roll back, pour another layer, and roll; repeat 3–4 times.",
+   "Oil the pan again, slide the roll back, pour another layer, and roll; repeat 3\u20134 times.",
    "Rest 2 minutes and slice."
   ],
   "notes": "Medium-low heat prevents browning. A round nonstick pan works if folded in thirds.",
@@ -9633,12 +9567,12 @@ export const recipes: Recipe[] = [
   "id": "vegetable-gyoza",
   "title": "Vegetable Gyoza",
   "description": "Vegan dumplings of cabbage, shiitake, tofu and chives with a crisp base.",
-  "cuisine": "Japanese",
+  "cuisine": "Juices",
   "dietTags": [
    "Vegan"
   ],
   "tasteTags": [
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 55,
   "prepMinutes": 45,
@@ -9714,13 +9648,11 @@ export const recipes: Recipe[] = [
   "id": "shabu-shabu",
   "title": "Shabu-Shabu",
   "description": "Paper-thin beef and vegetables swished through hot kombu broth and dipped in ponzu or sesame sauce.",
-  "cuisine": "Japanese",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "cuisine": "Juices",
+  "dietTags": [],
   "tasteTags": [
-   "Fresh & Light",
-   "Comforting"
+   "Refreshing",
+   "Creamy"
   ],
   "timeMinutes": 35,
   "prepMinutes": 20,
@@ -9801,7 +9733,7 @@ export const recipes: Recipe[] = [
    "Soak kombu in water for 30 minutes in a hot pot; heat to just below boiling and remove.",
    "Whisk soy sauce and lemon for ponzu; whisk tahini with soy, sugar and 3 tbsp water for sesame dip.",
    "Add vegetables and tofu to the pot.",
-   "Swish a beef slice through the simmering broth 10–15 seconds until it turns pale.",
+   "Swish a beef slice through the simmering broth 10\u201315 seconds until it turns pale.",
    "Dip and eat; finish by cooking udon in the enriched broth."
   ],
   "notes": "Ask a butcher to slice beef 1 mm thick, or freeze the beef for an hour and slice yourself.",
@@ -9812,12 +9744,10 @@ export const recipes: Recipe[] = [
   "id": "tonjiru",
   "title": "Tonjiru (Pork and Vegetable Miso Soup)",
   "description": "Hearty miso soup with pork belly, daikon, carrot, burdock-style roots and tofu.",
-  "cuisine": "Japanese",
-  "dietTags": [
-   "Non-Vegetarian"
-  ],
+  "cuisine": "Juices",
+  "dietTags": [],
   "tasteTags": [
-   "Comforting"
+   "Creamy"
   ],
   "timeMinutes": 40,
   "prepMinutes": 15,
@@ -9834,7 +9764,7 @@ export const recipes: Recipe[] = [
    },
    {
     "pantryId": "daikon",
-    "label": "Daikon, ½ moons",
+    "label": "Daikon, \u00bd moons",
     "amount": "150 g"
    },
    {
@@ -9880,7 +9810,7 @@ export const recipes: Recipe[] = [
   ],
   "equipment": [],
   "steps": [
-   "Sauté pork in sesame oil 3 minutes.",
+   "Saut\u00e9 pork in sesame oil 3 minutes.",
    "Add daikon, carrot, potato and konnyaku and cook 2 minutes.",
    "Pour in dashi and simmer 15 minutes, skimming.",
    "Add tofu, then dissolve miso into the soup.",
@@ -9894,7 +9824,7 @@ export const recipes: Recipe[] = [
   "id": "mochi-daifuku",
   "title": "Strawberry Daifuku",
   "description": "Soft chewy mochi wrapped around sweet red bean paste and a whole strawberry.",
-  "cuisine": "Japanese",
+  "cuisine": "Juices",
   "dietTags": [
    "Vegan"
   ],
@@ -9958,12 +9888,12 @@ export const recipes: Recipe[] = [
   "id": "shrimp-nigiri",
   "title": "Shrimp Nigiri (Ebi)",
   "description": "Butterflied boiled shrimp over pressed sushi rice.",
-  "cuisine": "Japanese",
+  "cuisine": "Juices",
   "dietTags": [
-   "Pescatarian"
+   "Caffeine-Free"
   ],
   "tasteTags": [
-   "Fresh & Light"
+   "Refreshing"
   ],
   "timeMinutes": 65,
   "prepMinutes": 40,
@@ -10032,12 +9962,12 @@ export const recipes: Recipe[] = [
   "id": "dragon-roll",
   "title": "Dragon Roll",
   "description": "Inside-out roll with shrimp tempura and cucumber, draped with sliced avocado and eel sauce.",
-  "cuisine": "Japanese",
+  "cuisine": "Juices",
   "dietTags": [
-   "Pescatarian"
+   "Caffeine-Free"
   ],
   "tasteTags": [
-   "Rich & Indulgent"
+   "Rich"
   ],
   "timeMinutes": 60,
   "prepMinutes": 40,
@@ -10090,7 +10020,7 @@ export const recipes: Recipe[] = [
    {
     "pantryId": "cucumber",
     "label": "Cucumber sticks",
-    "amount": "½"
+    "amount": "\u00bd"
    },
    {
     "pantryId": "soy-sauce",

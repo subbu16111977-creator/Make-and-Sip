@@ -129,7 +129,7 @@ export function ProfileForm({ profile, draft, onChange, errors, afterCuisines }:
       />
       {errors.name ? <Text style={styles.error}>{errors.name}</Text> : null}
 
-      <Text style={styles.question}>Which cuisines do you enjoy?</Text>
+      <Text style={styles.question}>Which kinds of drink do you enjoy?</Text>
       <Text style={styles.helper}>Choose as many as you like.</Text>
       <View style={styles.chips}>
         {CUISINE_OPTIONS.map((c) => (
@@ -140,14 +140,14 @@ export function ProfileForm({ profile, draft, onChange, errors, afterCuisines }:
       </View>
       {draft.cuisines.includes(CUISINE_OTHER) ? (
         <View style={styles.customWrap}>
-          <Text style={styles.label}>Tell us which cuisine</Text>
+          <Text style={styles.label}>Tell us which drinks</Text>
           <TextInput
             value={draft.customCuisineText}
             onChangeText={(t) => onChange((d) => ({ ...d, customCuisineText: t }))}
             placeholder="e.g. Ethiopian (separate several with commas)"
             placeholderTextColor={colors.espressoFaint}
             maxLength={200}
-            accessibilityLabel="Tell us which cuisine"
+            accessibilityLabel="Tell us which drinks"
             style={[styles.input, errors.cuisine && styles.inputError]}
           />
           {errors.cuisine ? <Text style={styles.error}>{errors.cuisine}</Text> : null}

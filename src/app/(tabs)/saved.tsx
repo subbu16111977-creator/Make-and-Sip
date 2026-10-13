@@ -38,10 +38,10 @@ export default function SavedScreen() {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View style={styles.header}>
-            <Text style={styles.eyebrow}>Your cookbook</Text>
+            <Text style={styles.eyebrow}>Your collection</Text>
             <Text style={styles.headline}>Saved</Text>
             <Text style={styles.subhead}>
-              {saved.length} {saved.length === 1 ? "recipe" : "recipes"} saved for later.
+              {saved.length} {saved.length === 1 ? "drink" : "drinks"} saved for later.
             </Text>
           </View>
         }
@@ -60,7 +60,7 @@ export default function SavedScreen() {
           <View style={styles.emptyWrap}>
             <EmptyState
               title="Nothing saved yet"
-              body="Tap the bookmark on any recipe in Discover or Home to keep it here, ready to cook again."
+              body="Tap the bookmark on any drink in Discover or Home to keep it here, ready to make again."
             />
           </View>
         }

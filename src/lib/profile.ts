@@ -1,5 +1,5 @@
 /**
- * The optional local profile: a name, a photo, and favourite cuisines and
+ * The optional local profile: a name, a photo, and favourite drink types and
  * flavours. It lives only on this device (see ProfileContext) — there is no
  * account, login, email, or cloud copy.
  *
@@ -10,33 +10,35 @@
 
 import { DEFAULT_CROP, isPhotoCrop, type PhotoCrop } from "@/lib/photoCrop";
 
-/** The exact cuisine choices shown to the user. */
+/**
+ * The drink types people can pick as favourites. (Stored under the old field name `favoriteCuisines`, so nothing
+ * saved on a device needs migrating.) Each label is also the `cuisine` value a drink carries, so a pick matches
+ * drinks directly.
+ */
 export const CUISINE_OPTIONS = [
-  "Indian",
-  "American",
-  "South East Asian",
-  "Chinese",
-  "Italian",
-  "Japanese",
-  "Mediterranean",
-  "Mexican",
-  "Middle eastern",
-  "Spanish",
-  "Korean",
-  "British",
+  "Coffee",
+  "Tea",
+  "Milkshakes & thick shakes",
+  "Smoothies",
+  "Mocktails",
+  "Juices",
+  "Lemonades & coolers",
+  "Sodas & sparkling",
+  "Hot drinks",
   "Others",
 ] as const;
 
 /** The exact flavour choices shown to the user. */
 export const FLAVOR_OPTIONS = [
-  "Spicy",
-  "Comforting",
-  "Fresh and light",
-  "Rich and indulgent",
-  "Tangy",
-  "Smoky",
   "Sweet",
-  "Herby",
+  "Fruity",
+  "Creamy",
+  "Refreshing",
+  "Tangy",
+  "Bitter",
+  "Spicy",
+  "Herbal",
+  "Rich and indulgent",
   "Other",
 ] as const;
 
@@ -55,9 +57,9 @@ export interface LocalProfile {
   /** How the photo is positioned and zoomed inside the round avatar. */
   profilePhotoCrop?: PhotoCrop;
   displayName?: string;
-  /** Selected labels from CUISINE_OPTIONS (may include "Others"). */
+  /** Selected drink types from CUISINE_OPTIONS (may include "Others"). */
   favoriteCuisines: string[];
-  /** Free-text cuisines typed under "Others". */
+  /** Free-text drink types typed under "Others". */
   customCuisines: string[];
   /** Selected labels from FLAVOR_OPTIONS (may include "Other"). */
   favoriteFlavors: string[];
@@ -180,7 +182,7 @@ export function validateDraft(draft: ProfileDraft): DraftErrors {
   const name = normalizeName(draft.displayName);
   if (!name.ok) errors.name = name.error;
   if (draft.cuisines.includes(CUISINE_OTHER) && parseCustomList(draft.customCuisineText).length === 0) {
-    errors.cuisine = "Tell us which cuisine, or untick Others.";
+    errors.cuisine = "Tell us which drinks, or untick Others.";
   }
   if (draft.flavors.includes(FLAVOR_OTHER) && parseCustomList(draft.customFlavorText).length === 0) {
     errors.flavor = "Tell us what flavours you like, or untick Other.";

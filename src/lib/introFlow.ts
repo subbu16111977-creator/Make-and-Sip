@@ -88,47 +88,47 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
   {
     id: "discover",
     title: "See what you can make",
-    body: "Discover dishes you can make with your ingredients and equipment, plus dishes that are close when only a few ingredients are missing.",
-    hint: "Tap the glowing dish to see what you have and what’s missing. The filters above narrow by taste, cuisine and diet.",
+    body: "Discover drinks you can make with your ingredients and equipment, plus drinks that are close when only a few ingredients are missing.",
+    hint: "Tap the glowing drink to see what you have and what’s missing. The filters above narrow by taste, type and dietary needs.",
     target: "discover-first-card",
     placement: "top",
   },
   {
     id: "recipe-shopping",
     title: "Use Shopping",
-    body: "When you plan to make a dish, add its missing ingredients to Shopping so you know what to buy.",
-    hint: "This is an example dish. Tap the glowing button only if you want those items on your list.",
+    body: "When you plan to make a drink, add its missing ingredients to Shopping so you know what to buy.",
+    hint: "This is an example drink. Tap the glowing button only if you want those items on your list.",
     target: "recipe-add-shopping",
     placement: "top",
   },
   {
     id: "recipe-save",
-    title: "Save a dish",
-    body: "Save dishes you want to find again later.",
+    title: "Save a drink",
+    body: "Save drinks you want to find again later.",
     hint: "Tap the glowing bookmark. Tap it again to remove it.",
     target: "recipe-save",
     placement: "bottom",
   },
   {
     id: "recipe-favorite",
-    title: "Favourite a dish",
-    body: "Tap the heart on any dish you love to make it a favourite. Favourites are kept separately from Saved.",
-    hint: "Tap the glowing heart. You'll find hearts on every dish card too. Tap again to remove it.",
+    title: "Favourite a drink",
+    body: "Tap the heart on any drink you love to make it a favourite. Favourites are kept separately from Saved.",
+    hint: "Tap the glowing heart. You'll find hearts on every drink card too. Tap again to remove it.",
     target: "recipe-heart",
     placement: "bottom",
   },
   {
     id: "profile-favorites",
     title: "See your favourites",
-    body: "All your favourite dishes are collected on your Profile tab, under your favourite cuisines. Tap View all to see every one.",
-    hint: "Your hearted dishes appear in the glowing section.",
+    body: "All your favourite drinks are collected on your Profile tab, under your favourite drink types. Tap View all to see every one.",
+    hint: "Your hearted drinks appear in the glowing section.",
     target: "profile-favorites",
     placement: "bottom",
   },
 ];
 
 /**
- * An example dish for the Shopping and Save steps: the first one the user's
+ * An example drink for the Shopping and Save steps: the first one the user's
  * equipment allows that is missing at least one required ingredient, so the
  * Shopping button has something to show. Read-only — it only looks at the
  * pantry and equipment, never changes them.

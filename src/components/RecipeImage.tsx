@@ -17,7 +17,7 @@ interface RecipeImageProps {
 
 /**
  * Renders a recipe photo, or — when no verified photo is available —
- * a neutral "Photo coming soon" placeholder that still names the dish.
+ * a neutral "Photo coming soon" placeholder that still names the drink.
  *
  * We intentionally never fall back to a generic food photo or another
  * recipe's image: a wrong picture is worse than no picture. See

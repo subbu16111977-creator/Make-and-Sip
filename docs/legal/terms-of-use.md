@@ -5,10 +5,10 @@ _Draft — have it reviewed before publishing, and fill in the bracketed parts. 
 By using Make & Sip you agree to these terms.
 
 ## Using the app
-Make & Sip is for personal, non-commercial use. Do not copy, resell, reverse-engineer or misuse the app or its content. The recipes, text, logo and design belong to [YOUR NAME / BUSINESS NAME] or their licensors; photos belong to their respective photographers.
+Make & Sip is for personal, non-commercial use. Do not copy, resell, reverse-engineer or misuse the app or its content. The drinks, text, logo and design belong to [YOUR NAME / BUSINESS NAME] or their licensors; photos belong to their respective photographers.
 
-## Food safety and allergies
-Recipes are provided for general cooking inspiration. **You are responsible for checking ingredients for allergens and for your own dietary needs.** Diet and allergen tags (such as "Vegan" or "Gluten-Free") are a convenience and may be incomplete or wrong — always check labels. Cook meat, poultry, eggs and seafood thoroughly, store food safely, and use common sense around hot surfaces and sharp tools. Pantry "expiry" information is an estimate you enter; it is not a food-safety guarantee. Make & Sip does not give medical or nutritional advice.
+## Allergens, caffeine and your health
+Drinks are general inspiration. **You are responsible for checking ingredients for allergens (such as milk, nuts, soy and gluten) and for your own dietary needs.** Dietary tags (such as Vegan, Dairy-Free, Caffeine-Free or Low Sugar) are a convenience and may be incomplete or wrong, so always check labels. Caffeine, sugar and other ingredients affect people differently; if you are pregnant, have a medical condition or are unsure, ask a professional. Take care with hot liquids, steam, blenders and sharp tools. Expiry dates in your pantry are estimates you enter, not a food-safety guarantee. Make & Sip does not give medical or nutritional advice.
 
 ## Make & Sip Premium: subscriptions and lifetime access
 - Make & Sip requires an active plan. Plans: **Monthly**, **Yearly** (both renew automatically) and **Lifetime** (one payment, no renewal).
@@ -22,7 +22,7 @@ Recipes are provided for general cooking inspiration. **You are responsible for 
 See the Privacy Policy. Your pantry and profile are stored on your device; we are not able to recover them if you uninstall or reset the app.
 
 ## No warranty; limit of liability
-The app and recipes are provided "as is". To the extent permitted by law, we are not liable for illness, injury, loss or damage arising from cooking or using the app, or for interruptions or errors in the app.
+The app and drinks are provided "as is". To the extent permitted by law, we are not liable for illness, injury, loss or damage arising from making or drinking them or using the app, or for interruptions or errors in the app.
 
 ## Changes and contact
 We may update these terms; continued use means you accept the new terms. Questions: [CONTACT EMAIL]. Governing law: [YOUR COUNTRY/STATE].

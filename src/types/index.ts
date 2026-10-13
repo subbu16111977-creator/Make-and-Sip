@@ -1,14 +1,15 @@
 export type StorageLocation = "Fridge" | "Freezer" | "Pantry";
 
+/** Where an ingredient is filed in the pantry and on the shopping list. */
 export type PantryCategory =
-  | "Vegetables"
+  | "Coffee & Tea"
+  | "Milk & Cream"
   | "Fruit"
-  | "Dairy"
-  | "Grains"
-  | "Pulses"
-  | "Spices"
-  | "Meat & Seafood"
-  | "Frozen"
+  | "Juices & Sodas"
+  | "Sweeteners & Syrups"
+  | "Spices & Flavourings"
+  | "Herbs & Garnish"
+  | "Ice & Frozen"
   | "Pantry Staples";
 
 export type Unit =
@@ -111,28 +112,14 @@ export type EquipmentTag =
   | "Jigger"
   | "Pitcher";
 
-export type DietTag =
-  | "Vegetarian"
-  | "Vegan"
-  | "Pescatarian"
-  | "Non-Vegetarian"
-  | "Gluten-Free"
-  | "Dairy-Free";
+export type DietTag = "Vegan" | "Dairy-Free" | "Caffeine-Free" | "Low Sugar" | "Gluten-Free";
 
 /**
- * Flavor-profile tags used for taste-based filtering in Discover.
+ * Flavour tags used for taste-based filtering in Discover.
  * Deliberately small and mutually legible — no ML, just honest,
  * user-settable preference signals.
  */
-export type TasteTag =
-  | "Spicy"
-  | "Comforting"
-  | "Fresh & Light"
-  | "Rich & Indulgent"
-  | "Tangy"
-  | "Smoky"
-  | "Sweet"
-  | "Herby";
+export type TasteTag = "Sweet" | "Fruity" | "Creamy" | "Refreshing" | "Tangy" | "Bitter" | "Spicy" | "Herbal" | "Rich";
 
 export interface OptionalEquipment {
   tag: EquipmentTag;

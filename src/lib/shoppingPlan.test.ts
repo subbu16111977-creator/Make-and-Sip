@@ -44,7 +44,7 @@ function pantryWithChicken(grams: number): PantryItem[] {
     name: "Chicken",
     quantity: grams,
     unit: "g",
-    category: "Meat & Seafood",
+    category: "Juices & Sodas",
     location: "Fridge",
     expiresInDays: 5,
   }).items;

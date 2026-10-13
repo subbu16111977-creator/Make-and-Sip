@@ -9,7 +9,7 @@ interface MatchBadgeProps {
   tone?: "light" | "dark";
 }
 
-/** Small "6 of 8 in your kitchen" indicator used on recipe cards. */
+/** Small "6 of 8 on hand" indicator used on drink cards. */
 export function MatchBadge({ haveCount, totalCount, tone = "light" }: MatchBadgeProps) {
   const complete = haveCount >= totalCount;
   const dark = tone === "dark";

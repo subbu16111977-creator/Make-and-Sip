@@ -40,7 +40,7 @@ export type QuantityState = "sufficient" | "insufficient" | "missing" | "unknown
 export type CookabilityCategory = "ready" | "almost" | "partial" | "low";
 
 export const CATEGORY_LABEL: Record<CookabilityCategory, string> = {
-  ready: "Ready to cook",
+  ready: "Ready to make",
   almost: "Almost ready",
   partial: "Partially matched",
   low: "Low match",
@@ -185,18 +185,19 @@ function compareQuantity(
 
 export type Weight = 1 | 2 | 3;
 
-/** The role an ingredient plays, from what kind of ingredient it is (and, for staples/spices, how much the dish needs). */
+/** The role an ingredient plays, from what kind of ingredient it is (and, for staples and flavourings, how much the drink needs). */
 export function ingredientWeight(ingredientId: string, requiredMl: number | null): Weight {
   const category = resolveIngredientById(ingredientId)?.category;
   switch (category) {
-    case "Meat & Seafood":
-    case "Grains":
-    case "Pulses":
+    // The base of the drink (the coffee, tea, milk or juice it is built on) matters most...
+    case "Coffee & Tea":
+    case "Milk & Cream":
+    case "Juices & Sodas":
       return 3;
-    case "Vegetables":
+    // ...then what gives it its character...
     case "Fruit":
-    case "Dairy":
-    case "Frozen":
+    case "Sweeteners & Syrups":
+    case "Ice & Frozen":
       return 2;
     default:
       return requiredMl !== null && requiredMl >= COOKABILITY.largeStapleMl ? 2 : 1;

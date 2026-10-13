@@ -75,7 +75,7 @@ export default function RecipeDetailScreen() {
   if (!recipe || !match || !cookability) {
     return (
       <View style={[styles.notFoundWrap, { paddingTop: insets.top + spacing.xl }]}>
-        <Text style={styles.notFoundText}>We couldn&apos;t find that recipe.</Text>
+        <Text style={styles.notFoundText}>We couldn&apos;t find that drink.</Text>
         <Pressable onPress={() => router.back()} hitSlop={8} style={styles.notFoundBack}>
           <ChevronLeftIcon size={16} color={colors.burntOrange} strokeWidth={2} />
           <Text style={styles.notFoundBackText}>Go back</Text>
@@ -92,8 +92,8 @@ export default function RecipeDetailScreen() {
   const totalMinutes = recipe.prepMinutes + recipe.cookMinutes + (recipe.marinateMinutes ?? 0);
   const timeTiles = [
     { label: "Prep", value: formatMinutes(recipe.prepMinutes) },
-    { label: "Cook", value: formatMinutes(recipe.cookMinutes) },
-    ...(recipe.marinateMinutes ? [{ label: "Marinate", value: formatMinutes(recipe.marinateMinutes) }] : []),
+    { label: "Make", value: formatMinutes(recipe.cookMinutes) },
+    ...(recipe.marinateMinutes ? [{ label: "Chill", value: formatMinutes(recipe.marinateMinutes) }] : []),
     { label: "Total", value: formatMinutes(totalMinutes) },
     { label: recipe.yield ? "Yield" : "Servings", value: recipe.yield ?? String(recipe.servings) },
   ];
@@ -143,7 +143,7 @@ export default function RecipeDetailScreen() {
               >
                 <HeartIcon size={17} color={isFavorite(recipeId) ? colors.tomato : colors.white} strokeWidth={1.8} filled={isFavorite(recipeId)} />
               </Pressable>
-              <Pressable ref={saveTarget} onPress={() => toggleSaved(recipeId)} hitSlop={8} accessibilityRole="button" accessibilityLabel={saved ? "Remove from saved" : "Save dish"} style={styles.iconButton}>
+              <Pressable ref={saveTarget} onPress={() => toggleSaved(recipeId)} hitSlop={8} accessibilityRole="button" accessibilityLabel={saved ? "Remove from saved" : "Save drink"} style={styles.iconButton}>
                 <SavedIcon size={17} color={colors.white} strokeWidth={1.8} filled={saved} />
               </Pressable>
             </View>
@@ -217,7 +217,7 @@ export default function RecipeDetailScreen() {
             <View style={styles.servingsRow}>
               <Text style={styles.servingsText}>
                 Checked for {servings} {servings === 1 ? "serving" : "servings"}
-                {servings !== recipe.servings ? ` (recipe makes ${recipe.servings})` : ""}
+                {servings !== recipe.servings ? ` (drink makes ${recipe.servings})` : ""}
               </Text>
               <View style={styles.stepper}>
                 <Pressable onPress={() => setChosenServings(Math.max(1, servings - 1))} disabled={servings <= 1} hitSlop={8} accessibilityRole="button" accessibilityLabel="Fewer servings" style={[styles.stepButton, servings <= 1 && styles.stepButtonOff]}>
@@ -366,12 +366,12 @@ export default function RecipeDetailScreen() {
           </View>
 
           <Text style={styles.safetyNote}>
-            Check every ingredient for allergens and your own dietary needs, and cook meat, poultry, eggs and seafood thoroughly. Diet tags are a guide and may be incomplete.
+            Check every ingredient for allergens and your own dietary needs, including caffeine and sugar. Dietary tags are a guide and may be incomplete.
           </Text>
 
           {recipe.notes ? (
             <View style={styles.notesWrap}>
-              <Text style={styles.notesLabel}>Cook&apos;s note</Text>
+              <Text style={styles.notesLabel}>Maker&apos;s note</Text>
               <Text style={styles.notesText}>{recipe.notes}</Text>
             </View>
           ) : null}

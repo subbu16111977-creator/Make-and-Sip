@@ -7,6 +7,7 @@ import { colors, spacing, radii, type as typeScale, layout } from "@/theme";
 import { Chip } from "@/components/Chip";
 import { RecipeCard } from "@/components/RecipeCard";
 import { useProfile } from "@/context/ProfileContext";
+import { CUISINE_OPTIONS, CUISINE_OTHER } from "@/lib/profile";
 import { hasPreferences, preferencesFrom, sortByForYou } from "@/lib/forYou";
 import { useTutorialTarget } from "@/lib/tutorialTargets";
 import { SearchIcon } from "@/components/icons";
@@ -22,8 +23,8 @@ import type { DietTag, TasteTag } from "@/types";
 /** New value every time the app is opened (module load), so Best for you varies between sessions. */
 const SESSION_SEED = Math.floor(Math.random() * 2 ** 31);
 
-const TASTES: TasteTag[] = ["Spicy", "Comforting", "Fresh & Light", "Rich & Indulgent", "Tangy", "Smoky", "Sweet", "Herby"];
-const DIETS: DietTag[] = ["Vegetarian", "Vegan", "Pescatarian", "Gluten-Free", "Dairy-Free"];
+const TASTES: TasteTag[] = ["Sweet", "Fruity", "Creamy", "Refreshing", "Tangy", "Bitter", "Spicy", "Herbal", "Rich"];
+const DIETS: DietTag[] = ["Vegan", "Dairy-Free", "Caffeine-Free", "Low Sugar", "Gluten-Free"];
 
 export default function DiscoverScreen() {
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function DiscoverScreen() {
   const [selectedCuisine, setSelectedCuisine] = useState<string | null>(params.cuisine ?? null);
   const [sort, setSort] = useState<DiscoverSort>("best");
 
-  // Arriving from a Home cuisine tile applies that cuisine. Home adds a changing `t`
+  // Arriving from a Home drink-type tile applies that type. Home adds a changing `t`
   // so tapping the same tile again still re-applies it.
   const paramKey = `${params.t ?? ""}|${params.cuisine ?? ""}`;
   const [appliedParamKey, setAppliedParamKey] = useState(paramKey);
@@ -48,9 +49,10 @@ export default function DiscoverScreen() {
   }
   const [selectedDiets, setSelectedDiets] = useState<DietTag[]>([]);
 
-  const cuisines = useMemo(() => Array.from(new Set(recipes.map((r) => r.cuisine))).sort(), []);
+  // The drink types are fixed (they are the same ones the profile asks about), so the filter looks the same whatever is in the library.
+  const cuisines = CUISINE_OPTIONS.filter((c) => c !== CUISINE_OTHER);
 
-  // Refresh re-ranks every dish against the current pantry and equipment (keeps your filters).
+  // Refresh re-ranks every drink against the current pantry and equipment (keeps your filters).
   const [refreshTick, setRefreshTick] = useState(0);
   const [pulling, setPulling] = useState(false);
   const refresh = () => setRefreshTick((t) => t + 1);
@@ -62,8 +64,8 @@ export default function DiscoverScreen() {
     setSelectedDiets((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));
   }
 
-  // Every dish is listed. Gear the user hasn't ticked in Pantry > Equipment
-  // is shown on the card as "Needs …" and ranks the dish lower, never hides it.
+  // Every drink is listed. Gear the user hasn't ticked in Pantry > Equipment
+  // is shown on the card as "Needs …" and ranks the drink lower, never hides it.
   const ranked = useMemo(
     () => {
       void refreshTick; // re-rank on demand when the Refresh button bumps this
@@ -117,7 +119,7 @@ export default function DiscoverScreen() {
         ListHeaderComponent={
           <View>
             <View style={styles.header}>
-              <Text style={styles.eyebrow}>{filtered.length} {filtered.length === 1 ? "dish" : "dishes"}</Text>
+              <Text style={styles.eyebrow}>{filtered.length} {filtered.length === 1 ? "drink" : "drinks"}</Text>
               <Text style={styles.headline}>Discover</Text>
               <Text style={styles.subhead}>Ranked by what&apos;s in your pantry, filtered by what you&apos;re craving.</Text>
               <View style={styles.refreshRow}>
@@ -130,7 +132,7 @@ export default function DiscoverScreen() {
               <TextInput
                 value={query}
                 onChangeText={setQuery}
-                placeholder="Search dishes…"
+                placeholder="Search drinks…"
                 placeholderTextColor={colors.espressoFaint}
                 style={styles.searchInput}
               />
@@ -144,9 +146,9 @@ export default function DiscoverScreen() {
             </ScrollView>
 
             {sort === "for-you" && !hasPreferences(preferences) ? (
-              <Pressable onPress={() => router.push("/profile")} style={styles.forYouNote} accessibilityRole="button" accessibilityLabel="Choose your cuisines and flavours in Profile">
+              <Pressable onPress={() => router.push("/profile")} style={styles.forYouNote} accessibilityRole="button" accessibilityLabel="Choose your favourite drinks and flavours in Profile">
                 <Text style={styles.forYouNoteText}>
-                  Pick the cuisines and flavours you enjoy in Profile and Best for you will put your favourites first. Tap to choose.
+                  Pick the drinks and flavours you enjoy in Profile and Best for you will put your favourites first. Tap to choose.
                 </Text>
               </Pressable>
             ) : null}
@@ -162,7 +164,7 @@ export default function DiscoverScreen() {
               ))}
             </ScrollView>
 
-            <Text style={styles.filterLabel}>Cuisine</Text>
+            <Text style={styles.filterLabel}>Type</Text>
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -174,7 +176,7 @@ export default function DiscoverScreen() {
               ))}
             </ScrollView>
 
-            <Text style={styles.filterLabel}>Diet</Text>
+            <Text style={styles.filterLabel}>Dietary</Text>
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}

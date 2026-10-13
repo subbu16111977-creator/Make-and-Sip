@@ -27,19 +27,9 @@ import { useTutorialTarget } from "@/lib/tutorialTargets";
 import { daysUntil, recipesUnlockedByAdding } from "@/lib/pantryMatch";
 import { recipes } from "@/data/recipes";
 import { PlusIcon, CloseIcon, TrashIcon, PantryIcon, CheckIcon } from "@/components/icons";
+import { CATEGORY_ORDER, DEFAULT_CATEGORY } from "@/lib/categories";
 import type { EquipmentTag, PantryCategory, PantryItem, StorageLocation, Unit } from "@/types";
 
-const CATEGORY_ORDER: PantryCategory[] = [
-  "Vegetables",
-  "Fruit",
-  "Dairy",
-  "Meat & Seafood",
-  "Grains",
-  "Pulses",
-  "Spices",
-  "Frozen",
-  "Pantry Staples",
-];
 
 const LOCATIONS: StorageLocation[] = ["Fridge", "Freezer", "Pantry"];
 const UNITS: Unit[] = ["g", "kg", "ml", "l", "pcs", "tsp", "tbsp", "cup", "bunch", "clove", "can", "pack"];
@@ -141,7 +131,7 @@ export default function PantryScreen() {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState("1");
   const [unit, setUnit] = useState<Unit>("pcs");
-  const [category, setCategory] = useState<PantryCategory>("Vegetables");
+  const [category, setCategory] = useState<PantryCategory>(DEFAULT_CATEGORY);
   const [location, setLocation] = useState<StorageLocation>("Fridge");
   const [expiresInDays, setExpiresInDays] = useState(7);
 
@@ -161,7 +151,7 @@ export default function PantryScreen() {
     setName("");
     setQuantity("1");
     setUnit("pcs");
-    setCategory("Vegetables");
+    setCategory(DEFAULT_CATEGORY);
     setLocation("Fridge");
     setExpiresInDays(7);
   }
@@ -230,7 +220,7 @@ export default function PantryScreen() {
           <ScrollView keyboardShouldPersistTaps="handled">
             <EmptyState
               title="Your pantry's empty"
-              body="Add a few ingredients and Home and Discover will start suggesting what to cook with what you have."
+              body="Add a few ingredients and Home and Discover will start suggesting what to make with what you have."
               actionLabel="Add your first ingredient"
               onPressAction={() => setModalOpen(true)}
             />

@@ -87,6 +87,9 @@ Planned in stages (backup → archive food → rename/identity → empty the foo
 data → UI copy → legal → tests/docs/build). Update this section as stages complete. Done so far: food app checkpointed (`checkpoint-final-mise-food-app`, branch `archive/mise-food-app`, bundle backup at
 `~/Downloads/mise-food-app-backup.bundle`); visible name changed to Make & Sip; food dishes and ingredient registry removed
 (app data files are empty; engine tests run against frozen food fixtures in `src/test/fixtures`, wired by
-`src/test/setup.ts` — delete both when the drinks data lands). Open decisions: new Android package id
+`src/test/setup.ts` — delete both when the drinks data lands). Also done: drink-only equipment (22 items, optional equipment per drink), warm theme + Bricolage Grotesque/DM Sans, new
+logo (steaming mug with equaliser steam; generator script not kept — assets in `assets/`), and all wording changed from food to
+drinks (drink types replace cuisines, new flavour/dietary tags, new pantry categories). Next: drink units (shot, dash,
+scoop, fl oz), the drinks ingredient registry, then the drinks themselves. Open decisions: new Android package id
 (suggested `com.subbu.makeandsip`; free to change until the first Play upload), archive vs delete of the 642 food recipes
 (default: archive), remote backup repo.

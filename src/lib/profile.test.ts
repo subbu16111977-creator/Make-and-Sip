@@ -23,15 +23,15 @@ import {
 const blankDraft = (): ProfileDraft => draftFromProfile(emptyProfile());
 
 describe("option lists", () => {
-  it("uses the exact cuisine labels in order", () => {
+  it("uses the exact drink-type labels in order", () => {
     expect([...CUISINE_OPTIONS]).toEqual([
-      "Indian", "American", "South East Asian", "Chinese", "Italian", "Japanese", "Mediterranean",
-      "Mexican", "Middle eastern", "Spanish", "Korean", "British", "Others",
+      "Coffee", "Tea", "Milkshakes & thick shakes", "Smoothies", "Mocktails", "Juices", "Lemonades & coolers",
+      "Sodas & sparkling", "Hot drinks", "Others",
     ]);
   });
   it("uses the exact flavour labels in order", () => {
     expect([...FLAVOR_OPTIONS]).toEqual([
-      "Spicy", "Comforting", "Fresh and light", "Rich and indulgent", "Tangy", "Smoky", "Sweet", "Herby", "Other",
+      "Sweet", "Fruity", "Creamy", "Refreshing", "Tangy", "Bitter", "Spicy", "Herbal", "Rich and indulgent", "Other",
     ]);
   });
   it("lets every cuisine be selected at the same time", () => {

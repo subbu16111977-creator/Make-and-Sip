@@ -88,7 +88,7 @@ export default function ProfileScreen() {
       }}
     >
       <View style={styles.header}>
-        <Text style={styles.eyebrow}>Your kitchen</Text>
+        <Text style={styles.eyebrow}>Your setup</Text>
         <Text style={styles.headline}>Profile &amp; Settings</Text>
         <View style={styles.identity}>
           <Avatar uri={view.uri} aspect={view.aspect} crop={view.crop} name={draft.displayName} size={64} />
@@ -110,13 +110,13 @@ export default function ProfileScreen() {
             <View ref={favoritesTarget} collapsable={false} style={styles.favoritesSlot}>
               {favoriteMatches.length === 0 ? (
                 <>
-                  <SectionHeader eyebrow="Your favourites" title="Favourite dishes" subtitle="Tap the heart on any dish to keep it here." />
+                  <SectionHeader eyebrow="Your favourites" title="Favourite drinks" subtitle="Tap the heart on any drink to keep it here." />
                 </>
               ) : (
                 <RecipeSection
                   eyebrow="Your favourites"
-                  title="Favourite dishes"
-                  subtitle={`${favoriteMatches.length} ${favoriteMatches.length === 1 ? "dish" : "dishes"} you've hearted.`}
+                  title="Favourite drinks"
+                  subtitle={`${favoriteMatches.length} ${favoriteMatches.length === 1 ? "drink" : "drinks"} you've hearted.`}
                   matches={favoriteMatches}
                   ownedEquipment={equipment.owned}
                   seeAllLabel="View all"
@@ -163,11 +163,11 @@ export default function ProfileScreen() {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Local data</Text>
         <Text style={styles.sub}>
-          Your pantry, equipment, shopping list, saved dishes, favourites and profile are all stored on this device only. Resetting clears every one of them, and never touches your subscription.
+          Your pantry, equipment, shopping list, saved drinks, favourites and profile are all stored on this device only. Resetting clears every one of them, and never touches your subscription.
         </Text>
         {confirmingReset ? (
           <View style={styles.confirm}>
-            <Text style={styles.confirmText}>This permanently deletes your pantry, equipment, shopping list, saved dishes, favourites and profile on this device. It can’t be undone. Your subscription isn’t affected.</Text>
+            <Text style={styles.confirmText}>This permanently deletes your pantry, equipment, shopping list, saved drinks, favourites and profile on this device. It can’t be undone. Your subscription isn’t affected.</Text>
             <View style={styles.confirmButtons}>
               <Pressable onPress={() => setConfirmingReset(false)} accessibilityRole="button" accessibilityLabel="Cancel reset" style={styles.cancel}>
                 <Text style={styles.cancelText}>Cancel</Text>

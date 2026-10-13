@@ -9,7 +9,7 @@ function pantryItem(overrides: Partial<PantryItem>): PantryItem {
   return {
     id: overrides.ingredientId ?? "test-item",
     name: "Test item",
-    category: "Vegetables",
+    category: "Fruit",
     quantity: 1,
     unit: "pcs",
     quantityKnown: true,

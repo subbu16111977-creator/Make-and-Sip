@@ -23,7 +23,7 @@ export function CuisineTile({ cuisine, count, image, onPress }: CuisineTileProps
       />
       <View style={styles.text}>
         <Text style={styles.name}>{cuisine}</Text>
-        <Text style={styles.count}>{count} {count === 1 ? "dish" : "dishes"}</Text>
+        <Text style={styles.count}>{count} {count === 1 ? "drink" : "drinks"}</Text>
       </View>
     </Pressable>
   );

@@ -1,3 +1,5 @@
+> **Historical:** this handoff describes the Mise food app before the move to Make & Sip. See CLAUDE.md for current direction.
+
 # Mise — Project Handoff (Cowork → Claude Code)
 
 Written 2026-09-26 after a read-only inspection. No app code was changed.

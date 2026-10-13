@@ -161,16 +161,15 @@ export interface AddOrMergeItemResult {
 
 function guessCategory(label: string): PantryCategory {
   const l = label.toLowerCase();
-  if (/(chicken|beef|pork|shrimp|prawn|salmon|fish|tofu|paneer|egg)/.test(l)) return "Meat & Seafood";
-  if (/(milk|cheese|yogurt|yoghurt|butter|cream|feta|mozzarella|parmesan)/.test(l)) return "Dairy";
-  if (/(rice|flour|pasta|noodle|bread|oats|lentil|dal|beans|chickpea|quinoa)/.test(l)) return "Grains";
-  if (/(lentil|dal|chickpea|bean)/.test(l)) return "Pulses";
-  if (/(cumin|turmeric|pepper|chili|chilli|spice|paprika|cinnamon|cardamom|masala|salt)/.test(l)) return "Spices";
-  if (/(apple|banana|berry|berries|mango|orange|lemon|lime|fruit|grape|peach)/.test(l)) return "Fruit";
-  if (/(frozen)/.test(l)) return "Frozen";
-  if (/(oil|vinegar|sauce|honey|sugar|stock|broth|paste|can|tin|chocolate|nut|walnut|almond|cashew|seed|cracker|honey)/.test(l))
-    return "Pantry Staples";
-  return "Vegetables";
+  if (/(coffee|espresso|tea\b|matcha|chai|cocoa beans|beans for)/.test(l)) return "Coffee & Tea";
+  if (/(milk|cream|yogurt|yoghurt|oat drink|kefir|buttermilk)/.test(l)) return "Milk & Cream";
+  if (/(juice|soda|tonic|cola|sparkling|ginger ale|lemonade|club soda|seltzer|kombucha)/.test(l)) return "Juices & Sodas";
+  if (/(apple|banana|berry|berries|mango|orange|lemon|lime|fruit|grape|peach|pineapple|strawberr|citrus|coconut|watermelon)/.test(l)) return "Fruit";
+  if (/(sugar|syrup|honey|agave|sweetener|molasses|caramel|sauce|jam)/.test(l)) return "Sweeteners & Syrups";
+  if (/(vanilla|cinnamon|cardamom|ginger|clove|nutmeg|spice|extract|cocoa|chocolate|salt|turmeric|saffron)/.test(l)) return "Spices & Flavourings";
+  if (/(mint|basil|rosemary|thyme|herb|garnish|lavender|edible)/.test(l)) return "Herbs & Garnish";
+  if (/(ice|frozen|sorbet|ice cream)/.test(l)) return "Ice & Frozen";
+  return "Pantry Staples";
 }
 
 export interface AddMissingResult {

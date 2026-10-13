@@ -34,9 +34,9 @@ function Welcome() {
 
 function PantryVisual() {
   const rows = [
-    ["Rice", "1 kg"],
-    ["Tomatoes", "4"],
-    ["Cumin seeds", "50 g"],
+    ["Milk", "1 l"],
+    ["Lemons", "4"],
+    ["Espresso beans", "250 g"],
   ];
   return (
     <View style={styles.visualCard}>
@@ -48,7 +48,7 @@ function PantryVisual() {
         </View>
       ))}
       <View style={styles.exampleChips}>
-        {["Grains", "Vegetables", "Spices"].map((c) => (
+        {["Milk & Cream", "Fruit", "Coffee & Tea"].map((c) => (
           <View key={c} style={styles.categoryPill}>
             <Text style={styles.categoryText}>{c}</Text>
           </View>
@@ -84,9 +84,9 @@ function EquipmentPicker() {
 
 function Explore() {
   const items: [React.ComponentType<IconProps>, string, string][] = [
-    [DiscoverIcon, "Discover", "Dishes you can make, and dishes that are close."],
-    [ShoppingIcon, "Shopping", "Add what's missing when you plan a meal."],
-    [SavedIcon, "Saved", "Bookmark dishes to come back to."],
+    [DiscoverIcon, "Discover", "Drinks you can make, and drinks that are close."],
+    [ShoppingIcon, "Shopping", "Add what's missing before you make it."],
+    [SavedIcon, "Saved", "Bookmark drinks to come back to."],
   ];
   return (
     <View style={styles.visualCard}>
@@ -105,24 +105,24 @@ function Explore() {
 
 const COPY: Record<(typeof INTRO_STEPS)[number], { title: string; body: string }> = {
   welcome: {
-    title: "Cook with what you have",
-    body: "Add the ingredients and equipment in your kitchen, discover dishes you can make, find out what you’re missing, and keep your next meals organized.",
+    title: "Make it with what you have",
+    body: "Add the ingredients and equipment you have, discover drinks you can make, find out what you’re missing, and keep your shopping organised.",
   },
   pantry: {
     title: "Start with your pantry",
-    body: "Start by adding the ingredients you already have. Pantry helps you see which dishes match what is available in your kitchen. You can add quantities and sort items by category.",
+    body: "Start by adding the ingredients you already have. Your pantry shows which drinks match what you have on hand. You can add quantities and sort items by category.",
   },
   equipment: {
     title: "Tell us your equipment",
-    body: "Tell us which equipment you have so we can show dishes that fit your kitchen.",
+    body: "Tell us which equipment you have so we can show drinks that fit your setup.",
   },
   explore: {
     title: "Explore, shop and save",
-    body: "Explore dishes you can make or almost make. Add missing ingredients to Shopping when you’re planning a meal, and save dishes you want to come back to.",
+    body: "Explore drinks you can make or almost make. Add missing ingredients to Shopping when you’re planning one, and save drinks you want to come back to.",
   },
   profile: {
     title: "Make it yours",
-    body: "Personalize your cooking experience. This profile stays on this device and you can change it later in Settings.",
+    body: "Personalise your drinks. This profile stays on this device and you can change it later in Settings.",
   },
 };
 

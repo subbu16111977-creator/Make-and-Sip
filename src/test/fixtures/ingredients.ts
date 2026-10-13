@@ -8,7 +8,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "all_purpose_flour",
   "baseIngredient": "all_purpose_flour",
   "displayName": "All Purpose Flour",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "all purpose flour",
    "all-purpose flour",
@@ -33,7 +33,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "asafoetida",
   "baseIngredient": "asafoetida",
   "displayName": "Asafoetida",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "asafoetida"
   ]
@@ -84,7 +84,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "basil",
   "baseIngredient": "basil",
   "displayName": "Basil",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "basil",
    "basil leaves"
@@ -95,7 +95,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "basmati_rice",
   "baseIngredient": "rice",
   "displayName": "Basmati rice",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "basmati rice",
    "jasmine or basmati rice"
@@ -106,7 +106,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bay_leaves",
   "baseIngredient": "bay_leaves",
   "displayName": "Bay Leaves",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "bay leaves"
   ]
@@ -126,7 +126,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "beef_strips",
   "baseIngredient": "beef",
   "displayName": "Beef Strips",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "beef strips",
    "flank or sirloin steak"
@@ -137,7 +137,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bell_pepper",
   "baseIngredient": "bell_pepper",
   "displayName": "Bell pepper",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "bell pepper",
    "red bell peppers",
@@ -171,7 +171,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "black_beans_canned",
   "baseIngredient": "black_beans_canned",
   "displayName": "Black beans",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "black beans",
    "black beans canned"
@@ -182,7 +182,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "black_pepper",
   "baseIngredient": "black_pepper",
   "displayName": "Black pepper",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "black pepper",
    "black peppercorns",
@@ -198,7 +198,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "broccoli",
   "baseIngredient": "broccoli",
   "displayName": "Broccoli",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "broccoli"
   ]
@@ -218,7 +218,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "butter",
   "baseIngredient": "butter",
   "displayName": "Butter",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "butter",
    "unsalted butter"
@@ -229,7 +229,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "butternut_squash",
   "baseIngredient": "butternut_squash",
   "displayName": "Butternut Squash",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "butternut squash"
   ]
@@ -249,7 +249,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cherry_tomato",
   "baseIngredient": "tomato",
   "displayName": "Cherry tomatoes",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "cherry tomato",
    "cherry tomatoes"
@@ -270,7 +270,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chicken",
   "baseIngredient": "chicken",
   "displayName": "Chicken",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chicken",
    "chicken meat",
@@ -288,7 +288,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chicken_breast",
   "baseIngredient": "chicken",
   "displayName": "Chicken breast",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chicken breast",
    "chicken breasts",
@@ -302,7 +302,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chicken_sausage",
   "baseIngredient": "chicken_sausage",
   "displayName": "Chicken sausage",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chicken sausage",
    "chicken sausages"
@@ -325,7 +325,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chicken_thigh",
   "baseIngredient": "chicken",
   "displayName": "Chicken thigh",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chicken thigh"
   ]
@@ -335,7 +335,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chickpeas_canned",
   "baseIngredient": "chickpeas_canned",
   "displayName": "Chickpeas",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chickpeas",
    "chickpeas canned"
@@ -346,7 +346,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chili_flakes",
   "baseIngredient": "chili_flakes",
   "displayName": "Chili flakes",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "chili flakes",
    "red pepper flakes",
@@ -359,7 +359,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cilantro",
   "baseIngredient": "cilantro",
   "displayName": "Cilantro",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "cilantro",
    "cilantro leaves",
@@ -375,7 +375,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cinnamon_stick",
   "baseIngredient": "cinnamon_stick",
   "displayName": "Cinnamon Stick",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "cinnamon stick"
   ]
@@ -421,7 +421,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cucumber",
   "baseIngredient": "cucumber",
   "displayName": "Cucumber",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "cucumber"
   ]
@@ -431,7 +431,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cumin_seeds",
   "baseIngredient": "cumin_seeds",
   "displayName": "Cumin seeds",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "cumin",
    "cumin seeds"
@@ -453,7 +453,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "eggs",
   "baseIngredient": "eggs",
   "displayName": "Eggs",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "eggs",
    "soft-boiled eggs",
@@ -469,7 +469,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "feta",
   "baseIngredient": "feta",
   "displayName": "Feta",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "crumbled cheese",
    "feta"
@@ -480,7 +480,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fine_salt",
   "baseIngredient": "fine_salt",
   "displayName": "Fine Salt",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "fine salt",
    "salt"
@@ -491,7 +491,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fish_sauce",
   "baseIngredient": "fish_sauce",
   "displayName": "Fish Sauce",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "fish sauce"
   ]
@@ -501,7 +501,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "flatbread",
   "baseIngredient": "flatbread",
   "displayName": "Flatbread",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "flatbread",
    "flatbread bases"
@@ -512,7 +512,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "flour",
   "baseIngredient": "flour",
   "displayName": "Flour",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "flour"
   ]
@@ -522,7 +522,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "frozen_corn",
   "baseIngredient": "frozen_corn",
   "displayName": "Frozen corn",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "corn kernels",
    "frozen corn",
@@ -535,7 +535,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "frozen_peas",
   "baseIngredient": "frozen_peas",
   "displayName": "Frozen peas",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "frozen peas",
    "peas",
@@ -549,7 +549,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "garam_masala",
   "baseIngredient": "garam_masala",
   "displayName": "Garam masala",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "garam masala"
   ]
@@ -559,7 +559,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "garlic",
   "baseIngredient": "garlic",
   "displayName": "Garlic",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "garlic"
   ]
@@ -569,7 +569,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ghee",
   "baseIngredient": "ghee",
   "displayName": "Ghee",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "ghee"
   ]
@@ -579,7 +579,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ginger",
   "baseIngredient": "ginger",
   "displayName": "Ginger",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "ginger"
   ]
@@ -589,7 +589,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "greek_yogurt",
   "baseIngredient": "greek_yogurt",
   "displayName": "Greek yogurt",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "greek yogurt",
    "yogurt",
@@ -605,11 +605,11 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "green_chili",
   "baseIngredient": "green_chili",
   "displayName": "Green chili",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "green chili",
    "green chilies",
-   "jalapeño",
+   "jalape\u00f1o",
    "red or green chili",
    "chili",
    "chilli",
@@ -671,7 +671,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "milk",
   "baseIngredient": "milk",
   "displayName": "Whole milk",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "milk",
    "warm milk",
@@ -683,7 +683,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mint",
   "baseIngredient": "mint",
   "displayName": "Mint",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "mint",
    "mint leaves"
@@ -707,7 +707,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mozzarella",
   "baseIngredient": "mozzarella",
   "displayName": "Mozzarella",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "mozzarella"
   ]
@@ -728,7 +728,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "olives",
   "baseIngredient": "olives",
   "displayName": "Olives",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "kalamata olives",
    "olives"
@@ -739,7 +739,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "onion",
   "baseIngredient": "onion",
   "displayName": "Onion",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "onion",
    "onions"
@@ -760,7 +760,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "paneer",
   "baseIngredient": "paneer",
   "displayName": "Paneer",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "paneer"
   ]
@@ -770,7 +770,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "parmesan",
   "baseIngredient": "parmesan",
   "displayName": "Parmesan",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "parmesan"
   ]
@@ -780,7 +780,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pasta",
   "baseIngredient": "pasta",
   "displayName": "Pasta",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "long pasta",
    "pasta"
@@ -801,7 +801,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pizza_dough",
   "baseIngredient": "pizza_dough",
   "displayName": "Pizza Dough",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pizza dough"
   ]
@@ -811,7 +811,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "potato",
   "baseIngredient": "potato",
   "displayName": "Potato",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "potato",
    "potatoes"
@@ -832,7 +832,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ramen_noodles",
   "baseIngredient": "ramen_noodles",
   "displayName": "Ramen Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ramen noodles"
   ]
@@ -842,7 +842,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "red_cabbage",
   "baseIngredient": "red_cabbage",
   "displayName": "Red cabbage",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "red cabbage"
   ]
@@ -852,7 +852,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "red_chili_powder",
   "baseIngredient": "red_chili_powder",
   "displayName": "Red Chili Powder",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "red chili powder",
    "red chilli powder",
@@ -866,7 +866,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "red_curry_paste",
   "baseIngredient": "red_curry_paste",
   "displayName": "Red curry paste",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "red curry paste",
    "thai red curry paste"
@@ -877,7 +877,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "red_lentils",
   "baseIngredient": "red_lentils",
   "displayName": "Red lentils",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "red lentils"
   ]
@@ -887,7 +887,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "red_onion",
   "baseIngredient": "onion",
   "displayName": "Red onion",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "red onion"
   ]
@@ -897,7 +897,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rice",
   "baseIngredient": "rice",
   "displayName": "Rice",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "rice",
    "cooked rice",
@@ -909,7 +909,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rice_flour",
   "baseIngredient": "rice_flour",
   "displayName": "Rice flour",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "rice flour"
   ]
@@ -919,7 +919,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rice_noodles",
   "baseIngredient": "rice_noodles",
   "displayName": "Rice Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "rice noodles",
    "thin rice noodles"
@@ -930,7 +930,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rice_vinegar",
   "baseIngredient": "rice_vinegar",
   "displayName": "Rice Vinegar",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "rice vinegar"
   ]
@@ -940,7 +940,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rolled_oats",
   "baseIngredient": "rolled_oats",
   "displayName": "Rolled oats",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "granola",
    "rolled oats",
@@ -955,7 +955,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "roti_flour",
   "baseIngredient": "roti_flour",
   "displayName": "Whole wheat atta",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "roti flour",
    "wheat atta",
@@ -973,7 +973,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "saffron",
   "baseIngredient": "saffron",
   "displayName": "Saffron",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "saffron",
    "saffron threads"
@@ -984,7 +984,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "salmon_fillet",
   "baseIngredient": "salmon_fillet",
   "displayName": "Salmon Fillet",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "salmon fillet",
    "salmon fillets",
@@ -998,7 +998,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "scallion",
   "baseIngredient": "scallion",
   "displayName": "Scallion",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "scallion",
    "scallions"
@@ -1030,7 +1030,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "shrimp",
   "baseIngredient": "shrimp",
   "displayName": "Shrimp",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "shell-on shrimp",
    "shrimp"
@@ -1041,7 +1041,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "smoked_paprika",
   "baseIngredient": "smoked_paprika",
   "displayName": "Smoked Paprika",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "smoked paprika"
   ]
@@ -1051,7 +1051,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sourdough_bread",
   "baseIngredient": "sliced_bread",
   "displayName": "Sourdough loaf",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "crusty bread",
    "sourdough bread",
@@ -1075,7 +1075,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "spinach",
   "baseIngredient": "spinach",
   "displayName": "Spinach",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "baby spinach",
    "mixed salad greens",
@@ -1088,7 +1088,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sweet_potato",
   "baseIngredient": "sweet_potato",
   "displayName": "Sweet potato",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "sweet potato",
    "sweet potatoes"
@@ -1109,7 +1109,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "thai_basil",
   "baseIngredient": "thai_basil",
   "displayName": "Thai Basil",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "thai basil",
    "thai basil leaves"
@@ -1120,7 +1120,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "tofu",
   "baseIngredient": "tofu",
   "displayName": "Tofu",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "extra-firm tofu",
    "tofu"
@@ -1131,7 +1131,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "tomato",
   "baseIngredient": "tomato",
   "displayName": "Tomato",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "tomato",
    "tomatoes",
@@ -1158,7 +1158,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "toor_dal",
   "baseIngredient": "toor_dal",
   "displayName": "Toor dal",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "toor dal"
   ]
@@ -1168,7 +1168,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "tortillas",
   "baseIngredient": "tortillas",
   "displayName": "Tortillas",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "corn or flour tortillas",
    "tortillas",
@@ -1182,7 +1182,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "turmeric",
   "baseIngredient": "turmeric",
   "displayName": "Turmeric",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "turmeric"
   ]
@@ -1239,7 +1239,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mutton",
   "baseIngredient": "mutton",
   "displayName": "Mutton",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "mutton",
    "goat meat",
@@ -1254,7 +1254,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "lamb",
   "baseIngredient": "lamb",
   "displayName": "Lamb",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "lamb",
    "lamb meat",
@@ -1268,7 +1268,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "crab",
   "baseIngredient": "crab",
   "displayName": "Crab",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "crab",
    "crab meat",
@@ -1282,7 +1282,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "prawns",
   "baseIngredient": "prawns",
   "displayName": "Prawns",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "prawns",
    "prawn",
@@ -1296,7 +1296,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fish",
   "baseIngredient": "fish",
   "displayName": "Fish",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "fish",
    "fish fillet",
@@ -1314,7 +1314,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "kidney_beans",
   "baseIngredient": "kidney_beans",
   "displayName": "Kidney Beans (Rajma)",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "kidney beans",
    "rajma",
@@ -1326,7 +1326,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "urad_dal",
   "baseIngredient": "urad_dal",
   "displayName": "Urad Dal",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "urad dal",
    "whole black urad dal",
@@ -1340,7 +1340,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "carrot",
   "baseIngredient": "carrot",
   "displayName": "Carrot",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "carrot",
    "carrots"
@@ -1351,7 +1351,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "green_beans",
   "baseIngredient": "green_beans",
   "displayName": "Green Beans",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "green beans",
    "french beans",
@@ -1363,7 +1363,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cabbage",
   "baseIngredient": "cabbage",
   "displayName": "Cabbage",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "cabbage"
   ]
@@ -1373,7 +1373,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cauliflower",
   "baseIngredient": "cauliflower",
   "displayName": "Cauliflower",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "cauliflower",
    "gobi"
@@ -1384,7 +1384,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "eggplant",
   "baseIngredient": "eggplant",
   "displayName": "Eggplant",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "eggplant",
    "brinjal",
@@ -1397,7 +1397,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "curry_leaves",
   "baseIngredient": "curry_leaves",
   "displayName": "Curry Leaves",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "curry leaves",
    "curry leaf"
@@ -1408,7 +1408,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fenugreek_leaves",
   "baseIngredient": "fenugreek_leaves",
   "displayName": "Fresh Fenugreek Leaves",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "fenugreek leaves",
    "fresh methi",
@@ -1420,7 +1420,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mustard_seeds",
   "baseIngredient": "mustard_seeds",
   "displayName": "Mustard Seeds",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "mustard seeds",
    "rai",
@@ -1432,7 +1432,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fennel_seeds",
   "baseIngredient": "fennel_seeds",
   "displayName": "Fennel Seeds",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "fennel seeds",
    "saunf",
@@ -1446,7 +1446,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cardamom",
   "baseIngredient": "cardamom",
   "displayName": "Green Cardamom",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "cardamom",
    "green cardamom",
@@ -1459,7 +1459,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "black_cardamom",
   "baseIngredient": "black_cardamom",
   "displayName": "Black Cardamom",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "black cardamom",
    "badi elaichi"
@@ -1470,7 +1470,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cloves",
   "baseIngredient": "cloves",
   "displayName": "Cloves",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "cloves",
    "whole cloves",
@@ -1482,7 +1482,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "star_anise",
   "baseIngredient": "star_anise",
   "displayName": "Star Anise",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "star anise"
   ]
@@ -1492,7 +1492,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "nutmeg",
   "baseIngredient": "nutmeg",
   "displayName": "Nutmeg",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "nutmeg",
    "grated nutmeg",
@@ -1504,7 +1504,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "dried_red_chili",
   "baseIngredient": "dried_red_chili",
   "displayName": "Dried Red Chilies",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "dried red chilies",
    "dried red chillies",
@@ -1518,7 +1518,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "coriander_powder",
   "baseIngredient": "coriander_powder",
   "displayName": "Coriander Powder",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "coriander powder",
    "ground coriander",
@@ -1530,7 +1530,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cumin_powder",
   "baseIngredient": "cumin_powder",
   "displayName": "Cumin Powder",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "cumin powder",
    "ground cumin",
@@ -1542,7 +1542,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "kasuri_methi",
   "baseIngredient": "kasuri_methi",
   "displayName": "Dried Fenugreek Leaves (Kasuri Methi)",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "kasuri methi",
    "dried fenugreek leaves",
@@ -1554,7 +1554,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "amchur",
   "baseIngredient": "amchur",
   "displayName": "Dry Mango Powder (Amchur)",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "amchur",
    "dry mango powder",
@@ -1568,7 +1568,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chaat_masala",
   "baseIngredient": "chaat_masala",
   "displayName": "Chaat Masala",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "chaat masala"
   ]
@@ -1602,7 +1602,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "heavy_cream",
   "baseIngredient": "heavy_cream",
   "displayName": "Heavy Cream",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "heavy cream",
    "fresh cream",
@@ -1616,7 +1616,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "milk_powder",
   "baseIngredient": "milk_powder",
   "displayName": "Milk Powder",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "milk powder",
    "instant khoya mix",
@@ -1628,7 +1628,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "gram_flour",
   "baseIngredient": "gram_flour",
   "displayName": "Gram Flour (Besan)",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "gram flour",
    "besan",
@@ -1640,7 +1640,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "semolina",
   "baseIngredient": "semolina",
   "displayName": "Semolina",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "semolina",
    "rava",
@@ -1690,7 +1690,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "okra",
   "baseIngredient": "okra",
   "displayName": "Okra",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "okra",
    "bhindi",
@@ -1716,7 +1716,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mustard_greens",
   "baseIngredient": "mustard_greens",
   "displayName": "Mustard Greens",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "mustard greens",
    "sarson",
@@ -1728,7 +1728,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chana_dal",
   "baseIngredient": "chana_dal",
   "displayName": "Chana Dal (Split Bengal Gram)",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chana dal",
    "split bengal gram",
@@ -1740,7 +1740,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "buttermilk",
   "baseIngredient": "buttermilk",
   "displayName": "Buttermilk",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "buttermilk"
   ]
@@ -1750,7 +1750,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cornmeal",
   "baseIngredient": "cornmeal",
   "displayName": "Cornmeal",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "cornmeal",
    "corn meal",
@@ -1764,7 +1764,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pork_sausage",
   "baseIngredient": "pork_sausage",
   "displayName": "Pork Sausage",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pork sausage",
    "breakfast sausage",
@@ -1776,7 +1776,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ham_hock",
   "baseIngredient": "ham_hock",
   "displayName": "Smoked Ham Hock",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ham hock",
    "smoked ham hock",
@@ -1798,11 +1798,11 @@ export const ingredientRegistry: IngredientEntity[] = [
   "id": "file-powder",
   "canonicalName": "file_powder",
   "baseIngredient": "file_powder",
-  "displayName": "Filé Powder",
-  "category": "Spices",
+  "displayName": "Fil\u00e9 Powder",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "file powder",
-   "filé powder",
+   "fil\u00e9 powder",
    "ground sassafras leaves"
   ]
  },
@@ -1811,7 +1811,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "andouille_sausage",
   "baseIngredient": "andouille_sausage",
   "displayName": "Andouille Sausage",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "andouille sausage",
    "andouille",
@@ -1823,7 +1823,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "celery",
   "baseIngredient": "celery",
   "displayName": "Celery",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "celery",
    "celery stalks",
@@ -1835,7 +1835,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "crawfish",
   "baseIngredient": "crawfish",
   "displayName": "Crawfish Tails",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "crawfish",
    "crawfish tails",
@@ -1860,7 +1860,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "beef_brisket",
   "baseIngredient": "beef",
   "displayName": "Beef Brisket",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "beef brisket",
    "brisket",
@@ -1895,7 +1895,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cayenne_pepper",
   "baseIngredient": "cayenne_pepper",
   "displayName": "Cayenne Pepper",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "cayenne pepper",
    "cayenne",
@@ -1907,7 +1907,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "dried_thyme",
   "baseIngredient": "dried_thyme",
   "displayName": "Dried Thyme",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "dried thyme",
    "thyme",
@@ -1919,7 +1919,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "paprika",
   "baseIngredient": "paprika",
   "displayName": "Paprika",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "paprika",
    "sweet paprika"
@@ -1930,7 +1930,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "collard_greens",
   "baseIngredient": "collard_greens",
   "displayName": "Collard Greens",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "collard greens",
    "collards"
@@ -1963,7 +1963,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "clams",
   "baseIngredient": "clams",
   "displayName": "Clams",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "clams",
    "chopped clams",
@@ -1975,7 +1975,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "lobster",
   "baseIngredient": "lobster",
   "displayName": "Lobster Meat",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "lobster",
    "lobster meat",
@@ -1987,7 +1987,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "navy_beans",
   "baseIngredient": "navy_beans",
   "displayName": "Navy Beans",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "navy beans",
    "dried navy beans",
@@ -2011,7 +2011,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "salt_pork",
   "baseIngredient": "salt_pork",
   "displayName": "Salt Pork",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "salt pork",
    "diced salt pork",
@@ -2034,7 +2034,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ground_beef",
   "baseIngredient": "beef",
   "displayName": "Ground Beef",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ground beef",
    "minced beef",
@@ -2049,7 +2049,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "frozen_tater_tots",
   "baseIngredient": "frozen_tater_tots",
   "displayName": "Frozen Tater Tots",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "frozen tater tots",
    "tater tots",
@@ -2073,7 +2073,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cheddar_cheese",
   "baseIngredient": "cheddar_cheese",
   "displayName": "Cheddar Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "cheddar cheese",
    "shredded cheddar",
@@ -2085,7 +2085,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cheese_curds",
   "baseIngredient": "cheese_curds",
   "displayName": "Cheese Curds",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "cheese curds",
    "wisconsin cheese curds",
@@ -2109,7 +2109,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ground_cloves",
   "baseIngredient": "ground_cloves",
   "displayName": "Ground Cloves",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "ground cloves",
    "cloves, ground"
@@ -2120,7 +2120,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "spaghetti",
   "baseIngredient": "spaghetti",
   "displayName": "Spaghetti",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "spaghetti",
    "spaghetti noodles"
@@ -2131,7 +2131,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chili_powder",
   "baseIngredient": "chili_powder",
   "displayName": "Chili Powder",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "chili powder",
    "american chili powder",
@@ -2144,7 +2144,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "grits",
   "baseIngredient": "grits",
   "displayName": "Grits",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "grits",
    "stone-ground grits",
@@ -2156,7 +2156,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "black_eyed_peas",
   "baseIngredient": "black_eyed_peas",
   "displayName": "Black-Eyed Peas",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "black-eyed peas",
    "black eyed peas",
@@ -2168,7 +2168,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bacon",
   "baseIngredient": "bacon",
   "displayName": "Bacon",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "bacon",
    "streaky bacon",
@@ -2180,7 +2180,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "buckwheat_flour",
   "baseIngredient": "buckwheat_flour",
   "displayName": "Buckwheat Flour",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "buckwheat flour"
   ]
@@ -2190,7 +2190,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sage",
   "baseIngredient": "sage",
   "displayName": "Sage",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "sage",
    "dried sage",
@@ -2202,7 +2202,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "egg_noodles",
   "baseIngredient": "egg_noodles",
   "displayName": "Egg Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "egg noodles",
    "wide egg noodles"
@@ -2213,7 +2213,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "smoked_sausage",
   "baseIngredient": "smoked_sausage",
   "displayName": "Smoked Sausage",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "smoked sausage",
    "smoked kielbasa",
@@ -2225,7 +2225,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ground_pork",
   "baseIngredient": "pork",
   "displayName": "Ground Pork",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ground pork",
    "minced pork",
@@ -2237,7 +2237,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pork_shoulder",
   "baseIngredient": "pork",
   "displayName": "Pork Shoulder",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pork shoulder",
    "pork butt",
@@ -2249,7 +2249,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pork_ribs",
   "baseIngredient": "pork",
   "displayName": "Pork Ribs",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pork ribs",
    "spare ribs",
@@ -2263,7 +2263,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "beef_chuck",
   "baseIngredient": "beef",
   "displayName": "Beef Chuck",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "beef chuck",
    "chuck roast",
@@ -2275,7 +2275,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "lima_beans",
   "baseIngredient": "lima_beans",
   "displayName": "Lima Beans",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "lima beans",
    "frozen lima beans",
@@ -2287,7 +2287,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "dry_mustard",
   "baseIngredient": "dry_mustard",
   "displayName": "Dry Mustard Powder",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "dry mustard",
    "mustard powder",
@@ -2299,7 +2299,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cube_steak",
   "baseIngredient": "beef",
   "displayName": "Cube Steak",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "cube steak",
    "cubed steak",
@@ -2311,7 +2311,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ribeye_steak",
   "baseIngredient": "beef",
   "displayName": "Ribeye Steak",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ribeye steak",
    "ribeye",
@@ -2323,7 +2323,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "provolone_cheese",
   "baseIngredient": "provolone_cheese",
   "displayName": "Provolone Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "provolone cheese",
    "provolone",
@@ -2335,7 +2335,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "hoagie_roll",
   "baseIngredient": "bread_loaf",
   "displayName": "Hoagie Roll",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "hoagie roll",
    "sub roll",
@@ -2362,7 +2362,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "condensed_milk",
   "baseIngredient": "condensed_milk",
   "displayName": "Sweetened Condensed Milk",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "sweetened condensed milk",
    "condensed milk"
@@ -2396,7 +2396,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cream_cheese",
   "baseIngredient": "cream_cheese",
   "displayName": "Cream Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "cream cheese"
   ]
@@ -2469,7 +2469,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "burger_buns",
   "baseIngredient": "burger_buns",
   "displayName": "Burger Buns",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "burger buns",
    "hamburger buns",
@@ -2491,7 +2491,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "american_cheese",
   "baseIngredient": "american_cheese",
   "displayName": "American Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "american cheese",
    "sliced american cheese",
@@ -2503,7 +2503,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "lettuce",
   "baseIngredient": "lettuce",
   "displayName": "Lettuce",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "lettuce",
    "iceberg lettuce",
@@ -2548,7 +2548,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chicken_wings",
   "baseIngredient": "chicken_wings",
   "displayName": "Chicken Wings",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chicken wings",
    "chicken wingettes and drumettes",
@@ -2562,7 +2562,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "blue_cheese",
   "baseIngredient": "blue_cheese",
   "displayName": "Blue Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "blue cheese",
    "blue cheese dressing",
@@ -2574,7 +2574,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "white_bread",
   "baseIngredient": "sliced_bread",
   "displayName": "White Bread",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "white bread",
    "sandwich bread",
@@ -2586,7 +2586,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pepperoni",
   "baseIngredient": "pepperoni",
   "displayName": "Pepperoni",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pepperoni",
    "pepperoni slices"
@@ -2597,7 +2597,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "italian_sausage",
   "baseIngredient": "italian_sausage",
   "displayName": "Italian Sausage",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "italian sausage",
    "sweet italian sausage",
@@ -2609,7 +2609,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mushrooms",
   "baseIngredient": "mushrooms",
   "displayName": "Mushrooms",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "mushrooms",
    "cremini mushrooms",
@@ -2622,7 +2622,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ham",
   "baseIngredient": "ham",
   "displayName": "Ham",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ham",
    "cooked ham",
@@ -2634,7 +2634,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "prosciutto",
   "baseIngredient": "prosciutto",
   "displayName": "Prosciutto",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "prosciutto",
    "prosciutto di parma",
@@ -2646,7 +2646,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ricotta",
   "baseIngredient": "ricotta",
   "displayName": "Ricotta",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "ricotta",
    "ricotta cheese"
@@ -2657,7 +2657,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "artichoke_hearts",
   "baseIngredient": "artichoke_hearts",
   "displayName": "Artichoke Hearts",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "artichoke hearts",
    "marinated artichoke hearts",
@@ -2680,7 +2680,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "anchovies",
   "baseIngredient": "anchovies",
   "displayName": "Anchovies",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "anchovies",
    "anchovy fillets"
@@ -2691,7 +2691,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mussels",
   "baseIngredient": "mussels",
   "displayName": "Mussels",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "mussels",
    "fresh mussels"
@@ -2702,7 +2702,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "squid",
   "baseIngredient": "squid",
   "displayName": "Squid",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "squid",
    "calamari"
@@ -2713,7 +2713,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "arugula",
   "baseIngredient": "arugula",
   "displayName": "Arugula",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "arugula",
    "rocket",
@@ -2725,7 +2725,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "gorgonzola",
   "baseIngredient": "gorgonzola",
   "displayName": "Gorgonzola",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "gorgonzola",
    "gorgonzola cheese"
@@ -2736,7 +2736,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fontina",
   "baseIngredient": "fontina",
   "displayName": "Fontina",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "fontina",
    "fontina cheese"
@@ -2758,7 +2758,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pecorino",
   "baseIngredient": "pecorino",
   "displayName": "Pecorino Romano",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "pecorino",
    "pecorino romano",
@@ -2770,7 +2770,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "guanciale",
   "baseIngredient": "guanciale",
   "displayName": "Guanciale",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "guanciale",
    "cured pork cheek",
@@ -2782,7 +2782,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pancetta",
   "baseIngredient": "pancetta",
   "displayName": "Pancetta",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pancetta",
    "italian bacon"
@@ -2804,7 +2804,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "veal",
   "baseIngredient": "veal",
   "displayName": "Veal",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "veal",
    "veal cutlets",
@@ -2816,7 +2816,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "beef_sirloin",
   "baseIngredient": "beef",
   "displayName": "Beef Sirloin",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "beef sirloin",
    "sirloin steak",
@@ -2841,7 +2841,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mascarpone",
   "baseIngredient": "mascarpone",
   "displayName": "Mascarpone",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "mascarpone",
    "mascarpone cheese"
@@ -2874,7 +2874,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "arborio_rice",
   "baseIngredient": "arborio_rice",
   "displayName": "Arborio Rice",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "arborio rice",
    "risotto rice",
@@ -2898,7 +2898,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "yellow_squash",
   "baseIngredient": "yellow_squash",
   "displayName": "Yellow Squash",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "yellow squash",
    "summer squash"
@@ -2909,7 +2909,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "zucchini",
   "baseIngredient": "zucchini",
   "displayName": "Zucchini",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "zucchini",
    "courgette"
@@ -2920,7 +2920,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rosemary",
   "baseIngredient": "rosemary",
   "displayName": "Rosemary",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "rosemary",
    "fresh rosemary",
@@ -2944,7 +2944,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fettuccine",
   "baseIngredient": "fettuccine",
   "displayName": "Fettuccine",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "fettuccine",
    "fettuccine pasta"
@@ -2955,7 +2955,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "penne",
   "baseIngredient": "penne",
   "displayName": "Penne",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "penne",
    "penne pasta",
@@ -2967,7 +2967,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "linguine",
   "baseIngredient": "linguine",
   "displayName": "Linguine",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "linguine",
    "linguine pasta"
@@ -2978,7 +2978,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "lasagna_noodles",
   "baseIngredient": "lasagna_noodles",
   "displayName": "Lasagna Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "lasagna noodles",
    "lasagna sheets",
@@ -2990,7 +2990,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rigatoni",
   "baseIngredient": "rigatoni",
   "displayName": "Rigatoni",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "rigatoni",
    "rigatoni pasta"
@@ -3001,7 +3001,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "orecchiette",
   "baseIngredient": "orecchiette",
   "displayName": "Orecchiette",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "orecchiette",
    "orecchiette pasta"
@@ -3012,7 +3012,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fusilli",
   "baseIngredient": "fusilli",
   "displayName": "Fusilli",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "fusilli",
    "fusilli pasta",
@@ -3024,7 +3024,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pappardelle",
   "baseIngredient": "pappardelle",
   "displayName": "Pappardelle",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pappardelle",
    "pappardelle pasta"
@@ -3035,7 +3035,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "potato_gnocchi",
   "baseIngredient": "potato_gnocchi",
   "displayName": "Potato Gnocchi",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "potato gnocchi",
    "gnocchi"
@@ -3046,7 +3046,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cheese_ravioli",
   "baseIngredient": "cheese_ravioli",
   "displayName": "Cheese Ravioli",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "cheese ravioli",
    "ravioli"
@@ -3067,7 +3067,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "broccoli_rabe",
   "baseIngredient": "broccoli_rabe",
   "displayName": "Broccoli Rabe",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "broccoli rabe",
    "rapini"
@@ -3078,7 +3078,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ricotta_salata",
   "baseIngredient": "ricotta_salata",
   "displayName": "Ricotta Salata",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "ricotta salata",
    "salted ricotta"
@@ -3089,7 +3089,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "asparagus",
   "baseIngredient": "asparagus",
   "displayName": "Asparagus",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "asparagus",
    "asparagus spears"
@@ -3122,7 +3122,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bok_choy",
   "baseIngredient": "bok_choy",
   "displayName": "Bok Choy",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "bok choy",
    "pak choi",
@@ -3134,7 +3134,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "lotus_root",
   "baseIngredient": "lotus_root",
   "displayName": "Lotus Root",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "lotus root",
    "lotus stem",
@@ -3167,7 +3167,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "five_spice_powder",
   "baseIngredient": "five_spice_powder",
   "displayName": "Five-Spice Powder",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "five spice powder",
    "chinese five spice",
@@ -3227,7 +3227,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bean_sprouts",
   "baseIngredient": "bean_sprouts",
   "displayName": "Bean Sprouts",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "bean sprouts",
    "mung bean sprouts"
@@ -3238,7 +3238,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "water_chestnuts",
   "baseIngredient": "water_chestnuts",
   "displayName": "Water Chestnuts",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "water chestnuts",
    "canned water chestnuts"
@@ -3249,7 +3249,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bamboo_shoots",
   "baseIngredient": "bamboo_shoots",
   "displayName": "Bamboo Shoots",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "bamboo shoots",
    "canned bamboo shoots"
@@ -3260,7 +3260,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "napa_cabbage",
   "baseIngredient": "napa_cabbage",
   "displayName": "Napa Cabbage",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "napa cabbage",
    "chinese cabbage",
@@ -3272,7 +3272,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "white_pepper",
   "baseIngredient": "white_pepper",
   "displayName": "White Pepper",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "white pepper",
    "ground white pepper"
@@ -3283,7 +3283,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "duck",
   "baseIngredient": "duck",
   "displayName": "Duck",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "duck",
    "whole duck",
@@ -3295,7 +3295,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pork_belly",
   "baseIngredient": "pork",
   "displayName": "Pork Belly",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pork belly",
    "skin-on pork belly"
@@ -3319,7 +3319,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sichuan_peppercorns",
   "baseIngredient": "sichuan_peppercorns",
   "displayName": "Sichuan Peppercorns",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "sichuan peppercorns",
    "szechuan peppercorns"
@@ -3354,7 +3354,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "glutinous_rice_flour",
   "baseIngredient": "glutinous_rice_flour",
   "displayName": "Glutinous Rice Flour",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "glutinous rice flour",
    "sweet rice flour",
@@ -3390,7 +3390,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "puff_pastry",
   "baseIngredient": "puff_pastry",
   "displayName": "Puff Pastry",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "puff pastry",
    "frozen puff pastry",
@@ -3437,7 +3437,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "parsley",
   "baseIngredient": "parsley",
   "displayName": "Parsley",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "parsley",
    "flat-leaf parsley",
@@ -3450,7 +3450,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "phyllo_dough",
   "baseIngredient": "phyllo_dough",
   "displayName": "Phyllo Dough",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "phyllo dough",
    "filo dough",
@@ -3463,7 +3463,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "couscous",
   "baseIngredient": "couscous",
   "displayName": "Couscous",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "couscous"
   ]
@@ -3473,7 +3473,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bulgur",
   "baseIngredient": "bulgur",
   "displayName": "Bulgur Wheat",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "bulgur",
    "bulgur wheat",
@@ -3520,7 +3520,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "za_atar",
   "baseIngredient": "za_atar",
   "displayName": "Za'atar",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "za'atar",
    "zaatar",
@@ -3532,7 +3532,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sumac",
   "baseIngredient": "sumac",
   "displayName": "Sumac",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "sumac",
    "ground sumac"
@@ -3553,7 +3553,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "freekeh",
   "baseIngredient": "freekeh",
   "displayName": "Freekeh",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "freekeh",
    "roasted green wheat"
@@ -3564,7 +3564,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "octopus",
   "baseIngredient": "octopus",
   "displayName": "Octopus",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "octopus"
   ]
@@ -3584,7 +3584,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "merguez_sausage",
   "baseIngredient": "merguez_sausage",
   "displayName": "Merguez Sausage",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "merguez",
    "merguez sausage",
@@ -3596,7 +3596,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "green_lentils",
   "baseIngredient": "green_lentils",
   "displayName": "Green or Brown Lentils",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "green lentils",
    "brown lentils",
@@ -3608,7 +3608,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "beets",
   "baseIngredient": "beets",
   "displayName": "Beets",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "beets",
    "beetroot",
@@ -3690,7 +3690,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "kataifi",
   "baseIngredient": "kataifi",
   "displayName": "Kataifi (Shredded Phyllo)",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "kataifi",
    "kadaif",
@@ -3711,11 +3711,11 @@ export const ingredientRegistry: IngredientEntity[] = [
   "id": "jalapeno",
   "canonicalName": "jalapeno",
   "baseIngredient": "jalapeno",
-  "displayName": "Jalapeño",
-  "category": "Vegetables",
+  "displayName": "Jalape\u00f1o",
+  "category": "Fruit",
   "synonyms": [
    "jalapeno",
-   "jalapeños",
+   "jalape\u00f1os",
    "jalapeno pepper",
    "jalapeno peppers"
   ]
@@ -3725,7 +3725,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "serrano_chili",
   "baseIngredient": "serrano_chili",
   "displayName": "Serrano Chili",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "serrano",
    "serrano chili",
@@ -3738,7 +3738,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "poblano_pepper",
   "baseIngredient": "poblano_pepper",
   "displayName": "Poblano Pepper",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "poblano",
    "poblano pepper",
@@ -3751,7 +3751,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "tomatillo",
   "baseIngredient": "tomatillo",
   "displayName": "Tomatillos",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "tomatillo",
    "tomatillos",
@@ -3763,7 +3763,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "corn_on_the_cob",
   "baseIngredient": "corn_on_the_cob",
   "displayName": "Corn on the Cob",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "corn on the cob",
    "ears of corn",
@@ -3776,7 +3776,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "radish",
   "baseIngredient": "radish",
   "displayName": "Radishes",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "radish",
    "radishes"
@@ -3787,7 +3787,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "masa_harina",
   "baseIngredient": "masa_harina",
   "displayName": "Masa Harina",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "masa harina",
    "masa",
@@ -3800,7 +3800,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pinto_beans",
   "baseIngredient": "pinto_beans",
   "displayName": "Pinto Beans",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pinto beans",
    "dried pinto beans",
@@ -3829,7 +3829,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ancho_chiles",
   "baseIngredient": "ancho_chiles",
   "displayName": "Dried Ancho Chiles",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "ancho chile",
    "ancho chiles",
@@ -3845,7 +3845,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "guajillo_chiles",
   "baseIngredient": "guajillo_chiles",
   "displayName": "Dried Guajillo Chiles",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "guajillo chile",
    "guajillo chiles",
@@ -3858,7 +3858,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pasilla_chiles",
   "baseIngredient": "pasilla_chiles",
   "displayName": "Dried Pasilla Chiles",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "pasilla chile",
    "pasilla chiles",
@@ -3870,8 +3870,8 @@ export const ingredientRegistry: IngredientEntity[] = [
   "id": "arbol-chiles",
   "canonicalName": "arbol_chiles",
   "baseIngredient": "arbol_chiles",
-  "displayName": "Chiles de Árbol",
-  "category": "Spices",
+  "displayName": "Chiles de \u00c1rbol",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "chile de arbol",
    "chiles de arbol",
@@ -3884,7 +3884,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mexican_oregano",
   "baseIngredient": "mexican_oregano",
   "displayName": "Mexican Oregano",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "mexican oregano",
    "dried mexican oregano"
@@ -3895,7 +3895,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "allspice",
   "baseIngredient": "allspice",
   "displayName": "Allspice",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "allspice",
    "ground allspice",
@@ -3907,7 +3907,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "queso_fresco",
   "baseIngredient": "queso_fresco",
   "displayName": "Queso Fresco",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "queso fresco",
    "fresh mexican cheese"
@@ -3918,7 +3918,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cotija_cheese",
   "baseIngredient": "cotija_cheese",
   "displayName": "Cotija Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "cotija",
    "cotija cheese",
@@ -3930,7 +3930,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "oaxaca_cheese",
   "baseIngredient": "oaxaca_cheese",
   "displayName": "Oaxaca Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "oaxaca cheese",
    "queso oaxaca",
@@ -3943,7 +3943,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "monterey_jack",
   "baseIngredient": "monterey_jack",
   "displayName": "Monterey Jack",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "monterey jack",
    "monterey jack cheese",
@@ -3955,7 +3955,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mexican_crema",
   "baseIngredient": "mexican_crema",
   "displayName": "Mexican Crema",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "crema",
    "mexican crema",
@@ -3968,7 +3968,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "evaporated_milk",
   "baseIngredient": "evaporated_milk",
   "displayName": "Evaporated Milk",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "evaporated milk"
   ]
@@ -4001,7 +4001,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "banana_leaves",
   "baseIngredient": "banana_leaves",
   "displayName": "Banana Leaves",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "banana leaves",
    "banana leaf"
@@ -4047,7 +4047,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chorizo",
   "baseIngredient": "chorizo",
   "displayName": "Mexican Chorizo",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chorizo",
    "mexican chorizo",
@@ -4059,7 +4059,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "skirt_steak",
   "baseIngredient": "beef",
   "displayName": "Skirt Steak",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "skirt steak",
    "flank steak",
@@ -4071,7 +4071,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "tostada_shells",
   "baseIngredient": "tostada_shells",
   "displayName": "Tostada Shells",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "tostada shells",
    "tostadas",
@@ -4129,7 +4129,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "habanero_chili",
   "baseIngredient": "habanero_chili",
   "displayName": "Habanero Chili",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "habanero",
    "habanero chili",
@@ -4166,7 +4166,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bolillo_rolls",
   "baseIngredient": "bread_loaf",
   "displayName": "Bolillo Rolls",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "bolillo",
    "bolillo rolls",
@@ -4191,8 +4191,8 @@ export const ingredientRegistry: IngredientEntity[] = [
   "id": "jamon-serrano",
   "canonicalName": "jamon_serrano",
   "baseIngredient": "jamon_serrano",
-  "displayName": "Jamón Serrano",
-  "category": "Meat & Seafood",
+  "displayName": "Jam\u00f3n Serrano",
+  "category": "Juices & Sodas",
   "synonyms": [
    "jamon serrano",
    "serrano ham",
@@ -4231,8 +4231,8 @@ export const ingredientRegistry: IngredientEntity[] = [
   "id": "padron-peppers",
   "canonicalName": "padron_peppers",
   "baseIngredient": "padron_peppers",
-  "displayName": "Padrón Peppers",
-  "category": "Vegetables",
+  "displayName": "Padr\u00f3n Peppers",
+  "category": "Fruit",
   "synonyms": [
    "padron peppers",
    "pimientos de padron",
@@ -4266,7 +4266,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rabbit",
   "baseIngredient": "rabbit",
   "displayName": "Rabbit",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "rabbit",
    "rabbit pieces",
@@ -4278,7 +4278,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fideo_noodles",
   "baseIngredient": "fideo_noodles",
   "displayName": "Fideo Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "fideo",
    "fideos",
@@ -4317,7 +4317,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sardines",
   "baseIngredient": "sardines",
   "displayName": "Fresh Sardines",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "sardines",
    "fresh sardines",
@@ -4329,7 +4329,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "spanish_chorizo",
   "baseIngredient": "spanish_chorizo",
   "displayName": "Spanish Chorizo (cured)",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "spanish chorizo",
    "cured chorizo",
@@ -4343,7 +4343,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "oxtail",
   "baseIngredient": "oxtail",
   "displayName": "Oxtail",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "oxtail",
    "oxtails",
@@ -4370,7 +4370,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "manchego",
   "baseIngredient": "manchego",
   "displayName": "Manchego Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "manchego",
    "manchego cheese",
@@ -4411,7 +4411,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "baguette",
   "baseIngredient": "bread_loaf",
   "displayName": "Baguette / Crusty Roll",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "baguette",
    "crusty roll",
@@ -4426,7 +4426,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "shallot",
   "baseIngredient": "shallot",
   "displayName": "Shallots",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "shallot",
    "shallots",
@@ -4439,7 +4439,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "lemongrass",
   "baseIngredient": "lemongrass",
   "displayName": "Lemongrass",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "lemongrass",
    "lemon grass",
@@ -4453,7 +4453,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "galangal",
   "baseIngredient": "galangal",
   "displayName": "Galangal",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "galangal",
    "fresh galangal",
@@ -4467,7 +4467,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "kaffir_lime_leaves",
   "baseIngredient": "kaffir_lime_leaves",
   "displayName": "Makrut (Kaffir) Lime Leaves",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "kaffir lime leaves",
    "makrut lime leaves",
@@ -4495,7 +4495,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "thai_chili",
   "baseIngredient": "thai_chili",
   "displayName": "Thai Bird's Eye Chilies",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "thai chili",
    "thai chilies",
@@ -4512,7 +4512,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "jasmine_rice",
   "baseIngredient": "jasmine_rice",
   "displayName": "Jasmine Rice",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "jasmine rice",
    "thai jasmine rice",
@@ -4525,7 +4525,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sticky_rice",
   "baseIngredient": "sticky_rice",
   "displayName": "Glutinous (Sticky) Rice",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "sticky rice",
    "glutinous rice",
@@ -4539,7 +4539,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "glass_noodles",
   "baseIngredient": "glass_noodles",
   "displayName": "Glass Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "glass noodles",
    "cellophane noodles",
@@ -4554,7 +4554,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "green_papaya",
   "baseIngredient": "green_papaya",
   "displayName": "Green Papaya",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "green papaya",
    "unripe papaya",
@@ -4566,7 +4566,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chinese_broccoli",
   "baseIngredient": "chinese_broccoli",
   "displayName": "Chinese Broccoli (Gai Lan)",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "chinese broccoli",
    "gai lan",
@@ -4615,7 +4615,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "dried_shrimp",
   "baseIngredient": "dried_shrimp",
   "displayName": "Dried Shrimp",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "dried shrimp",
    "dried prawns",
@@ -4640,7 +4640,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rice_vermicelli",
   "baseIngredient": "rice_vermicelli",
   "displayName": "Rice Vermicelli",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "rice vermicelli",
    "bun noodles",
@@ -4654,7 +4654,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "beef_bones",
   "baseIngredient": "beef_bones",
   "displayName": "Beef Bones",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "beef bones",
    "beef marrow bones",
@@ -4667,7 +4667,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "daikon",
   "baseIngredient": "daikon",
   "displayName": "Daikon Radish",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "daikon",
    "daikon radish",
@@ -4679,12 +4679,12 @@ export const ingredientRegistry: IngredientEntity[] = [
   "id": "liver-pate",
   "canonicalName": "liver_pate",
   "baseIngredient": "liver_pate",
-  "displayName": "Liver Pâté",
+  "displayName": "Liver P\u00e2t\u00e9",
   "category": "Pantry Staples",
   "synonyms": [
    "pate",
    "liver pate",
-   "pâté",
+   "p\u00e2t\u00e9",
    "chicken liver pate"
   ]
  },
@@ -4781,8 +4781,8 @@ export const ingredientRegistry: IngredientEntity[] = [
   "id": "banh-canh-noodles",
   "canonicalName": "banh_canh_noodles",
   "baseIngredient": "banh_canh_noodles",
-  "displayName": "Bánh Canh Noodles",
-  "category": "Grains",
+  "displayName": "B\u00e1nh Canh Noodles",
+  "category": "Juices & Sodas",
   "synonyms": [
    "banh canh noodles",
    "banh canh",
@@ -4795,7 +4795,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "petai",
   "baseIngredient": "petai",
   "displayName": "Petai (Stink Beans)",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "petai",
    "stink beans",
@@ -4821,7 +4821,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chinese_sausage",
   "baseIngredient": "chinese_sausage",
   "displayName": "Chinese Sausage (Lap Cheong)",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chinese sausage",
    "lap cheong",
@@ -4847,7 +4847,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "curry_powder",
   "baseIngredient": "curry_powder",
   "displayName": "Curry Powder",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "curry powder",
    "madras curry powder",
@@ -4859,7 +4859,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "water_spinach",
   "baseIngredient": "water_spinach",
   "displayName": "Water Spinach (Kangkung)",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "water spinach",
    "kangkung",
@@ -4873,7 +4873,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "wood_ear_mushrooms",
   "baseIngredient": "wood_ear_mushrooms",
   "displayName": "Wood Ear Mushrooms",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "wood ear mushrooms",
    "wood ear",
@@ -4900,7 +4900,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "gochugaru",
   "baseIngredient": "gochugaru",
   "displayName": "Gochugaru (Korean Chili Flakes)",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "gochugaru",
    "korean chili flakes",
@@ -4941,7 +4941,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rice_cakes",
   "baseIngredient": "rice_cakes",
   "displayName": "Korean Rice Cakes (Tteok)",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "rice cakes",
    "tteok",
@@ -5001,7 +5001,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "perilla_leaves",
   "baseIngredient": "perilla_leaves",
   "displayName": "Perilla Leaves (Kkaennip)",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "perilla leaves",
    "kkaennip",
@@ -5015,7 +5015,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "beef_short_ribs",
   "baseIngredient": "beef",
   "displayName": "Beef Short Ribs",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "beef short ribs",
    "galbi cut short ribs",
@@ -5029,7 +5029,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "luncheon_meat",
   "baseIngredient": "luncheon_meat",
   "displayName": "Luncheon Meat (Spam)",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "spam",
    "luncheon meat",
@@ -5041,7 +5041,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "hot_dogs",
   "baseIngredient": "hot_dogs",
   "displayName": "Hot Dogs / Frankfurters",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "hot dogs",
    "hot dog",
@@ -5055,7 +5055,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fish_cakes",
   "baseIngredient": "fish_cakes",
   "displayName": "Korean Fish Cakes (Eomuk)",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "fish cakes",
    "eomuk",
@@ -5109,7 +5109,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "soybean_sprouts",
   "baseIngredient": "soybean_sprouts",
   "displayName": "Soybean Sprouts (Kongnamul)",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "soybean sprouts",
    "kongnamul",
@@ -5121,7 +5121,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "dangmyeon",
   "baseIngredient": "dangmyeon",
   "displayName": "Korean Sweet Potato Noodles (Dangmyeon)",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "dangmyeon",
    "korean sweet potato noodles",
@@ -5147,7 +5147,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "wheat_noodles",
   "baseIngredient": "wheat_noodles",
   "displayName": "Korean Wheat Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "wheat noodles",
    "kalguksu noodles",
@@ -5163,7 +5163,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "naengmyeon_noodles",
   "baseIngredient": "naengmyeon_noodles",
   "displayName": "Naengmyeon Noodles (Buckwheat/Starch)",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "naengmyeon noodles",
    "korean cold noodles",
@@ -5176,7 +5176,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "enoki_mushrooms",
   "baseIngredient": "enoki_mushrooms",
   "displayName": "Enoki Mushrooms",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "enoki",
    "enoki mushrooms",
@@ -5188,7 +5188,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ginseng",
   "baseIngredient": "ginseng",
   "displayName": "Fresh Ginseng",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "ginseng",
    "fresh ginseng",
@@ -5215,7 +5215,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "dill",
   "baseIngredient": "dill",
   "displayName": "Fresh Dill",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "dill",
    "fresh dill",
@@ -5228,7 +5228,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "baharat",
   "baseIngredient": "baharat",
   "displayName": "Baharat (Seven-Spice Blend)",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "baharat",
    "seven spice",
@@ -5242,7 +5242,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "aleppo_pepper",
   "baseIngredient": "aleppo_pepper",
   "displayName": "Aleppo Pepper (Pul Biber)",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "aleppo pepper",
    "pul biber",
@@ -5255,7 +5255,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "id": "red-pepper-paste",
   "canonicalName": "red_pepper_paste",
   "baseIngredient": "red_pepper_paste",
-  "displayName": "Red Pepper Paste (Biber Salçası)",
+  "displayName": "Red Pepper Paste (Biber Sal\u00e7as\u0131)",
   "category": "Pantry Staples",
   "synonyms": [
    "red pepper paste",
@@ -5270,7 +5270,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pita_bread",
   "baseIngredient": "pita_bread",
   "displayName": "Pita Bread",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pita",
    "pita bread",
@@ -5286,7 +5286,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "lavash_bread",
   "baseIngredient": "lavash_bread",
   "displayName": "Lavash Bread",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "lavash",
    "lavash bread",
@@ -5313,7 +5313,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "dried_limes",
   "baseIngredient": "dried_limes",
   "displayName": "Dried Limes (Loomi)",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "dried limes",
    "loomi",
@@ -5327,7 +5327,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "molokhia_leaves",
   "baseIngredient": "molokhia_leaves",
   "displayName": "Molokhia (Jute Leaves)",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "molokhia",
    "jute leaves",
@@ -5342,7 +5342,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "reshteh_noodles",
   "baseIngredient": "reshteh_noodles",
   "displayName": "Reshteh Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "reshteh",
    "reshteh noodles",
@@ -5355,7 +5355,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "dried_mint",
   "baseIngredient": "dried_mint",
   "displayName": "Dried Mint",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "dried mint",
    "crushed dried mint",
@@ -5367,7 +5367,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ground_lamb",
   "baseIngredient": "ground_lamb",
   "displayName": "Ground Lamb",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ground lamb",
    "minced lamb",
@@ -5380,11 +5380,11 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "kashkaval",
   "baseIngredient": "kashkaval",
   "displayName": "Kashar (Kashkaval) Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "kashar cheese",
    "kashkaval",
-   "kaşar",
+   "ka\u015far",
    "melting white cheese"
   ]
  },
@@ -5405,7 +5405,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "yellow_split_peas",
   "baseIngredient": "yellow_split_peas",
   "displayName": "Yellow Split Peas",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "yellow split peas",
    "split peas",
@@ -5418,7 +5418,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "leek",
   "baseIngredient": "leek",
   "displayName": "Leek",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "leek",
    "leeks"
@@ -5476,7 +5476,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sushi_rice",
   "baseIngredient": "sushi_rice",
   "displayName": "Sushi Rice",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "sushi rice",
    "japanese short-grain rice",
@@ -5489,7 +5489,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "udon_noodles",
   "baseIngredient": "udon_noodles",
   "displayName": "Udon Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "udon",
    "fresh udon",
@@ -5501,7 +5501,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "soba_noodles",
   "baseIngredient": "soba_noodles",
   "displayName": "Soba Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "soba",
    "soba noodles",
@@ -5548,7 +5548,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pork_loin",
   "baseIngredient": "pork",
   "displayName": "Pork Loin",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pork loin",
    "pork cutlet",
@@ -5561,7 +5561,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mackerel",
   "baseIngredient": "mackerel",
   "displayName": "Mackerel (Saba)",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "mackerel",
    "saba",
@@ -5573,7 +5573,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "unagi",
   "baseIngredient": "unagi",
   "displayName": "Unagi (Grilled Eel)",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "unagi",
    "eel",
@@ -5586,7 +5586,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sashimi_tuna",
   "baseIngredient": "sashimi_tuna",
   "displayName": "Sashimi-Grade Tuna",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "sashimi tuna",
    "sushi-grade tuna",
@@ -5599,7 +5599,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "salmon_roe",
   "baseIngredient": "salmon_roe",
   "displayName": "Salmon Roe (Ikura)",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ikura",
    "salmon roe",
@@ -5624,7 +5624,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ground_chicken",
   "baseIngredient": "ground_chicken",
   "displayName": "Ground Chicken",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ground chicken",
    "chicken mince",
@@ -5648,7 +5648,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "shichimi",
   "baseIngredient": "shichimi",
   "displayName": "Shichimi Togarashi",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "shichimi togarashi",
    "shichimi",
@@ -5711,7 +5711,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "edamame",
   "baseIngredient": "edamame",
   "displayName": "Edamame",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "edamame",
    "edamame in pods",
@@ -5737,7 +5737,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "dried_oregano",
   "baseIngredient": "dried_oregano",
   "displayName": "Dried Oregano",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "oregano",
    "dried oregano"
@@ -5748,7 +5748,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "adzuki_beans",
   "baseIngredient": "adzuki_beans",
   "displayName": "Adzuki Beans",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "adzuki beans",
    "azuki beans",
@@ -5760,7 +5760,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "moong_dal",
   "baseIngredient": "moong_dal",
   "displayName": "Moong Dal (Split Mung Beans)",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "moong dal",
    "yellow moong dal",
@@ -5893,7 +5893,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "wheat_starch",
   "baseIngredient": "wheat_starch",
   "displayName": "Wheat Starch",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "wheat starch",
    "tang flour",
@@ -5918,7 +5918,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "tzatziki",
   "baseIngredient": "tzatziki",
   "displayName": "Tzatziki",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "tzatziki",
    "tzatziki sauce"
@@ -5929,7 +5929,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "salted_shrimp",
   "baseIngredient": "salted_shrimp",
   "displayName": "Salted Fermented Shrimp (Saeujeot)",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "saeujeot",
    "salted fermented shrimp",
@@ -5953,7 +5953,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "salami",
   "baseIngredient": "salami",
   "displayName": "Salami",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "salami",
    "spicy salami",
@@ -5966,7 +5966,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "taco_shells",
   "baseIngredient": "taco_shells",
   "displayName": "Hard Taco Shells",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "taco shells",
    "hard taco shells",
@@ -5978,7 +5978,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mandarin_pancakes",
   "baseIngredient": "mandarin_pancakes",
   "displayName": "Mandarin Pancakes",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "mandarin pancakes",
    "peking duck pancakes",
@@ -5990,7 +5990,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "beef",
   "baseIngredient": "beef",
   "displayName": "Beef",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "beef",
    "beef meat"
@@ -6001,7 +6001,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pork",
   "baseIngredient": "pork",
   "displayName": "Pork",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pork",
    "pork meat"
@@ -6012,7 +6012,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "turkey",
   "baseIngredient": "turkey",
   "displayName": "Turkey",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "turkey",
    "turkey breast",
@@ -6024,7 +6024,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ground_turkey",
   "baseIngredient": "ground_turkey",
   "displayName": "Ground Turkey",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ground turkey",
    "minced turkey",
@@ -6036,7 +6036,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sausage",
   "baseIngredient": "sausage",
   "displayName": "Sausage",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "sausage",
    "sausages"
@@ -6047,7 +6047,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "steak",
   "baseIngredient": "beef",
   "displayName": "Steak",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "steak",
    "beef steak",
@@ -6059,7 +6059,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cheese",
   "baseIngredient": "cheese",
   "displayName": "Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "cheese",
    "grated cheese",
@@ -6072,7 +6072,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "noodles",
   "baseIngredient": "noodles",
   "displayName": "Noodles",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "noodles",
    "noodle"
@@ -6083,7 +6083,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sliced_bread",
   "baseIngredient": "sliced_bread",
   "displayName": "Sliced Bread / Toast",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "sliced bread / toast",
    "bread",
@@ -6102,7 +6102,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bread_loaf",
   "baseIngredient": "bread_loaf",
   "displayName": "Bread Loaf / Sub Rolls",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "bread loaf / sub rolls",
    "bread loaf",
@@ -6146,7 +6146,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "lentils",
   "baseIngredient": "lentils",
   "displayName": "Lentils",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "lentils",
    "lentil"
@@ -6157,7 +6157,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "dal",
   "baseIngredient": "dal",
   "displayName": "Dal",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "dal",
    "dhal",
@@ -6169,7 +6169,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cinnamon",
   "baseIngredient": "cinnamon",
   "displayName": "Cinnamon",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "cinnamon",
    "ground cinnamon",
@@ -6181,7 +6181,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "curry_paste",
   "baseIngredient": "curry_paste",
   "displayName": "Curry Paste",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "curry paste"
   ]
@@ -6218,7 +6218,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chapati",
   "baseIngredient": "chapati",
   "displayName": "Chapati / Roti",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chapati / roti",
    "chapati",
@@ -6233,7 +6233,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "naan",
   "baseIngredient": "naan",
   "displayName": "Naan",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "naan",
    "naan bread"
@@ -6244,7 +6244,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bagel",
   "baseIngredient": "bagel",
   "displayName": "Bagels",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "bagels",
    "bagel"
@@ -6255,7 +6255,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "croissant",
   "baseIngredient": "croissant",
   "displayName": "Croissants",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "croissants",
    "croissant"
@@ -6266,7 +6266,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "english_muffin",
   "baseIngredient": "english_muffin",
   "displayName": "English Muffins",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "english muffins",
    "english muffin"
@@ -6277,7 +6277,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pav",
   "baseIngredient": "pav",
   "displayName": "Pav (Dinner Rolls)",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pav (dinner rolls)",
    "pav",
@@ -6294,7 +6294,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pretzel",
   "baseIngredient": "pretzel",
   "displayName": "Pretzels",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "pretzels",
    "pretzel",
@@ -6306,7 +6306,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "focaccia",
   "baseIngredient": "focaccia",
   "displayName": "Focaccia",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "focaccia",
    "focaccia bread"
@@ -6317,7 +6317,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "rye_bread",
   "baseIngredient": "sliced_bread",
   "displayName": "Rye Bread",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "rye bread",
    "rye"
@@ -6328,7 +6328,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cornbread",
   "baseIngredient": "cornbread",
   "displayName": "Cornbread",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "cornbread",
    "corn bread"
@@ -6339,7 +6339,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pie_crust",
   "baseIngredient": "pie_crust",
   "displayName": "Pie Crust",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "pie crust",
    "pie shell",
@@ -6386,7 +6386,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cereal",
   "baseIngredient": "cereal",
   "displayName": "Breakfast Cereal",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "breakfast cereal",
    "cereal",
@@ -6399,7 +6399,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "halloumi",
   "baseIngredient": "halloumi",
   "displayName": "Halloumi",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "halloumi",
    "grilling cheese"
@@ -6410,7 +6410,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "gouda",
   "baseIngredient": "gouda",
   "displayName": "Gouda",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "gouda",
    "gouda cheese"
@@ -6421,7 +6421,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "brie",
   "baseIngredient": "brie",
   "displayName": "Brie",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "brie",
    "camembert"
@@ -6432,7 +6432,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "swiss_cheese",
   "baseIngredient": "swiss_cheese",
   "displayName": "Swiss Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "swiss cheese",
    "emmental",
@@ -6444,7 +6444,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "goat_cheese",
   "baseIngredient": "goat_cheese",
   "displayName": "Goat Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "goat cheese",
    "goats cheese",
@@ -6455,10 +6455,10 @@ export const ingredientRegistry: IngredientEntity[] = [
   "id": "gruyere",
   "canonicalName": "gruyere",
   "baseIngredient": "gruyere",
-  "displayName": "Gruyère",
-  "category": "Dairy",
+  "displayName": "Gruy\u00e8re",
+  "category": "Milk & Cream",
   "synonyms": [
-   "gruyère",
+   "gruy\u00e8re",
    "gruyere cheese"
   ]
  },
@@ -6467,7 +6467,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "spelt",
   "baseIngredient": "spelt",
   "displayName": "Spelt",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "spelt",
    "spelt flour",
@@ -6481,7 +6481,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cottage_cheese",
   "baseIngredient": "cottage_cheese",
   "displayName": "Cottage Cheese",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "cottage cheese"
   ]
@@ -6491,7 +6491,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "margarine",
   "baseIngredient": "margarine",
   "displayName": "Margarine",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "margarine",
    "vegan butter"
@@ -6502,7 +6502,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "almond_milk",
   "baseIngredient": "almond_milk",
   "displayName": "Almond Milk",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "almond milk"
   ]
@@ -6512,7 +6512,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "oat_milk",
   "baseIngredient": "oat_milk",
   "displayName": "Oat Milk",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "oat milk"
   ]
@@ -6522,7 +6522,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "soy_milk",
   "baseIngredient": "soy_milk",
   "displayName": "Soy Milk",
-  "category": "Dairy",
+  "category": "Milk & Cream",
   "synonyms": [
    "soy milk",
    "soya milk"
@@ -6533,7 +6533,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "almond_flour",
   "baseIngredient": "almond_flour",
   "displayName": "Almond Flour",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "almond flour",
    "almond meal",
@@ -6545,7 +6545,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "brioche",
   "baseIngredient": "sliced_bread",
   "displayName": "Brioche",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "brioche",
    "brioche loaf"
@@ -6578,7 +6578,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chicken_drumsticks",
   "baseIngredient": "chicken",
   "displayName": "Chicken Drumsticks",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chicken drumsticks",
    "drumsticks",
@@ -6591,7 +6591,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cod",
   "baseIngredient": "cod",
   "displayName": "Cod",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "cod",
    "cod fillet",
@@ -6603,7 +6603,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "haddock",
   "baseIngredient": "haddock",
   "displayName": "Haddock",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "haddock",
    "smoked haddock"
@@ -6614,7 +6614,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "snapper",
   "baseIngredient": "snapper",
   "displayName": "Snapper",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "snapper",
    "red snapper"
@@ -6625,7 +6625,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "sea_bass",
   "baseIngredient": "sea_bass",
   "displayName": "Sea Bass",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "sea bass",
    "seabass",
@@ -6637,7 +6637,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "scallops",
   "baseIngredient": "scallops",
   "displayName": "Scallops",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "scallops",
    "sea scallops"
@@ -6648,7 +6648,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "oysters",
   "baseIngredient": "oysters",
   "displayName": "Oysters",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "oysters",
    "fresh oysters"
@@ -6659,7 +6659,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "meatballs",
   "baseIngredient": "meatballs",
   "displayName": "Meatballs",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "meatballs",
    "frozen meatballs"
@@ -6670,7 +6670,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "burger_patties",
   "baseIngredient": "beef",
   "displayName": "Beef Patties",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "beef patties",
    "patties",
@@ -6687,7 +6687,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chicken_patties",
   "baseIngredient": "chicken",
   "displayName": "Chicken Patties",
-  "category": "Meat & Seafood",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chicken patties",
    "chicken patty"
@@ -6698,7 +6698,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "veggie_patties",
   "baseIngredient": "veggie_patties",
   "displayName": "Veggie Patties",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "veggie patties",
    "veggie burger",
@@ -6713,7 +6713,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chicken_nuggets",
   "baseIngredient": "chicken_nuggets",
   "displayName": "Chicken Nuggets",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "chicken nuggets",
    "nuggets"
@@ -6724,7 +6724,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "french_fries",
   "baseIngredient": "french_fries",
   "displayName": "French Fries",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "french fries",
    "fries",
@@ -6737,7 +6737,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "hash_browns",
   "baseIngredient": "hash_browns",
   "displayName": "Hash Browns",
-  "category": "Frozen",
+  "category": "Ice & Frozen",
   "synonyms": [
    "hash browns",
    "hashbrowns",
@@ -6749,7 +6749,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "kale",
   "baseIngredient": "kale",
   "displayName": "Kale",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "kale",
    "curly kale",
@@ -6763,7 +6763,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "turnip",
   "baseIngredient": "turnip",
   "displayName": "Turnips",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "turnips",
    "turnip"
@@ -6774,7 +6774,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "pumpkin",
   "baseIngredient": "pumpkin",
   "displayName": "Pumpkin",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "pumpkin",
    "pumpkin puree",
@@ -6786,7 +6786,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chives",
   "baseIngredient": "chives",
   "displayName": "Chives",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "chives",
    "chive"
@@ -6797,7 +6797,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "snow_peas",
   "baseIngredient": "snow_peas",
   "displayName": "Snow Peas",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "snow peas",
    "sugar snap peas",
@@ -6809,7 +6809,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "artichoke",
   "baseIngredient": "artichoke",
   "displayName": "Artichokes",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "artichokes",
    "artichoke",
@@ -6821,7 +6821,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "watercress",
   "baseIngredient": "watercress",
   "displayName": "Watercress",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "watercress"
   ]
@@ -6831,7 +6831,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "baby_corn",
   "baseIngredient": "baby_corn",
   "displayName": "Baby Corn",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "baby corn",
    "young corn"
@@ -6842,7 +6842,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "fennel_bulb",
   "baseIngredient": "fennel_bulb",
   "displayName": "Fennel Bulb",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "fennel bulb",
    "fresh fennel"
@@ -6866,7 +6866,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "cassava",
   "baseIngredient": "cassava",
   "displayName": "Cassava",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "cassava",
    "yuca",
@@ -6879,7 +6879,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "yam",
   "baseIngredient": "yam",
   "displayName": "Yam",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "yam",
    "yams",
@@ -6892,7 +6892,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "taro",
   "baseIngredient": "taro",
   "displayName": "Taro",
-  "category": "Vegetables",
+  "category": "Fruit",
   "synonyms": [
    "taro",
    "taro root",
@@ -7014,7 +7014,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "quinoa",
   "baseIngredient": "quinoa",
   "displayName": "Quinoa",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "quinoa"
   ]
@@ -7024,7 +7024,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "barley",
   "baseIngredient": "barley",
   "displayName": "Barley",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "barley",
    "pearl barley"
@@ -7035,7 +7035,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "millet",
   "baseIngredient": "millet",
   "displayName": "Millet",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "millet",
    "pearl millet"
@@ -7046,7 +7046,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "ragi",
   "baseIngredient": "ragi",
   "displayName": "Ragi (Finger Millet)",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "ragi (finger millet)",
    "ragi",
@@ -7060,7 +7060,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "jowar",
   "baseIngredient": "jowar",
   "displayName": "Jowar (Sorghum)",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "jowar (sorghum)",
    "jowar",
@@ -7073,7 +7073,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "bajra",
   "baseIngredient": "bajra",
   "displayName": "Bajra (Pearl Millet)",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "bajra (pearl millet)",
    "bajra",
@@ -7085,7 +7085,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "vermicelli",
   "baseIngredient": "vermicelli",
   "displayName": "Vermicelli (Seviyan)",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "vermicelli (seviyan)",
    "vermicelli",
@@ -7099,7 +7099,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "poha",
   "baseIngredient": "poha",
   "displayName": "Poha (Flattened Rice)",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "poha (flattened rice)",
    "poha",
@@ -7141,7 +7141,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "coconut_flour",
   "baseIngredient": "coconut_flour",
   "displayName": "Coconut Flour",
-  "category": "Grains",
+  "category": "Juices & Sodas",
   "synonyms": [
    "coconut flour"
   ]
@@ -7151,7 +7151,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "masoor_dal",
   "baseIngredient": "masoor_dal",
   "displayName": "Masoor Dal (Split Red Lentils)",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "masoor dal (split red lentils)",
    "masoor dal",
@@ -7164,7 +7164,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "black_chickpeas",
   "baseIngredient": "black_chickpeas",
   "displayName": "Black Chickpeas (Kala Chana)",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "black chickpeas (kala chana)",
    "kala chana",
@@ -7177,7 +7177,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mung_beans",
   "baseIngredient": "mung_beans",
   "displayName": "Mung Beans (Green Gram)",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "mung beans (green gram)",
    "mung beans",
@@ -7192,7 +7192,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "chole",
   "baseIngredient": "chole",
   "displayName": "Chole (Chickpeas)",
-  "category": "Pulses",
+  "category": "Juices & Sodas",
   "synonyms": [
    "chole (chickpeas)",
    "chole",
@@ -7531,7 +7531,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "garlic_powder",
   "baseIngredient": "garlic_powder",
   "displayName": "Garlic Powder",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "garlic powder",
    "granulated garlic"
@@ -7542,7 +7542,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "onion_powder",
   "baseIngredient": "onion_powder",
   "displayName": "Onion Powder",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "onion powder",
    "granulated onion"
@@ -7553,7 +7553,7 @@ export const ingredientRegistry: IngredientEntity[] = [
   "canonicalName": "mushroom_powder",
   "baseIngredient": "mushroom_powder",
   "displayName": "Mushroom Powder",
-  "category": "Spices",
+  "category": "Spices & Flavourings",
   "synonyms": [
    "mushroom powder"
   ]
@@ -7593,10 +7593,10 @@ export const ingredientRegistry: IngredientEntity[] = [
   "id": "tomato-puree",
   "canonicalName": "tomato_puree",
   "baseIngredient": "tomato_puree",
-  "displayName": "Tomato Purée",
+  "displayName": "Tomato Pur\u00e9e",
   "category": "Pantry Staples",
   "synonyms": [
-   "tomato purée",
+   "tomato pur\u00e9e",
    "pureed tomatoes",
    "tomato passata puree"
   ]

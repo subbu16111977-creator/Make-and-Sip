@@ -19,19 +19,9 @@ import { colors, spacing, radii, type as typeScale, layout, shadows } from "@/th
 import { useShopping, type NewShoppingItemInput } from "@/context/ShoppingContext";
 import { usePantry } from "@/context/PantryContext";
 import { PlusIcon, CloseIcon, TrashIcon, ShoppingIcon, CheckIcon } from "@/components/icons";
+import { CATEGORY_ORDER, DEFAULT_CATEGORY } from "@/lib/categories";
 import type { PantryCategory, ShoppingItem, Unit } from "@/types";
 
-const CATEGORY_ORDER: PantryCategory[] = [
-  "Vegetables",
-  "Fruit",
-  "Dairy",
-  "Meat & Seafood",
-  "Grains",
-  "Pulses",
-  "Spices",
-  "Frozen",
-  "Pantry Staples",
-];
 
 const UNITS: Unit[] = ["g", "kg", "ml", "l", "pcs", "tsp", "tbsp", "cup", "bunch", "clove", "can", "pack"];
 
@@ -84,7 +74,7 @@ export default function ShoppingScreen() {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState("1");
   const [unit, setUnit] = useState<Unit>("pcs");
-  const [category, setCategory] = useState<PantryCategory>("Vegetables");
+  const [category, setCategory] = useState<PantryCategory>(DEFAULT_CATEGORY);
 
   const sections = useMemo(() => {
     return CATEGORY_ORDER.map((cat) => ({
@@ -101,7 +91,7 @@ export default function ShoppingScreen() {
     setName("");
     setQuantity("1");
     setUnit("pcs");
-    setCategory("Vegetables");
+    setCategory(DEFAULT_CATEGORY);
   }
 
   function handleSave() {
@@ -137,7 +127,7 @@ export default function ShoppingScreen() {
       {items.length === 0 ? (
         <EmptyState
           title="Your list is empty"
-          body="Add items by hand, or tap the bag icon on any recipe to send what it's missing straight here."
+          body="Add items by hand, or tap the bag icon on any drink to send what it's missing straight here."
           actionLabel="Add an item"
           onPressAction={() => setModalOpen(true)}
         />

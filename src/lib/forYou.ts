@@ -3,24 +3,24 @@ import type { LocalProfile } from "@/lib/profile";
 import { seededUnit } from "@/lib/pantryMatch";
 
 /**
- * "Picked for you": turns the cuisines and flavours chosen in the profile into
+ * "Picked for you": turns the drink types and flavours chosen in the profile into
  * recommendations. Plain logic — no React, no storage — so it can be tested.
  *
- * Profile labels are written for people ("Middle eastern", "Fresh and light"),
- * while dishes use their own spellings ("Middle Eastern", "Fresh & Light"), so
- * the two are matched here rather than compared directly.
+ * Profile labels are written for people ("Rich and indulgent"), while drinks use their own
+ * tags ("Rich"), so the two are matched here rather than compared directly.
  */
 
 /** Profile flavour label -> the taste tag dishes carry. "Other" has no tag (it uses the custom text). */
 export const FLAVOR_TO_TASTE: Record<string, TasteTag> = {
-  Spicy: "Spicy",
-  Comforting: "Comforting",
-  "Fresh and light": "Fresh & Light",
-  "Rich and indulgent": "Rich & Indulgent",
-  Tangy: "Tangy",
-  Smoky: "Smoky",
   Sweet: "Sweet",
-  Herby: "Herby",
+  Fruity: "Fruity",
+  Creamy: "Creamy",
+  Refreshing: "Refreshing",
+  Tangy: "Tangy",
+  Bitter: "Bitter",
+  Spicy: "Spicy",
+  Herbal: "Herbal",
+  "Rich and indulgent": "Rich",
 };
 
 export interface Preferences {

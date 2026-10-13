@@ -28,10 +28,10 @@ function usingUpLabel(expiring: PantryItem[], match: SlideshowMatch): string | u
   return `Uses ${names.join(" and ")}, before they turn`;
 }
 
-/** "Ready to cook" only when ingredients AND equipment are covered; otherwise be honest about what's short. */
+/** "Ready to make" only when ingredients AND equipment are covered; otherwise be honest about what's short. */
 function slideEyebrow(m: SlideshowMatch, owned: EquipmentTag[]): string {
-  if (!m.complete) return "Cook tonight";
-  return hasRequiredEquipment(owned, m.recipe) ? "Ready to cook" : "You have the ingredients";
+  if (!m.complete) return "Make tonight";
+  return hasRequiredEquipment(owned, m.recipe) ? "Ready to make" : "You have the ingredients";
 }
 
 /**
@@ -119,7 +119,7 @@ export function HeroSlideshow({ matches, ownedEquipment, expiring, onOpen }: Her
             totalCount={m.recipe.ingredients.length}
             missing={m.missing}
             eyebrow={slideEyebrow(m, ownedEquipment)}
-            canMake={slideEyebrow(m, ownedEquipment) === "Ready to cook"}
+            canMake={slideEyebrow(m, ownedEquipment) === "Ready to make"}
             usingUpLabel={usingUpLabel(expiring, m)}
             missingEquipment={missingEquipment(ownedEquipment, m.recipe)}
             onPress={() => onOpen(m.recipe.id)}

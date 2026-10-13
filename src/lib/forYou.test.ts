@@ -33,19 +33,19 @@ describe("matching the profile's wording to the dishes' wording", () => {
       expect(recipes.some((r) => cuisineMatches(p, r)), `${c} matches no dish`).toBe(true);
     }
   });
-  it("handles the different spellings (Middle eastern / Middle Eastern, Fresh and light / Fresh & Light)", () => {
-    const p = preferencesFrom(profile({ favoriteCuisines: ["Middle eastern"], favoriteFlavors: ["Fresh and light"] }));
-    expect(p.tastes).toEqual(["Fresh & Light"]);
-    expect(recipes.find((r) => r.cuisine === "Middle Eastern" && cuisineMatches(p, r))).toBeDefined();
+  it("handles the different spellings (Rich and indulgent / Rich)", () => {
+    const p = preferencesFrom(profile({ favoriteCuisines: ["Hot drinks"], favoriteFlavors: ["Rich and indulgent"] }));
+    expect(p.tastes).toEqual(["Rich"]);
+    expect(recipes.find((r) => r.cuisine === "Hot drinks" && cuisineMatches(p, r))).toBeDefined();
   });
   it("ignores typed text unless Others/Other is ticked, and counts it when it is", () => {
-    expect(preferencesFrom(profile({ customCuisines: ["Thai"] })).customCuisines).toEqual([]);
-    expect(preferencesFrom(profile({ favoriteCuisines: ["Others"], customCuisines: ["Thai"] })).customCuisines).toEqual(["thai"]);
-    expect(preferencesFrom(profile({ favoriteFlavors: ["Other"], customFlavors: ["Umami"] })).customFlavors).toEqual(["umami"]);
+    expect(preferencesFrom(profile({ customCuisines: ["Kombucha"] })).customCuisines).toEqual([]);
+    expect(preferencesFrom(profile({ favoriteCuisines: ["Others"], customCuisines: ["Kombucha"] })).customCuisines).toEqual(["kombucha"]);
+    expect(preferencesFrom(profile({ favoriteFlavors: ["Other"], customFlavors: ["Malty"] })).customFlavors).toEqual(["malty"]);
   });
   it("matches a typed cuisine against dishes' cuisines and a typed flavour against their tags or description", () => {
-    const p = preferencesFrom(profile({ favoriteCuisines: ["Others"], customCuisines: ["korea"], favoriteFlavors: ["Other"], customFlavors: ["smok"] }));
-    expect(recipes.some((r) => r.cuisine === "Korean" && cuisineMatches(p, r))).toBe(true);
+    const p = preferencesFrom(profile({ favoriteCuisines: ["Others"], customCuisines: ["tea"], favoriteFlavors: ["Other"], customFlavors: ["bitt"] }));
+    expect(recipes.some((r) => r.cuisine === "Tea" && cuisineMatches(p, r))).toBe(true);
     expect(recipes.some((r) => flavorMatchCount(p, r) > 0)).toBe(true);
   });
   it("reports whether anything has been chosen", () => {
@@ -55,7 +55,7 @@ describe("matching the profile's wording to the dishes' wording", () => {
 });
 
 describe("Best for you", () => {
-  const p = preferencesFrom(profile({ favoriteCuisines: ["Japanese"], favoriteFlavors: ["Spicy", "Comforting"] }));
+  const p = preferencesFrom(profile({ favoriteCuisines: ["Juices"], favoriteFlavors: ["Spicy", "Creamy"] }));
   it("is empty when nothing is chosen", () => {
     expect(bestForYou(items, preferencesFrom(emptyProfile()))).toEqual([]);
   });
@@ -86,7 +86,7 @@ describe("Best for you", () => {
 });
 
 describe("the two Home sections", () => {
-  const p = preferencesFrom(profile({ favoriteCuisines: ["Italian", "Mexican"], favoriteFlavors: ["Spicy", "Smoky"] }));
+  const p = preferencesFrom(profile({ favoriteCuisines: ["Coffee", "Sodas & sparkling"], favoriteFlavors: ["Spicy", "Bitter"] }));
   it("'Flavours from other cuisines' has liked flavours but never a liked cuisine", () => {
     const list = flavorsFromOtherCuisines(items, p);
     expect(list.length).toBeGreaterThan(0);
@@ -128,7 +128,7 @@ describe("the two Home sections", () => {
 });
 
 describe("40-dish limit and variety", () => {
-  const p = preferencesFrom(profile({ favoriteCuisines: ["Japanese", "Mexican"], favoriteFlavors: ["Spicy", "Smoky", "Fresh and light"] }));
+  const p = preferencesFrom(profile({ favoriteCuisines: ["Juices", "Sodas & sparkling"], favoriteFlavors: ["Spicy", "Bitter", "Refreshing"] }));
   const sections = (seed: number) => ({
     best: bestForYou(items, p, { seed, limit: HOME_SECTION_LIMIT }),
     other: flavorsFromOtherCuisines(items, p, { seed, limit: HOME_SECTION_LIMIT }),

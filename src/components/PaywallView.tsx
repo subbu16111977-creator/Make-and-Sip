@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { View, Text, Pressable, ScrollView, StyleSheet, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -6,7 +6,6 @@ import { Logo } from "@/components/Logo";
 import { CheckIcon, CloseIcon } from "@/components/icons";
 import { colors, layout, radii, spacing, type as typeScale } from "@/theme";
 import { useAppDimensions } from "@/lib/useAppDimensions";
-import { recipes } from "@/data/recipes";
 import { useSubscription } from "@/context/SubscriptionContext";
 import {
   PLANS,
@@ -169,12 +168,11 @@ export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
     ? `Your free trial continues until ${trialEnd ? formatDate(trialEnd) : "it ends"}. Then ${formatPrice(plan.price)} per ${plan.period}, renewing automatically until you cancel.`
     : chargeNotice(plan, withTrial);
 
-  const cuisineCount = useMemo(() => new Set(recipes.map((r) => r.cuisine)).size, []);
   const benefits = [
-    `All ${recipes.length} dishes across ${cuisineCount} cuisines`,
+    "Every drink: coffee, tea, shakes, smoothies, mocktails and more",
     "Matched to your pantry and equipment",
     "Best for you: picks from your tastes",
-    "Shopping list, favourites and saved dishes",
+    "Shopping list, favourites and saved drinks",
   ];
 
   return (
@@ -201,7 +199,7 @@ export function PaywallView({ dismissible = true }: { dismissible?: boolean }) {
           <Logo variant="mark" height={compact ? 36 : 52} />
           <Text style={styles.eyebrow}>MAKE & SIP PREMIUM</Text>
           <Text style={[styles.title, compact && styles.titleCompact]} accessibilityRole="header">
-            Cook with what you have
+            Make it with what you have
           </Text>
           <Text style={styles.sub}>{trialAvailable ? `Try everything free for ${TRIAL_DAYS} days. Cancel anytime.` : "Choose the plan that suits you."}</Text>
         </View>

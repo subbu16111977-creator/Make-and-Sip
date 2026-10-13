@@ -94,7 +94,7 @@ export function UnlockCelebration({ visible, count, onDismiss }: UnlockCelebrati
           <Text style={styles.emoji}>🎉</Text>
           <Text style={styles.headline}>Congrats!</Text>
           <Text style={styles.body}>
-            You&apos;ve unlocked {count} new {count === 1 ? "dish" : "dishes"}!!
+            You&apos;ve unlocked {count} new {count === 1 ? "drink" : "drinks"}!!
           </Text>
           <Text style={styles.note}>
             They&apos;ll show up on Home once you have their ingredients. In Discover they no longer say &quot;Needs&quot; your new appliance.

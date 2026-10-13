@@ -44,14 +44,14 @@ export function termsOfUse(): LegalDocument {
       {
         title: "Using the app",
         paragraphs: [
-          "Make & Sip is for personal, non-commercial use. Don't copy, resell, reverse-engineer or misuse the app or its content. The recipes, text, logo and design belong to the app's owner or their licensors; photos belong to their photographers.",
+          "Make & Sip is for personal, non-commercial use. Don't copy, resell, reverse-engineer or misuse the app or its content. The drinks, text, logo and design belong to the app's owner or their licensors; photos belong to their photographers.",
         ],
       },
       {
-        title: "Food safety and allergies",
+        title: "Allergens, caffeine and your health",
         paragraphs: [
-          "Recipes are general cooking inspiration. You are responsible for checking ingredients for allergens and for your own dietary needs. Diet and allergen tags (such as Vegan or Gluten-Free) are a convenience and may be incomplete or wrong, so always check labels.",
-          "Cook meat, poultry, eggs and seafood thoroughly, store food safely, and take care around heat and sharp tools. Expiry dates in your pantry are estimates you enter, not a food-safety guarantee. Make & Sip does not give medical or nutritional advice.",
+          "Drinks are general inspiration. You are responsible for checking ingredients for allergens (such as milk, nuts, soy and gluten) and for your own dietary needs. Dietary tags (such as Vegan, Dairy-Free, Caffeine-Free or Low Sugar) are a convenience and may be incomplete or wrong, so always check labels.",
+          "Caffeine, sugar and other ingredients affect people differently. If you are pregnant, have a medical condition or are unsure, ask a professional. Take care with hot liquids, steam, blenders and sharp tools. Expiry dates in your pantry are estimates you enter, not a food-safety guarantee. Make & Sip does not give medical or nutritional advice.",
         ],
       },
       {
@@ -70,7 +70,7 @@ export function termsOfUse(): LegalDocument {
       {
         title: "No warranty and limit of liability",
         paragraphs: [
-          'The app and recipes are provided "as is". To the extent the law allows, we are not liable for illness, injury, loss or damage from cooking or using the app, or for interruptions or errors in the app.',
+          'The app and its drinks are provided "as is". To the extent the law allows, we are not liable for illness, injury, loss or damage from making or drinking them or using the app, or for interruptions or errors in the app.',
           "We may update these terms; continuing to use the app means you accept them.",
         ],
       },
@@ -88,13 +88,13 @@ export function privacyPolicy(): LegalDocument {
       {
         title: "The short version",
         paragraphs: [
-          "Make & Sip has no accounts and no sign-in. Your pantry, shopping list, saved and favourite dishes, equipment and optional profile stay on your device; we don't receive them. We don't show ads and we don't use analytics or tracking tools.",
+          "Make & Sip has no accounts and no sign-in. Your pantry, shopping list, saved and favourite drinks, equipment and optional profile stay on your device; we don't receive them. We don't show ads and we don't use analytics or tracking tools.",
         ],
       },
       {
         title: "Stored on your device",
         paragraphs: [
-          "The app keeps pantry items and quantities, your shopping list, saved and favourite dishes, your equipment, and your optional profile (name, cuisine and flavour choices, and a profile photo if you pick one). A photo from your gallery is used only inside the app and is never uploaded.",
+          "The app keeps pantry items and quantities, your shopping list, saved and favourite drinks, your equipment, and your optional profile (name, drink-type and flavour choices, and a profile photo if you pick one). A photo from your gallery is used only inside the app and is never uploaded.",
           "Uninstalling the app, or using Reset local app data in Profile, removes this information. Reset does not cancel a subscription; that is managed in Google Play.",
         ],
       },
@@ -110,7 +110,7 @@ export function privacyPolicy(): LegalDocument {
       },
       {
         title: "Images",
-        paragraphs: ["Dish photos are loaded over the internet from image providers, which may see your device's IP address, as with any web image."],
+        paragraphs: ["Drink photos are loaded over the internet from image providers, which may see your device's IP address, as with any web image."],
       },
       {
         title: "Children",

@@ -16,7 +16,7 @@ interface RecipeHeroProps {
   totalCount: number;
   missing?: RecipeIngredient[];
   usingUpLabel?: string;
-  /** Label on the small chip at the top of the card. Defaults to "Cook tonight". */
+  /** Label on the small chip at the top of the card. Defaults to "Make tonight". */
   eyebrow?: string;
   /** Adds a tick before the eyebrow when the dish can be made right now. */
   canMake?: boolean;
@@ -42,7 +42,7 @@ export function RecipeHero({
   totalCount,
   missing = [],
   usingUpLabel,
-  eyebrow = "Cook tonight",
+  eyebrow = "Make tonight",
   canMake = false,
   missingEquipment = [],
   onPress,

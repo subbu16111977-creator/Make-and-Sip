@@ -76,8 +76,8 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
   const expiringSoon = useMemo(() => getExpiringSoon(pantryItems, 4), [pantryItems]);
   const slideshow = useMemo(() => pickSlideshowMatches(pantryItems, recipes, seed), [pantryItems, seed]);
 
-  // The rails below only recommend what is cookable with the gear you own.
-  // Every dish, including ones needing gear you lack, remains in Discover.
+  // The rails below only recommend what is makeable with the gear you own.
+  // Every drink, including ones needing gear you lack, remains in Discover.
   const canMake = useMemo(() => pickReadyToCook(pantryItems, recipes, ownedEquipment), [pantryItems, ownedEquipment]);
   const almostThere = useMemo(() => pickAlmostThere(pantryItems, recipes, ownedEquipment), [pantryItems, ownedEquipment]);
   const quickAll = useMemo(
@@ -167,30 +167,30 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
     "for-you",
     "Picked for you",
     "Best for you",
-    `${forYou.length} ${forYou.length === 1 ? "dish" : "dishes"} chosen from the cuisines and flavours you picked. A fresh mix each time.`,
+    `${forYou.length} ${forYou.length === 1 ? "drink" : "drinks"} chosen from the drinks and flavours you picked. A fresh mix each time.`,
     forYou
   );
   const otherCuisinesSection = prefSection(
     "other-cuisines",
-    "Same flavours, new places",
-    "Flavours from other cuisines you may like",
-    "Dishes with the flavours you enjoy, from cuisines you haven't picked.",
+    "Same flavours, new drinks",
+    "Flavours from other kinds of drink you may like",
+    "Drinks with the flavours you enjoy, from types you haven't picked.",
     otherCuisines
   );
   const newFlavorsSection = prefSection(
     "new-flavors",
     "Branch out",
-    "New flavours from cuisines you love",
-    "Dishes from your favourite cuisines with flavours you haven't picked.",
+    "New flavours from drinks you love",
+    "Drinks from your favourite types with flavours you haven't picked.",
     newFlavors
   );
-  // Until the user picks cuisines or flavours in Profile there is nothing to base these on.
+  // Until the user picks drink types or flavours in Profile there is nothing to base these on.
   const preferenceNudge = !hasPreferences(preferences) ? (
     <View style={styles.pantrySummaryWrap}>
-      <Pressable style={styles.pantrySummary} onPress={() => router.push("/profile")} accessibilityRole="button" accessibilityLabel="Choose your cuisines and flavours in Profile">
+      <Pressable style={styles.pantrySummary} onPress={() => router.push("/profile")} accessibilityRole="button" accessibilityLabel="Choose your favourite drinks and flavours in Profile">
         <View style={styles.pantrySummaryText}>
-          <Text style={styles.pantrySummaryTitle}>Get dishes picked for you</Text>
-          <Text style={styles.pantrySummaryBody}>Choose the cuisines and flavours you enjoy in Profile and we’ll recommend dishes to match.</Text>
+          <Text style={styles.pantrySummaryTitle}>Get drinks picked for you</Text>
+          <Text style={styles.pantrySummaryBody}>Choose the drinks and flavours you enjoy in Profile and we’ll recommend drinks to match.</Text>
         </View>
         <ChevronRightIcon size={18} color={colors.espresso} strokeWidth={1.6} />
       </Pressable>
@@ -210,7 +210,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
       <Screen contentContainerStyle={styles.emptyWrap} scrollRef={scrollRef} onScroll={onScroll} scrollEventThrottle={64}>
         <EmptyState
           title="Your pantry's empty"
-          body="Add a few ingredients and we'll start suggesting what to cook with what you already have."
+          body="Add a few ingredients and we'll start suggesting what to make with what you already have."
           actionLabel="Add your first ingredient"
           onPressAction={() => router.push("/pantry")}
         />
@@ -231,8 +231,8 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
       refreshControl={<RefreshControl refreshing={false} onRefresh={onRefresh} />}
     >
       <View style={styles.header}>
-        <Text style={styles.greeting}>{greeting}, Subbu.</Text>
-        <Text style={styles.headline}>Let&apos;s make something delicious.</Text>
+        <Text style={styles.greeting}>{profile.displayName ? `${greeting}, ${profile.displayName}.` : `${greeting}.`}</Text>
+        <Text style={styles.headline}>What are we sipping today?</Text>
         <Pressable onPress={() => router.push("/pantry")} hitSlop={6}>
           <Text style={styles.pantryStatus}>
             {pantryItems.length} {pantryItems.length === 1 ? "ingredient" : "ingredients"} on hand · {expiringSoon.length} to use up soon
@@ -254,7 +254,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
         ) : (
           <Pressable style={styles.noMatchCard} onPress={() => router.push("/discover")}>
             <Text style={styles.noMatchTitle}>Nothing in the app uses your ingredients yet</Text>
-            <Text style={styles.noMatchBody}>Add a few staples to your pantry, or browse every dish in Discover.</Text>
+            <Text style={styles.noMatchBody}>Add a few staples to your pantry, or browse every drink in Discover.</Text>
           </Pressable>
         )}
       </View>
@@ -286,7 +286,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
           <RecipeSection
             eyebrow="Ready when you are"
             title="What you can make"
-            subtitle={`${canMake.length} ${canMake.length === 1 ? "dish" : "dishes"} with every ingredient and every tool you need.`}
+            subtitle={`${canMake.length} ${canMake.length === 1 ? "drink" : "drinks"} with every ingredient and every tool you need.`}
             matches={canMake}
             ownedEquipment={ownedEquipment}
             expanded={expanded === "can-make"}
@@ -327,7 +327,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
                 Got {/^[aeiou]/i.test(unlock.tag) ? "an" : "a"} {unlock.tag.toLowerCase()}?
               </Text>
               <Text style={styles.pantrySummaryBody}>
-                Tick it in Equipment to make {unlock.count} more {unlock.count === 1 ? "dish" : "dishes"} — they show up here once you have their ingredients.
+                Tick it in Equipment to make {unlock.count} more {unlock.count === 1 ? "drink" : "drinks"} — they show up here once you have their ingredients.
               </Text>
             </View>
             <ChevronRightIcon size={18} color={colors.espresso} strokeWidth={1.6} />
@@ -343,7 +343,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
           <RecipeSection
             eyebrow="In a hurry"
             title="Quick and easy"
-            subtitle={`${quickAll.length} dishes ready in 20 minutes or less.`}
+            subtitle={`${quickAll.length} drinks ready in 20 minutes or less.`}
             matches={quickAll}
             ownedEquipment={ownedEquipment}
             expanded={expanded === "quick"}
@@ -359,7 +359,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
       {newFlavorsSection}
 
       <View style={styles.section}>
-        <SectionHeader eyebrow="Explore" title="Browse by cuisine" subtitle="Every dish, grouped by where it comes from." />
+        <SectionHeader eyebrow="Explore" title="Browse by type" subtitle="Every drink, grouped by what kind it is." />
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.railContent}>
           {cuisines.map((c) => (
             <CuisineTile
