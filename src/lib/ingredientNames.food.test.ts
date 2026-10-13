@@ -48,7 +48,7 @@ describe("every dish can be cooked from names typed into the pantry", () => {
         const name = resolveIngredientById(i.pantryId)?.displayName ?? i.pantryId;
         pantry = addPantryItem(pantry, { name, category: "Pantry Staples", quantity: 100000, unit: "g", location: "Pantry", expiresInDays: 30 }).items;
       }
-      const c = computeCookability(r, pantry, r.equipment);
+      const c = computeCookability(r, pantry, r.equipment ?? []);
       if (c.category !== "ready") stuck.push(`${r.id} (${c.category})`);
     }
     expect(stuck).toEqual([]);

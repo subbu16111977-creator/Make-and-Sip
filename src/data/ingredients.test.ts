@@ -15,7 +15,8 @@ describe("ingredient registry integrity", () => {
   it("every recipe ingredient's pantryId resolves to a registry entry", () => {
     const unresolved = new Set<string>();
     for (const recipe of recipes) {
-      for (const ing of recipe.ingredients) {
+      const lists = [recipe.ingredients, ...(recipe.methods ?? []).map((m) => m.ingredients ?? [])];
+      for (const ing of lists.flat()) {
         if (!resolveIngredientById(ing.pantryId)) unresolved.add(`${recipe.id}: ${ing.pantryId}`);
       }
     }

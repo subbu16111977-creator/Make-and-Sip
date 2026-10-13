@@ -1,7 +1,7 @@
 import type { EquipmentTag, PantryItem, Recipe, RecipeIngredient, TasteTag } from "@/types";
 import { normalizeIngredient, resolveIngredientById } from "@/lib/ingredientNormalize";
 import { computeCookability } from "@/lib/cookability";
-import { equipmentSatisfied, unmetEquipment } from "@/lib/equipmentNeeds";
+import { bestMethod, equipmentSatisfied, recipeForMethod, unmetEquipment } from "@/lib/methods";
 
 export interface RecipeMatch {
   recipe: Recipe;
@@ -329,8 +329,13 @@ export function getExpiringSoon(pantry: PantryItem[], withinDays = 4): PantryIte
  * literally missing — the detail screen surfaces the shortfall
  * separately via `getIngredientMatch`).
  */
-export function matchRecipe(pantry: PantryItem[], recipe: Recipe): RecipeMatch {
-  const availability = getRecipeAvailability(recipe, pantry);
+/**
+ * `ownedEquipment` (and optionally a chosen `methodId`) pick which way of making the drink the have/missing split is
+ * worked out for, since methods can use different ingredients. Left out, the drink's first method is used.
+ */
+export function matchRecipe(pantry: PantryItem[], recipe: Recipe, ownedEquipment: EquipmentTag[] = [], methodId?: string | null): RecipeMatch {
+  const resolved = recipeForMethod(recipe, bestMethod(ownedEquipment, recipe, methodId));
+  const availability = getRecipeAvailability(resolved, pantry);
   const have: RecipeIngredient[] = [];
   const missing: RecipeIngredient[] = [];
 
@@ -339,7 +344,7 @@ export function matchRecipe(pantry: PantryItem[], recipe: Recipe): RecipeMatch {
     else missing.push(m.recipeIngredient);
   }
 
-  const required = recipe.ingredients.filter((i) => !i.optional);
+  const required = resolved.ingredients.filter((i) => !i.optional);
   const requiredHave = have.filter((i) => !i.optional).length;
   const ratio = required.length === 0 ? 1 : requiredHave / required.length;
 
@@ -404,7 +409,7 @@ export function rankRecipesForDiscover(
 ): (RecipeMatch & { tasteScore: number; score: number })[] {
   return recipes
     .map((recipe) => {
-      const match = matchRecipe(pantry, recipe);
+      const match = matchRecipe(pantry, recipe, ownedEquipment ?? []);
       const tasteScore =
         selectedTastes.length === 0
           ? 1
@@ -511,7 +516,7 @@ export function pickReadyToCook(
   ownedEquipment: EquipmentTag[]
 ): RecipeMatch[] {
   return recipes
-    .map((r) => ({ m: matchRecipe(pantry, r), c: computeCookability(r, pantry, ownedEquipment) }))
+    .map((r) => ({ m: matchRecipe(pantry, r, ownedEquipment), c: computeCookability(r, pantry, ownedEquipment) }))
     .filter(({ m, c }) => c.category === "ready" && m.have.length > 0)
     .map(({ m }) => m)
     .sort((a, b) => a.recipe.timeMinutes - b.recipe.timeMinutes);
@@ -523,7 +528,7 @@ export function pickReadyToCook(
  */
 export function pickAlmostThere(pantry: PantryItem[], recipes: Recipe[], ownedEquipment: EquipmentTag[]): RecipeMatch[] {
   return recipes
-    .map((r) => ({ m: matchRecipe(pantry, r), c: computeCookability(r, pantry, ownedEquipment) }))
+    .map((r) => ({ m: matchRecipe(pantry, r, ownedEquipment), c: computeCookability(r, pantry, ownedEquipment) }))
     .filter(({ m, c }) => m.have.length > 0 && c.category !== "ready" && hasRequiredEquipment(ownedEquipment, m.recipe))
     .sort(
       (a, b) =>

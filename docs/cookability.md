@@ -15,7 +15,10 @@ Code: `src/lib/cookability.ts` (all thresholds in `COOKABILITY`), tests in `src/
 3. Credit per ingredient: enough = 1, short = fraction on hand, ambiguous = 0.5, missing = 0.
 4. Score = Σ(weight × credit) / Σ weight × 100. Weights: meat/seafood/grains/pulses 3; vegetables/fruit/dairy/frozen 2;
    spices and staples 1 (2 when ≥ 200 ml/g is needed). Optional ingredients are excluded.
-5. Equipment is separate: missing required equipment means the drink is never "Ready to make".
+5. Equipment is separate and depends on the **method**: a drink has one or more ways to make it, each with its own
+   equipment (none for a "by hand" way), steps and, where they differ, ingredients. The score is worked out for the method
+   shown: the one the person chose, otherwise the first they own the gear for, otherwise the one missing the least. A
+   drink is never "Ready to make" if that method's equipment is missing.
 
 ## Categories
 - **Ready to make** — no required ingredient missing, short or ambiguous, and all equipment owned.

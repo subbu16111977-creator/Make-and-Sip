@@ -22,22 +22,32 @@ describe("recipe catalogue", () => {
     expect(dupes).toEqual([]);
   });
 
-  it("uses only known equipment, and never lists a tag in more than one of required, any-of and optional", () => {
+  it("every drink has at least one way to make it, each valid", () => {
     const bad: string[] = [];
     for (const r of recipes) {
-      const seen = new Map<string, string>();
-      const note = (tag: string, where: string) => {
-        if (!isEquipmentTag(tag)) bad.push(`${r.id}: unknown ${where} "${tag}"`);
-        const prev = seen.get(tag);
-        if (prev) bad.push(`${r.id}: "${tag}" is in both ${prev} and ${where}`);
-        else seen.set(tag, where);
-      };
-      for (const tag of r.equipment) note(tag, "required");
-      for (const group of r.equipmentAnyOf ?? []) {
-        if (group.length < 2) bad.push(`${r.id}: an any-of group needs at least two tools`);
-        for (const tag of group) note(tag, "any-of");
+      const methods = r.methods ?? [];
+      if (methods.length === 0) bad.push(`${r.id}: needs at least one method`);
+      const ids = methods.map((m) => m.id);
+      if (new Set(ids).size !== ids.length) bad.push(`${r.id}: method ids must be unique`);
+      if (methods.filter((m) => m.equipment.length === 0).length > 1) bad.push(`${r.id}: only one by-hand method makes sense`);
+      for (const m of methods) {
+        const where = `${r.id}/${m.id}`;
+        if (!/^[a-z0-9-]+$/.test(m.id)) bad.push(`${where}: id should be lowercase-hyphenated`);
+        if (m.label.trim().length < 3) bad.push(`${where}: needs a label`);
+        if (m.steps.length < 3) bad.push(`${where}: needs a real method (at least 3 steps)`);
+        if (m.equipment.length === 0 && !(m.handTools && m.handTools.length > 0)) bad.push(`${where}: a by-hand method should say which hand tools it uses`);
+        const seen = new Set<string>();
+        for (const tag of m.equipment) {
+          if (!isEquipmentTag(tag)) bad.push(`${where}: unknown equipment "${tag}"`);
+          if (seen.has(tag)) bad.push(`${where}: "${tag}" listed twice`);
+          seen.add(tag);
+        }
+        for (const o of m.optionalEquipment ?? []) {
+          if (!isEquipmentTag(o.tag)) bad.push(`${where}: unknown optional equipment "${o.tag}"`);
+          if (seen.has(o.tag)) bad.push(`${where}: "${o.tag}" is both required and optional`);
+          seen.add(o.tag);
+        }
       }
-      for (const o of r.optionalEquipment ?? []) note(o.tag, "optional");
     }
     expect(bad).toEqual([]);
   });

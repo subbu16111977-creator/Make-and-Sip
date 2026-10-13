@@ -7,6 +7,7 @@ import { colors, spacing, type as typeScale, layout } from "@/theme";
 import { RecipeCard } from "@/components/RecipeCard";
 import { EmptyState } from "@/components/States";
 import { useSaved } from "@/context/SavedContext";
+import { useEquipment } from "@/context/EquipmentContext";
 import { usePantry } from "@/context/PantryContext";
 import { recipes } from "@/data/recipes";
 import { matchRecipe } from "@/lib/pantryMatch";
@@ -16,13 +17,14 @@ export default function SavedScreen() {
   const { savedIds } = useSaved();
   const { items: pantryItems } = usePantry();
   const { width: screenWidth } = useAppDimensions();
+  const { owned: ownedEquipment } = useEquipment();
 
   const saved = useMemo(() => {
     const savedRecipes = savedIds
       .map((id) => recipes.find((r) => r.id === id))
       .filter((r): r is (typeof recipes)[number] => Boolean(r));
-    return savedRecipes.map((recipe) => matchRecipe(pantryItems, recipe));
-  }, [savedIds, pantryItems]);
+    return savedRecipes.map((recipe) => matchRecipe(pantryItems, recipe, ownedEquipment));
+  }, [savedIds, pantryItems, ownedEquipment]);
 
   const cardGap = spacing.md;
   const cardWidth = (screenWidth - layout.screenPadding * 2 - cardGap) / 2;

@@ -87,7 +87,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
         seed,
         QUICK_MINUTES,
         recipes.length
-      ).map((r) => matchRecipe(pantryItems, r)),
+      ).map((r) => matchRecipe(pantryItems, r, ownedEquipment)),
     [pantryItems, ownedEquipment, seed]
   );
 

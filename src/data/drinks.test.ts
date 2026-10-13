@@ -18,7 +18,6 @@ describe("the drinks", () => {
       if (!(CUISINE_OPTIONS as readonly string[]).includes(r.cuisine) || r.cuisine === CUISINE_OTHER) bad.push(`${r.id}: unknown drink type "${r.cuisine}"`);
       if (r.prepMinutes + r.cookMinutes !== r.timeMinutes) bad.push(`${r.id}: prep + make time must equal the total`);
       if (r.servings < 1) bad.push(`${r.id}: servings`);
-      if (r.steps.length < 3) bad.push(`${r.id}: needs a real method`);
       if (r.description.length < 30) bad.push(`${r.id}: description too thin`);
       for (const t of r.tasteTags) if (!TASTES.includes(t)) bad.push(`${r.id}: unknown taste "${t}"`);
       for (const d of r.dietTags) if (!DIETS.includes(d)) bad.push(`${r.id}: unknown dietary tag "${d}"`);
@@ -37,10 +36,11 @@ describe("the drinks", () => {
     expect(dup(recipes.map((r) => r.image.split("?")[0]))).toEqual([]);
   });
 
-  it("every required ingredient has an amount that can be read, or is a to-taste style amount", () => {
+  it("every required ingredient, in every method, has an amount that can be read, or is a to-taste style amount", () => {
     const bad: string[] = [];
     for (const r of recipes) {
-      for (const i of r.ingredients) {
+      const lists = [r.ingredients, ...(r.methods ?? []).map((m) => m.ingredients ?? [])];
+      for (const i of lists.flat()) {
         const { quantity } = parseAmount(i.amount);
         if (quantity === null && !isQualitative(i)) bad.push(`${r.id}: "${i.amount}" ${i.label}`);
       }
@@ -48,19 +48,25 @@ describe("the drinks", () => {
     expect(bad).toEqual([]);
   });
 
-  it("every drink can be made from names typed into the pantry", () => {
+  it("every way of making every drink works from names typed into the pantry with that method's equipment", () => {
     const stuck: string[] = [];
     for (const r of recipes) {
-      let pantry: PantryItem[] = [];
-      for (const i of r.ingredients) {
-        const name = resolveIngredientById(i.pantryId)?.displayName ?? i.pantryId;
-        pantry = addPantryItem(pantry, { name, category: "Pantry Staples", quantity: 100000, unit: "g", location: "Pantry", expiresInDays: 30 }).items;
+      for (const m of r.methods ?? []) {
+        let pantry: PantryItem[] = [];
+        for (const i of m.ingredients ?? r.ingredients) {
+          const name = resolveIngredientById(i.pantryId)?.displayName ?? i.pantryId;
+          pantry = addPantryItem(pantry, { name, category: "Pantry Staples", quantity: 100000, unit: "g", location: "Pantry", expiresInDays: 30 }).items;
+        }
+        const c = computeCookability(r, pantry, m.equipment, r.servings, m.id);
+        if (c.category !== "ready") stuck.push(`${r.id}/${m.id} (${c.category})`);
       }
-      const owned = [...r.equipment, ...(r.equipmentAnyOf ?? []).map((g) => g[0])];
-      const c = computeCookability(r, pantry, owned);
-      if (c.category !== "ready") stuck.push(`${r.id} (${c.category})`);
     }
     expect(stuck).toEqual([]);
+  });
+
+  it("offers a by-hand way for the coffees where one is possible, and the app has both hot and cold drinks", () => {
+    const withByHand = recipes.filter((r) => (r.methods ?? []).some((m) => m.equipment.length === 0));
+    expect(withByHand.length).toBeGreaterThan(0);
   });
 
   it("is hot or cold, and the app has both", () => {

@@ -179,7 +179,7 @@ describe("every real dish", () => {
   it("is ready when the pantry holds plenty of exactly what the dish needs", () => {
     const r = recipes[0];
     const pantry = r.ingredients.map((i) => item(i.pantryId, 100000, "g"));
-    const c = computeCookability(r, pantry, r.equipment);
+    const c = computeCookability(r, pantry, r.equipment ?? []);
     expect(c.requiredMissing).toBe(0);
   });
 });

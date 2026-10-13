@@ -43,7 +43,7 @@ export default function ProfileScreen() {
     []
   );
 
-  const favoriteMatches = favoriteRecipes(favorites.favoriteIds, recipes).map((r) => matchRecipe(pantry.items, r));
+  const favoriteMatches = favoriteRecipes(favorites.favoriteIds, recipes).map((r) => matchRecipe(pantry.items, r, equipment.owned));
 
   const [draft, setDraft] = useState<ProfileDraft>(() => draftFromProfile(profile));
   const [showErrors, setShowErrors] = useState(false);

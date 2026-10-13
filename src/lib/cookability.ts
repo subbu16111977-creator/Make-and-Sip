@@ -1,5 +1,5 @@
 import type { EquipmentTag, PantryItem, Recipe, RecipeIngredient } from "@/types";
-import { hasEquipmentRequirement, requiredEquipmentTags, unmetEquipment } from "@/lib/equipmentNeeds";
+import { bestMethod, methodsOf, missingForMethod, recipeForMethod, unmetEquipment } from "@/lib/methods";
 import { expandUnicodeFractions, parseAmount, resolveIngredientById } from "@/lib/ingredientNormalize";
 
 /**
@@ -315,7 +315,12 @@ export interface Cookability {
   requiredUnverified: number;
   optionalHave: number;
   optionalMissing: number;
-  /** Every tag the drink's required equipment mentions (items and "any one of" groups). */
+  /** Which way of making the drink the check was done for, and its short name ("Moka pot", "By hand"). */
+  methodId: string;
+  methodLabel: string;
+  /** How many ways there are to make it. */
+  methodCount: number;
+  /** The equipment the chosen method needs (none for a by-hand method). */
   equipmentNeeded: EquipmentTag[];
   /** What is still missing, as labels: a missing item, or "A, B or C" for a group with none owned. */
   equipmentMissing: string[];
@@ -331,10 +336,15 @@ function plural(n: number, one: string, many = `${one}s`): string {
   return `${n} ${n === 1 ? one : many}`;
 }
 
-export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEquipment: EquipmentTag[], servings: number = recipe.servings): Cookability {
+/**
+ * `methodId` picks a way of making the drink; left out, the first method the person has the equipment for is used
+ * (or, if none, the one missing the least). The ingredient amounts and the equipment checked are that method's.
+ */
+export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEquipment: EquipmentTag[], servings: number = recipe.servings, methodId?: string | null): Cookability {
   const safeServings = servings > 0 ? servings : recipe.servings;
   const factor = recipe.servings > 0 ? safeServings / recipe.servings : 1;
-  const all = recipe.ingredients.map((i) => ingredientCookability(i, pantry, factor));
+  const method = bestMethod(ownedEquipment, recipe, methodId);
+  const all = recipeForMethod(recipe, method).ingredients.map((i) => ingredientCookability(i, pantry, factor));
   const required = all.filter((i) => !i.optional);
   const optional = all.filter((i) => i.optional);
 
@@ -348,8 +358,10 @@ export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEq
   const problems = [...missing, ...insufficient, ...ambiguous];
   const importantProblems = problems.filter((i) => i.weight >= 2).length;
 
-  const equipmentMissing = unmetEquipment(ownedEquipment, recipe);
-  const equipmentOptional = (recipe.optionalEquipment ?? []).map((o) => o.tag).filter((t) => !requiredEquipmentTags(recipe).includes(t));
+  // Picked a method yourself: what THAT one needs. Otherwise: what the drink needs overall (the ways out).
+  const chosenByPerson = !!methodId && methodsOf(recipe).some((m) => m.id === methodId);
+  const equipmentMissing = chosenByPerson ? missingForMethod(ownedEquipment, method) : unmetEquipment(ownedEquipment, recipe);
+  const equipmentOptional = (method.optionalEquipment ?? []).map((o) => o.tag).filter((t) => !method.equipment.includes(t));
 
   let category: CookabilityCategory;
   if (problems.length === 0 && equipmentMissing.length === 0) category = "ready";
@@ -360,7 +372,7 @@ export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEq
   const satisfied = required.length - problems.length;
   let summary: string;
   if (category === "ready") {
-    summary = `You have all ${plural(required.length, "required ingredient")}${hasEquipmentRequirement(recipe) ? " and the equipment" : ""}.`;
+    summary = `You have all ${plural(required.length, "required ingredient")}${method.equipment.length > 0 ? " and the equipment" : ""}.`;
   } else {
     const bits: string[] = [];
     if (missing.length) bits.push(`${missing.length} missing`);
@@ -385,7 +397,10 @@ export function computeCookability(recipe: Recipe, pantry: PantryItem[], ownedEq
     requiredUnverified: unverified.length,
     optionalHave: optional.filter((i) => i.match !== "missing").length,
     optionalMissing: optional.filter((i) => i.match === "missing").length,
-    equipmentNeeded: requiredEquipmentTags(recipe),
+    methodId: method.id,
+    methodLabel: method.label,
+    methodCount: methodsOf(recipe).length,
+    equipmentNeeded: method.equipment,
     equipmentMissing,
     equipmentOptional,
     equipmentOptionalOwned: equipmentOptional.filter((t) => ownedEquipment.includes(t)),

@@ -4,7 +4,7 @@ import { useAppDimensions } from "@/lib/useAppDimensions";
 import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { colors, radii, spacing, type as typeScale, layout, shadows, shade } from "@/theme";
+import { colors, radii, semantic, spacing, type as typeScale, layout, shadows, shade } from "@/theme";
 import { recipes } from "@/data/recipes";
 import { usePantry } from "@/context/PantryContext";
 import { useSaved } from "@/context/SavedContext";
@@ -14,7 +14,7 @@ import { useShopping } from "@/context/ShoppingContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
 import { useCookability } from "@/lib/useCookability";
-import { hasEquipmentRequirement } from "@/lib/equipmentNeeds";
+import { bestMethod, isByHand, methodReady, methodsOf, missingForMethod, recipeForMethod } from "@/lib/methods";
 import { scaledRecipe } from "@/lib/cookability";
 import { CookabilityBadge } from "@/components/CookabilityBadge";
 import { TemperatureBadge } from "@/components/TemperatureBadge";
@@ -48,19 +48,27 @@ export default function RecipeDetailScreen() {
   const saveTarget = useTutorialTarget("recipe-save");
   const heartTarget = useTutorialTarget("recipe-heart");
   const { addMissingFromRecipe } = useShopping();
-  const { isOwned: isEquipmentOwned } = useEquipment();
+  const { isOwned: isEquipmentOwned, owned: ownedEquipment } = useEquipment();
 
   const recipe = useMemo(() => recipes.find((r) => r.id === id), [id]);
-  const match = useMemo(() => (recipe ? matchRecipe(pantryItems, recipe) : null), [recipe, pantryItems]);
+  // A drink can have several ways to make it, each with its own gear and steps. Until the person picks one, the first
+  // way they have the equipment for is shown, and it changes as they tick or untick equipment.
+  const [chosenMethodId, setChosenMethodId] = useState<string | null>(null);
+  const methods = useMemo(() => (recipe ? methodsOf(recipe) : []), [recipe]);
+  const activeMethod = useMemo(() => (recipe ? bestMethod(ownedEquipment, recipe, chosenMethodId) : null), [recipe, ownedEquipment, chosenMethodId]);
+  const match = useMemo(() => (recipe ? matchRecipe(pantryItems, recipe, ownedEquipment, chosenMethodId) : null), [recipe, pantryItems, ownedEquipment, chosenMethodId]);
   // The Cookability check works out amounts for the chosen number of servings (the recipe itself never changes).
   const [chosenServings, setChosenServings] = useState<number | null>(null);
   const servings = chosenServings ?? recipe?.servings ?? 1;
-  const cookability = useCookability(recipe, servings);
+  const cookability = useCookability(recipe, servings, chosenMethodId);
   const cookByIngredient = useMemo(() => new Map((cookability?.ingredients ?? []).map((c) => [c.ingredient, c])), [cookability]);
 
   // What "Add to Shopping" sends: required missing items plus top-ups for anything the pantry is short on,
   // for the chosen number of servings. Optional ingredients are held back and offered separately.
-  const plan = useMemo(() => (recipe ? getShoppingPlan(scaledRecipe(recipe, servings), pantryItems) : null), [recipe, servings, pantryItems]);
+  const plan = useMemo(
+    () => (recipe && activeMethod ? getShoppingPlan(scaledRecipe(recipeForMethod(recipe, activeMethod), servings), pantryItems) : null),
+    [recipe, activeMethod, servings, pantryItems]
+  );
 
   const [justAdded, setJustAdded] = useState(false);
   const [justAddedOptional, setJustAddedOptional] = useState(false);
@@ -74,7 +82,7 @@ export default function RecipeDetailScreen() {
     };
   }, []);
 
-  if (!recipe || !match || !cookability) {
+  if (!recipe || !match || !cookability || !activeMethod) {
     return (
       <View style={[styles.notFoundWrap, { paddingTop: insets.top + spacing.xl }]}>
         <Text style={styles.notFoundText}>We couldn&apos;t find that drink.</Text>
@@ -187,6 +195,34 @@ export default function RecipeDetailScreen() {
             ))}
           </View>
 
+          {methods.length > 1 && (
+            <View style={styles.methodPicker} accessibilityRole="radiogroup" accessibilityLabel="Ways to make this drink">
+              <Text style={styles.ingredientGroupLabel}>How to make it</Text>
+              <View style={styles.methodChips}>
+                {methods.map((m) => {
+                  const selected = m.id === activeMethod.id;
+                  const ready = methodReady(ownedEquipment, m);
+                  const missing = missingForMethod(ownedEquipment, m);
+                  return (
+                    <Pressable
+                      key={m.id}
+                      onPress={() => setChosenMethodId(m.id)}
+                      accessibilityRole="radio"
+                      accessibilityState={{ selected }}
+                      accessibilityLabel={`${m.label}. ${ready ? (isByHand(m) ? "No equipment needed" : "You have the equipment") : `Needs ${missing.join(" and ")}`}`}
+                      style={[styles.methodChip, selected && styles.methodChipSelected]}
+                    >
+                      <Text style={[styles.methodChipLabel, selected && styles.methodChipLabelSelected]}>{m.label}</Text>
+                      <Text style={[styles.methodChipNote, ready && styles.methodChipNoteReady]}>
+                        {isByHand(m) ? "No equipment" : ready ? "You have it" : `Needs ${missing.join(" + ").toLowerCase()}`}
+                      </Text>
+                    </Pressable>
+                  );
+                })}
+              </View>
+            </View>
+          )}
+
           <View style={styles.cookPanel} accessible accessibilityLabel={`${cookability.label}. ${cookability.summary}`}>
             <View style={styles.cookHead}>
               <Text style={styles.cookPercent}>{cookability.percent}%</Text>
@@ -267,10 +303,20 @@ export default function RecipeDetailScreen() {
             </Pressable>
           )}
 
-          {hasEquipmentRequirement(recipe) && (
-            <View style={styles.ingredientGroup}>
-              <Text style={styles.ingredientGroupLabel}>Equipment needed</Text>
-              {recipe.equipment.map((tag) => {
+          <View style={styles.ingredientGroup}>
+            <Text style={styles.ingredientGroupLabel}>{isByHand(activeMethod) ? "Equipment" : "Equipment needed"}</Text>
+            {isByHand(activeMethod) ? (
+              <View style={styles.ingredientRow}>
+                <View style={[styles.ingredientMark, styles.ingredientMarkHave]}>
+                  <CheckIcon size={10} color={colors.cream} strokeWidth={2.8} />
+                </View>
+                <View style={styles.ingredientLabelStack}>
+                  <Text style={styles.ingredientLabel}>No equipment needed</Text>
+                  {activeMethod.handTools?.length ? <Text style={styles.uncheckedText}>You&apos;ll use {activeMethod.handTools.join(", ").toLowerCase()}</Text> : null}
+                </View>
+              </View>
+            ) : (
+              activeMethod.equipment.map((tag) => {
                 const owned = isEquipmentOwned(tag);
                 return (
                   <View key={tag} style={styles.ingredientRow}>
@@ -281,28 +327,17 @@ export default function RecipeDetailScreen() {
                     {!owned && <Text style={styles.equipmentMissingTag}>missing — you&apos;ll need to get this</Text>}
                   </View>
                 );
-              })}
-              {recipe.equipmentAnyOf?.map((group) => {
-                const have = group.filter((tag) => isEquipmentOwned(tag));
-                return (
-                  <View key={group.join("|")} style={styles.ingredientRow}>
-                    <View style={[styles.ingredientMark, have.length ? styles.ingredientMarkHave : styles.ingredientMarkMissing]}>
-                      {have.length > 0 && <CheckIcon size={10} color={colors.cream} strokeWidth={2.8} />}
-                    </View>
-                    <View style={styles.ingredientLabelStack}>
-                      <Text style={styles.ingredientLabel}>One of: {group.join(", ")}</Text>
-                      {have.length > 0 ? <Text style={styles.uncheckedText}>You have {have.join(" and ")}</Text> : <Text style={styles.equipmentMissingTag}>you&apos;ll need one of these</Text>}
-                    </View>
-                  </View>
-                );
-              })}
-            </View>
-          )}
+              })
+            )}
+            {!isByHand(activeMethod) && activeMethod.handTools?.length ? (
+              <Text style={[styles.uncheckedText, styles.handToolsNote]}>Also: {activeMethod.handTools.join(", ").toLowerCase()}</Text>
+            ) : null}
+          </View>
 
-          {(recipe.optionalEquipment?.length ?? 0) > 0 && (
+          {(activeMethod.optionalEquipment?.length ?? 0) > 0 && (
             <View style={styles.ingredientGroup}>
               <Text style={styles.ingredientGroupLabel}>Optional equipment</Text>
-              {recipe.optionalEquipment?.map(({ tag, without }) => {
+              {activeMethod.optionalEquipment?.map(({ tag, without }) => {
                 const owned = isEquipmentOwned(tag);
                 return (
                   <View key={tag} style={styles.ingredientRow}>
@@ -376,7 +411,7 @@ export default function RecipeDetailScreen() {
 
           <Text style={styles.sectionTitle}>Method</Text>
           <View style={styles.stepsWrap}>
-            {recipe.steps.map((step, i) => (
+            {activeMethod.steps.map((step, i) => (
               <View key={i} style={styles.stepRow}>
                 <Text style={styles.stepNumber}>{String(i + 1).padStart(2, "0")}</Text>
                 <Text style={styles.stepText}>{step}</Text>
@@ -599,6 +634,15 @@ const styles = StyleSheet.create({
     ...typeScale.caption,
     color: colors.espressoFaint,
   },
+  methodPicker: { marginBottom: spacing.lg },
+  methodChips: { flexDirection: "row", flexWrap: "wrap", gap: spacing.sm },
+  methodChip: { paddingVertical: 10, paddingHorizontal: spacing.md, borderRadius: radii.md, borderWidth: 1, borderColor: colors.hairlineStrong, minWidth: 104, gap: 2 },
+  methodChipSelected: { borderColor: colors.burntOrange, backgroundColor: semantic.missingSoft },
+  methodChipLabel: { ...typeScale.label, color: colors.espresso },
+  methodChipLabelSelected: { color: colors.tangerine },
+  methodChipNote: { ...typeScale.caption, color: colors.espressoFaint },
+  methodChipNoteReady: { color: colors.sageOlive },
+  handToolsNote: { marginTop: spacing.xs },
   cookPanel: {
     backgroundColor: colors.paper,
     borderRadius: radii.lg,

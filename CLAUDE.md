@@ -40,10 +40,14 @@ Until then every drink is non-alcoholic and the UI should not imply otherwise.
   tsp/tbsp/cup; g/kg/oz-weight). Fluid ounces are **volume**, not weight. Drink-specific units (shot, dash, splash,
   scoop, part, ice cube) are handled explicitly; incomparable units are "quantity unknown", never guessed. Servings
   scale required amounts without ever editing the recipe.
-- **Equipment matters.** A drink needing equipment the user does not own (blender, shaker, espresso machine, French
-  press, kettle, milk frother …) is never "Ready to make"; show the gap clearly. Equipment can also be **optional**
-  per drink (`optionalEquipment`, e.g. an espresso machine or a shaker, with a one-line "without it" tip): it never
-  blocks "Ready to make" or lowers the score, and a tag is never both required and optional.
+- **Equipment matters, and a drink can have several ways to make it.** Each drink lists `methods`: a method names ALL the
+  equipment it needs (or none: a "by hand" way using only a glass, spoon, jar and the like), has its own steps, and
+  gives its own `ingredients` only where the amounts or ingredients differ (a moka pot uses less coffee than an
+  espresso machine; by hand uses instant). A drink is makeable if ANY method is; it is never "Ready to make" when none
+  is. The method shown is the first one the person has the gear for (so it changes when they tick or untick equipment)
+  until they pick one themselves. Where a drink can be made by hand, include that method. Equipment can also be
+  optional within a method (`optionalEquipment`, with a one-line "without it" tip): it never blocks "Ready to make" or
+  lowers the score. Drinks with one way only may use the short form (`equipment`, `optionalEquipment`, `steps`).
 - **Result levels** — always these four, with thresholds kept as named constants in one place:
   - **Ready to make**
   - **Almost ready**

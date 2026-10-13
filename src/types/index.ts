@@ -130,6 +130,25 @@ export interface OptionalEquipment {
   without?: string;
 }
 
+/** One way to make a drink. */
+export interface Method {
+  /** Unique within the drink, e.g. "moka-pot" or "by-hand". */
+  id: string;
+  /** Short name shown on the picker, e.g. "Moka pot" or "By hand". */
+  label: string;
+  /** Everything this method needs — ALL of it. Empty = it needs no tracked equipment (a "by hand" method). */
+  equipment: EquipmentTag[];
+  /** Plain tools it uses that every kitchen has, listed for clarity: "a lidded jar", "a spoon". */
+  handTools?: string[];
+  /** Gear that makes this method better but is never needed, each with what to do without it. */
+  optionalEquipment?: OptionalEquipment[];
+  /** Set only when this method's amounts or ingredients differ from the drink's standard list. */
+  ingredients?: RecipeIngredient[];
+  steps: string[];
+  /** A short note specific to this method. */
+  notes?: string;
+}
+
 export interface RecipeIngredient {
   /** Matches a PantryItem id when the user could plausibly have it on hand. */
   pantryId: string;
@@ -161,22 +180,19 @@ export interface Recipe {
   ingredients: RecipeIngredient[];
   /** Whether the drink is served hot or cold — shown as a flame or snowflake on its photo. */
   temperature: "hot" | "cold";
-  /** Equipment this drink can't be made without. Empty = always makeable, equipment-wise. */
-  equipment: EquipmentTag[];
   /**
-   * "Any one of these" requirements: each inner list is a set of interchangeable tools, and owning ONE of them
-   * satisfies it (an espresso machine, a moka pot or an AeroPress for a strong-coffee base). A drink with an unmet
-   * group is never "Ready to make". A tag never appears in more than one of `equipment`, `equipmentAnyOf` and
-   * `optionalEquipment`, and each group has at least two tags.
+   * The ways to make the drink. Each method names the equipment it needs (none = by hand, with only a glass, a
+   * spoon and the like), has its own steps, and may use different amounts. Someone who owns the gear for several
+   * methods can pick between them; someone who owns none sees the by-hand method if there is one.
    */
-  equipmentAnyOf?: EquipmentTag[][];
+  methods?: Method[];
   /**
-   * Equipment that makes the drink better or easier but isn't needed (an espresso machine for a latte that works
-   * with strong moka-pot coffee, a shaker you can swap for a jar). Never blocks "Ready to make" and never lowers the
-   * score. A tag never appears in both `equipment` and `optionalEquipment`.
+   * Shorthand for a drink with exactly ONE way to make it: used only when `methods` is absent. `equipment` is what it
+   * can't be made without, `optionalEquipment` what makes it better but is never needed, and `steps` the method.
    */
+  equipment?: EquipmentTag[];
   optionalEquipment?: OptionalEquipment[];
-  steps: string[];
+  steps?: string[];
   /** Cultural/historical context and any other free-text detail that doesn't fit a structured field. */
   notes?: string;
   /** Name of the reference used when researching this recipe (a culinary institution, museum, publication, etc.) — informational, not shown as a link target unless sourceUrl is also set. */
