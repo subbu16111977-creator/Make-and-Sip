@@ -30,6 +30,7 @@ export const EQUIPMENT_HELP: Record<EquipmentTag, string> = {
   Cezve: "Turkish and Greek coffee",
   "Phin Filter": "Vietnamese slow-drip coffee",
   "South Indian Filter": "Filter kaapi decoction",
+  "Cloth Filter": "Kopi sock, cafezinho and cloth-filter coffee",
 };
 
 export const EQUIPMENT_TAGS: readonly EquipmentTag[] = Object.keys(EQUIPMENT_HELP) as EquipmentTag[];

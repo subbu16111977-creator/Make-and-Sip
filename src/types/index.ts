@@ -113,7 +113,8 @@ export type EquipmentTag =
   | "Pitcher"
   | "Cezve"
   | "Phin Filter"
-  | "South Indian Filter";
+  | "South Indian Filter"
+  | "Cloth Filter";
 
 export type DietTag = "Vegan" | "Dairy-Free" | "Caffeine-Free" | "Low Sugar" | "Gluten-Free";
 
