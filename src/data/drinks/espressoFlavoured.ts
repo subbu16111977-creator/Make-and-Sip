@@ -28,7 +28,7 @@ export const hotFlavoured: Recipe[] = [
     { pantryId: "vanilla-syrup", label: "Vanilla syrup", amount: "20 ml" }
   ),
   flavouredLatte(
-    { id: "hazelnut-latte", title: "Hazelnut Latte", type: "Coffee", temperature: "hot", diet: ["Gluten-Free"], taste: ["Sweet", "Creamy"], description: "Espresso and steamed milk with toasted hazelnut syrup — nutty, warm and a little like chocolate spread.", prep: 5, make: 3, difficulty: "Easy", image: pexels(7932731) },
+    { id: "hazelnut-latte", title: "Hazelnut Latte", type: "Coffee", temperature: "hot", diet: ["Gluten-Free"], taste: ["Sweet", "Creamy"], description: "Espresso and steamed milk with toasted hazelnut syrup — nutty, warm and a little like chocolate spread.", prep: 5, make: 3, difficulty: "Easy", image: pexels(143645) },
     { pantryId: "hazelnut-syrup", label: "Hazelnut syrup", amount: "20 ml" }
   ),
   flavouredLatte(

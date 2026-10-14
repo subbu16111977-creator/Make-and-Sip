@@ -105,7 +105,7 @@ export const worldBrewed: Recipe[] = [
     {
       id: "drip-coffee", title: "Drip Coffee", type: "Coffee", temperature: "hot", diet: ["Vegan", "Dairy-Free", "Low Sugar", "Gluten-Free"], taste: ["Bitter", "Rich"],
       description: "The everyday filter pot: medium-ground coffee brewed through a paper filter by a drip machine, enough for the whole table.",
-      prep: 3, make: 6, difficulty: "Easy", servings: 3, image: pexels(17598134),
+      prep: 3, make: 6, difficulty: "Easy", servings: 3, image: pexels(8937257),
       notes: "A good ratio is two level tablespoons (about 10 g) of coffee to each 180 ml cup — adjust by taste.",
     },
     [
@@ -146,7 +146,7 @@ export const worldBrewed: Recipe[] = [
     {
       id: "red-eye", title: "Red Eye", type: "Coffee", temperature: "hot", diet: ["Vegan", "Dairy-Free", "Low Sugar", "Gluten-Free"], taste: ["Bitter", "Rich"],
       description: "A cup of drip coffee with an espresso shot dropped in — a stronger, more caffeinated mug for early starts.",
-      prep: 5, make: 5, difficulty: "Easy", image: pexels(11677124),
+      prep: 5, make: 5, difficulty: "Easy", image: pexels(10551979),
       notes: "Add another shot and it becomes a 'black eye'. There is no milk in a classic red eye.",
     },
     {

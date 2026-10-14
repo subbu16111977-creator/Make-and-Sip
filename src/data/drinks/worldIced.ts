@@ -60,7 +60,7 @@ export const worldIced: Recipe[] = [
     {
       id: "japanese-iced-coffee", title: "Japanese Iced Coffee", type: "Coffee", temperature: "cold", diet: ["Vegan", "Dairy-Free", "Low Sugar", "Gluten-Free"], taste: ["Refreshing", "Bitter"],
       description: "Hot coffee brewed straight onto ice, so it is chilled in seconds, keeping its aroma and brightness instead of turning flat like coffee cooled slowly.",
-      prep: 3, make: 4, difficulty: "Medium", image: pexels(33283848),
+      prep: 3, make: 4, difficulty: "Medium", image: pexels(31621814),
       sourceName: "Wikipedia — Iced coffee", sourceUrl: "https://en.wikipedia.org/wiki/Iced_coffee",
       notes: "The ice counts as part of the water: here 100 ml hot water onto 120 g of ice, so the finished drink is about 200 ml. Brew it a little stronger than usual.",
     },
