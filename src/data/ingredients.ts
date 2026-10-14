@@ -125,6 +125,8 @@ export const ingredientRegistry: IngredientEntity[] = [
   entity("roasted-barley", "Roasted Barley", "Coffee & Tea", ["barley tea", "mugicha", "boricha", "roasted barley tea", "barley tea bags", "roasted barley grains"]),
   entity("strawberry", "Strawberries", "Fruit", ["strawberry", "fresh strawberries", "sliced strawberries", "frozen strawberries"]),
   entity("mango", "Mango", "Fruit", ["mangoes", "fresh mango", "ripe mango", "mango chunks", "mango pulp", "mango puree", "alphonso mango"]),
+  entity("apple", "Apple", "Fruit", ["apples", "fresh apple", "red apple", "green apple", "apple slices", "sliced apple"]),
+  entity("taro-powder", "Taro Powder", "Pantry Staples", ["taro", "taro milk tea powder", "taro paste", "ube powder", "taro root powder", "purple taro powder"]),
   entity("cocoa-powder", "Cocoa Powder", "Spices & Flavourings", ["unsweetened cocoa", "cocoa", "cacao powder", "unsweetened cocoa powder"]),
   entity("ice", "Ice", "Ice & Frozen", ["ice cubes", "crushed ice", "cubed ice"]),
   entity("water", "Water", "Pantry Staples", ["cold water", "hot water", "boiling water", "filtered water", "still water", "tap water", "chilled water"]),
