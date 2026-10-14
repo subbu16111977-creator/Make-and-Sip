@@ -121,6 +121,10 @@ export const ingredientRegistry: IngredientEntity[] = [
   entity("peach", "Peach", "Fruit", ["peaches", "fresh peach", "peach slices", "sliced peach", "ripe peach"]),
   entity("lemonade", "Lemonade", "Juices & Sodas", ["lemonade drink", "fresh lemonade", "homemade lemonade", "still lemonade", "cloudy lemonade"]),
 
+  entity("tapioca-pearls", "Tapioca Pearls", "Pantry Staples", ["boba", "boba pearls", "bubble tea pearls", "black tapioca pearls", "tapioca balls", "quick cook boba", "sago pearls"]),
+  entity("roasted-barley", "Roasted Barley", "Coffee & Tea", ["barley tea", "mugicha", "boricha", "roasted barley tea", "barley tea bags", "roasted barley grains"]),
+  entity("strawberry", "Strawberries", "Fruit", ["strawberry", "fresh strawberries", "sliced strawberries", "frozen strawberries"]),
+  entity("mango", "Mango", "Fruit", ["mangoes", "fresh mango", "ripe mango", "mango chunks", "mango pulp", "mango puree", "alphonso mango"]),
   entity("cocoa-powder", "Cocoa Powder", "Spices & Flavourings", ["unsweetened cocoa", "cocoa", "cacao powder", "unsweetened cocoa powder"]),
   entity("ice", "Ice", "Ice & Frozen", ["ice cubes", "crushed ice", "cubed ice"]),
   entity("water", "Water", "Pantry Staples", ["cold water", "hot water", "boiling water", "filtered water", "still water", "tap water", "chilled water"]),
