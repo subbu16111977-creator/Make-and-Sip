@@ -89,3 +89,16 @@ describe("time and tool wording", () => {
     expect(toolsPhrase(["Glass"])).toBe("glass");
   });
 });
+
+describe("the short 'Needs …' label", () => {
+  it("names the way that needs the fewest things when every way needs more than one", async () => {
+    const { unmetEquipment } = await import("./methods");
+    const r = { methods: [
+      { id: "a", label: "A", equipment: ["Blender", "Espresso Machine"], steps: [] },
+      { id: "b", label: "B", equipment: ["Blender", "Moka Pot"], steps: [] },
+      { id: "c", label: "C", equipment: ["Blender", "AeroPress", "Strainer"], steps: [] },
+    ] } as never;
+    expect(unmetEquipment([], r)).toEqual(["Blender + Espresso Machine"]);
+    expect(unmetEquipment(["Blender"], r)).toEqual(["Espresso Machine"]);
+  });
+});

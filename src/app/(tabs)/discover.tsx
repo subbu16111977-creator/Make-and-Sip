@@ -83,6 +83,7 @@ export default function DiscoverScreen() {
         return false;
       }
       if (selectedCuisine && recipe.cuisine !== selectedCuisine) return false;
+      if (selectedTastes.length > 0 && !recipe.tasteTags.some((t) => selectedTastes.includes(t))) return false;
       if (selectedTemperature && recipe.temperature !== selectedTemperature) return false;
       if (selectedDiets.length > 0 && !selectedDiets.every((d) => recipe.dietTags.includes(d))) return false;
       return true;
@@ -97,7 +98,7 @@ export default function DiscoverScreen() {
         .map((x) => x.m);
     }
     return sortDiscover(kept, sort);
-  }, [ranked, query, selectedCuisine, selectedTemperature, selectedDiets, sort, preferences, refreshTick, pantryItems, ownedEquipment]);
+  }, [ranked, query, selectedCuisine, selectedTemperature, selectedTastes, selectedDiets, sort, preferences, refreshTick, pantryItems, ownedEquipment]);
 
   const firstCardTarget = useTutorialTarget("discover-first-card");
   const cardGap = spacing.md;

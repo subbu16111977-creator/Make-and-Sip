@@ -82,7 +82,7 @@ export const fruitAndSpecialShakes: Recipe[] = [
     }
   ),
   iceCreamShake(
-    { id: "chai-milkshake", title: "Masala Chai Milkshake", taste: ["Spicy", "Creamy", "Sweet"], description: "Strongly spiced masala chai, cooled and blended with vanilla ice cream: creamy, warming and full of cardamom, ginger and cinnamon.", prep: 20, make: 3, difficulty: "Medium", image: pexels(19887017), notes: "Make the chai strong and let it cool completely first, or it melts the ice cream." },
+    { id: "chai-milkshake", type: "Tea", title: "Masala Chai Milkshake", taste: ["Spicy", "Creamy", "Sweet"], description: "Strongly spiced masala chai, cooled and blended with vanilla ice cream: creamy, warming and full of cardamom, ginger and cinnamon.", prep: 20, make: 3, difficulty: "Medium", image: pexels(19887017), notes: "Make the chai strong and let it cool completely first, or it melts the ice cream." },
     {
       iceCream: vanilla(180), milkMl: 100,
       lines: [
@@ -100,7 +100,7 @@ export const fruitAndSpecialShakes: Recipe[] = [
     }
   ),
   iceCreamShake(
-    { id: "filter-coffee-milkshake", title: "Filter Coffee Milkshake", taste: ["Rich", "Creamy", "Sweet"], description: "Strong South Indian filter coffee, chilled and blended with vanilla ice cream and milk — a chicory-edged, caramel-dark cold coffee.", prep: 20, make: 3, difficulty: "Medium", image: pexels(34541593), sourceName: "Wikipedia — Indian filter coffee", sourceUrl: "https://en.wikipedia.org/wiki/Indian_filter_coffee", notes: "Filter coffee powder includes chicory, which gives the shake its dark, slightly bitter edge." },
+    { id: "filter-coffee-milkshake", type: "Coffee", title: "Filter Coffee Milkshake", taste: ["Rich", "Creamy", "Sweet"], description: "Strong South Indian filter coffee, chilled and blended with vanilla ice cream and milk — a chicory-edged, caramel-dark cold coffee.", prep: 20, make: 3, difficulty: "Medium", image: pexels(34541593), sourceName: "Wikipedia — Indian filter coffee", sourceUrl: "https://en.wikipedia.org/wiki/Indian_filter_coffee", notes: "Filter coffee powder includes chicory, which gives the shake its dark, slightly bitter edge." },
     {
       iceCream: vanilla(180), milkMl: 100,
       lines: [
@@ -129,7 +129,7 @@ export const fruitAndSpecialShakes: Recipe[] = [
     { iceCream: vanilla(180), milkMl: 150, lines: [{ pantryId: "ube-powder", label: "Ube powder or extract", amount: "1 tbsp" }], withIn: "and the ube", handBefore: ["Stir the ube powder into 2 tbsp of the milk until smooth, with no lumps, before you start."] }
   ),
   iceCreamShake(
-    { id: "matcha-milkshake", title: "Matcha Milkshake", diet: [...GF], taste: ["Creamy", "Herbal", "Sweet"], description: "Whisked matcha blended with vanilla ice cream and milk — grassy, creamy and pale green.", prep: 4, make: 2, difficulty: "Easy", image: pexels(32972549) },
+    { id: "matcha-milkshake", type: "Tea", title: "Matcha Milkshake", diet: [...GF], taste: ["Creamy", "Herbal", "Sweet"], description: "Whisked matcha blended with vanilla ice cream and milk — grassy, creamy and pale green.", prep: 4, make: 2, difficulty: "Easy", image: pexels(32972549) },
     { iceCream: vanilla(180), milkMl: 120, lines: [{ pantryId: "matcha-powder", label: "Matcha powder, sifted", amount: "1.5 tsp" }, { pantryId: "water", label: "Hot water, about 80°C", amount: "2 tbsp" }], before: ["Whisk the matcha with the hot water in a small bowl until smooth, then let it cool for a minute."], withIn: "and the matcha" }
   ),
   drink(

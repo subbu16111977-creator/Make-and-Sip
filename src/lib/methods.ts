@@ -56,8 +56,11 @@ export function equipmentSatisfied(owned: readonly EquipmentTag[], recipe: Recip
  */
 export function unmetEquipment(owned: readonly EquipmentTag[], recipe: Recipe): string[] {
   if (equipmentSatisfied(owned, recipe)) return [];
-  const options = methodsOf(recipe).map((m) => missingForMethod(owned, m).join(" + "));
-  return [groupLabel([...new Set(options)])];
+  const missing = methodsOf(recipe).map((m) => missingForMethod(owned, m));
+  // When every way needs just one thing, list them ("Espresso Machine or Moka Pot"); otherwise name the way that needs the fewest.
+  if (missing.every((m) => m.length === 1)) return [groupLabel([...new Set(missing.map((m) => m[0]))])];
+  const cheapest = missing.reduce((best, m) => (m.length < best.length ? m : best), missing[0]);
+  return [cheapest.join(" + ")];
 }
 
 /** Every piece of equipment any method of the drink mentions as required. */

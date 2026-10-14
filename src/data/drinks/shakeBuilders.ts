@@ -6,7 +6,8 @@ import { drink, type DrinkFacts } from "./builders";
  * whisked or shaken in a jar). Thick shakes use less milk and more ice cream.
  */
 
-export type ShakeFacts = Omit<DrinkFacts, "type" | "temperature">;
+/** A shake whose flavour is coffee or tea belongs under Coffee or Tea, so those can say so with `type`. */
+export type ShakeFacts = Omit<DrinkFacts, "type" | "temperature"> & { type?: DrinkFacts["type"] };
 
 const SCOOP_TIP: OptionalEquipment = { tag: "Ice Cream Scoop", without: "Use a large spoon dipped in hot water, which cuts through hard ice cream cleanly." };
 
@@ -54,7 +55,7 @@ export function iceCreamShakeMethods(spec: IceCreamShakeSpec): Method[] {
 }
 
 export function iceCreamShake(facts: ShakeFacts, spec: IceCreamShakeSpec): Recipe {
-  return drink({ ...facts, type: "Milkshakes & thick shakes", temperature: "cold" }, iceCreamShakeIngredients(spec), iceCreamShakeMethods(spec));
+  return drink({ ...facts, type: facts.type ?? "Milkshakes & thick shakes", temperature: "cold" }, iceCreamShakeIngredients(spec), iceCreamShakeMethods(spec));
 }
 
 export interface FruitShakeSpec {
@@ -93,5 +94,5 @@ export function fruitShakeMethods(spec: FruitShakeSpec): Method[] {
 }
 
 export function fruitShake(facts: ShakeFacts, spec: FruitShakeSpec): Recipe {
-  return drink({ ...facts, type: "Milkshakes & thick shakes", temperature: "cold" }, fruitShakeIngredients(spec), fruitShakeMethods(spec));
+  return drink({ ...facts, type: facts.type ?? "Milkshakes & thick shakes", temperature: "cold" }, fruitShakeIngredients(spec), fruitShakeMethods(spec));
 }

@@ -69,6 +69,20 @@ describe("the drinks", () => {
     expect(withByHand.length).toBeGreaterThan(0);
   });
 
+  it("files anything made with coffee, tea or matcha under Coffee or Tea, wherever the recipe came from", () => {
+    const COFFEE = new Set(["coffee", "ground-coffee", "coffee-beans", "instant-coffee"]);
+    const TEA = new Set(["black-tea", "assam-tea", "darjeeling-tea", "earl-grey-tea", "green-tea", "sencha", "dragon-well-tea", "genmaicha", "hojicha", "matcha-powder", "jasmine-tea", "white-tea", "oolong-tea", "puerh-tea", "chamomile-tea", "peppermint-tea", "rooibos-tea", "hibiscus-flowers", "butterfly-pea-flowers", "roasted-barley"]);
+    const misfiled: string[] = [];
+    for (const r of recipes) {
+      const lines = [...r.ingredients, ...(r.methods ?? []).flatMap((m) => m.ingredients ?? [])].filter((i) => !i.optional);
+      const usesCoffee = lines.some((i) => COFFEE.has(i.pantryId));
+      const usesTea = lines.some((i) => TEA.has(i.pantryId));
+      if (usesCoffee && r.cuisine !== "Coffee" && !usesTea) misfiled.push(`${r.id} (${r.cuisine}) uses coffee`);
+      if (usesTea && r.cuisine !== "Tea" && !usesCoffee) misfiled.push(`${r.id} (${r.cuisine}) uses tea`);
+    }
+    expect(misfiled).toEqual([]);
+  });
+
   it("is hot or cold, and the app has both", () => {
     expect(new Set(recipes.map((r) => r.temperature))).toEqual(new Set(["hot", "cold"]));
   });
