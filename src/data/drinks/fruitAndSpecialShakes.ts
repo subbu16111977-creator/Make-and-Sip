@@ -82,6 +82,37 @@ export const fruitAndSpecialShakes: Recipe[] = [
     }
   ),
   iceCreamShake(
+    { id: "chai-milkshake", title: "Masala Chai Milkshake", taste: ["Spicy", "Creamy", "Sweet"], description: "Strongly spiced masala chai, cooled and blended with vanilla ice cream: creamy, warming and full of cardamom, ginger and cinnamon.", prep: 20, make: 3, difficulty: "Medium", image: pexels(19887017), notes: "Make the chai strong and let it cool completely first, or it melts the ice cream." },
+    {
+      iceCream: vanilla(180), milkMl: 100,
+      lines: [
+        { pantryId: "water", label: "Water, for the chai", amount: "100 ml" },
+        { pantryId: "black-tea", label: "Strong black tea", amount: "2 tsp" },
+        { pantryId: "ginger", label: "Fresh ginger, grated", amount: "5 g" },
+        { pantryId: "cardamom", label: "Green cardamom pods, crushed", amount: "2" },
+        { pantryId: "cinnamon-stick", label: "Cinnamon stick", amount: "1/2" },
+        { pantryId: "cloves", label: "Cloves", amount: "2" },
+        { pantryId: "sugar", label: "Sugar, to taste", amount: "2 tsp" },
+      ],
+      before: ["Boil the water with the ginger, cardamom, cinnamon and cloves for 3 minutes, add the tea and sugar and simmer for 2 minutes more. Strain and chill for 15 minutes, until completely cold."],
+      withIn: "and the cold chai",
+      after: ["Pour into a tall glass, dust with a little ground cinnamon and serve with a wide straw."],
+    }
+  ),
+  iceCreamShake(
+    { id: "filter-coffee-milkshake", title: "Filter Coffee Milkshake", taste: ["Rich", "Creamy", "Sweet"], description: "Strong South Indian filter coffee, chilled and blended with vanilla ice cream and milk — a chicory-edged, caramel-dark cold coffee.", prep: 20, make: 3, difficulty: "Medium", image: pexels(34541593), sourceName: "Wikipedia — Indian filter coffee", sourceUrl: "https://en.wikipedia.org/wiki/Indian_filter_coffee", notes: "Filter coffee powder includes chicory, which gives the shake its dark, slightly bitter edge." },
+    {
+      iceCream: vanilla(180), milkMl: 100,
+      lines: [
+        { pantryId: "ground-coffee", label: "Filter coffee powder (coffee and chicory blend)", amount: "15 g" },
+        { pantryId: "water", label: "Boiling water, for the decoction", amount: "80 ml" },
+        { pantryId: "sugar", label: "Sugar, to taste", amount: "2 tsp" },
+      ],
+      before: ["Make a strong decoction: stir the filter coffee powder into the boiling water, cover and leave it for 10 minutes (or drip it through a South Indian filter), then strain. Stir in the sugar and chill for 15 minutes until cold."],
+      withIn: "and the cold coffee",
+    }
+  ),
+  iceCreamShake(
     { id: "caramel-milkshake", title: "Caramel Milkshake", diet: [...GF], taste: ["Sweet", "Rich", "Creamy"], description: "Vanilla ice cream and milk blended with caramel sauce, with more drizzled over the top.", prep: 3, make: 2, difficulty: "Easy", image: pexels(20066397) },
     { iceCream: vanilla(180), milkMl: 150, lines: [{ pantryId: "caramel-sauce", label: "Caramel sauce", amount: "3 tbsp" }], withIn: "and 2 tablespoons of the caramel sauce", after: ["Pour into a tall glass, drizzle with the last tablespoon of caramel and serve."] }
   ),
