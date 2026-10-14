@@ -237,7 +237,7 @@ export const espressoClassics: Recipe[] = [
     {
       id: "cafe-con-leche", title: "Café con Leche", type: "Coffee", temperature: "hot", diet: ["Gluten-Free"], taste: ["Creamy"],
       description: "Spain's everyday coffee: a strong shot mixed with about an equal amount of hot, gently scalded milk, with sugar if you like.",
-      prep: 3, make: 3, difficulty: "Easy", image: pexels(26755323),
+      prep: 3, make: 3, difficulty: "Easy", image: pexels(4195609),
       sourceName: "Café Bustelo — Café con leche", sourceUrl: "https://www.cafebustelo.com/en/coffee/recipes/cafe-con-leche",
     },
     {

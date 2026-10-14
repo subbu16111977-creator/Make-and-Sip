@@ -145,7 +145,7 @@ export const blendedAndIced: Recipe[] = [
     {
       id: "brown-sugar-oat-shaken-espresso", title: "Brown Sugar Oat Shaken Espresso", type: "Coffee", temperature: "cold", diet: ["Dairy-Free", "Vegan"], taste: ["Sweet", "Creamy", "Refreshing"],
       description: "Espresso shaken hard with brown sugar and ice until frothy, then topped with oat milk — lightly spiced and toasty.",
-      prep: 4, make: 2, difficulty: "Medium", image: pexels(8605911),
+      prep: 4, make: 2, difficulty: "Medium", image: pexels(37603051),
       sourceName: "Winding Creek Ranch — brown sugar oatmilk shaken espresso", sourceUrl: "https://www.windingcreekranch.org/iced-brown-sugar-oatmilk-shaken-espresso/",
       notes: "Shaking is what makes it: it chills the espresso instantly and whips it into a pale, frothy layer.",
     },
