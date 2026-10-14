@@ -14,22 +14,12 @@ import { useShopping } from "@/context/ShoppingContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
 import { useCookability } from "@/lib/useCookability";
-import { bestMethod, isByHand, methodReady, methodsOf, missingForMethod, recipeForMethod } from "@/lib/methods";
+import { bestMethod, formatMinutes, isByHand, methodReady, methodsOf, missingForMethod, recipeForMethod, toolsPhrase, totalMinutes, waitFor } from "@/lib/methods";
 import { scaledRecipe } from "@/lib/cookability";
 import { CookabilityBadge } from "@/components/CookabilityBadge";
 import { TemperatureBadge } from "@/components/TemperatureBadge";
 import { RecipeImage } from "@/components/RecipeImage";
 import { ChevronLeftIcon, CheckIcon, ClockIcon, HeartIcon, SavedIcon, ShoppingIcon } from "@/components/icons";
-
-/** "95" -> "1 hr 35 min", "45" -> "45 min", "0" -> "—" */
-function formatMinutes(total: number): string {
-  if (total <= 0) return "—";
-  const hrs = Math.floor(total / 60);
-  const mins = total % 60;
-  if (hrs === 0) return `${mins} min`;
-  if (mins === 0) return `${hrs} hr`;
-  return `${hrs} hr ${mins} min`;
-}
 
 /**
  * The recipe "manual" — full method, and an honest split of what's
@@ -99,12 +89,13 @@ export default function RecipeDetailScreen() {
   const recipeTitle = recipe.title;
   const heroHeight = Math.round(screenWidth * 0.98);
 
-  const totalMinutes = recipe.prepMinutes + recipe.cookMinutes + (recipe.marinateMinutes ?? 0);
+  const waitMinutes = waitFor(recipe, activeMethod);
+  const total = totalMinutes(recipe, activeMethod);
   const timeTiles = [
     { label: "Prep", value: formatMinutes(recipe.prepMinutes) },
     { label: "Make", value: formatMinutes(recipe.cookMinutes) },
-    ...(recipe.marinateMinutes ? [{ label: "Chill", value: formatMinutes(recipe.marinateMinutes) }] : []),
-    { label: "Total", value: formatMinutes(totalMinutes) },
+    ...(waitMinutes ? [{ label: "Wait", value: formatMinutes(waitMinutes) }] : []),
+    { label: "Total", value: formatMinutes(total) },
     { label: recipe.yield ? "Yield" : "Servings", value: recipe.yield ?? String(recipe.servings) },
   ];
 
@@ -167,7 +158,7 @@ export default function RecipeDetailScreen() {
             <View style={styles.metaRow}>
               <View style={styles.metaItem}>
                 <ClockIcon size={14} color={colors.white} strokeWidth={1.6} />
-                <Text style={styles.metaText}>{recipe.timeMinutes} min</Text>
+                <Text style={styles.metaText}>{formatMinutes(total)}</Text>
               </View>
               <View style={styles.metaDot} />
               <Text style={styles.metaText}>{recipe.difficulty}</Text>
@@ -214,7 +205,7 @@ export default function RecipeDetailScreen() {
                     >
                       <Text style={[styles.methodChipLabel, selected && styles.methodChipLabelSelected]}>{m.label}</Text>
                       <Text style={[styles.methodChipNote, ready && styles.methodChipNoteReady]}>
-                        {isByHand(m) ? "No equipment" : ready ? "You have it" : `Needs ${missing.join(" + ").toLowerCase()}`}
+                        {isByHand(m) ? "No equipment" : ready ? "You have it" : `Needs ${missing.join(" + ")}`}
                       </Text>
                     </Pressable>
                   );
@@ -241,7 +232,7 @@ export default function RecipeDetailScreen() {
               {cookability.requiredUnverified > 0 ? <Text style={styles.cookStatSoft}>{cookability.requiredUnverified} amounts couldn&apos;t be checked</Text> : null}
               {cookability.equipmentNeeded.length > 0 ? (
                 <Text style={cookability.equipmentMissing.length ? styles.cookStat : styles.cookStatSoft}>
-                  {cookability.equipmentMissing.length ? `Needs ${cookability.equipmentMissing.map((t) => t.toLowerCase()).join(", ")}` : "You have the equipment"}
+                  {cookability.equipmentMissing.length ? `Needs ${cookability.equipmentMissing.join(", ")}` : "You have the equipment"}
                 </Text>
               ) : null}
               {cookability.equipmentOptional.length > 0 ? (
@@ -312,7 +303,7 @@ export default function RecipeDetailScreen() {
                 </View>
                 <View style={styles.ingredientLabelStack}>
                   <Text style={styles.ingredientLabel}>No equipment needed</Text>
-                  {activeMethod.handTools?.length ? <Text style={styles.uncheckedText}>You&apos;ll use {activeMethod.handTools.join(", ").toLowerCase()}</Text> : null}
+                  {activeMethod.handTools?.length ? <Text style={styles.uncheckedText}>You&apos;ll use {toolsPhrase(activeMethod.handTools)}</Text> : null}
                 </View>
               </View>
             ) : (

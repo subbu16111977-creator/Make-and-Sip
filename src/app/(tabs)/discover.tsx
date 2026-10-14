@@ -47,6 +47,7 @@ export default function DiscoverScreen() {
     setAppliedParamKey(paramKey);
     if (params.cuisine) setSelectedCuisine(params.cuisine);
   }
+  const [selectedTemperature, setSelectedTemperature] = useState<"hot" | "cold" | null>(null);
   const [selectedDiets, setSelectedDiets] = useState<DietTag[]>([]);
 
   // The drink types are fixed (they are the same ones the profile asks about), so the filter looks the same whatever is in the library.
@@ -82,6 +83,7 @@ export default function DiscoverScreen() {
         return false;
       }
       if (selectedCuisine && recipe.cuisine !== selectedCuisine) return false;
+      if (selectedTemperature && recipe.temperature !== selectedTemperature) return false;
       if (selectedDiets.length > 0 && !selectedDiets.every((d) => recipe.dietTags.includes(d))) return false;
       return true;
     });
@@ -95,7 +97,7 @@ export default function DiscoverScreen() {
         .map((x) => x.m);
     }
     return sortDiscover(kept, sort);
-  }, [ranked, query, selectedCuisine, selectedDiets, sort, preferences, refreshTick, pantryItems, ownedEquipment]);
+  }, [ranked, query, selectedCuisine, selectedTemperature, selectedDiets, sort, preferences, refreshTick, pantryItems, ownedEquipment]);
 
   const firstCardTarget = useTutorialTarget("discover-first-card");
   const cardGap = spacing.md;
@@ -174,6 +176,13 @@ export default function DiscoverScreen() {
               {cuisines.map((c) => (
                 <Chip key={c} label={c} selected={selectedCuisine === c} onPress={() => setSelectedCuisine(c)} />
               ))}
+            </ScrollView>
+
+            <Text style={styles.filterLabel}>Hot or iced</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chipRow}>
+              <Chip label="All" selected={selectedTemperature === null} onPress={() => setSelectedTemperature(null)} />
+              <Chip label="Hot" selected={selectedTemperature === "hot"} onPress={() => setSelectedTemperature("hot")} />
+              <Chip label="Iced" selected={selectedTemperature === "cold"} onPress={() => setSelectedTemperature("cold")} />
             </ScrollView>
 
             <Text style={styles.filterLabel}>Dietary</Text>

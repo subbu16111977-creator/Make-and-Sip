@@ -80,7 +80,7 @@ export const hotFlavoured: Recipe[] = [
     }
   ),
   espresso(
-    { id: "honey-oat-flat-white", title: "Honey Oat Flat White", type: "Coffee", temperature: "hot", diet: ["Dairy-Free"], taste: ["Sweet", "Creamy"], description: "A flat white made with oat milk and a spoonful of honey melted into the coffee — mellow, toasty and lightly sweet.", prep: 5, make: 3, difficulty: "Medium", image: pexels(9928234) },
+    { id: "honey-oat-flat-white", title: "Honey Oat Flat White", type: "Coffee", temperature: "hot", diet: ["Dairy-Free"], taste: ["Sweet", "Creamy"], description: "A flat white made with oat milk and a spoonful of honey melted into the coffee — mellow, toasty and lightly sweet.", prep: 5, make: 3, difficulty: "Medium", image: pexels(23057984) },
     {
       size: "double",
       lines: [{ pantryId: "honey", label: "Honey", amount: "15 ml" }, { pantryId: "oat-milk", label: "Barista-style oat milk", amount: "150 ml" }],
@@ -240,7 +240,7 @@ export const coldBrewDrinks: Recipe[] = [
     {
       id: "salted-caramel-cold-brew", title: "Salted Caramel Cold Brew", type: "Coffee", temperature: "cold", diet: ["Gluten-Free"], taste: ["Sweet", "Creamy", "Rich"], wait: 840,
       description: "Cold brew sweetened with caramel and topped with a thick, lightly salted cream foam that you drink through.",
-      prep: 8, make: 4, difficulty: "Medium", image: pexels(20485617),
+      prep: 8, make: 4, difficulty: "Medium", image: pexels(15086185),
       sourceName: "Ohh How Civilized — salted caramel cold brew", sourceUrl: "https://www.ohhowcivilized.com/wprm_print/salted-caramel-cold-brew",
       notes: "The foam is meant to taste salty on its own; it mellows as it melts into the coffee, so keep the pinch small.",
     },

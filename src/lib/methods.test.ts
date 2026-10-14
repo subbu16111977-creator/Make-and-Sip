@@ -75,3 +75,17 @@ describe("ways to make a drink", () => {
     expect(matchRecipe([item("ground-coffee", 50, "g")], latte, []).missing.map((i) => i.pantryId)).toEqual(["instant-coffee"]);
   });
 });
+
+describe("time and tool wording", () => {
+  it("formats minutes", async () => {
+    const { formatMinutes } = await import("./methods");
+    expect(formatMinutes(45)).toBe("45 min");
+    expect(formatMinutes(840)).toBe("14 hr");
+    expect(formatMinutes(852)).toBe("14 hr 12 min");
+  });
+  it("lists tools once, without repeats", async () => {
+    const { toolsPhrase } = await import("./methods");
+    expect(toolsPhrase(["Saucepan", "Saucepan or kettle", "Spoon"])).toBe("saucepan or kettle and spoon");
+    expect(toolsPhrase(["Glass"])).toBe("glass");
+  });
+});

@@ -7,6 +7,7 @@ import { CookabilityBadge } from "./CookabilityBadge";
 import { TemperatureBadge } from "./TemperatureBadge";
 import { useCookability } from "@/lib/useCookability";
 import { RecipeImage } from "./RecipeImage";
+import { formatMinutes, methodsOf, totalMinutes } from "@/lib/methods";
 import { useSaved } from "@/context/SavedContext";
 import { useFavorites } from "@/context/FavoritesContext";
 import { useShopping } from "@/context/ShoppingContext";
@@ -98,7 +99,7 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
       </Text>
       <View style={styles.metaRow}>
         <ClockIcon size={12} color={colors.espressoMuted} strokeWidth={1.6} />
-        <Text style={styles.metaText}>{recipe.timeMinutes} min</Text>
+        <Text style={styles.metaText}>{formatMinutes(totalMinutes(recipe, methodsOf(recipe).find((m) => m.id === cookability?.methodId)))}</Text>
         <View style={styles.metaDot} />
         <Text style={styles.metaText}>{recipe.difficulty}</Text>
       </View>
@@ -109,7 +110,7 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
       ) : null}
       {missingEquipment.length > 0 && (
         <Text style={styles.needsText} numberOfLines={2}>
-          Needs {missingEquipment.map((t) => t.toLowerCase()).join(", ")}
+          Needs {missingEquipment.join(", ")}
         </Text>
       )}
     </Pressable>

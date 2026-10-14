@@ -69,3 +69,31 @@ export function requiredEquipmentTags(recipe: Recipe): EquipmentTag[] {
 export function recipeForMethod(recipe: Recipe, method: Method): Recipe {
   return method.ingredients ? { ...recipe, ingredients: method.ingredients } : recipe;
 }
+
+/** Waiting time (steeping, chilling) for a method: its own if it has one, otherwise the drink's. */
+export function waitFor(recipe: Recipe, method: Method): number {
+  return method.waitMinutes ?? recipe.marinateMinutes ?? 0;
+}
+
+/** Hands-on time plus waiting, for the drink as made by one method (the first one when none is given). */
+export function totalMinutes(recipe: Recipe, method?: Method): number {
+  return recipe.prepMinutes + recipe.cookMinutes + waitFor(recipe, method ?? methodsOf(recipe)[0]);
+}
+
+/** "95" -> "1 hr 35 min", "45" -> "45 min", "840" -> "14 hr". */
+export function formatMinutes(total: number): string {
+  if (total <= 0) return "—";
+  const hrs = Math.floor(total / 60);
+  const mins = total % 60;
+  if (hrs === 0) return `${mins} min`;
+  if (mins === 0) return `${hrs} hr`;
+  return `${hrs} hr ${mins} min`;
+}
+
+/** Tool names for "You'll use …": lower-cased, no repeats, and "saucepan" dropped when "saucepan or kettle" is also listed. */
+export function toolsPhrase(tools: readonly string[]): string {
+  const list = [...new Set(tools.map((t) => t.trim().toLowerCase()).filter(Boolean))];
+  const kept = list.filter((t) => !list.some((o) => o !== t && o.startsWith(`${t} `)));
+  if (kept.length <= 1) return kept.join("");
+  return `${kept.slice(0, -1).join(", ")} and ${kept[kept.length - 1]}`;
+}

@@ -226,7 +226,7 @@ export function coldBrewMethods(spec: ColdBrewSpec): Method[] {
     base("french-press", "French press", ["French Press"], [`${steep} a French press, stir, and put the lid on without pressing. Leave it in the fridge for 12–16 hours.`, "Press the plunger down slowly and pour the cold brew into a jug — about 160 ml."], 1),
   ];
   const byHand: Method = {
-    id: "by-hand", label: "By hand (quick)", equipment: [], handTools: [...(spec.handTools ?? []), "Glass", "Spoon"],
+    id: "by-hand", label: "By hand (quick)", equipment: [], waitMinutes: 0, handTools: [...(spec.handTools ?? []), "Glass", "Spoon"],
     optionalEquipment: spec.optional,
     ingredients: [
       { pantryId: "instant-coffee", label: "Instant coffee, for a quick stand-in", amount: "2 tsp" },

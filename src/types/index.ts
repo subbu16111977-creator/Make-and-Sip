@@ -145,6 +145,8 @@ export interface Method {
   optionalEquipment?: OptionalEquipment[];
   /** Set only when this method's amounts or ingredients differ from the drink's standard list. */
   ingredients?: RecipeIngredient[];
+  /** Waiting time (steeping, chilling) for this method, when it differs from the drink's own; 0 for a quick method. */
+  waitMinutes?: number;
   steps: string[];
   /** A short note specific to this method. */
   notes?: string;

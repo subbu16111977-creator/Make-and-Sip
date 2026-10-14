@@ -8,6 +8,8 @@ import { ClockIcon, LeafIcon, SavedIcon, ShoppingIcon, CheckIcon } from "./icons
 import { MatchBadge } from "./MatchBadge";
 import { TemperatureBadge } from "./TemperatureBadge";
 import { RecipeImage } from "./RecipeImage";
+import { bestMethod, formatMinutes, totalMinutes } from "@/lib/methods";
+import { useEquipment } from "@/context/EquipmentContext";
 import { useSaved } from "@/context/SavedContext";
 import { useShopping } from "@/context/ShoppingContext";
 
@@ -52,6 +54,7 @@ export function RecipeHero({
   const height = Math.round(cardWidth * 1.15);
 
   const { isSaved, toggleSaved } = useSaved();
+  const { owned: ownedEquipment } = useEquipment();
   const { addMissingFromRecipe } = useShopping();
   const saved = isSaved(recipe.id);
   const [justAdded, setJustAdded] = useState(false);
@@ -118,7 +121,7 @@ export function RecipeHero({
           <View style={styles.metaRow}>
             <View style={styles.metaItem}>
               <ClockIcon size={14} color={colors.white} strokeWidth={1.6} />
-              <Text style={styles.metaText}>{recipe.timeMinutes} min</Text>
+              <Text style={styles.metaText}>{formatMinutes(totalMinutes(recipe, bestMethod(ownedEquipment, recipe)))}</Text>
             </View>
             <View style={styles.metaDot} />
             <Text style={styles.metaText}>{recipe.difficulty}</Text>
@@ -129,7 +132,7 @@ export function RecipeHero({
           <View style={styles.badgeRow}>
             <MatchBadge haveCount={haveCount} totalCount={totalCount} tone="dark" />
             {missingEquipment.length > 0 && (
-              <Text style={styles.needsText}>Needs {missingEquipment.map((t) => t.toLowerCase()).join(", ")}</Text>
+              <Text style={styles.needsText}>Needs {missingEquipment.join(", ")}</Text>
             )}
           </View>
         </View>
