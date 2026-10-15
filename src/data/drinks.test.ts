@@ -83,6 +83,21 @@ describe("the drinks", () => {
     expect(misfiled).toEqual([]);
   });
 
+  it("never uses an alcoholic ingredient: every drink in the app is alcohol-free", () => {
+    const ALCOHOL = /\b(vodka|rum|gin|tequila|whisk(?:e)?y|bourbon|brandy|cognac|liqueur|liquor|vermouth|prosecco|champagne|cacha[cç]a|mezcal|schnapps|amaretto|kahlua|bitters|beer|ale|stout|lager|wine|aperol|campari|absinthe|sake)\b/i;
+    const SAFE = /(ginger[ -]beer|ginger[ -]ale|root[ -]beer|non-?alcoholic|alcohol-?free)/gi;
+    const found: string[] = [];
+    for (const r of recipes) {
+      const lines = [...r.ingredients, ...(r.methods ?? []).flatMap((m) => m.ingredients ?? [])];
+      for (const i of lines) {
+        const text = `${i.pantryId} ${i.label}`.replace(SAFE, "");
+        if (ALCOHOL.test(text)) found.push(`${r.id}: ${i.label}`);
+      }
+      if (ALCOHOL.test(r.title.replace(SAFE, ""))) found.push(`${r.id}: title`);
+    }
+    expect(found).toEqual([]);
+  });
+
   it("is hot or cold, and the app has both", () => {
     expect(new Set(recipes.map((r) => r.temperature))).toEqual(new Set(["hot", "cold"]));
   });
