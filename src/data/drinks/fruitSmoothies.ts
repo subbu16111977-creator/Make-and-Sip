@@ -45,10 +45,6 @@ export const fruitSmoothies: Recipe[] = [
     { lines: [L("pineapple", "Ripe pineapple, chopped", "200 g"), L("coconut-water", "Coconut water", "150 ml"), L("lime", "Lime, juiced", "1/2", true), ice()], withIn: "the pineapple, coconut water, lime and ice", mashWhat: "the pineapple (chopped as finely as you can)", before: ["Peel the pineapple, cut out the core and chop the flesh."] }
   ),
   smoothie(
-    { id: "orange-banana-smoothie", title: "Orange Banana Smoothie", diet: [...GF], taste: ["Fruity", "Sweet", "Refreshing"], description: "Orange juice, banana and yogurt: a classic breakfast smoothie, sweet and full of citrus.", prep: 4, make: 2, difficulty: "Easy", image: pexels(33683902) },
-    { lines: [L("orange-juice", "Orange juice", "200 ml"), L("banana", "Ripe banana", "1"), yogurt(100), ice("4 cubes")], withIn: "the juice, banana, yogurt and ice", mashWhat: "the banana" }
-  ),
-  smoothie(
     { id: "apple-cinnamon-smoothie", title: "Apple Cinnamon Smoothie", diet: [...GF], taste: ["Sweet", "Spicy", "Creamy"], description: "Apple, banana, yogurt and cinnamon blended together — like apple pie in a glass.", prep: 5, make: 2, difficulty: "Easy", image: pexels(8679186) },
     { lines: [L("apple", "Apple, cored and chopped", "1"), L("banana", "Ripe banana", "1/2"), yogurt(100), L("milk", "Cold milk", "100 ml"), L("cinnamon", "Ground cinnamon", "1/2 tsp"), L("honey", "Honey", "1 tsp"), ice("4 cubes")], withIn: "the apple, banana, yogurt, milk, cinnamon, honey and ice", mashWhat: "the apple (grated) and banana", before: ["Core the apple and chop it."] }
   ),

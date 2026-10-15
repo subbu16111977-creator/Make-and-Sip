@@ -67,10 +67,6 @@ export const classicShakes: Recipe[] = [
     { iceCream: vanilla(180), milkMl: 150, lines: [{ pantryId: "butterscotch-sauce", label: "Butterscotch sauce", amount: "3 tbsp" }], withIn: "and 2 tablespoons of the butterscotch sauce", after: ["Pour into a tall glass, drizzle the last tablespoon of sauce on top and serve."] }
   ),
   iceCreamShake(
-    { id: "peanut-butter-milkshake", title: "Peanut Butter Milkshake", diet: [...GF], taste: ["Rich", "Creamy", "Sweet"], description: "Vanilla ice cream blended with a big spoonful of peanut butter: thick, salty-sweet and nutty.", prep: 3, make: 2, difficulty: "Easy", image: pexels(28496635), notes: "Use smooth peanut butter. Warm it for 10 seconds if it's stiff, so it blends in." },
-    { iceCream: vanilla(180), milkMl: 150, lines: [{ pantryId: "peanut-butter", label: "Smooth peanut butter", amount: "2 tbsp" }, { pantryId: "honey", label: "Honey, to taste", amount: "1 tsp", optional: true }], withIn: "the peanut butter and the honey (if using)", handBefore: ["Warm the peanut butter for 10 seconds, or stir it well, so it is soft enough to mix by hand."] }
-  ),
-  iceCreamShake(
     { id: "orange-creamsicle-milkshake", title: "Orange Creamsicle Milkshake", diet: [...GF], taste: ["Fruity", "Creamy", "Refreshing"], description: "Vanilla ice cream blended with orange juice: the taste of an orange-and-cream ice lolly in a glass.", prep: 3, make: 2, difficulty: "Easy", image: pexels(32503389), notes: "Add the juice last and blend briefly, so the acidity doesn't curdle the milk." },
     { iceCream: vanilla(180), milkMl: 80, lines: [{ pantryId: "orange-juice", label: "Orange juice, cold", amount: "100 ml" }], withIn: "and the orange juice" }
   ),

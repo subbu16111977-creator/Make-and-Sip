@@ -52,16 +52,6 @@ export const herbalTeas: Recipe[] = [
     },
     { leaf: { pantryId: "hibiscus-flowers", label: "Dried hibiscus flowers", amount: "1 tbsp" }, waterMl: 250, tempC: 100, minutes: 5, lines: [{ pantryId: "sugar", label: "Sugar, to taste", amount: "2 tsp", optional: true }], after: ["Sweeten to taste and drink warm."] }
   ),
-  steeped(
-    {
-      id: "rooibos-tea", title: "Rooibos Tea", type: "Tea", temperature: "hot", diet: ["Caffeine-Free", "Dairy-Free", "Low Sugar", "Gluten-Free"], taste: ["Rich", "Herbal"],
-      description: "South Africa's red bush tea: naturally caffeine-free, smooth and slightly sweet, with a nutty, woody warmth.",
-      prep: 2, make: 8, difficulty: "Easy", image: pexels(12698360),
-      sourceName: "Wikipedia — Rooibos", sourceUrl: "https://en.wikipedia.org/wiki/Rooibos",
-      notes: "Rooibos doesn't turn bitter, so you can steep it as long as you like. It takes milk well.",
-    },
-    { leaf: { pantryId: "rooibos-tea", label: "Rooibos: 1 tea bag or 2 tsp loose leaf", amount: "2 tsp" }, waterMl: 250, tempC: 100, minutes: 6, lines: [{ pantryId: "milk", label: "Milk, optional", amount: "30 ml", optional: true }, honey()], after: ["Add milk or honey if you like."] }
-  ),
   drink(
     {
       id: "rooibos-latte", title: "Rooibos Latte (Red Latte)", type: "Tea", temperature: "hot", diet: ["Caffeine-Free", "Gluten-Free"], taste: ["Creamy", "Sweet", "Herbal"],
@@ -85,15 +75,6 @@ export const herbalTeas: Recipe[] = [
         steps: ["Steep the rooibos in the 120 ml of boiling water in a mug for 6 minutes, then remove the tea.", "Warm the milk in a saucepan until steaming, about 65°C, pour it into a lidded jar and shake hard for 30 seconds until foamy.", "Stir the honey (and vanilla, if using) into the tea, then pour in the frothed milk, spooning the foam on top."],
       },
     ]
-  ),
-  steeped(
-    {
-      id: "lemongrass-tea", title: "Lemongrass Tea", type: "Tea", temperature: "hot", diet: ["Caffeine-Free", "Dairy-Free", "Gluten-Free"], taste: ["Herbal", "Refreshing", "Tangy"],
-      description: "Bruised lemongrass stalks simmered in water: bright, lemony and calming, drunk across South and Southeast Asia.",
-      prep: 3, make: 12, difficulty: "Easy", servings: 1, image: pexels(11642902),
-      sourceName: "Wikipedia — Cymbopogon", sourceUrl: "https://en.wikipedia.org/wiki/Cymbopogon",
-    },
-    { leaf: { pantryId: "lemongrass", label: "Lemongrass stalks, bruised and chopped", amount: "20 g" }, waterMl: 300, tempC: 100, minutes: 8, lines: [honey(), { pantryId: "lime", label: "Lime wedge", amount: "1", optional: true }], after: ["Strain it into a cup, sweeten with honey and add a squeeze of lime if you like."] }
   ),
   steeped(
     {

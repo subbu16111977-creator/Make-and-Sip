@@ -47,16 +47,8 @@ export const breakfastSmoothies: Recipe[] = [
     { lines: [L("banana", "Ripe banana", "1"), L("peanut-butter", "Smooth peanut butter", "2 tbsp"), yogurt(100), L("milk", "Cold milk", "150 ml"), L("honey", "Honey, to taste", "1 tsp", true), ice("4 cubes")], withIn: "the banana, peanut butter, yogurt, milk, honey (if using) and ice", mashWhat: "the banana and the peanut butter together" }
   ),
   smoothie(
-    { id: "oat-banana-breakfast-smoothie", title: "Oat & Banana Breakfast Smoothie", taste: ["Creamy", "Sweet", "Rich"], description: "Rolled oats blended with banana, milk and cinnamon: thick and slow-releasing, to keep you going until lunch.", prep: 10, make: 2, difficulty: "Easy", image: pexels(8805114), notes: "Soak the oats in the milk for 10 minutes first so they blend smoothly." },
-    { lines: [L("rolled-oats", "Rolled oats", "3 tbsp"), L("banana", "Ripe banana", "1"), L("milk", "Cold milk", "250 ml"), L("cinnamon", "Ground cinnamon", "1/4 tsp"), L("honey", "Honey, to taste", "1 tbsp"), ice("3 cubes")], withIn: "the soaked oats and milk, banana, cinnamon, honey and ice", mashWhat: "the banana", before: ["Stir the oats into the milk in a bowl and leave for 10 minutes."], blenderOnly: true }
-  ),
-  smoothie(
     { id: "banana-bread-smoothie", title: "Banana Bread Smoothie", diet: [...GF], taste: ["Sweet", "Spicy", "Creamy"], description: "Banana, oats, cinnamon and vanilla blended with milk: it tastes like the loaf.", prep: 5, make: 2, difficulty: "Easy", image: pexels(18142614) },
     { lines: [L("banana", "Ripe bananas, the spottier the better", "2"), L("rolled-oats", "Rolled oats", "2 tbsp"), L("milk", "Cold milk", "200 ml"), L("cinnamon", "Ground cinnamon", "1/2 tsp"), L("vanilla-extract", "Vanilla extract", "1/4 tsp"), L("honey", "Honey, to taste", "1 tbsp"), ice("4 cubes")], withIn: "the bananas, oats, milk, cinnamon, vanilla, honey and ice", blenderOnly: true }
-  ),
-  smoothie(
-    { id: "date-almond-smoothie", title: "Date & Almond Smoothie", diet: [...GF], taste: ["Sweet", "Rich", "Creamy"], description: "Soaked dates and almonds blended with milk: naturally sweet, nutty and caramel-like, with no added sugar.", prep: 20, make: 2, difficulty: "Easy", image: pexels(4406099), notes: "Soak the dates and almonds in hot water for 15 minutes first, or they won't blend smooth." },
-    { lines: [L("dates", "Soft pitted dates", "6"), L("almonds", "Almonds", "10"), L("milk", "Cold milk", "250 ml"), L("cardamom", "Ground cardamom, a pinch", "1 pinch", true), ice("3 cubes")], withIn: "the soaked dates and almonds, milk, cardamom (if using) and ice", blenderOnly: true, before: ["Soak the dates and almonds in hot water for 15 minutes, then drain."] }
   ),
   smoothie(
     { id: "berry-chia-smoothie", title: "Berry Chia Smoothie", diet: [...GF], taste: ["Fruity", "Tangy", "Creamy"], description: "Blueberries and banana blended with yogurt and chia seeds: thick, purple and full of fibre.", prep: 15, make: 2, difficulty: "Easy", image: pexels(556832), notes: "The chia seeds thicken it as it sits, so it gets more pudding-like after 10 minutes." },

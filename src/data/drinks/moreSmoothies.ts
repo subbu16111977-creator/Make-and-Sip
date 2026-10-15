@@ -80,10 +80,6 @@ export const moreSmoothies: Recipe[] = [
     { lines: [L("mango", "Ripe mango, chopped", "100 g"), L("pineapple", "Ripe pineapple, chopped", "100 g"), L("coconut-water", "Coconut water", "150 ml"), L("lime", "Lime, juiced", "1/2"), ice()], withIn: "the mango, pineapple, coconut water, lime juice and ice", mashWhat: "the mango and pineapple", before: ["Peel and chop the mango and the pineapple."] }
   ),
   smoothie(
-    { id: "apple-pear-green-smoothie", title: "Apple Pear Green Smoothie", diet: [...VEG], taste: ["Fruity", "Herbal", "Refreshing"], description: "Green apple, pear and spinach blended with lemon and water: sweet, light and very green.", prep: 5, make: 2, difficulty: "Easy", image: pexels(1750963) },
-    { lines: [L("apple", "Green apple, cored and chopped", "1"), L("pear", "Ripe pear, cored and chopped", "1"), L("spinach", "Baby spinach", "30 g"), L("lemon", "Lemon, juiced", "1/2"), L("water", "Cold water", "150 ml"), ice()], withIn: "the water and spinach first, then the apple, pear, lemon juice and ice", blenderOnly: true }
-  ),
-  smoothie(
     { id: "blueberry-spinach-smoothie", title: "Blueberry Spinach Smoothie", diet: [...GF], taste: ["Fruity", "Sweet", "Herbal"], description: "Blueberries, spinach and banana blended with milk: a green smoothie that tastes of blueberry.", prep: 4, make: 2, difficulty: "Easy", image: pexels(12049996) },
     { lines: [L("blueberries", "Blueberries, fresh or frozen", "100 g"), L("spinach", "Baby spinach", "30 g"), L("banana", "Ripe banana", "1"), L("milk", "Cold milk", "200 ml"), ice()], withIn: "the milk and spinach first, then the blueberries, banana and ice", blenderOnly: true }
   ),

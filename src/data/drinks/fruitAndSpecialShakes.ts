@@ -74,13 +74,6 @@ export const fruitAndSpecialShakes: Recipe[] = [
       milkMl: 250, before: ["Trim the stalks off the figs and roughly chop them (soak dried figs first and drain)."], withIn: "the figs, honey and ice cream (if using)", mashWhat: "figs",
     }
   ),
-  fruitShake(
-    { id: "sharjah-shake", title: "Sharjah Shake", taste: ["Sweet", "Creamy", "Rich"], description: "Kerala's banana shake: ripe bananas blended with milk, malted drink powder and cashews — thick, malty and filling.", prep: 5, make: 2, difficulty: "Easy", image: pexels(35092422), sourceName: "Veg Recipes of India — Sharjah shake", sourceUrl: "https://www.vegrecipesofindia.com/sharjah-shake/", notes: "Frozen milk or a few ice cubes make it thicker. Boost, Horlicks or Bournvita all work." },
-    {
-      lines: [{ pantryId: "banana", label: "Ripe bananas", amount: "2" }, { pantryId: "malted-milk-powder", label: "Malted milk powder (Horlicks, Boost or similar)", amount: "2 tbsp" }, { pantryId: "cashews", label: "Cashews, optional", amount: "6", optional: true }, { pantryId: "sugar", label: "Sugar, to taste", amount: "1 tbsp" }, { pantryId: "ice", label: "Ice cubes", amount: "1/2 cup" }],
-      milkMl: 250, before: ["Peel and slice the bananas."], withIn: "the bananas, malted milk powder, cashews (if using), sugar and ice", mashWhat: "bananas",
-    }
-  ),
   iceCreamShake(
     { id: "chai-milkshake", type: "Tea", title: "Masala Chai Milkshake", taste: ["Spicy", "Creamy", "Sweet"], description: "Strongly spiced masala chai, cooled and blended with vanilla ice cream: creamy, warming and full of cardamom, ginger and cinnamon.", prep: 20, make: 3, difficulty: "Medium", image: pexels(19887017), notes: "Make the chai strong and let it cool completely first, or it melts the ice cream." },
     {
@@ -119,10 +112,6 @@ export const fruitAndSpecialShakes: Recipe[] = [
   iceCreamShake(
     { id: "chocolate-hazelnut-milkshake", title: "Chocolate Hazelnut Milkshake", taste: ["Rich", "Sweet", "Creamy"], description: "Vanilla ice cream and milk blended with chocolate hazelnut spread — nutty, chocolatey and thick.", prep: 3, make: 2, difficulty: "Easy", image: pexels(1562465), sourceName: "RTA Outdoor Living — most popular milkshake flavours", sourceUrl: "https://rtaoutdoorliving.com/most-popular-milkshake/" },
     { iceCream: vanilla(180), milkMl: 150, lines: [{ pantryId: "chocolate-hazelnut-spread", label: "Chocolate hazelnut spread", amount: "2 tbsp" }], withIn: "and the chocolate hazelnut spread", handBefore: ["Warm the spread for 10 seconds so it is soft enough to stir in."] }
-  ),
-  iceCreamShake(
-    { id: "speculoos-milkshake", title: "Speculoos Biscuit Milkshake", taste: ["Sweet", "Spicy", "Creamy"], description: "Vanilla ice cream blended with caramelised, cinnamon-spiced biscuits — a favourite from Belgium to Hong Kong.", prep: 4, make: 2, difficulty: "Easy", image: pexels(33459861), notes: "These are the spiced caramel biscuits known as speculoos or Biscoff." },
-    { iceCream: vanilla(180), milkMl: 150, lines: [{ pantryId: "speculoos-biscuits", label: "Speculoos biscuits", amount: "4" }], before: ["Crush three of the biscuits. Keep the fourth whole for the top."], withIn: "and the crushed biscuits", after: ["Pour into a tall glass, top with the whole biscuit and serve."] }
   ),
   iceCreamShake(
     { id: "ube-milkshake", title: "Ube Milkshake", diet: [...GF], taste: ["Sweet", "Creamy"], description: "Purple yam blended with vanilla ice cream and milk: vividly purple, mildly nutty and vanilla-like — a favourite from the Philippines.", prep: 3, make: 2, difficulty: "Easy", image: pexels(27947539) },

@@ -132,18 +132,6 @@ export const bobaDrinks: Recipe[] = [
   ),
   boba(
     {
-      id: "lychee-boba-tea", title: "Lychee Boba Tea", diet: ["Vegan", "Dairy-Free", "Gluten-Free"], taste: ["Fruity", "Sweet", "Refreshing"],
-      description: "Chilled green tea with lychee fruit and syrup, over pearls: floral, juicy and light, with no milk.",
-      prep: 10, make: 15, difficulty: "Medium", image: pexels(16820481), notes: NOTE_PEARLS,
-    },
-    {
-      ingredients: [PEARLS, SYRUP, { pantryId: "green-tea", label: "Green tea", amount: "2 tsp" }, { pantryId: "water", label: "Hot water, about 80°C", amount: "200 ml" }, { pantryId: "lychee", label: "Lychees in syrup", amount: "4" }, ice(1)],
-      base: ["Steep the green tea in the 200 ml of hot water for 2 minutes. Strain it and let it cool for 10 minutes. Pour 3 tbsp of the lychee syrup from the tin into the tea and crush one lychee into it."],
-      mix: "Add the tea and the ice and shake them together", after: ["Pour over the pearls, add the remaining lychees and serve right away with a wide straw."],
-    }
-  ),
-  boba(
-    {
       id: "passion-fruit-tea-with-popping-boba", title: "Passion Fruit Tea with Popping Boba", diet: ["Vegan", "Dairy-Free", "Gluten-Free"], taste: ["Fruity", "Tangy", "Refreshing"],
       description: "Iced green tea with tangy passion fruit pulp and honey, topped with juice-filled popping boba that burst as you sip.",
       prep: 5, make: 5, difficulty: "Easy", image: pexels(35137081),
@@ -152,18 +140,6 @@ export const bobaDrinks: Recipe[] = [
       ingredients: [{ pantryId: "popping-boba", label: "Popping boba", amount: "2 tbsp" }, { pantryId: "green-tea", label: "Green tea", amount: "2 tsp" }, { pantryId: "water", label: "Hot water, about 80°C", amount: "150 ml" }, { pantryId: "passion-fruit", label: "Passion fruit pulp", amount: "2 tbsp" }, { pantryId: "honey", label: "Honey", amount: "1 tbsp" }, ice(1)],
       base: ["Steep the green tea in the 150 ml of hot water for 2 minutes. Strain it, stir in the honey and let it cool for 10 minutes."], noPearls: true,
       mix: "Add the tea, the passion fruit pulp and the ice and shake them together", after: ["Spoon the popping boba into a tall glass, pour the tea over it and serve with a wide straw."],
-    }
-  ),
-  boba(
-    {
-      id: "mango-boba-tea", title: "Mango Boba Tea", diet: ["Dairy-Free", "Gluten-Free"], taste: ["Fruity", "Sweet", "Refreshing"],
-      description: "Jasmine tea shaken with fresh mango and ice, over chewy pearls — golden, fruity and fragrant.",
-      prep: 10, make: 15, difficulty: "Medium", image: pexels(30215455), notes: NOTE_PEARLS,
-    },
-    {
-      ingredients: [PEARLS, SYRUP, { pantryId: "jasmine-tea", label: "Jasmine tea", amount: "2 tsp" }, { pantryId: "water", label: "Hot water, about 80°C", amount: "150 ml" }, { pantryId: "mango", label: "Very ripe mango, mashed", amount: "100 g" }, ice(1)],
-      base: ["Steep the jasmine tea in the 150 ml of hot water for 3 minutes. Strain it and let it cool for 10 minutes. Mash the mango to a smooth pulp with a fork."],
-      mix: "Add the tea, the mango pulp and the ice and shake them together",
     }
   ),
 ];

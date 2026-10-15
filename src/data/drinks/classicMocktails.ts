@@ -50,21 +50,10 @@ export const classicMocktails: Recipe[] = [
     [L("strawberry", "Strawberries, hulled", "150 g"), L("lime", "Lime, juiced", "1"), L("sugar", "Sugar", "1 tbsp"), ICE()],
     { pre: ["Hull the strawberries."], blend: "the strawberries, lime juice, sugar and ice", hand: "Mash the strawberries with the sugar to a pulp in a jar, add the lime juice and the crushed ice", post: ["Pour into a chilled glass, garnish with a strawberry and serve right away."] }
   ),
-  built(
-    { id: "virgin-moscow-mule", title: "Virgin Moscow Mule", diet: [...VEG], taste: ["Spicy", "Refreshing", "Tangy"], description: "Spicy ginger beer, lime juice and mint over ice: sharp, fizzy and warming, traditionally served in a copper mug.", prep: 3, make: 1, difficulty: "Easy", image: pexels(10779226), ...SRC_LIST, notes: "Ginger beer here means the non-alcoholic soft drink." },
-    [L("ginger-beer", "Ginger beer (non-alcoholic), chilled", "150 ml"), L("lime", "Lime, juiced", "1/2"), L("fresh-mint", "Fresh mint sprig", "1"), ICE()],
-    ["Fill a copper mug or tall glass with ice.", "Squeeze in the lime juice.", "Pour in the ginger beer slowly and stir gently.", "Slap the mint sprig between your palms to release its scent, add it as a garnish and serve."],
-    [SQUEEZER]
-  ),
   shaken(
     { id: "virgin-cosmopolitan", title: "Virgin Cosmopolitan", diet: [...VEG], taste: ["Tangy", "Fruity", "Refreshing"], description: "Cranberry, lime and orange juice shaken and strained into a chilled glass: rosy, tart and elegant.", prep: 4, make: 2, difficulty: "Easy", image: pexels(31331976), ...SRC_LIST },
     [L("cranberry-juice", "Cranberry juice", "90 ml"), L("lime", "Lime, juiced", "1/2"), L("orange-juice", "Orange juice", "30 ml"), L("sugar", "Sugar syrup, a teaspoon", "1 tsp"), ICE()],
     { put: "the cranberry juice, lime juice, orange juice and sugar syrup", strain: "into a chilled coupe or martini glass", post: ["Garnish with an orange twist and serve."], optional: [JIGGER] }
-  ),
-  built(
-    { id: "virgin-bellini", title: "Virgin Bellini", diet: [...VEG], taste: ["Fruity", "Sweet", "Refreshing"], description: "Pureed white peach topped with sparkling white grape juice: soft, pale pink and perfumed.", prep: 6, make: 2, difficulty: "Easy", image: pexels(7889965), ...SRC_LIST, notes: "Created at Harry's Bar in Venice. Use the ripest peaches you can find." },
-    [L("peach", "Ripe white peach, peeled and stoned", "1"), L("sparkling-grape-juice", "Chilled sparkling white grape juice", "100 ml"), L("lemon", "Lemon juice, a squeeze", "1 tsp", true), L("sugar", "Sugar, if the peach isn't sweet", "1 tsp", true)],
-    ["Peel the peach and cut the flesh from the stone. Press it through a sieve or mash it to a smooth purée with the lemon juice and sugar (if using).", "Spoon about 3 tablespoons of the purée into a chilled flute.", "Top up slowly with the sparkling grape juice, stirring gently once.", "Serve immediately."]
   ),
   pitcher(
     { id: "virgin-sangria", title: "Virgin Sangria", diet: [...VEG], taste: ["Fruity", "Refreshing", "Sweet"], description: "Red grape juice and orange juice steeped with sliced citrus, apple and berries, topped with sparkling water — a fruity pitcher for a crowd.", prep: 15, make: 5, wait: 60, difficulty: "Easy", servings: 4, image: pexels(17146247), ...SRC_LIST, notes: "The longer the fruit sits in the juice, the better it tastes. Add the sparkling water just before serving." },
