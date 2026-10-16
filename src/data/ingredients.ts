@@ -264,6 +264,18 @@ export const ingredientRegistry: IngredientEntity[] = [
   entity("lemon-juice-bottled", "Bottled Lemon Juice", "Juices & Sodas", ["lemon juice concentrate", "reconstituted lemon juice", "jif lemon", "realemon", "bottled lemon"]),
   entity("garlic", "Garlic", "Spices & Flavourings", ["garlic cloves", "garlic clove", "fresh garlic", "lehsun", "crushed garlic", "minced garlic", "garlic bulb"]),
   entity("cocoa-powder", "Cocoa Powder", "Spices & Flavourings", ["unsweetened cocoa", "cocoa", "cacao powder", "unsweetened cocoa powder"]),
+  // --- Sodas and sparkling drinks. Each flavoured syrup is its own ingredient; none of them is the fruit itself. ---
+  entity("strawberry-syrup", "Strawberry Syrup", "Sweeteners & Syrups", ["strawberry flavoured syrup", "strawberry coffee syrup", "torani strawberry", "monin strawberry", "strawberry cordial"]),
+  entity("raspberry-syrup", "Raspberry Syrup", "Sweeteners & Syrups", ["raspberry flavoured syrup", "raspberry cordial", "torani raspberry", "monin raspberry"]),
+  entity("peach-syrup", "Peach Syrup", "Sweeteners & Syrups", ["peach flavoured syrup", "peach cordial", "torani peach", "monin peach"]),
+  entity("cherry-syrup", "Cherry Syrup", "Sweeteners & Syrups", ["cherry flavoured syrup", "black cherry syrup", "cherry cordial", "torani cherry", "monin cherry"]),
+  entity("blackberry-syrup", "Blackberry Syrup", "Sweeteners & Syrups", ["blackberry flavoured syrup", "blackberry cordial", "monin blackberry"]),
+  entity("lavender-syrup", "Lavender Syrup", "Sweeteners & Syrups", ["lavender flavoured syrup", "lavender cordial", "monin lavender", "torani lavender"]),
+  entity("blackcurrant-cordial", "Blackcurrant Cordial", "Sweeteners & Syrups", ["ribena", "blackcurrant squash", "blackcurrant syrup", "blackcurrant concentrate", "blackcurrant drink concentrate"]),
+  entity("maesil-syrup", "Maesil Syrup", "Sweeteners & Syrups", ["maesil cheong", "maesil-cheong", "green plum syrup", "korean plum syrup", "green plum extract", "plum cordial"]),
+  entity("root-beer-extract", "Root Beer Extract", "Spices & Flavourings", ["root beer concentrate", "root beer flavouring", "root beer flavoring", "root beer essence", "root beer syrup"]),
+  entity("sarsaparilla-root", "Sarsaparilla Root", "Spices & Flavourings", ["sarsaparilla", "dried sarsaparilla", "sarsaparilla bark", "nannari", "nannari root", "indian sarsaparilla"]),
+  entity("molasses", "Molasses", "Sweeteners & Syrups", ["blackstrap molasses", "treacle", "black treacle", "dark molasses", "cane molasses"]),
   entity("ice", "Ice", "Ice & Frozen", ["ice cubes", "crushed ice", "cubed ice"]),
   entity("water", "Water", "Pantry Staples", ["cold water", "hot water", "boiling water", "filtered water", "still water", "tap water", "chilled water"]),
 ];
