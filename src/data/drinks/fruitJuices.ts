@@ -84,10 +84,6 @@ export const fruitJuices: Recipe[] = [
     { kind: "soft", what: "the peaches", prep: ["Peel the peaches, cut them in half and remove the stones."], lines: [L("peach", "Ripe peaches", "3"), L("water", "Cold water", "50 ml", true), L("lemon", "Lemon, a squeeze", "1 tsp", true), ICE()] }
   ),
   juice(
-    { id: "litchi-juice", title: "Litchi Juice", diet: [...VEG], taste: ["Fruity", "Sweet", "Refreshing"], description: "Litchis blended and strained into a pale, floral, delicate juice.", prep: 12, make: 3, difficulty: "Easy", image: pexels(16820484), ...SRC_LIST },
-    { kind: "soft", what: "the litchis", prep: ["Peel the litchis and remove the stones."], lines: [L("lychee", "Fresh litchis, or tinned litchis in syrup", "300 g"), L("lime", "Lime, a squeeze", "1 tsp", true), ICE()] }
-  ),
-  juice(
     { id: "cherry-juice", title: "Cherry Juice", diet: [...VEG], taste: ["Fruity", "Tangy", "Sweet"], description: "Dark sweet cherries blended and strained into a deep red, tart-sweet juice.", prep: 12, make: 4, difficulty: "Medium", image: pexels(34303588), ...SRC_LIST },
     { kind: "soft", what: "the cherries", prep: ["Wash the cherries and remove the stalks and stones."], lines: [L("cherries", "Dark sweet cherries", "300 g"), L("water", "Cold water", "50 ml"), SUGAR(2), ICE()] }
   ),

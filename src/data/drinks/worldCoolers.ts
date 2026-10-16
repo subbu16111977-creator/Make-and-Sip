@@ -82,12 +82,6 @@ export const latinCoolers: Recipe[] = [
     ["Peel the tamarind pods and put the pulp in a saucepan with 600 ml of the water. Simmer for 10 minutes until the pulp is very soft.", "Mash the pulp in the pan, then pour through a sieve into a pitcher, pressing out all the pulp and discarding the seeds.", "Stir in the sugar until dissolved, then add the rest of the cold water and the lime juice.", "Chill for at least an hour and serve over ice."]
   ),
   pitcher(
-    { id: "agua-de-limon", title: "Agua de Limón", ...LC, diet: [...VEG], taste: ["Tangy", "Sweet", "Refreshing"], description: "Mexico's limeade agua fresca: lime juice with a little zest, sugar and cold water, served over lots of ice.", prep: 15, make: 5, wait: 30, difficulty: "Easy", servings: 4, image: pexels(34878709), ...SRC_AGUA },
-    [L("lime", "Limes", "8"), L("sugar", "Sugar", "120 g"), L("water", "Cold water", "1000 ml"), ICE("2 cups")],
-    ["Zest two of the limes into a pitcher, then squeeze all of the limes into it, straining out the pips.", "Stir in the sugar until it has dissolved.", "Pour in the cold water and stir well.", "Chill for 30 minutes, and serve over ice."],
-    [SQUEEZER]
-  ),
-  pitcher(
     { id: "agua-de-pepino", title: "Agua de Pepino", ...LC, diet: [...VEG], taste: ["Refreshing", "Tangy", "Herbal"], description: "Cucumber blended with lime, sugar and water, then strained: pale green, cool and clean — a Mexican street-stall favourite.", prep: 15, make: 5, wait: 30, difficulty: "Easy", servings: 4, image: pexels(38431320), ...SRC_AGUA },
     [L("cucumber", "Cucumbers, peeled and chopped", "2"), L("lime", "Limes, juiced", "3"), L("sugar", "Sugar", "80 g"), L("water", "Cold water", "1000 ml"), ICE("2 cups")],
     ["Blend the cucumbers with 300 ml of the water (or grate them finely and press the juice out through a clean cloth).", "Strain the cucumber juice into a pitcher, pressing out every drop.", "Stir in the lime juice and the sugar until dissolved, then add the rest of the water.", "Chill for 30 minutes and serve over ice."],
@@ -153,11 +147,6 @@ export const worldCoolers: Recipe[] = [
     [L("salted-lemon", "Salted (pickled) lemon, half", "1/2"), L("sugar", "Sugar syrup", "2 tbsp"), L("water", "Cold water or sparkling water", "250 ml"), ICE("1/2 cup")],
     ["Put the pickled lemon half in a tall glass and crush it with a spoon (or muddler), squeezing out the juice and breaking up the peel.", "Stir in the sugar syrup.", "Fill the glass with ice and pour in the cold water or sparkling water.", "Stir well, taste, and add more syrup if it is too salty."],
     [MUDDLER]
-  ),
-  pitcher(
-    { id: "sour-plum-cooler", title: "Sour Plum Cooler", ...LC, diet: [...VEG], taste: ["Tangy", "Sweet", "Refreshing"], description: "Dried sour plums simmered with sugar and cooled: a deep amber, smoky-sour drink popular across China, Taiwan and Japan.", prep: 15, make: 25, wait: 60, difficulty: "Medium", servings: 4, image: pexels(18443634), ...SRC_WORLD },
-    [L("salted-plum", "Dried sour plums (suan mei or umeboshi)", "8"), L("sugar", "Sugar", "100 g"), L("water", "Water", "1200 ml"), ICE("2 cups")],
-    ["Rinse the plums and put them in a saucepan with the water. Simmer gently for 20 minutes.", "Stir in the sugar until it dissolves, then take the pan off the heat and let it cool.", "Strain into a pitcher, pressing the plums gently, and chill for at least an hour.", "Serve over ice."]
   ),
   built(
     { id: "lemon-honey-ginger-cooler", title: "Lemon Honey Ginger Cooler", ...LC, diet: ["Dairy-Free", "Gluten-Free", "Caffeine-Free"], taste: ["Tangy", "Spicy", "Sweet"], description: "Fresh ginger steeped in water, then mixed with lemon juice and honey and iced: sharp, warm and refreshing.", prep: 15, make: 3, difficulty: "Easy", image: pexels(6932890), ...SRC_WORLD },
