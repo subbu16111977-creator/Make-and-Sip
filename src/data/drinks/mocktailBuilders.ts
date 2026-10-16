@@ -6,7 +6,7 @@ import { drink, type DrinkFacts } from "./builders";
  * (grenadine, orgeat, blue "curaçao" flavouring) stand in for the liqueurs. A data test keeps alcohol out of the list.
  */
 
-export type MocktailFacts = Omit<DrinkFacts, "type" | "temperature"> & { temperature?: DrinkFacts["temperature"] };
+export type MocktailFacts = Omit<DrinkFacts, "type" | "temperature"> & { temperature?: DrinkFacts["temperature"]; /** Defaults to Mocktails; the lemonade and cooler files set it. */ type?: DrinkFacts["type"] };
 
 export const L = (pantryId: string, label: string, amount: string, optional = false): RecipeIngredient => ({ pantryId, label, amount, ...(optional ? { optional: true } : {}) });
 export const ICE = (amount = "1 cup"): RecipeIngredient => L("ice", "Ice cubes", amount);
@@ -16,7 +16,7 @@ export const MUDDLER: OptionalEquipment = { tag: "Muddler", without: "Crush with
 export const JIGGER: OptionalEquipment = { tag: "Jigger", without: "Measure with spoons: 1 tablespoon is 15 ml." };
 export const SQUEEZER: OptionalEquipment = { tag: "Citrus Squeezer", without: "Squeeze the fruit by hand over a sieve to catch the pips." };
 
-const mk = (facts: MocktailFacts): DrinkFacts => ({ ...facts, type: "Mocktails", temperature: facts.temperature ?? "cold" });
+const mk = (facts: MocktailFacts): DrinkFacts => ({ ...facts, type: facts.type ?? "Mocktails", temperature: facts.temperature ?? "cold" });
 
 /** Built straight in the glass: no equipment needed. */
 export function built(facts: MocktailFacts, lines: RecipeIngredient[], steps: string[], optional: OptionalEquipment[] = [], handTools: string[] = ["Tall glass", "Long spoon"]): Recipe {
