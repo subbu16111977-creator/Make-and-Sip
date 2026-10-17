@@ -77,7 +77,7 @@ export const indianCoolers: Recipe[] = [
 
 export const latinCoolers: Recipe[] = [
   pitcher(
-    { id: "agua-de-tamarindo", title: "Agua de Tamarindo", ...LC, diet: [...VEG], taste: ["Tangy", "Sweet", "Refreshing"], description: "Mexico's tamarind agua fresca: pods simmered, mashed and strained, sweetened and served well chilled over ice.", prep: 30, make: 15, wait: 60, difficulty: "Medium", servings: 4, image: pexels(34381588), ...SRC_AGUA },
+    { id: "agua-de-tamarindo", title: "Agua de Tamarindo", ...LC, diet: [...VEG], taste: ["Tangy", "Sweet", "Refreshing"], description: "Mexico's tamarind agua fresca: pods simmered, mashed and strained, sweetened and served well chilled over ice.", prep: 30, make: 15, wait: 60, difficulty: "Medium", servings: 4, image: pexels(38956012), ...SRC_AGUA },
     [L("tamarind", "Tamarind pods, shelled (or 150 g tamarind paste)", "150 g"), L("water", "Water", "1200 ml"), L("sugar", "Sugar", "100 g"), L("lime", "Lime, a squeeze", "1 tsp", true), ICE("2 cups")],
     ["Peel the tamarind pods and put the pulp in a saucepan with 600 ml of the water. Simmer for 10 minutes until the pulp is very soft.", "Mash the pulp in the pan, then pour through a sieve into a pitcher, pressing out all the pulp and discarding the seeds.", "Stir in the sugar until dissolved, then add the rest of the cold water and the lime juice.", "Chill for at least an hour and serve over ice."]
   ),
@@ -127,7 +127,7 @@ export const latinCoolers: Recipe[] = [
 
 export const worldCoolers: Recipe[] = [
   pitcher(
-    { id: "tamar-hindi", title: "Tamar Hindi (Tamarind Sharbat)", ...LC, diet: [...VEG], taste: ["Tangy", "Sweet", "Herbal"], description: "The Middle East's tamarind drink, scented with rose water: dark amber, sweet-sour and especially popular during Ramadan.", prep: 25, make: 15, wait: 60, difficulty: "Medium", servings: 4, image: pexels(34467105), ...SRC_WORLD },
+    { id: "tamar-hindi", title: "Tamar Hindi (Tamarind Sharbat)", ...LC, diet: [...VEG], taste: ["Tangy", "Sweet", "Herbal"], description: "The Middle East's tamarind drink, scented with rose water: dark amber, sweet-sour and especially popular during Ramadan.", prep: 25, make: 15, wait: 60, difficulty: "Medium", servings: 4, image: pexels(17612825), ...SRC_WORLD },
     [L("tamarind", "Tamarind paste or pulp", "100 g"), L("water", "Water", "1200 ml"), L("sugar", "Sugar", "100 g"), L("rose-water", "Rose water", "1 tsp"), ICE("2 cups")],
     ["Simmer the tamarind in 500 ml of the water for 10 minutes, mashing it as it softens.", "Strain through a sieve into a pitcher, pressing out the pulp and discarding the seeds and fibre.", "Stir in the sugar until dissolved, then the rose water and the rest of the cold water.", "Chill for at least an hour and serve over ice."]
   ),

@@ -110,7 +110,7 @@ export const fruitAndSpecialShakes: Recipe[] = [
     { iceCream: vanilla(180), milkMl: 150, lines: [{ pantryId: "caramel-sauce", label: "Caramel sauce", amount: "3 tbsp" }], withIn: "and 2 tablespoons of the caramel sauce", after: ["Pour into a tall glass, drizzle with the last tablespoon of caramel and serve."] }
   ),
   iceCreamShake(
-    { id: "chocolate-hazelnut-milkshake", title: "Chocolate Hazelnut Milkshake", taste: ["Rich", "Sweet", "Creamy"], description: "Vanilla ice cream and milk blended with chocolate hazelnut spread — nutty, chocolatey and thick.", prep: 3, make: 2, difficulty: "Easy", image: pexels(1562465), sourceName: "RTA Outdoor Living — most popular milkshake flavours", sourceUrl: "https://rtaoutdoorliving.com/most-popular-milkshake/" },
+    { id: "chocolate-hazelnut-milkshake", title: "Chocolate Hazelnut Milkshake", taste: ["Rich", "Sweet", "Creamy"], description: "Vanilla ice cream and milk blended with chocolate hazelnut spread — nutty, chocolatey and thick.", prep: 3, make: 2, difficulty: "Easy", image: pexels(34035510), sourceName: "RTA Outdoor Living — most popular milkshake flavours", sourceUrl: "https://rtaoutdoorliving.com/most-popular-milkshake/" },
     { iceCream: vanilla(180), milkMl: 150, lines: [{ pantryId: "chocolate-hazelnut-spread", label: "Chocolate hazelnut spread", amount: "2 tbsp" }], withIn: "and the chocolate hazelnut spread", handBefore: ["Warm the spread for 10 seconds so it is soft enough to stir in."] }
   ),
   iceCreamShake(

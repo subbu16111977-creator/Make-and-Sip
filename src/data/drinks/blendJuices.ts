@@ -63,7 +63,7 @@ export const blendJuices: Recipe[] = [
     { kind: "hard", what: "the apples and ginger", prep: ["Wash and quarter the apples, removing the cores. Peel the ginger."], lines: [L("apple", "Green apples", "3"), L("ginger", "Fresh ginger, peeled", "10 g"), ICE()] }
   ),
   juice(
-    { id: "orange-pineapple-carrot-turmeric-juice", title: "Orange Pineapple Carrot Turmeric Juice", diet: [...VEG], taste: ["Fruity", "Spicy", "Refreshing"], description: "A juice-bar favourite: orange, pineapple and carrot with fresh turmeric and a pinch of black pepper.", prep: 10, make: 3, difficulty: "Medium", image: pexels(4443454), sourceName: "Pressed Juicery — orange turmeric juice", sourceUrl: "https://pressed.com" },
+    { id: "orange-pineapple-carrot-turmeric-juice", title: "Orange Pineapple Carrot Turmeric Juice", diet: [...VEG], taste: ["Fruity", "Spicy", "Refreshing"], description: "A juice-bar favourite: orange, pineapple and carrot with fresh turmeric and a pinch of black pepper.", prep: 10, make: 3, difficulty: "Medium", image: pexels(11879053), sourceName: "Pressed Juicery — orange turmeric juice", sourceUrl: "https://pressed.com" },
     { kind: "hard", what: "the oranges, pineapple, carrots and turmeric", prep: ["Peel the oranges, cut the skin off the pineapple and chop it, scrub the carrots and peel the turmeric."], lines: [L("orange", "Oranges", "2"), L("pineapple", "Pineapple, chopped", "100 g"), L("carrot", "Carrots", "2"), L("turmeric-root", "Fresh turmeric root", "5 g"), L("black-pepper", "Black pepper, a pinch", "1 pinch", true), ICE()] }
   ),
   juice(

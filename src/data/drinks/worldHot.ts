@@ -218,7 +218,7 @@ export const worldHot: Recipe[] = [
     {
       id: "kopi-o", title: "Kopi O", type: "Coffee", temperature: "hot", diet: ["Vegan", "Dairy-Free", "Gluten-Free"], taste: ["Bitter", "Sweet"],
       description: "Singapore and Malaysia's kopitiam black coffee: dark-roast coffee brewed through a cloth 'sock' and sweetened with sugar, with no milk. Ask for 'peng' to have it iced.",
-      prep: 3, make: 7, difficulty: "Easy", image: unsplash("1652507733698-b0c536a92cd4"),
+      prep: 3, make: 7, difficulty: "Easy", image: pexels(35352271),
       sourceName: "Wikipedia — Kopi", sourceUrl: "https://www.wikipedia.org/wiki/Kopi_O",
       notes: "In a kopitiam the order changes the drink: kopi (with condensed milk), kopi C (with evaporated milk and sugar), kopi O (black with sugar), and 'kosong' (no sugar).",
     },
@@ -247,7 +247,7 @@ export const worldHot: Recipe[] = [
     {
       id: "kopi-c", title: "Kopi C", type: "Coffee", temperature: "hot", diet: ["Gluten-Free"], taste: ["Sweet", "Creamy", "Bitter"],
       description: "Kopitiam coffee with evaporated milk and sugar — richer and a little less sweet than plain kopi, with a caramel note from the dark roast.",
-      prep: 3, make: 7, difficulty: "Easy", image: unsplash("1614680550853-aa00842aa529"),
+      prep: 3, make: 7, difficulty: "Easy", image: pexels(13800737),
       sourceName: "Wikipedia — Kopi", sourceUrl: "https://www.wikipedia.org/wiki/Kopi_O",
       notes: "The 'C' is said to come from Carnation, the tinned evaporated milk brand.",
     },
