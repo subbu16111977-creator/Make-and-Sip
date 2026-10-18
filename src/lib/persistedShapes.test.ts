@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { isEquipmentTags, isPantryItems, isSavedIds, isShoppingItems } from "./persistedShapes";
-import { pantryItems as seedPantry } from "@/test/fixtures/pantry";
+import { seedPantry } from "@/test/seedPantry";
 import { addMissingIngredientsFromRecipe } from "./inventoryActions";
 
 describe("persistedShapes — data read back from device storage", () => {
@@ -12,7 +12,7 @@ describe("persistedShapes — data read back from device storage", () => {
 
   it("accepts a real shopping list after a JSON round trip, including the addedToPantry flag", () => {
     const { items } = addMissingIngredientsFromRecipe([], "r1", "Test", [
-      { pantryId: "chicken-thigh", label: "Chicken", amount: "1" },
+      { pantryId: "ground-coffee", label: "Ground coffee", amount: "1" },
     ]);
     const withFlag = items.map((i) => ({ ...i, checked: true, addedToPantry: true }));
     const roundTripped = JSON.parse(JSON.stringify(withFlag));

@@ -10,15 +10,15 @@ import {
 import { getIngredientMatch, getRecipeAvailability } from "./pantryMatch";
 import type { PantryItem, Recipe, RecipeIngredient, ShoppingItem } from "@/types";
 
-const CHICKEN_INGREDIENT: RecipeIngredient = {
-  pantryId: "chicken-thigh",
-  label: "1/4 chicken, chopped into pieces",
-  amount: "1/4",
+const COFFEE_INGREDIENT: RecipeIngredient = {
+  pantryId: "ground-coffee",
+  label: "Ground coffee, medium grind",
+  amount: "18 g",
 };
 
-const CHICKEN_RECIPE: Recipe = {
+const COFFEE_RECIPE: Recipe = {
   id: "recipe_123",
-  title: "Weeknight Chicken",
+  title: "Weekday Coffee",
   description: "",
   temperature: "hot",
   cuisine: "Test",
@@ -31,25 +31,25 @@ const CHICKEN_RECIPE: Recipe = {
   servings: 2,
   budget: "$",
   image: "",
-  ingredients: [CHICKEN_INGREDIENT],
+  ingredients: [COFFEE_INGREDIENT],
   equipment: [],
   steps: ["Cook it."],
 };
 
-describe("Test 8 — Add missing ingredients from Discover puts chicken on Shopping via ingredientId", () => {
+describe("Test 8 — Add missing ingredients from Discover puts coffee on Shopping via ingredientId", () => {
   it("adds a shopping item keyed by ingredientId, not raw text", () => {
-    const { items, addedCount } = addMissingIngredientsFromRecipe([], CHICKEN_RECIPE.id, CHICKEN_RECIPE.title, [
-      CHICKEN_INGREDIENT,
+    const { items, addedCount } = addMissingIngredientsFromRecipe([], COFFEE_RECIPE.id, COFFEE_RECIPE.title, [
+      COFFEE_INGREDIENT,
     ]);
     expect(addedCount).toBe(1);
-    expect(items[0].ingredientId).toBe("chicken-thigh");
+    expect(items[0].ingredientId).toBe("ground-coffee");
     expect(items[0].sourceRecipeIds).toEqual(["recipe_123"]);
   });
 
   it("adding the same missing ingredient from a second recipe merges instead of duplicating", () => {
-    const first = addMissingIngredientsFromRecipe([], "recipe_123", "Weeknight Chicken", [CHICKEN_INGREDIENT]);
-    const second = addMissingIngredientsFromRecipe(first.items, "recipe_999", "Sunday Roast", [
-      { ...CHICKEN_INGREDIENT, label: "Chicken, jointed" },
+    const first = addMissingIngredientsFromRecipe([], "recipe_123", "Weekday Coffee", [COFFEE_INGREDIENT]);
+    const second = addMissingIngredientsFromRecipe(first.items, "recipe_999", "Weekend Brunch", [
+      { ...COFFEE_INGREDIENT, label: "Coffee, freshly ground" },
     ]);
     expect(second.items.length).toBe(1);
     expect(second.items[0].sourceRecipeIds).toEqual(["recipe_123", "recipe_999"]);
@@ -57,21 +57,21 @@ describe("Test 8 — Add missing ingredients from Discover puts chicken on Shopp
   });
 });
 
-describe("Test 9 — marking chicken purchased updates Shopping AND Pantry atomically, Discover sees it immediately", () => {
+describe("Test 9 — marking coffee purchased updates Shopping AND Pantry atomically, Discover sees it immediately", () => {
   it("full flow: empty pantry -> missing -> shopping -> purchased -> pantry has it -> Discover matches", () => {
     let pantry: PantryItem[] = [];
     let shopping: ShoppingItem[] = [];
 
-    // Discover: chicken is missing.
-    let availability = getRecipeAvailability(CHICKEN_RECIPE, pantry);
+    // Discover: coffee is missing.
+    let availability = getRecipeAvailability(COFFEE_RECIPE, pantry);
     expect(availability.missingCount).toBe(1);
 
     // Tap "Add missing ingredients".
-    const added = addMissingIngredientsFromRecipe(shopping, CHICKEN_RECIPE.id, CHICKEN_RECIPE.title, [
-      CHICKEN_INGREDIENT,
+    const added = addMissingIngredientsFromRecipe(shopping, COFFEE_RECIPE.id, COFFEE_RECIPE.title, [
+      COFFEE_INGREDIENT,
     ]);
     shopping = added.items;
-    expect(shopping.some((i) => i.ingredientId === "chicken-thigh" && !i.checked)).toBe(true);
+    expect(shopping.some((i) => i.ingredientId === "ground-coffee" && !i.checked)).toBe(true);
 
     // Mark purchased.
     const purchase = markShoppingItemPurchased(shopping, pantry, shopping[0].id);
@@ -79,14 +79,14 @@ describe("Test 9 — marking chicken purchased updates Shopping AND Pantry atomi
     pantry = purchase.pantryItems;
 
     expect(shopping[0].checked).toBe(true);
-    expect(pantry.some((p) => p.ingredientId === "chicken-thigh")).toBe(true);
+    expect(pantry.some((p) => p.ingredientId === "ground-coffee")).toBe(true);
 
     // Discover recomputed from the same pantry array — immediately available, no reload.
-    availability = getRecipeAvailability(CHICKEN_RECIPE, pantry);
+    availability = getRecipeAvailability(COFFEE_RECIPE, pantry);
     expect(availability.missingCount).toBe(0);
     expect(availability.matchedCount).toBe(1);
 
-    const ingredientMatch = getIngredientMatch(CHICKEN_INGREDIENT, pantry);
+    const ingredientMatch = getIngredientMatch(COFFEE_INGREDIENT, pantry);
     expect(ingredientMatch.identityMatched).toBe(true);
   });
 
@@ -94,13 +94,13 @@ describe("Test 9 — marking chicken purchased updates Shopping AND Pantry atomi
     const shopping: ShoppingItem[] = [
       {
         id: "s1",
-        name: "Chicken",
-        amount: "1/4",
-        category: "Juices & Sodas",
+        name: "Coffee",
+        amount: "18 g",
+        category: "Coffee & Tea",
         checked: true,
-        ingredientId: "chicken-thigh",
-        requestedQuantity: 0.25,
-        requestedUnit: "whole",
+        ingredientId: "ground-coffee",
+        requestedQuantity: 18,
+        requestedUnit: "g",
         sourceRecipeIds: ["recipe_123"],
       },
     ];
@@ -111,8 +111,8 @@ describe("Test 9 — marking chicken purchased updates Shopping AND Pantry atomi
 
 describe("Regression — check, uncheck, check again must not double the pantry quantity", () => {
   function buyOnce() {
-    const shopping = addMissingIngredientsFromRecipe([], CHICKEN_RECIPE.id, CHICKEN_RECIPE.title, [
-      CHICKEN_INGREDIENT,
+    const shopping = addMissingIngredientsFromRecipe([], COFFEE_RECIPE.id, COFFEE_RECIPE.title, [
+      COFFEE_INGREDIENT,
     ]).items;
     return markShoppingItemPurchased(shopping, [], shopping[0].id);
   }
@@ -157,8 +157,8 @@ describe("Test 10 — unchecking a purchased item never silently deletes pantry 
   it("unmarking purchased leaves Pantry untouched", () => {
     let pantry: PantryItem[] = [];
     let shopping: ShoppingItem[] = [];
-    const added = addMissingIngredientsFromRecipe(shopping, CHICKEN_RECIPE.id, CHICKEN_RECIPE.title, [
-      CHICKEN_INGREDIENT,
+    const added = addMissingIngredientsFromRecipe(shopping, COFFEE_RECIPE.id, COFFEE_RECIPE.title, [
+      COFFEE_INGREDIENT,
     ]);
     shopping = added.items;
     const purchase = markShoppingItemPurchased(shopping, pantry, shopping[0].id);
@@ -170,25 +170,25 @@ describe("Test 10 — unchecking a purchased item never silently deletes pantry 
     expect(shopping[0].checked).toBe(false);
     // Pantry is untouched — no data silently erased.
     expect(pantry.length).toBe(1);
-    expect(pantry[0].ingredientId).toBe("chicken-thigh");
+    expect(pantry[0].ingredientId).toBe("ground-coffee");
   });
 });
 
 describe("Test 11 — manually adding an ingredient that's also on the shopping list", () => {
   it("does not create a duplicate pantry entry when added twice", () => {
     const first = addPantryItem([], {
-      name: "Chicken",
+      name: "Coffee",
       quantity: 1,
       unit: "pcs",
-      category: "Juices & Sodas",
+      category: "Coffee & Tea",
       location: "Fridge",
       expiresInDays: 5,
     });
     const second = addPantryItem(first.items, {
-      name: "chicken",
+      name: "coffee",
       quantity: 1,
       unit: "pcs",
-      category: "Juices & Sodas",
+      category: "Coffee & Tea",
       location: "Fridge",
       expiresInDays: 5,
     });
@@ -199,15 +199,15 @@ describe("Test 11 — manually adding an ingredient that's also on the shopping 
 
   it("resolves free-text name to the shared ingredient identity used by recipes", () => {
     const result = addPantryItem([], {
-      name: "chicken",
+      name: "coffee",
       quantity: 1,
       unit: "pcs",
-      category: "Juices & Sodas",
+      category: "Coffee & Tea",
       location: "Fridge",
       expiresInDays: 5,
     });
-    // Recipe wants chicken-thigh; pantry has generic chicken -> subtype match, not missing.
-    const m = getIngredientMatch(CHICKEN_INGREDIENT, result.items);
+    // Recipe wants ground-coffee; pantry has generic coffee -> subtype match, not missing.
+    const m = getIngredientMatch(COFFEE_INGREDIENT, result.items);
     expect(m.identityMatched).toBe(true);
     expect(m.matchType).toBe("subtype");
   });
@@ -216,34 +216,34 @@ describe("Test 11 — manually adding an ingredient that's also on the shopping 
 describe("Test 12 — removing a pantry item flips the recipe back to missing", () => {
   it("removePantryItem makes Discover show the ingredient as missing again", () => {
     const added = addPantryItem([], {
-      name: "Chicken thigh",
+      name: "Ground coffee",
       quantity: 1,
       unit: "pcs",
-      category: "Juices & Sodas",
+      category: "Coffee & Tea",
       location: "Fridge",
       expiresInDays: 5,
     });
     let pantry = added.items;
-    expect(getRecipeAvailability(CHICKEN_RECIPE, pantry).missingCount).toBe(0);
+    expect(getRecipeAvailability(COFFEE_RECIPE, pantry).missingCount).toBe(0);
 
     pantry = removePantryItem(pantry, pantry[0].id);
-    expect(getRecipeAvailability(CHICKEN_RECIPE, pantry).missingCount).toBe(1);
+    expect(getRecipeAvailability(COFFEE_RECIPE, pantry).missingCount).toBe(1);
   });
 });
 
 describe("reresolvePantry", () => {
-  const stale = { id: "p1", name: "Buns", category: "Pantry Staples", quantity: 6, unit: "pcs", quantityKnown: true, location: "Fridge", purchaseDate: "2026-10-01", expiryDate: "2026-10-15", ingredientId: "buns-unknown", source: "manual" } as const;
+  const stale = { id: "p1", name: "Lemons", category: "Fruit", quantity: 6, unit: "pcs", quantityKnown: true, location: "Fridge", purchaseDate: "2026-10-01", expiryDate: "2026-10-15", ingredientId: "lemons-unknown", source: "manual" } as const;
   it("gives an old unrecognised item its real identity", () => {
     const out = reresolvePantry([{ ...stale }]);
-    expect(out[0].ingredientId).toBe("burger-buns");
+    expect(out[0].ingredientId).toBe("lemon");
     expect(out[0].quantity).toBe(6);
   });
   it("leaves recognised items and unknown names alone, and returns the same array when nothing changes", () => {
-    const items = [{ ...stale, ingredientId: "burger-buns" }, { ...stale, id: "p2", name: "Zorblax", ingredientId: "zorblax" }];
+    const items = [{ ...stale, ingredientId: "lemon" }, { ...stale, id: "p2", name: "Zorblax", ingredientId: "zorblax" }];
     expect(reresolvePantry(items as never)).toBe(items);
   });
   it("does not create a second item with the same identity", () => {
-    const items = [{ ...stale, ingredientId: "burger-buns" }, { ...stale, id: "p3" }];
-    expect(reresolvePantry(items as never)[1].ingredientId).toBe("buns-unknown");
+    const items = [{ ...stale, ingredientId: "lemon" }, { ...stale, id: "p3" }];
+    expect(reresolvePantry(items as never)[1].ingredientId).toBe("lemons-unknown");
   });
 });

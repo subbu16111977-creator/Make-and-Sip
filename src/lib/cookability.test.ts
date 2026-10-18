@@ -27,59 +27,61 @@ describe("amount reading", () => {
 
 describe("ingredient names", () => {
   it("maps regional and plural names", () => {
-    expect(normalizeIngredient("tomatoes").ingredientId).toBe("tomato");
-    expect(normalizeIngredient("chicken breasts").ingredientId).toBe("chicken-breast");
-    expect(normalizeIngredient("capsicum").ingredientId).toBe("bell-pepper");
-    expect(normalizeIngredient("coriander").ingredientId).toBe("cilantro");
-    expect(normalizeIngredient("atta").ingredientId).toBe("roti-flour");
-    expect(normalizeIngredient("whole wheat flour").ingredientId).toBe("roti-flour");
-    for (const t of ["chillies", "chilis", "chiles"]) expect(normalizeIngredient(t).ingredientId).toBe("green-chili");
+    expect(normalizeIngredient("lemons").ingredientId).toBe("lemon");
+    expect(normalizeIngredient("strawberries").ingredientId).toBe("strawberry");
+    expect(normalizeIngredient("soda water").ingredientId).toBe("sparkling-water");
+    expect(normalizeIngredient("oj").ingredientId).toBe("orange-juice");
+    expect(normalizeIngredient("Whole milk").ingredientId).toBe("milk");
+    expect(normalizeIngredient("caster sugar").ingredientId).toBe("sugar");
+    for (const t of ["mint leaves", "fresh mint"]) expect(normalizeIngredient(t).ingredientId).toBe("fresh-mint");
   });
   it("does not merge look-alike products", () => {
-    expect(normalizeIngredient("garlic powder").ingredientId).not.toBe("garlic");
-    expect(normalizeIngredient("tomato sauce").ingredientId).not.toBe("tomato");
-    expect(normalizeIngredient("chicken stock").ingredientId).toBe("chicken-stock");
+    expect(normalizeIngredient("oat milk").ingredientId).not.toBe(normalizeIngredient("oats").ingredientId);
+    expect(normalizeIngredient("oat milk").ingredientId).not.toBe("milk");
+    expect(normalizeIngredient("instant coffee").ingredientId).not.toBe(normalizeIngredient("ground coffee").ingredientId);
+    expect(normalizeIngredient("coconut milk").ingredientId).not.toBe(normalizeIngredient("coconut cream").ingredientId);
     expect(normalizeIngredient("coconut milk").ingredientId).not.toBe(normalizeIngredient("shredded coconut").ingredientId);
-    expect(normalizeIngredient("whole wheat flour").ingredientId).not.toBe("all-purpose-flour");
+    expect(normalizeIngredient("cocoa powder").ingredientId).not.toBe(normalizeIngredient("chocolate syrup").ingredientId);
+    expect(normalizeIngredient("bottled lemon juice").ingredientId).not.toBe("lemon");
   });
 });
 
 describe("quantity", () => {
   it("compares across g and kg", () => {
-    const r = ingredientCookability(ing("chicken-breast", "500 g"), [item("chicken-breast", 0.5, "kg")], 1);
+    const r = ingredientCookability(ing("ground-coffee", "500 g"), [item("ground-coffee", 0.5, "kg")], 1);
     expect(r.quantity).toBe("sufficient");
   });
   it("is insufficient with a partial credit and a readable shortfall", () => {
-    const r = ingredientCookability(ing("chicken-breast", "500 g"), [item("chicken-breast", 200, "g")], 1);
+    const r = ingredientCookability(ing("ground-coffee", "500 g"), [item("ground-coffee", 200, "g")], 1);
     expect(r.match).toBe("insufficient");
     expect(r.credit).toBeCloseTo(0.4);
     expect(r.shortBy).toBe("300 g");
   });
   it("converts spoons and ml", () => {
-    expect(ingredientCookability(ing("olive-oil", "2 tbsp"), [item("olive-oil", 30, "ml")], 1).quantity).toBe("sufficient");
-    expect(ingredientCookability(ing("olive-oil", "2 tbsp"), [item("olive-oil", 20, "ml")], 1).quantity).toBe("insufficient");
+    expect(ingredientCookability(ing("milk", "2 tbsp"), [item("milk", 30, "ml")], 1).quantity).toBe("sufficient");
+    expect(ingredientCookability(ing("milk", "2 tbsp"), [item("milk", 20, "ml")], 1).quantity).toBe("insufficient");
   });
   it("uses a labelled approximation for weight vs cups only where a density is known", () => {
-    const flour = ingredientCookability(ing("all-purpose-flour", "1 cup"), [item("all-purpose-flour", 500, "g")], 1);
+    const flour = ingredientCookability(ing("sugar", "1 cup"), [item("sugar", 500, "g")], 1);
     expect(flour.quantity).toBe("sufficient");
     expect(flour.approximate).toBe(true);
-    const unknown = ingredientCookability(ing("onion", "1 cup"), [item("onion", 500, "g")], 1);
+    const unknown = ingredientCookability(ing("lemon", "1 cup"), [item("lemon", 500, "g")], 1);
     expect(unknown.quantity).toBe("unknown");
     expect(unknown.credit).toBe(1);
   });
   it("does not equate '1 onion' with 200 g of onion", () => {
-    expect(ingredientCookability(ing("onion", "1"), [item("onion", 200, "g")], 1).quantity).toBe("unknown");
+    expect(ingredientCookability(ing("lemon", "1"), [item("lemon", 200, "g")], 1).quantity).toBe("unknown");
   });
   it("compares pieces with pieces", () => {
-    expect(ingredientCookability(ing("onion", "2 medium"), [item("onion", 1, "pcs")], 1).quantity).toBe("insufficient");
-    expect(ingredientCookability(ing("onion", "2 medium"), [item("onion", 3, "pcs")], 1).quantity).toBe("sufficient");
+    expect(ingredientCookability(ing("lemon", "2 medium"), [item("lemon", 1, "pcs")], 1).quantity).toBe("insufficient");
+    expect(ingredientCookability(ing("lemon", "2 medium"), [item("lemon", 3, "pcs")], 1).quantity).toBe("sufficient");
   });
   it("treats 'to taste' and 'for frying' as not needing a quantity", () => {
-    expect(ingredientCookability(ing("black-pepper", "to taste"), [item("black-pepper", 1, "pcs")], 1).quantity).toBe("not-applicable");
-    expect(ingredientCookability(ing("vegetable-oil", "for frying"), [item("vegetable-oil", 1, "ml")], 1).quantity).toBe("not-applicable");
+    expect(ingredientCookability(ing("salt", "to taste"), [item("salt", 1, "pcs")], 1).quantity).toBe("not-applicable");
+    expect(ingredientCookability(ing("sugar", "to serve"), [item("sugar", 1, "g")], 1).quantity).toBe("not-applicable");
   });
   it("never treats a pantry item without a known amount as missing", () => {
-    const r = ingredientCookability(ing("onion", "2"), [item("onion", 1, "pcs", { quantityKnown: false })], 1);
+    const r = ingredientCookability(ing("lemon", "2"), [item("lemon", 1, "pcs", { quantityKnown: false })], 1);
     expect(r.match).toBe("exact");
     expect(r.quantity).toBe("unknown");
   });
@@ -87,24 +89,24 @@ describe("quantity", () => {
 
 describe("match kinds", () => {
   it("exact, missing", () => {
-    expect(ingredientCookability(ing("onion", "1"), [item("onion", 3, "pcs")], 1).match).toBe("exact");
-    expect(ingredientCookability(ing("onion", "1"), [], 1).match).toBe("missing");
+    expect(ingredientCookability(ing("lemon", "1"), [item("lemon", 3, "pcs")], 1).match).toBe("exact");
+    expect(ingredientCookability(ing("lemon", "1"), [], 1).match).toBe("missing");
   });
-  it("a generic pantry item covers a specific cut; two different cuts are ambiguous", () => {
-    expect(ingredientCookability(ing("chicken-breast", "500 g"), [item("chicken", 1, "kg")], 1).match).toBe("safe-equivalent");
-    const ambiguous = ingredientCookability(ing("chicken-breast", "500 g"), [item("chicken-thigh", 1, "kg")], 1);
+  it("a generic pantry item covers a specific form; two different forms are ambiguous", () => {
+    expect(ingredientCookability(ing("ground-coffee", "500 g"), [item("coffee", 1, "kg")], 1).match).toBe("safe-equivalent");
+    const ambiguous = ingredientCookability(ing("ground-coffee", "500 g"), [item("coffee-beans", 1, "kg")], 1);
     expect(ambiguous.match).toBe("ambiguous");
     expect(ambiguous.credit).toBe(COOKABILITY.ambiguousCredit);
   });
-  it("chicken stock is not chicken", () => {
-    expect(ingredientCookability(ing("chicken-breast", "500 g"), [item("chicken-stock", 1, "l")], 1).match).toBe("missing");
+  it("instant coffee is not ground coffee", () => {
+    expect(ingredientCookability(ing("ground-coffee", "500 g"), [item("instant-coffee", 100, "g")], 1).match).toBe("missing");
   });
 });
 
 describe("servings", () => {
-  const recipe = dish([ing("chicken-breast", "500 g")], { servings: 4 });
+  const recipe = dish([ing("ground-coffee", "500 g")], { servings: 4 });
   it("scales what is required, not what the recipe says", () => {
-    const pantry = [item("chicken-breast", 250, "g")];
+    const pantry = [item("ground-coffee", 250, "g")];
     expect(computeCookability(recipe, pantry, [], 4).category).toBe("partial");
     expect(computeCookability(recipe, pantry, [], 2).category).toBe("ready");
     expect(computeCookability(recipe, pantry, [], 2).ingredients[0].needed).toBe("250 g");
@@ -113,35 +115,35 @@ describe("servings", () => {
 });
 
 describe("score and categories", () => {
-  const pantryAll = [item("chicken-breast", 1, "kg"), item("onion", 3, "pcs"), item("black-pepper", 1, "pcs")];
+  const pantryAll = [item("ground-coffee", 1, "kg"), item("lemon", 3, "pcs"), item("salt", 1, "pcs")];
   it("ready when everything is there", () => {
-    const c = computeCookability(dish([ing("chicken-breast", "500 g"), ing("onion", "1"), ing("black-pepper", "to taste")]), pantryAll, []);
+    const c = computeCookability(dish([ing("ground-coffee", "500 g"), ing("lemon", "1"), ing("salt", "to taste")]), pantryAll, []);
     expect(c.category).toBe("ready");
     expect(c.percent).toBe(100);
     expect(c.summary).toContain("all 3 required ingredients");
   });
   it("optional ingredients never lower the score", () => {
-    const c = computeCookability(dish([ing("chicken-breast", "500 g"), ing("cilantro", "1 bunch", { optional: true })]), pantryAll, []);
+    const c = computeCookability(dish([ing("ground-coffee", "500 g"), ing("fresh-mint", "1 sprig", { optional: true })]), pantryAll, []);
     expect(c.percent).toBe(100);
     expect(c.category).toBe("ready");
     expect(c.optionalMissing).toBe(1);
   });
   it("a missing main ingredient can't hide behind small ones", () => {
-    const small = ["black-pepper", "onion", "garlic", "tomato"].map((id) => ing(id, "1"));
+    const small = ["salt", "lemon", "ginger", "cinnamon"].map((id) => ing(id, "1"));
     const pantry = small.map((i) => item(i.pantryId, 5, "pcs"));
-    const c = computeCookability(dish([ing("chicken-breast", "500 g"), ...small]), pantry, []);
+    const c = computeCookability(dish([ing("ground-coffee", "500 g"), ...small]), pantry, []);
     expect(c.requiredMissing).toBe(1);
     expect(c.category).not.toBe("ready");
     expect(c.percent).toBeLessThanOrEqual(70);
   });
   it("missing equipment prevents 'ready'", () => {
-    const c = computeCookability(dish([ing("onion", "1")], { equipment: ["Espresso Machine"] }), pantryAll, []);
+    const c = computeCookability(dish([ing("lemon", "1")], { equipment: ["Espresso Machine"] }), pantryAll, []);
     expect(c.category).toBe("almost");
     expect(c.equipmentMissing).toEqual(["Espresso Machine"]);
-    expect(computeCookability(dish([ing("onion", "1")], { equipment: ["Espresso Machine"] }), pantryAll, ["Espresso Machine"]).category).toBe("ready");
+    expect(computeCookability(dish([ing("lemon", "1")], { equipment: ["Espresso Machine"] }), pantryAll, ["Espresso Machine"]).category).toBe("ready");
   });
   it("optional equipment never blocks 'ready' or lowers the score", () => {
-    const withOptional = dish([ing("onion", "1")], { optionalEquipment: [{ tag: "Shaker", without: "Stir hard in a jar." }] });
+    const withOptional = dish([ing("lemon", "1")], { optionalEquipment: [{ tag: "Shaker", without: "Stir hard in a jar." }] });
     const c = computeCookability(withOptional, pantryAll, []);
     expect(c.category).toBe("ready");
     expect(c.percent).toBe(100);
@@ -151,19 +153,19 @@ describe("score and categories", () => {
     expect(computeCookability(withOptional, pantryAll, ["Shaker"]).equipmentOptionalOwned).toEqual(["Shaker"]);
   });
   it("required equipment still blocks 'ready' even when other equipment is optional", () => {
-    const d = dish([ing("onion", "1")], { equipment: ["Blender"], optionalEquipment: [{ tag: "Shaker" }] });
+    const d = dish([ing("lemon", "1")], { equipment: ["Blender"], optionalEquipment: [{ tag: "Shaker" }] });
     expect(computeCookability(d, pantryAll, ["Shaker"]).category).toBe("almost");
     expect(computeCookability(d, pantryAll, ["Blender"]).category).toBe("ready");
   });
   it("low match below 40%", () => {
-    const c = computeCookability(dish([ing("chicken-breast", "500 g"), ing("rice", "1 cup"), ing("onion", "1")]), [item("onion", 1, "pcs")], []);
+    const c = computeCookability(dish([ing("ground-coffee", "500 g"), ing("sugar", "1 cup"), ing("lemon", "1")]), [item("lemon", 1, "pcs")], []);
     expect(c.category).toBe("low");
   });
   it("weights follow the ingredient's role", () => {
-    expect(ingredientWeight("chicken-breast", null)).toBe(3);
-    expect(ingredientWeight("onion", null)).toBe(2);
-    expect(ingredientWeight("black-pepper", null)).toBe(1);
-    expect(ingredientWeight("soy-sauce", 500)).toBe(2);
+    expect(ingredientWeight("ground-coffee", null)).toBe(3);
+    expect(ingredientWeight("lemon", null)).toBe(2);
+    expect(ingredientWeight("salt", null)).toBe(1);
+    expect(ingredientWeight("salt", 500)).toBe(2);
   });
 });
 
@@ -196,8 +198,8 @@ describe("scaling for the shopping list", () => {
     expect(scaleAmountText("500 g", 1)).toBe("500 g");
   });
   it("tops up only what is short for the chosen servings", () => {
-    const r = dish([ing("chicken-breast", "500 g")], { servings: 4 });
-    const pantry = [item("chicken-breast", 250, "g")];
+    const r = dish([ing("ground-coffee", "500 g")], { servings: 4 });
+    const pantry = [item("ground-coffee", 250, "g")];
     expect(getShoppingPlan(scaledRecipe(r, 4), pantry).shortfalls[0]?.quantity).toBe(250);
     expect(getShoppingPlan(scaledRecipe(r, 2), pantry).shortfalls).toHaveLength(0);
     expect(r.ingredients[0].amount).toBe("500 g");
@@ -206,15 +208,8 @@ describe("scaling for the shopping list", () => {
 
 describe("Home's ready-to-cook list uses amounts", () => {
   it("leaves out a dish whose amount is short", () => {
-    const r = dish([ing("chicken-breast", "500 g")]);
-    expect(pickReadyToCook([item("chicken-breast", 1, "kg")], [r], [])).toHaveLength(1);
-    expect(pickReadyToCook([item("chicken-breast", 100, "g")], [r], [])).toHaveLength(0);
-  });
-});
-
-describe("everyday bread names", () => {
-  it("recognises plain 'buns' and hot dog buns", () => {
-    for (const t of ["buns", "Buns", "bun", "burger buns", "sesame buns"]) expect(normalizeIngredient(t).ingredientId).toBe("burger-buns");
-    expect(normalizeIngredient("hot dog buns").ingredientId).toBe("hoagie-roll");
+    const r = dish([ing("ground-coffee", "500 g")]);
+    expect(pickReadyToCook([item("ground-coffee", 1, "kg")], [r], [])).toHaveLength(1);
+    expect(pickReadyToCook([item("ground-coffee", 100, "g")], [r], [])).toHaveLength(0);
   });
 });

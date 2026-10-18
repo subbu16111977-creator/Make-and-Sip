@@ -29,7 +29,7 @@ export const COOKABILITY = {
   almostReadyMaxImportantProblems: 3,
   /** Minimum score for "Partially matched". Below it is "Low match". */
   partialMin: 40,
-  /** Credit for an ambiguous match (e.g. pantry has chicken thighs, recipe wants chicken breast). */
+  /** Credit for an ambiguous match (e.g. pantry has coffee beans, recipe wants ground coffee). */
   ambiguousCredit: 0.5,
   /** A seasoning or pantry staple needed in a large amount counts as a supporting ingredient, not a minor one. */
   largeStapleMl: 200,
@@ -61,22 +61,11 @@ const COUNT_UNITS = new Set(["whole", "piece", "pcs"]);
  * An ingredient that isn't listed is never converted between weight and volume.
  */
 export const DENSITY_G_PER_ML: Record<string, number> = {
-  "all-purpose-flour": 0.53,
-  flour: 0.53,
   sugar: 0.85,
   "brown-sugar": 0.93,
-  "powdered-sugar": 0.5,
-  butter: 0.96,
   milk: 1.03,
-  "olive-oil": 0.91,
-  "vegetable-oil": 0.92,
-  "sesame-oil": 0.92,
   honey: 1.42,
-  "soy-sauce": 1.2,
-  "basmati-rice": 0.8,
   rice: 0.8,
-  "jasmine-rice": 0.8,
-  cornstarch: 0.54,
   water: 1,
   ice: 0.55,
   "ground-coffee": 0.4,

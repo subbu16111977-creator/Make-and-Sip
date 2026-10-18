@@ -2,24 +2,23 @@ import { describe, expect, it } from "vitest";
 import { normalizeIngredient, resolveIngredientById } from "./ingredientNormalize";
 
 describe("normalizeIngredient — parsing", () => {
-  it('parses "1/4 chicken, chopped into pieces"', () => {
-    const n = normalizeIngredient("1/4 chicken, chopped into pieces");
-    expect(n.canonicalName).toBe("chicken");
-    expect(n.baseIngredient).toBe("chicken");
-    expect(n.quantity).toBe(0.25);
+  it('parses "1/2 lemon, sliced"', () => {
+    const n = normalizeIngredient("1/2 lemon, sliced");
+    expect(n.canonicalName).toBe("lemon");
+    expect(n.baseIngredient).toBe("lemon");
+    expect(n.quantity).toBe(0.5);
     expect(n.unit).toBe("whole");
-    expect(n.preparation).toBe("chopped into pieces");
+    expect(n.preparation).toBe("sliced");
     expect(n.needsReview).toBe(false);
   });
 
-  it('parses "500 g boneless chicken breast, sliced"', () => {
-    const n = normalizeIngredient("500 g boneless chicken breast, sliced");
-    expect(n.canonicalName).toBe("chicken_breast");
-    expect(n.baseIngredient).toBe("chicken");
-    expect(n.quantity).toBe(500);
+  it('parses "18 g ground coffee, freshly ground"', () => {
+    const n = normalizeIngredient("18 g ground coffee, freshly ground");
+    expect(n.baseIngredient).toBe("coffee");
+    expect(n.quantity).toBe(18);
     expect(n.unit).toBe("g");
-    expect(n.form).toBe("boneless");
-    expect(n.preparation).toBe("sliced");
+    expect(n.form).toBe("ground");
+    expect(n.preparation).toBe("freshly ground");
   });
 
   it('parses "3 tomatoes, diced"', () => {
@@ -46,36 +45,33 @@ describe("normalizeIngredient — parsing", () => {
     expect(n.preparation).toBe("minced");
   });
 
-  it("handles the real chicken-thigh recipe label (form word before the head noun)", () => {
-    const n = normalizeIngredient(
-      "1 1/2 lb (700 g) Boneless, skinless chicken thighs, cut into 1 1/2-inch pieces"
-    );
-    expect(n.ingredientId).toBe("chicken-thigh");
-    expect(n.baseIngredient).toBe("chicken");
-    expect(n.quantity).toBe(1.5);
-    expect(n.unit).toBe("lb");
-    expect(n.form).toBe("boneless skinless");
+  it("handles a real drink recipe label (amount in two units, name after)", () => {
+    const n = normalizeIngredient("2 tbsp (30 ml) Vanilla syrup");
+    expect(n.ingredientId).toBe("vanilla-syrup");
+    expect(n.quantity).toBe(2);
+    expect(n.unit).toBe("tbsp");
   });
 
-  it("preparation words never change identity — chopped/diced/sliced/cooked/roasted chicken all resolve to chicken", () => {
-    for (const text of ["chopped chicken", "diced chicken", "sliced chicken", "cooked chicken", "roasted chicken"]) {
-      expect(normalizeIngredient(text).canonicalName).toBe("chicken");
+  it("preparation words never change identity — chopped/grated/sliced/crushed/peeled ginger all resolve to ginger", () => {
+    for (const text of ["chopped ginger", "grated ginger", "sliced ginger", "crushed ginger", "peeled ginger"]) {
+      expect(normalizeIngredient(text).canonicalName).toBe("ginger");
     }
   });
 });
 
 describe("normalizeIngredient — must NOT cross-match unrelated ingredients", () => {
-  it("chicken != chicken stock", () => {
-    const chicken = normalizeIngredient("chicken");
-    const stock = normalizeIngredient("chicken stock");
-    expect(chicken.ingredientId).not.toBe(stock.ingredientId);
-    expect(chicken.baseIngredient).not.toBe(stock.baseIngredient);
+  it("lemon != bottled lemon juice", () => {
+    const lemon = normalizeIngredient("lemon");
+    const bottled = normalizeIngredient("bottled lemon juice");
+    expect(lemon.ingredientId).not.toBe(bottled.ingredientId);
+    expect(lemon.baseIngredient).not.toBe(bottled.baseIngredient);
   });
 
-  it("chicken != chicken sausage", () => {
-    const chicken = normalizeIngredient("chicken");
-    const sausage = normalizeIngredient("chicken sausage");
-    expect(chicken.baseIngredient).not.toBe(sausage.baseIngredient);
+  it("instant coffee != ground coffee", () => {
+    const instant = normalizeIngredient("instant coffee");
+    const ground = normalizeIngredient("ground coffee");
+    expect(instant.ingredientId).not.toBe(ground.ingredientId);
+    expect(instant.baseIngredient).not.toBe(ground.baseIngredient);
   });
 
   it("milk != coconut milk", () => {
@@ -92,18 +88,18 @@ describe("normalizeIngredient — must NOT cross-match unrelated ingredients", (
     expect(coconut.baseIngredient).not.toBe(coconutMilk.baseIngredient);
   });
 
-  it("rice != rice flour", () => {
-    const rice = normalizeIngredient("rice");
-    const riceFlour = normalizeIngredient("rice flour");
-    expect(rice.ingredientId).not.toBe(riceFlour.ingredientId);
-    expect(rice.baseIngredient).not.toBe(riceFlour.baseIngredient);
+  it("oat milk != oats", () => {
+    const oatMilk = normalizeIngredient("oat milk");
+    const oats = normalizeIngredient("oats");
+    expect(oatMilk.ingredientId).not.toBe(oats.ingredientId);
+    expect(oatMilk.baseIngredient).not.toBe(oats.baseIngredient);
   });
 
-  it("potato != sweet potato", () => {
-    const potato = normalizeIngredient("potato");
-    const sweetPotato = normalizeIngredient("sweet potato");
-    expect(potato.ingredientId).not.toBe(sweetPotato.ingredientId);
-    expect(potato.baseIngredient).not.toBe(sweetPotato.baseIngredient);
+  it("coconut milk != coconut cream", () => {
+    const milk = normalizeIngredient("coconut milk");
+    const cream = normalizeIngredient("coconut cream");
+    expect(milk.ingredientId).not.toBe(cream.ingredientId);
+    expect(milk.baseIngredient).not.toBe(cream.baseIngredient);
   });
 
   it("tomato != tomato sauce", () => {
@@ -115,17 +111,14 @@ describe("normalizeIngredient — must NOT cross-match unrelated ingredients", (
 });
 
 describe("normalizeIngredient — meaningful subtypes share a baseIngredient", () => {
-  it("chicken thigh and chicken breast both base to chicken", () => {
-    const thigh = resolveIngredientById("chicken-thigh")!;
-    const breast = resolveIngredientById("chicken-breast")!;
-    expect(thigh.baseIngredient).toBe("chicken");
-    expect(breast.baseIngredient).toBe("chicken");
+  it("coffee beans and ground coffee both base to coffee", () => {
+    expect(resolveIngredientById("coffee-beans")!.baseIngredient).toBe("coffee");
+    expect(resolveIngredientById("ground-coffee")!.baseIngredient).toBe("coffee");
   });
 
-  it("cherry tomato bases to tomato, basmati rice bases to rice, red onion bases to onion", () => {
-    expect(resolveIngredientById("cherry-tomato")!.baseIngredient).toBe("tomato");
-    expect(resolveIngredientById("basmati-rice")!.baseIngredient).toBe("rice");
-    expect(resolveIngredientById("red-onion")!.baseIngredient).toBe("onion");
+  it("greek yogurt bases to yogurt, cinnamon stick bases to cinnamon", () => {
+    expect(resolveIngredientById("greek-yogurt")!.baseIngredient).toBe("yogurt");
+    expect(resolveIngredientById("cinnamon-stick")!.baseIngredient).toBe("cinnamon");
   });
 });
 

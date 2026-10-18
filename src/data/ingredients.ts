@@ -5,8 +5,8 @@ import type { PantryCategory } from "@/types";
  *
  * Every drink ingredient, pantry item, and shopping item resolves to one of these entries. `id` is the stable
  * identity key (recipes reference it via `RecipeIngredient.pantryId`; pantry/shopping items via `ingredientId`).
- * `baseIngredient` groups genuine subtypes under one plain name (e.g. "chicken-thigh" and "chicken-breast" both
- * base to "chicken") so owning the plain name reasonably covers a specific kind — without conflating look-alikes.
+ * `baseIngredient` groups genuine subtypes under one plain name (e.g. "coffee-beans" and "ground-coffee" both
+ * base to "coffee") so owning the plain name reasonably covers a specific kind — without conflating look-alikes.
  * `synonyms` drives free-text resolution (see `resolveSynonym` in ingredientNormalize.ts).
  *
  * The food registry that used to live here was retired (it is preserved in Git: tag

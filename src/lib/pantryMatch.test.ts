@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { sortDiscover } from "./discoverView";
+import { bestMethod, recipeForMethod } from "./methods";
 import { getIngredientMatch, getRecipeAvailability, matchRecipe, pickSlideshowMatches, pickReadyToCook, pickAlmostThere, pickQuickRecipes, canMakeRecipe, bestEquipmentUnlock, cuisineSummaries } from "./pantryMatch";
 import type { PantryItem, Recipe, RecipeIngredient } from "@/types";
 import { recipes } from "@/data/recipes";
-import { pantryItems as seedPantry } from "@/test/fixtures/pantry";
+import { seedPantry } from "@/test/seedPantry";
 
 function pantryItem(overrides: Partial<PantryItem>): PantryItem {
   return {
@@ -27,53 +28,53 @@ function recipeIngredient(overrides: Partial<RecipeIngredient>): RecipeIngredien
 }
 
 describe("getIngredientMatch — identity", () => {
-  it("Test 1: pantry chicken matches recipe '1/4 chicken, chopped into pieces'", () => {
-    const pantry = [pantryItem({ ingredientId: "chicken", name: "Chicken" })];
-    const ing = recipeIngredient({ pantryId: "chicken", label: "1/4 chicken, chopped into pieces", amount: "1/4" });
+  it("Test 1: pantry lemon matches recipe '1/2 lemon, sliced'", () => {
+    const pantry = [pantryItem({ ingredientId: "lemon", name: "Lemon" })];
+    const ing = recipeIngredient({ pantryId: "lemon", label: "1/2 lemon, sliced", amount: "1/2" });
     const m = getIngredientMatch(ing, pantry);
     expect(m.identityMatched).toBe(true);
     expect(m.status).toBe("matched");
-    expect(m.message.toLowerCase()).toContain("you have chicken");
+    expect(m.message.toLowerCase()).toContain("you have lemon");
   });
 
-  it("Test 2: pantry generic chicken satisfies recipe '500 g boneless chicken breast' as a subtype match", () => {
-    const pantry = [pantryItem({ ingredientId: "chicken", name: "Chicken" })];
-    const ing = recipeIngredient({ pantryId: "chicken-breast", label: "Boneless chicken breast", amount: "500 g" });
+  it("Test 2: pantry generic coffee satisfies recipe '18 g ground coffee' as a subtype match", () => {
+    const pantry = [pantryItem({ ingredientId: "coffee", name: "Coffee" })];
+    const ing = recipeIngredient({ pantryId: "ground-coffee", label: "Ground coffee", amount: "18 g" });
     const m = getIngredientMatch(ing, pantry);
     expect(m.identityMatched).toBe(true);
     expect(m.matchType).toBe("subtype");
     expect(m.status).toBe("matched_subtype");
   });
 
-  it("Test 3: pantry tomato matches recipe '3 tomatoes, diced'", () => {
-    const pantry = [pantryItem({ ingredientId: "tomato", name: "Tomato" })];
-    const ing = recipeIngredient({ pantryId: "tomato", label: "3 tomatoes, diced", amount: "3" });
+  it("Test 3: pantry mint matches recipe '8 fresh mint leaves'", () => {
+    const pantry = [pantryItem({ ingredientId: "fresh-mint", name: "Mint" })];
+    const ing = recipeIngredient({ pantryId: "fresh-mint", label: "8 fresh mint leaves", amount: "8" });
     expect(getIngredientMatch(ing, pantry).identityMatched).toBe(true);
   });
 
-  it("Test 4: pantry onion matches recipe '1 large onion, finely chopped'", () => {
-    const pantry = [pantryItem({ ingredientId: "onion", name: "Onion" })];
-    const ing = recipeIngredient({ pantryId: "onion", label: "1 large onion, finely chopped", amount: "1" });
+  it("Test 4: pantry milk matches recipe '200 ml whole milk, steamed'", () => {
+    const pantry = [pantryItem({ ingredientId: "milk", name: "Milk" })];
+    const ing = recipeIngredient({ pantryId: "milk", label: "200 ml whole milk, steamed", amount: "200 ml" });
     expect(getIngredientMatch(ing, pantry).identityMatched).toBe(true);
   });
 
-  it("Test 5: pantry garlic matches recipe '2 cloves garlic, minced'", () => {
-    const pantry = [pantryItem({ ingredientId: "garlic", name: "Garlic" })];
-    const ing = recipeIngredient({ pantryId: "garlic", label: "2 cloves garlic, minced", amount: "2 cloves" });
+  it("Test 5: pantry cinnamon stick matches recipe '1 cinnamon stick'", () => {
+    const pantry = [pantryItem({ ingredientId: "cinnamon-stick", name: "Cinnamon stick" })];
+    const ing = recipeIngredient({ pantryId: "cinnamon-stick", label: "1 cinnamon stick", amount: "1" });
     expect(getIngredientMatch(ing, pantry).identityMatched).toBe(true);
   });
 
-  it("Test 6: pantry chicken does NOT match a recipe that needs chicken stock", () => {
-    const pantry = [pantryItem({ ingredientId: "chicken", name: "Chicken" })];
-    const ing = recipeIngredient({ pantryId: "chicken-stock", label: "Chicken stock", amount: "2 cups" });
+  it("Test 6: pantry coffee does NOT match a recipe that needs instant coffee", () => {
+    const pantry = [pantryItem({ ingredientId: "coffee", name: "Coffee" })];
+    const ing = recipeIngredient({ pantryId: "instant-coffee", label: "Instant coffee", amount: "2 tsp" });
     const m = getIngredientMatch(ing, pantry);
     expect(m.identityMatched).toBe(false);
     expect(m.status).toBe("missing");
   });
 
-  it("Test 7: pantry coconut does NOT automatically match a recipe that needs coconut milk", () => {
-    const pantry = [pantryItem({ ingredientId: "coconut", name: "Coconut" })];
-    const ing = recipeIngredient({ pantryId: "coconut-milk-can", label: "Full-fat coconut milk", amount: "1 can" });
+  it("Test 7: pantry coconut milk does NOT match a recipe that needs coconut cream", () => {
+    const pantry = [pantryItem({ ingredientId: "coconut-milk", name: "Coconut milk" })];
+    const ing = recipeIngredient({ pantryId: "coconut-cream", label: "Coconut cream", amount: "100 ml" });
     expect(getIngredientMatch(ing, pantry).identityMatched).toBe(false);
   });
 
@@ -86,8 +87,8 @@ describe("getIngredientMatch — identity", () => {
 
 describe("getIngredientMatch — quantity logic is separate from identity", () => {
   it("insufficient quantity still counts as identity-matched, with the shortfall reported", () => {
-    const pantry = [pantryItem({ ingredientId: "chicken-thigh", quantity: 200, unit: "g", quantityKnown: true })];
-    const ing = recipeIngredient({ pantryId: "chicken-thigh", label: "Chicken thighs", amount: "500 g" });
+    const pantry = [pantryItem({ ingredientId: "ground-coffee", quantity: 200, unit: "g", quantityKnown: true })];
+    const ing = recipeIngredient({ pantryId: "ground-coffee", label: "Ground coffee", amount: "500 g" });
     const m = getIngredientMatch(ing, pantry);
     expect(m.identityMatched).toBe(true);
     expect(m.quantityStatus).toBe("insufficient");
@@ -96,14 +97,14 @@ describe("getIngredientMatch — quantity logic is separate from identity", () =
   });
 
   it("cross-unit comparison: pantry has 1 kg, recipe needs 500 g -> sufficient", () => {
-    const pantry = [pantryItem({ ingredientId: "chicken-thigh", quantity: 1, unit: "kg", quantityKnown: true })];
-    const ing = recipeIngredient({ pantryId: "chicken-thigh", label: "Chicken thighs", amount: "500 g" });
+    const pantry = [pantryItem({ ingredientId: "ground-coffee", quantity: 1, unit: "kg", quantityKnown: true })];
+    const ing = recipeIngredient({ pantryId: "ground-coffee", label: "Ground coffee", amount: "500 g" });
     expect(getIngredientMatch(ing, pantry).quantityStatus).toBe("sufficient");
   });
 
   it("unknown pantry quantity never counts as missing", () => {
-    const pantry = [pantryItem({ ingredientId: "chicken-thigh", quantityKnown: false })];
-    const ing = recipeIngredient({ pantryId: "chicken-thigh", label: "Chicken thighs", amount: "500 g" });
+    const pantry = [pantryItem({ ingredientId: "ground-coffee", quantityKnown: false })];
+    const ing = recipeIngredient({ pantryId: "ground-coffee", label: "Ground coffee", amount: "500 g" });
     const m = getIngredientMatch(ing, pantry);
     expect(m.identityMatched).toBe(true);
     expect(m.quantityStatus).toBe("unknown");
@@ -128,9 +129,11 @@ describe("getRecipeAvailability + matchRecipe against the real drinks library", 
   it("matchRecipe have/missing stay consistent with getRecipeAvailability", () => {
     const recipe: Recipe = recipes[0];
     const match = matchRecipe(seedPantry, recipe);
-    const availability = getRecipeAvailability(recipe, seedPantry);
+    // matchRecipe reads the method the person can actually make, so compare against that method's ingredients.
+    const resolved = recipeForMethod(recipe, bestMethod([], recipe));
+    const availability = getRecipeAvailability(resolved, seedPantry);
     expect(match.have.length).toBe(availability.matchedCount);
-    expect(match.have.length + match.missing.length).toBe(recipe.ingredients.length);
+    expect(match.have.length + match.missing.length).toBe(resolved.ingredients.length);
   });
 });
 
