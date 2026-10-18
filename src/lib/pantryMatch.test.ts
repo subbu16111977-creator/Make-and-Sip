@@ -111,7 +111,7 @@ describe("getIngredientMatch — quantity logic is separate from identity", () =
   });
 });
 
-describe("getRecipeAvailability + matchRecipe against the real 24-recipe library", () => {
+describe("getRecipeAvailability + matchRecipe against the real drinks library", () => {
   it("every recipe's structured ingredients resolve to a registry entry (no broken pantryId references)", () => {
     for (const recipe of recipes) {
       for (const ing of recipe.ingredients) {
@@ -123,13 +123,6 @@ describe("getRecipeAvailability + matchRecipe against the real 24-recipe library
         );
       }
     }
-  });
-
-  it("chicken biryani's chicken-thigh ingredient is available from the seed pantry (which stocks chicken-thigh directly)", () => {
-    const biryani = recipes.find((r) => r.id === "chicken-biryani")!;
-    const chickenLine = biryani.ingredients.find((i) => i.pantryId === "chicken-thigh")!;
-    const m = getIngredientMatch(chickenLine, seedPantry);
-    expect(m.identityMatched).toBe(true);
   });
 
   it("matchRecipe have/missing stay consistent with getRecipeAvailability", () => {

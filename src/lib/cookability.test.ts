@@ -3,6 +3,7 @@ import { COOKABILITY, computeCookability, ingredientCookability, ingredientWeigh
 import { getShoppingPlan, pickReadyToCook } from "@/lib/pantryMatch";
 import { normalizeIngredient, parseAmount } from "@/lib/ingredientNormalize";
 import { recipes } from "@/data/recipes";
+import { methodsOf, recipeForMethod } from "@/lib/methods";
 import type { PantryItem, Recipe, RecipeIngredient } from "@/types";
 
 function item(ingredientId: string, quantity: number, unit: PantryItem["unit"], extra: Partial<PantryItem> = {}): PantryItem {
@@ -177,9 +178,10 @@ describe("every real dish", () => {
     }
   });
   it("is ready when the pantry holds plenty of exactly what the dish needs", () => {
-    const r = recipes[0];
+    const method = methodsOf(recipes[0])[0];
+    const r = recipeForMethod(recipes[0], method);
     const pantry = r.ingredients.map((i) => item(i.pantryId, 100000, "g"));
-    const c = computeCookability(r, pantry, r.equipment ?? []);
+    const c = computeCookability(r, pantry, method.equipment);
     expect(c.requiredMissing).toBe(0);
   });
 });
