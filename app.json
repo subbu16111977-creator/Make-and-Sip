@@ -19,7 +19,7 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.subbu.mise"
+      "package": "com.subbu.makeandsip"
     },
     "web": {
       "favicon": "./assets/favicon.png",
