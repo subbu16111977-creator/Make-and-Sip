@@ -99,18 +99,20 @@ describe("flow only produces profile flags", () => {
 });
 
 describe("tutorial", () => {
-  it("has seven steps, each described", () => {
-    expect(TUTORIAL_STEPS).toHaveLength(7);
+  it("has thirteen steps, each described", () => {
+    expect(TUTORIAL_STEPS).toHaveLength(13);
     for (const s of TUTORIAL_STEPS) {
       expect(s.title.length).toBeGreaterThan(0);
       expect(s.body.length).toBeGreaterThan(0);
     }
   });
-  it("gives every step a real control to outline, in the right order", () => {
-    expect(TUTORIAL_STEPS.map((s) => s.target)).toEqual(["pantry-add", "equipment-first-row", "discover-first-card", "recipe-add-shopping", "recipe-save", "recipe-heart", "profile-favorites"]);
+  it("outlines a real control where there is one, in the right order, and says so only for those", () => {
+    expect(TUTORIAL_STEPS.map((s) => s.id)).toEqual(["pantry", "equipment", "discover", "recipe-servings", "recipe-names", "recipe-methods", "recipe-shopping", "recipe-made", "recipe-save", "recipe-favorite", "shopping-list", "saved-list", "profile-favorites"]);
+    expect(TUTORIAL_STEPS.filter((s) => s.target).map((s) => s.target)).toEqual(["pantry-add", "equipment-first-row", "discover-first-card", "recipe-servings", "recipe-methods", "recipe-add-shopping", "recipe-save", "recipe-heart", "profile-favorites"]);
+    for (const s of TUTORIAL_STEPS.filter((s) => !s.target)) expect(s.hint.toLowerCase()).toContain("nothing to tap");
   });
   it("says that the outlined control glows, and never claims to press it for the user", () => {
-    for (const s of TUTORIAL_STEPS) {
+    for (const s of TUTORIAL_STEPS.filter((s) => s.target)) {
       expect(s.hint.toLowerCase()).toContain("glow");
       expect(s.hint.toLowerCase()).not.toMatch(/we(’| wi)ll (add|tick|save)/);
     }
@@ -121,7 +123,8 @@ describe("tutorial", () => {
   });
   it("teaches favouriting a dish and then where to find favourites on the Profile tab", () => {
     const ids = TUTORIAL_STEPS.map((s) => s.id);
-    expect(ids.slice(-2)).toEqual(["recipe-favorite", "profile-favorites"]);
+    expect(ids[ids.length - 1]).toBe("profile-favorites");
+    expect(ids.indexOf("recipe-favorite")).toBeLessThan(ids.indexOf("profile-favorites"));
     const last = TUTORIAL_STEPS[TUTORIAL_STEPS.length - 1];
     expect(last.body.toLowerCase()).toContain("view all");
     expect(last.body.toLowerCase()).toContain("profile");

@@ -7,7 +7,7 @@ import type { View } from "react-native";
  * the tutorial looks it up by id and measures where it currently is. Nothing is
  * stored or changed — it is only used to draw an outline.
  */
-export type TutorialTargetId = "pantry-add" | "equipment-first-row" | "discover-first-card" | "recipe-add-shopping" | "recipe-save" | "recipe-heart" | "profile-favorites";
+export type TutorialTargetId = "pantry-add" | "equipment-first-row" | "discover-first-card" | "recipe-servings" | "recipe-methods" | "recipe-add-shopping" | "recipe-save" | "recipe-heart" | "profile-favorites";
 
 const targets = new Map<TutorialTargetId, RefObject<View | null>>();
 

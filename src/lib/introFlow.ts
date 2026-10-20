@@ -1,6 +1,7 @@
 import type { LocalProfile } from "@/lib/profile";
 import type { PantryItem, Recipe, EquipmentTag } from "@/types";
 import { hasRequiredEquipment, matchRecipe } from "@/lib/pantryMatch";
+import { methodsOf } from "@/lib/methods";
 import type { TutorialTargetId } from "@/lib/tutorialTargets";
 import { TERMS_VERSION } from "@/lib/legalText";
 
@@ -64,7 +65,20 @@ export function clampIndex(index: number, length: number): number {
   return Math.min(Math.max(index, 0), Math.max(length - 1, 0));
 }
 
-export type TutorialTarget = "pantry" | "equipment" | "discover" | "recipe-shopping" | "recipe-save" | "recipe-favorite" | "profile-favorites";
+export type TutorialTarget =
+  | "pantry"
+  | "equipment"
+  | "discover"
+  | "recipe-servings"
+  | "recipe-names"
+  | "recipe-methods"
+  | "recipe-shopping"
+  | "recipe-made"
+  | "recipe-save"
+  | "recipe-favorite"
+  | "shopping-list"
+  | "saved-list"
+  | "profile-favorites";
 
 export interface TutorialStep {
   id: TutorialTarget;
@@ -72,8 +86,10 @@ export interface TutorialStep {
   body: string;
   /** Short pointer to the real control, shown under the body. */
   hint: string;
-  /** The real control the tutorial outlines with a glowing white border. */
-  target: TutorialTargetId;
+  /** The real control the tutorial outlines with a glowing white border; null for a step that explains something without a control to point at. */
+  target: TutorialTargetId | null;
+  /** A sample of a control that only shows up when its conditions are met, drawn on the card instead of outlined on the screen. */
+  preview?: string;
   /** Whether the card sits at the top or bottom of the screen so it never covers the control being explained. */
   placement: "top" | "bottom";
 }
@@ -82,7 +98,7 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
   {
     id: "pantry",
     title: "Add ingredients",
-    body: "Add the ingredients you already have at home. You can include quantities and categories to keep your pantry accurate.",
+    body: "Add the ingredients you already have at home. You can include quantities and categories to keep your pantry accurate. Type them however you like: \"oj\", \"whole milk\" or \"2 tbsp honey\" all work.",
     hint: "Tap the glowing + button to add an ingredient when you’re ready.",
     target: "pantry-add",
     placement: "top",
@@ -90,7 +106,7 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
   {
     id: "equipment",
     title: "Add equipment",
-    body: "Choose the equipment you have so the app can show drinks that fit your setup.",
+    body: "Choose the equipment you have so the app can show drinks that fit your setup. Many drinks also have a by-hand way that needs none.",
     hint: "Tap an item, like the glowing one, to tick it. Nothing is changed unless you tap.",
     target: "equipment-first-row",
     placement: "bottom",
@@ -98,18 +114,51 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
   {
     id: "discover",
     title: "See what you can make",
-    body: "Discover drinks you can make with your ingredients and equipment, plus drinks that are close when only a few ingredients are missing.",
-    hint: "Tap the glowing drink to see what you have and what’s missing. The filters above narrow by taste, type and dietary needs.",
+    body: "Discover drinks you can make with your ingredients and equipment, plus drinks that are close when only a few ingredients are missing. Search by name, and narrow by taste, type, hot or iced, and dietary needs.",
+    hint: "Tap the glowing drink to see what you have and what’s missing.",
     target: "discover-first-card",
+    placement: "top",
+  },
+  {
+    id: "recipe-servings",
+    title: "Choose how many you’re making",
+    body: "Change the number of servings and every ingredient amount follows, so you see exactly how much you need. The method gets a last step telling you to repeat it for each extra serving.",
+    hint: "Tap + or − on the glowing row. The recipe itself never changes.",
+    target: "recipe-servings",
+    placement: "top",
+  },
+  {
+    id: "recipe-names",
+    title: "Your words, not ours",
+    body: "If you keep “club soda” where a drink says “sparkling water”, the drink uses your name for it in the ingredient list and the method. Only real aliases are swapped; a different product is never treated as the same.",
+    hint: "Nothing to tap here. You’ll see it on drinks as you add your own ingredients.",
+    target: null,
+    placement: "bottom",
+  },
+  {
+    id: "recipe-methods",
+    title: "Pick a way to make it",
+    body: "Many drinks have more than one way to make them, each with its own equipment and steps. The app shows the first one your equipment allows, and you can choose another any time.",
+    hint: "Tap a way in the glowing row to switch the ingredients and steps below.",
+    target: "recipe-methods",
     placement: "top",
   },
   {
     id: "recipe-shopping",
     title: "Use Shopping",
-    body: "When you plan to make a drink, add its missing ingredients to Shopping so you know what to buy.",
+    body: "When you plan to make a drink, add its missing ingredients to Shopping so you know what to buy. Only what is really missing goes on the list, and for something you’re short of, just the amount you need.",
     hint: "This is an example drink. Tap the glowing button only if you want those items on your list.",
     target: "recipe-add-shopping",
     placement: "top",
+  },
+  {
+    id: "recipe-made",
+    title: "Tell us you made it",
+    body: "Once you have everything for a drink, a Made it button appears. Tap it to see what will come out of your pantry, untick anything you didn’t use, and confirm. Items that run out leave your pantry, and you can undo it.",
+    hint: "Nothing to tap here. This is a sample of the button, which appears on a drink when you can make it right now.",
+    target: null,
+    preview: "Made it — update my pantry",
+    placement: "bottom",
   },
   {
     id: "recipe-save",
@@ -128,9 +177,25 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
     placement: "bottom",
   },
   {
+    id: "shopping-list",
+    title: "Shop, then stock up",
+    body: "On the Shopping tab, tick items off as you buy them. Each one moves into your pantry with its amount, so the app already knows what you can make when you get home.",
+    hint: "Nothing to tap here. Your list fills as you add items from drinks.",
+    target: null,
+    placement: "bottom",
+  },
+  {
+    id: "saved-list",
+    title: "Find saved drinks again",
+    body: "Everything you bookmark waits on the Saved tab, ready to make when you are.",
+    hint: "Nothing to tap here. Saved drinks appear as you bookmark them.",
+    target: null,
+    placement: "bottom",
+  },
+  {
     id: "profile-favorites",
     title: "See your favourites",
-    body: "All your favourite drinks are collected on your Profile tab, under your favourite drink types. Tap View all to see every one.",
+    body: "All your favourite drinks are collected on your Profile tab. Tap View all to see every one. Your name and photo live there too, and they save on their own.",
     hint: "Your hearted drinks appear in the glowing section.",
     target: "profile-favorites",
     placement: "bottom",
@@ -145,6 +210,7 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
  */
 export function pickTutorialRecipe(recipes: readonly Recipe[], pantry: PantryItem[], owned: EquipmentTag[]): Recipe | undefined {
   const usable = recipes.filter((r) => hasRequiredEquipment(owned, r));
-  const withGap = usable.find((r) => matchRecipe(pantry, r).missing.length > 0);
-  return withGap ?? usable[0] ?? recipes[0];
+  const gap = (r: Recipe) => matchRecipe(pantry, r).missing.length > 0;
+  // The Methods step needs a drink with more than one way to make it, and the Shopping step needs something missing.
+  return usable.find((r) => gap(r) && methodsOf(r).length > 1) ?? usable.find(gap) ?? usable[0] ?? recipes[0];
 }

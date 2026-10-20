@@ -30,7 +30,7 @@ export default function DiscoverScreen() {
   const router = useRouter();
   const { items: pantryItems } = usePantry();
   const { owned: ownedEquipment } = useEquipment();
-  const { profile } = useProfile();
+  const { profile, startReplay } = useProfile();
   const preferences = useMemo(() => preferencesFrom(profile), [profile]);
   const { width: screenWidth } = useAppDimensions();
   const [query, setQuery] = useState("");
@@ -149,9 +149,9 @@ export default function DiscoverScreen() {
             </ScrollView>
 
             {sort === "for-you" && !hasPreferences(preferences) ? (
-              <Pressable onPress={() => router.push("/profile")} style={styles.forYouNote} accessibilityRole="button" accessibilityLabel="Choose your favourite drinks and flavours in Profile">
+              <Pressable onPress={() => startReplay("intro")} style={styles.forYouNote} accessibilityRole="button" accessibilityLabel="Answer the drink and flavour questions">
                 <Text style={styles.forYouNoteText}>
-                  Pick the drinks and flavours you enjoy in Profile and Best for you will put your favourites first. Tap to choose.
+                  Tell us the drinks and flavours you enjoy and Best for you will put your favourites first. Tap to answer the questions again.
                 </Text>
               </Pressable>
             ) : null}

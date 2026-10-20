@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -9,7 +9,7 @@ import { recipes } from "@/data/recipes";
 import { usePantry } from "@/context/PantryContext";
 import { useSaved } from "@/context/SavedContext";
 import { useFavorites } from "@/context/FavoritesContext";
-import { useTutorialTarget } from "@/lib/tutorialTargets";
+import { registerScrollBy, useTutorialTarget } from "@/lib/tutorialTargets";
 import { useShopping } from "@/context/ShoppingContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
@@ -41,6 +41,12 @@ export default function RecipeDetailScreen() {
   const addShoppingTarget = useTutorialTarget("recipe-add-shopping");
   const saveTarget = useTutorialTarget("recipe-save");
   const heartTarget = useTutorialTarget("recipe-heart");
+  const scrollRef = useRef<ScrollView>(null);
+  const scrollY = useRef(0);
+  // Lets the tutorial scroll this page to bring the control it is explaining into view.
+  useEffect(() => registerScrollBy((dy) => scrollRef.current?.scrollTo({ y: Math.max(0, scrollY.current + dy), animated: true })), []);
+  const servingsTarget = useTutorialTarget("recipe-servings");
+  const methodsTarget = useTutorialTarget("recipe-methods");
   const { addMissingFromRecipe } = useShopping();
   const { isOwned: isEquipmentOwned, owned: ownedEquipment } = useEquipment();
 
@@ -175,7 +181,16 @@ export default function RecipeDetailScreen() {
 
   return (
     <View style={styles.root}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent} bounces={false}>
+      <ScrollView
+        ref={scrollRef}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+        bounces={false}
+        scrollEventThrottle={64}
+        onScroll={(e: NativeSyntheticEvent<NativeScrollEvent>) => {
+          scrollY.current = e.nativeEvent.contentOffset.y;
+        }}
+      >
         <View style={[styles.heroWrap, { height: heroHeight }]}>
           <RecipeImage uri={recipe.image} title={recipe.title} style={StyleSheet.absoluteFill} transition={200} />
           <LinearGradient
@@ -242,7 +257,7 @@ export default function RecipeDetailScreen() {
           </View>
 
           {methods.length > 1 && (
-            <View style={styles.methodPicker} accessibilityRole="radiogroup" accessibilityLabel="Ways to make this drink">
+            <View ref={methodsTarget} collapsable={false} style={styles.methodPicker} accessibilityRole="radiogroup" accessibilityLabel="Ways to make this drink">
               <Text style={styles.ingredientGroupLabel}>How to make it</Text>
               <View style={styles.methodChips}>
                 {methods.map((m) => {
@@ -301,7 +316,7 @@ export default function RecipeDetailScreen() {
                 </Text>
               ) : null}
             </View>
-            <View style={styles.servingsRow}>
+            <View ref={servingsTarget} collapsable={false} style={styles.servingsRow}>
               <Text style={styles.servingsText}>Servings</Text>
               <View style={styles.stepper}>
                 <Pressable onPress={() => setChosenServings(Math.max(1, servings - 1))} disabled={servings <= 1} hitSlop={8} accessibilityRole="button" accessibilityLabel="Fewer servings" style={[styles.stepButton, servings <= 1 && styles.stepButtonOff]}>
@@ -764,7 +779,7 @@ const styles = StyleSheet.create({
   stepper: { flexDirection: "row", gap: spacing.sm },
   stepButton: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center", backgroundColor: colors.hairline },
   stepButtonOff: { opacity: 0.35 },
-  stepCount: { ...typeScale.title, color: colors.espresso, minWidth: 28, textAlign: "center", alignSelf: "center" },
+  stepCount: { ...typeScale.label, fontSize: 18, color: colors.espresso, minWidth: 28, textAlign: "center", alignSelf: "center" },
   madeButton: {
     flexDirection: "row",
     alignItems: "center",

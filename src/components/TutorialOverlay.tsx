@@ -9,7 +9,11 @@ import { usePantry } from "@/context/PantryContext";
 import { useEquipment } from "@/context/EquipmentContext";
 import { useProfile } from "@/context/ProfileContext";
 import { TUTORIAL_STEPS, pickTutorialRecipe } from "@/lib/introFlow";
-import { getTutorialTarget, scrollScreenBy } from "@/lib/tutorialTargets";
+import { CheckIcon } from "@/components/icons";
+import { getTutorialTarget, scrollScreenBy, type TutorialTargetId } from "@/lib/tutorialTargets";
+
+/** The tutorial steps that live on the example drink's page. */
+const RECIPE_STEPS = new Set(["recipe-servings", "recipe-names", "recipe-methods", "recipe-shopping", "recipe-made", "recipe-save", "recipe-favorite"]);
 
 interface Box {
   x: number;
@@ -19,7 +23,7 @@ interface Box {
 }
 
 /** A glowing white outline drawn around the real control a step is about. It never blocks taps. */
-function Spotlight({ targetId }: { targetId: (typeof TUTORIAL_STEPS)[number]["target"] }) {
+function Spotlight({ targetId }: { targetId: TutorialTargetId }) {
   const [box, setBox] = useState<Box | null>(null);
   const layerRef = useRef<View>(null);
   const [pulse] = useState(() => new Animated.Value(0));
@@ -115,10 +119,15 @@ export function TutorialOverlay() {
         if (onRecipe.current) router.dismissTo("/discover");
         else router.navigate("/discover");
         onRecipe.current = false;
-      } else if ((step.id === "recipe-shopping" || step.id === "recipe-save" || step.id === "recipe-favorite") && exampleId && !onRecipe.current) {
-        // Also covers coming Back from the Profile step.
+      } else if (RECIPE_STEPS.has(step.id) && exampleId && !onRecipe.current) {
+        // Also covers coming Back from a later step.
         router.push({ pathname: "/recipe/[id]", params: { id: exampleId } });
         onRecipe.current = true;
+      } else if (step.id === "shopping-list" || step.id === "saved-list") {
+        const path = step.id === "shopping-list" ? "/shopping" : "/saved";
+        if (onRecipe.current) router.dismissTo(path);
+        else router.navigate(path);
+        onRecipe.current = false;
       } else if (step.id === "profile-favorites") {
         if (onRecipe.current) router.dismissTo("/profile");
         else router.navigate("/profile");
@@ -135,6 +144,19 @@ export function TutorialOverlay() {
     const bring = () => {
       getTutorialTarget("profile-favorites")?.current?.measureInWindow((_x, y, _w, h) => {
         if (h > 0 && (y > windowHeight * 0.45 || y < 60)) scrollScreenBy(y - 110);
+      });
+    };
+    const timers = [setTimeout(bring, 700), setTimeout(bring, 1500)];
+    return () => timers.forEach(clearTimeout);
+  }, [index, ready, step.id, windowHeight]);
+
+  // On the drink's page the servings row and the ways to make it sit partway down, so scroll them to the middle of the
+  // screen, clear of the card at the top.
+  useEffect(() => {
+    if (!ready || (step.id !== "recipe-servings" && step.id !== "recipe-methods")) return;
+    const bring = () => {
+      getTutorialTarget(step.id === "recipe-servings" ? "recipe-servings" : "recipe-methods")?.current?.measureInWindow((_x, y, _w, h) => {
+        if (h > 0 && (y > windowHeight * 0.62 || y < windowHeight * 0.38)) scrollScreenBy(y - windowHeight * 0.5);
       });
     };
     const timers = [setTimeout(bring, 700), setTimeout(bring, 1500)];
@@ -158,12 +180,12 @@ export function TutorialOverlay() {
   }
 
   const isLast = index === TUTORIAL_STEPS.length - 1;
-  const bottomOffset = step.id === "recipe-save" || step.id === "recipe-shopping" ? insets.bottom + spacing.lg : insets.bottom + 76;
+  const bottomOffset = RECIPE_STEPS.has(step.id) ? insets.bottom + spacing.lg : insets.bottom + 76;
   const pos = step.placement === "top" ? { top: insets.top + spacing.sm } : { bottom: bottomOffset };
 
   return (
     <View style={[styles.layer, { pointerEvents: "box-none" }]}>
-      <Spotlight key={step.id} targetId={step.target} />
+      {step.target ? <Spotlight key={step.id} targetId={step.target} /> : null}
       <View
         style={[styles.card, pos]}
         accessible={false}
@@ -190,6 +212,12 @@ export function TutorialOverlay() {
           {step.title}
         </Text>
         <Text style={styles.body}>{step.body}</Text>
+        {step.preview ? (
+          <View style={styles.sample} accessible={false} importantForAccessibility="no-hide-descendants" pointerEvents="none">
+            <CheckIcon size={16} color={colors.espresso} strokeWidth={2.2} />
+            <Text style={styles.sampleText}>{step.preview}</Text>
+          </View>
+        ) : null}
         <Text style={styles.hint}>{step.hint}</Text>
         <View style={styles.buttons}>
           <Pressable
@@ -243,6 +271,8 @@ const styles = StyleSheet.create({
   title: { ...typeScale.headline, fontSize: 20, lineHeight: 26, color: colors.espresso, marginTop: 4 },
   body: { ...typeScale.bodySmall, color: colors.espresso },
   hint: { ...typeScale.caption, color: colors.espressoMuted },
+  sample: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: spacing.sm, borderRadius: radii.md, borderWidth: 1.2, borderColor: colors.hairlineStrong, paddingVertical: 12, marginVertical: spacing.xs },
+  sampleText: { ...typeScale.button, color: colors.espresso },
   buttons: { flexDirection: "row", justifyContent: "flex-end", gap: spacing.sm, marginTop: spacing.sm },
   primary: { backgroundColor: colors.burntOrange, borderRadius: radii.md, paddingVertical: 10, paddingHorizontal: spacing.xl },
   primaryText: { ...typeScale.button, color: colors.cream },
