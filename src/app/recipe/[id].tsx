@@ -17,6 +17,8 @@ import { useCookability } from "@/lib/useCookability";
 import { bestMethod, formatMinutes, isByHand, methodReady, methodsOf, missingForMethod, recipeForMethod, toolsPhrase, totalMinutes, waitFor } from "@/lib/methods";
 import { scaledRecipe } from "@/lib/cookability";
 import { buildSwaps, swapLabel, swapNames } from "@/lib/ownedNames";
+import { applyUsage, planUsage } from "@/lib/pantryUse";
+import type { PantryItem } from "@/types";
 import { CookabilityBadge } from "@/components/CookabilityBadge";
 import { TemperatureBadge } from "@/components/TemperatureBadge";
 import { RecipeImage } from "@/components/RecipeImage";
@@ -32,7 +34,7 @@ export default function RecipeDetailScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { width: screenWidth } = useAppDimensions();
-  const { items: pantryItems } = usePantry();
+  const { items: pantryItems, replaceItems } = usePantry();
   const { isSaved, toggleSaved } = useSaved();
   const { isFavorite, toggleFavorite } = useFavorites();
   const addShoppingTarget = useTutorialTarget("recipe-add-shopping");
@@ -73,6 +75,42 @@ export default function RecipeDetailScreen() {
     () => (recipe && activeMethod ? getShoppingPlan(scaledRecipe(recipeForMethod(recipe, activeMethod), servings), pantryItems) : null),
     [recipe, activeMethod, servings, pantryItems]
   );
+
+  // "Made it": what this drink would take out of the pantry, for the method and servings shown.
+  const usage = useMemo(
+    () => (recipe && activeMethod ? planUsage(scaledRecipe(recipeForMethod(recipe, activeMethod), servings), pantryItems) : null),
+    [recipe, activeMethod, servings, pantryItems]
+  );
+  // The panel is open only for the servings and method it was opened for, so changing either closes it.
+  const [usingFor, setUsingFor] = useState<string | null>(null);
+  const [chosenLines, setChosenLines] = useState<Set<number>>(new Set());
+  const [undoItems, setUndoItems] = useState<PantryItem[] | null>(null);
+  const useKey = `${servings}|${activeMethod?.id}`;
+  const using = usingFor === useKey;
+
+  function openUse() {
+    setChosenLines(new Set((usage?.lines ?? []).map((_, i) => i)));
+    setUndoItems(null);
+    setUsingFor(useKey);
+  }
+  function toggleLine(i: number) {
+    setChosenLines((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
+  }
+  function confirmUse() {
+    if (!usage || chosenLines.size === 0) return setUsingFor(null);
+    setUndoItems(pantryItems);
+    replaceItems(applyUsage(pantryItems, usage.lines, chosenLines));
+    setUsingFor(null);
+  }
+  function undoUse() {
+    if (undoItems) replaceItems(undoItems);
+    setUndoItems(null);
+  }
 
   const [justAdded, setJustAdded] = useState(false);
   const [justAddedOptional, setJustAddedOptional] = useState(false);
@@ -261,20 +299,73 @@ export default function RecipeDetailScreen() {
               ) : null}
             </View>
             <View style={styles.servingsRow}>
-              <Text style={styles.servingsText}>
-                Checked for {servings} {servings === 1 ? "serving" : "servings"}
-                {servings !== recipe.servings ? ` (drink makes ${recipe.servings})` : ""}
-              </Text>
+              <Text style={styles.servingsText}>Servings</Text>
               <View style={styles.stepper}>
                 <Pressable onPress={() => setChosenServings(Math.max(1, servings - 1))} disabled={servings <= 1} hitSlop={8} accessibilityRole="button" accessibilityLabel="Fewer servings" style={[styles.stepButton, servings <= 1 && styles.stepButtonOff]}>
                   <Text style={styles.stepButtonText}>−</Text>
                 </Pressable>
+                <Text style={styles.stepCount} accessibilityLabel={`${servings} ${servings === 1 ? "serving" : "servings"}`}>
+                  {servings}
+                </Text>
                 <Pressable onPress={() => setChosenServings(Math.min(24, servings + 1))} disabled={servings >= 24} hitSlop={8} accessibilityRole="button" accessibilityLabel="More servings" style={[styles.stepButton, servings >= 24 && styles.stepButtonOff]}>
                   <Text style={styles.stepButtonText}>+</Text>
                 </Pressable>
               </View>
             </View>
           </View>
+
+          {cookability.category === "ready" && usage && usage.lines.length > 0 && !using && !undoItems ? (
+            <Pressable onPress={openUse} accessibilityRole="button" accessibilityLabel="Made it. Use up the ingredients from my pantry" style={({ pressed }) => [styles.madeButton, pressed && styles.madeButtonPressed]}>
+              <CheckIcon size={16} color={colors.espresso} strokeWidth={2.2} />
+              <Text style={styles.madeButtonText}>Made it — update my pantry</Text>
+            </Pressable>
+          ) : null}
+
+          {using && usage ? (
+            <View style={styles.madePanel}>
+              <Text style={styles.madeTitle}>Take these out of your pantry?</Text>
+              <Text style={styles.madeHint}>Untick anything you didn&apos;t actually use.</Text>
+              {usage.lines.map((line, i) => {
+                const on = chosenLines.has(i);
+                return (
+                  <Pressable key={`${line.itemId}-${i}`} onPress={() => toggleLine(i)} accessibilityRole="checkbox" accessibilityState={{ checked: on }} accessibilityLabel={`${line.itemName}, uses ${line.used} ${line.unit}`} style={styles.madeRow}>
+                    <View style={[styles.ingredientMark, on ? styles.ingredientMarkHave : styles.ingredientMarkOptional]}>
+                      {on ? <CheckIcon size={10} color={colors.cream} strokeWidth={2.8} /> : null}
+                    </View>
+                    <View style={styles.ingredientLabelStack}>
+                      <Text style={styles.ingredientLabel}>{line.itemName}</Text>
+                      <Text style={styles.uncheckedText}>
+                        Uses {line.used} {line.unit} · {line.runsOut ? "none left, it leaves your pantry" : `${line.remaining} ${line.unit} left`}
+                      </Text>
+                    </View>
+                  </Pressable>
+                );
+              })}
+              {usage.skipped.length > 0 ? (
+                <Text style={styles.uncheckedText}>
+                  Left as it is: {usage.skipped.map((s) => `${s.itemName} (${s.reason})`).join(", ")}.
+                </Text>
+              ) : null}
+              <View style={styles.madeButtons}>
+                <Pressable onPress={() => setUsingFor(null)} accessibilityRole="button" accessibilityLabel="Cancel" style={styles.madeCancel}>
+                  <Text style={styles.madeCancelText}>Not now</Text>
+                </Pressable>
+                <Pressable onPress={confirmUse} disabled={chosenLines.size === 0} accessibilityRole="button" accessibilityLabel="Update my pantry" style={[styles.madeConfirm, chosenLines.size === 0 && styles.stepButtonOff]}>
+                  <Text style={styles.madeConfirmText}>Update pantry</Text>
+                </Pressable>
+              </View>
+            </View>
+          ) : null}
+
+          {undoItems ? (
+            <View style={styles.madeDone}>
+              <CheckIcon size={16} color={colors.sageOlive} strokeWidth={2.4} />
+              <Text style={styles.madeDoneText}>Pantry updated.</Text>
+              <Pressable onPress={undoUse} hitSlop={8} accessibilityRole="button" accessibilityLabel="Undo the pantry update">
+                <Text style={styles.madeUndo}>Undo</Text>
+              </Pressable>
+            </View>
+          ) : null}
 
           {toBuyCount > 0 && (
             <Pressable
@@ -670,6 +761,40 @@ const styles = StyleSheet.create({
   stepper: { flexDirection: "row", gap: spacing.sm },
   stepButton: { width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center", backgroundColor: colors.hairline },
   stepButtonOff: { opacity: 0.35 },
+  stepCount: { ...typeScale.title, color: colors.espresso, minWidth: 28, textAlign: "center", alignSelf: "center" },
+  madeButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: spacing.sm,
+    borderRadius: radii.md,
+    borderWidth: 1.2,
+    borderColor: colors.hairlineStrong,
+    paddingVertical: 14,
+    marginBottom: spacing.xl,
+  },
+  madeButtonPressed: { opacity: 0.8 },
+  madeButtonText: { ...typeScale.button, color: colors.espresso },
+  madePanel: {
+    padding: spacing.lg,
+    borderRadius: radii.lg,
+    backgroundColor: colors.paper,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.hairlineStrong,
+    gap: spacing.md,
+    marginBottom: spacing.xl,
+  },
+  madeTitle: { ...typeScale.headline, fontSize: 18, color: colors.espresso },
+  madeHint: { ...typeScale.bodySmall, color: colors.espressoMuted },
+  madeRow: { flexDirection: "row", alignItems: "center", gap: spacing.md, minHeight: 44 },
+  madeButtons: { flexDirection: "row", gap: spacing.sm, justifyContent: "flex-end", marginTop: spacing.xs },
+  madeCancel: { paddingVertical: 12, paddingHorizontal: spacing.lg, borderRadius: radii.md, borderWidth: 1, borderColor: colors.hairlineStrong, minHeight: 44, justifyContent: "center" },
+  madeCancelText: { ...typeScale.button, color: colors.espresso },
+  madeConfirm: { paddingVertical: 12, paddingHorizontal: spacing.lg, borderRadius: radii.md, backgroundColor: colors.burntOrange, minHeight: 44, justifyContent: "center" },
+  madeConfirmText: { ...typeScale.button, color: colors.cream },
+  madeDone: { flexDirection: "row", alignItems: "center", gap: spacing.sm, marginBottom: spacing.xl, minHeight: 44 },
+  madeDoneText: { ...typeScale.bodySmall, color: colors.espresso, flex: 1 },
+  madeUndo: { ...typeScale.label, color: colors.burntOrange, paddingVertical: 8 },
   stepButtonText: { ...typeScale.title, color: colors.espresso, fontSize: 22, lineHeight: 26 },
   shortfallText: {
     ...typeScale.caption,

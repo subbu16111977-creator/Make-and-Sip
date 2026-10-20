@@ -40,7 +40,8 @@ short, scaled to the chosen servings. It never adds optional items by default, a
 anything already owned. A top-up is filed under the pantry's own ingredient, so buying it merges into the same pantry item.
 
 ## Known limits
-- Nothing is taken out of the pantry when a drink is made. The score reads the pantry as it is; the person updates amounts
-  by hand. (An "I made this" action that subtracts what was used is a possible future feature.)
+- Making a drink only changes the pantry when the person taps "Made it" (shown only when the drink is Ready to make) and confirms
+  the checklist. Only reliable amounts are subtracted: same-kind units convert, but weight against volume, unknown amounts,
+  optional and "to taste" lines are left alone. An item that runs out is removed, and the update can be undone.
 - A bracketed note in an amount, such as "(about 567 g)", is dropped when the amount is scaled for the shopping list.
 - There are no substitution rules yet: an ingredient either matches, is a safe generic cover, is ambiguous, or is missing.

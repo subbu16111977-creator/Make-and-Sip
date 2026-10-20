@@ -56,6 +56,7 @@ Until then every drink is non-alcoholic and the UI should not imply otherwise.
   - **Low match**
   Optional ingredients/garnishes never lower the core score. The score is transparent and explained on the detail
   page (see `docs/cookability.md`, which describes the current engine and will be updated as it is adapted).
+- **"Made it" takes ingredients out of the pantry, and only reliable amounts.** The button shows only when the drink is Ready to make; it opens a checklist (everything ticked, untick what wasn't used) and then subtracts the amounts for the method and servings shown (`src/lib/pantryUse.ts`). Same-kind units convert (ml/cups, g/oz, pieces); weight against volume, unknown amounts, optional and to-taste lines are never touched and are listed as left alone. An item with nothing left leaves the pantry. The update can be undone.
 - **Shopping adds only reliable missing quantities or shortfalls.** Missing ingredients and top-ups for amounts that are
   genuinely short; never optional items by default, never amounts we could not verify, never duplicates of what is
   already owned.

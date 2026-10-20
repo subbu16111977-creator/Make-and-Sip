@@ -102,6 +102,21 @@ function toBase(quantity: number, unit: string): Base {
   return { dim, amount: quantity };
 }
 
+/**
+ * How much of a pantry item an amount from a recipe is, in that item's own unit, when that can be said reliably:
+ * the same kind of measure (ml with cups, g with oz, pieces with pieces) or the very same unit. Weight against volume
+ * is never converted here, even for ingredients with a known density, because this is used to take amounts out of
+ * the pantry and an estimate is not good enough for that. Returns null when it can't be said.
+ */
+export function amountInPantryUnit(required: { quantity: number; unit: string }, pantryItem: PantryItem): number | null {
+  if (!pantryItem.quantityKnown || pantryItem.quantity <= 0) return null;
+  const need = toBase(required.quantity, required.unit);
+  const have = toBase(pantryItem.quantity, pantryItem.unit);
+  if (need.dim === have.dim && need.dim !== "other") return (need.amount * pantryItem.quantity) / have.amount;
+  if (required.unit.toLowerCase() === pantryItem.unit.toLowerCase()) return required.quantity;
+  return null;
+}
+
 // ---------------------------------------------------------------------------
 // Quantity comparison
 // ---------------------------------------------------------------------------

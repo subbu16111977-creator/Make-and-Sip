@@ -27,6 +27,8 @@ interface PantryContextValue {
   items: PantryItem[];
   addItem: (input: NewPantryItemInput) => void;
   removeItem: (id: string) => void;
+  /** Swaps in a whole new list: used when a made drink takes its ingredients out of the pantry, and to undo that. */
+  replaceItems: (next: PantryItem[]) => void;
   /** Clears every pantry item. Only used by Settings > Reset local app data. */
   reset: () => void;
   /**
@@ -86,11 +88,13 @@ export function PantryProvider({ children }: { children: React.ReactNode }) {
     );
   }, [setItems]);
 
+  const replaceItems = useCallback((next: PantryItem[]) => setItems(next), [setItems]);
+
   const reset = useCallback(() => setItems([]), [setItems]);
 
   const value = useMemo(
-    () => ({ items, addItem, removeItem, receiveFromShopping, reset }),
-    [items, addItem, removeItem, receiveFromShopping, reset]
+    () => ({ items, addItem, removeItem, receiveFromShopping, replaceItems, reset }),
+    [items, addItem, removeItem, receiveFromShopping, replaceItems, reset]
   );
 
   if (!hydrated) return <AppBlank />;
