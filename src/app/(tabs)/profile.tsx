@@ -3,7 +3,6 @@ import { View, Text, Pressable, StyleSheet, type ScrollView, type NativeScrollEv
 import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Avatar } from "@/components/Avatar";
-import { Button } from "@/components/Button";
 import { RecipeSection } from "@/components/RecipeSection";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ProfileForm, LOCAL_NOTE } from "@/components/ProfileForm";
@@ -46,26 +45,31 @@ export default function ProfileScreen() {
   const favoriteMatches = favoriteRecipes(favorites.favoriteIds, recipes).map((r) => matchRecipe(pantry.items, r, equipment.owned));
 
   const [draft, setDraft] = useState<ProfileDraft>(() => draftFromProfile(profile));
-  const [showErrors, setShowErrors] = useState(false);
+  // Changes to the name, photo and the rest save themselves a moment after they are made, so there is no Save button.
+  const [touched, setTouched] = useState(false);
   const [justSaved, setJustSaved] = useState(false);
   const [confirmingReset, setConfirmingReset] = useState(false);
 
-  const errors = showErrors ? validateDraft(draft) : {};
+  const errors = touched ? validateDraft(draft) : {};
   const view = photoView(profile, draft);
 
   function change(update: (d: ProfileDraft) => ProfileDraft) {
     setDraft(update);
+    setTouched(true);
     setJustSaved(false);
   }
 
-  function save() {
-    if (hasErrors(validateDraft(draft))) return setShowErrors(true);
-    saveDraft(draft);
-    // The photo is now stored on the profile, so the draft goes back to "leave as is".
-    setDraft((d) => ({ ...d, photoUri: undefined, photoAspect: undefined, photoCrop: undefined }));
-    setShowErrors(false);
-    setJustSaved(true);
-  }
+  useEffect(() => {
+    if (!touched || hasErrors(validateDraft(draft))) return;
+    const timer = setTimeout(() => {
+      saveDraft(draft);
+      // The photo is now stored on the profile, so the draft goes back to "leave as is".
+      setDraft((d) => ({ ...d, photoUri: undefined, photoAspect: undefined, photoCrop: undefined }));
+      setTouched(false);
+      setJustSaved(true);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [draft, touched, saveDraft]);
 
   function resetEverything() {
     pantry.reset();
@@ -131,7 +135,7 @@ export default function ProfileScreen() {
             </View>
           }
         />
-        <Button label={justSaved ? "Saved on this device" : "Save profile"} onPress={save} fullWidth />
+        <Text style={styles.sub}>{justSaved ? "Saved on this device." : "Changes save on their own."}</Text>
       </View>
 
       <View style={styles.section}>

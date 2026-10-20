@@ -15,7 +15,8 @@ import { useEquipment } from "@/context/EquipmentContext";
 import { getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
 import { useCookability } from "@/lib/useCookability";
 import { bestMethod, formatMinutes, isByHand, methodReady, methodsOf, missingForMethod, recipeForMethod, toolsPhrase, totalMinutes, waitFor } from "@/lib/methods";
-import { scaledRecipe } from "@/lib/cookability";
+import { scaleAmountText, scaledRecipe } from "@/lib/cookability";
+import { repeatStep, servingsFactor } from "@/lib/servingSteps";
 import { buildSwaps, swapLabel, swapNames } from "@/lib/ownedNames";
 import { applyUsage, planUsage } from "@/lib/pantryUse";
 import type { PantryItem } from "@/types";
@@ -54,6 +55,8 @@ export default function RecipeDetailScreen() {
   const [chosenServings, setChosenServings] = useState<number | null>(null);
   const servings = chosenServings ?? recipe?.servings ?? 1;
   const cookability = useCookability(recipe, servings, chosenMethodId);
+  // The ingredient list shows the amounts for the servings chosen; the recipe itself is never changed.
+  const factor = servingsFactor(servings, recipe?.servings ?? 1);
   const cookByIngredient = useMemo(() => new Map((cookability?.ingredients ?? []).map((c) => [c.ingredient, c])), [cookability]);
 
   // The drink in the person's own words: if they keep "club soda" where the drink says "sparkling water", the ingredient
@@ -482,7 +485,7 @@ export default function RecipeDetailScreen() {
                       {check && <Text style={styles.shortfallText}>A different cut or form — check it works</Text>}
                       {unverified && <Text style={styles.uncheckedText}>Amount not checked</Text>}
                     </View>
-                    <Text style={styles.ingredientAmount}>{ing.amount}</Text>
+                    <Text style={styles.ingredientAmount}>{scaleAmountText(ing.amount, factor)}</Text>
                   </View>
                 );
               })}
@@ -499,7 +502,7 @@ export default function RecipeDetailScreen() {
                     {ing.label}
                     {ing.optional ? <Text style={styles.optionalTag}> · optional</Text> : null}
                   </Text>
-                  <Text style={styles.ingredientAmount}>{ing.amount}</Text>
+                  <Text style={styles.ingredientAmount}>{scaleAmountText(ing.amount, factor)}</Text>
                 </View>
               ))}
             </View>
@@ -507,7 +510,7 @@ export default function RecipeDetailScreen() {
 
           <Text style={styles.sectionTitle}>Method</Text>
           <View style={styles.stepsWrap}>
-            {activeMethod.steps.map((step, i) => (
+            {[...activeMethod.steps, ...(repeatStep(factor) ? [repeatStep(factor) as string] : [])].map((step, i) => (
               <View key={i} style={styles.stepRow}>
                 <Text style={styles.stepNumber}>{String(i + 1).padStart(2, "0")}</Text>
                 <Text style={styles.stepText}>{swapNames(step, nameSwaps)}</Text>
