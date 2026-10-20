@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { emptyProfile, type LocalProfile } from "./profile";
 import {
   INTRO_STEPS,
+  indexAfterEquipmentLater,
   TUTORIAL_STEPS,
   clampIndex,
   getPhase,
@@ -125,8 +126,10 @@ describe("tutorial", () => {
     expect(last.body.toLowerCase()).toContain("view all");
     expect(last.body.toLowerCase()).toContain("profile");
   });
-  it("has five intro screens", () => {
-    expect(INTRO_STEPS).toHaveLength(5);
+  it("has eight intro screens, with the equipment ticking screen right after the equipment one", () => {
+    expect(INTRO_STEPS).toHaveLength(8);
+    expect(INTRO_STEPS.indexOf("equipment-pick")).toBe(INTRO_STEPS.indexOf("equipment") + 1);
+    expect(INTRO_STEPS[indexAfterEquipmentLater()]).toBe("explore");
   });
   it("clamps step indexes", () => {
     expect(clampIndex(-3, 5)).toBe(0);

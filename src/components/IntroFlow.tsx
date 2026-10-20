@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { View, Text, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { View, Text, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform, Animated, Easing, AccessibilityInfo } from "react-native";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "./Button";
 import { Logo } from "./Logo";
 import { Chip } from "./Chip";
-import { ProfileForm } from "./ProfileForm";
+import { DrinkTypesQuestion, FlavoursQuestion, PREFERENCES_NOTE, ProfileForm } from "./ProfileForm";
 import { DiscoverIcon, SavedIcon, ShoppingIcon, ChevronLeftIcon, type IconProps } from "./icons";
 import { colors, layout, radii, spacing, type as typeScale } from "@/theme";
 import { useEquipment } from "@/context/EquipmentContext";
 import { useProfile } from "@/context/ProfileContext";
-import { INTRO_STEPS, clampIndex } from "@/lib/introFlow";
+import { INTRO_STEPS, clampIndex, indexAfterEquipmentLater } from "@/lib/introFlow";
 import { draftFromProfile, hasErrors, validateDraft, type ProfileDraft } from "@/lib/profile";
 import { EQUIPMENT_TAGS } from "@/lib/persistedShapes";
 
@@ -60,24 +60,31 @@ function PantryVisual() {
 
 function EquipmentPicker() {
   const { isOwned, toggleEquipment } = useEquipment();
-  const [open, setOpen] = useState(false);
   return (
     <View style={styles.visualCard}>
+      <View style={styles.chipWrap}>
+        {EQUIPMENT_TAGS.map((tag) => (
+          <Chip key={tag} label={tag} selected={isOwned(tag)} onPress={() => toggleEquipment(tag)} />
+        ))}
+      </View>
+      <Text style={styles.cardNote}>You can change this any time in Pantry, under Equipment.</Text>
+    </View>
+  );
+}
+
+function EquipmentIntro() {
+  const rows = ["Espresso machine", "Blender", "Shaker"];
+  return (
+    <View style={styles.visualCard}>
+      <Text style={styles.exampleTag}>Example</Text>
+      {rows.map((n) => (
+        <View key={n} style={styles.exampleRow}>
+          <Text style={styles.exampleName}>{n}</Text>
+        </View>
+      ))}
       <Text style={styles.cardNote}>
-        If a drink needs equipment you don’t have, it stays out of your suggestions, so ticking what you own helps.
+        If a drink needs equipment you don’t have, it stays out of your suggestions. Many drinks also have a by-hand way that needs none.
       </Text>
-      {open ? (
-        <>
-          <View style={styles.chipWrap}>
-            {EQUIPMENT_TAGS.map((tag) => (
-              <Chip key={tag} label={tag} selected={isOwned(tag)} onPress={() => toggleEquipment(tag)} />
-            ))}
-          </View>
-          <Text style={styles.cardNote}>You can change this any time in Pantry, under Equipment.</Text>
-        </>
-      ) : (
-        <Button label="Choose my equipment now" variant="secondary" onPress={() => setOpen(true)} />
-      )}
     </View>
   );
 }
@@ -116,19 +123,47 @@ const COPY: Record<(typeof INTRO_STEPS)[number], { title: string; body: string }
     title: "Tell us your equipment",
     body: "Tell us which equipment you have so we can show drinks that fit your setup.",
   },
+  "equipment-pick": {
+    title: "What do you have?",
+    body: "Tap everything you own. Leave it empty if you only work by hand.",
+  },
   explore: {
     title: "Explore, shop and save",
     body: "Explore drinks you can make or almost make. Add missing ingredients to Shopping when you’re planning one, and save drinks you want to come back to.",
   },
+  drinks: {
+    title: "What do you like to drink?",
+    body: "Pick the kinds of drink you enjoy most. They shape the picks on Home and Best for you in Discover.",
+  },
+  flavors: {
+    title: "What flavours do you enjoy?",
+    body: PREFERENCES_NOTE,
+  },
   profile: {
     title: "Make it yours",
-    body: "Personalise your drinks. This profile stays on this device and you can change it later in Settings.",
+    body: "Add a name and a photo if you like. Your profile stays on this device and you can change it later in Settings.",
   },
 };
 
+/** One progress dot: the current one stretches into a pill, and the colour eases between states. */
+function Dot({ active, done, animate }: { active: boolean; done: boolean; animate: boolean }) {
+  const [progress] = useState(() => new Animated.Value(active ? 1 : 0));
+  useEffect(() => {
+    if (!animate) return progress.setValue(active ? 1 : 0);
+    Animated.timing(progress, { toValue: active ? 1 : 0, duration: 260, easing: Easing.out(Easing.cubic), useNativeDriver: false }).start();
+  }, [active, animate, progress]);
+  const width = progress.interpolate({ inputRange: [0, 1], outputRange: [8, 22] });
+  const backgroundColor = active ? colors.burntOrange : done ? colors.flame : colors.hairlineStrong;
+  return <Animated.View style={[styles.dot, { width, backgroundColor }]} />;
+}
+
+const OUT_MS = 150;
+const IN_MS = 320;
+const SLIDE = 28;
+
 /**
  * The first-launch introduction (also used to replay it from Settings).
- * Five short screens; skippable from any of them. Skipping or finishing never
+ * A few short screens; skippable from any of them. Skipping or finishing never
  * deletes anything — the only thing it can change is the optional profile, and
  * only when the user presses Finish on the last screen.
  */
@@ -142,10 +177,59 @@ export function IntroFlow() {
   const isLast = index >= INTRO_STEPS.length - 1;
   const errors = showErrors ? validateDraft(draft) : {};
 
+  // Moving between screens: the old one drifts out and fades, the new one drifts in from the side it belongs to.
+  // Nothing animates when the person has asked their phone to reduce motion.
+  const [fade] = useState(() => new Animated.Value(1));
+  const [slide] = useState(() => new Animated.Value(0));
+  const scroller = useRef<ScrollView>(null);
+  const moving = useRef(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  useEffect(() => {
+    AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion).catch(() => undefined);
+    const sub = AccessibilityInfo.addEventListener("reduceMotionChanged", setReduceMotion);
+    return () => sub.remove();
+  }, []);
+
+  function goTo(target: number) {
+    const to = clampIndex(target, INTRO_STEPS.length);
+    if (to === index || moving.current) return;
+    setShowErrors(false);
+    if (reduceMotion) {
+      setIndex(to);
+      scroller.current?.scrollTo({ y: 0, animated: false });
+      return;
+    }
+    const direction = to > index ? 1 : -1;
+    moving.current = true;
+    Animated.parallel([
+      Animated.timing(fade, { toValue: 0, duration: OUT_MS, easing: Easing.in(Easing.quad), useNativeDriver: true }),
+      Animated.timing(slide, { toValue: -direction * SLIDE, duration: OUT_MS, easing: Easing.in(Easing.quad), useNativeDriver: true }),
+    ]).start(() => {
+      setIndex(to);
+      scroller.current?.scrollTo({ y: 0, animated: false });
+      slide.setValue(direction * SLIDE);
+      Animated.parallel([
+        Animated.timing(fade, { toValue: 1, duration: IN_MS, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
+        Animated.timing(slide, { toValue: 0, duration: IN_MS, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
+      ]).start(() => {
+        moving.current = false;
+      });
+    });
+  }
+
   function next() {
-    if (!isLast) return setIndex(index + 1);
     const found = validateDraft(draft);
-    if (hasErrors(found)) return setShowErrors(true);
+    // The taste questions need their text when "Others" is ticked, so those errors are shown on their own screens.
+    if (step === "drinks" && found.cuisine) return setShowErrors(true);
+    if (step === "flavors" && found.flavor) return setShowErrors(true);
+    if (!isLast) return goTo(index + 1);
+    if (hasErrors(found)) {
+      setShowErrors(true);
+      // Take the person to the screen the problem is on.
+      if (found.cuisine) goTo(INTRO_STEPS.indexOf("drinks"));
+      else if (found.flavor) goTo(INTRO_STEPS.indexOf("flavors"));
+      return;
+    }
     saveDraft(draft);
     finishIntro();
   }
@@ -155,7 +239,7 @@ export function IntroFlow() {
       <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === "ios" ? "padding" : undefined}>
         <View style={styles.topBar}>
           {index > 0 ? (
-            <Pressable onPress={() => setIndex(index - 1)} hitSlop={10} accessibilityRole="button" accessibilityLabel="Back" style={styles.topButton}>
+            <Pressable onPress={() => goTo(index - 1)} hitSlop={10} accessibilityRole="button" accessibilityLabel="Back" style={styles.topButton}>
               <ChevronLeftIcon size={18} color={colors.espresso} />
               <Text style={styles.topText}>Back</Text>
             </Pressable>
@@ -170,7 +254,7 @@ export function IntroFlow() {
             accessibilityValue={{ min: 1, max: INTRO_STEPS.length, now: index + 1 }}
           >
             {INTRO_STEPS.map((s, i) => (
-              <View key={s} style={[styles.dot, i === index && styles.dotActive, i < index && styles.dotDone]} />
+              <Dot key={s} active={i === index} done={i < index} animate={!reduceMotion} />
             ))}
           </View>
           <Pressable
@@ -185,32 +269,33 @@ export function IntroFlow() {
         </View>
 
         <ScrollView
+          ref={scroller}
           style={styles.flex}
           contentContainerStyle={styles.content}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          {step === "welcome" && <Welcome />}
-          {step === "pantry" && <PantryVisual />}
-          {step === "equipment" && <EquipmentPicker />}
-          {step === "explore" && <Explore />}
-          <Text style={styles.eyebrow}>{step === "welcome" ? "Welcome" : `Step ${index + 1} of ${INTRO_STEPS.length}`}</Text>
-          <Text style={styles.title} accessibilityRole="header">
-            {COPY[step].title}
-          </Text>
-          <Text style={styles.body}>{COPY[step].body}</Text>
-          {step === "profile" ? <ProfileForm profile={profile} draft={draft} onChange={setDraft} errors={errors} /> : null}
+          <Animated.View style={[styles.stepBody, { opacity: fade, transform: [{ translateX: slide }] }]}>
+            {step === "welcome" && <Welcome />}
+            {step === "pantry" && <PantryVisual />}
+            {step === "equipment" && <EquipmentIntro />}
+            {step === "equipment-pick" && <EquipmentPicker />}
+            {step === "explore" && <Explore />}
+            <Text style={styles.eyebrow}>{step === "welcome" ? "Welcome" : `Step ${index + 1} of ${INTRO_STEPS.length}`}</Text>
+            <Text style={styles.title} accessibilityRole="header">
+              {COPY[step].title}
+            </Text>
+            <Text style={styles.body}>{COPY[step].body}</Text>
+            {step === "drinks" ? <DrinkTypesQuestion draft={draft} onChange={setDraft} errors={errors} /> : null}
+            {step === "flavors" ? <FlavoursQuestion draft={draft} onChange={setDraft} errors={errors} /> : null}
+            {step === "profile" ? <ProfileForm profile={profile} draft={draft} onChange={setDraft} errors={errors} /> : null}
+          </Animated.View>
         </ScrollView>
 
         <View style={styles.footer}>
-          <Button
-            label={isLast ? "Finish" : step === "equipment" ? "Continue" : "Continue"}
-            icon={isLast ? "none" : "arrow"}
-            onPress={next}
-            fullWidth
-          />
+          <Button label={isLast ? "Finish" : "Continue"} icon={isLast ? "none" : "arrow"} onPress={next} fullWidth />
           {step === "equipment" ? (
-            <Pressable onPress={() => setIndex(index + 1)} accessibilityRole="button" accessibilityLabel="Do this later" style={styles.laterButton}>
+            <Pressable onPress={() => goTo(indexAfterEquipmentLater())} accessibilityRole="button" accessibilityLabel="Do this later" style={styles.laterButton}>
               <Text style={styles.laterText}>Do this later</Text>
             </Pressable>
           ) : null}
@@ -239,9 +324,8 @@ const styles = StyleSheet.create({
   topButton: { minWidth: 64, flexDirection: "row", alignItems: "center", gap: 2 },
   topText: { ...typeScale.label, color: colors.espressoMuted },
   dots: { flexDirection: "row", gap: 6 },
-  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.hairlineStrong },
-  dotActive: { width: 22, backgroundColor: colors.burntOrange },
-  dotDone: { backgroundColor: colors.flame },
+  dot: { height: 8, borderRadius: 4 },
+  stepBody: { gap: spacing.md },
   content: {
     paddingHorizontal: layout.screenPadding,
     paddingTop: spacing.lg,

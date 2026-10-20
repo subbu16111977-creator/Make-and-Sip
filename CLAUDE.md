@@ -33,7 +33,8 @@ Until then every drink is non-alcoholic and the UI should not imply otherwise.
 - **Natural-language entry.** People type ingredients however they like ("oj", "Whole milk", "2 tbsp honey").
   Everything funnels through the ingredient normaliser; never match on raw strings elsewhere.
 - **Aliases yes, unsafe substitutes no.** Plural/singular, spelling, regional names and approved aliases resolve to
-  one canonical ingredient. Never merge look-alikes that behave differently (e.g. coconut milk vs coconut cream vs
+  one canonical ingredient, and a drink page shows the person's own wording for an alias they hold (their "club soda" where the
+  drink says "sparkling water"), in the ingredient list and the method, display only (`src/lib/ownedNames.ts`). Never merge look-alikes that behave differently (e.g. coconut milk vs coconut cream vs
   coconut water, oat milk vs oats, lemon juice vs lemon, cocoa powder vs hot chocolate mix, instant vs ground coffee,
   sugar vs syrup). A substitute only counts if an explicit rule says so, and it is shown as a substitute.
 - **Quantities and units matter.** Compare amounts, not just names. Convert only where it is reliable (ml/l/fl oz/

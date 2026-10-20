@@ -106,7 +106,7 @@ export default function ProfileScreen() {
           draft={draft}
           onChange={change}
           errors={errors}
-          afterCuisines={
+          afterName={
             <View ref={favoritesTarget} collapsable={false} style={styles.favoritesSlot}>
               {favoriteMatches.length === 0 ? (
                 <>

@@ -16,6 +16,7 @@ import { getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
 import { useCookability } from "@/lib/useCookability";
 import { bestMethod, formatMinutes, isByHand, methodReady, methodsOf, missingForMethod, recipeForMethod, toolsPhrase, totalMinutes, waitFor } from "@/lib/methods";
 import { scaledRecipe } from "@/lib/cookability";
+import { buildSwaps, swapLabel, swapNames } from "@/lib/ownedNames";
 import { CookabilityBadge } from "@/components/CookabilityBadge";
 import { TemperatureBadge } from "@/components/TemperatureBadge";
 import { RecipeImage } from "@/components/RecipeImage";
@@ -52,6 +53,19 @@ export default function RecipeDetailScreen() {
   const servings = chosenServings ?? recipe?.servings ?? 1;
   const cookability = useCookability(recipe, servings, chosenMethodId);
   const cookByIngredient = useMemo(() => new Map((cookability?.ingredients ?? []).map((c) => [c.ingredient, c])), [cookability]);
+
+  // The drink in the person's own words: if they keep "club soda" where the drink says "sparkling water", the ingredient
+  // list and the method say "club soda". Display only; the recipe is never changed.
+  const nameSwaps = useMemo(
+    () =>
+      buildSwaps(
+        (match?.have ?? []).map((ingredient) => {
+          const pantryItemId = cookByIngredient.get(ingredient)?.pantryItemId;
+          return { ingredient, item: pantryItems.find((p) => p.id === pantryItemId) };
+        })
+      ),
+    [match, cookByIngredient, pantryItems]
+  );
 
   // What "Add to Shopping" sends: required missing items plus top-ups for anything the pantry is short on,
   // for the chosen number of servings. Optional ingredients are held back and offered separately.
@@ -370,7 +384,7 @@ export default function RecipeDetailScreen() {
                     </View>
                     <View style={styles.ingredientLabelStack}>
                       <Text style={styles.ingredientLabel}>
-                        {ing.label}
+                        {swapLabel(ing.label, nameSwaps)}
                         {ing.optional ? <Text style={styles.optionalTag}> · optional</Text> : null}
                       </Text>
                       {shortfall && <Text style={styles.shortfallText}>Need {shortfall} more{c?.approximate ? " (estimated)" : ""}</Text>}
@@ -405,7 +419,7 @@ export default function RecipeDetailScreen() {
             {activeMethod.steps.map((step, i) => (
               <View key={i} style={styles.stepRow}>
                 <Text style={styles.stepNumber}>{String(i + 1).padStart(2, "0")}</Text>
-                <Text style={styles.stepText}>{step}</Text>
+                <Text style={styles.stepText}>{swapNames(step, nameSwaps)}</Text>
               </View>
             ))}
           </View>
@@ -417,7 +431,7 @@ export default function RecipeDetailScreen() {
           {recipe.notes ? (
             <View style={styles.notesWrap}>
               <Text style={styles.notesLabel}>Maker&apos;s note</Text>
-              <Text style={styles.notesText}>{recipe.notes}</Text>
+              <Text style={styles.notesText}>{swapNames(recipe.notes, nameSwaps)}</Text>
             </View>
           ) : null}
         </View>

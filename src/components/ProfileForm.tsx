@@ -26,8 +26,8 @@ interface ProfileFormProps {
   /** Takes an updater so rapid taps never overwrite each other with a stale copy of the draft. */
   onChange: (update: (draft: ProfileDraft) => ProfileDraft) => void;
   errors: DraftErrors;
-  /** Extra content shown directly under the cuisines question (used by the Profile tab for Favourite dishes). */
-  afterCuisines?: React.ReactNode;
+  /** Extra content shown directly under the name (used by the Profile tab for Favourite drinks). */
+  afterName?: React.ReactNode;
 }
 
 export const PREFERENCES_NOTE =
@@ -35,7 +35,7 @@ export const PREFERENCES_NOTE =
 export const LOCAL_NOTE = "Your profile and preferences are stored only on this device.";
 
 /** The optional local profile fields, shared by the first-launch flow and Settings. Nothing here is required. */
-export function ProfileForm({ profile, draft, onChange, errors, afterCuisines }: ProfileFormProps) {
+export function ProfileForm({ profile, draft, onChange, errors, afterName }: ProfileFormProps) {
   const [photoError, setPhotoError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [cropping, setCropping] = useState(false);
@@ -129,7 +129,25 @@ export function ProfileForm({ profile, draft, onChange, errors, afterCuisines }:
       />
       {errors.name ? <Text style={styles.error}>{errors.name}</Text> : null}
 
-      <Text style={styles.question}>Which kinds of drink do you enjoy?</Text>
+      {afterName}
+
+      <View style={styles.note}>
+        <Text style={styles.noteText}>{LOCAL_NOTE}</Text>
+      </View>
+    </View>
+  );
+}
+
+interface QuestionProps {
+  draft: ProfileDraft;
+  onChange: (update: (draft: ProfileDraft) => ProfileDraft) => void;
+  errors: DraftErrors;
+}
+
+/** "Which kinds of drink do you enjoy?": a question of its own in the introduction. */
+export function DrinkTypesQuestion({ draft, onChange, errors }: QuestionProps) {
+  return (
+    <View style={styles.wrap}>
       <Text style={styles.helper}>Choose as many as you like.</Text>
       <View style={styles.chips}>
         {CUISINE_OPTIONS.map((c) => (
@@ -144,7 +162,7 @@ export function ProfileForm({ profile, draft, onChange, errors, afterCuisines }:
           <TextInput
             value={draft.customCuisineText}
             onChangeText={(t) => onChange((d) => ({ ...d, customCuisineText: t }))}
-            placeholder="e.g. Ethiopian (separate several with commas)"
+            placeholder="e.g. Kombucha (separate several with commas)"
             placeholderTextColor={colors.espressoFaint}
             maxLength={200}
             accessibilityLabel="Tell us which drinks"
@@ -153,10 +171,14 @@ export function ProfileForm({ profile, draft, onChange, errors, afterCuisines }:
           {errors.cuisine ? <Text style={styles.error}>{errors.cuisine}</Text> : null}
         </View>
       ) : null}
+    </View>
+  );
+}
 
-      {afterCuisines}
-
-      <Text style={styles.question}>What kinds of flavours do you enjoy?</Text>
+/** "What kinds of flavours do you enjoy?": a question of its own in the introduction. */
+export function FlavoursQuestion({ draft, onChange, errors }: QuestionProps) {
+  return (
+    <View style={styles.wrap}>
       <Text style={styles.helper}>Choose as many as you like.</Text>
       <View style={styles.chips}>
         {FLAVOR_OPTIONS.map((f) => (
@@ -180,11 +202,6 @@ export function ProfileForm({ profile, draft, onChange, errors, afterCuisines }:
           {errors.flavor ? <Text style={styles.error}>{errors.flavor}</Text> : null}
         </View>
       ) : null}
-
-      <View style={styles.note}>
-        <Text style={styles.noteText}>{PREFERENCES_NOTE}</Text>
-        <Text style={styles.noteText}>{LOCAL_NOTE}</Text>
-      </View>
     </View>
   );
 }

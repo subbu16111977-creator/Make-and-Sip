@@ -47,8 +47,18 @@ export function markTutorialSkipped(profile: LocalProfile): LocalProfile {
   return profile.tutorialCompleted ? profile : { ...profile, tutorialSkipped: true };
 }
 
-export const INTRO_STEPS = ["welcome", "pantry", "equipment", "explore", "profile"] as const;
+/**
+ * The introduction's screens. "equipment" explains why equipment matters; "equipment-pick" is where it is ticked, and is
+ * skipped when the person chooses "Do this later". "drinks" and "flavors" are the two taste questions; "profile" is
+ * the optional name and photo.
+ */
+export const INTRO_STEPS = ["welcome", "pantry", "equipment", "equipment-pick", "explore", "drinks", "flavors", "profile"] as const;
 export type IntroStep = (typeof INTRO_STEPS)[number];
+
+/** Where "Do this later" on the equipment screen leads: past the screen where equipment is ticked. */
+export function indexAfterEquipmentLater(): number {
+  return INTRO_STEPS.indexOf("equipment-pick") + 1;
+}
 
 export function clampIndex(index: number, length: number): number {
   return Math.min(Math.max(index, 0), Math.max(length - 1, 0));
