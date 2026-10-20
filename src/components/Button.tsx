@@ -12,23 +12,29 @@ interface ButtonProps {
   icon?: "arrow" | "none";
   style?: StyleProp<ViewStyle>;
   fullWidth?: boolean;
+  /** Greyed out and not pressable. */
+  disabled?: boolean;
 }
 
-export function Button({ label, onPress, variant = "primary", icon = "none", style, fullWidth }: ButtonProps) {
+export function Button({ label, onPress, variant = "primary", icon = "none", style, fullWidth, disabled }: ButtonProps) {
   return (
     <Pressable
-      onPress={onPress}
+      onPress={disabled ? undefined : onPress}
+      disabled={disabled}
+      accessibilityRole="button"
+      accessibilityState={{ disabled: Boolean(disabled) }}
       style={({ pressed }) => [
         styles.base,
         variantStyles[variant],
+        disabled && styles.disabled,
         fullWidth && styles.fullWidth,
-        pressed && styles.pressed,
+        pressed && !disabled && styles.pressed,
         style,
       ]}
     >
-      <Text style={[styles.label, labelVariantStyles[variant]]}>{label}</Text>
+      <Text style={[styles.label, labelVariantStyles[variant], disabled && styles.disabledLabel]}>{label}</Text>
       {icon === "arrow" && (
-        <ArrowRightIcon size={16} color={variant === "primary" ? colors.cream : colors.espresso} strokeWidth={1.8} />
+        <ArrowRightIcon size={16} color={disabled ? colors.espressoFaint : variant === "primary" ? colors.cream : colors.espresso} strokeWidth={1.8} />
       )}
     </Pressable>
   );
@@ -51,6 +57,12 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.85,
   },
+  disabled: {
+    backgroundColor: colors.parchment,
+    borderWidth: 1,
+    borderColor: colors.hairline,
+  },
+  disabledLabel: { color: colors.espressoFaint },
   label: {
     ...typeScale.button,
   },

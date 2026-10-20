@@ -169,6 +169,7 @@ const SLIDE = 28;
  */
 export function IntroFlow() {
   const { profile, replay, saveDraft, finishIntro } = useProfile();
+  const { owned } = useEquipment();
   const [index, setIndex] = useState(0);
   const [draft, setDraft] = useState<ProfileDraft>(() => draftFromProfile(profile));
   const [showErrors, setShowErrors] = useState(false);
@@ -217,7 +218,11 @@ export function IntroFlow() {
     });
   }
 
+  // The equipment screen needs at least one pick before Continue works. ("Do this later" on the screen before skips it.)
+  const needsEquipment = step === "equipment-pick" && owned.length === 0;
+
   function next() {
+    if (needsEquipment) return;
     const found = validateDraft(draft);
     // The taste questions need their text when "Others" is ticked, so those errors are shown on their own screens.
     if (step === "drinks" && found.cuisine) return setShowErrors(true);
@@ -293,7 +298,8 @@ export function IntroFlow() {
         </ScrollView>
 
         <View style={styles.footer}>
-          <Button label={isLast ? "Finish" : "Continue"} icon={isLast ? "none" : "arrow"} onPress={next} fullWidth />
+          <Button label={isLast ? "Finish" : "Continue"} icon={isLast ? "none" : "arrow"} onPress={next} disabled={needsEquipment} fullWidth />
+          {needsEquipment ? <Text style={styles.footerHint}>Pick at least one to continue.</Text> : null}
           {step === "equipment" ? (
             <Pressable onPress={() => goTo(indexAfterEquipmentLater())} accessibilityRole="button" accessibilityLabel="Do this later" style={styles.laterButton}>
               <Text style={styles.laterText}>Do this later</Text>
@@ -347,6 +353,7 @@ const styles = StyleSheet.create({
     maxWidth: layout.maxContentWidth,
     alignSelf: "center",
   },
+  footerHint: { ...typeScale.caption, color: colors.espressoMuted, textAlign: "center" },
   laterButton: { alignItems: "center", paddingVertical: 8 },
   laterText: { ...typeScale.label, color: colors.espressoMuted },
   visualCard: {
