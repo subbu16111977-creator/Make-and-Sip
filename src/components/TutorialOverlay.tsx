@@ -13,6 +13,8 @@ import { CheckIcon } from "@/components/icons";
 import { getTutorialTarget, scrollScreenBy, type TutorialTargetId } from "@/lib/tutorialTargets";
 
 /** The tutorial steps that live on the example drink's page. */
+/** Steps whose control can sit below the fold of a scrolling page. */
+const SCROLL_STEPS = new Set(["discover", "recipe-servings", "recipe-methods", "recipe-shopping", "recipe-save", "recipe-favorite", "profile-favorites"]);
 const RECIPE_STEPS = new Set(["recipe-servings", "recipe-names", "recipe-methods", "recipe-shopping", "recipe-made", "recipe-save", "recipe-favorite"]);
 
 interface Box {
@@ -138,30 +140,65 @@ export function TutorialOverlay() {
     }
   }, [index, ready]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // The favourites section sits partway down the Profile tab, so scroll it into view.
+  // Which half of the screen the card sits in is decided once per step from where the control is, so the card never
+  // covers it: a control in the upper half gets the card below, anything lower (or still off-screen) gets the card above.
+  const [placed, setPlaced] = useState<{ id: string; side: "top" | "bottom" } | null>(null);
+  const [cardHeight, setCardHeight] = useState(0);
+  const target = step.target;
   useEffect(() => {
-    if (!ready || step.id !== "profile-favorites") return;
-    const bring = () => {
-      getTutorialTarget("profile-favorites")?.current?.measureInWindow((_x, y, _w, h) => {
-        if (h > 0 && (y > windowHeight * 0.45 || y < 60)) scrollScreenBy(y - 110);
+    if (!ready || !target) return;
+    const decide = () => {
+      getTutorialTarget(target)?.current?.measureInWindow((_x, y, _w, h) => {
+        if (!(h > 0)) return;
+        const side = y > windowHeight || y + h / 2 > windowHeight * 0.5 ? "top" : "bottom";
+        setPlaced((prev) => (prev && prev.id === step.id ? prev : { id: step.id, side }));
       });
     };
-    const timers = [setTimeout(bring, 700), setTimeout(bring, 1500)];
+    const timers = [setTimeout(decide, 350), setTimeout(decide, 900)];
     return () => timers.forEach(clearTimeout);
-  }, [index, ready, step.id, windowHeight]);
+  }, [step.id, target, ready, windowHeight]);
+  const side = placed && placed.id === step.id ? placed.side : step.placement;
 
-  // On the drink's page the servings row and the ways to make it sit partway down, so scroll them to the middle of the
-  // screen, clear of the card at the top.
+  const bottomOffset = RECIPE_STEPS.has(step.id) ? insets.bottom + spacing.lg : insets.bottom + 76;
+
+  // Controls partway down a scrolling page are scrolled into the free area, clear of the card.
   useEffect(() => {
-    if (!ready || (step.id !== "recipe-servings" && step.id !== "recipe-methods")) return;
+    if (!ready || !target || !SCROLL_STEPS.has(step.id)) return;
+    const margin = 16;
+    // Until the card has been measured, assume it takes about a third of the screen.
+    const cardH = cardHeight || windowHeight * 0.3;
+    const zoneTop = side === "top" ? insets.top + spacing.sm + cardH + margin : insets.top + margin + 40;
+    const zoneBottom = side === "top" ? windowHeight - (RECIPE_STEPS.has(step.id) ? insets.bottom : insets.bottom + 76) - margin : windowHeight - bottomOffset - cardH - margin;
+    // On Discover the list scrolls itself to just below the filters (see the screen), whatever is measured, so ask it
+    // a few times while the first visit finishes loading.
+    if (step.id === "discover") {
+      const timers = [1200, 2800, 5000].map((ms) => setTimeout(() => scrollScreenBy(0), ms));
+      return () => timers.forEach(clearTimeout);
+    }
+    // A screen can take a while to appear and fill (the first visit to Discover ranks every drink), so keep looking
+    // for the control for a few seconds and scroll as soon as it is found out of place.
+    let ticks = 0;
+    let cooldown = 0;
     const bring = () => {
-      getTutorialTarget(step.id === "recipe-servings" ? "recipe-servings" : "recipe-methods")?.current?.measureInWindow((_x, y, _w, h) => {
-        if (h > 0 && (y > windowHeight * 0.62 || y < windowHeight * 0.38)) scrollScreenBy(y - windowHeight * 0.5);
+      ticks += 1;
+      if (ticks > 24) return clearInterval(timer);
+      // A scroll animates for a moment; don't measure and scroll again while it is still moving.
+      if (cooldown > 0) {
+        cooldown -= 1;
+        return;
+      }
+      getTutorialTarget(target)?.current?.measureInWindow((_x, y, _w, h) => {
+        if (!(h > 0)) return;
+        const free = zoneBottom - zoneTop;
+        const fits = h <= free;
+        if (fits ? y >= zoneTop && y + h <= zoneBottom : Math.abs(y - zoneTop) < 24) return;
+        scrollScreenBy(fits ? y - (zoneTop + (free - h) / 2) : y - zoneTop);
+        cooldown = 2;
       });
     };
-    const timers = [setTimeout(bring, 700), setTimeout(bring, 1500)];
-    return () => timers.forEach(clearTimeout);
-  }, [index, ready, step.id, windowHeight]);
+    const timer = setInterval(bring, 450);
+    return () => clearInterval(timer);
+  }, [step.id, target, ready, side, cardHeight, windowHeight, insets.top, insets.bottom, bottomOffset]);
 
   function leaveToHome() {
     try {
@@ -180,14 +217,14 @@ export function TutorialOverlay() {
   }
 
   const isLast = index === TUTORIAL_STEPS.length - 1;
-  const bottomOffset = RECIPE_STEPS.has(step.id) ? insets.bottom + spacing.lg : insets.bottom + 76;
-  const pos = step.placement === "top" ? { top: insets.top + spacing.sm } : { bottom: bottomOffset };
+  const pos = side === "top" ? { top: insets.top + spacing.sm } : { bottom: bottomOffset };
 
   return (
     <View style={[styles.layer, { pointerEvents: "box-none" }]}>
       {step.target ? <Spotlight key={step.id} targetId={step.target} /> : null}
       <View
-        style={[styles.card, pos]}
+        style={[styles.card, pos, { maxHeight: windowHeight * 0.5 }]}
+        onLayout={(e) => setCardHeight(e.nativeEvent.layout.height)}
         accessible={false}
         accessibilityViewIsModal={false}
         accessibilityLabel={`Tutorial step ${index + 1} of ${TUTORIAL_STEPS.length}: ${step.title}`}
@@ -259,8 +296,8 @@ const styles = StyleSheet.create({
     borderRadius: radii.xl,
     borderWidth: 1,
     borderColor: colors.burntOrange,
-    padding: spacing.lg,
-    gap: 6,
+    padding: spacing.md,
+    gap: 4,
   },
   headRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
   dots: { flexDirection: "row", gap: 5 },
@@ -268,12 +305,12 @@ const styles = StyleSheet.create({
   dotActive: { width: 18, backgroundColor: colors.burntOrange },
   dotDone: { backgroundColor: colors.flame },
   skip: { ...typeScale.label, fontSize: 13, color: colors.espressoMuted },
-  title: { ...typeScale.headline, fontSize: 20, lineHeight: 26, color: colors.espresso, marginTop: 4 },
+  title: { ...typeScale.headline, fontSize: 19, lineHeight: 24, color: colors.espresso, marginTop: 2 },
   body: { ...typeScale.bodySmall, color: colors.espresso },
   hint: { ...typeScale.caption, color: colors.espressoMuted },
   sample: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: spacing.sm, borderRadius: radii.md, borderWidth: 1.2, borderColor: colors.hairlineStrong, paddingVertical: 12, marginVertical: spacing.xs },
   sampleText: { ...typeScale.button, color: colors.espresso },
-  buttons: { flexDirection: "row", justifyContent: "flex-end", gap: spacing.sm, marginTop: spacing.sm },
+  buttons: { flexDirection: "row", justifyContent: "flex-end", gap: spacing.sm, marginTop: spacing.xs },
   primary: { backgroundColor: colors.burntOrange, borderRadius: radii.md, paddingVertical: 10, paddingHorizontal: spacing.xl },
   primaryText: { ...typeScale.button, color: colors.cream },
   secondary: { borderRadius: radii.md, paddingVertical: 10, paddingHorizontal: spacing.lg, borderWidth: 1, borderColor: colors.hairlineStrong },

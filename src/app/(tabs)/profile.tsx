@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, Pressable, StyleSheet, type ScrollView, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
-import { useRouter } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Avatar } from "@/components/Avatar";
 import { RecipeSection } from "@/components/RecipeSection";
@@ -36,11 +36,11 @@ export default function ProfileScreen() {
   const scrollY = useRef(0);
   const [favoritesExpanded, setFavoritesExpanded] = useState(false);
 
-  // Lets the tutorial scroll this screen to show the Favourites section.
-  useEffect(
-    () => registerScrollBy((dy) => scrollRef.current?.scrollTo({ y: Math.max(0, scrollY.current + dy), animated: true })),
-    []
+  // Lets the tutorial scroll this screen to show the Favourites section (registered whenever the tab is in front).
+  useFocusEffect(
+    useCallback(() => registerScrollBy((dy) => scrollRef.current?.scrollTo({ y: Math.max(0, scrollY.current + dy), animated: true })), [])
   );
+
 
   const favoriteMatches = favoriteRecipes(favorites.favoriteIds, recipes).map((r) => matchRecipe(pantry.items, r, equipment.owned));
 

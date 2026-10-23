@@ -1,15 +1,15 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView, FlatList, Pressable } from "react-native";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { colors, spacing, radii, type as typeScale, layout } from "@/theme";
 import { Chip } from "@/components/Chip";
 import { RecipeCard } from "@/components/RecipeCard";
 import { useProfile } from "@/context/ProfileContext";
 import { CUISINE_OPTIONS, CUISINE_OTHER } from "@/lib/profile";
 import { hasPreferences, preferencesFrom, sortByForYou } from "@/lib/forYou";
-import { useTutorialTarget } from "@/lib/tutorialTargets";
+import { registerScrollBy, useTutorialTarget } from "@/lib/tutorialTargets";
 import { SearchIcon } from "@/components/icons";
 import { RefreshButton } from "@/components/RefreshButton";
 import { usePantry } from "@/context/PantryContext";
@@ -31,6 +31,13 @@ export default function DiscoverScreen() {
   const { items: pantryItems } = usePantry();
   const { owned: ownedEquipment } = useEquipment();
   const { profile, startReplay } = useProfile();
+  const listRef = useRef<FlatList>(null);
+  const scrollY = useRef(0);
+  const headerHeight = useRef(0);
+  // Lets the tutorial bring the first drink into view: the list scrolls past the search and filters, which are tall, so
+  // the first row sits just below the tutorial card. (Registered whenever the tab is in front, since another screen may
+  // have taken the hook meanwhile.)
+  useFocusEffect(useCallback(() => registerScrollBy(() => listRef.current?.scrollToOffset({ offset: Math.max(0, headerHeight.current - 300), animated: true })), []));
   const preferences = useMemo(() => preferencesFrom(profile), [profile]);
   const { width: screenWidth } = useAppDimensions();
   const [query, setQuery] = useState("");
@@ -107,6 +114,11 @@ export default function DiscoverScreen() {
   return (
     <SafeAreaView style={styles.safeArea} edges={["top"]}>
       <FlatList
+        ref={listRef}
+        scrollEventThrottle={64}
+        onScroll={(e) => {
+          scrollY.current = e.nativeEvent.contentOffset.y;
+        }}
         data={filtered}
         keyExtractor={(m) => m.recipe.id}
         numColumns={2}
@@ -120,7 +132,7 @@ export default function DiscoverScreen() {
           setTimeout(() => setPulling(false), 600);
         }}
         ListHeaderComponent={
-          <View>
+          <View onLayout={(e) => (headerHeight.current = e.nativeEvent.layout.height)}>
             <View style={styles.header}>
               <Text style={styles.eyebrow}>{filtered.length} {filtered.length === 1 ? "drink" : "drinks"}</Text>
               <Text style={styles.headline}>Discover</Text>
