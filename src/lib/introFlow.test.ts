@@ -108,7 +108,7 @@ describe("tutorial", () => {
   });
   it("outlines a real control where there is one, in the right order, and says so only for those", () => {
     expect(TUTORIAL_STEPS.map((s) => s.id)).toEqual(["pantry", "equipment", "discover", "recipe-servings", "recipe-names", "recipe-methods", "recipe-shopping", "recipe-made", "recipe-save", "recipe-favorite", "shopping-list", "saved-list", "profile-favorites"]);
-    expect(TUTORIAL_STEPS.filter((s) => s.target).map((s) => s.target)).toEqual(["pantry-add", "equipment-first-row", "discover-first-card", "recipe-servings", "recipe-methods", "recipe-add-shopping", "recipe-save", "recipe-heart", "profile-favorites"]);
+    expect(TUTORIAL_STEPS.filter((s) => s.target).map((s) => s.target)).toEqual(["pantry-add", "equipment-first-row", "discover-first-card", "recipe-servings", "recipe-ingredients", "recipe-methods", "recipe-add-shopping", "recipe-save", "recipe-heart", "profile-favorites"]);
     for (const s of TUTORIAL_STEPS.filter((s) => !s.target)) expect(s.hint.toLowerCase()).toContain("nothing to tap");
   });
   it("says that the outlined control glows, and never claims to press it for the user", () => {

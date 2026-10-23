@@ -131,8 +131,8 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
     id: "recipe-names",
     title: "Your words, not ours",
     body: "If you keep “club soda” where a drink says “sparkling water”, the drink uses your name for it in the ingredient list and the method. Only real aliases are swapped; a different product is never treated as the same.",
-    hint: "Nothing to tap here. You’ll see it on drinks as you add your own ingredients.",
-    target: null,
+    hint: "Look at the glowing list: the ingredients you have appear under On hand, in your own words.",
+    target: "recipe-ingredients",
     placement: "bottom",
   },
   {

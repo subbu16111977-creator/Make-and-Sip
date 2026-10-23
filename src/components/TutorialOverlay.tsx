@@ -14,7 +14,7 @@ import { getTutorialTarget, scrollScreenBy, type TutorialTargetId } from "@/lib/
 
 /** The tutorial steps that live on the example drink's page. */
 /** Steps whose control can sit below the fold of a scrolling page. */
-const SCROLL_STEPS = new Set(["discover", "recipe-servings", "recipe-methods", "recipe-shopping", "recipe-save", "recipe-favorite", "profile-favorites"]);
+const SCROLL_STEPS = new Set(["discover", "recipe-servings", "recipe-names", "recipe-methods", "recipe-shopping", "recipe-save", "recipe-favorite", "profile-favorites"]);
 const RECIPE_STEPS = new Set(["recipe-servings", "recipe-names", "recipe-methods", "recipe-shopping", "recipe-made", "recipe-save", "recipe-favorite"]);
 
 interface Box {

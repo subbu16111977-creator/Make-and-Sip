@@ -47,6 +47,7 @@ export default function RecipeDetailScreen() {
   useEffect(() => registerScrollBy((dy) => scrollRef.current?.scrollTo({ y: Math.max(0, scrollY.current + dy), animated: true })), []);
   const servingsTarget = useTutorialTarget("recipe-servings");
   const methodsTarget = useTutorialTarget("recipe-methods");
+  const ingredientsTarget = useTutorialTarget("recipe-ingredients");
   const { addMissingFromRecipe } = useShopping();
   const { isOwned: isEquipmentOwned, owned: ownedEquipment } = useEquipment();
 
@@ -471,6 +472,7 @@ export default function RecipeDetailScreen() {
             </View>
           )}
 
+          <View ref={ingredientsTarget} collapsable={false}>
           <Text style={styles.sectionTitle}>Ingredients</Text>
 
           {match.have.length > 0 && (
@@ -522,6 +524,7 @@ export default function RecipeDetailScreen() {
               ))}
             </View>
           )}
+          </View>
 
           <Text style={styles.sectionTitle}>Method</Text>
           <View style={styles.stepsWrap}>
