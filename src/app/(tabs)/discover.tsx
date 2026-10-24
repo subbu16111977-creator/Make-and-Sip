@@ -17,7 +17,7 @@ import { useEquipment } from "@/context/EquipmentContext";
 import { recipes } from "@/data/recipes";
 import { missingEquipment, rankRecipesForDiscover } from "@/lib/pantryMatch";
 import { computeCookability } from "@/lib/cookability";
-import { SORT_OPTIONS, sortDiscover, type DiscoverSort } from "@/lib/discoverView";
+import { SORT_OPTIONS, matchesSearch, sortDiscover, type DiscoverSort } from "@/lib/discoverView";
 import type { DietTag, TasteTag } from "@/types";
 
 /** New value every time the app is opened (module load), so Best for you varies between sessions. */
@@ -83,12 +83,9 @@ export default function DiscoverScreen() {
   );
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
     const kept = ranked.filter((m) => {
       const { recipe } = m;
-      if (q && !recipe.title.toLowerCase().includes(q) && !recipe.description.toLowerCase().includes(q)) {
-        return false;
-      }
+      if (!matchesSearch(recipe, query)) return false;
       if (selectedCuisine && recipe.cuisine !== selectedCuisine) return false;
       if (selectedTastes.length > 0 && !recipe.tasteTags.some((t) => selectedTastes.includes(t))) return false;
       if (selectedTemperature && recipe.temperature !== selectedTemperature) return false;

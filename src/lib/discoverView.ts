@@ -1,4 +1,5 @@
 import type { Recipe, RecipeIngredient } from "@/types";
+import { foldName, resolveSynonym } from "@/lib/ingredientNormalize";
 
 /** How Discover can arrange the list. "best" keeps the pantry-match ranking. */
 export type DiscoverSort = "best" | "cookable" | "for-you" | "quickest" | "easiest" | "fewest-to-buy" | "az";
@@ -39,4 +40,27 @@ export function sortDiscover<T extends { recipe: Recipe; missing: RecipeIngredie
     }
   };
   return indexed.sort((x, y) => cmp(x.item, y.item) || x.i - y.i).map((x) => x.item);
+}
+
+const wordsOf = (text: string) => foldName(text).split(" ").filter(Boolean);
+
+/** Every ingredient id a drink can use, across all of its ways to make it. */
+function ingredientIdsOf(recipe: Recipe): Set<string> {
+  const ids = new Set(recipe.ingredients.map((i) => i.pantryId));
+  for (const m of recipe.methods ?? []) for (const i of m.ingredients ?? []) ids.add(i.pantryId);
+  return ids;
+}
+
+/**
+ * Discover's search. Each word typed has to start a word in the drink's name, description or type ("oj" no longer
+ * finds "mojito"), or the whole phrase can name an ingredient the drink uses, in any wording the normaliser knows
+ * ("oj", "club soda", "whole milk").
+ */
+export function matchesSearch(recipe: Recipe, query: string): boolean {
+  const typed = wordsOf(query);
+  if (typed.length === 0) return true;
+  const have = wordsOf(`${recipe.title} ${recipe.description} ${recipe.cuisine}`);
+  if (typed.every((t) => have.some((w) => w.startsWith(t) || (t.length > 3 && w.startsWith(t.replace(/(ies|es|s)$/, "")))))) return true;
+  const found = resolveSynonym(query);
+  return Boolean(found.entity && found.confidence >= 0.9 && !found.ambiguous && ingredientIdsOf(recipe).has(found.entity.id));
 }

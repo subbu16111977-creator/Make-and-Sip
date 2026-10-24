@@ -123,7 +123,7 @@ export const TUTORIAL_STEPS: readonly TutorialStep[] = [
     id: "recipe-servings",
     title: "Choose how many you’re making",
     body: "Change the number of servings and every ingredient amount follows, so you see exactly how much you need. The method gets a last step telling you to repeat it for each extra serving.",
-    hint: "Tap + or − on the glowing row. The recipe itself never changes.",
+    hint: "Tap + or − on the glowing row. The drink itself never changes.",
     target: "recipe-servings",
     placement: "top",
   },
