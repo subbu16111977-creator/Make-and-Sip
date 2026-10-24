@@ -32,7 +32,7 @@ export const vegetableJuices: Recipe[] = [
     { kind: "hard", what: "the spinach and apples", prep: ["Wash the spinach and apples. Core and quarter the apples."], lines: [L("spinach", "Baby spinach", "100 g"), L("apple", "Apples", "2"), L("lemon", "Lemon, juiced", "1/2"), ICE()] }
   ),
   juice(
-    { id: "amla-juice", title: "Amla Juice (Indian Gooseberry)", diet: [...VEG], taste: ["Tangy", "Bitter"], description: "Fresh amla pressed into a sharp, sour, astringent juice, usually sweetened with a little honey or jaggery.", prep: 10, make: 4, difficulty: "Medium", image: pexels(34928261), ...SRC_IN, notes: "It is very sharp on its own. A teaspoon of honey makes it easy to drink." },
+    { id: "amla-juice", title: "Amla Juice (Indian Gooseberry)", diet: ["Dairy-Free", "Gluten-Free", "Caffeine-Free"], taste: ["Tangy", "Bitter"], description: "Fresh amla pressed into a sharp, sour, astringent juice, usually sweetened with a little honey or jaggery.", prep: 10, make: 4, difficulty: "Medium", image: pexels(34928261), ...SRC_IN, notes: "It is very sharp on its own. A teaspoon of honey makes it easy to drink." },
     { kind: "hard", what: "the amla", prep: ["Wash the amla, cut each one into pieces and remove the stones."], lines: [L("amla", "Fresh amla (Indian gooseberries)", "8"), L("water", "Cold water", "100 ml"), L("honey", "Honey, to taste", "1 tsp", true)], after: ["Stir in the honey, if using, and drink fresh."] }
   ),
 ];

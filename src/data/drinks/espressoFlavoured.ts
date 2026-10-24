@@ -153,7 +153,7 @@ export const blendedAndIced: Recipe[] = [
       size: "double",
       lines: [{ pantryId: "brown-sugar", label: "Brown sugar", amount: "1 tbsp" }, { pantryId: "cinnamon", label: "Ground cinnamon", amount: "1 pinch", optional: true }, { pantryId: "oat-milk", label: "Oat milk", amount: "80 ml" }, ice()],
       into: "into a shaker or lidded jar",
-      before: ["Put the ice in a cocktail shaker or a large lidded jar."],
+      before: ["Put the ice in a shaker or a large lidded jar."],
       after: ["Stir the brown sugar (and the pinch of cinnamon) into the hot coffee until dissolved, then shake hard with the ice for about 30 seconds, until frothy and cold.", "Pour everything into a tall glass and top with the cold oat milk. Drink right away."],
       optional: [{ tag: "Shaker", without: "A large, tightly lidded jar shaken hard works just as well." }], handTools: ["Tall glass"],
     }

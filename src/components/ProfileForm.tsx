@@ -28,6 +28,8 @@ interface ProfileFormProps {
   errors: DraftErrors;
   /** Extra content shown directly under the name (used by the Profile tab for Favourite drinks). */
   afterName?: React.ReactNode;
+  /** The "stored only on this device" note under the form; the Profile tab already says it in its header. */
+  showNote?: boolean;
 }
 
 export const PREFERENCES_NOTE =
@@ -35,7 +37,7 @@ export const PREFERENCES_NOTE =
 export const LOCAL_NOTE = "Your profile and preferences are stored only on this device.";
 
 /** The optional local profile fields, shared by the first-launch flow and Settings. Nothing here is required. */
-export function ProfileForm({ profile, draft, onChange, errors, afterName }: ProfileFormProps) {
+export function ProfileForm({ profile, draft, onChange, errors, afterName, showNote = true }: ProfileFormProps) {
   const [photoError, setPhotoError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [cropping, setCropping] = useState(false);
@@ -131,9 +133,11 @@ export function ProfileForm({ profile, draft, onChange, errors, afterName }: Pro
 
       {afterName}
 
-      <View style={styles.note}>
-        <Text style={styles.noteText}>{LOCAL_NOTE}</Text>
-      </View>
+      {showNote ? (
+        <View style={styles.note}>
+          <Text style={styles.noteText}>{LOCAL_NOTE}</Text>
+        </View>
+      ) : null}
     </View>
   );
 }

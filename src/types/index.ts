@@ -96,7 +96,6 @@ export type EquipmentTag =
   | "Drip Coffee Maker"
   | "AeroPress"
   | "Cold Brew Pitcher"
-  | "Coffee Grinder"
   | "Milk Frother"
   | "Electric Kettle"
   | "Teapot"

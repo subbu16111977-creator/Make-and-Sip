@@ -132,7 +132,7 @@ export const bobaDrinks: Recipe[] = [
   ),
   boba(
     {
-      id: "passion-fruit-tea-with-popping-boba", title: "Passion Fruit Tea with Popping Boba", diet: ["Vegan", "Dairy-Free", "Gluten-Free"], taste: ["Fruity", "Tangy", "Refreshing"],
+      id: "passion-fruit-tea-with-popping-boba", title: "Passion Fruit Tea with Popping Boba", diet: ["Dairy-Free", "Gluten-Free"], taste: ["Fruity", "Tangy", "Refreshing"],
       description: "Iced green tea with tangy passion fruit pulp and honey, topped with juice-filled popping boba that burst as you sip.",
       prep: 5, make: 5, difficulty: "Easy", image: pexels(35137081),
     },

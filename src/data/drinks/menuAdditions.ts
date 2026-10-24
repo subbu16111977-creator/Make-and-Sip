@@ -55,7 +55,7 @@ export const menuCoffees: Recipe[] = [
       size: "double",
       lines: [{ pantryId: "sugar", label: "Sugar, or 1 tsp simple syrup", amount: "1 tsp" }, ice()],
       into: "into a shaker or lidded jar",
-      before: ["Put the ice and the sugar in a cocktail shaker or a lidded jar. Chill a small glass in the freezer while you make the coffee."],
+      before: ["Put the ice and the sugar in a shaker or a lidded jar. Chill a small glass in the freezer while you make the coffee."],
       after: ["Shake it hard for 15–20 seconds, until the outside of the shaker is frosty and the coffee is thick with foam.", "Strain into the chilled glass, leaving the ice behind, and serve immediately."],
       optional: [{ tag: "Shaker", without: "Use a tightly lidded jar and shake just as hard." }, { tag: "Strainer", without: "Hold a spoon over the opening so the ice stays back as you pour." }],
       handTools: ["Lidded jar", "Chilled glass"],
@@ -76,7 +76,7 @@ export const menuTeas: Recipe[] = [
   ),
   steeped(
     {
-      id: "apple-spice-tea", title: "Apple Spice Tea", type: "Tea", temperature: "hot", diet: ["Vegan", "Dairy-Free", "Gluten-Free"], taste: ["Fruity", "Spicy", "Sweet"],
+      id: "apple-spice-tea", title: "Apple Spice Tea", type: "Tea", temperature: "hot", diet: ["Dairy-Free", "Gluten-Free"], taste: ["Fruity", "Spicy", "Sweet"],
       description: "Black tea simmered with fresh apple, cinnamon and clove: warm, fragrant and gently sweet.",
       prep: 4, make: 8, difficulty: "Easy", image: pexels(3338676),
     },

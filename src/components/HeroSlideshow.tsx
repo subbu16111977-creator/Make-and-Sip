@@ -30,7 +30,7 @@ function usingUpLabel(expiring: PantryItem[], match: SlideshowMatch): string | u
 
 /** "Ready to make" only when ingredients AND equipment are covered; otherwise be honest about what's short. */
 function slideEyebrow(m: SlideshowMatch, owned: EquipmentTag[]): string {
-  if (!m.complete) return "Make tonight";
+  if (!m.complete) return m.have.length > 0 ? "Make tonight" : "Something new";
   return hasRequiredEquipment(owned, m.recipe) ? "Ready to make" : "You have the ingredients";
 }
 

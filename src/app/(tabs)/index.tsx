@@ -63,7 +63,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
   const greeting = useGreeting();
   const { items: pantryItems } = usePantry();
   const { owned: ownedEquipment } = useEquipment();
-  const { profile } = useProfile();
+  const { profile, startReplay } = useProfile();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -184,13 +184,13 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
     "Drinks from your favourite types with flavours you haven't picked.",
     newFlavors
   );
-  // Until the user picks drink types or flavours in Profile there is nothing to base these on.
+  // Until the user has answered the drink-type and flavour questions there is nothing to base these on.
   const preferenceNudge = !hasPreferences(preferences) ? (
     <View style={styles.pantrySummaryWrap}>
-      <Pressable style={styles.pantrySummary} onPress={() => router.push("/profile")} accessibilityRole="button" accessibilityLabel="Choose your favourite drinks and flavours in Profile">
+      <Pressable style={styles.pantrySummary} onPress={() => startReplay("intro")} accessibilityRole="button" accessibilityLabel="Answer the drink and flavour questions">
         <View style={styles.pantrySummaryText}>
           <Text style={styles.pantrySummaryTitle}>Get drinks picked for you</Text>
-          <Text style={styles.pantrySummaryBody}>Choose the drinks and flavours you enjoy in Profile and we’ll recommend drinks to match.</Text>
+          <Text style={styles.pantrySummaryBody}>Tell us the drinks and flavours you enjoy and we’ll recommend drinks to match.</Text>
         </View>
         <ChevronRightIcon size={18} color={colors.espresso} strokeWidth={1.6} />
       </Pressable>
@@ -303,7 +303,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
           <RecipeSection
             eyebrow="Just a few more"
             title="Almost there"
-            subtitle="You have an ingredient and all the tools. Tap the bag to add what's missing to Shopping."
+            subtitle="Just a few ingredients short, with all the tools you need. Tap the bag to add what's missing to Shopping."
             matches={almostThere}
             ownedEquipment={ownedEquipment}
             showMissingNote
@@ -343,7 +343,7 @@ function HomeContent({ seed, onRefresh }: { seed: number; onRefresh: () => void 
           <RecipeSection
             eyebrow="In a hurry"
             title="Quick and easy"
-            subtitle={`${quickAll.length} drinks ready in 20 minutes or less.`}
+            subtitle={`${quickAll.length} ${quickAll.length === 1 ? "drink" : "drinks"} ready in 20 minutes or less.`}
             matches={quickAll}
             ownedEquipment={ownedEquipment}
             expanded={expanded === "quick"}

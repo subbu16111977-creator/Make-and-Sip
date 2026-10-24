@@ -292,7 +292,7 @@ export const worldIced: Recipe[] = [
   ),
   drink(
     {
-      id: "coconut-coffee", title: "Coconut Coffee (Cà Phê Cốt Dừa)", type: "Coffee", temperature: "cold", diet: ["Dairy-Free", "Gluten-Free"], taste: ["Sweet", "Creamy", "Rich"],
+      id: "coconut-coffee", title: "Coconut Coffee (Cà Phê Cốt Dừa)", type: "Coffee", temperature: "cold", diet: ["Gluten-Free"], taste: ["Sweet", "Creamy", "Rich"],
       description: "Vietnam's coconut coffee: a thick, icy coconut-milk smoothie topped with strong phin coffee, so every sip moves from coconut to bitter.",
       prep: 8, make: 6, difficulty: "Medium", image: pexels(29370798),
       sourceName: "Wikipedia — Vietnamese coffee", sourceUrl: "https://en.wikipedia.org/wiki/Vietnamese_iced_coffee",

@@ -43,7 +43,7 @@ export const classicSodas: Recipe[] = [
     },
   ),
   built(
-    { id: "cherry-cola", title: "Cherry Cola", diet: [...VEG], taste: ["Sweet", "Fruity", "Rich"], description: "Cola with a spoonful of cherry syrup stirred in: dark, sweet and a little tart, the way a soda fountain serves it.", prep: 3, make: 1, difficulty: "Easy", image: pexels(6427771), ...wiki("Cherry cola", "Cherry_cola") },
+    { id: "cherry-cola", title: "Cherry Cola", diet: ["Vegan", "Dairy-Free", "Gluten-Free"], taste: ["Sweet", "Fruity", "Rich"], description: "Cola with a spoonful of cherry syrup stirred in: dark, sweet and a little tart, the way a soda fountain serves it.", prep: 3, make: 1, difficulty: "Easy", image: pexels(6427771), ...wiki("Cherry cola", "Cherry_cola") },
     [L("cola", "Cola, chilled", "200 ml"), L("cherry-syrup", "Cherry syrup", "30 ml"), ICE(), L("lime", "Lime wedge", "1", true)],
     ["Fill a tall glass with ice.", "Pour in the cherry syrup, then the cola, slowly so it doesn't foam over.", "Stir once and add a squeeze of lime if you like."],
   ),

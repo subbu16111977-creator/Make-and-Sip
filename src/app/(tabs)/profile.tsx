@@ -104,12 +104,13 @@ export default function ProfileScreen() {
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Your profile</Text>
+        <Text style={styles.sectionTitle}>Name and photo</Text>
         <ProfileForm
           profile={profile}
           draft={draft}
           onChange={change}
           errors={errors}
+          showNote={false}
           afterName={
             <View ref={favoritesTarget} collapsable={false} style={styles.favoritesSlot}>
               {favoriteMatches.length === 0 ? (
@@ -158,6 +159,7 @@ export default function ProfileScreen() {
         <Text style={styles.sectionTitle}>Guides</Text>
         <Pressable onPress={() => startReplay("intro")} accessibilityRole="button" accessibilityLabel="Replay the introduction" style={styles.row}>
           <Text style={styles.rowText}>Replay the introduction</Text>
+          <Text style={styles.sub}>Also where you change your favourite drinks and flavours.</Text>
         </Pressable>
         <Pressable onPress={() => startReplay("tutorial")} accessibilityRole="button" accessibilityLabel="Replay the tutorial" style={styles.row}>
           <Text style={styles.rowText}>Replay the tutorial</Text>

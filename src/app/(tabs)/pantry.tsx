@@ -291,7 +291,7 @@ export default function PantryScreen() {
                 <TextInput
                   value={name}
                   onChangeText={setName}
-                  placeholder="e.g. Cherry tomatoes"
+                  placeholder="e.g. Oat milk"
                   placeholderTextColor={colors.espressoFaint}
                   style={styles.textInput}
                 />

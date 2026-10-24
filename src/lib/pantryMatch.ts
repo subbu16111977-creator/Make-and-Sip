@@ -442,11 +442,11 @@ export interface SlideshowMatch extends RecipeMatch {
 
 /**
  * The Home slideshow. Rules:
- *  - a dish appears only if the user has at least one of its ingredients;
- *  - a dish the user has every required ingredient for ALWAYS appears;
- *  - the remaining slots (up to `targetSize` in total) go to partial matches,
- *    favouring better matches but chosen at random;
- *  - order is shuffled by `seed`, so pass a new seed each time the app opens.
+ *  - it shows drinks from every category (coffee, tea, shakes, smoothies...), one per category, so it never fills up
+ *    with one kind of drink whatever the pantry holds;
+ *  - within a category the drink is picked at random (by `seed`), favouring ones the pantry already covers well, but
+ *    a drink needs no ingredient on hand to be shown;
+ *  - at most `targetSize` slides, in an order shuffled by `seed`, so pass a new seed each time the app opens.
  */
 export function pickSlideshowMatches(
   pantry: PantryItem[],
@@ -454,23 +454,19 @@ export function pickSlideshowMatches(
   seed: number,
   targetSize = 8
 ): SlideshowMatch[] {
-  const matches: SlideshowMatch[] = recipes
-    .map((recipe) => matchRecipe(pantry, recipe))
-    .filter((m) => m.have.length > 0)
-    .map((m) => ({ ...m, complete: !m.missing.some((i) => !i.optional) }));
-
-  const complete = matches.filter((m) => m.complete);
-  const slots = Math.max(0, targetSize - complete.length);
-  const partial = matches
-    .filter((m) => !m.complete)
-    .map((m) => ({ m, pick: m.ratio * 0.6 + seededUnit(seed, `pick:${m.recipe.id}`) * 0.4 }))
-    .sort((a, b) => b.pick - a.pick)
-    .slice(0, slots)
-    .map((x) => x.m);
-
-  return [...complete, ...partial].sort(
-    (a, b) => seededUnit(seed, `order:${a.recipe.id}`) - seededUnit(seed, `order:${b.recipe.id}`)
-  );
+  const best = new Map<string, { m: SlideshowMatch; pick: number }>();
+  for (const recipe of recipes) {
+    const m = matchRecipe(pantry, recipe);
+    const slide: SlideshowMatch = { ...m, complete: !m.missing.some((i) => !i.optional) };
+    const pick = m.ratio * 0.5 + seededUnit(seed, `pick:${recipe.id}`) * 0.5;
+    const key = recipe.cuisine ?? "other";
+    const current = best.get(key);
+    if (!current || pick > current.pick) best.set(key, { m: slide, pick });
+  }
+  return [...best.values()]
+    .map((x) => x.m)
+    .sort((a, b) => seededUnit(seed, `order:${a.recipe.id}`) - seededUnit(seed, `order:${b.recipe.id}`))
+    .slice(0, targetSize);
 }
 
 const requiredMissing = (m: RecipeMatch) => m.missing.filter((i) => !i.optional);

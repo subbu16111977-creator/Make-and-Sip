@@ -6,7 +6,7 @@ const RETIRED_FOOD_GEAR = ["Oven", "Microwave", "Food Processor", "Stand Mixer",
 
 describe("drink equipment", () => {
   it("lists only drink-making gear, each with a description and no duplicates", () => {
-    expect(EQUIPMENT_TAGS.length).toBe(26);
+    expect(EQUIPMENT_TAGS.length).toBe(25);
     expect(new Set(EQUIPMENT_TAGS).size).toBe(EQUIPMENT_TAGS.length);
     for (const tag of EQUIPMENT_TAGS) expect(EQUIPMENT_HELP[tag].length).toBeGreaterThan(5);
     for (const old of RETIRED_FOOD_GEAR) expect(EQUIPMENT_TAGS as readonly string[]).not.toContain(old);

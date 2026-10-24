@@ -179,7 +179,7 @@ export default function ShoppingScreen() {
                 <TextInput
                   value={name}
                   onChangeText={setName}
-                  placeholder="e.g. Olive oil"
+                  placeholder="e.g. Vanilla syrup"
                   placeholderTextColor={colors.espressoFaint}
                   style={styles.textInput}
                 />

@@ -41,19 +41,19 @@ export const fizzMocktails: Recipe[] = [
     [MUDDLER, SQUEEZER]
   ),
   shaken(
-    { id: "pineapple-ginger-fizz", title: "Pineapple Ginger Fizz", diet: [...VEG], taste: ["Fruity", "Spicy", "Refreshing"], description: "Pineapple juice, fresh ginger and lime shaken with honey, topped with ginger beer: sweet, warming and fizzy.", prep: 5, make: 2, difficulty: "Easy", image: pexels(39948818), ...SRC_LIST },
+    { id: "pineapple-ginger-fizz", title: "Pineapple Ginger Fizz", diet: ["Dairy-Free", "Gluten-Free", "Caffeine-Free"], taste: ["Fruity", "Spicy", "Refreshing"], description: "Pineapple juice, fresh ginger and lime shaken with honey, topped with ginger beer: sweet, warming and fizzy.", prep: 5, make: 2, difficulty: "Easy", image: pexels(39948818), ...SRC_LIST },
     [L("pineapple", "Pineapple juice", "120 ml"), L("ginger", "Fresh ginger, grated", "5 g"), L("lime", "Lime, juiced", "1/2"), L("honey", "Honey or sugar syrup", "1 tsp"), L("ginger-beer", "Ginger beer (non-alcoholic)", "80 ml"), ICE()],
     { put: "the pineapple juice, ginger, lime juice and honey", strain: "into a tall glass over fresh ice", post: ["Top with the ginger beer.", "Garnish with a pineapple wedge and serve."], optional: [JIGGER] }
   ),
   built(
     { id: "elderflower-spritz", title: "Elderflower Spritz", diet: [...VEG], taste: ["Sweet", "Herbal", "Refreshing"], description: "Elderflower cordial and sparkling water over ice with lemon and mint: floral, light and delicate.", prep: 2, make: 1, difficulty: "Easy", image: pexels(7376782), ...SRC_LIST },
     [L("elderflower-cordial", "Elderflower cordial", "40 ml"), SODA(120), L("lemon", "Lemon slices", "2"), L("fresh-mint", "Fresh mint sprig", "1", true), ICE()],
-    ["Fill a wine glass with ice and add the lemon slices.", "Pour in the elderflower cordial.", "Top up with the sparkling water and stir once.", "Garnish with a mint sprig and serve."],
+    ["Fill a large stemmed glass with ice and add the lemon slices.", "Pour in the elderflower cordial.", "Top up with the sparkling water and stir once.", "Garnish with a mint sprig and serve."],
     [JIGGER],
     ["Wine glass"]
   ),
   shaken(
-    { id: "rosemary-grapefruit-spritz", title: "Rosemary Grapefruit Spritz", diet: [...VEG], taste: ["Tangy", "Herbal", "Refreshing"], description: "Grapefruit juice shaken with honey and a rosemary sprig, topped with sparkling water: bittersweet, piney and pink.", prep: 4, make: 2, difficulty: "Easy", image: pexels(4144244), ...SRC_LIST },
+    { id: "rosemary-grapefruit-spritz", title: "Rosemary Grapefruit Spritz", diet: ["Dairy-Free", "Gluten-Free", "Caffeine-Free"], taste: ["Tangy", "Herbal", "Refreshing"], description: "Grapefruit juice shaken with honey and a rosemary sprig, topped with sparkling water: bittersweet, piney and pink.", prep: 4, make: 2, difficulty: "Easy", image: pexels(4144244), ...SRC_LIST },
     [L("grapefruit", "Grapefruit juice", "120 ml"), L("rosemary", "Fresh rosemary sprigs", "2"), L("honey", "Honey", "1 tsp"), SODA(80), ICE()],
     { pre: ["Bruise one rosemary sprig between your fingers to release its oils."], put: "the grapefruit juice, honey and the bruised rosemary", strain: "into a tall glass over fresh ice", post: ["Top with the sparkling water.", "Garnish with the second rosemary sprig and a grapefruit wedge and serve."] }
   ),
@@ -75,7 +75,7 @@ export const fizzMocktails: Recipe[] = [
     [SQUEEZER]
   ),
   built(
-    { id: "passion-fruit-spritz", title: "Passion Fruit Spritz", diet: [...VEG], taste: ["Fruity", "Tangy", "Refreshing"], description: "Passion fruit pulp, orange juice and honey topped with sparkling water: tangy, perfumed and golden.", prep: 4, make: 1, difficulty: "Easy", image: pexels(8375042), ...SRC_LIST },
+    { id: "passion-fruit-spritz", title: "Passion Fruit Spritz", diet: ["Dairy-Free", "Gluten-Free", "Caffeine-Free"], taste: ["Fruity", "Tangy", "Refreshing"], description: "Passion fruit pulp, orange juice and honey topped with sparkling water: tangy, perfumed and golden.", prep: 4, make: 1, difficulty: "Easy", image: pexels(8375042), ...SRC_LIST },
     [L("passion-fruit", "Passion fruit pulp", "3 tbsp"), L("orange-juice", "Orange juice", "60 ml"), L("honey", "Honey", "2 tsp"), SODA(100), ICE()],
     ["Stir the honey into the passion fruit pulp and orange juice in a glass until dissolved.", "Fill the glass with ice.", "Top up with the sparkling water and stir gently.", "Garnish with an orange slice and serve."]
   ),
@@ -103,15 +103,15 @@ export const fizzMocktails: Recipe[] = [
     { pre: ["Grate the cucumber and squeeze the pulp through a sieve to collect the juice."], put: "the cucumber juice, lime juice and sugar syrup", strain: "into a tall glass over fresh ice", post: ["Top with the sparkling water.", "Garnish with a cucumber slice and a lime wheel and serve."], optional: [SQUEEZER] }
   ),
   built(
-    { id: "sparkling-grapefruit-mocktail", title: "Sparkling Grapefruit", diet: [...VEG], taste: ["Tangy", "Bitter", "Refreshing"], description: "Pink grapefruit juice with honey and sparkling water: pale rosé-pink, bittersweet and dry.", prep: 3, make: 1, difficulty: "Easy", image: pexels(11665831), ...SRC_LIST },
+    { id: "sparkling-grapefruit-mocktail", title: "Sparkling Grapefruit", diet: ["Dairy-Free", "Gluten-Free", "Caffeine-Free"], taste: ["Tangy", "Bitter", "Refreshing"], description: "Pink grapefruit juice with honey and sparkling water: pale rosé-pink, bittersweet and dry.", prep: 3, make: 1, difficulty: "Easy", image: pexels(11665831), ...SRC_LIST },
     [L("grapefruit", "Pink grapefruit juice", "100 ml"), L("honey", "Honey", "1 tsp"), SODA(100), L("rosemary", "Rosemary sprig, optional", "1", true), ICE()],
     ["Stir the honey into the grapefruit juice in a glass until dissolved.", "Fill the glass with ice.", "Top up with the sparkling water and stir gently.", "Garnish with a grapefruit slice (and rosemary, if using) and serve."],
     [SQUEEZER]
   ),
   built(
-    { id: "blood-orange-spritz", title: "Blood Orange Spritz", diet: [...VEG], taste: ["Fruity", "Tangy", "Refreshing"], description: "Blood orange juice with a touch of honey and sparkling water: ruby, sweet and slightly bitter.", prep: 4, make: 1, difficulty: "Easy", image: pexels(10986585), ...SRC_LIST },
+    { id: "blood-orange-spritz", title: "Blood Orange Spritz", diet: ["Dairy-Free", "Gluten-Free", "Caffeine-Free"], taste: ["Fruity", "Tangy", "Refreshing"], description: "Blood orange juice with a touch of honey and sparkling water: ruby, sweet and slightly bitter.", prep: 4, make: 1, difficulty: "Easy", image: pexels(10986585), ...SRC_LIST },
     [L("blood-orange", "Blood orange juice", "100 ml"), L("honey", "Honey", "1 tsp"), L("lemon", "Lemon, a squeeze", "1 tsp"), SODA(100), ICE()],
-    ["Stir the honey and lemon juice into the blood orange juice in a wine glass.", "Fill the glass with ice.", "Top up with the sparkling water and stir gently.", "Garnish with a blood orange wheel and serve."],
+    ["Stir the honey and lemon juice into the blood orange juice in a large stemmed glass.", "Fill the glass with ice.", "Top up with the sparkling water and stir gently.", "Garnish with a blood orange wheel and serve."],
     [SQUEEZER],
     ["Wine glass"]
   ),
@@ -200,7 +200,7 @@ export const frozenMocktails: Recipe[] = [
     { pre: ["Rub a lime wedge around the rim of a glass and dip it in salt, then put the glass in the freezer."], blend: "the lime juice, orange juice, sugar and ice", hand: "Put the lime juice, orange juice and sugar in a lidded jar with the crushed ice", post: ["Pour into the frosted, salt-rimmed glass, garnish with a lime wheel and serve right away."] }
   ),
   blended(
-    { id: "frozen-peach-bellini", title: "Frozen Peach Bellini", diet: [...VEG], taste: ["Fruity", "Sweet", "Refreshing"], description: "Ripe peaches blended with ice and sparkling white grape juice into a pale peach slush.", prep: 6, make: 2, difficulty: "Easy", image: pexels(17525270), ...SRC_LIST },
+    { id: "frozen-peach-bellini", title: "Frozen Peach Bellini", diet: ["Dairy-Free", "Gluten-Free", "Caffeine-Free"], taste: ["Fruity", "Sweet", "Refreshing"], description: "Ripe peaches blended with ice and sparkling white grape juice into a pale peach slush.", prep: 6, make: 2, difficulty: "Easy", image: pexels(17525270), ...SRC_LIST },
     [L("peach", "Ripe peaches, peeled and stoned", "1"), L("sparkling-grape-juice", "Chilled sparkling white grape juice", "80 ml"), L("honey", "Honey, to taste", "1 tsp"), ICE()],
     { pre: ["Peel the peach and cut the flesh from the stone."], blend: "the peach, sparkling grape juice, honey and ice", hand: "Mash the peach to a smooth pulp in a jar, then add the grape juice, honey and crushed ice" }
   ),

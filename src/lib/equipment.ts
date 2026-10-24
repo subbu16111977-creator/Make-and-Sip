@@ -12,7 +12,6 @@ export const EQUIPMENT_HELP: Record<EquipmentTag, string> = {
   "Drip Coffee Maker": "Batch filter coffee",
   AeroPress: "Clean, quick single cups",
   "Cold Brew Pitcher": "Slow, smooth cold brew",
-  "Coffee Grinder": "Fresh grounds from whole beans",
   "Milk Frother": "Foamed milk for lattes and chai",
   "Electric Kettle": "Hot water on demand",
   Teapot: "Brewing loose-leaf tea",

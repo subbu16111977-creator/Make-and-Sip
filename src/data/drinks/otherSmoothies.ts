@@ -24,7 +24,7 @@ export const greenSmoothies: Recipe[] = [
     { lines: [L("avocado", "Ripe avocado, flesh only", "1/2"), L("spinach", "Baby spinach", "30 g"), L("banana", "Ripe banana", "1/2"), L("coconut-water", "Coconut water", "200 ml"), L("lime", "Lime, juiced", "1/2"), ice("4 cubes")], withIn: "the coconut water and spinach first, then the avocado, banana, lime juice and ice", blenderOnly: true, before: ["Halve the avocado, remove the stone and scoop out the flesh."] }
   ),
   smoothie(
-    { id: "cucumber-mint-smoothie", title: "Cucumber Mint Smoothie", diet: [...VEG], taste: ["Refreshing", "Herbal", "Tangy"], description: "Cucumber, mint, lime and green apple blended with ice: cool, clean and refreshing.", prep: 5, make: 2, difficulty: "Easy", image: pexels(5338140) },
+    { id: "cucumber-mint-smoothie", title: "Cucumber Mint Smoothie", diet: ["Dairy-Free", "Gluten-Free", "Caffeine-Free"], taste: ["Refreshing", "Herbal", "Tangy"], description: "Cucumber, mint, lime and green apple blended with ice: cool, clean and refreshing.", prep: 5, make: 2, difficulty: "Easy", image: pexels(5338140) },
     { lines: [L("cucumber", "Cucumber, peeled and chopped", "1/2"), L("fresh-mint", "Fresh mint leaves", "10 g"), L("apple", "Green apple, cored and chopped", "1/2"), L("lime", "Lime, juiced", "1/2"), L("honey", "Honey or sugar, to taste", "1 tsp", true), L("water", "Cold water", "100 ml"), ice()], withIn: "the cucumber, mint, apple, lime juice, honey (if using), water and ice", blenderOnly: true }
   ),
   smoothie(
@@ -47,7 +47,7 @@ export const breakfastSmoothies: Recipe[] = [
     { lines: [L("banana", "Ripe banana", "1"), L("peanut-butter", "Smooth peanut butter", "2 tbsp"), yogurt(100), L("milk", "Cold milk", "150 ml"), L("honey", "Honey, to taste", "1 tsp", true), ice("4 cubes")], withIn: "the banana, peanut butter, yogurt, milk, honey (if using) and ice", mashWhat: "the banana and the peanut butter together" }
   ),
   smoothie(
-    { id: "banana-bread-smoothie", title: "Banana Bread Smoothie", diet: [...GF], taste: ["Sweet", "Spicy", "Creamy"], description: "Banana, oats, cinnamon and vanilla blended with milk: it tastes like the loaf.", prep: 5, make: 2, difficulty: "Easy", image: pexels(18142614) },
+    { id: "banana-bread-smoothie", title: "Banana Bread Smoothie", diet: [], taste: ["Sweet", "Spicy", "Creamy"], description: "Banana, oats, cinnamon and vanilla blended with milk: it tastes like the loaf.", prep: 5, make: 2, difficulty: "Easy", image: pexels(18142614) },
     { lines: [L("banana", "Ripe bananas, the spottier the better", "2"), L("rolled-oats", "Rolled oats", "2 tbsp"), L("milk", "Cold milk", "200 ml"), L("cinnamon", "Ground cinnamon", "1/2 tsp"), L("vanilla-extract", "Vanilla extract", "1/4 tsp"), L("honey", "Honey, to taste", "1 tbsp"), ice("4 cubes")], withIn: "the bananas, oats, milk, cinnamon, vanilla, honey and ice", blenderOnly: true }
   ),
   smoothie(

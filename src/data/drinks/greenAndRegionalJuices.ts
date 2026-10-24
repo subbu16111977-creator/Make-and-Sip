@@ -60,7 +60,7 @@ export const juiceShots: Recipe[] = [
     [L("orange", "Oranges", "2"), L("turmeric-root", "Fresh turmeric root", "10 g"), L("ginger", "Fresh ginger, peeled", "10 g"), L("lemon", "Lemon, juiced", "1/2"), L("black-pepper", "Black pepper, a pinch", "1 pinch", true)], "the oranges, turmeric and ginger", ["Peel the oranges and the ginger. Scrub the turmeric."]
   ),
   shot(
-    { id: "amla-ginger-shot", title: "Amla Ginger Shot", diet: [...VEG], taste: ["Tangy", "Spicy", "Bitter"], description: "Fresh amla and ginger pressed together with a little honey: sharp, sour and fiery.", prep: 8, make: 3, difficulty: "Medium", image: pexels(34928264), ...SRC_IN } as never,
+    { id: "amla-ginger-shot", title: "Amla Ginger Shot", diet: ["Dairy-Free", "Gluten-Free", "Caffeine-Free"], taste: ["Tangy", "Spicy", "Bitter"], description: "Fresh amla and ginger pressed together with a little honey: sharp, sour and fiery.", prep: 8, make: 3, difficulty: "Medium", image: pexels(34928264), ...SRC_IN } as never,
     [L("amla", "Fresh amla (Indian gooseberries)", "5"), L("ginger", "Fresh ginger, peeled", "10 g"), L("honey", "Honey, to taste", "1 tsp", true)], "the amla and ginger", ["Wash the amla, cut each into pieces and remove the stones. Peel the ginger."]
   ),
 ];

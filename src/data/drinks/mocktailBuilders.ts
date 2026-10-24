@@ -41,7 +41,7 @@ export function shaken(facts: MocktailFacts, lines: RecipeIngredient[], spec: Sh
   const pre = spec.pre ?? [];
   const post = spec.post ?? ["Garnish and serve right away."];
   const methods: Method[] = [
-    { id: "shaker", label: "Shaker", equipment: ["Shaker"], handTools: spec.handTools ?? ["Tall glass"], optionalEquipment: spec.optional, steps: [...pre, `Put ${spec.put} in a cocktail shaker with a handful of ice cubes and shake hard for 12–15 seconds, until the outside is frosty.`, `Strain ${spec.strain}.`, ...post] },
+    { id: "shaker", label: "Shaker", equipment: ["Shaker"], handTools: spec.handTools ?? ["Tall glass"], optionalEquipment: spec.optional, steps: [...pre, `Put ${spec.put} in a shaker with a handful of ice cubes and shake hard for 12–15 seconds, until the outside is frosty.`, `Strain ${spec.strain}.`, ...post] },
     { id: "by-hand", label: "By hand", equipment: [], handTools: [...(spec.handTools ?? ["Tall glass"]), "Lidded jar", "Spoon"], optionalEquipment: spec.optional, steps: [...pre, `Put ${spec.put} in a lidded jar with a handful of ice cubes, close the lid tightly and shake hard for 12–15 seconds.`, `Strain ${spec.strain}, holding a spoon over the opening to keep the ice back.`, ...post] },
   ];
   return drink(mk(facts), lines, methods);
