@@ -19,7 +19,7 @@ export const espressoClassics: Recipe[] = [
       prep: 2, make: 1, difficulty: "Medium", image: pexels(11160148),
       notes: "True espresso needs the pressure of an espresso machine. The moka pot and AeroPress give a very strong coffee that is the closest you can get without one, but without the crema.",
     },
-    { size: "single", lines: [], into: "straight into the cup", before: [WARM_CUP], after: ["Look for a thick, hazelnut-brown crema on top. Drink it right away, in two or three sips, before the crema fades."], byHand: false }
+    { size: "single", lines: [], into: "straight into the cup", before: [WARM_CUP], after: (method) => (method === "machine" ? ["Look for a thick, hazelnut-brown crema on top. Drink it right away, in two or three sips, before the crema fades."] : ["Drink it right away, in two or three sips, while it is hot and strong."]), byHand: false }
   ),
   espresso(
     {
@@ -27,7 +27,7 @@ export const espressoClassics: Recipe[] = [
       description: "A double espresso — twice the coffee in the same small cup. This is the base most café drinks are built on.",
       prep: 2, make: 1, difficulty: "Medium", image: pexels(12975714),
     },
-    { size: "double", lines: [], into: "straight into the cup", before: [WARM_CUP], after: ["Drink it right away while the crema is still thick."], byHand: false }
+    { size: "double", lines: [], into: "straight into the cup", before: [WARM_CUP], after: (method) => (method === "machine" ? ["Drink it right away while the crema is still thick."] : ["Drink it right away while it is hot and strong."]), byHand: false }
   ),
   {
     ...drink(
@@ -97,7 +97,7 @@ export const espressoClassics: Recipe[] = [
       prep: 2, make: 2, difficulty: "Medium", image: pexels(4195604),
       notes: "The only difference from an americano is the order: the water goes in first and the shot is poured on top.",
     },
-    { size: "double", extraWaterMl: 120, lines: [], into: "gently on top of the water", before: ["Pour 120 ml of just-boiled water into a warmed cup, filling it about two-thirds."], after: ["Look for the crema floating on top, undisturbed. Drink without stirring, so you get the crema first."], byHand: false }
+    { size: "double", extraWaterMl: 120, lines: [], into: "gently on top of the water", before: ["Pour 120 ml of just-boiled water into a warmed cup, filling it about two-thirds."], after: (method) => (method === "machine" ? ["Look for the crema floating on top, undisturbed. Drink without stirring, so you get the crema first."] : ["Drink without stirring, so the strongest coffee on top comes first."]), byHand: false }
   ),
   espresso(
     {

@@ -13,7 +13,7 @@ const GF = ["Gluten-Free"] as const;
 export const moreShakes: Recipe[] = [
   iceCreamShake(
     { id: "black-forest-milkshake", title: "Black Forest Milkshake", taste: ["Rich", "Fruity", "Creamy"], description: "Chocolate ice cream blended with cherries and a little dark chocolate, topped with cream and a cherry — the cake as a shake.", prep: 6, make: 2, difficulty: "Easy", image: pexels(27626320) },
-    { iceCream: choc(), milkMl: 120, lines: [L("cherries", "Dark cherries, pitted", "80 g"), L("chocolate-syrup", "Chocolate syrup", "1 tbsp"), cream()], before: ["Pit the cherries, keeping one with its stem to top the glass."], withIn: "the cherries and the chocolate syrup", handBefore: ["Mash the cherries in the bowl to a juicy pulp."], after: ["Pour into a tall glass, top with whipped cream, a shaving of dark chocolate and the reserved cherry, and serve."] }
+    { iceCream: choc(), milkMl: 120, lines: [L("cherries", "Dark cherries, pitted", "80 g"), L("chocolate-syrup", "Chocolate syrup", "1 tbsp"), cream()], before: ["Pit the cherries, keeping one with its stem to top the glass."], withIn: "the cherries and the chocolate syrup", handBefore: ["Mash the cherries in the bowl to a juicy pulp."], after: ["Pour into a tall glass, top with whipped cream and the reserved cherry, and serve."] }
   ),
   iceCreamShake(
     { id: "chocolate-banana-milkshake", title: "Chocolate Banana Milkshake", taste: ["Rich", "Sweet", "Creamy"], description: "Chocolate ice cream blended with a ripe banana and cold milk: thick, chocolatey and mellow.", prep: 4, make: 2, difficulty: "Easy", image: pexels(7491906) },
@@ -69,7 +69,7 @@ export const moreShakes: Recipe[] = [
   ),
   iceCreamShake(
     { id: "chocolate-mint-milkshake", title: "Chocolate Mint Milkshake", taste: ["Rich", "Refreshing", "Creamy"], description: "Chocolate ice cream blended with peppermint and a little dark chocolate: cool, minty and after-dinner rich.", prep: 4, make: 2, difficulty: "Easy", image: pexels(7491905) },
-    { iceCream: choc(), milkMl: 120, lines: [L("mint-extract", "Peppermint extract", "1/4 tsp"), L("dark-chocolate", "Dark chocolate, finely chopped", "20 g"), L("fresh-mint", "Fresh mint sprig, to garnish", "1", true)], before: ["Chop the chocolate finely."], withIn: "the peppermint extract, then pulse in the chocolate for 2–3 seconds" }
+    { iceCream: choc(), milkMl: 120, lines: [L("mint-extract", "Peppermint extract", "1/4 tsp"), L("dark-chocolate", "Dark chocolate, finely chopped", "20 g"), L("fresh-mint", "Fresh mint sprig, to garnish", "1", true)], before: ["Chop the chocolate finely."], withIn: "the peppermint extract (add the chocolate for the last 2–3 seconds, so it stays in flakes)" }
   ),
   iceCreamShake(
     { id: "strawberries-and-cream-milkshake", title: "Strawberries & Cream Milkshake", diet: [...GF], taste: ["Fruity", "Creamy", "Sweet"], description: "Vanilla ice cream, fresh strawberries and a splash of cream blended smooth: a Wimbledon favourite, in a glass.", prep: 5, make: 2, difficulty: "Easy", image: pexels(11410544) },

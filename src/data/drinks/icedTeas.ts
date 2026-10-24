@@ -5,7 +5,7 @@ import { coldSteepIngredients, coldSteepMethods, steepIngredients, steepMethods,
 /** Iced teas, tea coolers and iced tea lattes. */
 
 const steeped = (facts: Parameters<typeof drink>[0], spec: SteepSpec): Recipe => drink(facts, steepIngredients(spec), steepMethods(spec));
-const ice = (cups = 1, label = "Ice cubes"): RecipeIngredient => ({ pantryId: "ice", label, amount: `${cups} cup` });
+const ice = (cups = 1, label = "Ice cubes"): RecipeIngredient => ({ pantryId: "ice", label, amount: `${cups} ${cups === 1 ? "cup" : "cups"}` });
 const lemonWedge = (label = "Lemon slices, to garnish"): RecipeIngredient => ({ pantryId: "lemon", label, amount: "2", optional: true });
 
 export const icedTeas: Recipe[] = [
@@ -28,9 +28,9 @@ export const icedTeas: Recipe[] = [
       notes: "Sugar dissolves best in hot tea. A tiny pinch of baking soda is a Southern trick for taking the bitterness off.",
     },
     {
-      leaf: { pantryId: "black-tea", label: "Black tea: 4 tea bags or 4 tsp loose leaf", amount: "4 tsp" }, waterMl: 500, tempC: 100, minutes: 5,
+      leaf: { pantryId: "black-tea", label: "Black tea (loose leaf, or 4 tea bags)", amount: "4 tsp" }, waterMl: 500, tempC: 100, minutes: 5,
       lines: [{ pantryId: "sugar", label: "Sugar", amount: "4 tbsp" }, { pantryId: "water", label: "Cold water, to top up", amount: "500 ml" }, ice(2), lemonWedge()],
-      after: ["Take out the tea, then stir the sugar into the hot tea until it has dissolved completely.", "Pour in the cold water, then chill the pitcher in the fridge for an hour.", "Serve over glasses full of ice, with lemon slices."],
+      after: ["Stir the sugar into the hot tea until it has dissolved completely.", "Pour in the cold water, then chill the pitcher in the fridge for an hour.", "Serve over glasses full of ice, with lemon slices."],
     }
   ),
   steeped(
@@ -65,8 +65,8 @@ export const icedTeas: Recipe[] = [
       prep: 3, make: 2, wait: 480, difficulty: "Easy", image: pexels(8335015),
       notes: "Works well with black, green, white or herbal teas. Green tea only needs 6 hours.",
     },
-    coldSteepIngredients({ leaf: { pantryId: "black-tea", label: "Black tea: 2 tea bags or 2 tsp loose leaf", amount: "2 tsp" }, waterMl: 250, lines: [ice(1), lemonWedge()] }),
-    coldSteepMethods({ leaf: { pantryId: "black-tea", label: "Black tea: 2 tea bags or 2 tsp loose leaf", amount: "2 tsp" }, waterMl: 250, hours: 8, lines: [ice(1), lemonWedge()], after: ["Pour over a glass of ice, add a slice of lemon and drink cold, sweetened if you like."] })
+    coldSteepIngredients({ leaf: { pantryId: "black-tea", label: "Black tea (loose leaf, or 2 tea bags)", amount: "2 tsp" }, waterMl: 250, lines: [ice(1), lemonWedge()] }),
+    coldSteepMethods({ leaf: { pantryId: "black-tea", label: "Black tea (loose leaf, or 2 tea bags)", amount: "2 tsp" }, waterMl: 250, hours: 8, lines: [ice(1), lemonWedge()], after: ["Pour over a glass of ice, add a slice of lemon and drink cold, sweetened if you like."] })
   ),
   steeped(
     {
@@ -78,7 +78,7 @@ export const icedTeas: Recipe[] = [
     },
     {
       leaf: { pantryId: "black-tea", label: "Black tea, strong", amount: "2 tsp" }, waterMl: 120, tempC: 100, minutes: 4,
-      lines: [{ pantryId: "lemonade", label: "Lemonade, cold", amount: "120 ml" }, ice(1), lemonWedge("Lemon slice, to garnish")],
+      lines: [{ pantryId: "lemonade", label: "Lemonade, cold", amount: "120 ml" }, ice(1), lemonWedge("Lemon slices, to garnish")],
       after: ["Pour the hot tea over a tall glass of ice to chill it quickly.", "Top with the cold lemonade, add a slice of lemon and serve."],
     }
   ),
@@ -190,7 +190,7 @@ export const icedTeas: Recipe[] = [
     [
       { pantryId: "black-tea", label: "Tea bags or loose leaf", amount: "4 tsp" },
       { pantryId: "water", label: "Cold water", amount: "1000 ml" },
-      { pantryId: "ice", label: "Ice cubes", amount: "2 cup" },
+      { pantryId: "ice", label: "Ice cubes", amount: "2 cups" },
       { pantryId: "lemon", label: "Lemon slices, to garnish", amount: "2", optional: true },
     ],
     [
@@ -212,7 +212,7 @@ export const icedTeas: Recipe[] = [
     },
     {
       leaf: { pantryId: "jasmine-tea", label: "Jasmine tea, loose leaf or pearls", amount: "2 tsp" }, waterMl: 150, tempC: 80, minutes: 3,
-      lines: [ice(1), lemonWedge("Lemon wedge"), { pantryId: "sugar", label: "Sugar, to taste", amount: "1 tsp", optional: true }],
+      lines: [ice(1), lemonWedge("Lemon wedges"), { pantryId: "sugar", label: "Sugar, to taste", amount: "1 tsp", optional: true }],
       after: ["Stir the sugar into the hot tea, if using, and pour it over a tall glass filled with ice.", "Squeeze in a little lemon and serve right away."],
     }
   ),

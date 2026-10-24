@@ -34,10 +34,21 @@ export function iceCreamShakeIngredients(spec: IceCreamShakeSpec): RecipeIngredi
   return [spec.iceCream, { pantryId: "milk", label: "Cold whole milk", amount: `${spec.milkMl} ml` }, ...(spec.lines ?? [])];
 }
 
+/**
+ * What else goes in with the ice cream and milk, as the end of a sentence: "the milk and the strawberries", or
+ * "the milk, the banana and the honey (if using)". A note in brackets (a tip about pulsing) follows the milk as it is.
+ */
+function withList(withIn?: string): string {
+  if (!withIn) return "";
+  const items = withIn.replace(/^and /, "");
+  if (items.startsWith("(")) return ` ${items}`;
+  return /,| and /.test(items.replace(/\([^)]*\)/g, "")) ? `, ${items}` : ` and ${items}`;
+}
+
 export function iceCreamShakeMethods(spec: IceCreamShakeSpec): Method[] {
   const before = spec.before ?? [];
   const after = spec.after ?? ["Pour into a tall glass and serve right away, with a wide straw and a long spoon."];
-  const withIn = spec.withIn ? ` ${spec.withIn}` : "";
+  const withIn = withList(spec.withIn);
   const blend = spec.thick
     ? `Put the ice cream, the milk${withIn} in the blender and blend in short bursts of 5–10 seconds, scraping down the sides, until smooth but still very thick — add a splash more milk only if the blades stall.`
     : `Put the ice cream, the milk${withIn} in the blender and blend for 15–20 seconds, until smooth and just pourable.`;
@@ -81,7 +92,7 @@ export function fruitShakeMethods(spec: FruitShakeSpec): Method[] {
   const before = spec.before ?? [];
   const after = spec.after ?? ["Pour into a tall glass and serve right away."];
   const methods: Method[] = [
-    { id: "blender", label: "Blender", equipment: ["Blender"], handTools: spec.handTools, steps: ["Put a tall glass in the freezer for a few minutes, so the shake stays cold.", ...before, `Put ${spec.withIn} and the milk in the blender and blend for 30 seconds, until completely smooth.`, ...after] },
+    { id: "blender", label: "Blender", equipment: ["Blender"], handTools: spec.handTools, steps: ["Put a tall glass in the freezer for a few minutes, so the shake stays cold.", ...before, `Put ${spec.withIn.includes(" and ") ? spec.withIn.replace(/ and (?!.*\band\b)/, ", ") : spec.withIn} and the milk in the blender and blend for 30 seconds, until completely smooth.`, ...after] },
   ];
   if (!spec.blenderOnly) {
     methods.push({

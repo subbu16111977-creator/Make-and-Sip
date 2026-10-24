@@ -6,7 +6,7 @@ import { steepIngredients, steepMethods, type SteepSpec } from "./teaBuilders";
 
 const milk = (ml: number, label = "Whole milk"): RecipeIngredient => ({ pantryId: "milk", label, amount: `${ml} ml` });
 const sugar = (tsp: number): RecipeIngredient => ({ pantryId: "sugar", label: "Sugar, to taste", amount: `${tsp} tsp`, optional: true });
-const bag = (pantryId: string, name: string, tsp = 1): RecipeIngredient => ({ pantryId, label: `${name}: 1 tea bag or ${tsp} tsp loose leaf`, amount: `${tsp} tsp` });
+const bag = (pantryId: string, name: string, tsp = 1): RecipeIngredient => ({ pantryId, label: `${name} (loose leaf, or 1 tea bag)`, amount: `${tsp} tsp` });
 
 /** A drink built from the shared teapot / French press / by-hand methods. */
 const steeped = (facts: Parameters<typeof drink>[0], spec: SteepSpec): Recipe => drink(facts, steepIngredients(spec), steepMethods(spec));
@@ -69,7 +69,7 @@ export const blackTeas: Recipe[] = [
       notes: "It was created in Vancouver in the 1990s, not London.",
     },
     [
-      { pantryId: "earl-grey-tea", label: "Earl Grey tea: 1 tea bag or 2 tsp loose leaf", amount: "2 tsp" },
+      { pantryId: "earl-grey-tea", label: "Earl Grey tea (loose leaf, or 1 tea bag)", amount: "2 tsp" },
       { pantryId: "water", label: "Freshly boiled water", amount: "120 ml" },
       { pantryId: "milk", label: "Whole milk", amount: "120 ml" },
       { pantryId: "vanilla-syrup", label: "Vanilla syrup, or 1/4 tsp vanilla extract plus 1 tsp sugar", amount: "1 tsp" },

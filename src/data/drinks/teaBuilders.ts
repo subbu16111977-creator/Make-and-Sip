@@ -33,7 +33,12 @@ export function steepIngredients(spec: Pick<SteepSpec, "leaf" | "steeped" | "wat
 const heat = (tempC: number): string =>
   tempC >= 95 ? "Bring the water to a full boil." : `Boil the water, then let it cool for 2–3 minutes, to about ${tempC}°C (it should stop bubbling and steam gently).`;
 
+/** What the thing being steeped is called in a step, where it is not plain tea. */
+const WHAT: Record<string, string> = { "hibiscus-flowers": "hibiscus flowers", "butterfly-pea-flowers": "flowers", lavender: "lavender buds", ginger: "ginger", tulsi: "tulsi leaves", chamomile: "chamomile", "roasted-barley": "barley" };
+
 export function steepMethods(spec: SteepSpec): Method[] {
+  const what = WHAT[spec.leaf.pantryId] ?? "tea";
+  const into = spec.waterMl >= 400 ? "a heatproof jug" : "your cup";
   const after = spec.after ?? [];
   const before = spec.before ?? [];
   const steep = `Pour in the ${spec.waterMl} ml of water and steep for ${spec.minutes} minute${spec.minutes === 1 ? "" : "s"}.`;
@@ -41,18 +46,18 @@ export function steepMethods(spec: SteepSpec): Method[] {
   const methods: Method[] = [
     {
       id: "teapot", label: "Teapot", equipment: ["Teapot"], handTools: spec.handTools, optionalEquipment: [KETTLE_TIP, ...(spec.optional ?? [])],
-      steps: [heat(spec.tempC), ...before, "Warm the teapot with a splash of hot water, then tip it out.", `Add the tea to the pot. ${steep}`, "Pour the tea through the pot's strainer into your cup.", ...after],
+      steps: [heat(spec.tempC), ...before, "Warm the teapot with a splash of hot water, then tip it out.", `Add the ${what} to the pot. ${steep}`, `Pour it through the pot's strainer into ${into}.`, ...after],
     },
   ];
   if (spec.press !== false) {
     methods.push({
       id: "french-press", label: "French press", equipment: ["French Press"], handTools: spec.handTools, optionalEquipment: [KETTLE_TIP, ...(spec.optional ?? [])],
-      steps: [heat(spec.tempC), ...before, `Put the tea in the French press. ${steep}`, "Press the plunger down gently and pour the tea straight away, so it doesn't keep steeping.", ...after],
+      steps: [heat(spec.tempC), ...before, `Put the ${what} in the French press. ${steep}`, "Press the plunger down gently and pour it out straight away, so it doesn't keep steeping.", ...after],
     });
   }
   methods.push({
     id: "by-hand", label: "By hand", equipment: [], handTools: [...(spec.handTools ?? []), "Mug", "Saucer or small plate"], optionalEquipment: [STRAINER_TIP, ...optional],
-    steps: [heat(spec.tempC), ...before, `Put the tea in a mug. ${steep} Cover the mug with a saucer so the heat stays in.`, "Take out the tea bag, or pour the tea through a sieve or spoon into a second cup, leaving the leaves behind.", ...after],
+    steps: [heat(spec.tempC), ...before, `Put the ${what} in a mug. ${steep} Cover the mug with a saucer so the heat stays in.`, "Take out the tea bag, or pour it through a sieve into a second cup, leaving the leaves behind.", ...after],
   });
   return methods;
 }

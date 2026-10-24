@@ -280,7 +280,7 @@ export const worldHot: Recipe[] = [
       prep: 4, make: 3, difficulty: "Medium", image: pexels(10966812),
       sourceName: "Caffè Atlas — Wiener Melange", sourceUrl: "https://www.caffeatlas.com/wiener-melange",
     },
-    { size: "double", lines: [milk(100, "Cold whole milk")], into: "into a large cup", before: [WARM_CUP], after: (k) => [...milkSteps({ ml: 100, froth: "dense" })(k), "Pour the hot milk into the coffee, filling the cup, and spoon the foam on top.", "Dust with a little cocoa if you like and serve with a glass of water."], optional: [MILK_FROTHER_TIP], handTools: ["Saucepan"] }
+    { size: "double", lines: [milk(100, "Cold whole milk")], into: "into a large cup", before: [WARM_CUP], after: (k) => [...milkSteps({ ml: 100, froth: "dense" })(k), "Pour the hot milk into the coffee, filling the cup, and spoon the foam on top.", "Serve with a glass of water."], optional: [MILK_FROTHER_TIP], handTools: ["Saucepan"] }
   ),
   espresso(
     {

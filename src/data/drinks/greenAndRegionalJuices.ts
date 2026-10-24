@@ -37,13 +37,21 @@ export const greenJuices: Recipe[] = [
   ),
   juice(
     { id: "daily-greens-juice", title: "Daily Greens with Sea Salt", diet: [...VEG], taste: ["Herbal", "Refreshing", "Tangy"], description: "A hydrating juice of cucumber, celery, spinach, kale, parsley and lemon, with a pinch of sea salt.", prep: 10, make: 4, difficulty: "Easy", image: pexels(30635723), sourceName: "Pressed Juicery — Daily Greens", sourceUrl: "https://pressed.com" },
-    { kind: "hard", what: "the cucumber, celery, greens and parsley", prep: ["Wash everything well and chop the cucumber and celery. Remove the kale stems."], lines: [L("cucumber", "Cucumber", "1/2"), L("celery", "Celery stalks", "2"), L("spinach", "Baby spinach", "30 g"), L("kale", "Kale leaves", "20 g"), L("parsley", "Fresh parsley", "10 g"), L("lemon", "Lemon, juiced", "1/2"), L("salt", "Sea salt, a pinch", "1 pinch")], after: ["Stir in the pinch of sea salt, taste, and serve cold."] }
+    { kind: "hard", what: "the cucumber, celery, greens and parsley", prep: ["Wash everything well and chop the cucumber and celery. Remove the kale stems."], lines: [L("cucumber", "Cucumber", "1/2"), L("celery", "Celery stalks", "2"), L("spinach", "Baby spinach", "30 g"), L("kale", "Kale leaves", "20 g"), L("parsley", "Fresh parsley", "10 g"), L("lemon", "Lemon, juiced", "1/2"), L("salt", "Sea salt, a pinch", "1 pinch")], after: ["Stir in the lemon juice and the pinch of sea salt, taste, and serve cold."] }
   ),
 ];
 
 /** Shots are small, strong juices: a few spoonfuls to sip. */
 function shot(facts: Parameters<typeof drink>[0], lines: RecipeIngredient[], what: string, prep: string[]): Recipe {
-  return juice({ ...facts, servings: 1 } as never, { kind: "hard", what, prep, lines, after: ["Pour into a small glass and drink it in two or three sips."] });
+  const stirIn: string[] = [];
+  const has = (id: string) => lines.some((l) => l.pantryId === id);
+  if (has("lemon")) stirIn.push("the lemon juice");
+  if (has("coconut-water")) stirIn.push("the coconut water");
+  if (has("honey")) stirIn.push("the honey");
+  if (has("black-pepper")) stirIn.push("a pinch of black pepper");
+  const list = stirIn.length > 1 ? `${stirIn.slice(0, -1).join(", ")} and ${stirIn[stirIn.length - 1]}` : stirIn[0];
+  const after = list ? [`Stir in ${list}, then pour into a small glass and drink it in two or three sips.`] : ["Pour into a small glass and drink it in two or three sips."];
+  return juice({ ...facts, servings: 1 } as never, { kind: "hard", what, prep, lines, after });
 }
 
 export const juiceShots: Recipe[] = [
@@ -68,7 +76,7 @@ export const juiceShots: Recipe[] = [
 export const regionalJuices: Recipe[] = [
   juice(
     { id: "sugarcane-juice", title: "Sugarcane Juice (Ganne ka Ras)", diet: [...VEG], taste: ["Sweet", "Refreshing", "Tangy"], description: "Freshly pressed sugarcane with ginger and lemon: a pale green, sweet street drink, served ice cold across South Asia.", prep: 10, make: 5, difficulty: "Medium", image: pexels(25078443), ...SRC_IN, notes: "Pressed on a roller at stalls; at home you need a juicer that can take the stalks." },
-    { kind: "hard", what: "the sugarcane and ginger", prep: ["Peel the tough outer skin off the sugarcane and cut it into short lengths that fit the juicer. Peel the ginger."], lines: [L("sugarcane", "Fresh sugarcane stalks", "500 g"), L("ginger", "Fresh ginger, peeled", "5 g"), L("lemon", "Lemon, juiced", "1/2"), L("black-salt", "Black salt, a pinch", "1 pinch", true), ICE()] }
+    { kind: "hard", what: "the sugarcane and ginger", prep: ["Peel the tough outer skin off the sugarcane and cut it into short, thin lengths. Peel the ginger."], lines: [L("sugarcane", "Fresh sugarcane stalks", "500 g"), L("ginger", "Fresh ginger, peeled", "5 g"), L("lemon", "Lemon, juiced", "1/2"), L("black-salt", "Black salt, a pinch", "1 pinch", true), ICE()] }
   ),
   drink(
     { id: "tender-coconut-water", title: "Tender Coconut Water", type: "Juices", temperature: "cold", diet: [...VEG], taste: ["Refreshing", "Sweet"], description: "Water straight from a young green coconut: lightly sweet, cool and clear.", prep: 5, make: 3, difficulty: "Easy", image: pexels(22468360), ...SRC_IN, notes: "Chill the coconut in the fridge first. The soft white flesh inside is good to scoop out and eat afterwards." },
@@ -84,7 +92,7 @@ export const regionalJuices: Recipe[] = [
   ),
   juice(
     { id: "bael-juice", title: "Bael Juice (Wood Apple Sharbat)", diet: [...VEG], taste: ["Sweet", "Tangy", "Refreshing"], description: "Pulp of the bael (wood apple) fruit, mixed with water and jaggery or sugar: a fragrant, cooling summer sharbat from India.", prep: 20, make: 5, difficulty: "Medium", image: pexels(8679128), ...SRC_IN, notes: "Scoop the pulp from the ripe fruit and soak it in water for 15 minutes to loosen it from the seeds." },
-    { kind: "soft", what: "the pulp", prep: ["Break open the bael fruit and scoop the pulp into a bowl. Cover with warm water and leave for 15 minutes."], lines: [L("bael", "Ripe bael (wood apple) pulp", "100 g"), L("water", "Cold water", "250 ml"), L("jaggery", "Jaggery or sugar, to taste", "2 tbsp"), L("black-salt", "Black salt, a pinch", "1 pinch", true), ICE()], after: ["Stir in the jaggery until dissolved and serve over ice."] }
+    { kind: "soft", what: "the pulp", prep: ["Break open the bael fruit and scoop the pulp into a bowl. Cover with warm water and leave for 15 minutes."], lines: [L("bael", "Ripe bael (wood apple) pulp", "100 g"), L("water", "Cold water", "250 ml"), L("jaggery", "Jaggery or sugar, to taste", "2 tbsp"), L("black-salt", "Black salt, a pinch", "1 pinch", true), ICE()], after: ["Stir the cold water into the pulp juice, then stir in the jaggery until it dissolves, with a pinch of black salt if you like. Pour over ice and drink cold."] }
   ),
   juice(
     { id: "mixed-fruit-juice", title: "Mixed Fruit Juice", diet: [...VEG], taste: ["Fruity", "Sweet", "Refreshing"], description: "Apple, orange, pineapple and strawberry pressed together: sweet, bright and the classic juice-stall mix.", prep: 10, make: 4, difficulty: "Easy", image: pexels(2479243), ...SRC_IN },

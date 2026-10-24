@@ -17,7 +17,7 @@ export const herbalTeas: Recipe[] = [
       sourceName: "Wikipedia — Chamomile tea", sourceUrl: "https://en.wikipedia.org/wiki/Chamomile#Tea",
       notes: "Cover the cup while it steeps, to keep the fragrant oils from escaping with the steam.",
     },
-    { leaf: { pantryId: "chamomile-tea", label: "Dried chamomile: 1 tea bag or 2 tsp flowers", amount: "2 tsp" }, waterMl: 250, tempC: 100, minutes: 5, lines: [honey()], after: ["Stir in a little honey, if you like, and drink warm."] }
+    { leaf: { pantryId: "chamomile-tea", label: "Dried chamomile (flowers, or 1 tea bag)", amount: "2 tsp" }, waterMl: 250, tempC: 100, minutes: 5, lines: [honey()], after: ["Stir in a little honey, if you like, and drink warm."] }
   ),
   steeped(
     {
@@ -27,7 +27,7 @@ export const herbalTeas: Recipe[] = [
       sourceName: "Wikipedia — Peppermint", sourceUrl: "https://en.wikipedia.org/wiki/Peppermint",
       notes: "Cover the cup while it steeps so the menthol stays in the tea.",
     },
-    { leaf: { pantryId: "peppermint-tea", label: "Dried peppermint: 1 tea bag or 1 tbsp leaves", amount: "1 tbsp" }, waterMl: 250, tempC: 100, minutes: 5, lines: [lemon("Lemon wedge")], after: ["Add a squeeze of lemon if you like, and drink warm."] }
+    { leaf: { pantryId: "peppermint-tea", label: "Dried peppermint (leaves, or 1 tea bag)", amount: "1 tbsp" }, waterMl: 250, tempC: 100, minutes: 5, lines: [lemon("Lemon wedge")], after: ["Add a squeeze of lemon if you like, and drink warm."] }
   ),
   steeped(
     {
@@ -59,7 +59,7 @@ export const herbalTeas: Recipe[] = [
       prep: 4, make: 8, difficulty: "Easy", image: pexels(14668084),
     },
     [
-      { pantryId: "rooibos-tea", label: "Rooibos: 2 tea bags or 2 tsp loose leaf", amount: "2 tsp" },
+      { pantryId: "rooibos-tea", label: "Rooibos (loose leaf, or 2 tea bags)", amount: "2 tsp" },
       { pantryId: "water", label: "Freshly boiled water", amount: "120 ml" },
       { pantryId: "milk", label: "Whole milk", amount: "120 ml" },
       { pantryId: "honey", label: "Honey", amount: "1 tsp" },
@@ -84,7 +84,7 @@ export const herbalTeas: Recipe[] = [
       sourceName: "Wikipedia — Ocimum tenuiflorum", sourceUrl: "https://en.wikipedia.org/wiki/Ocimum_tenuiflorum",
       notes: "Fresh or dried leaves both work. Add a slice of ginger for a stronger cup.",
     },
-    { leaf: { pantryId: "tulsi", label: "Tulsi leaves: 10–12 fresh or 1 tbsp dried", amount: "1 tbsp" }, waterMl: 250, tempC: 100, minutes: 5, after: ["Strain into a cup and drink warm, with honey if you like."] }
+    { leaf: { pantryId: "tulsi", label: "Tulsi leaves (10–12 fresh, or 1 tbsp dried)", amount: "1 tbsp" }, waterMl: 250, tempC: 100, minutes: 5, after: ["Drink warm, with honey if you like."] }
   ),
   drink(
     {

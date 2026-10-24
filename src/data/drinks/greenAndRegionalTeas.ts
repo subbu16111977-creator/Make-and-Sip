@@ -25,7 +25,7 @@ export const greenAndRegionalTeas: Recipe[] = [
       prep: 2, make: 5, difficulty: "Easy", image: pexels(3735473),
       sourceName: "Wikipedia — Genmaicha", sourceUrl: "https://en.wikipedia.org/wiki/Genmaicha",
     },
-    { leaf: { pantryId: "genmaicha", label: "Genmaicha, loose leaf", amount: "2 tsp" }, waterMl: 250, tempC: 85, minutes: 2, after: ["Pour into a cup and drink hot."] }
+    { leaf: { pantryId: "genmaicha", label: "Genmaicha, loose leaf", amount: "2 tsp" }, waterMl: 250, tempC: 85, minutes: 2, after: ["Drink hot."] }
   ),
   steeped(
     {
@@ -35,7 +35,7 @@ export const greenAndRegionalTeas: Recipe[] = [
       sourceName: "Wikipedia — Hōjicha", sourceUrl: "https://en.wikipedia.org/wiki/H%C5%8Djicha",
       notes: "Unlike green teas, hōjicha can take boiling water: the roasting removes most of the bitterness.",
     },
-    { leaf: { pantryId: "hojicha", label: "Hōjicha, loose leaf", amount: "2 tsp" }, waterMl: 250, tempC: 95, minutes: 1, after: ["Pour into a cup and drink hot."] }
+    { leaf: { pantryId: "hojicha", label: "Hōjicha, loose leaf", amount: "2 tsp" }, waterMl: 250, tempC: 95, minutes: 1, after: ["Drink hot."] }
   ),
   drink(
     {

@@ -25,8 +25,27 @@ export interface JuiceSpec {
 
 const STRAIN_TIP: OptionalEquipment = { tag: "Strainer", without: "Pour the juice through a clean cloth, or a fine sieve, pressing out every drop." };
 
+/** The last step when a juice has no steps of its own: stir in whatever is listed to finish it, then serve. */
+function finishingStep(lines: RecipeIngredient[]): string {
+  const parts: string[] = [];
+  for (const l of lines) {
+    if (l.pantryId === "ice") continue;
+    const name = l.label.split(",")[0].replace(/\s*\(.*\)/, "").trim().toLowerCase();
+    const note = (l.label.split(",")[1] ?? "").trim().toLowerCase();
+    if (l.pantryId === "water") parts.push(`the ${l.amount.trim()} of cold water`);
+    else if (/juiced/.test(note) && /^(lemon|lime)/.test(name)) parts.push(`the juice of ${l.amount.trim()} ${name}`);
+    else if (/squeeze/.test(note)) parts.push(`a squeeze of ${name}`);
+    else if (/pinch/.test(note) || /^1 pinch/.test(l.amount)) parts.push(`a pinch of ${name}`);
+    else if (/to taste/.test(note) && (l.optional || /sugar|honey|salt/.test(name))) parts.push(`${name} to taste`);
+    else if (l.optional && /^(sugar|honey|salt|lemon|lime|black pepper)\b/.test(name)) parts.push(name);
+  }
+  if (parts.length === 0) return "Stir, pour into a glass over ice if you like, and drink right away.";
+  const list = parts.length === 1 ? parts[0] : `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+  return `Stir in ${list}, pour into a glass over ice if you like, and drink right away.`;
+}
+
 export function juiceMethods(spec: JuiceSpec): Method[] {
-  const after = spec.after ?? ["Stir, pour into a glass over ice if you like, and drink right away."];
+  const after = spec.after ?? [finishingStep(spec.lines)];
   const prep = spec.prep;
   if (spec.kind === "citrus") {
     return [

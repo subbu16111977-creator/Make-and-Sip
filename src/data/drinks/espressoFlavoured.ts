@@ -9,7 +9,7 @@ const espresso = (facts: DrinkFacts, spec: StrongCoffeeSpec): Recipe => drink(fa
 const WARM_CUP = "Warm your cup with hot water, then tip it out.";
 const milk = (ml: number, label = "Cold whole milk"): RecipeIngredient => ({ pantryId: "milk", label, amount: `${ml} ml` });
 const cream = (ml: number, label: string, optional = true): RecipeIngredient => ({ pantryId: "heavy-cream", label, amount: `${ml} ml`, optional });
-const ice = (cups = 1): RecipeIngredient => ({ pantryId: "ice", label: "Ice cubes", amount: `${cups} cup` });
+const ice = (cups = 1): RecipeIngredient => ({ pantryId: "ice", label: "Ice cubes", amount: `${cups} ${cups === 1 ? "cup" : "cups"}` });
 
 /** A hot flavoured latte: syrup in the cup, coffee on top, then steamed milk. */
 const flavouredLatte = (facts: DrinkFacts, syrup: RecipeIngredient, extra: RecipeIngredient[] = [], extraStep?: string): Recipe =>
@@ -44,8 +44,8 @@ export const hotFlavoured: Recipe[] = [
       prep: 5, make: 3, difficulty: "Easy", image: pexels(5567613),
       notes: "The salt is what makes it: it dials down the bitterness and brings out the caramel, so go lightly.",
     },
-    { pantryId: "caramel-sauce", label: "Caramel sauce, 20 ml in the cup and 10 ml to drizzle", amount: "30 ml" },
-    [{ pantryId: "salt", label: "Flaky sea salt, to finish", amount: "1 pinch" }],
+    { pantryId: "caramel-sauce", label: "Caramel sauce", amount: "20 ml" },
+    [{ pantryId: "caramel-sauce", label: "Caramel sauce, to drizzle", amount: "10 ml" }, { pantryId: "salt", label: "Flaky sea salt, to finish", amount: "1 pinch" }],
     "Drizzle a little extra caramel over the foam and finish with a pinch of flaky salt."
   ),
   espresso(
@@ -119,10 +119,10 @@ export const hotFlavoured: Recipe[] = [
 // ---------------------------------------------------------------------------
 
 /** A blended frappé: strong coffee, milk, ice and flavour, whizzed until thick. */
-function frappe(facts: DrinkFacts, flavour: RecipeIngredient[], flavourStep: string): Recipe {
+function frappe(facts: DrinkFacts, flavour: RecipeIngredient[], flavourStep: string, inBlend: string): Recipe {
   const lines: RecipeIngredient[] = [milk(120), ice(2), { pantryId: "sugar", label: "Sugar", amount: "1 tbsp" }, ...flavour, cream(30, "Whipped cream, to top")];
   const shot = (kind: "espresso" | "moka" | "instant") => (kind === "instant" ? [{ pantryId: "instant-coffee", label: "Instant coffee", amount: "2 tsp" }, { pantryId: "water", label: "Just-boiled water", amount: "40 ml" }] : kind === "espresso" ? [{ pantryId: "ground-coffee", label: "Finely ground coffee, espresso grind", amount: "18 g" }, { pantryId: "water", label: "Water, through the machine", amount: "40 ml" }] : [{ pantryId: "ground-coffee", label: "Medium-fine ground coffee", amount: "15 g" }, { pantryId: "water", label: "Hot water, for the moka pot", amount: "130 ml" }]);
-  const blend = [flavourStep, "Add the milk, sugar and the ice to a blender and blend on high for 30–45 seconds, until thick and slushy.", "Pour into a tall glass and top with whipped cream if you like. Drink with a straw while it is cold."];
+  const blend = [flavourStep, `Add the cooled coffee, the milk, sugar, ice and ${inBlend} to a blender and blend on high for 30–45 seconds, until thick and slushy.`, "Pour into a tall glass and top with whipped cream if you like. Drink with a straw while it is cold."];
   return drink(facts, [...shot("espresso"), ...lines], [
     { id: "blender-espresso", label: "Blender + espresso machine", equipment: ["Blender", "Espresso Machine"], steps: ["Pull a double shot (18 g of coffee into about 40 ml) and let it cool for a few minutes so it doesn't melt the ice.", ...blend] },
     { id: "blender-moka", label: "Blender + moka pot", equipment: ["Blender", "Moka Pot"], ingredients: [...shot("moka"), ...lines], steps: ["Brew the coffee in a moka pot (15 g of medium-fine coffee, 130 ml of hot water) and let it cool for a few minutes.", ...blend] },
@@ -179,17 +179,20 @@ export const blendedAndIced: Recipe[] = [
   frappe(
     { id: "caramel-frappe", title: "Caramel Frappé", type: "Coffee", temperature: "cold", diet: ["Gluten-Free"], taste: ["Sweet", "Creamy", "Rich"], description: "A thick, blended iced coffee with caramel, finished with whipped cream and a drizzle of sauce.", prep: 6, make: 2, difficulty: "Easy", image: pexels(4438014) },
     [{ pantryId: "caramel-sauce", label: "Caramel sauce, 30 ml in the blend and 15 ml to drizzle", amount: "45 ml" }],
-    "Drizzle a little of the caramel sauce around the inside of your glass."
+    "Drizzle a little of the caramel sauce around the inside of your glass.",
+    "30 ml of the caramel sauce"
   ),
   frappe(
     { id: "mocha-frappe", title: "Mocha Frappé", type: "Coffee", temperature: "cold", diet: ["Gluten-Free"], taste: ["Sweet", "Creamy", "Rich"], description: "A frosty blend of coffee, chocolate and ice, topped with whipped cream — a coffee-flavoured milkshake.", prep: 6, make: 2, difficulty: "Easy", image: pexels(11512983) },
-    [{ pantryId: "chocolate-syrup", label: "Chocolate syrup", amount: "45 ml" }],
-    "Drizzle a little of the chocolate syrup around the inside of your glass."
+    [{ pantryId: "chocolate-syrup", label: "Chocolate syrup, 30 ml in the blend and 15 ml to drizzle", amount: "45 ml" }],
+    "Drizzle a little of the chocolate syrup around the inside of your glass.",
+    "30 ml of the chocolate syrup"
   ),
   frappe(
     { id: "chocolate-chip-coffee-frappe", title: "Chocolate Chip Coffee Frappé", type: "Coffee", temperature: "cold", diet: ["Gluten-Free"], taste: ["Sweet", "Creamy", "Rich"], description: "A blended coffee frappé with chocolate sauce and crunchy chocolate chips stirred through.", prep: 6, make: 2, difficulty: "Easy", image: pexels(34224582) },
     [{ pantryId: "chocolate-syrup", label: "Chocolate syrup", amount: "30 ml" }, { pantryId: "dark-chocolate", label: "Chocolate chips, chopped, 15 g to blend and 5 g to top", amount: "20 g" }],
-    "Add 15 g of the chocolate chips to the blender with everything else; reserve the rest to scatter on top."
+    "Keep 5 g of the chocolate chips back to scatter on top.",
+    "the chocolate syrup and 15 g of the chocolate chips"
   ),
   {
     ...drink(
@@ -198,7 +201,7 @@ export const blendedAndIced: Recipe[] = [
         { pantryId: "instant-coffee", label: "Instant coffee", amount: "2 tsp" },
         { pantryId: "water", label: "Just-boiled water", amount: "40 ml" },
         { pantryId: "milk", label: "Cold whole milk", amount: "150 ml" },
-        { pantryId: "ice", label: "Ice cubes", amount: "2 cup" },
+        { pantryId: "ice", label: "Ice cubes", amount: "2 cups" },
         { pantryId: "sugar", label: "Sugar", amount: "2 tbsp" },
         { pantryId: "vanilla-extract", label: "Vanilla extract", amount: "1/4 tsp", optional: true },
         { pantryId: "heavy-cream", label: "Whipped cream, to top", amount: "30 ml", optional: true },

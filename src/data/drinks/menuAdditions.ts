@@ -7,7 +7,7 @@ import { steepIngredients, steepMethods, type SteepSpec } from "./teaBuilders";
 const espresso = (facts: DrinkFacts, spec: StrongCoffeeSpec): Recipe => drink(facts, strongCoffeeIngredients(spec), strongCoffeeMethods(spec));
 const steeped = (facts: DrinkFacts, spec: SteepSpec): Recipe => drink(facts, steepIngredients(spec), steepMethods(spec));
 const milk = (ml: number, label = "Cold whole milk"): RecipeIngredient => ({ pantryId: "milk", label, amount: `${ml} ml` });
-const ice = (cups = 1): RecipeIngredient => ({ pantryId: "ice", label: "Ice cubes", amount: `${cups} cup` });
+const ice = (cups = 1): RecipeIngredient => ({ pantryId: "ice", label: "Ice cubes", amount: `${cups} ${cups === 1 ? "cup" : "cups"}` });
 
 export const menuCoffees: Recipe[] = [
   espresso(
@@ -72,7 +72,7 @@ export const menuTeas: Recipe[] = [
       sourceName: "Wikipedia — Green tea", sourceUrl: "https://en.wikipedia.org/wiki/Green_tea",
       notes: "Hot water makes green tea taste bitter. Let boiled water cool for a few minutes first.",
     },
-    { leaf: { pantryId: "green-tea", label: "Green tea: 1 tea bag or 2 tsp loose leaf", amount: "2 tsp" }, waterMl: 250, tempC: 80, minutes: 2, after: ["Drink it plain, or with a little honey."] }
+    { leaf: { pantryId: "green-tea", label: "Green tea (loose leaf, or 1 tea bag)", amount: "2 tsp" }, waterMl: 250, tempC: 80, minutes: 2, after: ["Drink it plain, or with a little honey."] }
   ),
   steeped(
     {
@@ -81,7 +81,7 @@ export const menuTeas: Recipe[] = [
       prep: 4, make: 8, difficulty: "Easy", image: pexels(3338676),
     },
     {
-      leaf: { pantryId: "black-tea", label: "Black tea: 1 tea bag or 1 tsp loose leaf", amount: "1 tsp" },
+      leaf: { pantryId: "black-tea", label: "Black tea (loose leaf, or 1 tea bag)", amount: "1 tsp" },
       steeped: [{ pantryId: "apple", label: "Apple, thinly sliced", amount: "1/2" }, { pantryId: "cinnamon-stick", label: "Cinnamon stick", amount: "1" }, { pantryId: "cloves", label: "Cloves", amount: "2" }],
       waterMl: 300, tempC: 100, minutes: 5, lines: [{ pantryId: "honey", label: "Honey, to taste", amount: "1 tsp", optional: true }], after: ["Stir in a little honey if you like, and drink warm with the apple slices."],
     }

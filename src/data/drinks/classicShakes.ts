@@ -4,7 +4,7 @@ import { iceCreamShake } from "./shakeBuilders";
 
 /** Classic milkshakes (about three scoops to 150 ml of milk) and thick shakes (more ice cream, little milk). */
 
-const vanilla = (g: number, label = "Vanilla ice cream"): RecipeIngredient => ({ pantryId: "vanilla-ice-cream", label: `${label}, ${Math.round(g / 60)} scoops`, amount: `${g} g` });
+const vanilla = (g: number, label = "Vanilla ice cream"): RecipeIngredient => ({ pantryId: "vanilla-ice-cream", label: `${label}, ${Math.round(g / 60)} ${Math.round(g / 60) === 1 ? "scoop" : "scoops"}`, amount: `${g} g` });
 const syrup = (tbsp: number, label = "Chocolate syrup"): RecipeIngredient => ({ pantryId: "chocolate-syrup", label, amount: `${tbsp} tbsp` });
 const cream = (label = "Whipped cream, to top"): RecipeIngredient => ({ pantryId: "heavy-cream", label, amount: "30 ml", optional: true });
 const GF = ["Gluten-Free"] as const;
@@ -78,7 +78,7 @@ export const classicShakes: Recipe[] = [
     { id: "mint-chocolate-chip-milkshake", title: "Mint Chocolate Chip Milkshake", diet: [...GF], taste: ["Refreshing", "Creamy", "Sweet"], description: "Vanilla ice cream flavoured with peppermint and studded with chocolate flakes — cool, minty and rich.", prep: 4, make: 2, difficulty: "Easy", image: pexels(32972554), notes: "Peppermint extract is strong: start with a few drops and add more to taste. A little green food colouring is traditional, not necessary." },
     {
       iceCream: vanilla(180), milkMl: 150, lines: [{ pantryId: "mint-extract", label: "Peppermint extract", amount: "1/4 tsp" }, { pantryId: "dark-chocolate", label: "Dark chocolate, finely chopped", amount: "20 g" }],
-      before: ["Chop the chocolate finely."], withIn: "and the peppermint extract, then pulse in the chocolate for 2–3 seconds so it stays in flakes",
+      before: ["Chop the chocolate finely."], withIn: "and the peppermint extract (add the chocolate for the last 2–3 seconds, so it stays in flakes)",
     }
   ),
   iceCreamShake(
@@ -128,7 +128,7 @@ export const thickShakes: Recipe[] = [
   ),
   iceCreamShake(
     { id: "thick-cookie-dough-shake", title: "Thick Cookie Dough Shake", taste: ["Sweet", "Creamy", "Rich"], description: "Cookie dough ice cream blended thick with a little milk, with the dough chunks left whole.", prep: 3, make: 3, difficulty: "Easy", image: pexels(6463661) },
-    { iceCream: { pantryId: "cookie-dough-ice-cream", label: "Cookie dough ice cream, 4 scoops", amount: "240 g" }, milkMl: 60, thick: true, withIn: "and pulse just briefly, so the dough stays in chunks" }
+    { iceCream: { pantryId: "cookie-dough-ice-cream", label: "Cookie dough ice cream, 4 scoops", amount: "240 g" }, milkMl: 60, thick: true, withIn: "(stop as soon as it is smooth, so the dough stays in chunks)" }
   ),
   iceCreamShake(
     { id: "thick-smores-shake", title: "Thick S'mores Shake", taste: ["Sweet", "Rich", "Creamy"], description: "Vanilla ice cream blended thick with chocolate, marshmallow and graham crackers — the campfire dessert, in a glass.", prep: 5, make: 3, difficulty: "Easy", image: pexels(6895931) },

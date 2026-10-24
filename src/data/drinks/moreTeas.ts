@@ -5,7 +5,7 @@ import { coldSteepIngredients, coldSteepMethods, steepIngredients, steepMethods,
 /** More iced, milk and regional teas: Hong Kong, Taiwan, Kerala, Malaysia and café-style tea lattes. */
 
 const steeped = (facts: Parameters<typeof drink>[0], spec: SteepSpec): Recipe => drink(facts, steepIngredients(spec), steepMethods(spec));
-const ice = (cups = 1, label = "Ice cubes"): RecipeIngredient => ({ pantryId: "ice", label, amount: `${cups} cup` });
+const ice = (cups = 1, label = "Ice cubes"): RecipeIngredient => ({ pantryId: "ice", label, amount: `${cups} ${cups === 1 ? "cup" : "cups"}` });
 
 export const moreTeas: Recipe[] = [
   steeped(
@@ -17,7 +17,7 @@ export const moreTeas: Recipe[] = [
     },
     {
       leaf: { pantryId: "black-tea", label: "Strong black tea", amount: "2 tsp" }, waterMl: 150, tempC: 100, minutes: 4,
-      lines: [{ pantryId: "lemon", label: "Lemon, thinly sliced", amount: "4" }, { pantryId: "sugar", label: "Sugar", amount: "2 tbsp" }, ice(1)],
+      lines: [{ pantryId: "lemon", label: "Lemon, thinly sliced", amount: "1/2" }, { pantryId: "sugar", label: "Sugar", amount: "2 tbsp" }, ice(1)],
       after: ["Stir the sugar into the hot tea until completely dissolved.", "Put the lemon slices in a tall glass, press them lightly with a spoon, then fill the glass with ice and pour the tea over it. Stir and serve."],
     }
   ),
@@ -135,7 +135,7 @@ export const moreTeas: Recipe[] = [
       prep: 4, make: 5, difficulty: "Easy", image: pexels(38035381),
     },
     {
-      leaf: { pantryId: "earl-grey-tea", label: "Earl Grey: 2 tea bags or 2 tsp loose leaf", amount: "2 tsp" }, waterMl: 120, tempC: 100, minutes: 4,
+      leaf: { pantryId: "earl-grey-tea", label: "Earl Grey (loose leaf, or 2 tea bags)", amount: "2 tsp" }, waterMl: 120, tempC: 100, minutes: 4,
       lines: [{ pantryId: "vanilla-syrup", label: "Vanilla syrup", amount: "1 tbsp" }, { pantryId: "milk", label: "Cold milk", amount: "120 ml" }, ice(1)],
       after: ["Stir the vanilla syrup into the hot tea.", "Fill a tall glass with ice, pour in the tea and top with the cold milk. Stir and serve."],
     }
@@ -148,8 +148,8 @@ export const moreTeas: Recipe[] = [
       sourceName: "Wikipedia — Barley tea", sourceUrl: "https://en.wikipedia.org/wiki/Barley_tea",
       notes: "Drunk hot in winter as well. Contains gluten, so it isn't suitable for coeliacs.",
     },
-    coldSteepIngredients({ leaf: { pantryId: "roasted-barley", label: "Roasted barley: 2 tea bags or 2 tbsp grains", amount: "2 tbsp" }, waterMl: 500, lines: [ice(1)] }),
-    coldSteepMethods({ leaf: { pantryId: "roasted-barley", label: "Roasted barley: 2 tea bags or 2 tbsp grains", amount: "2 tbsp" }, waterMl: 500, hours: 6, lines: [ice(1)], after: ["Pour over glasses of ice and drink cold, unsweetened."] })
+    coldSteepIngredients({ leaf: { pantryId: "roasted-barley", label: "Roasted barley (grains, or 2 tea bags)", amount: "2 tbsp" }, waterMl: 500, lines: [ice(1)] }),
+    coldSteepMethods({ leaf: { pantryId: "roasted-barley", label: "Roasted barley (grains, or 2 tea bags)", amount: "2 tbsp" }, waterMl: 500, hours: 6, lines: [ice(1)], after: ["Pour over glasses of ice and drink cold, unsweetened."] })
   ),
   steeped(
     {

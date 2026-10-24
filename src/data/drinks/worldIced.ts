@@ -5,7 +5,7 @@ import { coldBrewMethods, dripMethods, drink, pexels, strongCoffeeIngredients, s
 
 const espresso = (facts: DrinkFacts, spec: StrongCoffeeSpec): Recipe => drink(facts, strongCoffeeIngredients(spec), strongCoffeeMethods(spec));
 const milk = (ml: number, label = "Cold whole milk"): RecipeIngredient => ({ pantryId: "milk", label, amount: `${ml} ml` });
-const ice = (cups = 1, label = "Ice cubes"): RecipeIngredient => ({ pantryId: "ice", label, amount: `${cups} cup` });
+const ice = (cups = 1, label = "Ice cubes"): RecipeIngredient => ({ pantryId: "ice", label, amount: `${cups} ${cups === 1 ? "cup" : "cups"}` });
 
 export const worldIced: Recipe[] = [
   espresso(
@@ -62,7 +62,7 @@ export const worldIced: Recipe[] = [
       description: "Hot coffee brewed straight onto ice, so it is chilled in seconds, keeping its aroma and brightness instead of turning flat like coffee cooled slowly.",
       prep: 3, make: 4, difficulty: "Medium", image: pexels(31621814),
       sourceName: "Wikipedia — Iced coffee", sourceUrl: "https://en.wikipedia.org/wiki/Iced_coffee",
-      notes: "The ice counts as part of the water: here 100 ml hot water onto 120 g of ice, so the finished drink is about 200 ml. Brew it a little stronger than usual.",
+      notes: "The ice counts as part of the water: here 120 ml of hot water runs onto 120 g of ice, so the finished drink is a little over 200 ml. Brew it a little stronger than usual.",
     },
     [
       { pantryId: "ground-coffee", label: "Medium-fine ground coffee", amount: "20 g" },
@@ -386,7 +386,7 @@ export const worldIced: Recipe[] = [
       description: "Cold sweet coffee with lemon, a nineteenth-century Algerian soldiers' drink: strong, tart and made for hot weather.",
       prep: 4, make: 2, difficulty: "Easy", image: pexels(37372293),
       sourceName: "Wikipedia — Mazagran", sourceUrl: "https://en.wikipedia.org/wiki/Mazagran_(drink)",
-      notes: "It originated with the French garrison at Mazagran in Algeria in 1840. Some versions add a splash of rum or brandy; this one doesn't.",
+      notes: "It originated with the French garrison at Mazagran in Algeria in 1840.",
     },
     {
       size: "double",

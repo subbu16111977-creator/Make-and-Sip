@@ -31,7 +31,17 @@ export interface DrinkFacts {
   sourceUrl?: string;
 }
 
+/** A topping the steps call for ("top with whipped cream") must be on the list, so it can be bought and counted. */
+function withToppings(lines: RecipeIngredient[], steps: string[]): RecipeIngredient[] {
+  const wantsCream = steps.some((s) => /whipped cream/i.test(s));
+  if (wantsCream && !lines.some((i) => i.pantryId === "heavy-cream")) return [...lines, { pantryId: "heavy-cream", label: "Whipped cream, to top", amount: "30 ml", optional: true }];
+  return lines;
+}
+
 export function drink(facts: DrinkFacts, ingredients: RecipeIngredient[], methods: Method[]): Recipe {
+  const allSteps = methods.flatMap((m) => m.steps);
+  ingredients = withToppings(ingredients, allSteps);
+  methods = methods.map((m) => (m.ingredients ? { ...m, ingredients: withToppings(m.ingredients, m.steps) } : m));
   return {
     id: facts.id,
     title: facts.title,

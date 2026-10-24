@@ -135,12 +135,12 @@ export const worldBrewed: Recipe[] = [
   espresso(
     {
       id: "white-coffee-ipoh", title: "Ipoh White Coffee", type: "Coffee", temperature: "hot", diet: ["Gluten-Free"], taste: ["Sweet", "Creamy"],
-      description: "Malaysia's mellow white coffee: lightly roasted beans brewed through a cloth and finished with sweet condensed milk — smooth and low on bitterness.",
+      description: "Malaysia's mellow white coffee: lightly roasted beans brewed strong and finished with sweet condensed milk — smooth and low on bitterness.",
       prep: 3, make: 5, difficulty: "Easy", image: pexels(27294595),
       sourceName: "Wikipedia — White coffee", sourceUrl: "https://en.wikipedia.org/wiki/White_coffee",
       notes: "Ipoh white coffee is named for the pale colour of the roast and the milk — not for the drink being mostly milk. Look for a light-roast 'white coffee' blend if you can.",
     },
-    { size: "double", lines: [{ pantryId: "sweetened-condensed-milk", label: "Sweetened condensed milk", amount: "30 ml" }], extraWaterMl: 100, into: "into a cup", before: [WARM_CUP, "Put the condensed milk in the bottom of the cup."], after: ["Stir the coffee into the condensed milk until blended and serve hot."] }
+    { size: "double", lines: [{ pantryId: "sweetened-condensed-milk", label: "Sweetened condensed milk", amount: "30 ml" }], into: "into a cup", before: [WARM_CUP, "Put the condensed milk in the bottom of the cup."], after: ["Stir the coffee into the condensed milk until blended and serve hot."] }
   ),
   espresso(
     {

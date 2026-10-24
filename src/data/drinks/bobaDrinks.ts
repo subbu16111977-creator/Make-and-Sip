@@ -5,7 +5,7 @@ import { drink, pexels, type DrinkFacts } from "./builders";
 
 const PEARLS: RecipeIngredient = { pantryId: "tapioca-pearls", label: "Quick-cook tapioca pearls", amount: "40 g" };
 const SYRUP: RecipeIngredient = { pantryId: "brown-sugar", label: "Brown sugar, for the pearl syrup", amount: "2 tbsp" };
-const ice = (cups = 1): RecipeIngredient => ({ pantryId: "ice", label: "Ice cubes", amount: `${cups} cup` });
+const ice = (cups = 1): RecipeIngredient => ({ pantryId: "ice", label: "Ice cubes", amount: `${cups} ${cups === 1 ? "cup" : "cups"}` });
 
 const COOK_PEARLS = "Cook the tapioca pearls in boiling water as the packet says (quick-cook pearls take about 5 minutes), then cover and leave for 5 minutes. Drain and rinse under cold water.";
 const SYRUP_PEARLS = "Dissolve the brown sugar in 2 tbsp of hot water, and stir the warm pearls into it. Spoon them into the bottom of a tall glass.";

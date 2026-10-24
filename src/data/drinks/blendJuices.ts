@@ -17,7 +17,7 @@ export const vegetableJuices: Recipe[] = [
   ),
   juice(
     { id: "beetroot-juice", title: "Beetroot Juice", diet: [...VEG], taste: ["Sweet", "Rich"], description: "Raw beetroot juiced with a squeeze of lemon: deep magenta, earthy and sweet.", prep: 8, make: 3, difficulty: "Easy", image: pexels(11868780), ...SRC_IN, notes: "Wear an apron: beetroot stains everything." },
-    { kind: "hard", what: "the beetroot", prep: ["Scrub the beetroots, trim the ends and cut them into chunks that fit the juicer or blender."], lines: [L("beetroot", "Medium beetroots", "2"), L("lemon", "Lemon, juiced", "1/2"), L("water", "Cold water", "100 ml", true), ICE()] }
+    { kind: "hard", what: "the beetroot", prep: ["Scrub the beetroots, trim the ends and cut them into small chunks."], lines: [L("beetroot", "Medium beetroots", "2"), L("lemon", "Lemon, juiced", "1/2"), L("water", "Cold water", "100 ml", true), ICE()] }
   ),
   juice(
     { id: "celery-juice", title: "Celery Juice", diet: [...VEG], taste: ["Herbal", "Refreshing"], description: "A bunch of celery juiced into a pale green, salty, grassy drink — sharp and clean.", prep: 8, make: 3, difficulty: "Easy", image: pexels(16963894), ...SRC_IN },

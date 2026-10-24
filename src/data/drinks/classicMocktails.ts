@@ -68,7 +68,7 @@ export const classicMocktails: Recipe[] = [
   built(
     { id: "virgin-mimosa", title: "Virgin Mimosa", diet: [...VEG], taste: ["Fruity", "Refreshing", "Sweet"], description: "Orange juice topped with sparkling white grape juice in a flute: the brunch classic, without the wine.", prep: 2, make: 1, difficulty: "Easy", image: pexels(18237492), ...SRC_LIST, notes: "A 1:1 ratio is traditional. Use freshly squeezed juice if you can." },
     [L("orange-juice", "Orange juice, chilled", "75 ml"), L("sparkling-grape-juice", "Chilled sparkling white grape juice", "75 ml"), L("orange", "Orange slice, to garnish", "1", true)],
-    ["Chill a champagne flute in the freezer for a few minutes.", "Pour in the orange juice.", "Top up slowly with the sparkling grape juice, tilting the glass to keep the bubbles.", "Garnish with an orange slice and serve at once."],
+    ["Chill a tall flute in the freezer for a few minutes.", "Pour in the orange juice.", "Top up slowly with the sparkling grape juice, tilting the glass to keep the bubbles.", "Garnish with an orange slice and serve at once."],
     [SQUEEZER],
     ["Champagne flute"]
   ),
