@@ -40,10 +40,10 @@ Make & Sip Premium: Monthly, Yearly or Lifetime. New subscribers get a 7-day fre
 
 All drinks are non-alcoholic. Dietary tags are a guide only, so check labels if you have allergies.
 
-## Graphics you still need to supply
-- **App icon:** 512 × 512 PNG (export from `assets/icon.png`)
-- **Feature graphic:** 1024 × 500 PNG
-- **Phone screenshots:** 2 to 8, at least 1080 px on the short side. Suggested set: Home with matches, Discover, a drink page, the pantry, the equipment screen, the shopping list.
+## Graphics (ready in `store-graphics/`)
+- **App icon:** `store-graphics/app-icon-512.png` (512 × 512)
+- **Feature graphic:** `store-graphics/feature-graphic-1024x500.png`
+- **Phone screenshots:** `store-graphics/phone-screenshots/` — six at 1080 × 2160: Home, Discover, a drink page, ingredients and scoring, Pantry, Saved. Upload in that order.
 
 ## Content rating (questionnaire answers)
 - Violence, sexual content, language, gambling: none

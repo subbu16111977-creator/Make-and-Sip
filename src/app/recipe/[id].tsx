@@ -300,7 +300,7 @@ export default function RecipeDetailScreen() {
               {cookability.requiredMissing > 0 ? <Text style={styles.cookStat}>{cookability.requiredMissing} missing</Text> : null}
               {cookability.requiredInsufficient > 0 ? <Text style={styles.cookStat}>{cookability.requiredInsufficient} not enough</Text> : null}
               {cookability.requiredAmbiguous > 0 ? <Text style={styles.cookStat}>{cookability.requiredAmbiguous} to double-check</Text> : null}
-              {cookability.requiredUnverified > 0 ? <Text style={styles.cookStatSoft}>{cookability.requiredUnverified} amounts couldn&apos;t be checked</Text> : null}
+              {cookability.requiredUnverified > 0 ? <Text style={styles.cookStatSoft}>{cookability.requiredUnverified} {cookability.requiredUnverified === 1 ? "amount" : "amounts"} couldn&apos;t be checked</Text> : null}
               {cookability.equipmentNeeded.length > 0 ? (
                 <Text style={cookability.equipmentMissing.length ? styles.cookStat : styles.cookStatSoft}>
                   {cookability.equipmentMissing.length ? `Needs ${cookability.equipmentMissing.join(", ")}` : "You have the equipment"}
