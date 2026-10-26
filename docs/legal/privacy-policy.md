@@ -1,6 +1,6 @@
 # Make & Sip Privacy Policy
 
-_Draft — have it reviewed before publishing, and fill in the bracketed parts. Last updated: [DATE]._
+_Last updated: October 26, 2026._
 
 Make & Sip ("the app") helps you keep a pantry and find drinks to make. This policy explains what information the app handles.
 
@@ -31,4 +31,4 @@ You can delete all app data by resetting it in the app or uninstalling the app. 
 If this policy changes, we will update the date above and, for significant changes, tell you in the app.
 
 ## Contact
-[YOUR NAME / BUSINESS NAME] — [CONTACT EMAIL]
+Subramanian Vairavan — subbu16111977@gmail.com

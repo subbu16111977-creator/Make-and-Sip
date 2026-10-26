@@ -2,15 +2,15 @@
  * The Terms of Use and Privacy Policy shown on the "Before you start" screen (and kept in docs/legal for
  * publishing at a public address). Draft wording — have it reviewed before launch.
  *
- * Fill these in before launch; while they are empty the contact lines are simply left out.
+ * Shown in the Contact section of both documents; while a value is empty its line is simply left out.
  */
-export const LEGAL_OWNER_NAME = "";
-export const LEGAL_CONTACT_EMAIL = "";
-export const LEGAL_GOVERNING_LAW = "";
+export const LEGAL_OWNER_NAME = "Subramanian Vairavan";
+export const LEGAL_CONTACT_EMAIL = "subbu16111977@gmail.com";
+export const LEGAL_GOVERNING_LAW = "Tamil Nadu, India";
 
 /** Change this whenever the wording changes in a way people must accept again. */
-export const TERMS_VERSION = "2026-10-08";
-export const LEGAL_UPDATED = "October 8, 2026";
+export const TERMS_VERSION = "2026-10-26";
+export const LEGAL_UPDATED = "October 26, 2026";
 
 export interface LegalSection {
   title: string;
