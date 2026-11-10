@@ -247,3 +247,28 @@ describe("reresolvePantry", () => {
     expect(reresolvePantry(items as never)[1].ingredientId).toBe("lemons-unknown");
   });
 });
+
+describe("shopping amounts when two drinks need the same thing", () => {
+  it("adds up the same unit across different drinks", () => {
+    const first = addMissingIngredientsFromRecipe([], "a", "Drink A", [COFFEE_INGREDIENT]);
+    const second = addMissingIngredientsFromRecipe(first.items, "b", "Drink B", [{ ...COFFEE_INGREDIENT, amount: "10 g" }]);
+    expect(second.items).toHaveLength(1);
+    expect(second.items[0].requestedQuantity).toBe(28);
+    expect(second.items[0].amount).toBe("28 g");
+  });
+
+  it("keeps the larger amount when the same drink is added again at more servings", () => {
+    const first = addMissingIngredientsFromRecipe([], "a", "Drink A", [COFFEE_INGREDIENT]);
+    const again = addMissingIngredientsFromRecipe(first.items, "a", "Drink A", [{ ...COFFEE_INGREDIENT, amount: "36 g" }]);
+    expect(again.items[0].requestedQuantity).toBe(36);
+    const smaller = addMissingIngredientsFromRecipe(again.items, "a", "Drink A", [COFFEE_INGREDIENT]);
+    expect(smaller.items[0].requestedQuantity).toBe(36);
+  });
+
+  it("never guesses across different units", () => {
+    const first = addMissingIngredientsFromRecipe([], "a", "Drink A", [COFFEE_INGREDIENT]);
+    const second = addMissingIngredientsFromRecipe(first.items, "b", "Drink B", [{ ...COFFEE_INGREDIENT, amount: "2 tbsp" }]);
+    expect(second.items[0].requestedQuantity).toBe(18);
+    expect(second.items[0].amount).toBe("18 g");
+  });
+});

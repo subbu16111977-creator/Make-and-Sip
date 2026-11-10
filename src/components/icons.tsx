@@ -1,4 +1,5 @@
 import React from "react";
+import { colors } from "@/theme/colors";
 import { ArrowClockwise } from "phosphor-react-native/src/icons/ArrowClockwise";
 import { ArrowRight } from "phosphor-react-native/src/icons/ArrowRight";
 import { Basket } from "phosphor-react-native/src/icons/Basket";
@@ -36,7 +37,7 @@ export interface IconProps {
   strokeWidth?: number;
 }
 
-const defaults = { size: 24, color: "#EEE8DA", strokeWidth: 1.6 };
+const defaults = { size: 24, color: colors.espresso, strokeWidth: 1.6 };
 
 function weightFor(strokeWidth: number, filled: boolean): IconWeight {
   if (filled) return "fill";

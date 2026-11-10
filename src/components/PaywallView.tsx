@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, ScrollView, StyleSheet, Platform } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Platform } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { Logo } from "@/components/Logo";

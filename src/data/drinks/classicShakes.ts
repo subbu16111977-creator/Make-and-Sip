@@ -39,7 +39,7 @@ export const classicShakes: Recipe[] = [
     { id: "coffee-milkshake", type: "Coffee", title: "Coffee Milkshake", diet: [...GF], taste: ["Rich", "Creamy", "Sweet"], description: "Strong coffee and vanilla ice cream blended with cold milk — like iced coffee made dessert.", prep: 4, make: 2, difficulty: "Easy", image: pexels(5314623), notes: "Dissolve the coffee in a little hot water first: it won't dissolve in cold milk." },
     {
       iceCream: vanilla(180), milkMl: 120,
-      lines: [{ pantryId: "instant-coffee", label: "Instant coffee", amount: "2 tsp" }, { pantryId: "chocolate-syrup", label: "Chocolate syrup, optional", amount: "1 tbsp", optional: true }],
+      lines: [{ pantryId: "instant-coffee", label: "Instant coffee", amount: "2 tsp" }, { pantryId: "chocolate-syrup", label: "Chocolate syrup", amount: "1 tbsp", optional: true }],
       before: ["Stir the instant coffee into 2 tbsp of hot water until dissolved, and let it cool for a couple of minutes."], withIn: "and the coffee",
     }
   ),

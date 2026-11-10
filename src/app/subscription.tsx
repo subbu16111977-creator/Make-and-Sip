@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, Pressable, ScrollView, StyleSheet, Platform, Linking } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Platform, Linking } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { ChevronLeftIcon } from "@/components/icons";

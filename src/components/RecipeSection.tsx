@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { colors, spacing, layout, radii, type as typeScale } from "@/theme";
 import type { EquipmentTag } from "@/types";
@@ -53,7 +54,9 @@ export function RecipeSection({
   const { width } = useAppDimensions();
   const contentWidth = Math.min(width, layout.maxContentWidth) - layout.screenPadding * 2;
   const columns = Math.max(2, Math.floor((contentWidth + GAP) / (MIN_CARD + GAP)));
-  const cardWidth = (contentWidth - GAP * (columns - 1)) / columns;
+  // Rounded down, with 2px to spare: the web preview draws a 1px border either side of the phone column, and an exact fit
+  // overflows the row by a hair and drops the second card onto its own line.
+  const cardWidth = Math.floor((contentWidth - 2 - GAP * (columns - 1)) / columns);
   const fitInRow = Math.max(1, Math.floor((contentWidth + GAP) / (RAIL_CARD + GAP)));
   const showAction = expanded || !hideActionWhenFits || matches.length > fitInRow;
 

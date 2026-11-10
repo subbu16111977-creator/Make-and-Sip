@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors, radii, spacing, type as typeScale, shadows, shade } from "@/theme";
 import { RecipeImage } from "./RecipeImage";

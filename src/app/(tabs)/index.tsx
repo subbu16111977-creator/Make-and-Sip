@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable, RefreshControl, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import { View, Text, StyleSheet, ScrollView, RefreshControl, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { SectionHeader } from "@/components/SectionHeader";

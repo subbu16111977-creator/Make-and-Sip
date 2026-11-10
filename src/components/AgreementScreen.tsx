@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, ScrollView, StyleSheet, BackHandler, Platform } from "react-native";
+import { View, Text, ScrollView, StyleSheet, BackHandler, Platform } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "./Button";
 import { colors, layout, radii, spacing, type as typeScale } from "@/theme";

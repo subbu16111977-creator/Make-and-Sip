@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Pressable, Text, StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { colors, radii, spacing, type as typeScale } from "@/theme";
 import { RefreshIcon } from "@/components/icons";
 

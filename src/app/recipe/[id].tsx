@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import { View, Text, StyleSheet, ScrollView, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -16,7 +17,7 @@ import { getShoppingPlan, matchRecipe } from "@/lib/pantryMatch";
 import { useCookability } from "@/lib/useCookability";
 import { bestMethod, formatMinutes, isByHand, methodReady, methodsOf, missingForMethod, recipeForMethod, toolsPhrase, totalMinutes, waitFor } from "@/lib/methods";
 import { scaleAmountText, scaledRecipe } from "@/lib/cookability";
-import { repeatStep, servingsFactor } from "@/lib/servingSteps";
+import { repeatStep, scaleLabelCounts, servingsFactor } from "@/lib/servingSteps";
 import { buildSwaps, swapLabel, swapNames } from "@/lib/ownedNames";
 import { applyUsage, planUsage } from "@/lib/pantryUse";
 import type { PantryItem } from "@/types";
@@ -409,7 +410,7 @@ export default function RecipeDetailScreen() {
             </Pressable>
           )}
           {optionalCount > 0 && (
-            <Pressable onPress={handleAddOptional} hitSlop={8} style={styles.optionalLink}>
+            <Pressable onPress={handleAddOptional} hitSlop={14} style={styles.optionalLink}>
               <Text style={styles.optionalLinkText}>
                 {justAddedOptional
                   ? "Optional items added"
@@ -495,7 +496,7 @@ export default function RecipeDetailScreen() {
                     </View>
                     <View style={styles.ingredientLabelStack}>
                       <Text style={styles.ingredientLabel}>
-                        {swapLabel(ing.label, nameSwaps)}
+                        {scaleLabelCounts(swapLabel(ing.label, nameSwaps), factor)}
                         {ing.optional ? <Text style={styles.optionalTag}> · optional</Text> : null}
                       </Text>
                       {shortfall && <Text style={styles.shortfallText}>Need {shortfall} more{c?.approximate ? " (estimated)" : ""}</Text>}
@@ -516,7 +517,7 @@ export default function RecipeDetailScreen() {
                 <View key={`${ing.pantryId}-${i}`} style={styles.ingredientRow}>
                   <View style={[styles.ingredientMark, styles.ingredientMarkMissing]} />
                   <Text style={styles.ingredientLabel}>
-                    {ing.label}
+                    {scaleLabelCounts(ing.label, factor)}
                     {ing.optional ? <Text style={styles.optionalTag}> · optional</Text> : null}
                   </Text>
                   <Text style={styles.ingredientAmount}>{scaleAmountText(ing.amount, factor)}</Text>
@@ -666,7 +667,7 @@ const styles = StyleSheet.create({
     color: colors.espressoMuted,
     textTransform: "uppercase",
     letterSpacing: 0.4,
-    fontSize: 10,
+    fontSize: 11,
   },
   addMissingButton: {
     flexDirection: "row",

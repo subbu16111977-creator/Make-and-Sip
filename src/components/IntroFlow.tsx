@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform, Animated, Easing, AccessibilityInfo } from "react-native";
+import { View, Text, ScrollView, StyleSheet, KeyboardAvoidingView, Platform, Animated, Easing, AccessibilityInfo } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "./Button";

@@ -11,7 +11,7 @@ export const fruitAndSpecialShakes: Recipe[] = [
   fruitShake(
     { id: "mango-milkshake", title: "Mango Milkshake", diet: [...GF], taste: ["Fruity", "Sweet", "Creamy"], description: "Ripe mango blended with cold milk and a little sugar: thick, golden and the taste of an Indian summer.", prep: 5, make: 2, difficulty: "Easy", image: pexels(38445505), sourceName: "Magicpin — milkshakes to try", sourceUrl: "https://magicpin.com/blog/try-these-milkshakes", notes: "Alphonso or kesar mangoes are best. Add a scoop of vanilla ice cream for a thicker shake." },
     {
-      lines: [{ pantryId: "mango", label: "Very ripe mango, peeled and chopped", amount: "150 g" }, { pantryId: "sugar", label: "Sugar, to taste", amount: "1 tbsp" }, { pantryId: "vanilla-ice-cream", label: "Vanilla ice cream, optional", amount: "60 g", optional: true }],
+      lines: [{ pantryId: "mango", label: "Very ripe mango, peeled and chopped", amount: "150 g" }, { pantryId: "sugar", label: "Sugar, to taste", amount: "1 tbsp" }, { pantryId: "vanilla-ice-cream", label: "Vanilla ice cream", amount: "60 g", optional: true }],
       milkMl: 200, before: ["Peel the mango and cut the flesh from the stone."], withIn: "the mango, the sugar and the ice cream (if using)", mashWhat: "mango flesh",
     }
   ),
@@ -33,7 +33,7 @@ export const fruitAndSpecialShakes: Recipe[] = [
   fruitShake(
     { id: "date-milkshake", title: "Date Milkshake", diet: [...GF], taste: ["Sweet", "Rich", "Creamy"], description: "Soft dates blended with cold milk and a pinch of cardamom — naturally sweet, caramelly and a favourite across the Middle East.", prep: 15, make: 2, difficulty: "Easy", image: pexels(17272970), notes: "Medjool dates blend smoothest. Soak them in warm water first, so they break down." },
     {
-      lines: [{ pantryId: "dates", label: "Soft pitted dates", amount: "8" }, { pantryId: "cardamom", label: "Ground cardamom", amount: "1 pinch" }, { pantryId: "vanilla-ice-cream", label: "Vanilla ice cream, optional", amount: "60 g", optional: true }],
+      lines: [{ pantryId: "dates", label: "Soft pitted dates", amount: "8" }, { pantryId: "cardamom", label: "Ground cardamom", amount: "1 pinch" }, { pantryId: "vanilla-ice-cream", label: "Vanilla ice cream", amount: "60 g", optional: true }],
       milkMl: 250, before: ["Soak the pitted dates in a little warm water for 10 minutes, then drain."], withIn: "the dates, cardamom and ice cream (if using)", mashWhat: "soaked dates (to a paste)",
     }
   ),
@@ -44,7 +44,7 @@ export const fruitAndSpecialShakes: Recipe[] = [
   fruitShake(
     { id: "strawberry-banana-milkshake", title: "Strawberry Banana Milkshake", diet: [...GF], taste: ["Fruity", "Sweet", "Creamy"], description: "Strawberries and a ripe banana blended with cold milk: a classic fruit pairing, pink and mellow.", prep: 4, make: 2, difficulty: "Easy", image: pexels(8743860) },
     {
-      lines: [{ pantryId: "strawberry", label: "Strawberries, hulled", amount: "80 g" }, { pantryId: "banana", label: "Ripe banana", amount: "1" }, { pantryId: "sugar", label: "Sugar, to taste", amount: "1 tsp", optional: true }, { pantryId: "vanilla-ice-cream", label: "Vanilla ice cream, optional", amount: "60 g", optional: true }],
+      lines: [{ pantryId: "strawberry", label: "Strawberries, hulled", amount: "80 g" }, { pantryId: "banana", label: "Ripe banana", amount: "1" }, { pantryId: "sugar", label: "Sugar, to taste", amount: "1 tsp", optional: true }, { pantryId: "vanilla-ice-cream", label: "Vanilla ice cream", amount: "60 g", optional: true }],
       milkMl: 200, before: ["Hull the strawberries and peel the banana."], withIn: "the strawberries, banana, sugar and ice cream (if using)", mashWhat: "strawberries and banana (together, into a pulp)",
     }
   ),
@@ -70,7 +70,7 @@ export const fruitAndSpecialShakes: Recipe[] = [
   fruitShake(
     { id: "fig-milkshake", title: "Fig Milkshake (Anjeer)", diet: [...GF], taste: ["Sweet", "Rich", "Creamy"], description: "Ripe or soaked dried figs blended with cold milk and honey — honeyed, nutty and rich.", prep: 15, make: 2, difficulty: "Easy", image: pexels(19069897), notes: "If using dried figs, soak them in warm water for 15 minutes first." },
     {
-      lines: [{ pantryId: "figs", label: "Fresh figs, or 4 dried figs soaked", amount: "3" }, { pantryId: "honey", label: "Honey, to taste", amount: "1 tbsp" }, { pantryId: "vanilla-ice-cream", label: "Vanilla ice cream, optional", amount: "60 g", optional: true }],
+      lines: [{ pantryId: "figs", label: "Fresh figs, or 4 dried figs soaked", amount: "3" }, { pantryId: "honey", label: "Honey, to taste", amount: "1 tbsp" }, { pantryId: "vanilla-ice-cream", label: "Vanilla ice cream", amount: "60 g", optional: true }],
       milkMl: 250, before: ["Trim the stalks off the figs and roughly chop them (soak dried figs first and drain)."], withIn: "the figs, honey and ice cream (if using)", mashWhat: "figs",
     }
   ),
@@ -127,7 +127,7 @@ export const fruitAndSpecialShakes: Recipe[] = [
       { pantryId: "milk", label: "Cold whole milk", amount: "250 ml" },
       { pantryId: "rose-syrup", label: "Rose syrup", amount: "2 tbsp" },
       { pantryId: "ice", label: "Ice cubes", amount: "1/2 cup", optional: true },
-      { pantryId: "vanilla-ice-cream", label: "Vanilla ice cream, optional", amount: "60 g", optional: true },
+      { pantryId: "vanilla-ice-cream", label: "Vanilla ice cream", amount: "60 g", optional: true },
     ],
     [
       { id: "by-hand", label: "By hand", equipment: [], handTools: ["Tall glass", "Spoon"], optionalEquipment: [{ tag: "Milk Frother", without: "Stir well with a long spoon, or shake in a lidded jar for 15 seconds." }], steps: ["Pour the rose syrup into the bottom of a tall glass.", "Add the cold milk slowly, stirring as you pour so the syrup mixes through and the milk turns an even pink.", "Add ice (and a scoop of ice cream, if using) and serve right away."] },

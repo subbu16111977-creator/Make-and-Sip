@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { LinearGradient } from "expo-linear-gradient";
-import { colors, radii, spacing, type as typeScale, layout, shadows, shade } from "@/theme";
+import { colors, radii, spacing, type as typeScale, layout, shadows, shade, ivoryWash } from "@/theme";
 import type { Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, LeafIcon, SavedIcon, ShoppingIcon, CheckIcon } from "./icons";
 import { MatchBadge } from "./MatchBadge";
@@ -66,8 +67,11 @@ export function RecipeHero({
     };
   }, []);
 
+  // Optional extras are never put on the shopping list from here: only what the drink actually needs.
+  const required = missing.filter((ingredient) => !ingredient.optional);
+
   function handleAddMissing() {
-    addMissingFromRecipe(recipe.id, recipe.title, missing);
+    addMissingFromRecipe(recipe.id, recipe.title, required);
     setJustAdded(true);
     if (addedTimer.current) clearTimeout(addedTimer.current);
     addedTimer.current = setTimeout(() => setJustAdded(false), 1400);
@@ -90,7 +94,7 @@ export function RecipeHero({
           </View>
           <View style={styles.topRowActions}>
             <TemperatureBadge temperature={recipe.temperature} size={32} />
-            {missing.length > 0 && (
+            {required.length > 0 && (
               <Pressable onPress={handleAddMissing} hitSlop={8} style={styles.iconButton}>
                 {justAdded ? (
                   <CheckIcon size={16} color={colors.white} strokeWidth={2.2} />
@@ -173,7 +177,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   eyebrowChip: {
-    backgroundColor: "rgba(246, 242, 232, 0.92)",
+    backgroundColor: ivoryWash(0.92),
     paddingVertical: 6,
     paddingHorizontal: spacing.md,
     borderRadius: radii.sm,

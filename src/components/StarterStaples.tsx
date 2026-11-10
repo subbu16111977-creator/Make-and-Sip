@@ -25,8 +25,9 @@ export function StarterStaples() {
           return (
             <Chip
               key={staple.name}
-              label={added ? `${staple.name} ✓` : staple.name}
+              label={staple.name}
               selected={added}
+              checked={added}
               onPress={() => {
                 if (added) return;
                 addItem(staple);

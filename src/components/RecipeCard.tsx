@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { colors, radii, spacing, type as typeScale, shadows, shade } from "@/theme";
 import type { Recipe, RecipeIngredient } from "@/types";
 import { ClockIcon, SavedIcon, ShoppingIcon, CheckIcon, HeartIcon } from "./icons";
@@ -45,8 +46,11 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
     };
   }, []);
 
+  // Optional extras are never put on the shopping list from here: only what the drink actually needs.
+  const required = missing.filter((ingredient) => !ingredient.optional);
+
   function handleAddMissing() {
-    addMissingFromRecipe(recipe.id, recipe.title, missing);
+    addMissingFromRecipe(recipe.id, recipe.title, required);
     setJustAdded(true);
     if (addedTimer.current) clearTimeout(addedTimer.current);
     addedTimer.current = setTimeout(() => setJustAdded(false), 1400);
@@ -69,7 +73,7 @@ export function RecipeCard({ recipe, haveCount, totalCount, missing = [], missin
           <SavedIcon size={14} color={colors.white} strokeWidth={1.8} filled={saved} />
         </Pressable>
 
-        {missing.length > 0 && (
+        {required.length > 0 && (
           <Pressable onPress={handleAddMissing} hitSlop={11} style={[styles.iconButton, styles.cartButton]}>
             {justAdded ? (
               <CheckIcon size={13} color={colors.white} strokeWidth={2.2} />

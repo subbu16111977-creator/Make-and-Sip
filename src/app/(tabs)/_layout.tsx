@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, Pressable, StyleSheet, Easing } from "react-native";
+import { View, Text, StyleSheet, Easing } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, spacing, type as typeScale, shadows } from "@/theme";
@@ -101,9 +102,8 @@ const styles = StyleSheet.create({
   },
   label: {
     ...typeScale.caption,
-    fontSize: 9,
-    letterSpacing: 0.6,
-    textTransform: "uppercase",
+    fontSize: 12,
+    letterSpacing: 0.2,
     color: colors.espressoFaint,
   },
   labelActive: {

@@ -1,5 +1,6 @@
 import React from "react";
-import { Pressable, Text, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
+import { Text, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { colors, radii, spacing, type as typeScale } from "@/theme";
 import { ArrowRightIcon } from "./icons";
 

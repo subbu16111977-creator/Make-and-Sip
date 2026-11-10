@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { colors, radii, spacing, type as typeScale, shadows } from "@/theme";
+import { colors, radii, semantic, spacing, type as typeScale, shadows } from "@/theme";
 import type { PantryItem } from "@/types";
 import { daysUntil } from "@/lib/pantryMatch";
 
@@ -10,12 +10,12 @@ interface ExpiringIngredientCardProps {
 
 function urgencyFor(days: number) {
   if (days <= 1) {
-    return { label: days <= 0 ? "Use today" : "Use tomorrow", fg: colors.tomato, bg: "rgba(224, 115, 91, 0.16)" };
+    return { label: days <= 0 ? "Use today" : "Use tomorrow", fg: colors.tomato, bg: semantic.expiryUrgentSoft };
   }
   if (days <= 3) {
-    return { label: `${days} days left`, fg: colors.mustard, bg: "rgba(210, 166, 74, 0.18)" };
+    return { label: `${days} days left`, fg: colors.mustard, bg: semantic.expirySoonSoft };
   }
-  return { label: `${days} days left`, fg: colors.sageOlive, bg: "rgba(143, 191, 159, 0.14)" };
+  return { label: `${days} days left`, fg: colors.sageOlive, bg: semantic.expiryFreshSoft };
 }
 
 /** A single ingredient "shelf card" for the horizontal Use These First rail. */

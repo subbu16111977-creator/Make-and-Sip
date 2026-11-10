@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useRef, useState } from "react";
-import { View, Text, StyleSheet, TextInput, ScrollView, FlatList, Pressable } from "react-native";
+import { View, Text, StyleSheet, TextInput, ScrollView, FlatList } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";

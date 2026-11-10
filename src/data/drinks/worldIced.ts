@@ -114,7 +114,7 @@ export const worldIced: Recipe[] = [
       { pantryId: "sugar", label: "Sugar, to taste", amount: "2 tsp" },
       { pantryId: "water", label: "Cold water", amount: "100 ml" },
       { pantryId: "ice", label: "Ice cubes", amount: "1 cup" },
-      { pantryId: "evaporated-milk", label: "Evaporated milk, optional", amount: "30 ml", optional: true },
+      { pantryId: "evaporated-milk", label: "Evaporated milk", amount: "30 ml", optional: true },
     ],
     [
       {
@@ -329,11 +329,11 @@ export const worldIced: Recipe[] = [
       { pantryId: "ground-coffee", label: "Medium ground coffee", amount: "20 g" },
       { pantryId: "water", label: "Hot water, just off the boil", amount: "200 ml" },
       { pantryId: "ice", label: "Ice cubes", amount: "1 cup" },
-      { pantryId: "sugar", label: "Sugar, optional", amount: "1 tsp", optional: true },
+      { pantryId: "sugar", label: "Sugar", amount: "1 tsp", optional: true },
     ],
     dripMethods({
       coffeeG: 20, waterMl: 200, byHandWaterMl: 230,
-      lines: [{ pantryId: "ice", label: "Ice cubes", amount: "1 cup" }, { pantryId: "sugar", label: "Sugar, optional", amount: "1 tsp", optional: true }],
+      lines: [{ pantryId: "ice", label: "Ice cubes", amount: "1 cup" }, { pantryId: "sugar", label: "Sugar", amount: "1 tsp", optional: true }],
       into: "into a jug",
       after: ["Stir in the sugar, if using, while the coffee is hot.", "Fill a tall glass with ice and pour the coffee over it. Drink right away."],
     })
@@ -406,7 +406,7 @@ export const worldIced: Recipe[] = [
     },
     {
       size: "double",
-      lines: [{ pantryId: "orange-juice", label: "Orange juice, cold", amount: "100 ml" }, ice(), { pantryId: "sugar", label: "Sugar, optional", amount: "1 tsp", optional: true }],
+      lines: [{ pantryId: "orange-juice", label: "Orange juice, cold", amount: "100 ml" }, ice(), { pantryId: "sugar", label: "Sugar", amount: "1 tsp", optional: true }],
       into: "into a small cup",
       before: ["Fill a glass with ice and pour in the orange juice."],
       after: ["Stir the sugar into the hot coffee, if using, then pour it slowly over the back of a spoon onto the juice.", "Serve as it is, and stir as you drink."],

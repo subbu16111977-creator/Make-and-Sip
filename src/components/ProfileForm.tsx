@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import { View, Text, TextInput, StyleSheet } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { Avatar } from "./Avatar";
 import { PhotoCropper } from "./PhotoCropper";
 import { Chip } from "./Chip";
@@ -215,6 +216,8 @@ const styles = StyleSheet.create({
   photoRow: { flexDirection: "row", alignItems: "center", gap: spacing.lg, marginBottom: spacing.sm },
   photoActions: { flex: 1, gap: spacing.sm, alignItems: "flex-start" },
   smallButton: {
+    minHeight: 44,
+    justifyContent: "center",
     paddingVertical: 10,
     paddingHorizontal: spacing.lg,
     borderRadius: radii.md,

@@ -16,10 +16,32 @@ import { ProfileProvider } from "@/context/ProfileContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import { SubscriptionProvider } from "@/context/SubscriptionContext";
 import { FirstLaunchGate, LockAware } from "@/components/FirstLaunchGate";
+import { ErrorState } from "@/components/States";
+import type { ErrorBoundaryProps } from "expo-router";
 
 SplashScreen.preventAutoHideAsync().catch(() => {
   // no-op — safe to ignore if already hidden
 });
+
+/**
+ * The last safety net: if a screen throws, people see a plain message and a way back in, never a stack trace.
+ * The real error goes to the log for us.
+ */
+export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
+  useEffect(() => {
+    console.error("[app] screen crashed", error);
+  }, [error]);
+  return (
+    <View style={styles.crash}>
+      <ErrorState
+        title="Something went wrong"
+        body="Make & Sip hit a problem it could not recover from. Your pantry and saved drinks are safe on this device."
+        actionLabel="Try again"
+        onPressAction={retry}
+      />
+    </View>
+  );
+}
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts(fontsToLoad);
@@ -76,7 +98,7 @@ const styles = StyleSheet.create({
   // On the web the app is a centred phone-width column; on a phone this is a no-op.
   page: {
     flex: 1,
-    backgroundColor: Platform.OS === "web" ? "#08100D" : colors.cream,
+    backgroundColor: Platform.OS === "web" ? colors.webBackdrop : colors.cream,
     alignItems: "center",
   },
   root: {
@@ -87,6 +109,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     ...(Platform.OS === "web" ? { borderLeftWidth: StyleSheet.hairlineWidth, borderRightWidth: StyleSheet.hairlineWidth, borderColor: colors.hairlineStrong } : null),
   },
+  crash: { flex: 1, backgroundColor: colors.cream, justifyContent: "center" },
   blank: {
     flex: 1,
     backgroundColor: colors.cream,

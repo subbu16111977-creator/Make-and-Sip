@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { colors, radii, spacing, type as typeScale } from "@/theme";
+import { colors, ivoryWash, radii, semantic, spacing, type as typeScale } from "@/theme";
 import { CheckIcon } from "./icons";
 
 interface MatchBadgeProps {
@@ -43,16 +43,16 @@ const styles = StyleSheet.create({
     borderRadius: radii.sm,
   },
   wrapLight: {
-    backgroundColor: "rgba(111, 175, 140, 0.16)",
+    backgroundColor: semantic.haveSoft,
   },
   wrapLightComplete: {
-    backgroundColor: "rgba(111, 175, 140, 0.24)",
+    backgroundColor: semantic.haveSoftStrong,
   },
   wrapDark: {
-    backgroundColor: "rgba(246, 242, 232, 0.16)",
+    backgroundColor: ivoryWash(0.16),
   },
   wrapDarkComplete: {
-    backgroundColor: "rgba(246, 242, 232, 0.22)",
+    backgroundColor: ivoryWash(0.22),
   },
   text: {
     ...typeScale.caption,

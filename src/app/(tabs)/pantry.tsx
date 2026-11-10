@@ -1,17 +1,6 @@
 import React, { useMemo, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  SectionList,
-  FlatList,
-  Pressable,
-  Modal,
-  TextInput,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { View, Text, StyleSheet, SectionList, FlatList, Modal, TextInput, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { useLocalSearchParams } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Chip } from "@/components/Chip";
@@ -193,7 +182,7 @@ export default function PantryScreen() {
         <Text style={styles.headline}>Pantry</Text>
         <Text style={styles.subhead}>
           {segment === "ingredients"
-            ? `${items.length} ingredients across ${categoryCount} categories`
+            ? `${items.length} ${items.length === 1 ? "ingredient" : "ingredients"} across ${categoryCount} ${categoryCount === 1 ? "category" : "categories"}`
             : `${ownedEquipmentCount} of ${EQUIPMENT_LIST.length} items on hand`}
         </Text>
       </View>

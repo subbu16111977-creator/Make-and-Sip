@@ -207,23 +207,7 @@ export function addMissingIngredientsFromRecipe(
     const ingredientId = shortfall ? shortfall.ingredientId : ingredient.pantryId;
     const existingIndex = items.findIndex((i) => i.ingredientId === ingredientId && !i.checked);
 
-    if (existingIndex >= 0) {
-      const existing = items[existingIndex];
-      items[existingIndex] = {
-        ...existing,
-        sourceRecipeIds: existing.sourceRecipeIds.includes(recipeId)
-          ? existing.sourceRecipeIds
-          : [...existing.sourceRecipeIds, recipeId],
-        // Once any recipe needs it as a required item, it stops being "optional".
-        optional: existing.optional && ingredient.optional ? true : undefined,
-      };
-      continue;
-    }
-
-    const registryEntry = resolveIngredientById(ingredientId);
-    const name = registryEntry?.displayName ?? ingredient.label;
-    const existingIds = new Set(items.map((i) => i.id));
-
+    // What this request asks for, in a quantity and unit when that can be told reliably.
     let amount = ingredient.amount;
     let requestedQuantity: number | null;
     let requestedUnit: string | null;
@@ -236,6 +220,36 @@ export function addMissingIngredientsFromRecipe(
       requestedQuantity = parsed.quantity;
       requestedUnit = parsed.unit;
     }
+
+    if (existingIndex >= 0) {
+      const existing = items[existingIndex];
+      const sameRecipe = existing.sourceRecipeIds.includes(recipeId);
+      // Another drink needing the same thing in the same unit: buy enough for both. Asking again for the same drink
+      // (say at more servings) keeps the larger amount rather than counting it twice. Different or unknown units are
+      // never guessed at, so the existing amount stands.
+      const canCombine =
+        typeof existing.requestedQuantity === "number" &&
+        typeof requestedQuantity === "number" &&
+        existing.requestedUnit !== null &&
+        existing.requestedUnit === requestedUnit;
+      const combined = canCombine
+        ? Math.round((sameRecipe ? Math.max(existing.requestedQuantity as number, requestedQuantity as number) : (existing.requestedQuantity as number) + (requestedQuantity as number)) * 100) / 100
+        : null;
+      items[existingIndex] = {
+        ...existing,
+        ...(combined !== null && combined !== existing.requestedQuantity ? { requestedQuantity: combined, amount: `${combined} ${requestedUnit}` } : {}),
+        sourceRecipeIds: existing.sourceRecipeIds.includes(recipeId)
+          ? existing.sourceRecipeIds
+          : [...existing.sourceRecipeIds, recipeId],
+        // Once any recipe needs it as a required item, it stops being "optional".
+        optional: existing.optional && ingredient.optional ? true : undefined,
+      };
+      continue;
+    }
+
+    const registryEntry = resolveIngredientById(ingredientId);
+    const name = registryEntry?.displayName ?? ingredient.label;
+    const existingIds = new Set(items.map((i) => i.id));
 
     const newItem: ShoppingItem = {
       id: freshId(existingIds, slugify(name)),

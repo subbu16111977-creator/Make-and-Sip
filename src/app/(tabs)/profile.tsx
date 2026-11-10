@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, Text, Pressable, StyleSheet, type ScrollView, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import { View, Text, StyleSheet, type ScrollView, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { useFocusEffect, useRouter } from "expo-router";
 import { Screen } from "@/components/Screen";
 import { Avatar } from "@/components/Avatar";
@@ -144,7 +145,7 @@ export default function ProfileScreen() {
         {planSummary ? (
           <Pressable onPress={() => router.push("/subscription")} accessibilityRole="button" accessibilityLabel="Open your subscription" style={styles.row}>
             <Text style={styles.rowText}>
-              {planSummary.planName} · {planSummary.badge}
+              {planSummary.planName === planSummary.badge ? planSummary.planName : `${planSummary.planName} · ${planSummary.badge}`}
             </Text>
             <Text style={styles.sub}>{planSummary.headline}</Text>
           </Pressable>

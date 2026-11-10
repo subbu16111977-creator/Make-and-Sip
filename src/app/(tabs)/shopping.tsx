@@ -1,16 +1,6 @@
 import React, { useMemo, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  SectionList,
-  Pressable,
-  Modal,
-  TextInput,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { View, Text, StyleSheet, SectionList, Modal, TextInput, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { Screen } from "@/components/Screen";
 import { Chip } from "@/components/Chip";
 import { Button } from "@/components/Button";
@@ -38,7 +28,7 @@ function ShoppingRow({
 }) {
   return (
     <View style={styles.row}>
-      <Pressable onPress={onToggle} hitSlop={8} style={[styles.checkbox, item.checked && styles.checkboxChecked]}>
+      <Pressable onPress={onToggle} hitSlop={11} style={[styles.checkbox, item.checked && styles.checkboxChecked]}>
         {item.checked && <CheckIcon size={12} color={colors.cream} strokeWidth={2.6} />}
       </Pressable>
       <View style={styles.rowBody}>
@@ -52,7 +42,10 @@ function ShoppingRow({
           {item.fromRecipe ? ` · from ${item.fromRecipe}` : ""}
         </Text>
         {item.checked && (
-          <Text style={styles.rowAddedToPantry}>{inPantry ? "✓ Added to pantry" : "Purchased"}</Text>
+          <View style={styles.rowAddedRow}>
+            {inPantry ? <CheckIcon size={13} color={colors.sageOlive} strokeWidth={2.2} /> : null}
+            <Text style={styles.rowAddedToPantry}>{inPantry ? "Added to pantry" : "Purchased"}</Text>
+          </View>
         )}
       </View>
       <Pressable onPress={onRemove} hitSlop={10} style={styles.rowRemove}>
@@ -315,6 +308,7 @@ const styles = StyleSheet.create({
   rowTopUpTag: {
     color: colors.mustard,
   },
+  rowAddedRow: { flexDirection: "row", alignItems: "center", gap: spacing.xs },
   rowAddedToPantry: {
     ...typeScale.caption,
     color: colors.sageOlive,

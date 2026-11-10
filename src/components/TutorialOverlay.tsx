@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, Pressable, StyleSheet, Animated } from "react-native";
+import { View, Text, StyleSheet, Animated } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { useRouter, useRootNavigationState } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -284,8 +285,8 @@ export function TutorialOverlay() {
 const styles = StyleSheet.create({
   layer: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 90 },
   spotLayer: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0 },
-  spotRing: { position: "absolute", borderRadius: radii.lg, borderWidth: 2.5, borderColor: "#FFFFFF" },
-  spotGlow: { position: "absolute", borderRadius: radii.xl, borderWidth: 6, borderColor: "#FFFFFF" },
+  spotRing: { position: "absolute", borderRadius: radii.lg, borderWidth: 2.5, borderColor: colors.white },
+  spotGlow: { position: "absolute", borderRadius: radii.xl, borderWidth: 6, borderColor: colors.white },
   card: {
     position: "absolute",
     left: spacing.lg,

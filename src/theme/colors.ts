@@ -17,6 +17,9 @@ const INK = "9, 16, 13";
 /** A translucent wash of the app's own dark surface — scrims, photo gradients, badges. One source, no loose rgba. */
 export const shade = (alpha: number): string => `rgba(${INK}, ${alpha})`;
 
+/** A translucent wash of the app's ivory text colour, for light chips and badges over photos. */
+export const ivoryWash = (alpha: number): string => `rgba(246, 242, 232, ${alpha})`;
+
 export const colors = {
   // Surfaces: `cream` is the app background (the darkest), `paper` and `parchment` are raised cards
   cream: "#0F1915",
@@ -52,6 +55,9 @@ export const colors = {
   overlayStrong: shade(0.72),
   overlaySoft: shade(0.35),
   scrim: shade(0.5),
+
+  /** The page behind the phone-width column on the web preview. */
+  webBackdrop: "#08100D",
 } as const;
 
 export type ColorToken = keyof typeof colors;
@@ -78,6 +84,11 @@ export const semantic = {
 
   have: colors.deepOlive,
   haveSoft: "rgba(111, 175, 140, 0.16)",
+  haveSoftStrong: "rgba(111, 175, 140, 0.24)",
+  /** Solid-ish fills for the Ready / Almost ready badges that sit on photos. */
+  readyFill: "rgba(111, 175, 140, 0.95)",
+  almostFill: "rgba(201, 166, 107, 0.95)",
+  neutralFill: "rgba(28, 43, 37, 0.92)",
   missing: colors.burntOrange,
   missingSoft: "rgba(201, 166, 107, 0.14)",
   optional: colors.mustard,
@@ -88,4 +99,5 @@ export const semantic = {
   expirySoon: colors.mustard,
   expirySoonSoft: "rgba(210, 166, 74, 0.16)",
   expiryFresh: colors.sageOlive,
+  expiryFreshSoft: "rgba(143, 191, 159, 0.14)",
 } as const;

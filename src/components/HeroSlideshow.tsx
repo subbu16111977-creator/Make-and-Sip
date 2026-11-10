@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, ScrollView, StyleSheet, Pressable, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { View, ScrollView, StyleSheet, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { colors, spacing, layout } from "@/theme";
 import type { EquipmentTag, PantryItem } from "@/types";
 import { RecipeHero, useHeroWidth } from "./RecipeHero";

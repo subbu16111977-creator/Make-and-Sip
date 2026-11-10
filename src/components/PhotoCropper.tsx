@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, Image, Modal, Pressable, PanResponder, Platform, StyleSheet } from "react-native";
+import { View, Text, Image, Modal, PanResponder, Platform, StyleSheet } from "react-native";
+import { Pressable } from "@/components/Pressable";
 import { useAppDimensions } from "@/lib/useAppDimensions";
 import { colors, radii, spacing, type as typeScale, shade } from "@/theme";
 import { DEFAULT_CROP, MAX_ZOOM, MIN_ZOOM, clampCrop, layoutFor, withDrag, withZoom, type PhotoCrop } from "@/lib/photoCrop";
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
   help: { ...typeScale.bodySmall, color: colors.espressoMuted, textAlign: "center" },
   stage: { overflow: "hidden", backgroundColor: colors.cream, borderRadius: radii.lg, marginVertical: spacing.sm },
   zoomRow: { flexDirection: "row", alignItems: "center", gap: spacing.md, width: "100%" },
-  zoomButton: { width: 40, height: 40, borderRadius: 20, borderWidth: 1, borderColor: colors.hairlineStrong, alignItems: "center", justifyContent: "center" },
+  zoomButton: { width: 44, height: 44, borderRadius: 22, borderWidth: 1, borderColor: colors.hairlineStrong, alignItems: "center", justifyContent: "center" },
   zoomGlyph: { ...typeScale.headline, fontSize: 22, lineHeight: 26, color: colors.espresso },
   track: { flex: 1, height: 40, justifyContent: "center" },
   trackLine: { height: 4, borderRadius: 2, backgroundColor: colors.hairlineStrong },
